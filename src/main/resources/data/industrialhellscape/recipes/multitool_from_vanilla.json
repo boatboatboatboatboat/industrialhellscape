@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "R": {
+      "item": "minecraft:iron_bars"
+    },
+    "N": {
+      "item": "minecraft:iron_nugget"
+    },
+    "F": {
+      "item": "minecraft:flint"
+    }
+  },
+
+  "pattern": [
+    "RNR",
+    "FIL",
+    "RNR"
+  ],
+
+  "result": {
+    "item": "industrialhellscape:malevolent_multitool"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,3 @@
+Items get .png files in this folder.
+
+Block Items do not get a custom .png. Their inventory-texture is generated from the block model to show isometric view of three sides.
