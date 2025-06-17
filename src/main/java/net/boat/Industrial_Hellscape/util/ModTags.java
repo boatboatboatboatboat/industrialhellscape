@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.Block;
 public class ModTags {
     public static class Blocks {
         public static final TagKey<Block> VESSELPLATE_VARIANTS = tag("inhell_vesselplate_variants");
-        public static final TagKey<Block> ROCKRETE_DYE_VARIANTS = tag("inhell_rockrete_variants");
+        public static final TagKey<Block> ROCKRETE_DYE_VARIANTS = tag("inhell_rockrete_dye_variants");
 
 
         private static TagKey<Block> tag(String name) {

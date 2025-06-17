@@ -16,17 +16,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
 
-        //Special Blocks
-        blockWithItem(ModBlocks.SOUND_BLOCK);
-
-        //Iron-like blocks
+        //IRON-LIKE BLOCKS
         blockWithItem(ModBlocks.VESSELPLATE);
         blockWithItem(ModBlocks.VESSELPLATE_GRATE_BLOCK);
 
-        //Stone-like blocks
+        //STONE-LIKE BLOCKS
         blockWithItem(ModBlocks.GRAY_ROCKRETE);
         blockWithItem(ModBlocks.HAZARD_STRIPE_YELLOW);
         blockWithItem(ModBlocks.HAZARD_STRIPE_RED);
+
+        //SPECIAL BLOCKS
+        blockWithItem(ModBlocks.SOUND_BLOCK);
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {

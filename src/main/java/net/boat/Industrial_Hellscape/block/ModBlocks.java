@@ -48,7 +48,7 @@ public class ModBlocks {
     //SPECIAL BLOCKS HERE VVV
     public static final RegistryObject<Block> SOUND_BLOCK = registerBlock("sound_block",
             () -> new SoundBlock(BlockBehaviour
-                    .Properties.copy(Blocks.SMOOTH_STONE)
+                    .Properties.copy(Blocks.STONE)
                     .strength(1f)
                     .requiresCorrectToolForDrops()
             )
