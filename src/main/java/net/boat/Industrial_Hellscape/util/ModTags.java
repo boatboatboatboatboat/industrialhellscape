@@ -6,7 +6,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 
-public class modTags {
+public class ModTags {
     public static class Blocks {
         public static final TagKey<Block> VESSELPLATE_VARIANTS = tag("vesselplate_variants");
 
