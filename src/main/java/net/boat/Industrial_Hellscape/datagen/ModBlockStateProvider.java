@@ -24,6 +24,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.VESSELPLATE_GRATE_BLOCK);
 
         //Stone-like blocks
+        blockWithItem(ModBlocks.GRAY_ROCKRETE);
         blockWithItem(ModBlocks.HAZARD_STRIPE_YELLOW);
         blockWithItem(ModBlocks.HAZARD_STRIPE_RED);
     }

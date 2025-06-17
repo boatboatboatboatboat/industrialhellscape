@@ -29,6 +29,11 @@ public class ModBlocks {
     );
 
     //STONELIKE BLOCKS  HERE vvv
+    public static final RegistryObject<Block> GRAY_ROCKRETE = registerBlock("gray_rockrete",
+            () -> new Block(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+                    .strength(1f).requiresCorrectToolForDrops())
+    );
     public static final RegistryObject<Block> HAZARD_STRIPE_YELLOW = registerBlock("hazard_stripe_yellow",
             () -> new Block(BlockBehaviour
                     .Properties.copy(Blocks.STONE)

@@ -46,6 +46,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModItems.MALEVOLENT_MULTITOOL.get()), has(ModItems.MALEVOLENT_MULTITOOL.get()))
                 .save(pWriter);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.GRAY_ROCKRETE.get(), 9) //Vesselplate x9 base item recipe using iron block and non-consumeable multitool
+                .requires(ModItems.MALEVOLENT_MULTITOOL.get())
+                .requires(Items.STONE)
+                .unlockedBy(getHasName(ModItems.MALEVOLENT_MULTITOOL.get()), has(ModItems.MALEVOLENT_MULTITOOL.get()))
+                .save(pWriter);
+
 
     }
 

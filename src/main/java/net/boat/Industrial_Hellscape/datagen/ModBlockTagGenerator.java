@@ -30,7 +30,16 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.VESSELPLATE.get(),
                         ModBlocks.VESSELPLATE_GRATE_BLOCK.get()
                 );
-
+        this.tag(ModTags.Blocks.ROCKRETE_DYE_VARIANTS)
+                .add(
+                        ModBlocks.GRAY_ROCKRETE.get()
+                );
+        this.tag(BlockTags.NEEDS_STONE_TOOL)
+                .add(
+                        ModBlocks.GRAY_ROCKRETE.get(),
+                        ModBlocks.HAZARD_STRIPE_YELLOW.get(),
+                        ModBlocks.HAZARD_STRIPE_RED.get()
+        );
         this.tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(
                         ModBlocks.VESSELPLATE.get(),
@@ -41,6 +50,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(
                         ModBlocks.VESSELPLATE.get(),
                         ModBlocks.VESSELPLATE_GRATE_BLOCK.get(),
+
+                        ModBlocks.GRAY_ROCKRETE.get(),
                         ModBlocks.HAZARD_STRIPE_YELLOW.get(),
                         ModBlocks.HAZARD_STRIPE_RED.get()
                 );

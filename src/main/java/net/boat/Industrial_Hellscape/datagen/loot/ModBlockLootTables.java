@@ -20,6 +20,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.VESSELPLATE_GRATE_BLOCK.get());
 
         //STONELIKE BLOCKS
+        this.dropSelf(ModBlocks.GRAY_ROCKRETE.get());
         this.dropSelf(ModBlocks.HAZARD_STRIPE_YELLOW.get());
         this.dropSelf(ModBlocks.HAZARD_STRIPE_RED.get());
 
