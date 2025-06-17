@@ -6,7 +6,6 @@ import net.boat.Industrial_Hellscape.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -29,10 +28,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> pWriter) {
 
-        oreSmelting(pWriter, VESSELPLATE_SMELTABLES, RecipeCategory.MISC, Items.IRON_BLOCK, 0.0f, 200, "Vesselplate");
-        oreBlasting(pWriter, VESSELPLATE_SMELTABLES, RecipeCategory.MISC, ModItems.FLOPPY_DISKETTE.get(), 0.0f, 100, "Vesselplate");
+        oreSmelting(pWriter, VESSELPLATE_SMELTABLES, RecipeCategory.MISC, Items.IRON_INGOT, 0.0f, 200, "Vesselplate Recycling");
+        oreBlasting(pWriter, VESSELPLATE_SMELTABLES, RecipeCategory.MISC, Items.IRON_INGOT, 0.0f, 100, "Vesselplate Recycling");
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.SOUND_BLOCK.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.SOUND_BLOCK.get()) //3x3 recipe for Sound Block from Floppy Diskettes
                 .pattern("SSS")
                 .pattern("SSS")
                 .pattern("SSS")
@@ -41,10 +40,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModItems.FLOPPY_DISKETTE.get()), has(ModItems.FLOPPY_DISKETTE.get()))
                         .save(pWriter);
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.SOUND_BLOCK.get(), 1)
-                .requires(ModItems.FLOPPY_DISKETTE.get())
-                .unlockedBy(getHasName(ModItems.FLOPPY_DISKETTE.get()), has(ModItems.FLOPPY_DISKETTE.get()))
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.VESSELPLATE.get(), 9) //Vesselplate x9 base item recipe using iron block and non-consumeable multitool
+                .requires(ModItems.MALEVOLENT_MULTITOOL.get())
+                .requires(Items.IRON_BLOCK)
+                .unlockedBy(getHasName(ModItems.MALEVOLENT_MULTITOOL.get()), has(ModItems.MALEVOLENT_MULTITOOL.get()))
                 .save(pWriter);
+
+
     }
 
 

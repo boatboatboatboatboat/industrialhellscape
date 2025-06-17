@@ -20,17 +20,27 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, IndustrialHellscape.MOD_ID);
 
+    //IRONLIKE BLOCKS HERE VVV
     public static final RegistryObject<Block> VESSELPLATE_GRATE_BLOCK = registerBlock("vesselplate_grate_block",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.ANVIL).requiresCorrectToolForDrops())); //Test tool correctness
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.ANVIL).requiresCorrectToolForDrops())
+    );
+    public static final RegistryObject<Block> VESSELPLATE = registerBlock("vesselplate",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.ANVIL).requiresCorrectToolForDrops())
+    );
+
+    //STONELIKE BLOCKS  HERE vvv
     public static final RegistryObject<Block> HAZARD_STRIPE_YELLOW = registerBlock("hazard_stripe_yellow",
             () -> new Block(BlockBehaviour
-                    .Properties.copy(Blocks.SMOOTH_STONE)
-                    .strength(1f).requiresCorrectToolForDrops()
-            )
-    ); //Test tool correctness and strength compared to stone
+                    .Properties.copy(Blocks.STONE)
+                    .strength(1f).requiresCorrectToolForDrops())
+    );
+    public static final RegistryObject<Block> HAZARD_STRIPE_RED = registerBlock("hazard_stripe_red",
+            () -> new Block(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+                    .strength(1f).requiresCorrectToolForDrops())
+    );
 
-
-
+    //SPECIAL BLOCKS HERE VVV
     public static final RegistryObject<Block> SOUND_BLOCK = registerBlock("sound_block",
             () -> new SoundBlock(BlockBehaviour
                     .Properties.copy(Blocks.SMOOTH_STONE)
@@ -39,6 +49,7 @@ public class ModBlocks {
             )
     );
 
+    //PREREQUISITE METHODS VVV
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name,block);
         registerBlockItem(name, toReturn);

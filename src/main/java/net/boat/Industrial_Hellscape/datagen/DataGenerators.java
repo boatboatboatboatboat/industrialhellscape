@@ -11,6 +11,12 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.concurrent.CompletableFuture;
 
+//Before datagen is ran, delete data folder, blockstate folder, models folder
+//Error will occur if appropriately-named texture file is not found. Change as necessary.
+//Can automatically datagen simple blocks with single-texture. Advanced blocks need ommission and manual adjustment
+//Same for items
+//Delete src/generated/resource folder to reset generation
+
 @Mod.EventBusSubscriber(modid = IndustrialHellscape.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DataGenerators {
     @SubscribeEvent

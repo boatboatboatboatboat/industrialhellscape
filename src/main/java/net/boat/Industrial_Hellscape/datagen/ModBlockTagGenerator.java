@@ -20,17 +20,29 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
+        /*this.tag(Tags.Blocks.BARRELS) //Forge Tags
+                .add(
+                        ModBlocks.VESSELPLATE.get()
+                );*/
+
         this.tag(ModTags.Blocks.VESSELPLATE_VARIANTS)
-                .add(ModBlocks.VESSELPLATE_GRATE_BLOCK.get()); //.addTags(Tags.Blocks.etc);
+                .add(
+                        ModBlocks.VESSELPLATE.get(),
+                        ModBlocks.VESSELPLATE_GRATE_BLOCK.get()
+                );
 
         this.tag(BlockTags.NEEDS_IRON_TOOL)
-                .add(ModBlocks.VESSELPLATE_GRATE_BLOCK.get()); //.addTags(Tags.Blocks.etc)
+                .add(
+                        ModBlocks.VESSELPLATE.get(),
+                        ModBlocks.VESSELPLATE_GRATE_BLOCK.get()
+        );
 
-        this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .add(ModBlocks.VESSELPLATE_GRATE_BLOCK.get(),
-                    ModBlocks.HAZARD_STRIPE_YELLOW.get()
-                    //OTHER BLOCKS GO HERE
-
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE) //OMIT TRAILING COMMA ON THE LAST ENTRY
+                .add(
+                        ModBlocks.VESSELPLATE.get(),
+                        ModBlocks.VESSELPLATE_GRATE_BLOCK.get(),
+                        ModBlocks.HAZARD_STRIPE_YELLOW.get(),
+                        ModBlocks.HAZARD_STRIPE_RED.get()
                 );
     }
 }

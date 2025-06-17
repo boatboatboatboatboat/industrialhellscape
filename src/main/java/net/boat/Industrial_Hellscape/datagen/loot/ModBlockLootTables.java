@@ -15,8 +15,15 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
+        //IRONLIKE BLOCKS
+        this.dropSelf(ModBlocks.VESSELPLATE.get());
         this.dropSelf(ModBlocks.VESSELPLATE_GRATE_BLOCK.get());
+
+        //STONELIKE BLOCKS
         this.dropSelf(ModBlocks.HAZARD_STRIPE_YELLOW.get());
+        this.dropSelf(ModBlocks.HAZARD_STRIPE_RED.get());
+
+        //SPECIAL BLOCKS
         this.dropSelf(ModBlocks.SOUND_BLOCK.get());
 
         //Any Ores are added here too

@@ -11,13 +11,11 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModItems {
 
-
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, IndustrialHellscape.MOD_ID);
 
     public static final RegistryObject<Item> MALEVOLENT_MULTITOOL = ITEMS.register("malevolent_multitool",
-            () -> new Malevolent_Multitool(new Item.Properties().fireResistant().stacksTo(1)));
-
+            () -> new Malevolent_Multitool(new Item.Properties().fireResistant().stacksTo(1))); //Malevolent_Multitool is a subclass of superclass Item, having more unique characteristics than a normal item
 
     public static final RegistryObject<Item> FLOPPY_DISK = ITEMS.register("floppy_disk",
             () -> new Item(new Item.Properties()));
