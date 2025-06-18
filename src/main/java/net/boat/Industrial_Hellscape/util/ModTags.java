@@ -12,7 +12,7 @@ public class ModTags {
         //LIST OF TAGS USED IN THIS MOD
         public static final TagKey<Block> INHELL_VESSELPLATE_VARIANTS = tag("inhell_vesselplate_variants");
         public static final TagKey<Block> INHELL_ROCKRETE_DYE_VARIANTS = tag("inhell_rockrete_dye_variants");
-        public static final TagKey<Block> INHELL_CONNECTED_TEXTURES = tag("inhell_connected_textures");
+        public static final TagKey<Block> INHELL_CTM_BLOCKS = tag("inhell_CTM_BLOCKS");
         public static final TagKey<Block> INHELL_ROCKRETE_VARIANTS = tag("inhell_rockrete_variants");
 
 
