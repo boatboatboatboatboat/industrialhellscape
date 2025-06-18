@@ -34,6 +34,22 @@ public class ModBlocks {
                     .Properties.copy(Blocks.STONE)
                     .strength(1f).requiresCorrectToolForDrops())
     );
+    public static final RegistryObject<Block> BLACK_ROCKRETE = registerBlock("black_rockrete",
+            () -> new Block(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+                    .strength(1f).requiresCorrectToolForDrops())
+    );
+    public static final RegistryObject<Block> LIGHT_GRAY_ROCKRETE = registerBlock("light_gray_rockrete",
+            () -> new Block(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+                    .strength(1f).requiresCorrectToolForDrops())
+    );
+    public static final RegistryObject<Block> WHITE_ROCKRETE = registerBlock("white_rockrete",
+            () -> new Block(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+                    .strength(1f).requiresCorrectToolForDrops())
+    );
+
     public static final RegistryObject<Block> HAZARD_STRIPE_YELLOW = registerBlock("hazard_stripe_yellow",
             () -> new Block(BlockBehaviour
                     .Properties.copy(Blocks.STONE)

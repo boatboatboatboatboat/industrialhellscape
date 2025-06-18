@@ -8,8 +8,13 @@ import net.minecraft.world.level.block.Block;
 
 public class ModTags {
     public static class Blocks {
-        public static final TagKey<Block> VESSELPLATE_VARIANTS = tag("inhell_vesselplate_variants");
-        public static final TagKey<Block> ROCKRETE_DYE_VARIANTS = tag("inhell_rockrete_dye_variants");
+
+        //LIST OF TAGS USED IN THIS MOD
+        public static final TagKey<Block> INHELL_VESSELPLATE_VARIANTS = tag("inhell_vesselplate_variants");
+        public static final TagKey<Block> INHELL_ROCKRETE_DYE_VARIANTS = tag("inhell_rockrete_dye_variants");
+        public static final TagKey<Block> INHELL_CONNECTED_TEXTURES = tag("inhell_connected_textures");
+        public static final TagKey<Block> INHELL_ROCKRETE_VARIANTS = tag("inhell_rockrete_variants");
+
 
 
         private static TagKey<Block> tag(String name) {

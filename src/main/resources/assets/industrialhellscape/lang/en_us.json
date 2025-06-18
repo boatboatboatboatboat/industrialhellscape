@@ -8,11 +8,13 @@
   "block.industrialhellscape.vesselplate_grate_block": "Vesselplate Grate Block",
 
   "block.industrialhellscape.gray_rockrete": "Gray Rockrete",
+  "block.industrialhellscape.light_gray_rockrete": "Light Gray Rockrete",
+  "block.industrialhellscape.white_rockrete": "White Rockrete",
+  "block.industrialhellscape.black_rockrete": "Black Rockrete",
   "block.industrialhellscape.hazard_stripe_yellow": "Hazard Stripe Yellow",
   "block.industrialhellscape.hazard_stripe_red": "Hazard Stripe Red",
 
   "block.industrialhellscape.sound_block": "Sound Block",
 
-  "creativetab.inhell_tab": "InHell Industrial Solutions"
-
+  "creativetab.inhell_tab": "InHell Facility Solutions"
 }

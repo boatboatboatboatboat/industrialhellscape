@@ -22,6 +22,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         //STONE-LIKE BLOCKS
         blockWithItem(ModBlocks.GRAY_ROCKRETE);
+        blockWithItem(ModBlocks.LIGHT_GRAY_ROCKRETE);
+        blockWithItem(ModBlocks.WHITE_ROCKRETE);
+        blockWithItem(ModBlocks.BLACK_ROCKRETE);
         blockWithItem(ModBlocks.HAZARD_STRIPE_YELLOW);
         blockWithItem(ModBlocks.HAZARD_STRIPE_RED);
 

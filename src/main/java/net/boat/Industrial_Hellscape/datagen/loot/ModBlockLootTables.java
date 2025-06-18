@@ -21,6 +21,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
         //STONELIKE BLOCKS
         this.dropSelf(ModBlocks.GRAY_ROCKRETE.get());
+        this.dropSelf(ModBlocks.LIGHT_GRAY_ROCKRETE.get());
+        this.dropSelf(ModBlocks.WHITE_ROCKRETE.get());
+        this.dropSelf(ModBlocks.BLACK_ROCKRETE.get());
         this.dropSelf(ModBlocks.HAZARD_STRIPE_YELLOW.get());
         this.dropSelf(ModBlocks.HAZARD_STRIPE_RED.get());
 

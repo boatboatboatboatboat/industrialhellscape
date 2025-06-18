@@ -31,6 +31,9 @@ public class ModCreativeModTabs {
 
                         //STONELIKE BLOCKS FOR CREATIVE TAB
                         output.accept(ModBlocks.GRAY_ROCKRETE.get());
+                        output.accept(ModBlocks.LIGHT_GRAY_ROCKRETE.get());
+                        output.accept(ModBlocks.WHITE_ROCKRETE.get());
+                        output.accept(ModBlocks.BLACK_ROCKRETE.get());
                         output.accept(ModBlocks.HAZARD_STRIPE_YELLOW.get());
                         output.accept(ModBlocks.HAZARD_STRIPE_RED.get());
 

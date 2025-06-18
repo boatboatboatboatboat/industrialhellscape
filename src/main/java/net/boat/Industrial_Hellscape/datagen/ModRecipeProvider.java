@@ -22,6 +22,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     );
     private static final List<ItemLike> INHELL_ROCKRETE_RECYCLING = List.of(
             ModBlocks.GRAY_ROCKRETE.get(),
+            ModBlocks.LIGHT_GRAY_ROCKRETE.get(),
+            ModBlocks.WHITE_ROCKRETE.get(),
+            ModBlocks.BLACK_ROCKRETE.get(),
+
             ModBlocks.HAZARD_STRIPE_YELLOW.get(),
             ModBlocks.HAZARD_STRIPE_RED.get()
     );
@@ -40,6 +44,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         oreSmelting(pWriter, INHELL_ROCKRETE_RECYCLING, RecipeCategory.MISC, Items.STONE, 0.0f, 200, "Rockrete Recycling");
         oreBlasting(pWriter, INHELL_ROCKRETE_RECYCLING, RecipeCategory.MISC, Items.STONE, 0.0f, 100, "Rockrete Recycling");
 
+        stonecutting(Ingredient.of(ModBlocks.VESSELPLATE.get())
+                ,RecipeCategory.BUILDING_BLOCKS, ModBlocks.VESSELPLATE_GRATE_BLOCK.get())
+                .unlockedBy(getHasName(ModBlocks.VESSELPLATE.get()), has(ModBlocks.VESSELPLATE.get()))
+                .save(pWriter);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.SOUND_BLOCK.get()) //Recipe for Sound Block using 9 Floppy Diskettes
                 .pattern("SSS")
                 .pattern("SSS")
@@ -54,7 +63,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModItems.MALEVOLENT_MULTITOOL.get()), has(ModItems.MALEVOLENT_MULTITOOL.get()))
                 .save(pWriter);
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.GRAY_ROCKRETE.get(), 9) //Vesselplate x9 base item recipe using iron block and non-consumeable multitool
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.LIGHT_GRAY_ROCKRETE.get(), 9) //Vesselplate x9 base item recipe using iron block and non-consumeable multitool
                 .requires(ModItems.MALEVOLENT_MULTITOOL.get())
                 .requires(Items.STONE)
                 .unlockedBy(getHasName(ModItems.MALEVOLENT_MULTITOOL.get()), has(ModItems.MALEVOLENT_MULTITOOL.get()))

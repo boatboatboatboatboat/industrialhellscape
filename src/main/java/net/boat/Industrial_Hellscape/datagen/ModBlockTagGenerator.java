@@ -6,7 +6,6 @@ import net.boat.Industrial_Hellscape.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -25,18 +24,25 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.VESSELPLATE.get()
                 );*/
 
-        this.tag(ModTags.Blocks.VESSELPLATE_VARIANTS)
+        this.tag(ModTags.Blocks.INHELL_VESSELPLATE_VARIANTS)
                 .add(
                         ModBlocks.VESSELPLATE.get(),
                         ModBlocks.VESSELPLATE_GRATE_BLOCK.get()
                 );
-        this.tag(ModTags.Blocks.ROCKRETE_DYE_VARIANTS)
+        this.tag(ModTags.Blocks.INHELL_ROCKRETE_DYE_VARIANTS)
                 .add(
-                        ModBlocks.GRAY_ROCKRETE.get()
+                        ModBlocks.GRAY_ROCKRETE.get(),
+                        ModBlocks.BLACK_ROCKRETE.get(),
+                        ModBlocks.LIGHT_GRAY_ROCKRETE.get(),
+                        ModBlocks.WHITE_ROCKRETE.get()
                 );
         this.tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(
                         ModBlocks.GRAY_ROCKRETE.get(),
+                        ModBlocks.BLACK_ROCKRETE.get(),
+                        ModBlocks.LIGHT_GRAY_ROCKRETE.get(),
+                        ModBlocks.WHITE_ROCKRETE.get(),
+
                         ModBlocks.HAZARD_STRIPE_YELLOW.get(),
                         ModBlocks.HAZARD_STRIPE_RED.get()
         );
