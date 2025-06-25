@@ -1,0 +1,33 @@
+{
+  "vesselplate_break": {
+    "subtitles": "sounds.industrialhellscape.vesselplate_break",
+    "sounds": [
+      "industrialhellscape:vesselplate_break"
+    ]
+  },
+  "vesselplate_place": {
+    "subtitles": "sounds.industrialhellscape.vesselplate_place",
+    "sounds": [
+      "industrialhellscape:vesselplate_break"
+    ]
+  },
+  "vesselplate_hit": {
+    "subtitles": "sounds.industrialhellscape.vesselplate_hit",
+    "sounds": [
+      "industrialhellscape:vesselplate_break"
+    ]
+  },
+  "vesselplate_fall": {
+    "subtitles": "sounds.industrialhellscape.vesselplate_fall",
+    "sounds": [
+      "industrialhellscape:vesselplate_break"
+    ]
+  },
+  "vesselplate_step": {
+    "subtitles": "sounds.industrialhellscape.vesselplate_step",
+    "sounds": [
+      "industrialhellscape:vesselplate_break"
+    ]
+  }
+}
+

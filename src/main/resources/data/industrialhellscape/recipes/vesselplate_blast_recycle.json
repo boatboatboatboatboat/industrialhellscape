@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "group": "MISC",
+  "category": "blocks",
+  "ingredient": {
+    "tag": "industrialhellscape:vesselplate_smeltable_item"
+  },
+  "result":  "minecraft:iron_ingot",
+  "experience": 0,
+  "cookingtime": 100
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "group": "MISC",
+  "category": "blocks",
+  "ingredient": {
+    "tag": "industrialhellscape:debug_item_tag"
+  },
+  "result": "minecraft:apple",
+  "experience": 0,
+  "cookingtime": 200
+}
