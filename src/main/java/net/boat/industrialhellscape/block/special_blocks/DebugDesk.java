@@ -1,10 +1,8 @@
 package net.boat.industrialhellscape.block.special_blocks;
 
 import net.boat.industrialhellscape.block.special_blocks_properties.FurnitureConnectionState;
-import net.boat.industrialhellscape.block.special_blocks_properties.PillarConnectionState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -45,9 +43,6 @@ public class DebugDesk extends HorizontalDirectionalBlock {
         BlockState state = this.defaultBlockState().setValue(FACING, directionClicked);
         state = state.setValue(TYPE, getType(state, getRelativeLeft(level, leftNeighborPos), getRelativeRight(level, rightNeighborPos)));
         return state;
-
-
-        //return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()); //Block's front faces player upon being placed
     }
 
     @Override
@@ -59,12 +54,11 @@ public class DebugDesk extends HorizontalDirectionalBlock {
         return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
     }
 
-
-    //Create method to find blockstate of the block in the relative left direction of our placed block
+    //Create method to find blockstate of the block in the relative left direction of the placed block
     public BlockState getRelativeLeft(Level level, BlockPos leftNeighborPos) {
         return level.getBlockState(leftNeighborPos);
     }
-    //Create method to find blockstate of the block in the relative right direction of our placed block
+    //Create method to find blockstate of the block in the relative right direction of the placed block
     public BlockState getRelativeRight(Level level, BlockPos rightNeighborPos) {
         return level.getBlockState(rightNeighborPos);
     }
@@ -79,7 +73,7 @@ public class DebugDesk extends HorizontalDirectionalBlock {
         if (state.getValue(TYPE) == type) return;
 
         state = state.setValue(TYPE, type);
-        level.setBlock(pos, state, 3);
+        level.setBlock(pos, state, 3); //3
     }
 
     //Determine placed block's connection state in relation to adjacent blocks' states
