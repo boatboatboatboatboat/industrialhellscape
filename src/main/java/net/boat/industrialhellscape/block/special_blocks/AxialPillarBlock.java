@@ -1,6 +1,7 @@
 package net.boat.industrialhellscape.block.special_blocks;
 
-import net.boat.industrialhellscape.block.special_blocks_properties.ConnectionState;
+import net.boat.industrialhellscape.block.special_blocks_properties.FurnitureConnectionState;
+import net.boat.industrialhellscape.block.special_blocks_properties.PillarConnectionState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -14,13 +15,13 @@ import org.jetbrains.annotations.Nullable; //This is what Hearth and Home uses i
 
 public class AxialPillarBlock extends Block {
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS; //"AXIS" is used to store the block state direction
-    public static final EnumProperty<ConnectionState> TYPE = EnumProperty.create("type", ConnectionState.class); //"TYPE" is used to store enum value of "solo, pos, neg, middle"
+    public static final EnumProperty<PillarConnectionState> TYPE = EnumProperty.create("type", PillarConnectionState.class); //"TYPE" is used to store enum value of "solo, pos, neg, middle"
 
     public AxialPillarBlock(Properties pProperties) { //Establishes the Default State - Vertical, unconnected (solo)
         super(pProperties);
         this.registerDefaultState(this.getStateDefinition().any()
                 //.setValue(AXIS, Direction.Axis.Y)
-                .setValue(TYPE, ConnectionState.SOLO));
+                .setValue(TYPE, PillarConnectionState.SOLO));
     }
 
     @Nullable
@@ -41,7 +42,7 @@ public class AxialPillarBlock extends Block {
         if (level.isClientSide) return;
 
         Direction.Axis axis = state.getValue(AXIS);
-        ConnectionState type = getType(state, getRelativeTop(level, pos, axis), getRelativeBottom(level, pos, axis));
+        PillarConnectionState type = getType(state, getRelativeTop(level, pos, axis), getRelativeBottom(level, pos, axis));
         if (state.getValue(TYPE) == type) return;
 
         state = state.setValue(TYPE, type);
@@ -61,16 +62,16 @@ public class AxialPillarBlock extends Block {
     }
 
     //Create method to determine placed block's blockstate in relation to adjacent blocks
-    //Outputs the ConnectionState, the enum defined in another class for TOP, MIDDLE, BOTTOM, SOLO
-    public ConnectionState getType(BlockState state, BlockState above, BlockState below) {
+    //Outputs the PillarConnectionState, the enum defined in another class for TOP, MIDDLE, BOTTOM, SOLO
+    public PillarConnectionState getType(BlockState state, BlockState above, BlockState below) {
         boolean blockstate_above_is_same = above.is(state.getBlock()) && state.getValue(AXIS) == above.getValue(AXIS);
         boolean blockstate_below_is_same = below.is(state.getBlock()) && state.getValue(AXIS) == below.getValue(AXIS);
 
         //Where "above" and "below" refer to in the positive and negative axial direction respectively, like Y direction (height).
-        if (blockstate_above_is_same && !blockstate_below_is_same) return ConnectionState.BOTTOM;
-        else if (!blockstate_above_is_same && blockstate_below_is_same) return ConnectionState.TOP;
-        else if (blockstate_above_is_same) return ConnectionState.MIDDLE;
-        return ConnectionState.SOLO;
+        if (blockstate_above_is_same && !blockstate_below_is_same) return PillarConnectionState.BOTTOM;
+        else if (!blockstate_above_is_same && blockstate_below_is_same) return PillarConnectionState.TOP;
+        else if (blockstate_above_is_same) return PillarConnectionState.MIDDLE;
+        return PillarConnectionState.SOLO;
     }
     @Override //IT WILL NOT COMPILE IF THESE LINES ARE REMOVED
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {

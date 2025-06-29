@@ -57,8 +57,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.SOUND_BLOCK);
 
 
-        simpleBlockWithItem(ModBlocks.DEBUG_DESK.get(),
-                new ModelFile.UncheckedModelFile(modLoc("block/debug_desk")));
+    //    simpleBlockWithItem(ModBlocks.DEBUG_DESK.get(),
+    //            new ModelFile.UncheckedModelFile(modLoc("block/debug_desk")));
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {

@@ -2,7 +2,7 @@ package net.boat.industrialhellscape.block;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.special_blocks.AxialPillarBlock;
-import net.boat.industrialhellscape.block.special_blocks.HorizontalAxialBlock;
+import net.boat.industrialhellscape.block.special_blocks.DebugDesk;
 import net.boat.industrialhellscape.block.special_blocks.SoundBlock;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.item.ModItems;
@@ -116,7 +116,7 @@ public class ModBlocks {
             }
     );
     public static final RegistryObject<Block> DEBUG_DESK = registerBlock("debug_desk",
-            () -> new HorizontalAxialBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops()) {
+            () -> new DebugDesk(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops().noOcclusion()) {
             }
     );
 

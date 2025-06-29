@@ -1,0 +1,23 @@
+{
+  "variants": {
+    "type=solo,facing=north": {"model": "industrialhellscape:block/debug_desk/debug_desk_solo","y": 0},
+    "type=solo,facing=south": {"model": "industrialhellscape:block/debug_desk/debug_desk_solo","y":180},
+    "type=solo,facing=east": {"model": "industrialhellscape:block/debug_desk/debug_desk_solo","y": 90},
+    "type=solo,facing=west": {"model": "industrialhellscape:block/debug_desk/debug_desk_solo","y": 270},
+
+    "type=left,facing=north": {"model": "industrialhellscape:block/debug_desk/debug_desk_left","y": 0},
+    "type=left,facing=south": {"model": "industrialhellscape:block/debug_desk/debug_desk_left","y": 180},
+    "type=left,facing=east": {"model": "industrialhellscape:block/debug_desk/debug_desk_left","y": 90},
+    "type=left,facing=west": {"model": "industrialhellscape:block/debug_desk/debug_desk_left","y": 270},
+
+    "type=middle,facing=north": {"model": "industrialhellscape:block/debug_desk/debug_desk_middle","y": 0},
+    "type=middle,facing=south": {"model": "industrialhellscape:block/debug_desk/debug_desk_middle","y": 180},
+    "type=middle,facing=east": {"model": "industrialhellscape:block/debug_desk/debug_desk_middle","y": 90},
+    "type=middle,facing=west": {"model": "industrialhellscape:block/debug_desk/debug_desk_middle","y": 270},
+
+    "type=right,facing=north": {"model": "industrialhellscape:block/debug_desk/debug_desk_right","y": 0},
+    "type=right,facing=south": {"model": "industrialhellscape:block/debug_desk/debug_desk_right","y": 180},
+    "type=right,facing=east": {"model": "industrialhellscape:block/debug_desk/debug_desk_right","y": 90},
+    "type=right,facing=west": {"model": "industrialhellscape:block/debug_desk/debug_desk_right","y": 270}
+  }
+}

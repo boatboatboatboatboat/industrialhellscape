@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "minecraft:block/smooth_stone",
-    "side": "industrialhellscape:block/stone_pillar/stone_top"
-  }
-}
