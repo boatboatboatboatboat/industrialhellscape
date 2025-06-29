@@ -9,6 +9,11 @@
   "block.industrialhellscape.vesselplate_grate": "Vesselplate Grate",
   "block.industrialhellscape.rusty_vesselplate_grate": "Rusty Vesselplate Grate",
   "block.industrialhellscape.vertical_riveted_vesselplate": "Vertical Riveted Vesselplate",
+  "block.industrialhellscape.horizontal_riveted_vesselplate": "Horizontal Riveted Vesselplate",
+  "block.industrialhellscape.vesselglass": "Vesselglass",
+  "block.industrialhellscape.reinforced_vesselglass": "Reinforced Vesselglass",
+  "block.industrialhellscape.smooth_vesselplate": "Smooth Vesselplate",
+  "block.industrialhellscape.smooth_vesselplate_tiles": "Smooth Vesselplate Tiles",
 
 
   "block.industrialhellscape.light_gray_rockrete": "Light Gray Rockrete",
@@ -24,7 +29,6 @@
   "block.industrialhellscape.hazard_stripe_red": "Hazard Stripe Red",
 
   "block.industrialhellscape.sound_block": "Sound Block",
-  "block.industrialhellscape.stone_pillar": "Stone Pillar",
 
   "creativetab.inhell_tab": "InHell Facility Solutions"
 }

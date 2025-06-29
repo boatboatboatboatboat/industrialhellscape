@@ -1,6 +1,7 @@
 package net.boat.industrialhellscape.block.special_blocks_properties;
 
 import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.level.block.Block;
 
 public enum ConnectionState implements StringRepresentable {
     TOP("top"), //Only these four states are allowed to be called from the enum ConnectionState

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "industrialhellscape:vesselplate"
+  },
+  "result": "industrialhellscape:vesselplate_grate_block"
+}

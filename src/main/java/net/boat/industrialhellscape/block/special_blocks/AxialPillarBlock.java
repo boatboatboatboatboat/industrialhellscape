@@ -18,12 +18,13 @@ public class AxialPillarBlock extends Block {
 
     public AxialPillarBlock(Properties pProperties) { //Establishes the Default State - Vertical, unconnected (solo)
         super(pProperties);
-        this.registerDefaultState(this.getStateDefinition().any() //ERROR PRESENT HERE
+        this.registerDefaultState(this.getStateDefinition().any()
                 //.setValue(AXIS, Direction.Axis.Y)
                 .setValue(TYPE, ConnectionState.SOLO));
     }
 
     @Nullable
+
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         Level level = context.getLevel();

@@ -20,8 +20,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.VESSELPLATE_GRATE_BLOCK.get());
 
         //STONELIKE BLOCKS
-        this.dropSelf(ModBlocks.STONE_PILLAR.get());
-
         this.dropSelf(ModBlocks.GRAY_ROCKRETE.get());
         this.dropSelf(ModBlocks.LIGHT_GRAY_ROCKRETE.get());
         this.dropSelf(ModBlocks.LIGHT_GRAY_ROCKRETE_REBAR.get());
@@ -37,12 +35,17 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.HAZARD_STRIPE_RED.get());
 
         //SPECIAL BLOCKS
-        this.dropSelf(ModBlocks.STONE_PILLAR.get());
         this.dropSelf(ModBlocks.BUNKER_WALL.get());
         this.dropSelf(ModBlocks.SOUND_BLOCK.get());
         this.dropSelf(ModBlocks.VESSELPLATE_GRATE.get());
         this.dropSelf(ModBlocks.RUSTY_VESSELPLATE_GRATE.get());
         this.dropSelf(ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.REINFORCED_VESSELGLASS.get());
+        this.dropSelf(ModBlocks.VESSELGLASS.get());
+        this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE_TILE.get());
+        this.dropSelf(ModBlocks.DEBUG_DESK.get());
 
         //Any Ores are added here too
     }

@@ -2,6 +2,7 @@ package net.boat.industrialhellscape.block;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.special_blocks.AxialPillarBlock;
+import net.boat.industrialhellscape.block.special_blocks.HorizontalAxialBlock;
 import net.boat.industrialhellscape.block.special_blocks.SoundBlock;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.item.ModItems;
@@ -77,11 +78,6 @@ public class ModBlocks {
     );
 
     //IN-HOUSE CTM BLOCKS HERE (AXIAL PILLARS) VVV
-    public static final RegistryObject<Block> STONE_PILLAR = registerBlock("stone_pillar",
-            () -> new AxialPillarBlock(BlockBehaviour
-                    .Properties.copy(Blocks.STONE)
-                    .strength(1f).requiresCorrectToolForDrops())
-    );
     public static final RegistryObject<Block> BUNKER_WALL = registerBlock("bunker_wall",
             () -> new AxialPillarBlock(BlockBehaviour
                     .Properties.copy(Blocks.STONE)
@@ -93,11 +89,35 @@ public class ModBlocks {
     public static final RegistryObject<Block> VESSELPLATE_GRATE = registerBlock("vesselplate_grate",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.ANVIL).requiresCorrectToolForDrops())
     );
+    public static final RegistryObject<Block> SMOOTH_VESSELPLATE = registerBlock("smooth_vesselplate",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.ANVIL).requiresCorrectToolForDrops())
+    );
     public static final RegistryObject<Block> RUSTY_VESSELPLATE_GRATE = registerBlock("rusty_vesselplate_grate",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.ANVIL).requiresCorrectToolForDrops())
     );
     public static final RegistryObject<Block> VERTICAL_RIVETED_VESSELPLATE = registerBlock("vertical_riveted_vesselplate",
-            () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops())
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops()) {
+            }
+    );
+    public static final RegistryObject<Block> HORIZONTAL_RIVETED_VESSELPLATE = registerBlock("horizontal_riveted_vesselplate",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops()) {
+            }
+    );
+    public static final RegistryObject<Block> REINFORCED_VESSELGLASS = registerBlock("reinforced_vesselglass",
+            () -> new GlassBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops()) {
+            }
+    );
+    public static final RegistryObject<Block> VESSELGLASS = registerBlock("vesselglass",
+            () -> new GlassBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops()) {
+            }
+    );
+    public static final RegistryObject<Block> SMOOTH_VESSELPLATE_TILE = registerBlock("smooth_vesselplate_tile",
+            () -> new GlassBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops()) {
+            }
+    );
+    public static final RegistryObject<Block> DEBUG_DESK = registerBlock("debug_desk",
+            () -> new HorizontalAxialBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops()) {
+            }
     );
 
 

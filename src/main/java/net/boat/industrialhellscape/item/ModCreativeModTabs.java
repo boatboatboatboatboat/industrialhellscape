@@ -32,14 +32,17 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.VESSELPLATE_GRATE.get());
                         output.accept(ModBlocks.RUSTY_VESSELPLATE_GRATE.get());
                         output.accept(ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get());
+                        output.accept(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get());
+                        output.accept(ModBlocks.REINFORCED_VESSELGLASS.get());
+                        output.accept(ModBlocks.VESSELGLASS.get());
+                        output.accept(ModBlocks.SMOOTH_VESSELPLATE.get());
+                        output.accept(ModBlocks.SMOOTH_VESSELPLATE_TILE.get());
 
                         //STONELIKE BLOCKS FOR CREATIVE TAB
                         output.accept(ModBlocks.LIGHT_GRAY_ROCKRETE.get());
                         output.accept(ModBlocks.LIGHT_GRAY_ROCKRETE_REBAR.get());
                         output.accept(ModBlocks.LIGHT_GRAY_ROCKRETE_STAIRS.get());
                         output.accept(ModBlocks.LIGHT_GRAY_ROCKRETE_SLAB.get());
-
-
 
                         output.accept(ModBlocks.GRAY_ROCKRETE.get());
                         output.accept(ModBlocks.WHITE_ROCKRETE.get());
@@ -49,9 +52,9 @@ public class ModCreativeModTabs {
 
                         //SPECIAL BLOCKS FOR CREATIVE TAB
                         output.accept(ModBlocks.SOUND_BLOCK.get());
+                        output.accept(ModBlocks.DEBUG_DESK.get());
 
                         //CTM BLOCKS FOR CREATIVE TAB
-                        output.accept(ModBlocks.STONE_PILLAR.get());
                         output.accept(ModBlocks.BUNKER_WALL.get());
                     })
                     .build());
