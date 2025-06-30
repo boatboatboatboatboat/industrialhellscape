@@ -1,6 +1,5 @@
 package net.boat.industrialhellscape.block.special_blocks;
 
-import net.boat.industrialhellscape.block.special_blocks_properties.FurnitureConnectionState;
 import net.boat.industrialhellscape.block.special_blocks_properties.PillarConnectionState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
