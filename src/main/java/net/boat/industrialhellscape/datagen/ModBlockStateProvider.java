@@ -58,7 +58,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 
     //    simpleBlockWithItem(ModBlocks.DEBUG_DESK.get(),
-    //            new ModelFile.UncheckedModelFile(modLoc("block/debug_desk")));
+    //            new ModelFile.UncheckedModelFile(modLoc("block/desk")));
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {

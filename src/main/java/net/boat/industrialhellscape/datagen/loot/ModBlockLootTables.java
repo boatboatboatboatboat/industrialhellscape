@@ -45,7 +45,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.VESSELGLASS.get());
         this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE.get());
         this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE_TILE.get());
-        this.dropSelf(ModBlocks.DEBUG_DESK.get());
+        this.dropSelf(ModBlocks.DESK.get());
+        this.dropSelf(ModBlocks.DESK_DRAWER.get());
 
         //Any Ores are added here too
     }

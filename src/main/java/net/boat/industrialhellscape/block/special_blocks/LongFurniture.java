@@ -1,6 +1,7 @@
 package net.boat.industrialhellscape.block.special_blocks;
 
 import net.boat.industrialhellscape.block.special_blocks_properties.FurnitureConnectionState;
+import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -33,13 +34,6 @@ public class LongFurniture extends HorizontalDirectionalBlock {
         Level level = pContext.getLevel(); //Reads the "level" or world
         BlockPos positionClicked = pContext.getClickedPos(); //Get the position when player places new block
         Direction directionClicked = pContext.getHorizontalDirection(); //Gets the cardinal direction when player places new block
-
-//        Direction relativeLeft = directionClicked.getCounterClockWise(); //Defines the cardinal direction left of the block placed
-//        Direction relativeRight = directionClicked.getClockWise(); //Defines the cardinal direction right of the block placed
-//
-//        BlockPos leftNeighborPos = positionClicked.relative(relativeLeft); //Defines block position of block left of placed block
-//        BlockPos rightNeighborPos = positionClicked.relative(relativeRight); //Defines block position of block right of placed block
-
         BlockState state = this.defaultBlockState().setValue(FACING, directionClicked);
         state = state.setValue(TYPE, getType(state, getRelativeLeft(level, positionClicked, directionClicked), getRelativeRight(level, positionClicked, directionClicked)));
         return state;
@@ -70,10 +64,6 @@ public class LongFurniture extends HorizontalDirectionalBlock {
 
         return rightNeighborsBlockState;
     }
-    //Create method to find blockstate of the block in the relative right direction of the placed block
-    //public BlockState getRelativeRight(Level level, BlockPos rightNeighborPos) {
-    //    return level.getBlockState(rightNeighborPos);
-    //}
 
     @Override //THIS TELLS THE NEIGHBORS TO UPDATE
     public void neighborChanged(BlockState state, Level level, BlockPos positionClicked, Block block, BlockPos fromPos, boolean isMoving) {
@@ -91,8 +81,12 @@ public class LongFurniture extends HorizontalDirectionalBlock {
     //Outputs the FurnitureConnectionState, the enum defined in another class for SOLO, LEFT, RIGHT, MIDDLE connection variants
     public FurnitureConnectionState getType(BlockState state, BlockState left, BlockState right) {
 
-        boolean block_left_is_same = left.is(state.getBlock()) && state.getValue(FACING) == left.getValue(FACING); //Is the left block's blockstate AND the new block's blockstate facing the same direction?
-        boolean block_right_is_same = right.is(state.getBlock()) && state.getValue(FACING) == right.getValue(FACING); //Is the right block's blockstate AND the new block's blockstate facing the same direction?
+        boolean block_left_is_same = (left.is(state.getBlock()) || left.is(ModTags.Blocks.CLASSIC_DESK) )
+                && state.getValue(FACING) == left.getValue(FACING); //Is the left blockstate the same as the current one, AND current orientation matches left blocks' orientation?
+
+
+        boolean block_right_is_same = (right.is(state.getBlock())|| right.is(ModTags.Blocks.CLASSIC_DESK) )
+                && state.getValue(FACING) == right.getValue(FACING); //Is the left blockstate the same as the current one, AND current orientation matches left blocks' orientation?
 
         //Defines the updated block's connection type based on neighbor checks above
         if (block_left_is_same && !block_right_is_same) return FurnitureConnectionState.RIGHT;

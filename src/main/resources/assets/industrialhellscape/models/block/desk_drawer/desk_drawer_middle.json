@@ -1,0 +1,47 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"texture_size": [48, 48],
+	"textures": {
+		"0": "industrialhellscape:block/desk_drawer_middle",
+		"particle": "industrialhellscape:block/desk_drawer_middle"
+	},
+	"elements": [
+		{
+			"name": "tabletop",
+			"from": [0, 13, 0],
+			"to": [16, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 13, 14]},
+			"faces": {
+				"north": {"uv": [5.33333, 7.33333, 10.66667, 8.33333], "texture": "#0"},
+				"east": {"uv": [5.33333, 8.33333, 10.66667, 9.33333], "texture": "#0"},
+				"south": {"uv": [5.33333, 9.33333, 10.66667, 10.33333], "texture": "#0"},
+				"west": {"uv": [5.33333, 10.33333, 10.66667, 11.33333], "texture": "#0"},
+				"up": {"uv": [5.33333, 5.33333, 0, 0], "texture": "#0"},
+				"down": {"uv": [5.33333, 5.33333, 0, 10.66667], "texture": "#0"}
+			}
+		},
+		{
+			"name": "skirt_middle",
+			"from": [0, 2, 2],
+			"to": [16, 13, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [5, 2, 1]},
+			"faces": {
+				"north": {"uv": [5.33333, 0, 10.66667, 3.66667], "texture": "#0"},
+				"east": {"uv": [10.66667, 0.33333, 11, 4], "texture": "#0"},
+				"south": {"uv": [5.33333, 3.66667, 10.66667, 7.33333], "texture": "#0"},
+				"west": {"uv": [10.66667, 4, 11, 7.66667], "texture": "#0"},
+				"up": {"uv": [5.33333, 11, 0, 10.66667], "texture": "#0"},
+				"down": {"uv": [16, 0, 10.66667, 0.33333], "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "desk_middle",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0, 1]
+		}
+	]
+}

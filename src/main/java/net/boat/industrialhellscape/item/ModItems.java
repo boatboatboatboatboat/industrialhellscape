@@ -24,8 +24,8 @@ public class ModItems {
     public static final RegistryObject<Item> FLOPPY_DISKETTE = ITEMS.register("floppy_diskette",
             () -> new Item(new Item.Properties()));
 
-    public static final RegistryObject<Item> INHELL_DIAGNOSTIC_TOOL = ITEMS.register("inhell_diagnostic_tool",
-            () -> new InHellDiagnosticTool(new Item.Properties().durability(1024))); //MetalDetectorItem is a subclass of superclass Item, having more unique characteristics than a normal item
+    public static final RegistryObject<Item> INHELL_HAVEN_DEVICE = ITEMS.register("inhell_haven_device",
+            () -> new InHellDiagnosticTool(new Item.Properties().durability(1024))); //InHellDiagnosticTool is a subclass of superclass Item, having more unique characteristics than a normal item
 
     public static final RegistryObject<Item> METAL_DETECTOR = ITEMS.register("metal_detector",
             () -> new MetalDetector(new Item.Properties()));

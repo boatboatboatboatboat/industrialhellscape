@@ -49,7 +49,7 @@ public class IndustrialHellscape {
             event.accept(ModItems.MALEVOLENT_MULTITOOL);
             event.accept(ModItems.FLOPPY_DISK);
             event.accept(ModItems.FLOPPY_DISKETTE);
-            event.accept(ModItems.INHELL_DIAGNOSTIC_TOOL);
+            event.accept(ModItems.INHELL_HAVEN_DEVICE);
         }
     }
 

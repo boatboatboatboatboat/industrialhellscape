@@ -77,11 +77,19 @@ public class ModBlocks {
                     .strength(1f).requiresCorrectToolForDrops())
     );
 
-    //IN-HOUSE CTM BLOCKS HERE (AXIAL PILLARS) VVV
+    //IN-HOUSE CONNECTED BLOCKS HERE
     public static final RegistryObject<Block> BUNKER_WALL = registerBlock("bunker_wall",
             () -> new AxialPillarBlock(BlockBehaviour
                     .Properties.copy(Blocks.STONE)
                     .strength(1f).requiresCorrectToolForDrops())
+    );
+    public static final RegistryObject<Block> DESK = registerBlock("desk",
+            () -> new LongFurniture(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops().noOcclusion()) {
+            }
+    );
+    public static final RegistryObject<Block> DESK_DRAWER = registerBlock("desk_drawer",
+            () -> new LongFurniture(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops().noOcclusion()) {
+            }
     );
 
 
@@ -113,10 +121,6 @@ public class ModBlocks {
     );
     public static final RegistryObject<Block> SMOOTH_VESSELPLATE_TILE = registerBlock("smooth_vesselplate_tile",
             () -> new GlassBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops()) {
-            }
-    );
-    public static final RegistryObject<Block> DEBUG_DESK = registerBlock("debug_desk",
-            () -> new LongFurniture(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops().noOcclusion()) {
             }
     );
 

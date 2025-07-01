@@ -21,17 +21,17 @@ public class ModItemTagGenerator extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
 
-        this.tag(ModTags.Items.DEBUG_ITEM_TAG)
-                .add(
-                        ModItems.INHELL_DIAGNOSTIC_TOOL.get(),
-                        ModItems.MALEVOLENT_MULTITOOL.get()
-                );
         this.tag(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM)
                 .add(
                         ModBlocks.VESSELPLATE.get().asItem(),
                         ModBlocks.VESSELPLATE_GRATE_BLOCK.get().asItem(),
                         ModBlocks.VESSELPLATE_GRATE.get().asItem(),
                         ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem()
+                );
+        this.tag(ModTags.Items.VESSELGLASS_SMELTABLE_ITEM)
+                .add(
+                        ModBlocks.VESSELGLASS.get().asItem(),
+                        ModBlocks.REINFORCED_VESSELGLASS.get().asItem()
                 );
         this.tag(ModTags.Items.ROCKRETE_SMELTABLE_ITEM)
                 .add(
@@ -43,6 +43,5 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.LIGHT_GRAY_ROCKRETE.get().asItem(),
                         ModBlocks.WHITE_ROCKRETE.get().asItem()
                 );
-
     }
 }

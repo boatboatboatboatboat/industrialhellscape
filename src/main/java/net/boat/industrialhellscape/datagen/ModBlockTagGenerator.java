@@ -30,8 +30,35 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.VESSELPLATE_GRATE.get(),
                         ModBlocks.RUSTY_VESSELPLATE_GRATE.get()
                 );
-        //VANILLA TAGS BELOW
 
+        this.tag(ModTags.Blocks.VESSELGLASS_BLOCKS)
+                .add(
+                        ModBlocks.REINFORCED_VESSELGLASS.get(),
+                        ModBlocks.VESSELGLASS.get()
+                );
+
+        this.tag(ModTags.Blocks.ROCKRETE_BLOCKS)
+                .add(
+                        ModBlocks.BLACK_ROCKRETE.get(),
+                        ModBlocks.BUNKER_WALL.get(),
+                        ModBlocks.LIGHT_GRAY_ROCKRETE_SLAB.get(),
+                        ModBlocks.LIGHT_GRAY_ROCKRETE_STAIRS.get(),
+                        ModBlocks.LIGHT_GRAY_ROCKRETE_REBAR.get(),
+                        ModBlocks.WHITE_ROCKRETE.get(),
+                        ModBlocks.GRAY_ROCKRETE.get(),
+                        ModBlocks.HAZARD_STRIPE_YELLOW.get(),
+                        ModBlocks.HAZARD_STRIPE_RED.get()
+                );
+        this.tag(ModTags.Blocks.CLASSIC_DESK)
+                .add(
+                        ModBlocks.DESK.get(),
+                        ModBlocks.BUNKER_WALL.get(),
+                        ModBlocks.DESK_DRAWER.get()
+                );
+
+
+
+        //VANILLA TAGS BELOW
         this.tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(
 

@@ -23,7 +23,7 @@ public class ModCreativeModTabs {
                         output.accept(ModItems.MALEVOLENT_MULTITOOL.get());
                         output.accept(ModItems.FLOPPY_DISK.get());
                         output.accept(ModItems.FLOPPY_DISKETTE.get());
-                        output.accept(ModItems.INHELL_DIAGNOSTIC_TOOL.get());
+                        output.accept(ModItems.INHELL_HAVEN_DEVICE.get());
                         output.accept(ModItems.METAL_DETECTOR.get());
 
                         //IRONLIKE BLOCKS FOR CREATIVE TAB
@@ -52,7 +52,8 @@ public class ModCreativeModTabs {
 
                         //SPECIAL BLOCKS FOR CREATIVE TAB
                         output.accept(ModBlocks.SOUND_BLOCK.get());
-                        output.accept(ModBlocks.DEBUG_DESK.get());
+                        output.accept(ModBlocks.DESK.get());
+                        output.accept(ModBlocks.DESK_DRAWER.get());
 
                         //CTM BLOCKS FOR CREATIVE TAB
                         output.accept(ModBlocks.BUNKER_WALL.get());

@@ -5,7 +5,7 @@
   "ingredient": {
     "tag": "industrialhellscape:debug_item_tag"
   },
-  "result": "minecraft:apple",
+  "result": "minecraft:quartz",
   "experience": 0,
   "cookingtime": 200
 }
