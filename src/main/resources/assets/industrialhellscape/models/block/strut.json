@@ -1,0 +1,9 @@
+{
+  "parent": "industrialhellscape:block/anticull_template",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "industrialhellscape:block/strut",
+    "side": "industrialhellscape:block/strut",
+    "top": "industrialhellscape:block/strut"
+  }
+}

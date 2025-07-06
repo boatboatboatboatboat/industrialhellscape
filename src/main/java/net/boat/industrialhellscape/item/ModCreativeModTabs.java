@@ -57,6 +57,8 @@ public class ModCreativeModTabs {
 
                         //CTM BLOCKS FOR CREATIVE TAB
                         output.accept(ModBlocks.BUNKER_WALL.get());
+                        output.accept(ModBlocks.STRUT.get());
+                        output.accept(ModBlocks.CATWALK_STRUT.get());
                     })
                     .build());
 

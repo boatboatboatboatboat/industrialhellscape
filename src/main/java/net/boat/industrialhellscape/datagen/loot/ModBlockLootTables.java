@@ -28,7 +28,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 block -> createSlabItemTable(ModBlocks.LIGHT_GRAY_ROCKRETE_SLAB.get())
                 );
 
-
         this.dropSelf(ModBlocks.WHITE_ROCKRETE.get());
         this.dropSelf(ModBlocks.BLACK_ROCKRETE.get());
         this.dropSelf(ModBlocks.HAZARD_STRIPE_YELLOW.get());
@@ -47,6 +46,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE_TILE.get());
         this.dropSelf(ModBlocks.DESK.get());
         this.dropSelf(ModBlocks.DESK_DRAWER.get());
+        this.dropSelf(ModBlocks.STRUT.get());
+        this.dropSelf(ModBlocks.CATWALK_STRUT.get());
+
 
         //Any Ores are added here too
     }

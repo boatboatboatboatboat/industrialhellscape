@@ -9,10 +9,13 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+
+import javax.annotation.Nonnull;
 
 public class InHellDiagnosticTool extends Item {
     public InHellDiagnosticTool(Properties pProperties) {
@@ -24,7 +27,6 @@ public class InHellDiagnosticTool extends Item {
         if(!pContext.getLevel().isClientSide()) {
             BlockPos positionClicked = pContext.getClickedPos();
             Player player = pContext.getPlayer();
-            boolean foundBlock = false;
 
             pContext.getLevel().playSeededSound(null, positionClicked.getX(), positionClicked.getY(), positionClicked.getZ(),
                     ModSounds.VESSELPLATE_PLACE.get(), SoundSource.BLOCKS, 1f, 1f, 0);
@@ -33,5 +35,13 @@ public class InHellDiagnosticTool extends Item {
                 player -> player.broadcastBreakEvent(player.getUsedItemHand()));
 
         return InteractionResult.SUCCESS;
+    }
+    @Nonnull
+    public ItemStack getCraftingRemainingItem(@Nonnull ItemStack stack) {
+        return new ItemStack(this);
+    }
+
+    public boolean hasCraftingRemainingItem(@Nonnull ItemStack stack) {
+        return true;
     }
 }

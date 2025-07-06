@@ -23,21 +23,27 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(
                         ModBlocks.VESSELPLATE.get()
                 );*/
-        this.tag(ModTags.Blocks.VESSELPLATE_BLOCKS)
+        this.tag(ModTags.Blocks.VESSELPLATE_FULL_BLOCKS)
                 .add(
                         ModBlocks.VESSELPLATE.get(),
                         ModBlocks.VESSELPLATE_GRATE_BLOCK.get(),
                         ModBlocks.VESSELPLATE_GRATE.get(),
+                        ModBlocks.RUSTY_VESSELPLATE_GRATE.get(),
+                        ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get(),
+                        ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get(),
+                        ModBlocks.SMOOTH_VESSELPLATE.get(),
+                        ModBlocks.SMOOTH_VESSELPLATE.get(),
+                        ModBlocks.STRUT.get(),
                         ModBlocks.RUSTY_VESSELPLATE_GRATE.get()
                 );
 
-        this.tag(ModTags.Blocks.VESSELGLASS_BLOCKS)
+        this.tag(ModTags.Blocks.VESSELGLASS_FULL_BLOCKS)
                 .add(
                         ModBlocks.REINFORCED_VESSELGLASS.get(),
                         ModBlocks.VESSELGLASS.get()
                 );
 
-        this.tag(ModTags.Blocks.ROCKRETE_BLOCKS)
+        this.tag(ModTags.Blocks.ROCKRETE_FULL_BLOCKS)
                 .add(
                         ModBlocks.BLACK_ROCKRETE.get(),
                         ModBlocks.BUNKER_WALL.get(),

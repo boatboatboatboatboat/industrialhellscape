@@ -2,7 +2,6 @@ package net.boat.industrialhellscape.datagen;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
-import net.boat.industrialhellscape.item.ModItems;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -26,6 +25,11 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.VESSELPLATE.get().asItem(),
                         ModBlocks.VESSELPLATE_GRATE_BLOCK.get().asItem(),
                         ModBlocks.VESSELPLATE_GRATE.get().asItem(),
+                        ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem(),
+                        ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
+                        ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
+                        ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
+                        ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
                         ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem()
                 );
         this.tag(ModTags.Items.VESSELGLASS_SMELTABLE_ITEM)
@@ -42,6 +46,40 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.GRAY_ROCKRETE.get().asItem(),
                         ModBlocks.LIGHT_GRAY_ROCKRETE.get().asItem(),
                         ModBlocks.WHITE_ROCKRETE.get().asItem()
+                );
+
+        //FOR RECIPE DATA GENERATION PURPOSES. ADD SLABS OR STAIRS
+
+        this.tag(ModTags.Items.VESSELPLATE_STONECUT_OUTPUTS)
+                .add(
+                        ModBlocks.VESSELPLATE.get().asItem(),
+                        ModBlocks.VESSELPLATE_GRATE_BLOCK.get().asItem(),
+                        ModBlocks.VESSELPLATE_GRATE.get().asItem(),
+                        ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem(),
+                        ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
+                        ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
+                        ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
+                        ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
+                        ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem()
+                );
+        this.tag(ModTags.Items.VESSELGLASS_STONECUT_OUTPUTS)
+                .add(
+                        ModBlocks.REINFORCED_VESSELGLASS.get().asItem(),
+                        ModBlocks.VESSELGLASS.get().asItem()
+                );
+        this.tag(ModTags.Items.ROCKRETE_STONECUT_OUTPUTS)
+                .add(
+                        ModBlocks.BLACK_ROCKRETE.get().asItem(),
+                        ModBlocks.BUNKER_WALL.get().asItem(),
+                        ModBlocks.LIGHT_GRAY_ROCKRETE_SLAB.get().asItem(),
+                        ModBlocks.LIGHT_GRAY_ROCKRETE_STAIRS.get().asItem(),
+                        ModBlocks.LIGHT_GRAY_ROCKRETE_REBAR.get().asItem(),
+                        ModBlocks.WHITE_ROCKRETE.get().asItem(),
+                        ModBlocks.GRAY_ROCKRETE.get().asItem(),
+                        ModBlocks.HAZARD_STRIPE_YELLOW.get().asItem(),
+                        ModBlocks.LIGHT_GRAY_ROCKRETE_STAIRS.get().asItem(),
+                        ModBlocks.LIGHT_GRAY_ROCKRETE_SLAB.get().asItem(),
+                        ModBlocks.HAZARD_STRIPE_RED.get().asItem()
                 );
     }
 }

@@ -1,9 +1,7 @@
 package net.boat.industrialhellscape.block;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
-import net.boat.industrialhellscape.block.special_blocks.AxialPillarBlock;
-import net.boat.industrialhellscape.block.special_blocks.LongFurniture;
-import net.boat.industrialhellscape.block.special_blocks.SoundBlock;
+import net.boat.industrialhellscape.block.special_blocks.*;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.item.ModItems;
 import net.minecraft.world.item.BlockItem;
@@ -120,7 +118,16 @@ public class ModBlocks {
             }
     );
     public static final RegistryObject<Block> SMOOTH_VESSELPLATE_TILE = registerBlock("smooth_vesselplate_tile",
-            () -> new GlassBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops()) {
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops()) {
+            }
+    );
+
+    public static final RegistryObject<Block> STRUT = registerBlock("strut",
+            () -> new StrutBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops().noOcclusion()) {
+            }
+    );
+    public static final RegistryObject<Block> CATWALK_STRUT = registerBlock("catwalk_strut",
+            () -> new StrutBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops().noOcclusion()) {
             }
     );
 

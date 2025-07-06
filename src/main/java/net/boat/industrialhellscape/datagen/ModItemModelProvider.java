@@ -29,6 +29,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         evenSimplerBlockItem(ModBlocks.LIGHT_GRAY_ROCKRETE_STAIRS);
         evenSimplerBlockItem(ModBlocks.LIGHT_GRAY_ROCKRETE_SLAB);
         evenSimplerBlockItem(ModBlocks.VERTICAL_RIVETED_VESSELPLATE);
+
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

@@ -26,12 +26,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         //logBlock(((RotatedPillarBlock) ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get()));
         //blockItem(ModBlocks.VERTICAL_RIVETED_VESSELPLATE);
-        /*simpleBlock(ModBlocks.BUNKER_WALL.get(), models().cubeBottomTop(
-                "vertical_riveted_vesselplate",
-                modLoc("block/vertical_riveted_vesselplate"), //"side"
-                modLoc("block/vertical_riveted_vesselplate_top"), //"end"
-                modLoc("block/vertical_riveted_vesselplate_top") //"end"
-        ));*/
+
+
         blockWithItem(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE);
         blockWithItem(ModBlocks.VERTICAL_RIVETED_VESSELPLATE);
         blockWithItem(ModBlocks.SMOOTH_VESSELPLATE);
