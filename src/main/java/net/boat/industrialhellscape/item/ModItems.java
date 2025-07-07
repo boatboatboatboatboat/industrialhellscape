@@ -3,7 +3,9 @@ import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.item.special_items.InHellDiagnosticTool;
 import net.boat.industrialhellscape.item.special_items.Malevolent_Multitool;
 import net.boat.industrialhellscape.item.special_items.MetalDetector;
+import net.boat.industrialhellscape.sound.ModSounds;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.RecordItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -33,4 +35,6 @@ public class ModItems {
         ITEMS.register(eventbus);
     }
 
+    public static final RegistryObject<Item> VAPORWAVE_CASSETTE = ITEMS.register("vaporwave_cassette",
+            () -> new RecordItem(6, ModSounds.VULTA_SHATTERED, new Item.Properties().stacksTo(1), 4620));
 }

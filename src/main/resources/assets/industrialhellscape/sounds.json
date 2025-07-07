@@ -28,6 +28,16 @@
     "sounds": [
       "industrialhellscape:vesselplate_break"
     ]
+  },
+
+  "vulta_shattered": {
+    "subtitles": "sounds.industrialhellscape.vulta_shattered",
+    "sounds": [
+      {
+        "name": "industrialhellscape:vulta_shattered",
+        "stream": true
+      }
+    ]
   }
 }
 

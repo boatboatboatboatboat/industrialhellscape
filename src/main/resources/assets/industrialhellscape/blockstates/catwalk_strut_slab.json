@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "industrialhellscape:block/catwalk_strut_slab"
+    },
+    "type=double": {
+      "model": "industrialhellscape:block/catwalk_strut"
+    },
+    "type=top": {
+      "model": "industrialhellscape:block/catwalk_strut_slab_top"
+    }
+  }
+}

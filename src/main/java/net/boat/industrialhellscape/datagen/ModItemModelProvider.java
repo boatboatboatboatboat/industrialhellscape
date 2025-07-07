@@ -25,10 +25,14 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.FLOPPY_DISKETTE);
         simpleItem(ModItems.INHELL_HAVEN_DEVICE);
         simpleItem(ModItems.MALEVOLENT_MULTITOOL);
+        simpleItem(ModItems.VAPORWAVE_CASSETTE);
 
         evenSimplerBlockItem(ModBlocks.LIGHT_GRAY_ROCKRETE_STAIRS);
         evenSimplerBlockItem(ModBlocks.LIGHT_GRAY_ROCKRETE_SLAB);
-        evenSimplerBlockItem(ModBlocks.VERTICAL_RIVETED_VESSELPLATE);
+        evenSimplerBlockItem(ModBlocks.STRUT_STAIRS);
+        evenSimplerBlockItem(ModBlocks.STRUT_SLAB);
+        evenSimplerBlockItem(ModBlocks.CATWALK_STRUT_STAIRS);
+        evenSimplerBlockItem(ModBlocks.CATWALK_STRUT_SLAB);
 
     }
 

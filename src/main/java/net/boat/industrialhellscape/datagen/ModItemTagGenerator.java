@@ -2,10 +2,12 @@ package net.boat.industrialhellscape.datagen;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
+import net.boat.industrialhellscape.item.ModItems;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -30,6 +32,8 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
                         ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
                         ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
+                        ModBlocks.STRUT.get().asItem(),
+                        ModBlocks.CATWALK_STRUT.get().asItem(),
                         ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem()
                 );
         this.tag(ModTags.Items.VESSELGLASS_SMELTABLE_ITEM)
@@ -60,6 +64,10 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
                         ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
                         ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
+                        ModBlocks.STRUT.get().asItem(),
+                        ModBlocks.CATWALK_STRUT.get().asItem(),
+                        ModBlocks.STRUT_STAIRS.get().asItem(),
+                        ModBlocks.STRUT_SLAB.get().asItem(),
                         ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem()
                 );
         this.tag(ModTags.Items.VESSELGLASS_STONECUT_OUTPUTS)
@@ -73,6 +81,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.BUNKER_WALL.get().asItem(),
                         ModBlocks.LIGHT_GRAY_ROCKRETE_SLAB.get().asItem(),
                         ModBlocks.LIGHT_GRAY_ROCKRETE_STAIRS.get().asItem(),
+
                         ModBlocks.LIGHT_GRAY_ROCKRETE_REBAR.get().asItem(),
                         ModBlocks.WHITE_ROCKRETE.get().asItem(),
                         ModBlocks.GRAY_ROCKRETE.get().asItem(),
@@ -80,6 +89,9 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.LIGHT_GRAY_ROCKRETE_STAIRS.get().asItem(),
                         ModBlocks.LIGHT_GRAY_ROCKRETE_SLAB.get().asItem(),
                         ModBlocks.HAZARD_STRIPE_RED.get().asItem()
+                );
+        this.tag(ItemTags.MUSIC_DISCS)
+                .add(ModItems.VAPORWAVE_CASSETTE.get()
                 );
     }
 }

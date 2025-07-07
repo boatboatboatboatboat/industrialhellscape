@@ -2,9 +2,13 @@ package net.boat.industrialhellscape.datagen;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -23,17 +27,33 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.VESSELPLATE_GRATE_BLOCK);
         blockWithItem(ModBlocks.VESSELPLATE_GRATE);
         blockWithItem(ModBlocks.RUSTY_VESSELPLATE_GRATE);
-
-        //logBlock(((RotatedPillarBlock) ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get()));
-        //blockItem(ModBlocks.VERTICAL_RIVETED_VESSELPLATE);
-
-
+/*
+        stairsWithCustomTextures(
+                ModBlocks.CATWALK_STRUT_STAIRS.get(),
+                modLoc("block/floorgrate_catwalk"), //bottom
+                modLoc("block/floorgrate_catwalk"), //top
+                modLoc("block/reinforced_strut") //side
+        );
+        slabWithCustomTextures(
+                ModBlocks.CATWALK_STRUT_SLAB.get(),
+                modLoc("block/strut"), //bottom
+                modLoc("block/floorgrate_catwalk"), //top
+                modLoc("block/reinforced_strut"), //side
+                modLoc("block/catwalk_strut") //original full block for double-slab (Model)
+        );
+*/
         blockWithItem(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE);
         blockWithItem(ModBlocks.VERTICAL_RIVETED_VESSELPLATE);
         blockWithItem(ModBlocks.SMOOTH_VESSELPLATE);
         blockWithItem(ModBlocks.SMOOTH_VESSELPLATE_TILE);
         blockWithItem(ModBlocks.REINFORCED_VESSELGLASS);
         blockWithItem(ModBlocks.VESSELGLASS);
+
+       // stairsBlock(((StairBlock) ModBlocks.STRUT_STAIRS.get()), blockTexture(ModBlocks.STRUT.get()));
+      //  slabBlock(((SlabBlock) ModBlocks.STRUT_SLAB.get()), blockTexture(ModBlocks.STRUT.get()), blockTexture(ModBlocks.STRUT.get()));
+
+        //*stairsBlock(((StairBlock) ModBlocks.CATWALK_STRUT_STAIRS.get()), blockTexture(ModBlocks.STRUT.get()));
+        //slabBlock(((SlabBlock) ModBlocks.CATWALK_STRUT_SLAB.get()), blockTexture(ModBlocks.STRUT.get()), blockTexture(ModBlocks.STRUT.get()));
 
         //STONE-LIKE BLOCKS
 
@@ -51,10 +71,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         //SPECIAL BLOCKS
         blockWithItem(ModBlocks.SOUND_BLOCK);
-
-
-    //    simpleBlockWithItem(ModBlocks.DEBUG_DESK.get(),
-    //            new ModelFile.UncheckedModelFile(modLoc("block/desk")));
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {
@@ -63,5 +79,24 @@ public class ModBlockStateProvider extends BlockStateProvider {
     private void blockItem(RegistryObject<Block> blockRegistryObject) {
         simpleBlockItem(blockRegistryObject.get(), new ModelFile.UncheckedModelFile(IndustrialHellscape.MOD_ID +
                 ":block/" + ForgeRegistries.BLOCKS.getKey(blockRegistryObject.get()).getPath()));
+    }
+    private void stairsWithCustomTextures(Block block, ResourceLocation bottom, ResourceLocation top, ResourceLocation side) {
+        ModelFile stairs = models().stairs(name(block), side, bottom, top);
+        ModelFile stairsInner = models().stairsInner(name(block) + "_inner", side, bottom, top);
+        ModelFile stairsOuter = models().stairsOuter(name(block) + "_outer", side, bottom, top);
+        stairsBlock((StairBlock) block, stairs, stairsInner, stairsOuter);
+    }
+
+    private void slabWithCustomTextures(Block block, ResourceLocation bottom, ResourceLocation top, ResourceLocation side, ResourceLocation originalFullBLock) {
+        ModelFile slab = models().slab(name(block), side, bottom, top);
+        ModelFile slabTop = models().slabTop(name(block) + "_top", side, bottom, top);
+        getVariantBuilder(block)
+                .partialState().with(SlabBlock.TYPE, SlabType.BOTTOM).addModels(new ConfiguredModel(slab))
+                .partialState().with(SlabBlock.TYPE, SlabType.TOP).addModels(new ConfiguredModel(slabTop))
+                .partialState().with(SlabBlock.TYPE, SlabType.DOUBLE).addModels(new ConfiguredModel(models().getExistingFile(originalFullBLock)));
+    }
+
+    private String name(Block block) {
+        return BuiltInRegistries.BLOCK.getKey(block).getPath();
     }
 }

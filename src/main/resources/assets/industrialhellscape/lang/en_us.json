@@ -29,8 +29,16 @@
   "block.industrialhellscape.hazard_stripe_red": "Hazard Stripe Red",
 
   "block.industrialhellscape.sound_block": "Sound Block",
+
   "block.industrialhellscape.debug_desk": "Debug Desk",
   "block.industrialhellscape.desk_drawer": "Desk Drawer",
+
+  "block.industrialhellscape.strut": "Strut",
+  "block.industrialhellscape.catwalk_strut": "Catwalk Strut",
+
+  "item.industrialhellscape.vaporwave_cassette": "Vulta - Shattered Cassette",
+  "item.industrialhellscape.vaporwave_cassette.desc": "Vulta - Shattered",
+
 
   "creativetab.inhell_tab": "InHell Facility Solutions"
 }

@@ -93,13 +93,13 @@ public class ModBlocks {
 
     //CTM BLOCKS HERE (3RD PARTY TEXTURE DEPENDENCIES) VVV
     public static final RegistryObject<Block> VESSELPLATE_GRATE = registerBlock("vesselplate_grate",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.ANVIL).requiresCorrectToolForDrops())
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL).requiresCorrectToolForDrops())
     );
     public static final RegistryObject<Block> SMOOTH_VESSELPLATE = registerBlock("smooth_vesselplate",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.ANVIL).requiresCorrectToolForDrops())
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL).requiresCorrectToolForDrops())
     );
     public static final RegistryObject<Block> RUSTY_VESSELPLATE_GRATE = registerBlock("rusty_vesselplate_grate",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.ANVIL).requiresCorrectToolForDrops())
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL).requiresCorrectToolForDrops())
     );
     public static final RegistryObject<Block> VERTICAL_RIVETED_VESSELPLATE = registerBlock("vertical_riveted_vesselplate",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops()) {
@@ -130,7 +130,20 @@ public class ModBlocks {
             () -> new StrutBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops().noOcclusion()) {
             }
     );
-
+    public static final RegistryObject<Block> CATWALK_STRUT_STAIRS = registerBlock("catwalk_strut_stairs",
+            () -> new StairBlock(() -> ModBlocks.CATWALK_STRUT.get().defaultBlockState(),
+                    BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion())
+    );
+    public static final RegistryObject<Block> CATWALK_STRUT_SLAB = registerBlock("catwalk_strut_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion())
+    );
+    public static final RegistryObject<Block> STRUT_STAIRS = registerBlock("strut_stairs",
+            () -> new StairBlock(() -> ModBlocks.STRUT.get().defaultBlockState(),
+                    BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion())
+    );
+    public static final RegistryObject<Block> STRUT_SLAB = registerBlock("strut_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion())
+    );
 
 
     //SPECIAL BLOCKS HERE VVV
