@@ -103,6 +103,20 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
                         .save(pWriter);
 
+        //Create Vaporwave Cassette
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.VAPORWAVE_CASSETTE.get()) //Recipe for Sound Block using 9 Floppy Diskettes
+                .pattern(" A ")
+                .pattern("BCB")
+                .pattern("DDD")
+
+                .define('A', ModItems.INHELL_HAVEN_DEVICE.get())
+                .define('B', Items.IRON_NUGGET)
+                .define('C', Items.QUARTZ)
+                .define('D', Items.GLASS_PANE)
+
+                .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                .save(pWriter);
+
         //Create Base Modded Blocks from Vanilla Blocks
 
         //Create 9x Vesselplate Base Block from 9 iron ingots

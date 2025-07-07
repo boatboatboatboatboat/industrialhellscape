@@ -19,6 +19,8 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, IndustrialHellscape.MOD_ID);
 
+    //Custom sound, add this anywhere: .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
+
     //IRONLIKE BLOCKS HERE VVV
     public static final RegistryObject<Block> VESSELPLATE_GRATE_BLOCK = registerBlock("vesselplate_grate_block",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.ANVIL).requiresCorrectToolForDrops())
@@ -82,52 +84,52 @@ public class ModBlocks {
                     .strength(1f).requiresCorrectToolForDrops())
     );
     public static final RegistryObject<Block> DESK = registerBlock("desk",
-            () -> new LongFurniture(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops().noOcclusion()) {
+            () -> new LongFurniture(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion()) {
             }
     );
     public static final RegistryObject<Block> DESK_DRAWER = registerBlock("desk_drawer",
-            () -> new LongFurniture(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops().noOcclusion()) {
+            () -> new LongFurniture(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion()) {
             }
     );
 
 
     //CTM BLOCKS HERE (3RD PARTY TEXTURE DEPENDENCIES) VVV
     public static final RegistryObject<Block> VESSELPLATE_GRATE = registerBlock("vesselplate_grate",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL).requiresCorrectToolForDrops())
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops())
     );
     public static final RegistryObject<Block> SMOOTH_VESSELPLATE = registerBlock("smooth_vesselplate",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL).requiresCorrectToolForDrops())
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops())
     );
     public static final RegistryObject<Block> RUSTY_VESSELPLATE_GRATE = registerBlock("rusty_vesselplate_grate",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL).requiresCorrectToolForDrops())
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops())
     );
     public static final RegistryObject<Block> VERTICAL_RIVETED_VESSELPLATE = registerBlock("vertical_riveted_vesselplate",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops()) {
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()) {
             }
     );
     public static final RegistryObject<Block> HORIZONTAL_RIVETED_VESSELPLATE = registerBlock("horizontal_riveted_vesselplate",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops()) {
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()) {
             }
     );
     public static final RegistryObject<Block> REINFORCED_VESSELGLASS = registerBlock("reinforced_vesselglass",
-            () -> new GlassBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops()) {
+            () -> new GlassBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).requiresCorrectToolForDrops()) {
             }
     );
     public static final RegistryObject<Block> VESSELGLASS = registerBlock("vesselglass",
-            () -> new GlassBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops()) {
+            () -> new GlassBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).requiresCorrectToolForDrops()) {
             }
     );
     public static final RegistryObject<Block> SMOOTH_VESSELPLATE_TILE = registerBlock("smooth_vesselplate_tile",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops()) {
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()) {
             }
     );
 
     public static final RegistryObject<Block> STRUT = registerBlock("strut",
-            () -> new StrutBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops().noOcclusion()) {
+            () -> new StrutBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion()) {
             }
     );
     public static final RegistryObject<Block> CATWALK_STRUT = registerBlock("catwalk_strut",
-            () -> new StrutBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS).requiresCorrectToolForDrops().noOcclusion()) {
+            () -> new StrutBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion()) {
             }
     );
     public static final RegistryObject<Block> CATWALK_STRUT_STAIRS = registerBlock("catwalk_strut_stairs",
