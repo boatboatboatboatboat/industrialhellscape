@@ -50,6 +50,6 @@ public class MetalDetector extends Item {
 
     private boolean isValuableBlock(BlockState state) {
         //return state.is(Blocks.IRON_ORE) || state.is(Blocks.DIAMOND_ORE);
-        return state.is(ModTags.Blocks.VESSELPLATE_FULL_BLOCKS);
+        return state.is(ModTags.Blocks.VESSELPLATE_BLOCKS);
     }
 }

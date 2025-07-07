@@ -2,7 +2,7 @@
   "item.industrialhellscape.malevolent_multitool": "Multitool",
   "item.industrialhellscape.floppy_disk": "Floppy Disk",
   "item.industrialhellscape.floppy_diskette": "Floppy Diskette",
-  "item.industrialhellscape.inhell_diagnostic_tool": "InHell Diagnostic Tool",
+  "item.industrialhellscape.inhell_haven_device": "InHell HAVEN Tool",
 
   "block.industrialhellscape.vesselplate": "Vesselplate",
   "block.industrialhellscape.vesselplate_grate_block": "Vesselplate Grate Block",
@@ -13,13 +13,14 @@
   "block.industrialhellscape.vesselglass": "Vesselglass",
   "block.industrialhellscape.reinforced_vesselglass": "Reinforced Vesselglass",
   "block.industrialhellscape.smooth_vesselplate": "Smooth Vesselplate",
-  "block.industrialhellscape.smooth_vesselplate_tiles": "Smooth Vesselplate Tiles",
+  "block.industrialhellscape.smooth_vesselplate_tile": "Smooth Vesselplate Tile",
 
 
   "block.industrialhellscape.light_gray_rockrete": "Light Gray Rockrete",
   "block.industrialhellscape.light_gray_rockrete_rebar": "Light Gray Rockrete Rebar",
   "block.industrialhellscape.light_gray_rockrete_stairs": "Light Gray Rockrete Stairs",
   "block.industrialhellscape.light_gray_rockrete_slab": "Light Gray Rockrete Slab",
+  "block.industrialhellscape.bunker_wall": "Bunker Wall",
 
   "block.industrialhellscape.gray_rockrete": "Gray Rockrete",
   "block.industrialhellscape.white_rockrete": "White Rockrete",
@@ -34,7 +35,11 @@
   "block.industrialhellscape.desk_drawer": "Desk Drawer",
 
   "block.industrialhellscape.strut": "Strut",
+  "block.industrialhellscape.strut_stairs": "Strut Stairs",
+  "block.industrialhellscape.strut_slab": "Strut Slab",
   "block.industrialhellscape.catwalk_strut": "Catwalk Strut",
+  "block.industrialhellscape.catwalk_strut_stairs": "Catwalk Strut Stairs",
+  "block.industrialhellscape.catwalk_strut_slab": "Catwalk Strut Slab",
 
   "item.industrialhellscape.vaporwave_cassette": "Vulta - Shattered Cassette",
   "item.industrialhellscape.vaporwave_cassette.desc": "Vulta - Shattered",

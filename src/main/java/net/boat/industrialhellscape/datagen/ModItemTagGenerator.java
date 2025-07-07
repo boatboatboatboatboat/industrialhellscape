@@ -31,9 +31,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
                         ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
                         ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
-                        ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
-                        ModBlocks.STRUT.get().asItem(),
-                        ModBlocks.CATWALK_STRUT.get().asItem(),
+                        ModBlocks.SMOOTH_VESSELPLATE_TILE.get().asItem(),
                         ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem()
                 );
         this.tag(ModTags.Items.VESSELGLASS_SMELTABLE_ITEM)
@@ -44,15 +42,16 @@ public class ModItemTagGenerator extends ItemTagsProvider {
         this.tag(ModTags.Items.ROCKRETE_SMELTABLE_ITEM)
                 .add(
                         ModBlocks.BUNKER_WALL.get().asItem(),
+
                         ModBlocks.HAZARD_STRIPE_RED.get().asItem(),
                         ModBlocks.HAZARD_STRIPE_YELLOW.get().asItem(),
-                        ModBlocks.BLACK_ROCKRETE.get().asItem(),
-                        ModBlocks.GRAY_ROCKRETE.get().asItem(),
-                        ModBlocks.LIGHT_GRAY_ROCKRETE.get().asItem(),
-                        ModBlocks.WHITE_ROCKRETE.get().asItem()
+
+                        ModBlocks.LIGHT_GRAY_ROCKRETE_REBAR.get().asItem(),
+                        ModBlocks.LIGHT_GRAY_ROCKRETE.get().asItem()
                 );
 
-        //FOR RECIPE DATA GENERATION PURPOSES. ADD SLABS OR STAIRS
+        //----------
+        //BELOW:    FOR RECIPE DATA GENERATION PURPOSES. ADD SLABS OR STAIRS
 
         this.tag(ModTags.Items.VESSELPLATE_STONECUT_OUTPUTS)
                 .add(
@@ -63,9 +62,11 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
                         ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
                         ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
-                        ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
+                        ModBlocks.SMOOTH_VESSELPLATE_TILE.get().asItem(),
                         ModBlocks.STRUT.get().asItem(),
                         ModBlocks.CATWALK_STRUT.get().asItem(),
+                        ModBlocks.CATWALK_STRUT_SLAB.get().asItem(),
+                        ModBlocks.CATWALK_STRUT_STAIRS.get().asItem(),
                         ModBlocks.STRUT_STAIRS.get().asItem(),
                         ModBlocks.STRUT_SLAB.get().asItem(),
                         ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem()
@@ -77,19 +78,17 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 );
         this.tag(ModTags.Items.ROCKRETE_STONECUT_OUTPUTS)
                 .add(
-                        ModBlocks.BLACK_ROCKRETE.get().asItem(),
                         ModBlocks.BUNKER_WALL.get().asItem(),
-                        ModBlocks.LIGHT_GRAY_ROCKRETE_SLAB.get().asItem(),
-                        ModBlocks.LIGHT_GRAY_ROCKRETE_STAIRS.get().asItem(),
 
+                        ModBlocks.LIGHT_GRAY_ROCKRETE.get().asItem(),
                         ModBlocks.LIGHT_GRAY_ROCKRETE_REBAR.get().asItem(),
-                        ModBlocks.WHITE_ROCKRETE.get().asItem(),
-                        ModBlocks.GRAY_ROCKRETE.get().asItem(),
-                        ModBlocks.HAZARD_STRIPE_YELLOW.get().asItem(),
                         ModBlocks.LIGHT_GRAY_ROCKRETE_STAIRS.get().asItem(),
                         ModBlocks.LIGHT_GRAY_ROCKRETE_SLAB.get().asItem(),
+
+                        ModBlocks.HAZARD_STRIPE_YELLOW.get().asItem(),
                         ModBlocks.HAZARD_STRIPE_RED.get().asItem()
                 );
+
         this.tag(ItemTags.MUSIC_DISCS)
                 .add(ModItems.VAPORWAVE_CASSETTE.get()
                 );

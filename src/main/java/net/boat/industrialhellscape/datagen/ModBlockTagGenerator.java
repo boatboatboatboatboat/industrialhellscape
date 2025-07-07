@@ -6,6 +6,7 @@ import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -23,7 +24,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(
                         ModBlocks.VESSELPLATE.get()
                 );*/
-        this.tag(ModTags.Blocks.VESSELPLATE_FULL_BLOCKS)
+        this.tag(ModTags.Blocks.VESSELPLATE_BLOCKS)
                 .add(
                         ModBlocks.VESSELPLATE.get(),
                         ModBlocks.VESSELPLATE_GRATE_BLOCK.get(),
@@ -34,24 +35,28 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.SMOOTH_VESSELPLATE.get(),
                         ModBlocks.SMOOTH_VESSELPLATE.get(),
                         ModBlocks.STRUT.get(),
+                        ModBlocks.STRUT_STAIRS.get(),
+                        ModBlocks.STRUT_SLAB.get(),
+                        ModBlocks.CATWALK_STRUT.get(),
+                        ModBlocks.CATWALK_STRUT_SLAB.get(),
+                        ModBlocks.CATWALK_STRUT_STAIRS.get(),
                         ModBlocks.RUSTY_VESSELPLATE_GRATE.get()
                 );
 
-        this.tag(ModTags.Blocks.VESSELGLASS_FULL_BLOCKS)
+        this.tag(ModTags.Blocks.VESSELGLASS_BLOCKS)
                 .add(
                         ModBlocks.REINFORCED_VESSELGLASS.get(),
                         ModBlocks.VESSELGLASS.get()
                 );
 
-        this.tag(ModTags.Blocks.ROCKRETE_FULL_BLOCKS)
+        this.tag(ModTags.Blocks.ROCKRETE_BLOCKS)
                 .add(
-                        ModBlocks.BLACK_ROCKRETE.get(),
                         ModBlocks.BUNKER_WALL.get(),
+                        ModBlocks.LIGHT_GRAY_ROCKRETE.get(),
                         ModBlocks.LIGHT_GRAY_ROCKRETE_SLAB.get(),
                         ModBlocks.LIGHT_GRAY_ROCKRETE_STAIRS.get(),
                         ModBlocks.LIGHT_GRAY_ROCKRETE_REBAR.get(),
-                        ModBlocks.WHITE_ROCKRETE.get(),
-                        ModBlocks.GRAY_ROCKRETE.get(),
+
                         ModBlocks.HAZARD_STRIPE_YELLOW.get(),
                         ModBlocks.HAZARD_STRIPE_RED.get()
                 );
@@ -63,36 +68,17 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 );
 
 
-
         //VANILLA TAGS BELOW
         this.tag(BlockTags.NEEDS_STONE_TOOL)
-                .add(
+                .addTags(ModTags.Blocks.ROCKRETE_BLOCKS);
 
-                        ModBlocks.GRAY_ROCKRETE.get(),
-                        ModBlocks.BLACK_ROCKRETE.get(),
-                        ModBlocks.LIGHT_GRAY_ROCKRETE.get(),
-                        ModBlocks.WHITE_ROCKRETE.get(),
-
-                        ModBlocks.HAZARD_STRIPE_YELLOW.get(),
-                        ModBlocks.HAZARD_STRIPE_RED.get(),
-                        ModBlocks.BUNKER_WALL.get()
-        );
         this.tag(BlockTags.NEEDS_IRON_TOOL)
-                .add(
+                .addTag(ModTags.Blocks.VESSELGLASS_BLOCKS)
+                .addTag(ModTags.Blocks.VESSELPLATE_BLOCKS);
 
-                        ModBlocks.VESSELPLATE.get(),
-                        ModBlocks.VESSELPLATE_GRATE_BLOCK.get(),
-                        ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get()
-        );
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .add(
-
-                        ModBlocks.VESSELPLATE.get(),
-                        ModBlocks.VESSELPLATE_GRATE_BLOCK.get(),
-
-                        ModBlocks.GRAY_ROCKRETE.get(),
-                        ModBlocks.HAZARD_STRIPE_YELLOW.get(),
-                        ModBlocks.HAZARD_STRIPE_RED.get()
-                );
+                .addTags(ModTags.Blocks.ROCKRETE_BLOCKS)
+                .addTags(ModTags.Blocks.VESSELPLATE_BLOCKS)
+                .addTags(ModTags.Blocks.VESSELGLASS_BLOCKS);
     }
 }

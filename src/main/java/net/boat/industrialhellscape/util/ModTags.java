@@ -11,9 +11,9 @@ import net.minecraft.world.level.block.Block;
 
 public class ModTags {
     public static class Blocks {
-        public static final TagKey<Block> VESSELPLATE_FULL_BLOCKS = tag("vesselplate_blocks");
-        public static final TagKey<Block> VESSELGLASS_FULL_BLOCKS = tag("vesselglass");
-        public static final TagKey<Block> ROCKRETE_FULL_BLOCKS = tag("rockrete_blocks");
+        public static final TagKey<Block> VESSELPLATE_BLOCKS = tag("vesselplate_blocks");
+        public static final TagKey<Block> VESSELGLASS_BLOCKS = tag("vesselglass_blocks");
+        public static final TagKey<Block> ROCKRETE_BLOCKS = tag("rockrete_blocks");
 
         public static final TagKey<Block> CLASSIC_DESK = tag("classic_desk");
 

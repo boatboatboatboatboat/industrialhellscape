@@ -7,6 +7,7 @@ import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -20,28 +21,37 @@ import java.util.function.Consumer;
 
 public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
 
-    //COPY AND PASTE
+    //COPY AND PASTE FROM ITEM TAG OF THE SAME NAME FOR REVERSIBLE STONECUTTING. REMOVE THE BASE BLOCKS TO REMOVE RECIPE REDUNDANCY
     private static final List<ItemLike> VESSELPLATE_STONECUT_OUTPUT = List.of(
-            ModBlocks.VESSELPLATE.get(),
-            ModBlocks.VESSELPLATE_GRATE.get(),
-            ModBlocks.VESSELPLATE_GRATE_BLOCK.get(),
-            ModBlocks.RUSTY_VESSELPLATE_GRATE.get(),
-            ModBlocks.SMOOTH_VESSELPLATE.get(),
-            ModBlocks.SMOOTH_VESSELPLATE_TILE.get(),
-            ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get(),
-            ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get()
+            //ModBlocks.VESSELPLATE.get().asItem(),
+            ModBlocks.VESSELPLATE_GRATE_BLOCK.get().asItem(),
+            ModBlocks.VESSELPLATE_GRATE.get().asItem(),
+            ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem(),
+            ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
+            ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
+            ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
+            ModBlocks.SMOOTH_VESSELPLATE_TILE.get().asItem(),
+            ModBlocks.STRUT.get().asItem(),
+            ModBlocks.CATWALK_STRUT.get().asItem(),
+            ModBlocks.CATWALK_STRUT_SLAB.get().asItem(),
+            ModBlocks.CATWALK_STRUT_STAIRS.get().asItem(),
+            ModBlocks.STRUT_STAIRS.get().asItem(),
+            ModBlocks.STRUT_SLAB.get().asItem(),
+            ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem()
     );
     private static final List<ItemLike> ROCKRETE_STONECUT_OUTPUT = List.of(
             ModBlocks.BUNKER_WALL.get().asItem(),
-            ModBlocks.HAZARD_STRIPE_RED.get().asItem(),
+
+            //ModBlocks.LIGHT_GRAY_ROCKRETE.get().asItem(),
+            ModBlocks.LIGHT_GRAY_ROCKRETE_SLAB.get().asItem(),
+            ModBlocks.LIGHT_GRAY_ROCKRETE_STAIRS.get().asItem(),
+            ModBlocks.LIGHT_GRAY_ROCKRETE_REBAR.get().asItem(),
+
             ModBlocks.HAZARD_STRIPE_YELLOW.get().asItem(),
-            ModBlocks.BLACK_ROCKRETE.get().asItem(),
-            ModBlocks.GRAY_ROCKRETE.get().asItem(),
-            ModBlocks.LIGHT_GRAY_ROCKRETE.get().asItem(),
-            ModBlocks.WHITE_ROCKRETE.get().asItem()
+            ModBlocks.HAZARD_STRIPE_RED.get().asItem()
     );
     private static final List<ItemLike> VESSELGLASS_STONECUT_OUTPUT = List.of(
-            ModBlocks.VESSELGLASS.get().asItem(),
+            //ModBlocks.VESSELGLASS.get().asItem(),
             ModBlocks.REINFORCED_VESSELGLASS.get().asItem()
     );
 
@@ -51,30 +61,49 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> pWriter) {
-        //Stonecut Recycle from ALL Full Block Vesselplate Variants into default Vesselplate
-        stonecutting(Ingredient.of(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM)
-                ,RecipeCategory.BUILDING_BLOCKS, ModBlocks.VESSELPLATE.get())
+        //ALL SOLID VARIANT BLOCKS CAN BE STONECUT BACK INTO BASE BLOCK
+
+        //Stonecut Recycle from ALL Smeltable Block Vesselplate Variants into default Vesselplate
+        stonecutting(
+                Ingredient.of(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM),
+                RecipeCategory.BUILDING_BLOCKS,
+                ModBlocks.VESSELPLATE.get(),1)
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(pWriter, new ResourceLocation("industrialhellscape", "vesselplate_stonecut_recycle"));
-        //Stonecut Recycle from ALL Full Block Vesselglass Variants
-        stonecutting(Ingredient.of(ModTags.Items.VESSELGLASS_SMELTABLE_ITEM)
-                ,RecipeCategory.BUILDING_BLOCKS, ModBlocks.VESSELGLASS.get())
+
+        //Stonecut Recycle from ALL Smeltable Block Vesselglass Variants
+        stonecutting(
+                Ingredient.of(ModTags.Items.VESSELGLASS_SMELTABLE_ITEM),
+                RecipeCategory.BUILDING_BLOCKS,
+                ModBlocks.VESSELGLASS.get(),1)
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(pWriter, new ResourceLocation("industrialhellscape", "vesselglass_stonecut_recycle"));
-        //Stonecut Recycle from ALL Full Block Rockrete Variants
-        stonecutting(Ingredient.of(ModTags.Items.ROCKRETE_SMELTABLE_ITEM)
-                ,RecipeCategory.BUILDING_BLOCKS, ModBlocks.LIGHT_GRAY_ROCKRETE.get())
+
+        //Stonecut Recycle from ALL Smeltable Block Rockrete Variants
+        stonecutting(
+                Ingredient.of(ModTags.Items.ROCKRETE_SMELTABLE_ITEM),
+                RecipeCategory.BUILDING_BLOCKS,
+                ModBlocks.LIGHT_GRAY_ROCKRETE.get(),1)
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(pWriter, new ResourceLocation("industrialhellscape", "rockrete_stonecut_recycle"));
 
-        //Create Sound Block
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.SOUND_BLOCK.get()) //Recipe for Sound Block using 9 Floppy Diskettes
-                .pattern("SSS")
-                .pattern("SSS")
-                .pattern("SSS")
-                .define('S', ModItems.FLOPPY_DISKETTE.get())
-                .unlockedBy(getHasName(ModItems.FLOPPY_DISKETTE.get()), has(ModItems.FLOPPY_DISKETTE.get()))
+        //----------
+
+        //Create InHell HAVEN Device
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.INHELL_HAVEN_DEVICE.get()) //Recipe for Sound Block using 9 Floppy Diskettes
+                .pattern("ABC")
+                .pattern("DDD")
+                .pattern("ABC")
+
+                .define('A', Items.IRON_INGOT)
+                .define('B', Items.COPPER_INGOT)
+                .define('C', Items.GOLD_INGOT)
+                .define('D', Items.QUARTZ)
+
+                .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
                         .save(pWriter);
+
+        //Create Base Modded Blocks from Vanilla Blocks
 
         //Create 9x Vesselplate Base Block from 9 iron ingots
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.VESSELPLATE.get(), 9)
@@ -96,33 +125,78 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(pWriter);
 
+        //----------
 
 
-        //Input block tag's stonecutter recipes gets iteratively registered to every block within that tag
+        //Input block tag's stonecutter recipes gets iteratively registered to every block within that tag.
         //Vesselplate
+
+        //   protected static SingleItemRecipeBuilder stonecutting(Ingredient pIngredients, RecipeCategory pCategory, ItemLike pResult, Integer amount) {
+        //        return new SingleItemRecipeBuilder(pCategory, RecipeSerializer.STONECUTTER, pIngredients, pResult, amount);
+        //    }
+
+
         for (int i = 0; i < VESSELPLATE_STONECUT_OUTPUT.size(); i++) {
-            String indexi = String.valueOf(i);
-            stonecutting(Ingredient.of(ModBlocks.VESSELPLATE.get())
-                    ,RecipeCategory.BUILDING_BLOCKS, VESSELPLATE_STONECUT_OUTPUT.get(i))
-                    .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                    .save(pWriter, new ResourceLocation("industrialhellscape", "vesselplate_stonecut_" + i + "_recycle"));
+            if (VESSELPLATE_STONECUT_OUTPUT.get(i).toString().contains("slab") ) {
+                stonecutting(
+                        Ingredient.of(ModTags.Items.VESSELPLATE_STONECUT_OUTPUTS),
+                        RecipeCategory.BUILDING_BLOCKS,
+                        VESSELPLATE_STONECUT_OUTPUT.get(i),2)
+                        .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                        .save(pWriter, new ResourceLocation("industrialhellscape", "vesselplate_stonecut_"+i+"slab"));
+
+            } else if(VESSELPLATE_STONECUT_OUTPUT.get(i).toString().contains("strut")) {
+                stonecutting(
+                        Ingredient.of(ModTags.Items.VESSELPLATE_STONECUT_OUTPUTS),
+                        RecipeCategory.BUILDING_BLOCKS,
+                        VESSELPLATE_STONECUT_OUTPUT.get(i),3)
+                        .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                        .save(pWriter, new ResourceLocation("industrialhellscape", "vesselplate_stonecut_"+i+"strut"));
+            } else
+
+                stonecutting(
+                        Ingredient.of(ModTags.Items.VESSELPLATE_STONECUT_OUTPUTS),
+                        RecipeCategory.BUILDING_BLOCKS,
+                        VESSELPLATE_STONECUT_OUTPUT.get(i),1)
+                        .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                        .save(pWriter, new ResourceLocation("industrialhellscape", "vesselplate_stonecut_"+i));
         }
 
         //Vesselglass
         for (int i = 0; i < VESSELGLASS_STONECUT_OUTPUT.size(); i++) {
-            String indexi = String.valueOf(i);
-            stonecutting(Ingredient.of(ModBlocks.VESSELGLASS.get())
-                    ,RecipeCategory.BUILDING_BLOCKS, VESSELGLASS_STONECUT_OUTPUT.get(i))
-                    .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                    .save(pWriter, new ResourceLocation("industrialhellscape", "vesselglass_stonecut_" + i + "_recycle"));
+            if (VESSELGLASS_STONECUT_OUTPUT.get(i).toString().contains("slab")  ) {
+                stonecutting(
+                        Ingredient.of(ModTags.Items.VESSELGLASS_STONECUT_OUTPUTS),
+                        RecipeCategory.BUILDING_BLOCKS,
+                        VESSELGLASS_STONECUT_OUTPUT.get(i),2)
+                        .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                        .save(pWriter, new ResourceLocation("industrialhellscape", "vesselglass_stonecut_"+i+"slab"));
+            } else
+
+                stonecutting(
+                        Ingredient.of(ModTags.Items.VESSELGLASS_STONECUT_OUTPUTS),
+                        RecipeCategory.BUILDING_BLOCKS,
+                        VESSELGLASS_STONECUT_OUTPUT.get(i),1)
+                        .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                        .save(pWriter, new ResourceLocation("industrialhellscape", "vesselglass_stonecut_"+i));
         }
         //Rockrete
         for (int i = 0; i < ROCKRETE_STONECUT_OUTPUT.size(); i++) {
-            String indexi = String.valueOf(i);
-            stonecutting(Ingredient.of(ModBlocks.LIGHT_GRAY_ROCKRETE.get())
-                    ,RecipeCategory.BUILDING_BLOCKS, ROCKRETE_STONECUT_OUTPUT.get(i))
-                    .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                    .save(pWriter, new ResourceLocation("industrialhellscape", "rockrete_stonecut_" + i + "_recycle"));
+            if (ROCKRETE_STONECUT_OUTPUT.get(i).toString().contains("slab")  ) {
+                stonecutting(
+                        Ingredient.of(ModTags.Items.ROCKRETE_STONECUT_OUTPUTS),
+                        RecipeCategory.BUILDING_BLOCKS,
+                        ROCKRETE_STONECUT_OUTPUT.get(i),2)
+                        .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                        .save(pWriter, new ResourceLocation("industrialhellscape", "rockrete_stonecut_"+i+"slab"));
+            } else
+
+                stonecutting(
+                        Ingredient.of(ModTags.Items.ROCKRETE_STONECUT_OUTPUTS),
+                        RecipeCategory.BUILDING_BLOCKS,
+                        ROCKRETE_STONECUT_OUTPUT.get(i),1)
+                        .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                        .save(pWriter, new ResourceLocation("industrialhellscape", "rockrete_stonecut_"+i));
         }
 
 
@@ -166,7 +240,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         }
     }
 
-    protected static SingleItemRecipeBuilder stonecutting(Ingredient pIngredients, RecipeCategory pCategory, ItemLike pResult) {
-        return new SingleItemRecipeBuilder(pCategory, RecipeSerializer.STONECUTTER, pIngredients, pResult, 1);
+    protected static SingleItemRecipeBuilder stonecutting(Ingredient pIngredients, RecipeCategory pCategory, ItemLike pResult, Integer amount) {
+        return new SingleItemRecipeBuilder(pCategory, RecipeSerializer.STONECUTTER, pIngredients, pResult, amount);
     }
+
 }
