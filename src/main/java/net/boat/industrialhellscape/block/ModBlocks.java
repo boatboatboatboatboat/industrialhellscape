@@ -83,6 +83,11 @@ public class ModBlocks {
                     .Properties.copy(Blocks.STONE)
                     .strength(1f).requiresCorrectToolForDrops())
     );
+    public static final RegistryObject<Block> VESSELPLATE_PILLAR = registerBlock("vesselplate_pillar",
+            () -> new AxialPillarBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .strength(1f).requiresCorrectToolForDrops())
+    );
     public static final RegistryObject<Block> DESK = registerBlock("desk",
             () -> new LongFurniture(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion()) {
             }

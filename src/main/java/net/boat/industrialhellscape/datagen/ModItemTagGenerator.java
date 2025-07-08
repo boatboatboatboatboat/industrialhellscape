@@ -56,6 +56,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
         this.tag(ModTags.Items.VESSELPLATE_STONECUT_OUTPUTS)
                 .add(
                         ModBlocks.VESSELPLATE.get().asItem(),
+                        ModBlocks.VESSELPLATE_PILLAR.get().asItem(),
                         ModBlocks.VESSELPLATE_GRATE_BLOCK.get().asItem(),
                         ModBlocks.VESSELPLATE_GRATE.get().asItem(),
                         ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem(),

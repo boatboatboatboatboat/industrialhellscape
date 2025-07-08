@@ -40,6 +40,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.CATWALK_STRUT.get(),
                         ModBlocks.CATWALK_STRUT_SLAB.get(),
                         ModBlocks.CATWALK_STRUT_STAIRS.get(),
+                        ModBlocks.VESSELPLATE_PILLAR.get(),
                         ModBlocks.RUSTY_VESSELPLATE_GRATE.get()
                 );
 

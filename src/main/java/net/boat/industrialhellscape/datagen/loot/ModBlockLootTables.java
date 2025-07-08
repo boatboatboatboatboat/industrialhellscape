@@ -35,6 +35,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
         //SPECIAL BLOCKS
         this.dropSelf(ModBlocks.BUNKER_WALL.get());
+        this.dropSelf(ModBlocks.VESSELPLATE_PILLAR.get());
+
         this.dropSelf(ModBlocks.SOUND_BLOCK.get());
         this.dropSelf(ModBlocks.VESSELPLATE_GRATE.get());
         this.dropSelf(ModBlocks.RUSTY_VESSELPLATE_GRATE.get());

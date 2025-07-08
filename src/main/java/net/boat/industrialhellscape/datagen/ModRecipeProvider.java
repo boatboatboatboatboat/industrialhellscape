@@ -24,6 +24,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     //COPY AND PASTE FROM ITEM TAG OF THE SAME NAME FOR REVERSIBLE STONECUTTING. REMOVE THE BASE BLOCKS TO REMOVE RECIPE REDUNDANCY
     private static final List<ItemLike> VESSELPLATE_STONECUT_OUTPUT = List.of(
             //ModBlocks.VESSELPLATE.get().asItem(),
+            ModBlocks.VESSELPLATE_PILLAR.get().asItem(),
             ModBlocks.VESSELPLATE_GRATE_BLOCK.get().asItem(),
             ModBlocks.VESSELPLATE_GRATE.get().asItem(),
             ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem(),
