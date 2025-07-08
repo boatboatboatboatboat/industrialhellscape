@@ -56,7 +56,6 @@ public class ModItemTagGenerator extends ItemTagsProvider {
         this.tag(ModTags.Items.VESSELPLATE_STONECUT_OUTPUTS)
                 .add(
                         ModBlocks.VESSELPLATE.get().asItem(),
-                        ModBlocks.VESSELPLATE_PILLAR.get().asItem(),
                         ModBlocks.VESSELPLATE_GRATE_BLOCK.get().asItem(),
                         ModBlocks.VESSELPLATE_GRATE.get().asItem(),
                         ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem(),
@@ -70,6 +69,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.CATWALK_STRUT_STAIRS.get().asItem(),
                         ModBlocks.STRUT_STAIRS.get().asItem(),
                         ModBlocks.STRUT_SLAB.get().asItem(),
+                        ModBlocks.VESSELPLATE_PILLAR.get().asItem(),
                         ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem()
                 );
         this.tag(ModTags.Items.VESSELGLASS_STONECUT_OUTPUTS)

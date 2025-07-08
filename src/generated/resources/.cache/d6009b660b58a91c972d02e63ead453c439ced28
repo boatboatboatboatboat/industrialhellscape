@@ -1,0 +1,8 @@
+// 1.20.1	2025-07-07T18:34:23.5603339	Tags for minecraft:item mod id industrialhellscape
+f87def20b972808dcf6f13f499914e467274089f data/industrialhellscape/tags/items/rockrete_blocks.json
+45f80d0748d8d65d9d15ae57f9ddfb481fb92ac7 data/industrialhellscape/tags/items/rockrete_smeltable_item.json
+f291d1fac3c4910040fd187633e5d92820c7a37e data/industrialhellscape/tags/items/vesselglass.json
+74c6c9675854f47fbd4b2660c74845dd99917afa data/industrialhellscape/tags/items/vesselglass_smeltable_item.json
+20471380975125485256027208877a185b4b69ea data/industrialhellscape/tags/items/vesselplate_blocks.json
+b1968dc61874d74d5ef9a942ff3a8c798d50e182 data/industrialhellscape/tags/items/vesselplate_smeltable_item.json
+f9cdfac50883cfaae97068988d03475a12df7173 data/minecraft/tags/items/music_discs.json

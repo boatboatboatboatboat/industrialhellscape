@@ -38,6 +38,7 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.VESSELGLASS.get());
                         output.accept(ModBlocks.SMOOTH_VESSELPLATE.get());
                         output.accept(ModBlocks.SMOOTH_VESSELPLATE_TILE.get());
+                        output.accept(ModBlocks.VESSELPLATE_PILLAR.get());
 
                         //STONELIKE BLOCKS FOR CREATIVE TAB
                         output.accept(ModBlocks.LIGHT_GRAY_ROCKRETE.get());

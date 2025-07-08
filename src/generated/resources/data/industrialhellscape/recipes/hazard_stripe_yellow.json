@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "industrialhellscape:inhell_haven_device"
+    },
+    {
+      "tag": "industrialhellscape:vesselplate_smeltable_item"
+    },
+    {
+      "tag": "industrialhellscape:vesselplate_smeltable_item"
+    },
+    {
+      "item": "minecraft:yellow_dye"
+    },
+    {
+      "item": "minecraft:black_dye"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "industrialhellscape:hazard_stripe_yellow"
+  }
+}
