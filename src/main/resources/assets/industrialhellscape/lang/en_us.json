@@ -45,6 +45,8 @@
   "item.industrialhellscape.vaporwave_cassette.desc": "Vulta - Shattered",
   "tooltip.industrialhellscape.haventool.flavortext": "No user-serviceable parts. For external use only. Avoid contact with open wounds.",
 
+  "block.industrialhellscape.storage_locker": "Storage Locker",
+
 
   "creativetab.inhell_tab": "InHell Facility Solutions"
 }

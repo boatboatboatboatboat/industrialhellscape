@@ -24,7 +24,7 @@ public class ModCreativeModTabs {
                         output.accept(ModItems.FLOPPY_DISK.get());
                         output.accept(ModItems.FLOPPY_DISKETTE.get());
                         output.accept(ModItems.INHELL_HAVEN_DEVICE.get());
-                        output.accept(ModItems.METAL_DETECTOR.get());
+                        //output.accept(ModItems.METAL_DETECTOR.get());
                         output.accept(ModItems.VAPORWAVE_CASSETTE.get());
 
                         //IRONLIKE BLOCKS FOR CREATIVE TAB
@@ -56,6 +56,7 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.SOUND_BLOCK.get());
                         output.accept(ModBlocks.DESK.get());
                         output.accept(ModBlocks.DESK_DRAWER.get());
+                        output.accept(ModBlocks.TOILET.get());
 
                         //CTM BLOCKS FOR CREATIVE TAB
                         output.accept(ModBlocks.BUNKER_WALL.get());
@@ -65,6 +66,9 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.CATWALK_STRUT_SLAB.get());
                         output.accept(ModBlocks.STRUT_STAIRS.get());
                         output.accept(ModBlocks.STRUT_SLAB.get());
+                        output.accept(ModBlocks.HORIZONTAL_ENCASED_CABLES.get());
+                        output.accept(ModBlocks.VERTICAL_ENCASED_CABLES.get());
+                        output.accept(ModBlocks.STORAGE_LOCKER.get());
                     })
                     .build());
 

@@ -70,6 +70,8 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.STRUT_STAIRS.get().asItem(),
                         ModBlocks.STRUT_SLAB.get().asItem(),
                         ModBlocks.VESSELPLATE_PILLAR.get().asItem(),
+                        ModBlocks.VERTICAL_ENCASED_CABLES.get().asItem(),
+                        ModBlocks.HORIZONTAL_ENCASED_CABLES.get().asItem(),
                         ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem()
                 );
         this.tag(ModTags.Items.VESSELGLASS_STONECUT_OUTPUTS)

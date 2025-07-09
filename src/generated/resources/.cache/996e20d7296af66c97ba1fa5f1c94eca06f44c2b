@@ -1,8 +1,0 @@
-// 1.20.1	2025-07-07T18:34:23.5583252	Tags for minecraft:block mod id industrialhellscape
-9629083005ea8f7c253b8aebe4adc1580c6e282e data/industrialhellscape/tags/blocks/classic_desk.json
-0271c7f10d923bd8403b6f842b40f83606c3be4d data/industrialhellscape/tags/blocks/rockrete_blocks.json
-f291d1fac3c4910040fd187633e5d92820c7a37e data/industrialhellscape/tags/blocks/vesselglass_blocks.json
-1ced0693e1ae45ae913f9bfca96201cf29f4a2a5 data/industrialhellscape/tags/blocks/vesselplate_blocks.json
-69d26ab1e3fee026019782ffaa52b9d25025908a data/minecraft/tags/blocks/mineable/pickaxe.json
-53ff64836351570860a41af8f7b5baa466831236 data/minecraft/tags/blocks/needs_iron_tool.json
-4073a0bdc04188cd579d95fbeb954b2740294a00 data/minecraft/tags/blocks/needs_stone_tool.json

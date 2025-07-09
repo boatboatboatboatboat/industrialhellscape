@@ -53,6 +53,10 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.CATWALK_STRUT_SLAB.get());
         this.dropSelf(ModBlocks.STRUT_SLAB.get());
         this.dropSelf(ModBlocks.STRUT_STAIRS.get());
+        this.dropSelf(ModBlocks.VERTICAL_ENCASED_CABLES.get());
+        this.dropSelf(ModBlocks.HORIZONTAL_ENCASED_CABLES.get());
+        this.dropSelf(ModBlocks.TOILET.get());
+        this.dropSelf(ModBlocks.STORAGE_LOCKER.get());
 
         //Any Ores are added here too
     }

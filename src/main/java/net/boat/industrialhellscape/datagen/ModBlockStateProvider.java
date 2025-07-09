@@ -44,6 +44,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 */
         blockWithItem(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE);
         blockWithItem(ModBlocks.VERTICAL_RIVETED_VESSELPLATE);
+        blockWithItem(ModBlocks.HORIZONTAL_ENCASED_CABLES);
+        blockWithItem(ModBlocks.VERTICAL_ENCASED_CABLES);
         blockWithItem(ModBlocks.SMOOTH_VESSELPLATE);
         blockWithItem(ModBlocks.SMOOTH_VESSELPLATE_TILE);
         blockWithItem(ModBlocks.REINFORCED_VESSELGLASS);
@@ -71,6 +73,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         //SPECIAL BLOCKS
         blockWithItem(ModBlocks.SOUND_BLOCK);
+        simpleBlockWithItem(ModBlocks.STORAGE_LOCKER.get(),
+            new ModelFile.UncheckedModelFile(modLoc("block/storage_locker"))
+        );
+
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {

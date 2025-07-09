@@ -21,7 +21,7 @@ public class ModSounds {
 
     public static final RegistryObject<SoundEvent> VULTA_SHATTERED = registerSoundEvents("vulta_shattered");
 
-    public static final ForgeSoundType VESSELPLATE_BLOCK_SOUNDS = new ForgeSoundType(1f,1f,
+    public static final ForgeSoundType VESSELPLATE_BLOCK_SOUNDS = new ForgeSoundType(2f,1.5f,
             ModSounds.VESSELPLATE_BREAK,
             ModSounds.VESSELPLATE_STEP,
             ModSounds.VESSELPLATE_FALL,

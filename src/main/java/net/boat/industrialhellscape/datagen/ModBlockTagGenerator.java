@@ -6,10 +6,8 @@ import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.TagKey;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
@@ -18,6 +16,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
     public ModBlockTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
         super(output, lookupProvider, IndustrialHellscape.MOD_ID, existingFileHelper);
     }
+
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
@@ -42,6 +41,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.CATWALK_STRUT_SLAB.get(),
                         ModBlocks.CATWALK_STRUT_STAIRS.get(),
                         ModBlocks.VESSELPLATE_PILLAR.get(),
+                        ModBlocks.HORIZONTAL_ENCASED_CABLES.get(),
+                        ModBlocks.VERTICAL_ENCASED_CABLES.get(),
                         ModBlocks.RUSTY_VESSELPLATE_GRATE.get()
                 );
 

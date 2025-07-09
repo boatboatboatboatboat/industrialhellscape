@@ -2,9 +2,19 @@ package net.boat.industrialhellscape;
 
 import com.mojang.logging.LogUtils;
 import net.boat.industrialhellscape.block.ModBlocks;
+import net.boat.industrialhellscape.block.entity.ModBlockEntities;
+import net.boat.industrialhellscape.entity.ModEntities;
+import net.boat.industrialhellscape.entity.client.ChairRenderer;
+import net.boat.industrialhellscape.entity.custom.SittableEntity;
+import net.boat.industrialhellscape.screen.ModMenuTypes;
+import net.boat.industrialhellscape.screen.StorageLockerMenu;
+import net.boat.industrialhellscape.screen.StorageLockerScreen;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.item.ModCreativeModTabs;
 import net.boat.industrialhellscape.item.ModItems;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -32,6 +42,9 @@ public class IndustrialHellscape {
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModSounds.register(modEventBus);
+        ModEntities.register(modEventBus); //Not Block Entities
+        ModBlockEntities.register(modEventBus); //Block Entities
+        ModMenuTypes.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
@@ -64,7 +77,9 @@ public class IndustrialHellscape {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
+            EntityRenderers.register(ModEntities.CHAIR.get(), ChairRenderer::new);
 
+            MenuScreens.register(ModMenuTypes.STORAGE_LOCKER_MENU.get(), StorageLockerScreen::new);
         }
     }
 }

@@ -20,13 +20,13 @@
   "vesselplate_fall": {
     "subtitles": "sounds.industrialhellscape.vesselplate_fall",
     "sounds": [
-      "industrialhellscape:vesselplate_break"
+      "industrialhellscape:vesselplate_step"
     ]
   },
   "vesselplate_step": {
     "subtitles": "sounds.industrialhellscape.vesselplate_step",
     "sounds": [
-      "industrialhellscape:vesselplate_break"
+      "industrialhellscape:vesselplate_step"
     ]
   },
 

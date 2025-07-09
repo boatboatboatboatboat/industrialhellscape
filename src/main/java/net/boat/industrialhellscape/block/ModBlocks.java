@@ -89,16 +89,22 @@ public class ModBlocks {
                     .strength(1f).requiresCorrectToolForDrops())
     );
     public static final RegistryObject<Block> DESK = registerBlock("desk",
-            () -> new LongFurniture(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion()) {
+            () -> new ConnectedFurnitureBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion()) {
             }
     );
     public static final RegistryObject<Block> DESK_DRAWER = registerBlock("desk_drawer",
-            () -> new LongFurniture(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion()) {
+            () -> new ConnectedFurnitureBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion()) {
             }
     );
 
 
     //CTM BLOCKS HERE (3RD PARTY TEXTURE DEPENDENCIES) VVV
+    public static final RegistryObject<Block> HORIZONTAL_ENCASED_CABLES = registerBlock("vertical_encased_cables",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops())
+    );
+    public static final RegistryObject<Block> VERTICAL_ENCASED_CABLES = registerBlock("horizontal_encased_cables",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops())
+    );
     public static final RegistryObject<Block> VESSELPLATE_GRATE = registerBlock("vesselplate_grate",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops())
     );
@@ -128,28 +134,30 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()) {
             }
     );
-
     public static final RegistryObject<Block> STRUT = registerBlock("strut",
-            () -> new StrutBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion()) {
+            () -> new StrutBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion().sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)) {
             }
     );
     public static final RegistryObject<Block> CATWALK_STRUT = registerBlock("catwalk_strut",
-            () -> new StrutBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion()) {
+            () -> new StrutBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion().sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)) {
             }
     );
     public static final RegistryObject<Block> CATWALK_STRUT_STAIRS = registerBlock("catwalk_strut_stairs",
             () -> new StairBlock(() -> ModBlocks.CATWALK_STRUT.get().defaultBlockState(),
-                    BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion())
+                    BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion().sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
     );
     public static final RegistryObject<Block> CATWALK_STRUT_SLAB = registerBlock("catwalk_strut_slab",
-            () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion())
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion().sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
     );
     public static final RegistryObject<Block> STRUT_STAIRS = registerBlock("strut_stairs",
             () -> new StairBlock(() -> ModBlocks.STRUT.get().defaultBlockState(),
-                    BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion())
+                    BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion().sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
     );
     public static final RegistryObject<Block> STRUT_SLAB = registerBlock("strut_slab",
-            () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion())
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion().sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
+    );
+    public static final RegistryObject<Block> TOILET = registerBlock("toilet",
+            () -> new SittableInteractableBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion().sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
     );
 
 
@@ -161,6 +169,14 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()
             )
     );
+    public static final RegistryObject<Block> STORAGE_LOCKER = registerBlock("storage_locker",
+            () -> new StorageLockerBlock(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+                    .strength(1f).noOcclusion()
+                    .requiresCorrectToolForDrops()
+            )
+    );
+
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name,block);
