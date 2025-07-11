@@ -56,7 +56,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.VERTICAL_ENCASED_CABLES.get());
         this.dropSelf(ModBlocks.HORIZONTAL_ENCASED_CABLES.get());
         this.dropSelf(ModBlocks.TOILET.get());
-        this.dropSelf(ModBlocks.STORAGE_LOCKER.get());
+        this.dropSelf(ModBlocks.SINK.get());
+        this.dropSelf(ModBlocks.RED_WALL_MEDKIT.get());
+        this.dropSelf(ModBlocks.WHITE_WALL_MEDKIT.get());
 
         //Any Ores are added here too
     }

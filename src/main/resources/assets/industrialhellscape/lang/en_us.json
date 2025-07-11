@@ -33,6 +33,10 @@
 
   "block.industrialhellscape.debug_desk": "Debug Desk",
   "block.industrialhellscape.desk_drawer": "Desk Drawer",
+  "block.industrialhellscape.toilet": "Toilet",
+  "block.industrialhellscape.sink": "Sink",
+  "block.industrialhellscape.white_wall_medkit": "White Wall Medkit",
+  "block.industrialhellscape.red_wall_medkit": "Red Wall Medkit",
 
   "block.industrialhellscape.strut": "Strut",
   "block.industrialhellscape.strut_stairs": "Strut Stairs",
@@ -43,9 +47,11 @@
 
   "item.industrialhellscape.vaporwave_cassette": "Vulta - Shattered Cassette",
   "item.industrialhellscape.vaporwave_cassette.desc": "Vulta - Shattered",
+  "sounds.industrialhellscape.toilet_flush": "Toilet flushes",
+
   "tooltip.industrialhellscape.haventool.flavortext": "No user-serviceable parts. For external use only. Avoid contact with open wounds.",
 
-  "block.industrialhellscape.storage_locker": "Storage Locker",
+  "gui.industrialhellscape.inventory_menu": "Industrial Hellscape Storage",
 
 
   "creativetab.inhell_tab": "InHell Facility Solutions"

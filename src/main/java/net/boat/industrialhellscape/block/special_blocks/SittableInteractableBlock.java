@@ -2,6 +2,7 @@ package net.boat.industrialhellscape.block.special_blocks;
 
 import net.boat.industrialhellscape.entity.ModEntities;
 import net.boat.industrialhellscape.entity.custom.SittableEntity;
+import net.boat.industrialhellscape.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -55,17 +56,16 @@ public class SittableInteractableBlock extends HorizontalDirectionalBlock implem
 
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
 
-        if(pPlayer.isSecondaryUseActive() ) { //If player IS shift-interacting, change the block state
+        boolean hasEmptyHands = pPlayer.getMainHandItem().isEmpty() && pPlayer.getOffhandItem().isEmpty();
+
+        if(pPlayer.isSecondaryUseActive() && hasEmptyHands ) { //If player IS shift-interacting, change the block state
             pState = pState.cycle(OPEN);
             pLevel.setBlock(pPos, pState, 2);
 
-            if (pState.getValue(WATERLOGGED)) {
-                pLevel.scheduleTick(pPos, Fluids.WATER, Fluids.WATER.getTickDelay(pLevel));
-            }
             this.playSound(pPlayer, pLevel, pPos, pState.getValue(OPEN));
             return InteractionResult.sidedSuccess(pLevel.isClientSide);
 
-        } else if(!pPlayer.isSecondaryUseActive() && !pLevel.isClientSide() ) { //For server-side logic only, if player is NOT shift-interacting, sit on block
+        } else if(!pPlayer.isSecondaryUseActive() && !pLevel.isClientSide() && hasEmptyHands ) { //For server-side logic only, if player is NOT shift-interacting, sit on block
             Entity entity = null;
             List<SittableEntity> entities = pLevel.getEntities(ModEntities.CHAIR.get(), new AABB(pPos), chair -> true);
             if(entities.isEmpty()) {
@@ -77,11 +77,11 @@ public class SittableInteractableBlock extends HorizontalDirectionalBlock implem
             pPlayer.startRiding(entity); //Player is now sitting.
             return InteractionResult.sidedSuccess(pLevel.isClientSide);
         }
-        return InteractionResult.PASS; //In case something weird bypasses the above logic
+        return InteractionResult.FAIL; //If player has item in either hand, Interaction fails (blocks disappear if placed at the same time player is sitting. this is my solution to that.)
     }
 
     protected void playSound(@Nullable Player pPlayer, Level pLevel, BlockPos pPos, boolean pIsOpened) {
-        pLevel.playSound(pPlayer, pPos, pIsOpened ? SoundEvents.ENDERMAN_DEATH : SoundEvents.GHAST_DEATH, SoundSource.BLOCKS, 1.0F, pLevel.getRandom().nextFloat() * 0.1F + 0.9F);
+        pLevel.playSound(pPlayer, pPos, pIsOpened ? SoundEvents.BAMBOO_WOOD_TRAPDOOR_OPEN : ModSounds.TOILET_FLUSH.get(), SoundSource.BLOCKS, 1.0F, pLevel.getRandom().nextFloat() * 0.1F + 0.9F);
         pLevel.gameEvent(pPlayer, pIsOpened ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pPos);
     }
 
@@ -123,13 +123,5 @@ public class SittableInteractableBlock extends HorizontalDirectionalBlock implem
 
     public FluidState getFluidState(BlockState pState) {
         return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
-    }
-
-    public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pFacingPos) {
-        if (pState.getValue(WATERLOGGED)) {
-            pLevel.scheduleTick(pCurrentPos, Fluids.WATER, Fluids.WATER.getTickDelay(pLevel));
-        }
-
-        return super.updateShape(pState, pFacing, pFacingState, pLevel, pCurrentPos, pFacingPos);
     }
 }

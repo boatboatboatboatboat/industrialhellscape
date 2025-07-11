@@ -1,0 +1,137 @@
+package net.boat.industrialhellscape.block.special_blocks.StorageBlock;
+
+import net.boat.industrialhellscape.block.special_blocks_properties.ModBlockEntities;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.network.NetworkHooks;
+import net.minecraft.world.level.block.RenderShape;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+public class ExampleMenuBlock extends HorizontalDirectionalBlock implements EntityBlock, SimpleWaterloggedBlock {
+    public static final VoxelShape SHAPE_NORTH = Block.box(0, 0, 8, 16, 16, 16);
+    public static final VoxelShape SHAPE_SOUTH = Block.box(0, 0, 0, 16, 16, 8);
+    public static final VoxelShape SHAPE_WEST = Block.box(8, 0, 0, 16, 16, 16);
+    public static final VoxelShape SHAPE_EAST = Block.box(0, 0, 0, 8, 16, 16);
+    public static DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+
+    public ExampleMenuBlock(Properties properties) {
+        super(properties);
+        this.registerDefaultState(this.stateDefinition.any()
+                .setValue(FACING, Direction.NORTH));
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
+        return ModBlockEntities.EXAMPLE_MENU_BLOCK_ENTITY.get().create(pos, state);
+    }
+
+    @Override
+    public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
+        BlockState state = this.defaultBlockState();
+        FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
+        Direction direction = pContext.getHorizontalDirection();
+        state = state.setValue(FACING, direction.getOpposite());
+        return state.setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
+    }
+
+    @Override
+    public BlockState rotate(BlockState pState, Rotation pRot) {
+        return pState.setValue(FACING, pRot.rotate(pState.getValue(FACING)));
+    }
+    @Override
+    public BlockState mirror(BlockState pState, Mirror pMirror) {
+        return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
+    }
+
+    @Override
+    public @NotNull InteractionResult use(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
+        BlockEntity be = level.getBlockEntity(pos);
+        if (!(be instanceof ExampleMenuBlockEntity blockEntity))
+            return InteractionResult.PASS;
+
+        if (level.isClientSide())
+            return InteractionResult.SUCCESS;
+
+        // open screen
+        if (player instanceof ServerPlayer sPlayer) {
+            NetworkHooks.openScreen(sPlayer, blockEntity, pos);
+        }
+
+        return InteractionResult.CONSUME;
+    }
+
+    @Override
+    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        switch (pState.getValue(FACING)) {
+            case NORTH: return SHAPE_NORTH;
+            case SOUTH: return SHAPE_SOUTH;
+            case EAST: return SHAPE_EAST;
+            case WEST: return SHAPE_WEST;
+            default: return SHAPE_NORTH;
+        }
+    }
+
+    @Override
+    public RenderShape getRenderShape(BlockState pState) {
+        return RenderShape.MODEL;
+    }
+
+    public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
+        if (!pLevel.isClientSide) {
+            if (pState.getValue(WATERLOGGED)) {
+                pLevel.scheduleTick(pPos, Fluids.WATER, Fluids.WATER.getTickDelay(pLevel));
+            }
+        }
+    }
+
+    @Override
+    public void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) {
+        if (!level.isClientSide()) {
+            BlockEntity be = level.getBlockEntity(pos);
+            if (be instanceof ExampleMenuBlockEntity blockEntity) {
+                ItemStackHandler inventory = blockEntity.getInventory();
+                for (int index = 0; index < inventory.getSlots(); index++) {
+                    ItemStack stack = inventory.getStackInSlot(index);
+                    var entity = new ItemEntity(level, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, stack);
+                    level.addFreshEntity(entity);
+                }
+            }
+        }
+
+        super.onRemove(state, level, pos, newState, isMoving);
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
+        pBuilder.add(FACING, WATERLOGGED); //Block's blockstates; its NSEW orientation, its connection type defined
+    }
+
+    public FluidState getFluidState(BlockState pState) {
+        return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
+    }
+}

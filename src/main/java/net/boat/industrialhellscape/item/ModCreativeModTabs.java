@@ -15,7 +15,7 @@ public class ModCreativeModTabs {
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, IndustrialHellscape.MOD_ID);
 
     public static final RegistryObject<CreativeModeTab> INHELL_TAB = CREATIVE_MODE_TABS.register("inhell_tab", //Defines Creative Tab name
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.MALEVOLENT_MULTITOOL.get())) //Defines Tab Icon texture
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.INHELL_HAVEN_DEVICE.get())) //Defines Tab Icon texture
                     .title(Component.translatable("creativetab.inhell_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
 
@@ -53,10 +53,13 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.HAZARD_STRIPE_RED.get());
 
                         //SPECIAL BLOCKS FOR CREATIVE TAB
-                        output.accept(ModBlocks.SOUND_BLOCK.get());
+                        //output.accept(ModBlocks.SOUND_BLOCK.get());
                         output.accept(ModBlocks.DESK.get());
                         output.accept(ModBlocks.DESK_DRAWER.get());
                         output.accept(ModBlocks.TOILET.get());
+                        //output.accept(ModBlocks.SINK.get());
+                        output.accept(ModBlocks.WHITE_WALL_MEDKIT.get());
+                        output.accept(ModBlocks.RED_WALL_MEDKIT.get());
 
                         //CTM BLOCKS FOR CREATIVE TAB
                         output.accept(ModBlocks.BUNKER_WALL.get());
@@ -68,7 +71,7 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.STRUT_SLAB.get());
                         output.accept(ModBlocks.HORIZONTAL_ENCASED_CABLES.get());
                         output.accept(ModBlocks.VERTICAL_ENCASED_CABLES.get());
-                        output.accept(ModBlocks.STORAGE_LOCKER.get());
+
                     })
                     .build());
 

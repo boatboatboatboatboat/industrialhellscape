@@ -2,18 +2,15 @@ package net.boat.industrialhellscape;
 
 import com.mojang.logging.LogUtils;
 import net.boat.industrialhellscape.block.ModBlocks;
-import net.boat.industrialhellscape.block.entity.ModBlockEntities;
+import net.boat.industrialhellscape.block.special_blocks.StorageBlock.ExampleMenuScreen;
+import net.boat.industrialhellscape.block.special_blocks_properties.ModBlockEntities;
 import net.boat.industrialhellscape.entity.ModEntities;
-import net.boat.industrialhellscape.entity.client.ChairRenderer;
-import net.boat.industrialhellscape.entity.custom.SittableEntity;
-import net.boat.industrialhellscape.screen.ModMenuTypes;
-import net.boat.industrialhellscape.screen.StorageLockerMenu;
-import net.boat.industrialhellscape.screen.StorageLockerScreen;
+import net.boat.industrialhellscape.block.special_blocks_properties.ChairRenderer;
+import net.boat.industrialhellscape.block.special_blocks_properties.ModMenuTypes;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.item.ModCreativeModTabs;
 import net.boat.industrialhellscape.item.ModItems;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
@@ -78,8 +75,16 @@ public class IndustrialHellscape {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             EntityRenderers.register(ModEntities.CHAIR.get(), ChairRenderer::new);
+        }
+    }
 
-            MenuScreens.register(ModMenuTypes.STORAGE_LOCKER_MENU.get(), StorageLockerScreen::new);
+    @Mod.EventBusSubscriber(modid = IndustrialHellscape.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    public class ClientModHandler {
+        @SubscribeEvent
+        public static void clientSetup(FMLClientSetupEvent event) {
+            event.enqueueWork(() -> {
+                MenuScreens.register(ModMenuTypes.STORAGE_9SLOT_MENU.get(), ExampleMenuScreen::new);
+            });
         }
     }
 }

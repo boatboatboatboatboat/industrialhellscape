@@ -15,7 +15,7 @@ public class  ModEntities {
 
     public static final RegistryObject<EntityType<SittableEntity>> CHAIR =
             ENTITY_TYPES.register("chair", () -> EntityType.Builder.of(SittableEntity::new, MobCategory.MISC)
-                    .sized(0.5f, 0.5f).build("chair"));
+                    .sized(0.5f, 0.75f).build("chair"));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

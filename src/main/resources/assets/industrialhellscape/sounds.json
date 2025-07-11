@@ -29,6 +29,12 @@
       "industrialhellscape:vesselplate_step"
     ]
   },
+  "toilet_flush": {
+    "subtitles": "sounds.industrialhellscape.toilet_flush",
+    "sounds": [
+      "industrialhellscape:toilet_flush"
+    ]
+  },
 
   "vulta_shattered": {
     "subtitles": "sounds.industrialhellscape.vulta_shattered",

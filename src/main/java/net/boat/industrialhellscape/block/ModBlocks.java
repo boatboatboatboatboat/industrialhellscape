@@ -2,6 +2,7 @@ package net.boat.industrialhellscape.block;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.special_blocks.*;
+import net.boat.industrialhellscape.block.special_blocks.StorageBlock.ExampleMenuBlock;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.item.ModItems;
 import net.minecraft.world.item.BlockItem;
@@ -169,8 +170,22 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()
             )
     );
-    public static final RegistryObject<Block> STORAGE_LOCKER = registerBlock("storage_locker",
-            () -> new StorageLockerBlock(BlockBehaviour
+    public static final RegistryObject<Block> SINK = registerBlock("sink",
+            () -> new ExampleMenuBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .strength(1f).noOcclusion()
+                    .requiresCorrectToolForDrops()
+            )
+    );
+    public static final RegistryObject<Block> RED_WALL_MEDKIT = registerBlock("red_wall_medkit",
+            () -> new ExampleMenuBlock(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+                    .strength(1f).noOcclusion()
+                    .requiresCorrectToolForDrops()
+            )
+    );
+    public static final RegistryObject<Block> WHITE_WALL_MEDKIT = registerBlock("white_wall_medkit",
+            () -> new ExampleMenuBlock(BlockBehaviour
                     .Properties.copy(Blocks.STONE)
                     .strength(1f).noOcclusion()
                     .requiresCorrectToolForDrops()
