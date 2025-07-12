@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 2,
-  "ingredient": {
-    "tag": "industrialhellscape:rockrete_blocks"
-  },
-  "result": "industrialhellscape:light_gray_rockrete_slab"
-}

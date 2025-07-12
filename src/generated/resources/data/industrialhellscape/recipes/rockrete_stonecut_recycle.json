@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 1,
-  "ingredient": {
-    "tag": "industrialhellscape:rockrete_smeltable_item"
-  },
-  "result": "industrialhellscape:light_gray_rockrete"
-}
