@@ -30,6 +30,14 @@ public class ModTags {
         public static final TagKey<Item> VESSELGLASS_STONECUT_OUTPUTS = tag("vesselglass");
         public static final TagKey<Item> ROCKRETE_STONECUT_OUTPUTS = tag("rockrete_blocks");
 
+        public static final TagKey<Item> IH_RECIPE_STONELIKES = tag("ih_recipe_stonelikes");
+
+        //furniture
+        public static final TagKey<Item> FURNITURE_CATEGORIES = tag("furniture_categories");
+        public static final TagKey<Item> SAFETY_FURNITURE_CATEGORY = tag("safety_furniture_category");
+        public static final TagKey<Item> HYGIENE_FURNITURE_CATEGORY= tag("hygiene_furniture_category");
+        public static final TagKey<Item> ALL_FURNITURE= tag("all_furniture");
+
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(new ResourceLocation(IndustrialHellscape.MOD_ID, name));
         }

@@ -76,12 +76,14 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .addTags(ModTags.Blocks.ROCKRETE_BLOCKS);
 
         this.tag(BlockTags.NEEDS_IRON_TOOL)
-                .addTag(ModTags.Blocks.VESSELGLASS_BLOCKS)
-                .addTag(ModTags.Blocks.VESSELPLATE_BLOCKS);
+                .addTags(
+                        ModTags.Blocks.VESSELGLASS_BLOCKS,
+                        ModTags.Blocks.VESSELPLATE_BLOCKS);
 
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .addTags(ModTags.Blocks.ROCKRETE_BLOCKS)
-                .addTags(ModTags.Blocks.VESSELPLATE_BLOCKS)
-                .addTags(ModTags.Blocks.VESSELGLASS_BLOCKS);
+                .addTags(
+                        ModTags.Blocks.ROCKRETE_BLOCKS,
+                        ModTags.Blocks.VESSELPLATE_BLOCKS,
+                        ModTags.Blocks.VESSELGLASS_BLOCKS);
     }
 }

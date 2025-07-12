@@ -2,6 +2,7 @@ package net.boat.industrialhellscape.block;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.special_blocks.*;
+import net.boat.industrialhellscape.block.special_blocks.CardinalFacingBlock;
 import net.boat.industrialhellscape.block.special_blocks.StorageBlock.ExampleMenuBlock;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.item.ModItems;
@@ -90,11 +91,11 @@ public class ModBlocks {
                     .strength(1f).requiresCorrectToolForDrops())
     );
     public static final RegistryObject<Block> DESK = registerBlock("desk",
-            () -> new ConnectedFurnitureBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion()) {
+            () -> new ConnectedFurnitureBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()) {
             }
     );
     public static final RegistryObject<Block> DESK_DRAWER = registerBlock("desk_drawer",
-            () -> new ConnectedFurnitureBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion()) {
+            () -> new ConnectedFurnitureBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()) {
             }
     );
 
@@ -157,25 +158,41 @@ public class ModBlocks {
     public static final RegistryObject<Block> STRUT_SLAB = registerBlock("strut_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion().sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
     );
-    public static final RegistryObject<Block> TOILET = registerBlock("toilet",
-            () -> new SittableInteractableBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion().sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
-    );
-
 
     //SPECIAL BLOCKS HERE VVV
     public static final RegistryObject<Block> SOUND_BLOCK = registerBlock("sound_block",
             () -> new SoundBlock(BlockBehaviour
                     .Properties.copy(Blocks.STONE)
                     .strength(1f)
-                    .requiresCorrectToolForDrops()
+            )
+    );
+    public static final RegistryObject<Block> IHEA_FURNITURE_KIT = registerBlock("ihea_furniture_kit",
+            () -> new CardinalFacingBlock(BlockBehaviour
+                    .Properties.copy(Blocks.OAK_PLANKS)
+                    .strength(1f)
+            ) {
+            }
+    );
+    public static final RegistryObject<Block> HYGIENE_FURNISHINGS = registerBlock("hygiene_furnishings",
+            () -> new CardinalFacingBlock(BlockBehaviour
+                    .Properties.copy(Blocks.OAK_PLANKS)
+                    .strength(1f)
+            )
+    );
+    public static final RegistryObject<Block> SAFETY_FURNISHINGS = registerBlock("safety_furnishings",
+            () -> new CardinalFacingBlock(BlockBehaviour
+                    .Properties.copy(Blocks.OAK_PLANKS)
+                    .strength(1f)
             )
     );
     public static final RegistryObject<Block> SINK = registerBlock("sink",
             () -> new ExampleMenuBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .strength(1f).noOcclusion()
-                    .requiresCorrectToolForDrops()
             )
+    );
+    public static final RegistryObject<Block> TOILET = registerBlock("toilet",
+            () -> new SittableInteractableBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion().sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
     );
     public static final RegistryObject<Block> RED_WALL_MEDKIT = registerBlock("red_wall_medkit",
             () -> new ExampleMenuBlock(BlockBehaviour

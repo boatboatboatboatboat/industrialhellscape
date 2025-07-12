@@ -73,9 +73,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         //SPECIAL BLOCKS
         blockWithItem(ModBlocks.SOUND_BLOCK);
+
         simpleBlockWithItem(ModBlocks.SINK.get(),
             new ModelFile.UncheckedModelFile(modLoc("block/sink"))
         );
+
 
     }
 

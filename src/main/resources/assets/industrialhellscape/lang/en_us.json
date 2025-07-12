@@ -33,6 +33,11 @@
 
   "block.industrialhellscape.debug_desk": "Debug Desk",
   "block.industrialhellscape.desk_drawer": "Desk Drawer",
+
+  "block.industrialhellscape.ihea_furniture_kit": "IHEA Furniture Kit",
+  "block.industrialhellscape.safety_furnishings": "Safety Furnishings",
+  "block.industrialhellscape.hygiene_furnishings": "Hygiene Furnishings",
+
   "block.industrialhellscape.toilet": "Toilet",
   "block.industrialhellscape.sink": "Sink",
   "block.industrialhellscape.white_wall_medkit": "White Wall Medkit",

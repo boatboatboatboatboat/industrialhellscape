@@ -8,7 +8,10 @@ import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -18,6 +21,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
@@ -62,6 +66,19 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             //ModBlocks.VESSELGLASS.get().asItem(),
             ModBlocks.REINFORCED_VESSELGLASS.get().asItem()
     );
+    private static final List<ItemLike> FURNITURE_CATEGORIES = List.of(
+            ModBlocks.SAFETY_FURNISHINGS.get().asItem(),
+            ModBlocks.HYGIENE_FURNISHINGS.get().asItem()
+    );
+
+    private static final List<ItemLike> SAFETY_FURNITURE = List.of(
+            ModBlocks.RED_WALL_MEDKIT.get().asItem(),
+            ModBlocks.WHITE_WALL_MEDKIT.get().asItem()
+    );
+    private static final List<ItemLike> HYGIENE_FURNITURE = List.of(
+            ModBlocks.TOILET.get().asItem()
+    );
+
     public ModRecipeProvider(PackOutput pOutput) {
         super(pOutput);
     }
@@ -70,7 +87,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     protected void buildRecipes(Consumer<FinishedRecipe> pWriter) {
         //ALL SOLID VARIANT BLOCKS CAN BE STONECUT BACK INTO BASE BLOCK
 
-        //Stonecut Recycle from ALL Smeltable Block Vesselplate Variants into default Vesselplate
+        //Stonecut Recycle from ALL Smeltable Block Vesselplate Variants into base block
         stonecutting(
                 Ingredient.of(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM),
                 RecipeCategory.BUILDING_BLOCKS,
@@ -78,7 +95,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(pWriter, new ResourceLocation("industrialhellscape", "vesselplate_stonecut_recycle"));
 
-        //Stonecut Recycle from ALL Smeltable Block Vesselglass Variants
+        //Stonecut Recycle from ALL Smeltable Block Vesselglass Variants into base block
         stonecutting(
                 Ingredient.of(ModTags.Items.VESSELGLASS_SMELTABLE_ITEM),
                 RecipeCategory.BUILDING_BLOCKS,
@@ -86,13 +103,21 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(pWriter, new ResourceLocation("industrialhellscape", "vesselglass_stonecut_recycle"));
 
-        //Stonecut Recycle from ALL Smeltable Block Rockrete Variants
+        //Stonecut Recycle from ALL Smeltable Block Rockrete Variants into base block
         stonecutting(
                 Ingredient.of(ModTags.Items.ROCKRETE_SMELTABLE_ITEM),
                 RecipeCategory.BUILDING_BLOCKS,
                 ModBlocks.LIGHT_GRAY_ROCKRETE.get(),1)
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(pWriter, new ResourceLocation("industrialhellscape", "rockrete_stonecut_recycle"));
+
+        //Stonecut Recycle ALL Furniture across ALL categories into base block
+        stonecutting(
+                Ingredient.of(ModTags.Items.ALL_FURNITURE),
+                RecipeCategory.BUILDING_BLOCKS,
+                ModBlocks.IHEA_FURNITURE_KIT.get(),1)
+                .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                .save(pWriter, new ResourceLocation("industrialhellscape", "all_furniture_stonecut_recycle"));
 
         //----------
 
@@ -142,20 +167,36 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         //Create Rockrete Base Block from 1 stone
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.LIGHT_GRAY_ROCKRETE.get(), 1)
                 .requires(ModItems.INHELL_HAVEN_DEVICE.get())
-                .requires(Items.STONE)
+                .requires(Ingredient.of(ModTags.Items.IH_RECIPE_STONELIKES))
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(pWriter);
+
+        //Create Furniture Kit Base Block from 1 stonetype, one log, one iron ingot, and the HAVEN device
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.IHEA_FURNITURE_KIT.get(), 1)
+                .requires(ModItems.INHELL_HAVEN_DEVICE.get())
+                .requires(Ingredient.of(ModTags.Items.IH_RECIPE_STONELIKES))
+                .requires(Ingredient.of(ItemTags.LOGS))
+                .requires(Items.IRON_INGOT)
+                .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                .save(pWriter, new ResourceLocation("industrialhellscape", "furniture_kit_recipe_1"));
+        //Create Furniture Kit Base Block from 1 stonetype, one log, one iron ingot, and the HAVEN device
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.IHEA_FURNITURE_KIT.get(), 1)
+                .requires(ModItems.INHELL_HAVEN_DEVICE.get())
+                .requires(Ingredient.of(ItemTags.STONE_CRAFTING_MATERIALS))
+                .requires(Ingredient.of(ItemTags.PLANKS))
+                .requires(Ingredient.of(ItemTags.PLANKS))
+                .requires(Ingredient.of(ItemTags.PLANKS))
+                .requires(Ingredient.of(ItemTags.PLANKS))
+                .requires(Items.IRON_INGOT)
+                .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                .save(pWriter, new ResourceLocation("industrialhellscape", "furniture_kit_recipe_2"));
 
         //----------
 
 
         //Input block tag's stonecutter recipes gets iteratively registered to every block within that tag.
+
         //Vesselplate
-
-        //   protected static SingleItemRecipeBuilder stonecutting(Ingredient pIngredients, RecipeCategory pCategory, ItemLike pResult, Integer amount) {
-        //        return new SingleItemRecipeBuilder(pCategory, RecipeSerializer.STONECUTTER, pIngredients, pResult, amount);
-        //    }
-
         for (int i = 0; i < VESSELPLATE_STONECUT_OUTPUT.size(); i++) {
             String itemName = VESSELPLATE_STONECUT_OUTPUT.get(i).toString().replaceAll("[^a-zA-Z]+","_");
             if (VESSELPLATE_STONECUT_OUTPUT.get(i).toString().contains("slab") ) {
@@ -204,6 +245,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                         .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                         .save(pWriter, new ResourceLocation("industrialhellscape", "vesselglass_stonecut_"+i+"_"+itemName));
         }
+
         //Rockrete
         for (int i = 0; i < ROCKRETE_STONECUT_OUTPUT.size(); i++) {
             String itemName = ROCKRETE_STONECUT_OUTPUT.get(i).toString().replaceAll("[^a-zA-Z]+","_");
@@ -222,6 +264,37 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                         ROCKRETE_STONECUT_OUTPUT.get(i),1)
                         .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                         .save(pWriter, new ResourceLocation("industrialhellscape", "rockrete_stonecut_"+i+"_"+itemName));
+        }
+
+        //Furniture Sub-Categories
+        for (int i = 0; i < FURNITURE_CATEGORIES.size(); i++) {
+            String itemName = FURNITURE_CATEGORIES.get(i).toString().replaceAll("[^a-zA-Z]+","_");
+                stonecutting(
+                        Ingredient.of(ModBlocks.IHEA_FURNITURE_KIT.get().asItem()), //Ingredient to craft
+                        RecipeCategory.BUILDING_BLOCKS, //Category
+                        FURNITURE_CATEGORIES.get(i),1)  //Outputs into the category blocks (safety, hygiene, industrial)
+                        .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                        .save(pWriter, new ResourceLocation("industrialhellscape", "furniture_kit_to_stonecut_"+i+"_"+itemName));
+        }
+        //Safety Furniture Sub-Categories
+        for (int i = 0; i < SAFETY_FURNITURE.size(); i++) {
+            String itemName = SAFETY_FURNITURE.get(i).toString().replaceAll("[^a-zA-Z]+","_");
+            stonecutting(
+                    Ingredient.of(ModBlocks.SAFETY_FURNISHINGS.get().asItem()), //Ingredient to craft
+                    RecipeCategory.BUILDING_BLOCKS, //Category
+                    SAFETY_FURNITURE.get(i),1)  //Outputs into the category blocks (safety, hygiene, industrial)
+                    .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                    .save(pWriter, new ResourceLocation("industrialhellscape", "safety_to_stonecut_"+i+"_"+itemName));
+        }
+        //Hygiene Furniture Sub-Categories
+        for (int i = 0; i < HYGIENE_FURNITURE.size(); i++) {
+            String itemName = HYGIENE_FURNITURE.get(i).toString().replaceAll("[^a-zA-Z]+","_");
+            stonecutting(
+                    Ingredient.of(ModBlocks.HYGIENE_FURNISHINGS.get().asItem()), //Ingredient to craft
+                    RecipeCategory.BUILDING_BLOCKS, //Category
+                    HYGIENE_FURNITURE.get(i),1)  //Outputs into the category blocks (safety, hygiene, industrial)
+                    .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                    .save(pWriter, new ResourceLocation("industrialhellscape", "hygiene_to_stonecut_"+i+"_"+itemName));
         }
 
 

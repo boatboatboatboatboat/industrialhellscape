@@ -8,6 +8,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -92,8 +93,37 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.HAZARD_STRIPE_RED.get().asItem()
                 );
 
+        this.tag(ModTags.Items.FURNITURE_CATEGORIES)
+                .add(
+                        ModBlocks.SAFETY_FURNISHINGS.get().asItem(),
+                        ModBlocks.HYGIENE_FURNISHINGS.get().asItem()
+                );
+        this.tag(ModTags.Items.ALL_FURNITURE)
+                .addTags(
+                        ModTags.Items.SAFETY_FURNITURE_CATEGORY,
+                        ModTags.Items.HYGIENE_FURNITURE_CATEGORY
+                );
+        this.tag(ModTags.Items.SAFETY_FURNITURE_CATEGORY)
+                .add(
+                        ModBlocks.RED_WALL_MEDKIT.get().asItem(),
+                        ModBlocks.WHITE_WALL_MEDKIT.get().asItem()
+                );
+        this.tag(ModTags.Items.HYGIENE_FURNITURE_CATEGORY)
+                .add(
+                        ModBlocks.TOILET.get().asItem()
+                );
+
         this.tag(ItemTags.MUSIC_DISCS)
                 .add(ModItems.VAPORWAVE_CASSETTE.get()
+                );
+
+
+        this.tag(ModTags.Items.IH_RECIPE_STONELIKES)
+                .add(
+                        Items.STONE,
+                        Items.DEEPSLATE,
+                        Items.BLACKSTONE,
+                        Items.END_STONE
                 );
     }
 }
