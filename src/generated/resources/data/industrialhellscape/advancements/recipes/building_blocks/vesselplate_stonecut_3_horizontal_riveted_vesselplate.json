@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "industrialhellscape:vesselplate_stonecut_16_rusty_vesselplate_grate"
+        "recipe": "industrialhellscape:vesselplate_stonecut_3_horizontal_riveted_vesselplate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "industrialhellscape:vesselplate_stonecut_16_rusty_vesselplate_grate"
+      "industrialhellscape:vesselplate_stonecut_3_horizontal_riveted_vesselplate"
     ]
   },
   "sends_telemetry_event": false

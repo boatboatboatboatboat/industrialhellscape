@@ -36,7 +36,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.VESSELPLATE_PILLAR.get().asItem(),
             ModBlocks.VESSELPLATE_GRATE_BLOCK.get().asItem(),
             ModBlocks.VESSELPLATE_GRATE.get().asItem(),
-            ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem(),
             ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
             ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
             ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),

@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "industrialhellscape:vesselplate_stonecut_6_smooth_vesselplate"
+        "recipe": "industrialhellscape:vesselplate_stonecut_12_strut_slab"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "industrialhellscape:vesselplate_stonecut_6_smooth_vesselplate"
+      "industrialhellscape:vesselplate_stonecut_12_strut_slab"
     ]
   },
   "sends_telemetry_event": false

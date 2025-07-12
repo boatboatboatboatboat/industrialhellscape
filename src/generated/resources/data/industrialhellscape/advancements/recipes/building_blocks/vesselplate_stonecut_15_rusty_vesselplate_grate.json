@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "industrialhellscape:vesselplate_stonecut_15_vertical_encased_cables"
+        "recipe": "industrialhellscape:vesselplate_stonecut_15_rusty_vesselplate_grate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "industrialhellscape:vesselplate_stonecut_15_vertical_encased_cables"
+      "industrialhellscape:vesselplate_stonecut_15_rusty_vesselplate_grate"
     ]
   },
   "sends_telemetry_event": false

@@ -170,6 +170,7 @@ public class ModBlocks {
             () -> new CardinalFacingBlock(BlockBehaviour
                     .Properties.copy(Blocks.OAK_PLANKS)
                     .strength(1f)
+                    .noOcclusion()
             ) {
             }
     );
@@ -177,12 +178,14 @@ public class ModBlocks {
             () -> new CardinalFacingBlock(BlockBehaviour
                     .Properties.copy(Blocks.OAK_PLANKS)
                     .strength(1f)
+                    .noOcclusion()
             )
     );
     public static final RegistryObject<Block> SAFETY_FURNISHINGS = registerBlock("safety_furnishings",
             () -> new CardinalFacingBlock(BlockBehaviour
                     .Properties.copy(Blocks.OAK_PLANKS)
                     .strength(1f)
+                    .noOcclusion()
             )
     );
     public static final RegistryObject<Block> SINK = registerBlock("sink",
