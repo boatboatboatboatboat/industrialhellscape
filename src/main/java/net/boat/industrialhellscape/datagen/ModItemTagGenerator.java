@@ -64,12 +64,21 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
                         ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
                         ModBlocks.SMOOTH_VESSELPLATE_TILE.get().asItem(),
+
                         ModBlocks.STRUT.get().asItem(),
                         ModBlocks.CATWALK_STRUT.get().asItem(),
                         ModBlocks.CATWALK_STRUT_SLAB.get().asItem(),
                         ModBlocks.CATWALK_STRUT_STAIRS.get().asItem(),
                         ModBlocks.STRUT_STAIRS.get().asItem(),
                         ModBlocks.STRUT_SLAB.get().asItem(),
+
+                        ModBlocks.GRAY_STRUT.get().asItem(),
+                        ModBlocks.GRAY_CATWALK_STRUT.get().asItem(),
+                        ModBlocks.GRAY_CATWALK_STRUT_SLAB.get().asItem(),
+                        ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get().asItem(),
+                        ModBlocks.GRAY_STRUT_STAIRS.get().asItem(),
+                        ModBlocks.GRAY_STRUT_SLAB.get().asItem(),
+
                         ModBlocks.VESSELPLATE_PILLAR.get().asItem(),
                         ModBlocks.VERTICAL_ENCASED_CABLES.get().asItem(),
                         ModBlocks.HORIZONTAL_ENCASED_CABLES.get().asItem(),
@@ -119,7 +128,8 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 .add(
                         ModBlocks.DESK.get().asItem(),
                         ModBlocks.DESK_DRAWER.get().asItem(),
-                        ModBlocks.METAL_DESK.get().asItem()
+                        ModBlocks.METAL_DESK.get().asItem(),
+                        ModBlocks.METAL_DESK_DRAWER_2.get().asItem()
                 );
         /*this.tag(ModTags.Items.INDUSTRIAL_FURNITURE_CATEGORY)
                 .add(

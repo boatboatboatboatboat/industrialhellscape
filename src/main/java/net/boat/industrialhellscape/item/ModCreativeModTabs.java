@@ -57,6 +57,8 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.DESK.get());
                         output.accept(ModBlocks.DESK_DRAWER.get());
                         output.accept(ModBlocks.METAL_DESK.get());
+                        output.accept(ModBlocks.METAL_DESK_DRAWER.get());
+                        output.accept(ModBlocks.METAL_DESK_DRAWER_2.get());
                         output.accept(ModBlocks.TOILET.get());
                         //output.accept(ModBlocks.SINK.get());
                         output.accept(ModBlocks.WHITE_WALL_MEDKIT.get());
@@ -70,12 +72,20 @@ public class ModCreativeModTabs {
 
                         //CTM BLOCKS FOR CREATIVE TAB
                         output.accept(ModBlocks.BUNKER_WALL.get());
+
                         output.accept(ModBlocks.STRUT.get());
                         output.accept(ModBlocks.CATWALK_STRUT.get());
                         output.accept(ModBlocks.CATWALK_STRUT_STAIRS.get());
                         output.accept(ModBlocks.CATWALK_STRUT_SLAB.get());
                         output.accept(ModBlocks.STRUT_STAIRS.get());
                         output.accept(ModBlocks.STRUT_SLAB.get());
+                        output.accept(ModBlocks.GRAY_STRUT.get());
+                        output.accept(ModBlocks.GRAY_CATWALK_STRUT.get());
+                        output.accept(ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get());
+                        output.accept(ModBlocks.GRAY_CATWALK_STRUT_SLAB.get());
+                        output.accept(ModBlocks.GRAY_STRUT_STAIRS.get());
+                        output.accept(ModBlocks.GRAY_STRUT_SLAB.get());
+
                         output.accept(ModBlocks.HORIZONTAL_ENCASED_CABLES.get());
                         output.accept(ModBlocks.VERTICAL_ENCASED_CABLES.get());
 

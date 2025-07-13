@@ -1,28 +1,17 @@
 package net.boat.industrialhellscape.datagen;
 
-import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
 import net.boat.industrialhellscape.item.ModItems;
 import net.boat.industrialhellscape.util.ModTags;
-import net.minecraft.core.HolderSet;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
-import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -40,12 +29,21 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
             ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
             ModBlocks.SMOOTH_VESSELPLATE_TILE.get().asItem(),
+
             ModBlocks.STRUT.get().asItem(),
             ModBlocks.CATWALK_STRUT.get().asItem(),
             ModBlocks.CATWALK_STRUT_SLAB.get().asItem(),
             ModBlocks.CATWALK_STRUT_STAIRS.get().asItem(),
             ModBlocks.STRUT_STAIRS.get().asItem(),
             ModBlocks.STRUT_SLAB.get().asItem(),
+
+            ModBlocks.GRAY_STRUT.get().asItem(),
+            ModBlocks.GRAY_CATWALK_STRUT.get().asItem(),
+            ModBlocks.GRAY_CATWALK_STRUT_SLAB.get().asItem(),
+            ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get().asItem(),
+            ModBlocks.GRAY_STRUT_STAIRS.get().asItem(),
+            ModBlocks.GRAY_STRUT_SLAB.get().asItem(),
+
             ModBlocks.VERTICAL_ENCASED_CABLES.get().asItem(),
             ModBlocks.HORIZONTAL_ENCASED_CABLES.get().asItem(),
             ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem()
@@ -83,7 +81,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     private static final List<ItemLike> AMENITY_FURNITURE = List.of(
             ModBlocks.DESK.get().asItem(),
             ModBlocks.DESK_DRAWER.get().asItem(),
-            ModBlocks.METAL_DESK.get().asItem()
+            ModBlocks.METAL_DESK.get().asItem(),
+            ModBlocks.METAL_DESK_DRAWER.get().asItem(),
+            ModBlocks.METAL_DESK_DRAWER_2.get().asItem()
     );
 
     public ModRecipeProvider(PackOutput pOutput) {

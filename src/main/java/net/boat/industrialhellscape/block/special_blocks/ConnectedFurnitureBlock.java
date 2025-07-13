@@ -9,6 +9,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -27,6 +28,11 @@ public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implemen
         this.inputCompatibleFurniture = inputCompatibleFurniture;
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(TYPE, FurnitureConnectionState.SOLO)); //Default state if placed with no player present
+    }
+
+    @Override
+    public RenderShape getRenderShape(BlockState state) {
+        return RenderShape.MODEL;
     }
 
     //Placement Faces the player

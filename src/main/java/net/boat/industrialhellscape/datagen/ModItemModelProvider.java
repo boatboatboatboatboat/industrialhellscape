@@ -29,10 +29,16 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         evenSimplerBlockItem(ModBlocks.LIGHT_GRAY_ROCKRETE_STAIRS);
         evenSimplerBlockItem(ModBlocks.LIGHT_GRAY_ROCKRETE_SLAB);
+
         evenSimplerBlockItem(ModBlocks.STRUT_STAIRS);
         evenSimplerBlockItem(ModBlocks.STRUT_SLAB);
         evenSimplerBlockItem(ModBlocks.CATWALK_STRUT_STAIRS);
         evenSimplerBlockItem(ModBlocks.CATWALK_STRUT_SLAB);
+
+        evenSimplerBlockItem(ModBlocks.GRAY_STRUT_STAIRS);
+        evenSimplerBlockItem(ModBlocks.GRAY_STRUT_SLAB);
+        evenSimplerBlockItem(ModBlocks.GRAY_CATWALK_STRUT_STAIRS);
+        evenSimplerBlockItem(ModBlocks.GRAY_CATWALK_STRUT_SLAB);
 
     }
 

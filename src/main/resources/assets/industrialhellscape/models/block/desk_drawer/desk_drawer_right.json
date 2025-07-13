@@ -2,6 +2,7 @@
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
 	"texture_size": [48, 48],
+	"ambientocclusion": false,
 	"textures": {
 		"0": "industrialhellscape:block/desk_drawer_right",
 		"particle": "industrialhellscape:block/desk_drawer_right"
@@ -58,7 +59,7 @@
 				"north": {"uv": [11.33333, 12.33333, 16, 16], "texture": "#0"},
 				"east": {"uv": [16, 1.33334, 12.33333, 5], "texture": "#0"},
 				"south": {"uv": [11.33333, 5, 16, 8.66667], "texture": "#0"},
-				"west": {"uv": [8, 12.33333, 11.66667, 16], "texture": "#0"},
+				"west": {"uv": [8, 12.33333, 11.66667, 16], "texture": "#0", "cullface": "west"},
 				"up": {"uv": [5.66667, 14.33333, 1, 10.66667], "texture": "#0"},
 				"down": {"uv": [16, 8.66667, 11.33333, 12.33333], "texture": "#0"}
 			}

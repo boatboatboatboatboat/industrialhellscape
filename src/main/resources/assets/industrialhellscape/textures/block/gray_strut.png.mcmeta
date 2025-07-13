@@ -1,0 +1,12 @@
+{
+  "ctm": {
+    "ctm_version": 1,
+    "type": "CTM",
+    "layer": "CUTOUT",
+    "textures": [
+      "industrialhellscape:ctm/ctm2x2_gray_strut"
+      ],
+      "connect_inside": true
+    }
+  }
+}

@@ -2,6 +2,7 @@
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
 	"texture_size": [48, 48],
+	"ambientocclusion": false,
 	"textures": {
 		"0": "industrialhellscape:block/desk_drawer_left",
 		"particle": "industrialhellscape:block/desk_drawer_left"

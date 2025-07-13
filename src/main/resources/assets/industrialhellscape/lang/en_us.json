@@ -47,6 +47,7 @@
   "block.industrialhellscape.desk_drawer": "Classic Desk Drawer",
   "block.industrialhellscape.metal_desk": "Metal Desk",
   "block.industrialhellscape.metal_desk_drawer": "Metal Desk Drawer",
+  "block.industrialhellscape.metal_desk_drawer_2": "Metal Desk Drawer 2",
 
   "block.industrialhellscape.strut": "Strut",
   "block.industrialhellscape.strut_stairs": "Strut Stairs",
@@ -54,6 +55,13 @@
   "block.industrialhellscape.catwalk_strut": "Catwalk Strut",
   "block.industrialhellscape.catwalk_strut_stairs": "Catwalk Strut Stairs",
   "block.industrialhellscape.catwalk_strut_slab": "Catwalk Strut Slab",
+
+  "block.industrialhellscape.gray_strut": "Gray Strut",
+  "block.industrialhellscape.gray_strut_stairs": "Gray Strut Stairs",
+  "block.industrialhellscape.gray_strut_slab": "Gray Strut Slab",
+  "block.industrialhellscape.gray_catwalk_strut": "Gray Catwalk Strut",
+  "block.industrialhellscape.gray_catwalk_strut_stairs": "Gray Catwalk Strut Stairs",
+  "block.industrialhellscape.gray_catwalk_strut_slab": "Gray Catwalk Strut Slab",
 
   "item.industrialhellscape.vaporwave_cassette": "Vulta - Shattered Cassette",
   "item.industrialhellscape.vaporwave_cassette.desc": "Vulta - Shattered",

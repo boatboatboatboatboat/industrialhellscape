@@ -104,6 +104,14 @@ public class ModBlocks {
             () -> new ConnectedFurnitureBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion(), ModTags.Blocks.METAL_DESK) {
             }
     );
+    public static final RegistryObject<Block> METAL_DESK_DRAWER = registerBlock("metal_desk_drawer",
+            () -> new ConnectedFurnitureStorageBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion(), ModTags.Blocks.METAL_DESK) {
+            }
+    );
+    public static final RegistryObject<Block> METAL_DESK_DRAWER_2 = registerBlock("metal_desk_drawer_2",
+            () -> new ConnectedFurnitureStorageBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion(), ModTags.Blocks.METAL_DESK) {
+            }
+    );
 
 
 
@@ -166,6 +174,32 @@ public class ModBlocks {
             () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion().sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
     );
 
+    public static final RegistryObject<Block> GRAY_STRUT = registerBlock("gray_strut",
+            () -> new StrutBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion().sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)) {
+            }
+    );
+    public static final RegistryObject<Block> GRAY_CATWALK_STRUT_STAIRS = registerBlock("gray_catwalk_strut_stairs",
+            () -> new StairBlock(() -> ModBlocks.CATWALK_STRUT.get().defaultBlockState(),
+                    BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion().sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
+    );
+    public static final RegistryObject<Block> GRAY_STRUT_SLAB = registerBlock("gray_strut_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion().sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)) {
+            }
+    );
+    public static final RegistryObject<Block> GRAY_CATWALK_STRUT = registerBlock("gray_catwalk_strut",
+            () -> new StrutBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion().sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)) {
+            }
+    );
+
+    public static final RegistryObject<Block> GRAY_CATWALK_STRUT_SLAB = registerBlock("gray_catwalk_strut_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion().sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)) {
+            }
+    );
+    public static final RegistryObject<Block> GRAY_STRUT_STAIRS = registerBlock("gray_strut_stairs",
+            () -> new StairBlock(() -> ModBlocks.CATWALK_STRUT.get().defaultBlockState(),
+                    BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion().sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
+    );
+
     //SPECIAL BLOCKS HERE VVV
     public static final RegistryObject<Block> SOUND_BLOCK = registerBlock("sound_block",
             () -> new SoundBlock(BlockBehaviour
@@ -223,7 +257,7 @@ public class ModBlocks {
             )
     );
     public static final RegistryObject<Block> TOILET = registerBlock("toilet",
-            () -> new SittableInteractableBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion().sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
+            () -> new SittableInteractableBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion())
     );
     public static final RegistryObject<Block> RED_WALL_MEDKIT = registerBlock("red_wall_medkit",
             () -> new ExampleMenuBlock(BlockBehaviour

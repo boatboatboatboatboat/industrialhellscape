@@ -45,15 +45,28 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.VESSELGLASS.get());
         this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE.get());
         this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE_TILE.get());
+
         this.dropSelf(ModBlocks.DESK.get());
         this.dropSelf(ModBlocks.DESK_DRAWER.get());
         this.dropSelf(ModBlocks.METAL_DESK.get());
+        this.dropSelf(ModBlocks.METAL_DESK_DRAWER.get());
+        this.dropSelf(ModBlocks.METAL_DESK_DRAWER_2.get());
+
         this.dropSelf(ModBlocks.STRUT.get());
         this.dropSelf(ModBlocks.CATWALK_STRUT.get());
         this.dropSelf(ModBlocks.CATWALK_STRUT_STAIRS.get());
         this.dropSelf(ModBlocks.CATWALK_STRUT_SLAB.get());
         this.dropSelf(ModBlocks.STRUT_SLAB.get());
         this.dropSelf(ModBlocks.STRUT_STAIRS.get());
+
+        this.dropSelf(ModBlocks.GRAY_STRUT.get());
+        this.dropSelf(ModBlocks.GRAY_CATWALK_STRUT.get());
+        this.dropSelf(ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get());
+        this.dropSelf(ModBlocks.GRAY_CATWALK_STRUT_SLAB.get());
+        this.dropSelf(ModBlocks.GRAY_STRUT_SLAB.get());
+        this.dropSelf(ModBlocks.GRAY_STRUT_STAIRS.get());
+
+
         this.dropSelf(ModBlocks.VERTICAL_ENCASED_CABLES.get());
         this.dropSelf(ModBlocks.HORIZONTAL_ENCASED_CABLES.get());
         this.dropSelf(ModBlocks.TOILET.get());
