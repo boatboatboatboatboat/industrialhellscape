@@ -16,6 +16,7 @@ public class ModTags {
         public static final TagKey<Block> ROCKRETE_BLOCKS = tag("rockrete_blocks");
 
         public static final TagKey<Block> CLASSIC_DESK = tag("classic_desk");
+        public static final TagKey<Block> METAL_DESK = tag("metal_desk");
 
         private static TagKey<Block> tag(String name) {
             return BlockTags.create(new ResourceLocation(IndustrialHellscape.MOD_ID, name));

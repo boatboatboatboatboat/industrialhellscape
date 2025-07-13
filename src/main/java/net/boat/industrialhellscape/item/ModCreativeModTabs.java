@@ -56,6 +56,7 @@ public class ModCreativeModTabs {
                         //output.accept(ModBlocks.SOUND_BLOCK.get());
                         output.accept(ModBlocks.DESK.get());
                         output.accept(ModBlocks.DESK_DRAWER.get());
+                        output.accept(ModBlocks.METAL_DESK.get());
                         output.accept(ModBlocks.TOILET.get());
                         //output.accept(ModBlocks.SINK.get());
                         output.accept(ModBlocks.WHITE_WALL_MEDKIT.get());

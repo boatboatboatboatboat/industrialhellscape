@@ -31,12 +31,12 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class ExampleMenuBlock extends HorizontalDirectionalBlock implements EntityBlock, SimpleWaterloggedBlock {
-    public static final VoxelShape SHAPE_NORTH = Block.box(0, 0, 8, 16, 16, 16);
-    public static final VoxelShape SHAPE_SOUTH = Block.box(0, 0, 0, 16, 16, 8);
-    public static final VoxelShape SHAPE_WEST = Block.box(8, 0, 0, 16, 16, 16);
-    public static final VoxelShape SHAPE_EAST = Block.box(0, 0, 0, 8, 16, 16);
-    public static DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    private static final VoxelShape SHAPE_NORTH = Block.box(0, 0, 8, 16, 16, 16);
+    private static final VoxelShape SHAPE_SOUTH = Block.box(0, 0, 0, 16, 16, 8);
+    private static final VoxelShape SHAPE_WEST = Block.box(8, 0, 0, 16, 16, 16);
+    private static final VoxelShape SHAPE_EAST = Block.box(0, 0, 0, 8, 16, 16);
+    private static DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public ExampleMenuBlock(Properties properties) {
         super(properties);

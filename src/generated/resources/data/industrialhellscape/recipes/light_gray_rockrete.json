@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "industrialhellscape:inhell_haven_device"
+    },
+    {
+      "tag": "industrialhellscape:ih_recipe_stonelikes"
+    }
+  ],
+  "result": {
+    "item": "industrialhellscape:light_gray_rockrete"
+  }
+}

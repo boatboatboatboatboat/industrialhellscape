@@ -3,9 +3,11 @@ package net.boat.industrialhellscape.block;
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.special_blocks.*;
 import net.boat.industrialhellscape.block.special_blocks.CardinalFacingBlock;
+import net.boat.industrialhellscape.block.special_blocks.StorageBlock.ConnectedFurnitureStorageBlock;
 import net.boat.industrialhellscape.block.special_blocks.StorageBlock.ExampleMenuBlock;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.item.ModItems;
+import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
@@ -91,13 +93,18 @@ public class ModBlocks {
                     .strength(1f).requiresCorrectToolForDrops())
     );
     public static final RegistryObject<Block> DESK = registerBlock("desk",
-            () -> new ConnectedFurnitureBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()) {
+            () -> new ConnectedFurnitureBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion(), ModTags.Blocks.CLASSIC_DESK) {
             }
     );
     public static final RegistryObject<Block> DESK_DRAWER = registerBlock("desk_drawer",
-            () -> new ConnectedFurnitureBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()) {
+            () -> new ConnectedFurnitureStorageBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion(), ModTags.Blocks.CLASSIC_DESK) {
             }
     );
+    public static final RegistryObject<Block> METAL_DESK = registerBlock("metal_desk",
+            () -> new ConnectedFurnitureBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion(), ModTags.Blocks.METAL_DESK) {
+            }
+    );
+
 
 
     //CTM BLOCKS HERE (3RD PARTY TEXTURE DEPENDENCIES) VVV

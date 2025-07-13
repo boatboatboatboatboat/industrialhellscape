@@ -20,10 +20,11 @@ public class ModBlockEntities {
             DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, IndustrialHellscape.MOD_ID);
 
     public static final RegistryObject<BlockEntityType<ExampleMenuBlockEntity>> EXAMPLE_MENU_BLOCK_ENTITY =
-            BLOCK_ENTITIES.register("gem_polishing_be", () ->
+            BLOCK_ENTITIES.register("storage_9slot_block_entity", () ->
                     BlockEntityType.Builder.of(ExampleMenuBlockEntity::new,
                             ModBlocks.RED_WALL_MEDKIT.get(),
-                            ModBlocks.WHITE_WALL_MEDKIT.get()
+                            ModBlocks.WHITE_WALL_MEDKIT.get(),
+                            ModBlocks.DESK_DRAWER.get()
                     ).build(null));
 
 

@@ -47,6 +47,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE_TILE.get());
         this.dropSelf(ModBlocks.DESK.get());
         this.dropSelf(ModBlocks.DESK_DRAWER.get());
+        this.dropSelf(ModBlocks.METAL_DESK.get());
         this.dropSelf(ModBlocks.STRUT.get());
         this.dropSelf(ModBlocks.CATWALK_STRUT.get());
         this.dropSelf(ModBlocks.CATWALK_STRUT_STAIRS.get());

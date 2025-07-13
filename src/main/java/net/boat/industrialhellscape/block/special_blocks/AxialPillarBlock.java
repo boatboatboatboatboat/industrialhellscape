@@ -19,7 +19,6 @@ public class AxialPillarBlock extends Block {
     public AxialPillarBlock(Properties pProperties) { //Establishes the Default State - Vertical, unconnected (solo)
         super(pProperties);
         this.registerDefaultState(this.getStateDefinition().any()
-                //.setValue(AXIS, Direction.Axis.Y)
                 .setValue(TYPE, PillarConnectionState.SOLO));
     }
 
