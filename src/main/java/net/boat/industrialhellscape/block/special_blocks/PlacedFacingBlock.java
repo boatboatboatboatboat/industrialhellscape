@@ -10,11 +10,11 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import org.jetbrains.annotations.Nullable;
 
-public class CardinalFacingBlock extends HorizontalDirectionalBlock{
+public class PlacedFacingBlock extends HorizontalDirectionalBlock{
 
     public static DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING; //"FACING" is used to store DirectionProperty value of "north, south, east, west" //KJ
 
-    public CardinalFacingBlock(Properties pProperties) {
+    public PlacedFacingBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)); //Default state if placed with no player present

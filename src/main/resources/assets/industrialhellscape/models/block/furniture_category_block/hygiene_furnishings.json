@@ -1,0 +1,12 @@
+{
+	"parent": "minecraft:block/cube",
+	"textures": {
+		"down": "industrialhellscape:block/furniture_category_block/hygiene_furnishings_up",
+		"up": "industrialhellscape:block/furniture_category_block/hygiene_furnishings_up",
+		"north": "industrialhellscape:block/furniture_category_block/hygiene_furnishings_north",
+		"south": "industrialhellscape:block/furniture_category_block/hygiene_furnishings_north",
+		"east": "industrialhellscape:block/furniture_category_block/hygiene_furnishings_west",
+		"west": "industrialhellscape:block/furniture_category_block/hygiene_furnishings_west",
+		"particle": "industrialhellscape:block/furniture_category_block/hygiene_furnishings_up"
+	}
+}

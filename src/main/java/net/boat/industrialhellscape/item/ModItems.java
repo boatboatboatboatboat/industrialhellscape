@@ -1,8 +1,9 @@
 package net.boat.industrialhellscape.item;
 import net.boat.industrialhellscape.IndustrialHellscape;
-import net.boat.industrialhellscape.item.special_items.InHellDiagnosticTool;
+import net.boat.industrialhellscape.item.special_items.InHellTool;
 import net.boat.industrialhellscape.item.special_items.Malevolent_Multitool;
 import net.boat.industrialhellscape.item.special_items.MetalDetector;
+import net.boat.industrialhellscape.item.special_items.RecordItemWithTooltip;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.RecordItem;
@@ -18,7 +19,7 @@ public class ModItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, IndustrialHellscape.MOD_ID);
 
     public static final RegistryObject<Item> MALEVOLENT_MULTITOOL = ITEMS.register("malevolent_multitool",
-            () -> new Malevolent_Multitool(new Item.Properties().fireResistant().stacksTo(1))); //Malevolent_Multitool is a subclass of superclass Item, having more unique characteristics than a normal item
+            () -> new Malevolent_Multitool(new Item.Properties().fireResistant().stacksTo(1)));
 
     public static final RegistryObject<Item> FLOPPY_DISK = ITEMS.register("floppy_disk",
             () -> new Item(new Item.Properties()));
@@ -27,7 +28,7 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> INHELL_HAVEN_DEVICE = ITEMS.register("inhell_haven_device",
-            () -> new InHellDiagnosticTool(new Item.Properties().durability(1024))); //InHellDiagnosticTool is a subclass of superclass Item, having more unique characteristics than a normal item
+            () -> new InHellTool(new Item.Properties().durability(1024)));
 
     public static final RegistryObject<Item> METAL_DETECTOR = ITEMS.register("metal_detector",
             () -> new MetalDetector(new Item.Properties()));
@@ -36,5 +37,5 @@ public class ModItems {
     }
 
     public static final RegistryObject<Item> VAPORWAVE_CASSETTE = ITEMS.register("vaporwave_cassette",
-            () -> new RecordItem(6, ModSounds.VULTA_SHATTERED, new Item.Properties().stacksTo(1), 4620));
+            () -> new RecordItemWithTooltip("vaporwave_cassette", 6, ModSounds.VULTA_SHATTERED, new Item.Properties().stacksTo(1), 4620));
 }

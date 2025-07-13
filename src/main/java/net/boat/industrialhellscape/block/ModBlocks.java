@@ -2,7 +2,7 @@ package net.boat.industrialhellscape.block;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.special_blocks.*;
-import net.boat.industrialhellscape.block.special_blocks.CardinalFacingBlock;
+import net.boat.industrialhellscape.block.special_blocks.PlacedFacingBlock;
 import net.boat.industrialhellscape.block.special_blocks.StorageBlock.ConnectedFurnitureStorageBlock;
 import net.boat.industrialhellscape.block.special_blocks.StorageBlock.ExampleMenuBlock;
 import net.boat.industrialhellscape.sound.ModSounds;
@@ -174,7 +174,7 @@ public class ModBlocks {
             )
     );
     public static final RegistryObject<Block> IHEA_FURNITURE_KIT = registerBlock("ihea_furniture_kit",
-            () -> new CardinalFacingBlock(BlockBehaviour
+            () -> new PlacedFacingBlock(BlockBehaviour
                     .Properties.copy(Blocks.OAK_PLANKS)
                     .strength(1f)
                     .noOcclusion()
@@ -182,14 +182,14 @@ public class ModBlocks {
             }
     );
     public static final RegistryObject<Block> HYGIENE_FURNISHINGS = registerBlock("hygiene_furnishings",
-            () -> new CardinalFacingBlock(BlockBehaviour
+            () -> new PlacedFacingBlock(BlockBehaviour
                     .Properties.copy(Blocks.OAK_PLANKS)
                     .strength(1f)
                     .noOcclusion()
             )
     );
     public static final RegistryObject<Block> SAFETY_FURNISHINGS = registerBlock("safety_furnishings",
-            () -> new CardinalFacingBlock(BlockBehaviour
+            () -> new PlacedFacingBlock(BlockBehaviour
                     .Properties.copy(Blocks.OAK_PLANKS)
                     .strength(1f)
                     .noOcclusion()

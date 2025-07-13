@@ -32,9 +32,6 @@
 
   "block.industrialhellscape.sound_block": "Sound Block",
 
-  "block.industrialhellscape.debug_desk": "Debug Desk",
-  "block.industrialhellscape.desk_drawer": "Desk Drawer",
-
   "block.industrialhellscape.ihea_furniture_kit": "IHEA Furniture Kit",
   "block.industrialhellscape.safety_furnishings": "Safety Furnishings",
   "block.industrialhellscape.hygiene_furnishings": "Hygiene Furnishings",
@@ -43,6 +40,10 @@
   "block.industrialhellscape.sink": "Sink",
   "block.industrialhellscape.white_wall_medkit": "White Wall Medkit",
   "block.industrialhellscape.red_wall_medkit": "Red Wall Medkit",
+  "block.industrialhellscape.desk": "Classic Desk",
+  "block.industrialhellscape.desk_drawer": "Classic Desk Drawer",
+  "block.industrialhellscape.metal_desk": "Metal Desk",
+  "block.industrialhellscape.metal_desk_drawer": "Metal Desk Drawer",
 
   "block.industrialhellscape.strut": "Strut",
   "block.industrialhellscape.strut_stairs": "Strut Stairs",
@@ -57,6 +58,7 @@
 
   "tooltip.industrialhellscape.haventool.flavortext": "No user-serviceable parts. For external use only. Avoid contact with open wounds.",
 
+  "tooltip.industrialhellscape.vaporwave_cassette.flavortext": "§6\"Warp signatures coming from Lagrange 4. Unidentified. All orbital guns, align prograde to solar orbit. We have 50 hours to contact.\"",
   "gui.industrialhellscape.inventory_menu": "Industrial Hellscape Storage",
 
 

@@ -6,6 +6,10 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
 
 public class SittableEntity extends Entity {
+    public SittableEntity(EntityType<?> pEntityType, Level pLevel) {
+        super(pEntityType, pLevel);
+    }
+
     @Override
     protected void defineSynchedData() {
 
@@ -21,7 +25,9 @@ public class SittableEntity extends Entity {
 
     }
 
-    public SittableEntity(EntityType<?> pEntityType, Level pLevel) {
-        super(pEntityType, pLevel);
+    @Override
+    protected void removePassenger(Entity pPassenger) {
+        super.removePassenger(pPassenger);
+        this.kill();
     }
 }
