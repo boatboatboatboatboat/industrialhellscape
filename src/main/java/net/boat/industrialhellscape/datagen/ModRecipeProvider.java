@@ -67,7 +67,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     );
     private static final List<ItemLike> FURNITURE_CATEGORIES = List.of(
             ModBlocks.SAFETY_FURNISHINGS.get().asItem(),
-            ModBlocks.HYGIENE_FURNISHINGS.get().asItem()
+            ModBlocks.HYGIENE_FURNISHINGS.get().asItem(),
+            ModBlocks.INDUSTRIAL_FURNISHINGS.get().asItem(),
+            ModBlocks.TECHNOLOGY_FURNISHINGS.get().asItem(),
+            ModBlocks.AMENITY_FURNISHINGS.get().asItem()
     );
 
     private static final List<ItemLike> SAFETY_FURNITURE = List.of(
@@ -76,6 +79,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     );
     private static final List<ItemLike> HYGIENE_FURNITURE = List.of(
             ModBlocks.TOILET.get().asItem()
+    );
+    private static final List<ItemLike> AMENITY_FURNITURE = List.of(
+            ModBlocks.DESK.get().asItem(),
+            ModBlocks.DESK_DRAWER.get().asItem(),
+            ModBlocks.METAL_DESK.get().asItem()
     );
 
     public ModRecipeProvider(PackOutput pOutput) {
@@ -269,31 +277,41 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         for (int i = 0; i < FURNITURE_CATEGORIES.size(); i++) {
             String itemName = FURNITURE_CATEGORIES.get(i).toString().replaceAll("[^a-zA-Z]+","_");
                 stonecutting(
-                        Ingredient.of(ModBlocks.IHEA_FURNITURE_KIT.get().asItem()), //Ingredient to craft
+                        Ingredient.of(ModBlocks.IHEA_FURNITURE_KIT.get().asItem()), //Recipe Input Item
                         RecipeCategory.BUILDING_BLOCKS, //Category
                         FURNITURE_CATEGORIES.get(i),1)  //Outputs into the category blocks (safety, hygiene, industrial)
                         .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                         .save(pWriter, new ResourceLocation("industrialhellscape", "furniture_kit_to_stonecut_"+i+"_"+itemName));
         }
-        //Safety Furniture Sub-Categories
+        //Safety Furniture Blocks
         for (int i = 0; i < SAFETY_FURNITURE.size(); i++) {
             String itemName = SAFETY_FURNITURE.get(i).toString().replaceAll("[^a-zA-Z]+","_");
             stonecutting(
-                    Ingredient.of(ModBlocks.SAFETY_FURNISHINGS.get().asItem()), //Ingredient to craft
+                    Ingredient.of(ModBlocks.SAFETY_FURNISHINGS.get().asItem()), //Recipe Input Item
                     RecipeCategory.BUILDING_BLOCKS, //Category
                     SAFETY_FURNITURE.get(i),1)  //Outputs into the category blocks (safety, hygiene, industrial)
                     .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                     .save(pWriter, new ResourceLocation("industrialhellscape", "safety_to_stonecut_"+i+"_"+itemName));
         }
-        //Hygiene Furniture Sub-Categories
+        //Hygiene Furniture Blocks
         for (int i = 0; i < HYGIENE_FURNITURE.size(); i++) {
             String itemName = HYGIENE_FURNITURE.get(i).toString().replaceAll("[^a-zA-Z]+","_");
             stonecutting(
-                    Ingredient.of(ModBlocks.HYGIENE_FURNISHINGS.get().asItem()), //Ingredient to craft
+                    Ingredient.of(ModBlocks.HYGIENE_FURNISHINGS.get().asItem()), //Recipe Input Item
                     RecipeCategory.BUILDING_BLOCKS, //Category
                     HYGIENE_FURNITURE.get(i),1)  //Outputs into the category blocks (safety, hygiene, industrial)
                     .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                     .save(pWriter, new ResourceLocation("industrialhellscape", "hygiene_to_stonecut_"+i+"_"+itemName));
+        }
+        //Amenity Furniture Blocks
+        for (int i = 0; i < AMENITY_FURNITURE.size(); i++) {
+            String itemName = AMENITY_FURNITURE.get(i).toString().replaceAll("[^a-zA-Z]+","_");
+            stonecutting(
+                    Ingredient.of(ModBlocks.AMENITY_FURNISHINGS.get().asItem()), //Recipe Input Item
+                    RecipeCategory.BUILDING_BLOCKS, //Category
+                    AMENITY_FURNITURE.get(i),1)  //Outputs into the category blocks (safety, hygiene, industrial)
+                    .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                    .save(pWriter, new ResourceLocation("industrialhellscape", "amenity_to_stonecut_"+i+"_"+itemName));
         }
 
 

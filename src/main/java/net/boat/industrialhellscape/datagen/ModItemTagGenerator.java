@@ -101,7 +101,10 @@ public class ModItemTagGenerator extends ItemTagsProvider {
         this.tag(ModTags.Items.ALL_FURNITURE)
                 .addTags(
                         ModTags.Items.SAFETY_FURNITURE_CATEGORY,
-                        ModTags.Items.HYGIENE_FURNITURE_CATEGORY
+                        ModTags.Items.HYGIENE_FURNITURE_CATEGORY,
+                        //ModTags.Items.INDUSTRIAL_FURNITURE_CATEGORY,
+                        //ModTags.Items.TECHNOLOGY_FURNITURE_CATEGORY,
+                        ModTags.Items.AMENITY_FURNITURE_CATEGORY
                 );
         this.tag(ModTags.Items.SAFETY_FURNITURE_CATEGORY)
                 .add(
@@ -112,7 +115,25 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 .add(
                         ModBlocks.TOILET.get().asItem()
                 );
+        this.tag(ModTags.Items.AMENITY_FURNITURE_CATEGORY)
+                .add(
+                        ModBlocks.DESK.get().asItem(),
+                        ModBlocks.DESK_DRAWER.get().asItem(),
+                        ModBlocks.METAL_DESK.get().asItem()
+                );
+        /*this.tag(ModTags.Items.INDUSTRIAL_FURNITURE_CATEGORY)
+                .add(
 
+                );
+                this.tag(ModTags.Items.TECHNOLOGY_FURNITURE_CATEGORY)
+                .add(
+
+                );
+                this.tag(ModTags.Items.AMENITY_FURNITURE_CATEGORY)
+                .add(
+
+                );
+        */
         this.tag(ItemTags.MUSIC_DISCS)
                 .add(ModItems.VAPORWAVE_CASSETTE.get()
                 );

@@ -62,8 +62,11 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.WHITE_WALL_MEDKIT.get());
                         output.accept(ModBlocks.RED_WALL_MEDKIT.get());
                         output.accept(ModBlocks.IHEA_FURNITURE_KIT.get());
-                        output.accept(ModBlocks.HYGIENE_FURNISHINGS.get());
                         output.accept(ModBlocks.SAFETY_FURNISHINGS.get());
+                        output.accept(ModBlocks.HYGIENE_FURNISHINGS.get());
+                        output.accept(ModBlocks.INDUSTRIAL_FURNISHINGS.get());
+                        output.accept(ModBlocks.TECHNOLOGY_FURNISHINGS.get());
+                        output.accept(ModBlocks.AMENITY_FURNISHINGS.get());
 
                         //CTM BLOCKS FOR CREATIVE TAB
                         output.accept(ModBlocks.BUNKER_WALL.get());

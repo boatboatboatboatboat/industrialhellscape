@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 1,
-  "ingredient": {
-    "tag": "industrialhellscape:vesselglass"
-  },
-  "result": "industrialhellscape:reinforced_vesselglass"
-}

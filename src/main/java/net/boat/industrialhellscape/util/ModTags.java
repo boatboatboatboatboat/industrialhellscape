@@ -37,6 +37,9 @@ public class ModTags {
         public static final TagKey<Item> FURNITURE_CATEGORIES = tag("furniture_categories");
         public static final TagKey<Item> SAFETY_FURNITURE_CATEGORY = tag("safety_furniture_category");
         public static final TagKey<Item> HYGIENE_FURNITURE_CATEGORY= tag("hygiene_furniture_category");
+        public static final TagKey<Item> INDUSTRIAL_FURNITURE_CATEGORY = tag("industrial_furniture_category");
+        public static final TagKey<Item> TECHNOLOGY_FURNITURE_CATEGORY= tag("technology_furniture_category");
+        public static final TagKey<Item> AMENITY_FURNITURE_CATEGORY = tag("amenity_furniture_category");
         public static final TagKey<Item> ALL_FURNITURE= tag("all_furniture");
 
         private static TagKey<Item> tag(String name) {

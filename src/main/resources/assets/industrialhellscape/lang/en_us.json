@@ -35,6 +35,9 @@
   "block.industrialhellscape.ihea_furniture_kit": "IHEA Furniture Kit",
   "block.industrialhellscape.safety_furnishings": "Safety Furnishings",
   "block.industrialhellscape.hygiene_furnishings": "Hygiene Furnishings",
+  "block.industrialhellscape.industrial_furnishings": "Industrial Furnishings",
+  "block.industrialhellscape.technology_furnishings": "Technology Furnishings",
+  "block.industrialhellscape.amenity_furnishings": "Amenity Furnishings",
 
   "block.industrialhellscape.toilet": "Toilet",
   "block.industrialhellscape.sink": "Sink",

@@ -27,10 +27,10 @@ public class ModBlocks {
 
     //IRONLIKE BLOCKS HERE VVV
     public static final RegistryObject<Block> VESSELPLATE_GRATE_BLOCK = registerBlock("vesselplate_grate_block",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.ANVIL).requiresCorrectToolForDrops())
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops())
     );
     public static final RegistryObject<Block> VESSELPLATE = registerBlock("vesselplate",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.ANVIL).requiresCorrectToolForDrops())
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops())
     );
 
     //STONELIKE BLOCKS  HERE vvv
@@ -181,6 +181,13 @@ public class ModBlocks {
             ) {
             }
     );
+    public static final RegistryObject<Block> SAFETY_FURNISHINGS = registerBlock("safety_furnishings",
+            () -> new PlacedFacingBlock(BlockBehaviour
+                    .Properties.copy(Blocks.OAK_PLANKS)
+                    .strength(1f)
+                    .noOcclusion()
+            )
+    );
     public static final RegistryObject<Block> HYGIENE_FURNISHINGS = registerBlock("hygiene_furnishings",
             () -> new PlacedFacingBlock(BlockBehaviour
                     .Properties.copy(Blocks.OAK_PLANKS)
@@ -188,7 +195,21 @@ public class ModBlocks {
                     .noOcclusion()
             )
     );
-    public static final RegistryObject<Block> SAFETY_FURNISHINGS = registerBlock("safety_furnishings",
+    public static final RegistryObject<Block> INDUSTRIAL_FURNISHINGS = registerBlock("industrial_furnishings",
+            () -> new PlacedFacingBlock(BlockBehaviour
+                    .Properties.copy(Blocks.OAK_PLANKS)
+                    .strength(1f)
+                    .noOcclusion()
+            )
+    );
+    public static final RegistryObject<Block> TECHNOLOGY_FURNISHINGS = registerBlock("technology_furnishings",
+            () -> new PlacedFacingBlock(BlockBehaviour
+                    .Properties.copy(Blocks.OAK_PLANKS)
+                    .strength(1f)
+                    .noOcclusion()
+            )
+    );
+    public static final RegistryObject<Block> AMENITY_FURNISHINGS = registerBlock("amenity_furnishings",
             () -> new PlacedFacingBlock(BlockBehaviour
                     .Properties.copy(Blocks.OAK_PLANKS)
                     .strength(1f)
