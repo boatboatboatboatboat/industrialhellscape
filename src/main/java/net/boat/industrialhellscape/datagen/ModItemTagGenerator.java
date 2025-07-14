@@ -101,7 +101,8 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.LIGHT_GRAY_ROCKRETE_SLAB.get().asItem(),
 
                         ModBlocks.HAZARD_STRIPE_YELLOW.get().asItem(),
-                        ModBlocks.HAZARD_STRIPE_RED.get().asItem()
+                        ModBlocks.HAZARD_STRIPE_RED.get().asItem(),
+                        ModBlocks.GRIMY_RESTROOM_TILE.get().asItem()
                 );
 
         this.tag(ModTags.Items.FURNITURE_CATEGORIES)

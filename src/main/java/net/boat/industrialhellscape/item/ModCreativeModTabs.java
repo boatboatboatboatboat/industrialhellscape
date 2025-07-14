@@ -51,6 +51,7 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.BLACK_ROCKRETE.get());
                         output.accept(ModBlocks.HAZARD_STRIPE_YELLOW.get());
                         output.accept(ModBlocks.HAZARD_STRIPE_RED.get());
+                        output.accept(ModBlocks.GRIMY_RESTROOM_TILE.get());
 
                         //SPECIAL BLOCKS FOR CREATIVE TAB
                         //output.accept(ModBlocks.SOUND_BLOCK.get());

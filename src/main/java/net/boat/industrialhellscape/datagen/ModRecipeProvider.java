@@ -57,7 +57,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.LIGHT_GRAY_ROCKRETE_REBAR.get().asItem(),
 
             ModBlocks.HAZARD_STRIPE_YELLOW.get().asItem(),
-            ModBlocks.HAZARD_STRIPE_RED.get().asItem()
+            ModBlocks.HAZARD_STRIPE_RED.get().asItem(),
+
+            ModBlocks.GRIMY_RESTROOM_TILE.get().asItem()
     );
     private static final List<ItemLike> VESSELGLASS_STONECUT_OUTPUT = List.of(
             //ModBlocks.VESSELGLASS.get().asItem(),

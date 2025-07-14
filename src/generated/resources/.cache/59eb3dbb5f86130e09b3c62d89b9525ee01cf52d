@@ -1,4 +1,4 @@
-// 1.20.1	2025-07-14T04:00:35.3897669	Loot Tables
+// 1.20.1	2025-07-14T14:06:36.0129307	Loot Tables
 750c3e504930a00a60029fe9b3d995f26f7c5738 data/industrialhellscape/loot_tables/blocks/amenity_furnishings.json
 baf9c5cc6e40ef2ea3a02225454560380ce25e20 data/industrialhellscape/loot_tables/blocks/black_rockrete.json
 074b1bbae202419ab28dea54db6eabf4cadcc1a0 data/industrialhellscape/loot_tables/blocks/bunker_wall.json
@@ -14,6 +14,7 @@ cd2c71101803bb3a228b90bfa745e5ab7e32ad11 data/industrialhellscape/loot_tables/bl
 86e2066e76a41866997bd3732f155dbc466bb147 data/industrialhellscape/loot_tables/blocks/gray_strut.json
 bc2442a0258ba3dd74eabfe5d88ae2bcaa20abb3 data/industrialhellscape/loot_tables/blocks/gray_strut_slab.json
 b4c498be89a641af1de7fd7d6cb802227126260c data/industrialhellscape/loot_tables/blocks/gray_strut_stairs.json
+c1db46af3597f76fdda0658fe5b2e329f75a4a95 data/industrialhellscape/loot_tables/blocks/grimy_restroom_tile.json
 91f25761895a89c8570da513b0eea9ca27585641 data/industrialhellscape/loot_tables/blocks/hazard_stripe_red.json
 a1ff3662417fa64990ffd4156b542c2af0b15d0c data/industrialhellscape/loot_tables/blocks/hazard_stripe_yellow.json
 9a0c797040d77bfe9136f909e473fb52b54da1c1 data/industrialhellscape/loot_tables/blocks/horizontal_encased_cables.json

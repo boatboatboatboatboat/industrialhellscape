@@ -27,6 +27,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.VESSELPLATE_GRATE_BLOCK);
         blockWithItem(ModBlocks.VESSELPLATE_GRATE);
         blockWithItem(ModBlocks.RUSTY_VESSELPLATE_GRATE);
+        blockWithItem(ModBlocks.GRIMY_RESTROOM_TILE);
 /*
         stairsWithCustomTextures(
                 ModBlocks.CATWALK_STRUT_STAIRS.get(),

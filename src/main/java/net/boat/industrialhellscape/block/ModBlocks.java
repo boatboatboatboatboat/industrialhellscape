@@ -80,6 +80,11 @@ public class ModBlocks {
                     .Properties.copy(Blocks.STONE)
                     .strength(1f).requiresCorrectToolForDrops())
     );
+    public static final RegistryObject<Block> GRIMY_RESTROOM_TILE = registerBlock("grimy_restroom_tile",
+            () -> new Block(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+                    .strength(1f).requiresCorrectToolForDrops())
+    );
 
     //IN-HOUSE CONNECTED BLOCKS HERE
     public static final RegistryObject<Block> BUNKER_WALL = registerBlock("bunker_wall",

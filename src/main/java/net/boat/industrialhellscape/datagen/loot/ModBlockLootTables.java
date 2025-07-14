@@ -32,6 +32,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.BLACK_ROCKRETE.get());
         this.dropSelf(ModBlocks.HAZARD_STRIPE_YELLOW.get());
         this.dropSelf(ModBlocks.HAZARD_STRIPE_RED.get());
+        this.dropSelf(ModBlocks.GRIMY_RESTROOM_TILE.get());
 
         //SPECIAL BLOCKS
         this.dropSelf(ModBlocks.BUNKER_WALL.get());
