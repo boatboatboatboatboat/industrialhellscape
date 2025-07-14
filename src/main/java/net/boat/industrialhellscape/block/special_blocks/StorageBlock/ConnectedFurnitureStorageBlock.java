@@ -37,10 +37,7 @@ public class ConnectedFurnitureStorageBlock extends HorizontalDirectionalBlock i
 
 
     private static final EnumProperty<FurnitureConnectionState> TYPE = EnumProperty.create("type", FurnitureConnectionState.class);
-    private static final VoxelShape SHAPE_NORTH = Block.box(0, 0, 0, 16, 16, 16);
-    private static final VoxelShape SHAPE_SOUTH = Block.box(0, 0, 0, 16, 16, 16);
-    private static final VoxelShape SHAPE_WEST = Block.box(0, 0, 0, 16, 16, 16);
-    private static final VoxelShape SHAPE_EAST = Block.box(0, 0, 0, 16, 16, 16);
+    private static final VoxelShape SHAPE = Block.box(.1, .1, .1, 15.9, 15.9, 15.9);
     private static DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public TagKey<Block> inputCompatibleFurniture;
@@ -50,7 +47,9 @@ public class ConnectedFurnitureStorageBlock extends HorizontalDirectionalBlock i
         this.inputCompatibleFurniture = cornholium;
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
-                .setValue(TYPE, FurnitureConnectionState.SOLO));
+                .setValue(TYPE, FurnitureConnectionState.SOLO)
+                .setValue(WATERLOGGED, false)
+        );
     }
 
     @Nullable
@@ -91,13 +90,7 @@ public class ConnectedFurnitureStorageBlock extends HorizontalDirectionalBlock i
 
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        switch (pState.getValue(FACING)) {
-            case NORTH: return SHAPE_NORTH;
-            case SOUTH: return SHAPE_SOUTH;
-            case EAST: return SHAPE_EAST;
-            case WEST: return SHAPE_WEST;
-            default: return SHAPE_NORTH;
-        }
+        return SHAPE;
     }
 
     @Override

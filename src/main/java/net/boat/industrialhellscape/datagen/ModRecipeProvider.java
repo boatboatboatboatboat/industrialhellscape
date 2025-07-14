@@ -214,15 +214,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                         2) //4rth Parameter "amount" crafting output
                         .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                         .save(pWriter, new ResourceLocation("industrialhellscape", "vesselplate_stonecut_"+i+"_"+itemName));
-
-            } else if(VESSELPLATE_STONECUT_OUTPUT.get(i).toString().contains("strut")) {
-                stonecutting(
-                        Ingredient.of(ModTags.Items.VESSELPLATE_STONECUT_OUTPUTS),
-                        RecipeCategory.BUILDING_BLOCKS,
-                        VESSELPLATE_STONECUT_OUTPUT.get(i),
-                        3)
-                        .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                        .save(pWriter, new ResourceLocation("industrialhellscape", "vesselplate_stonecut_"+i+"_"+itemName));
             } else
                 stonecutting(
                         Ingredient.of(ModTags.Items.VESSELPLATE_STONECUT_OUTPUTS),

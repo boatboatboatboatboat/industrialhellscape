@@ -33,7 +33,9 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
                         ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
                         ModBlocks.SMOOTH_VESSELPLATE_TILE.get().asItem(),
-                        ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem()
+                        ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem(),
+                        ModBlocks.HORIZONTAL_ENCASED_CABLES.get().asItem(),
+                        ModBlocks.VERTICAL_ENCASED_CABLES.get().asItem()
                 );
         this.tag(ModTags.Items.VESSELGLASS_SMELTABLE_ITEM)
                 .add(

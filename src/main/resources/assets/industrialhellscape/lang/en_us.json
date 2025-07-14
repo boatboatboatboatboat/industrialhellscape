@@ -4,6 +4,7 @@
   "item.industrialhellscape.floppy_diskette": "Floppy Diskette",
   "item.industrialhellscape.inhell_haven_device": "InHell HAVEN Tool",
 
+
   "block.industrialhellscape.vesselplate": "Vesselplate",
   "block.industrialhellscape.vesselplate_grate_block": "Vesselplate Grate Block",
   "block.industrialhellscape.vesselplate_grate": "Vesselplate Grate",
@@ -15,6 +16,8 @@
   "block.industrialhellscape.smooth_vesselplate": "Smooth Vesselplate",
   "block.industrialhellscape.smooth_vesselplate_tile": "Smooth Vesselplate Tile",
   "block.industrialhellscape.vesselplate_pillar": "Vesselplate Pillar",
+  "block.industrialhellscape.vertical_encased_cables": "Vertical Encased Cables",
+  "block.industrialhellscape.horizontal_encased_cables": "Horizontal Encased Cables",
 
 
   "block.industrialhellscape.light_gray_rockrete": "Light Gray Rockrete",

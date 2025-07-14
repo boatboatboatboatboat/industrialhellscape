@@ -1,11 +1,11 @@
 {
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
-	"texture_size": [48, 48],
 	"ambientocclusion": false,
+	"texture_size": [64, 64],
 	"textures": {
-		"0": "industrialhellscape:block/desk_middle",
-		"particle": "industrialhellscape:block/desk_middle"
+		"0": "industrialhellscape:block/uv_desk",
+		"particle": "industrialhellscape:block/uv_desk"
 	},
 	"elements": [
 		{
@@ -14,12 +14,10 @@
 			"to": [16, 16, 16],
 			"rotation": {"angle": 0, "axis": "y", "origin": [0, 13, 14]},
 			"faces": {
-				"north": {"uv": [8, 0, 13.33333, 1], "texture": "#0", "cullface": "north"},
-				"east": {"uv": [0, 14.33333, 5.33333, 15.33333], "texture": "#0", "cullface": "east"},
-				"south": {"uv": [13.33333, 0, 8, 1], "texture": "#0", "cullface": "south"},
-				"west": {"uv": [1, 14.33333, 6.33333, 15.33333], "texture": "#0", "cullface": "west"},
-				"up": {"uv": [0, 5.33333, 5.33333, 0], "texture": "#0", "cullface": "up"},
-				"down": {"uv": [5.33333, 5.33333, 0, 10.66667], "texture": "#0"}
+				"north": {"uv": [0, 12.25, 4, 13], "texture": "#0", "cullface": "north"},
+				"south": {"uv": [4, 12.25, 0, 13], "texture": "#0", "cullface": "south"},
+				"up": {"uv": [8, 4, 12, 0], "texture": "#0", "cullface": "up"},
+				"down": {"uv": [4, 4, 0, 8], "texture": "#0"}
 			}
 		},
 		{
@@ -28,12 +26,9 @@
 			"to": [16, 13, 3],
 			"rotation": {"angle": 0, "axis": "y", "origin": [9, 2, 1]},
 			"faces": {
-				"north": {"uv": [5.33333, 10.66667, 0, 14.33333], "texture": "#0"},
-				"east": {"uv": [15.66667, 0, 16, 3.66666], "texture": "#0", "cullface": "east"},
-				"south": {"uv": [0, 10.66667, 5.33333, 14.33334], "texture": "#0"},
-				"west": {"uv": [15.66667, 0, 16, 3.66666], "texture": "#0", "cullface": "west"},
-				"up": {"uv": [16, 2.66667, 15.66667, 0], "rotation": 90, "texture": "#0"},
-				"down": {"uv": [12, 1, 8, 1.33333], "texture": "#0"}
+				"north": {"uv": [11, 4, 7, 6.75], "texture": "#0"},
+				"south": {"uv": [7, 4, 11, 6.75], "texture": "#0"},
+				"down": {"uv": [4.75, 10.75, 5, 6.75], "rotation": 90, "texture": "#0"}
 			}
 		}
 	],
