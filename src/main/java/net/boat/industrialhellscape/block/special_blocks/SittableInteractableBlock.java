@@ -41,14 +41,17 @@ public class SittableInteractableBlock extends HorizontalDirectionalBlock implem
 
     public SittableInteractableBlock(Properties pProperties) {
         super(pProperties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(OPEN, Boolean.valueOf(false)).setValue(POWERED, Boolean.valueOf(false)).setValue(WATERLOGGED, Boolean.valueOf(false)));
+        this.registerDefaultState(this.stateDefinition.any()
+                .setValue(FACING, Direction.NORTH)
+                .setValue(OPEN, Boolean.valueOf(false))
+                .setValue(POWERED, Boolean.valueOf(false))
+                .setValue(WATERLOGGED, Boolean.valueOf(false)));
     }
 
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         return SHAPE;
     }
-
     @Override
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
@@ -71,7 +74,7 @@ public class SittableInteractableBlock extends HorizontalDirectionalBlock implem
 
         boolean hasEmptyHands = pPlayer.getMainHandItem().isEmpty() && pPlayer.getOffhandItem().isEmpty();
 
-        if(pPlayer.isSecondaryUseActive() && hasEmptyHands ) { //If player IS shift-interacting, change the block state
+        if(pPlayer.isSecondaryUseActive() && hasEmptyHands ) { //If player IS shift-interacting and has empty hands, change the block state
             pState = pState.cycle(OPEN);
             pLevel.setBlock(pPos, pState, 2);
 

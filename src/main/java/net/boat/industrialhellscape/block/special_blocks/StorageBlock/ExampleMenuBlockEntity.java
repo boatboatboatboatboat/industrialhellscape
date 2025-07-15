@@ -55,7 +55,7 @@ public class ExampleMenuBlockEntity extends BlockEntity implements MenuProvider 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if (!this.remove && cap == ForgeCapabilities.ITEM_HANDLER) {
-            return this.optional.cast(); // this.optional = LazyOptional.of(() -> this.inventory)
+            return this.optional.cast();
         }
         return super.getCapability(cap, side);
     }

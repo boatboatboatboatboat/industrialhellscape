@@ -41,7 +41,8 @@ public class ExampleMenuBlock extends HorizontalDirectionalBlock implements Enti
     public ExampleMenuBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any()
-                .setValue(FACING, Direction.NORTH));
+                .setValue(FACING, Direction.NORTH)
+                .setValue(WATERLOGGED, false));
     }
 
     @Nullable
@@ -57,15 +58,6 @@ public class ExampleMenuBlock extends HorizontalDirectionalBlock implements Enti
         Direction direction = pContext.getHorizontalDirection();
         state = state.setValue(FACING, direction.getOpposite());
         return state.setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
-    }
-
-    @Override
-    public BlockState rotate(BlockState pState, Rotation pRot) {
-        return pState.setValue(FACING, pRot.rotate(pState.getValue(FACING)));
-    }
-    @Override
-    public BlockState mirror(BlockState pState, Mirror pMirror) {
-        return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
     }
 
     @Override

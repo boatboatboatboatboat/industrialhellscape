@@ -2,8 +2,14 @@ package net.boat.industrialhellscape.block.special_blocks_properties;
 
 import net.minecraft.util.StringRepresentable;
 
+//INFO:
+//-----
+//This enum dictates the possible block state a connected furniture block can have (left side connection, middle connection, right side connection, unconnected "solo")
+//For different models and/or textures per section
+//-----
+
 public enum FurnitureConnectionState implements StringRepresentable {
-    LEFT("left"), //Only these four states are allowed to be called from the enum PillarConnectionState
+    LEFT("left"), //Only these four states are allowed to be called from the enum FurnitureConnectionState
     MIDDLE("middle"),
     RIGHT("right"),
     SOLO("solo");

@@ -1,11 +1,13 @@
 package net.boat.industrialhellscape.block.special_blocks.StorageBlock;
 
-import net.boat.industrialhellscape.block.special_blocks_properties.ConnectedFurnitureCapability;
+import net.boat.industrialhellscape.block.special_blocks_properties.HorizontalConnectedModelCapability;
 import net.boat.industrialhellscape.block.special_blocks_properties.FurnitureConnectionState;
 import net.boat.industrialhellscape.block.special_blocks_properties.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -33,21 +35,21 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ConnectedFurnitureStorageBlock extends HorizontalDirectionalBlock implements EntityBlock, SimpleWaterloggedBlock, ConnectedFurnitureCapability {
+public class ConnectedFurnitureStorageBlock extends HorizontalDirectionalBlock implements EntityBlock, SimpleWaterloggedBlock, HorizontalConnectedModelCapability {
 
 
     private static final EnumProperty<FurnitureConnectionState> TYPE = EnumProperty.create("type", FurnitureConnectionState.class);
     private static final VoxelShape SHAPE = Block.box(.1, .1, .1, 15.9, 15.9, 15.9);
     private static DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    public TagKey<Block> inputCompatibleFurniture;
+    public TagKey<Block> BlockSetFamily;
 
-    public ConnectedFurnitureStorageBlock(Properties properties, TagKey<Block> cornholium) {
+    public ConnectedFurnitureStorageBlock(Properties properties, TagKey<Block> inputCompatibleBlockset) {
         super(properties);
-        this.inputCompatibleFurniture = cornholium;
+        this.BlockSetFamily = inputCompatibleBlockset;
         this.registerDefaultState(this.stateDefinition.any()
-                .setValue(FACING, Direction.NORTH)
                 .setValue(TYPE, FurnitureConnectionState.SOLO)
+                .setValue(FACING, Direction.NORTH)
                 .setValue(WATERLOGGED, false)
         );
     }
@@ -67,7 +69,7 @@ public class ConnectedFurnitureStorageBlock extends HorizontalDirectionalBlock i
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
         Direction direction = pContext.getHorizontalDirection();
         state = state.setValue(FACING, direction);
-        state = state.setValue(TYPE, getType(state, getRelativeLeft(level, positionClicked, directionClicked), getRelativeRight(level, positionClicked, directionClicked), inputCompatibleFurniture)); //Second, defines connection type of the block
+        state = state.setValue(TYPE, getType(state, getRelativeLeft(level, positionClicked, directionClicked), getRelativeRight(level, positionClicked, directionClicked), BlockSetFamily)); //Second, defines connection type of the block
         return state.setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
     }
 
@@ -82,6 +84,8 @@ public class ConnectedFurnitureStorageBlock extends HorizontalDirectionalBlock i
 
         // open screen
         if (player instanceof ServerPlayer sPlayer) {
+            level.playSound(player, pos, SoundEvents.NOTE_BLOCK_DIDGERIDOO.get(), SoundSource.BLOCKS,
+                    1f, 1f);
             NetworkHooks.openScreen(sPlayer, blockEntity, pos);
         }
 
@@ -107,7 +111,7 @@ public class ConnectedFurnitureStorageBlock extends HorizontalDirectionalBlock i
         if (level.isClientSide) return;
 
         Direction directionClicked = state.getValue(FACING);
-        FurnitureConnectionState type = getType(state, getRelativeLeft(level, positionClicked, directionClicked), getRelativeRight(level, positionClicked, directionClicked), inputCompatibleFurniture);
+        FurnitureConnectionState type = getType(state, getRelativeLeft(level, positionClicked, directionClicked), getRelativeRight(level, positionClicked, directionClicked), BlockSetFamily);
         if (state.getValue(TYPE) == type) return;
 
         state = state.setValue(TYPE, type);

@@ -2,6 +2,12 @@ package net.boat.industrialhellscape.block.special_blocks_properties;
 
 import net.minecraft.util.StringRepresentable;
 
+//INFO:
+//-----
+//This enum dictates the possible block state an orientable railing/handrail block can have
+//For different models and/or textures per section
+//-----
+
 public enum RailingState implements StringRepresentable {
 
     //These blockstates address cardinal directionality without having duplicates or multiple sub-states

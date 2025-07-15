@@ -24,16 +24,21 @@ public class ModTags {
     }
 
     public static class Items {
+
+        //For ungenerated recipes dictating recycling back into vanilla materials
         public static final TagKey<Item> VESSELPLATE_SMELTABLE_ITEM = tag("vesselplate_smeltable_item");
         public static final TagKey<Item> VESSELGLASS_SMELTABLE_ITEM = tag("vesselglass_smeltable_item");
         public static final TagKey<Item> ROCKRETE_SMELTABLE_ITEM = tag("rockrete_smeltable_item");
+
+        //For stonecutter recipe generation
         public static final TagKey<Item> VESSELPLATE_STONECUT_OUTPUTS = tag("vesselplate_blocks");
         public static final TagKey<Item> VESSELGLASS_STONECUT_OUTPUTS = tag("vesselglass");
         public static final TagKey<Item> ROCKRETE_STONECUT_OUTPUTS = tag("rockrete_blocks");
 
+
         public static final TagKey<Item> IH_RECIPE_STONELIKES = tag("ih_recipe_stonelikes");
 
-        //furniture
+        //Furniture Categories and Subcategories
         public static final TagKey<Item> FURNITURE_CATEGORIES = tag("furniture_categories");
         public static final TagKey<Item> SAFETY_FURNITURE_CATEGORY = tag("safety_furniture_category");
         public static final TagKey<Item> HYGIENE_FURNITURE_CATEGORY= tag("hygiene_furniture_category");

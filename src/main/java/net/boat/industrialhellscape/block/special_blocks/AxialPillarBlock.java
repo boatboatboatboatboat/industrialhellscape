@@ -23,15 +23,14 @@ public class AxialPillarBlock extends Block {
     }
 
     @Nullable
-
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         Level level = context.getLevel();
         BlockPos pos = context.getClickedPos();
         Direction.Axis axis = context.getClickedFace().getAxis();
 
-        BlockState state = this.defaultBlockState().setValue(AXIS, axis);
-        state = state.setValue(TYPE, getType(state, getRelativeTop(level, pos, axis), getRelativeBottom(level, pos, axis)));
+        BlockState state = this.defaultBlockState().setValue(AXIS, axis); //Determines and sets X/Y/Z direction block shall face when placed
+        state = state.setValue(TYPE, getType(state, getRelativeTop(level, pos, axis), getRelativeBottom(level, pos, axis))); //Determines and sets block type based on neighbor connection (top, middle, buttom, solo unconnected)
         return state;
     }
 
@@ -46,21 +45,22 @@ public class AxialPillarBlock extends Block {
         state = state.setValue(TYPE, type);
         level.setBlock(pos, state, 3);
     }
+    //Standard convention: "TOP" refers to any positive axis direction (XYZ), like positive Y, or up. Vice Versa for "BOTTOM"
 
-    //Create method to find blockstate of the block in the positive axial direction of selected direction
-    //Outputs the block in the positive axial direction of the selection's block state String
+    //Method to find blockstate of the block in the positive axial direction of selected direction
+    //Outputs the block state in the positive axial direction of the selection's block state String. This is to identify the neighbor block.
     public BlockState getRelativeTop(Level level, BlockPos pos, Direction.Axis axis) {
         return level.getBlockState(pos.relative(Direction.fromAxisAndDirection(axis, Direction.AxisDirection.POSITIVE)));
     }
 
-    //Create method to find blockstate of the block in the negative  axial direction of selected direction
-    //Outputs the block in the negative axial direction of the selection's block state String
+    //Method to find blockstate of the block in the negative axial direction of selected direction
+    //Outputs the block state in the negative axial direction of the selection's block state String. This is to identify the neighbor block.
     public BlockState getRelativeBottom(Level level, BlockPos pos, Direction.Axis axis) {
         return level.getBlockState(pos.relative(Direction.fromAxisAndDirection(axis, Direction.AxisDirection.NEGATIVE)));
     }
 
-    //Create method to determine placed block's blockstate in relation to adjacent blocks
-    //Outputs the PillarConnectionState, the enum defined in another class for TOP, MIDDLE, BOTTOM, SOLO
+    //Method to determine placed block's blockstate in relation to adjacent blocks identified by getRelativeTop() and getRelativeBottom()
+    //Outputs a value of the PillarConnectionState enum.
     public PillarConnectionState getType(BlockState state, BlockState above, BlockState below) {
         boolean blockstate_above_is_same = above.is(state.getBlock()) && state.getValue(AXIS) == above.getValue(AXIS);
         boolean blockstate_below_is_same = below.is(state.getBlock()) && state.getValue(AXIS) == below.getValue(AXIS);

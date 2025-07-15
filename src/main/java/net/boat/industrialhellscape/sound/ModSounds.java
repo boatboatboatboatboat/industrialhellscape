@@ -22,6 +22,9 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> VULTA_SHATTERED = registerSoundEvents("vulta_shattered");
     public static final RegistryObject<SoundEvent> TOILET_FLUSH = registerSoundEvents("toilet_flush");
 
+    public static final RegistryObject<SoundEvent> METAL_BOX_OPEN = registerSoundEvents("metal_box_open");
+    public static final RegistryObject<SoundEvent> METAL_BOX_CLOSE = registerSoundEvents("metal_box_close");
+
     public static final ForgeSoundType VESSELPLATE_BLOCK_SOUNDS = new ForgeSoundType(2f,1.5f,
             ModSounds.VESSELPLATE_BREAK,
             ModSounds.VESSELPLATE_STEP,

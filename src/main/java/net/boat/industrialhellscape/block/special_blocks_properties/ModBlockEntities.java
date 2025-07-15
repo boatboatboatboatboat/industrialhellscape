@@ -24,7 +24,10 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(ExampleMenuBlockEntity::new,
                             ModBlocks.RED_WALL_MEDKIT.get(),
                             ModBlocks.WHITE_WALL_MEDKIT.get(),
-                            ModBlocks.DESK_DRAWER.get()
+                            ModBlocks.DESK_DRAWER.get(),
+                            ModBlocks.DESK_DRAWER.get(),
+                            ModBlocks.DESK_DRAWER.get(),
+                            ModBlocks.METAL_DESK_DRAWER_2.get()
                     ).build(null));
 
 

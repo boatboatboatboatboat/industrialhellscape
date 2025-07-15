@@ -1,6 +1,5 @@
 package net.boat.industrialhellscape.block.special_blocks.StorageBlock;
 
-import net.boat.industrialhellscape.block.ModBlocks;
 import net.boat.industrialhellscape.block.special_blocks_properties.ModMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -109,7 +108,4 @@ public class ExampleMenu extends AbstractContainerMenu {
         return stillValid(this.levelAccess, pPlayer, this.blockEntity.getBlockState().getBlock());
     }
 
-    public ExampleMenuBlockEntity getBlockEntity() {
-        return this.blockEntity;
-    }
 }

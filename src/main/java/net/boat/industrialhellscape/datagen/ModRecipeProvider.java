@@ -94,6 +94,50 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> pWriter) {
+        //CREATE BASE MODDED BLOCKS FROM VANILLA BLOCKS
+
+        //Create 9x Vesselplate Base Block from 9 iron ingots
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.VESSELPLATE.get(), 9)
+                .requires(ModItems.INHELL_HAVEN_DEVICE.get())
+                .requires(Items.IRON_BLOCK)
+                .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                .save(pWriter);
+        //Create 1x Vesselglass Base Block from 1 Vesselplate and 1 glass
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.VESSELGLASS.get(), 1)
+                .requires(ModItems.INHELL_HAVEN_DEVICE.get())
+                .requires(ModBlocks.VESSELPLATE.get())
+                .requires(Items.GLASS)
+                .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                .save(pWriter);
+        //Create Rockrete Base Block from 1 stone
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.LIGHT_GRAY_ROCKRETE.get(), 1)
+                .requires(ModItems.INHELL_HAVEN_DEVICE.get())
+                .requires(Ingredient.of(ModTags.Items.IH_RECIPE_STONELIKES))
+                .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                .save(pWriter);
+
+        //Create Furniture Kit Base Block from 1 stonetype, one log, one iron ingot, and the HAVEN device
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.IHEA_FURNITURE_KIT.get(), 1)
+                .requires(ModItems.INHELL_HAVEN_DEVICE.get())
+                .requires(Ingredient.of(ModTags.Items.IH_RECIPE_STONELIKES))
+                .requires(Ingredient.of(ItemTags.LOGS))
+                .requires(Items.IRON_INGOT)
+                .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                .save(pWriter, new ResourceLocation("industrialhellscape", "furniture_kit_recipe_1"));
+        //Create Furniture Kit Base Block from 1 stonetype, four planks, one iron ingot, and the HAVEN device
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.IHEA_FURNITURE_KIT.get(), 1)
+                .requires(ModItems.INHELL_HAVEN_DEVICE.get())
+                .requires(Ingredient.of(ItemTags.STONE_CRAFTING_MATERIALS))
+                .requires(Ingredient.of(ItemTags.PLANKS))
+                .requires(Ingredient.of(ItemTags.PLANKS))
+                .requires(Ingredient.of(ItemTags.PLANKS))
+                .requires(Ingredient.of(ItemTags.PLANKS))
+                .requires(Items.IRON_INGOT)
+                .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                .save(pWriter, new ResourceLocation("industrialhellscape", "furniture_kit_recipe_2"));
+
+        //----------
+
         //ALL SOLID VARIANT BLOCKS CAN BE STONECUT BACK INTO BASE BLOCK
 
         //Stonecut Recycle from ALL Smeltable Block Vesselplate Variants into base block
@@ -130,8 +174,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         //----------
 
+        //SPECIAL ITEM CRAFTING
+
         //Create InHell HAVEN Device
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.INHELL_HAVEN_DEVICE.get()) //Recipe for Sound Block using 9 Floppy Diskettes
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.INHELL_HAVEN_DEVICE.get())
                 .pattern("ABC")
                 .pattern("DDD")
                 .pattern("ABC")
@@ -145,7 +191,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                         .save(pWriter);
 
         //Create Vaporwave Cassette
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.VAPORWAVE_CASSETTE.get()) //Recipe for Sound Block using 9 Floppy Diskettes
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.VAPORWAVE_CASSETTE.get())
                 .pattern(" A ")
                 .pattern("BCB")
                 .pattern("DDD")
@@ -158,48 +204,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
                 .save(pWriter);
 
-        //Create Base Modded Blocks from Vanilla Blocks
-
-        //Create 9x Vesselplate Base Block from 9 iron ingots
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.VESSELPLATE.get(), 9)
-                .requires(ModItems.INHELL_HAVEN_DEVICE.get())
-                .requires(Items.IRON_BLOCK)
-                .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                .save(pWriter);
-        //Create 1x Vesselglass Base Block from 1 Vesselplate and 1 glass
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.VESSELGLASS.get(), 1)
-                .requires(ModItems.INHELL_HAVEN_DEVICE.get())
-                .requires(ModBlocks.VESSELPLATE.get())
-                .requires(Items.GLASS)
-                .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                .save(pWriter);
-        //Create Rockrete Base Block from 1 stone
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.LIGHT_GRAY_ROCKRETE.get(), 1)
-                .requires(ModItems.INHELL_HAVEN_DEVICE.get())
-                .requires(Ingredient.of(ModTags.Items.IH_RECIPE_STONELIKES))
-                .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                .save(pWriter);
-
-        //Create Furniture Kit Base Block from 1 stonetype, one log, one iron ingot, and the HAVEN device
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.IHEA_FURNITURE_KIT.get(), 1)
-                .requires(ModItems.INHELL_HAVEN_DEVICE.get())
-                .requires(Ingredient.of(ModTags.Items.IH_RECIPE_STONELIKES))
-                .requires(Ingredient.of(ItemTags.LOGS))
-                .requires(Items.IRON_INGOT)
-                .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                .save(pWriter, new ResourceLocation("industrialhellscape", "furniture_kit_recipe_1"));
-        //Create Furniture Kit Base Block from 1 stonetype, one log, one iron ingot, and the HAVEN device
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.IHEA_FURNITURE_KIT.get(), 1)
-                .requires(ModItems.INHELL_HAVEN_DEVICE.get())
-                .requires(Ingredient.of(ItemTags.STONE_CRAFTING_MATERIALS))
-                .requires(Ingredient.of(ItemTags.PLANKS))
-                .requires(Ingredient.of(ItemTags.PLANKS))
-                .requires(Ingredient.of(ItemTags.PLANKS))
-                .requires(Ingredient.of(ItemTags.PLANKS))
-                .requires(Items.IRON_INGOT)
-                .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                .save(pWriter, new ResourceLocation("industrialhellscape", "furniture_kit_recipe_2"));
-
         //----------
 
 
@@ -210,6 +214,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             String itemName = VESSELPLATE_STONECUT_OUTPUT.get(i).toString().replaceAll("[^a-zA-Z]+","_");
             if (VESSELPLATE_STONECUT_OUTPUT.get(i).toString().contains("slab") ) {
                 stonecutting(
+                        //Identify slab blocks and specify recipe output of two slab blocks
                         Ingredient.of(ModTags.Items.VESSELPLATE_STONECUT_OUTPUTS), //1st Parameter "pIngredients"
                         RecipeCategory.BUILDING_BLOCKS, //2nd Parameter "pCategory"
                         VESSELPLATE_STONECUT_OUTPUT.get(i), //3rd Parameter "pResults"
@@ -230,10 +235,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         for (int i = 0; i < VESSELGLASS_STONECUT_OUTPUT.size(); i++) {
             String itemName = VESSELGLASS_STONECUT_OUTPUT.get(i).toString().replaceAll("[^a-zA-Z]+","_");
             if (VESSELGLASS_STONECUT_OUTPUT.get(i).toString().contains("slab")  ) {
+                //Identify slab blocks and specify recipe output of two slab blocks
                 stonecutting(
-                        Ingredient.of(ModTags.Items.VESSELGLASS_STONECUT_OUTPUTS),
-                        RecipeCategory.BUILDING_BLOCKS,
-                        VESSELGLASS_STONECUT_OUTPUT.get(i),2)
+                        Ingredient.of(ModTags.Items.VESSELGLASS_STONECUT_OUTPUTS), //1st Parameter "pIngredients"
+                        RecipeCategory.BUILDING_BLOCKS, //2nd Parameter "pCategory"
+                        VESSELGLASS_STONECUT_OUTPUT.get(i), //3rd Parameter "pResults"
+                        2) //4rth Parameter "amount" crafting output
                         .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                         .save(pWriter, new ResourceLocation("industrialhellscape", "vesselglass_stonecut_"+i+"_"+itemName));
             } else
@@ -307,47 +314,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                     .save(pWriter, new ResourceLocation("industrialhellscape", "amenity_to_stonecut_"+i+"_"+itemName));
         }
 
-
-
-        //Create Hazard Stripe Yellow (2x)
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.HAZARD_STRIPE_YELLOW.get(), 2)
-                .requires(ModItems.INHELL_HAVEN_DEVICE.get())
-                .requires(Ingredient.of(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM))
-                .requires(Ingredient.of(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM))
-                .requires(Items.YELLOW_DYE)
-                .requires(Items.BLACK_DYE)
-                .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                .save(pWriter);
-        //Create Hazard Stripe Red (2x)
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.HAZARD_STRIPE_RED.get(), 2)
-                .requires(ModItems.INHELL_HAVEN_DEVICE.get())
-                .requires(Ingredient.of(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM))
-                .requires(Ingredient.of(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM))
-                .requires(Items.RED_DYE)
-                .requires(Items.WHITE_DYE)
-                .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                .save(pWriter);
-
-
-    }   //End of recipe generation
-/*
-    protected static void oreSmelting(Consumer<FinishedRecipe> pFinishedRecipeConsumer, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTIme, String pGroup) {
-        oreCooking(pFinishedRecipeConsumer, RecipeSerializer.SMELTING_RECIPE, pIngredients, pCategory, pResult, pExperience, pCookingTIme, pGroup, "_from_smelting");
     }
-
-    protected static void oreBlasting(Consumer<FinishedRecipe> pFinishedRecipeConsumer, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTime, String pGroup) {
-        oreCooking(pFinishedRecipeConsumer, RecipeSerializer.BLASTING_RECIPE, pIngredients, pCategory, pResult, pExperience, pCookingTime, pGroup, "_from_blasting");
-    }
-
-    protected static void oreCooking(Consumer<FinishedRecipe> pFinishedRecipeConsumer, RecipeSerializer<? extends AbstractCookingRecipe> pCookingSerializer, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTime, String pGroup, String pRecipeName) {
-        for(ItemLike itemlike : pIngredients) {
-            SimpleCookingRecipeBuilder.generic(Ingredient.of(itemlike), pCategory, pResult,
-                    pExperience, pCookingTime, pCookingSerializer)
-                    .group(pGroup).unlockedBy(getHasName(itemlike), has(itemlike))
-                    .save(pFinishedRecipeConsumer, IndustrialHellscape.MOD_ID + ":" + getItemName(pResult) + pRecipeName + "_" + getItemName(itemlike));
-        }
-    }
-*/
 
     protected static SingleItemRecipeBuilder stonecutting(Ingredient pIngredients, RecipeCategory pCategory, ItemLike pResult, Integer amount) {
         return new SingleItemRecipeBuilder(pCategory, RecipeSerializer.STONECUTTER, pIngredients, pResult, amount);
