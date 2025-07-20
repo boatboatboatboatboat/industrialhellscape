@@ -8,11 +8,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import org.jetbrains.annotations.NotNull;
 
-public class ExampleMenuScreen extends AbstractContainerScreen<ExampleMenu> {
+public class NineSlotMenuScreen extends AbstractContainerScreen<NineSlotMenu> {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(IndustrialHellscape.MOD_ID, "textures/gui/container3x3.png");
 
-    public ExampleMenuScreen(ExampleMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
+    public NineSlotMenuScreen(NineSlotMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
 
         this.imageWidth = 176;

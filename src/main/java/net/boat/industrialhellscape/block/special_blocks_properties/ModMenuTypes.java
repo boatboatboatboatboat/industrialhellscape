@@ -1,7 +1,7 @@
 package net.boat.industrialhellscape.block.special_blocks_properties;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
-import net.boat.industrialhellscape.block.special_blocks.StorageBlock.ExampleMenu;
+import net.boat.industrialhellscape.block.special_blocks.StorageBlock.NineSlotMenu;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
@@ -21,8 +21,8 @@ public class ModMenuTypes {
         return MENU_TYPES.register(name, () -> IForgeMenuType.create(factory));
     }
 
-    public static final RegistryObject<MenuType<ExampleMenu>> STORAGE_9SLOT_MENU = MENU_TYPES.register("storage_9slot_menu",
-            () -> IForgeMenuType.create(ExampleMenu::new));
+    public static final RegistryObject<MenuType<NineSlotMenu>> STORAGE_9SLOT_MENU = MENU_TYPES.register("storage_9slot_menu",
+            () -> IForgeMenuType.create(NineSlotMenu::new));
 
 
     public static void register(IEventBus eventBus) {

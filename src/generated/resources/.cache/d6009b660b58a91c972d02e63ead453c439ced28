@@ -1,9 +1,9 @@
-// 1.20.1	2025-07-15T01:11:46.439619	Tags for minecraft:item mod id industrialhellscape
+// 1.20.1	2025-07-17T18:50:20.747228	Tags for minecraft:item mod id industrialhellscape
 285d2fbfd5eb28bf238529b7cb94ace05e3561d8 data/industrialhellscape/tags/items/all_furniture.json
 565b54839a3b5161cde6937b21b5f394d2fc6b7b data/industrialhellscape/tags/items/amenity_furniture_category.json
 d5418c51785f1722c0e9882ba1b3219455700a2e data/industrialhellscape/tags/items/furniture_categories.json
 688e718437412623073fa288ad24ab310335fb59 data/industrialhellscape/tags/items/hygiene_furniture_category.json
-bb71bb0e5200f45f7ed928813eb7e5e52c5810e6 data/industrialhellscape/tags/items/ih_recipe_stonelikes.json
+43a13fa171afcdc024595417a7858e12cd7eec08 data/industrialhellscape/tags/items/ih_recipe_stonelikes.json
 1cdc3022fe44db313e3781f1a126ee0b7c8ea89e data/industrialhellscape/tags/items/rockrete_blocks.json
 45f80d0748d8d65d9d15ae57f9ddfb481fb92ac7 data/industrialhellscape/tags/items/rockrete_smeltable_item.json
 edfee4701d18df6b391ad9888d852e6c83810487 data/industrialhellscape/tags/items/safety_furniture_category.json

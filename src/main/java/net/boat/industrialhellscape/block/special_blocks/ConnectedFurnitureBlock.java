@@ -30,7 +30,7 @@ public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implemen
     public static DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING; //"FACING" is used to store DirectionProperty value of "north, south, east, west" //KJ
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public TagKey<Block> BlockSetFamily;
-    private static final VoxelShape SHAPE = Block.box(0.1, 0.1, 0.1, 15.9, 15.9, 15.9);
+    private static final VoxelShape SHAPE = Block.box(0.1, 0.1, 0.1, 15.9, 16, 15.9);
 
     protected ConnectedFurnitureBlock(Properties pProperties, TagKey<Block> inputCompatibleBlockSet) {
         super(pProperties);

@@ -3,8 +3,8 @@ package net.boat.industrialhellscape.block;
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.special_blocks.*;
 import net.boat.industrialhellscape.block.special_blocks.PlacedFacingBlock;
-import net.boat.industrialhellscape.block.special_blocks.StorageBlock.ConnectedFurnitureStorageBlock;
-import net.boat.industrialhellscape.block.special_blocks.StorageBlock.ExampleMenuBlock;
+import net.boat.industrialhellscape.block.special_blocks.StorageBlock.ConnectedFurniture9SlotStorageBlock;
+import net.boat.industrialhellscape.block.special_blocks.StorageBlock.NineSlotMenuBlock;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.item.ModItems;
 import net.boat.industrialhellscape.util.ModTags;
@@ -97,12 +97,14 @@ public class ModBlocks {
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .strength(1f).requiresCorrectToolForDrops())
     );
+
+    //Furniture Blocks Here
     public static final RegistryObject<Block> DESK = registerBlock("desk",
             () -> new ConnectedFurnitureBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion(), ModTags.Blocks.CLASSIC_DESK) {
             }
     );
     public static final RegistryObject<Block> DESK_DRAWER = registerBlock("desk_drawer",
-            () -> new ConnectedFurnitureStorageBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion(), ModTags.Blocks.CLASSIC_DESK) {
+            () -> new ConnectedFurniture9SlotStorageBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion(), ModTags.Blocks.CLASSIC_DESK) {
             }
     );
     public static final RegistryObject<Block> METAL_DESK = registerBlock("metal_desk",
@@ -110,12 +112,32 @@ public class ModBlocks {
             }
     );
     public static final RegistryObject<Block> METAL_DESK_DRAWER = registerBlock("metal_desk_drawer",
-            () -> new ConnectedFurnitureStorageBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion(), ModTags.Blocks.METAL_DESK) {
+            () -> new ConnectedFurniture9SlotStorageBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion(), ModTags.Blocks.METAL_DESK) {
             }
     );
     public static final RegistryObject<Block> METAL_DESK_DRAWER_2 = registerBlock("metal_desk_drawer_2",
-            () -> new ConnectedFurnitureStorageBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion(), ModTags.Blocks.METAL_DESK) {
+            () -> new ConnectedFurniture9SlotStorageBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion(), ModTags.Blocks.METAL_DESK) {
             }
+    );
+    public static final RegistryObject<Block> SINK = registerBlock("sink",
+            () -> new NineSlotMenuBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+            )
+    );
+    public static final RegistryObject<Block> TOILET = registerBlock("toilet",
+            () -> new SittableInteractableBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion())
+    );
+    public static final RegistryObject<Block> RED_WALL_MEDKIT = registerBlock("red_wall_medkit",
+            () -> new NineSlotMenuBlock(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+                    .noOcclusion()
+            )
+    );
+    public static final RegistryObject<Block> WHITE_WALL_MEDKIT = registerBlock("white_wall_medkit",
+            () -> new NineSlotMenuBlock(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+                    .noOcclusion()
+            )
     );
 
 
@@ -255,30 +277,6 @@ public class ModBlocks {
                     .noOcclusion()
             )
     );
-    public static final RegistryObject<Block> SINK = registerBlock("sink",
-            () -> new ExampleMenuBlock(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
-                    .strength(1f).noOcclusion()
-            )
-    );
-    public static final RegistryObject<Block> TOILET = registerBlock("toilet",
-            () -> new SittableInteractableBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().noOcclusion())
-    );
-    public static final RegistryObject<Block> RED_WALL_MEDKIT = registerBlock("red_wall_medkit",
-            () -> new ExampleMenuBlock(BlockBehaviour
-                    .Properties.copy(Blocks.STONE)
-                    .strength(1f).noOcclusion()
-                    .requiresCorrectToolForDrops()
-            )
-    );
-    public static final RegistryObject<Block> WHITE_WALL_MEDKIT = registerBlock("white_wall_medkit",
-            () -> new ExampleMenuBlock(BlockBehaviour
-                    .Properties.copy(Blocks.STONE)
-                    .strength(1f).noOcclusion()
-                    .requiresCorrectToolForDrops()
-            )
-    );
-
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name,block);

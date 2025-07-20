@@ -19,7 +19,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ExampleMenuBlockEntity extends BlockEntity implements MenuProvider {
+public class NineSlotMenuBlockEntity extends BlockEntity implements MenuProvider {
     private static final Component TITLE =
             Component.translatable("gui." + IndustrialHellscape.MOD_ID + ".inventory_menu");
 
@@ -27,14 +27,14 @@ public class ExampleMenuBlockEntity extends BlockEntity implements MenuProvider 
         @Override
         protected void onContentsChanged(int slot) {
             super.onContentsChanged(slot);
-            ExampleMenuBlockEntity.this.setChanged();
+            NineSlotMenuBlockEntity.this.setChanged();
         }
     };
 
     private final LazyOptional<ItemStackHandler> optional = LazyOptional.of(() -> this.inventory);
 
-    public ExampleMenuBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.EXAMPLE_MENU_BLOCK_ENTITY.get(), pos, state);
+    public NineSlotMenuBlockEntity(BlockPos pos, BlockState state) {
+        super(ModBlockEntities.NINE_SLOT_BLOCK_ENTITY.get(), pos, state);
     }
 
     @Override
@@ -82,6 +82,6 @@ public class ExampleMenuBlockEntity extends BlockEntity implements MenuProvider 
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, @NotNull Inventory pPlayerInventory, Player pPlayer) {
-        return new ExampleMenu(pContainerId, pPlayerInventory, this);
+        return new NineSlotMenu(pContainerId, pPlayerInventory, this);
     }
 }

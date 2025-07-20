@@ -15,6 +15,14 @@ public class ModTags {
         public static final TagKey<Block> VESSELGLASS_BLOCKS = tag("vesselglass_blocks");
         public static final TagKey<Block> ROCKRETE_BLOCKS = tag("rockrete_blocks");
 
+        public static final TagKey<Block> SAFETY_FURNITURE_CATEGORY = tag("safety_furniture_category");
+        public static final TagKey<Block> HYGIENE_FURNITURE_CATEGORY= tag("hygiene_furniture_category");
+        public static final TagKey<Block> INDUSTRIAL_FURNITURE_CATEGORY = tag("industrial_furniture_category");
+        public static final TagKey<Block> TECHNOLOGY_FURNITURE_CATEGORY= tag("technology_furniture_category");
+        public static final TagKey<Block> AMENITY_FURNITURE_CATEGORY = tag("amenity_furniture_category");
+        public static final TagKey<Block> ALL_FURNITURE= tag("all_furniture");
+
+        //Furniture Blockset Families
         public static final TagKey<Block> CLASSIC_DESK = tag("classic_desk");
         public static final TagKey<Block> METAL_DESK = tag("metal_desk");
 

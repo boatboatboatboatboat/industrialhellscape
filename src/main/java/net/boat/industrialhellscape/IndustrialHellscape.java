@@ -1,7 +1,7 @@
 package net.boat.industrialhellscape;
 
 import net.boat.industrialhellscape.block.ModBlocks;
-import net.boat.industrialhellscape.block.special_blocks.StorageBlock.ExampleMenuScreen;
+import net.boat.industrialhellscape.block.special_blocks.StorageBlock.NineSlotMenuScreen;
 import net.boat.industrialhellscape.block.special_blocks_properties.ModBlockEntities;
 import net.boat.industrialhellscape.entity.ModEntities;
 import net.boat.industrialhellscape.block.special_blocks_properties.ChairRenderer;
@@ -80,7 +80,7 @@ public class IndustrialHellscape {
         @SubscribeEvent
         public static void clientSetup(FMLClientSetupEvent event) {
             event.enqueueWork(() -> {
-                MenuScreens.register(ModMenuTypes.STORAGE_9SLOT_MENU.get(), ExampleMenuScreen::new);
+                MenuScreens.register(ModMenuTypes.STORAGE_9SLOT_MENU.get(), NineSlotMenuScreen::new);
             });
         }
     }

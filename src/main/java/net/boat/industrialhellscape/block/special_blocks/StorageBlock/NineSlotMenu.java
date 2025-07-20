@@ -12,22 +12,22 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 
-public class ExampleMenu extends AbstractContainerMenu {
-    private final ExampleMenuBlockEntity blockEntity;
+public class NineSlotMenu extends AbstractContainerMenu {
+    private final NineSlotMenuBlockEntity blockEntity;
     private final ContainerLevelAccess levelAccess;
 
     // Client Constructor
-    public ExampleMenu(int containerId, Inventory playerInv, FriendlyByteBuf additionalData) {
+    public NineSlotMenu(int containerId, Inventory playerInv, FriendlyByteBuf additionalData) {
         this(containerId, playerInv, playerInv.player.level().getBlockEntity(additionalData.readBlockPos()));
     }
 
     // Server Constructor
-    public ExampleMenu(int containerId, Inventory playerInv, BlockEntity blockEntity) {
+    public NineSlotMenu(int containerId, Inventory playerInv, BlockEntity blockEntity) {
         super(ModMenuTypes.STORAGE_9SLOT_MENU.get(), containerId);
-        if(blockEntity instanceof ExampleMenuBlockEntity be) {
+        if(blockEntity instanceof NineSlotMenuBlockEntity be) {
             this.blockEntity = be;
         } else {
-            throw new IllegalStateException("Incorrect block entity class (%s) passed into ExampleMenu!"
+            throw new IllegalStateException("Incorrect block entity class (%s) passed into NineSlotMenu!"
                     .formatted(blockEntity.getClass().getCanonicalName()));
         }
 
@@ -38,7 +38,7 @@ public class ExampleMenu extends AbstractContainerMenu {
         createBlockEntityInventory(be);
     }
 
-    private void createBlockEntityInventory(ExampleMenuBlockEntity be) {
+    private void createBlockEntityInventory(NineSlotMenuBlockEntity be) {
         be.getOptional().ifPresent(inventory -> {
             for (int row = 0; row < 3; row++) {
                 for (int column = 0; column < 3; column++) {

@@ -2,6 +2,9 @@
   "values": [
     "minecraft:stone",
     "minecraft:deepslate",
+    "minecraft:diorite",
+    "minecraft:granite",
+    "minecraft:andesite",
     "minecraft:blackstone",
     "minecraft:end_stone"
   ]

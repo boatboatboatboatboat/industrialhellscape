@@ -30,7 +30,7 @@ import net.minecraft.world.level.block.RenderShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ExampleMenuBlock extends HorizontalDirectionalBlock implements EntityBlock, SimpleWaterloggedBlock {
+public class NineSlotMenuBlock extends HorizontalDirectionalBlock implements EntityBlock, SimpleWaterloggedBlock {
     private static final VoxelShape SHAPE_NORTH = Block.box(0, 0, 8, 16, 16, 16);
     private static final VoxelShape SHAPE_SOUTH = Block.box(0, 0, 0, 16, 16, 8);
     private static final VoxelShape SHAPE_WEST = Block.box(8, 0, 0, 16, 16, 16);
@@ -38,7 +38,7 @@ public class ExampleMenuBlock extends HorizontalDirectionalBlock implements Enti
     private static DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    public ExampleMenuBlock(Properties properties) {
+    public NineSlotMenuBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
@@ -48,7 +48,7 @@ public class ExampleMenuBlock extends HorizontalDirectionalBlock implements Enti
     @Nullable
     @Override
     public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
-        return ModBlockEntities.EXAMPLE_MENU_BLOCK_ENTITY.get().create(pos, state);
+        return ModBlockEntities.NINE_SLOT_BLOCK_ENTITY.get().create(pos, state);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class ExampleMenuBlock extends HorizontalDirectionalBlock implements Enti
     @Override
     public @NotNull InteractionResult use(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
         BlockEntity be = level.getBlockEntity(pos);
-        if (!(be instanceof ExampleMenuBlockEntity blockEntity))
+        if (!(be instanceof NineSlotMenuBlockEntity blockEntity))
             return InteractionResult.PASS;
 
         if (level.isClientSide())
@@ -105,7 +105,7 @@ public class ExampleMenuBlock extends HorizontalDirectionalBlock implements Enti
     public void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) {
         if (!level.isClientSide()) {
             BlockEntity be = level.getBlockEntity(pos);
-            if (be instanceof ExampleMenuBlockEntity blockEntity) {
+            if (be instanceof NineSlotMenuBlockEntity blockEntity) {
                 ItemStackHandler inventory = blockEntity.getInventory();
                 for (int index = 0; index < inventory.getSlots(); index++) {
                     ItemStack stack = inventory.getStackInSlot(index);

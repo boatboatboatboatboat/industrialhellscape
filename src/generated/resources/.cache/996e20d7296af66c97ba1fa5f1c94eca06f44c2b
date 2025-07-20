@@ -1,9 +1,14 @@
-// 1.20.1	2025-07-15T01:11:46.4386184	Tags for minecraft:block mod id industrialhellscape
+// 1.20.1	2025-07-17T18:55:31.5755467	Tags for minecraft:block mod id industrialhellscape
+cdca815a3f72acfba57f7fd311153dedd69cf377 data/industrialhellscape/tags/blocks/all_furniture.json
+eb1eb2544523886f266ac9c8c53e8a03367635ae data/industrialhellscape/tags/blocks/amenity_furniture_category.json
 2cf4cecf38c0889c1ff31838fbcf7e701333a469 data/industrialhellscape/tags/blocks/classic_desk.json
+688e718437412623073fa288ad24ab310335fb59 data/industrialhellscape/tags/blocks/hygiene_furniture_category.json
 779ef6ef42d1989c9e9e72d1c7d3f4d80c423019 data/industrialhellscape/tags/blocks/metal_desk.json
-0271c7f10d923bd8403b6f842b40f83606c3be4d data/industrialhellscape/tags/blocks/rockrete_blocks.json
+18e1bd5d90d96edc5b0aba17341faa6cbbb3dff5 data/industrialhellscape/tags/blocks/rockrete_blocks.json
+edfee4701d18df6b391ad9888d852e6c83810487 data/industrialhellscape/tags/blocks/safety_furniture_category.json
 f291d1fac3c4910040fd187633e5d92820c7a37e data/industrialhellscape/tags/blocks/vesselglass_blocks.json
-17bef6f30f0353cadb3296bd403fd5304bd48b17 data/industrialhellscape/tags/blocks/vesselplate_blocks.json
-69d26ab1e3fee026019782ffaa52b9d25025908a data/minecraft/tags/blocks/mineable/pickaxe.json
-53ff64836351570860a41af8f7b5baa466831236 data/minecraft/tags/blocks/needs_iron_tool.json
-4073a0bdc04188cd579d95fbeb954b2740294a00 data/minecraft/tags/blocks/needs_stone_tool.json
+6e583d4226a641f0f9bfeb8c998dfecb2b3af26c data/industrialhellscape/tags/blocks/vesselplate_blocks.json
+3d92c2d7dc66cac094ba3403225e443de77122a1 data/minecraft/tags/blocks/mineable/axe.json
+81a72a22fdb25885a04cf830b7732e3113a99547 data/minecraft/tags/blocks/mineable/pickaxe.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/blocks/needs_iron_tool.json
+f41dd6fefd9735b5fb27beaf0b21a3936ea63a07 data/minecraft/tags/blocks/needs_stone_tool.json

@@ -23,7 +23,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         simpleItem(ModItems.FLOPPY_DISK);
         simpleItem(ModItems.FLOPPY_DISKETTE);
-        simpleItem(ModItems.INHELL_HAVEN_DEVICE);
+        //simpleItem(ModItems.INHELL_HAVEN_DEVICE);
         simpleItem(ModItems.MALEVOLENT_MULTITOOL);
         simpleItem(ModItems.VAPORWAVE_CASSETTE);
 

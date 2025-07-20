@@ -35,16 +35,16 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ConnectedFurnitureStorageBlock extends HorizontalDirectionalBlock implements EntityBlock, SimpleWaterloggedBlock, HorizontalConnectedModelCapability {
+public class ConnectedFurniture9SlotStorageBlock extends HorizontalDirectionalBlock implements EntityBlock, SimpleWaterloggedBlock, HorizontalConnectedModelCapability {
 
 
     private static final EnumProperty<FurnitureConnectionState> TYPE = EnumProperty.create("type", FurnitureConnectionState.class);
-    private static final VoxelShape SHAPE = Block.box(.1, .1, .1, 15.9, 15.9, 15.9);
+    private static final VoxelShape SHAPE = Block.box(.1, .1, .1, 15.9, 16, 15.9);
     private static DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public TagKey<Block> BlockSetFamily;
 
-    public ConnectedFurnitureStorageBlock(Properties properties, TagKey<Block> inputCompatibleBlockset) {
+    public ConnectedFurniture9SlotStorageBlock(Properties properties, TagKey<Block> inputCompatibleBlockset) {
         super(properties);
         this.BlockSetFamily = inputCompatibleBlockset;
         this.registerDefaultState(this.stateDefinition.any()
@@ -57,7 +57,7 @@ public class ConnectedFurnitureStorageBlock extends HorizontalDirectionalBlock i
     @Nullable
     @Override
     public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
-        return ModBlockEntities.EXAMPLE_MENU_BLOCK_ENTITY.get().create(pos, state);
+        return ModBlockEntities.NINE_SLOT_BLOCK_ENTITY.get().create(pos, state);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class ConnectedFurnitureStorageBlock extends HorizontalDirectionalBlock i
     @Override
     public @NotNull InteractionResult use(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
         BlockEntity be = level.getBlockEntity(pos);
-        if (!(be instanceof ExampleMenuBlockEntity blockEntity))
+        if (!(be instanceof NineSlotMenuBlockEntity blockEntity))
             return InteractionResult.PASS;
 
         if (level.isClientSide())
@@ -125,7 +125,7 @@ public class ConnectedFurnitureStorageBlock extends HorizontalDirectionalBlock i
         if (!state.is(newState.getBlock())) { //If the block in the new updated state is different
             if (state.getBlock() != newState.getBlock()) { //If block after the update is different from the old block
                 BlockEntity be = level.getBlockEntity(pos); //Save the selected block entity as "be"
-                if (be instanceof ExampleMenuBlockEntity blockEntity) { //If the block entity is a storage block entity
+                if (be instanceof NineSlotMenuBlockEntity blockEntity) { //If the block entity is a storage block entity
                     ItemStackHandler inventory = blockEntity.getInventory(); //read and store the block entity's inventory
                     for (int i = 0; i < inventory.getSlots(); i++) {
                         ItemStack stack = inventory.getStackInSlot(i); //One at a time, read and store each itemStack in each slot

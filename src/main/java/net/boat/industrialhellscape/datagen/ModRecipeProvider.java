@@ -31,18 +31,20 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.SMOOTH_VESSELPLATE_TILE.get().asItem(),
 
             ModBlocks.STRUT.get().asItem(),
-            ModBlocks.CATWALK_STRUT.get().asItem(),
-            ModBlocks.CATWALK_STRUT_SLAB.get().asItem(),
-            ModBlocks.CATWALK_STRUT_STAIRS.get().asItem(),
             ModBlocks.STRUT_STAIRS.get().asItem(),
             ModBlocks.STRUT_SLAB.get().asItem(),
 
+            ModBlocks.CATWALK_STRUT.get().asItem(),
+            ModBlocks.CATWALK_STRUT_SLAB.get().asItem(),
+            ModBlocks.CATWALK_STRUT_STAIRS.get().asItem(),
+
             ModBlocks.GRAY_STRUT.get().asItem(),
+            ModBlocks.GRAY_STRUT_STAIRS.get().asItem(),
+            ModBlocks.GRAY_STRUT_SLAB.get().asItem(),
+
             ModBlocks.GRAY_CATWALK_STRUT.get().asItem(),
             ModBlocks.GRAY_CATWALK_STRUT_SLAB.get().asItem(),
             ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get().asItem(),
-            ModBlocks.GRAY_STRUT_STAIRS.get().asItem(),
-            ModBlocks.GRAY_STRUT_SLAB.get().asItem(),
 
             ModBlocks.VERTICAL_ENCASED_CABLES.get().asItem(),
             ModBlocks.HORIZONTAL_ENCASED_CABLES.get().asItem(),
@@ -127,7 +129,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         //Create Furniture Kit Base Block from 1 stonetype, four planks, one iron ingot, and the HAVEN device
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.IHEA_FURNITURE_KIT.get(), 1)
                 .requires(ModItems.INHELL_HAVEN_DEVICE.get())
-                .requires(Ingredient.of(ItemTags.STONE_CRAFTING_MATERIALS))
+                .requires(Ingredient.of(ModTags.Items.IH_RECIPE_STONELIKES))
                 .requires(Ingredient.of(ItemTags.PLANKS))
                 .requires(Ingredient.of(ItemTags.PLANKS))
                 .requires(Ingredient.of(ItemTags.PLANKS))

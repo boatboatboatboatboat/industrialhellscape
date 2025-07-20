@@ -156,6 +156,9 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 .add(
                         Items.STONE,
                         Items.DEEPSLATE,
+                        Items.DIORITE,
+                        Items.GRANITE,
+                        Items.ANDESITE,
                         Items.BLACKSTONE,
                         Items.END_STONE
                 );
