@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "industrialhellscape:block/bunker_wall/bunker_wall_face",
-    "side": "industrialhellscape:block/bunker_wall/bunker_wall_solo"
-  }
-}

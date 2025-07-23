@@ -9,9 +9,9 @@ import net.minecraft.util.StringRepresentable;
 //-----
 
 public enum PillarConnectionState implements StringRepresentable {
-    TOP("top"), //Only these four states are allowed to be called from the enum PillarConnectionState
+    POSITIVE("positive"), //Only these four states are allowed to be called from the enum PillarConnectionState
     MIDDLE("middle"),
-    BOTTOM("bottom"),
+    NEGATIVE("negative"),
     SOLO("solo");
 
     private final String name; //new variable declared but not defined. It is a string and uses the strings corresponding with the enums above, NOT the uppercase enums

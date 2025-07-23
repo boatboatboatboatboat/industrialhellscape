@@ -19,7 +19,8 @@ public class AxialPillarBlock extends Block {
     public AxialPillarBlock(Properties pProperties) { //Establishes the Default State - Vertical, unconnected (solo)
         super(pProperties);
         this.registerDefaultState(this.getStateDefinition().any()
-                .setValue(TYPE, PillarConnectionState.SOLO));
+                .setValue(TYPE, PillarConnectionState.SOLO)
+                .setValue(AXIS, Direction.Axis.Z));
     }
 
     @Nullable
@@ -45,7 +46,7 @@ public class AxialPillarBlock extends Block {
         state = state.setValue(TYPE, type);
         level.setBlock(pos, state, 3);
     }
-    //Standard convention: "TOP" refers to any positive axis direction (XYZ), like positive Y, or up. Vice Versa for "BOTTOM"
+    //My convention: "TOP" refers to any positive axis direction (XYZ), like positive Y, or up. Vice Versa for "BOTTOM"
 
     //Method to find blockstate of the block in the positive axial direction of selected direction
     //Outputs the block state in the positive axial direction of the selection's block state String. This is to identify the neighbor block.
@@ -66,8 +67,8 @@ public class AxialPillarBlock extends Block {
         boolean blockstate_below_is_same = below.is(state.getBlock()) && state.getValue(AXIS) == below.getValue(AXIS);
 
         //Where "above" and "below" refer to in the positive and negative axial direction respectively, like Y direction (height).
-        if (blockstate_above_is_same && !blockstate_below_is_same) return PillarConnectionState.BOTTOM;
-        else if (!blockstate_above_is_same && blockstate_below_is_same) return PillarConnectionState.TOP;
+        if (blockstate_above_is_same && !blockstate_below_is_same) return PillarConnectionState.NEGATIVE;
+        else if (!blockstate_above_is_same && blockstate_below_is_same) return PillarConnectionState.POSITIVE;
         else if (blockstate_above_is_same) return PillarConnectionState.MIDDLE;
         return PillarConnectionState.SOLO;
     }

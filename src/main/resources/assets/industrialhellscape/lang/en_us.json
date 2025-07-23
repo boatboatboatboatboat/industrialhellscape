@@ -6,6 +6,7 @@
 
 
   "block.industrialhellscape.vesselplate": "Vesselplate",
+  "block.industrialhellscape.riveted_vesselplate": "Riveted Vesselplate",
   "block.industrialhellscape.vesselplate_grate_block": "Vesselplate Grate Block",
   "block.industrialhellscape.vesselplate_grate": "Vesselplate Grate",
   "block.industrialhellscape.rusty_vesselplate_grate": "Rusty Vesselplate Grate",
@@ -20,21 +21,19 @@
   "block.industrialhellscape.horizontal_encased_cables": "Horizontal Encased Cables",
 
 
-  "block.industrialhellscape.light_gray_rockrete": "Light Gray Rockrete",
-  "block.industrialhellscape.light_gray_rockrete_rebar": "Light Gray Rockrete Rebar",
-  "block.industrialhellscape.light_gray_rockrete_stairs": "Light Gray Rockrete Stairs",
-  "block.industrialhellscape.light_gray_rockrete_slab": "Light Gray Rockrete Slab",
-  "block.industrialhellscape.bunker_wall": "Bunker Wall",
-
   "block.industrialhellscape.gray_rockrete": "Gray Rockrete",
-  "block.industrialhellscape.white_rockrete": "White Rockrete",
-  "block.industrialhellscape.black_rockrete": "Black Rockrete",
+  "block.industrialhellscape.gray_rockrete_rebar": "Gray Rockrete Rebar",
+  "block.industrialhellscape.gray_rockrete_stairs": "Gray Rockrete Stairs",
+  "block.industrialhellscape.gray_rockrete_slab": "Gray Rockrete Slab",
+  "block.industrialhellscape.gray_rockrete_pillar": "Gray Rockrete Pillar",
 
   "block.industrialhellscape.hazard_stripe_yellow": "Hazard Stripe Yellow",
   "block.industrialhellscape.hazard_stripe_red": "Hazard Stripe Red",
   "block.industrialhellscape.grimy_restroom_tile": "Grimy Restroom Tile",
 
   "block.industrialhellscape.sound_block": "Sound Block",
+
+  "block.industrialhellscape.hvac_pipe_array": "HVAC Pipe Array",
 
   "block.industrialhellscape.ihea_furniture_kit": "IHEA Furniture Kit",
   "block.industrialhellscape.safety_furnishings": "Safety Furnishings",

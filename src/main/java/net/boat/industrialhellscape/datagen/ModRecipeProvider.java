@@ -23,6 +23,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     private static final List<ItemLike> VESSELPLATE_STONECUT_OUTPUT = List.of(
             //ModBlocks.VESSELPLATE.get().asItem(), //commented out or else duplicate recipe created
             ModBlocks.VESSELPLATE_PILLAR.get().asItem(),
+            ModBlocks.RIVETED_VESSELPLATE.get().asItem(),
             ModBlocks.VESSELPLATE_GRATE_BLOCK.get().asItem(),
             ModBlocks.VESSELPLATE_GRATE.get().asItem(),
             ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
@@ -51,12 +52,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem()
     );
     private static final List<ItemLike> ROCKRETE_STONECUT_OUTPUT = List.of(
-            ModBlocks.BUNKER_WALL.get().asItem(),
 
-            //ModBlocks.LIGHT_GRAY_ROCKRETE.get().asItem(),
-            ModBlocks.LIGHT_GRAY_ROCKRETE_SLAB.get().asItem(),
-            ModBlocks.LIGHT_GRAY_ROCKRETE_STAIRS.get().asItem(),
-            ModBlocks.LIGHT_GRAY_ROCKRETE_REBAR.get().asItem(),
+
+            ModBlocks.GRAY_ROCKRETE.get().asItem(),
+            ModBlocks.GRAY_ROCKRETE_SLAB.get().asItem(),
+            ModBlocks.GRAY_ROCKRETE_STAIRS.get().asItem(),
+            ModBlocks.GRAY_ROCKRETE_REBAR.get().asItem(),
+            ModBlocks.GRAY_ROCKRETE_PILLAR.get().asItem(),
 
             ModBlocks.HAZARD_STRIPE_YELLOW.get().asItem(),
             ModBlocks.HAZARD_STRIPE_RED.get().asItem(),
@@ -112,7 +114,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(pWriter);
         //Create Rockrete Base Block from 1 stone
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.LIGHT_GRAY_ROCKRETE.get(), 1)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.GRAY_ROCKRETE.get(), 1)
                 .requires(ModItems.INHELL_HAVEN_DEVICE.get())
                 .requires(Ingredient.of(ModTags.Items.IH_RECIPE_STONELIKES))
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
@@ -162,7 +164,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         stonecutting(
                 Ingredient.of(ModTags.Items.ROCKRETE_SMELTABLE_ITEM),
                 RecipeCategory.BUILDING_BLOCKS,
-                ModBlocks.LIGHT_GRAY_ROCKRETE.get(),1)
+                ModBlocks.GRAY_ROCKRETE.get(),1)
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(pWriter, new ResourceLocation("industrialhellscape", "rockrete_stonecut_recycle"));
 

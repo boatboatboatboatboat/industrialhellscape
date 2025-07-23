@@ -27,6 +27,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
         this.tag(ModTags.Blocks.VESSELPLATE_BLOCKS)
                 .add(
                         ModBlocks.VESSELPLATE.get(),
+                        ModBlocks.RIVETED_VESSELPLATE.get(),
                         ModBlocks.VESSELPLATE_GRATE_BLOCK.get(),
                         ModBlocks.VESSELPLATE_GRATE.get(),
                         ModBlocks.RUSTY_VESSELPLATE_GRATE.get(),
@@ -65,12 +66,12 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
         this.tag(ModTags.Blocks.ROCKRETE_BLOCKS)
                 .add(
-                        ModBlocks.BUNKER_WALL.get(),
-                        ModBlocks.LIGHT_GRAY_ROCKRETE.get(),
-                        ModBlocks.LIGHT_GRAY_ROCKRETE_SLAB.get(),
-                        ModBlocks.LIGHT_GRAY_ROCKRETE_STAIRS.get(),
+                        ModBlocks.GRAY_ROCKRETE.get(),
+                        ModBlocks.GRAY_ROCKRETE_SLAB.get(),
+                        ModBlocks.GRAY_ROCKRETE_STAIRS.get(),
+                        ModBlocks.GRAY_ROCKRETE_PILLAR.get(),
 
-                        ModBlocks.LIGHT_GRAY_ROCKRETE_REBAR.get(),
+                        ModBlocks.GRAY_ROCKRETE_REBAR.get(),
 
                         ModBlocks.HAZARD_STRIPE_YELLOW.get(),
                         ModBlocks.HAZARD_STRIPE_RED.get(),

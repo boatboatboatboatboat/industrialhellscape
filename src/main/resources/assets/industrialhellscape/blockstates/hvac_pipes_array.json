@@ -1,0 +1,21 @@
+{
+    "variants": {
+		"vertical_direction=down,type=solo,axis=x": {"model": "industrialhellscape:block/hvac_pipes_array/hvac_pipes_array_solo","y": 90},
+		"vertical_direction=down,type=solo,axis=z": {"model": "industrialhellscape:block/hvac_pipes_array/hvac_pipes_array_solo"},
+        "vertical_direction=down,type=positive,axis=x": {"model": "industrialhellscape:block/hvac_pipes_array/hvac_pipes_array_start","y": 90},
+		"vertical_direction=down,type=positive,axis=z": {"model": "industrialhellscape:block/hvac_pipes_array/hvac_pipes_array_start","y": 180},
+        "vertical_direction=down,type=middle,axis=x": {"model": "industrialhellscape:block/hvac_pipes_array/hvac_pipes_array_middle","y": 90},
+		"vertical_direction=down,type=middle,axis=z": {"model": "industrialhellscape:block/hvac_pipes_array/hvac_pipes_array_middle","y": 180},
+		"vertical_direction=down,type=negative,axis=x": {"model": "industrialhellscape:block/hvac_pipes_array/hvac_pipes_array_end","y": 90},
+		"vertical_direction=down,type=negative,axis=z": {"model": "industrialhellscape:block/hvac_pipes_array/hvac_pipes_array_end","y": 180},
+
+		"vertical_direction=up,type=solo,axis=x": {"model": "industrialhellscape:block/hvac_pipes_array/hvac_pipes_array_solo","y": 90,"x": 180},
+		"vertical_direction=up,type=solo,axis=z": {"model": "industrialhellscape:block/hvac_pipes_array/hvac_pipes_array_solo", "x": 180},
+		"vertical_direction=up,type=positive,axis=x": {"model": "industrialhellscape:block/hvac_pipes_array/hvac_pipes_array_start","y": 270, "x": 180},
+		"vertical_direction=up,type=positive,axis=z": {"model": "industrialhellscape:block/hvac_pipes_array/hvac_pipes_array_start","y": 0,"x": 180},
+		"vertical_direction=up,type=middle,axis=x": {"model": "industrialhellscape:block/hvac_pipes_array/hvac_pipes_array_middle","y": 270,"x": 180},
+		"vertical_direction=up,type=middle,axis=z": {"model": "industrialhellscape:block/hvac_pipes_array/hvac_pipes_array_middle","y": 0,"x": 180},
+		"vertical_direction=up,type=negative,axis=x": {"model": "industrialhellscape:block/hvac_pipes_array/hvac_pipes_array_end","y": 270,"x": 180},
+		"vertical_direction=up,type=negative,axis=z": {"model": "industrialhellscape:block/hvac_pipes_array/hvac_pipes_array_end","y": 0,"x": 180}
+    }
+}

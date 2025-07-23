@@ -2,6 +2,7 @@ package net.boat.industrialhellscape.block.special_blocks;
 
 import net.boat.industrialhellscape.block.special_blocks_properties.HorizontalConnectedModelCapability;
 import net.boat.industrialhellscape.block.special_blocks_properties.FurnitureConnectionState;
+import net.boat.industrialhellscape.block.special_blocks_properties.VoxelRotator;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.TagKey;
@@ -30,10 +31,50 @@ public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implemen
     public static DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING; //"FACING" is used to store DirectionProperty value of "north, south, east, west" //KJ
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public TagKey<Block> BlockSetFamily;
-    private static final VoxelShape SHAPE = Block.box(0.1, 0.1, 0.1, 15.9, 16, 15.9);
 
-    protected ConnectedFurnitureBlock(Properties pProperties, TagKey<Block> inputCompatibleBlockSet) {
+    private VoxelShape SOLO_SHAPE_NORTH;
+    private VoxelShape SOLO_SHAPE_SOUTH;
+    private VoxelShape SOLO_SHAPE_EAST;
+    private VoxelShape SOLO_SHAPE_WEST;
+
+    private VoxelShape LEFT_SHAPE_NORTH;
+    private VoxelShape LEFT_SHAPE_SOUTH;
+    private VoxelShape LEFT_SHAPE_EAST;
+    private VoxelShape LEFT_SHAPE_WEST;
+
+    private VoxelShape MIDDLE_SHAPE_NORTH;
+    private VoxelShape MIDDLE_SHAPE_SOUTH;
+    private VoxelShape MIDDLE_SHAPE_EAST;
+    private VoxelShape MIDDLE_SHAPE_WEST;
+
+    private VoxelShape RIGHT_SHAPE_NORTH;
+    private VoxelShape RIGHT_SHAPE_SOUTH;
+    private VoxelShape RIGHT_SHAPE_EAST;
+    private VoxelShape RIGHT_SHAPE_WEST;
+
+    public ConnectedFurnitureBlock(Properties pProperties, TagKey<Block> inputCompatibleBlockSet, VoxelShape soloShape, VoxelShape leftShape, VoxelShape middleShape, VoxelShape rightShape) {
         super(pProperties);
+
+        SOLO_SHAPE_NORTH = soloShape;
+        SOLO_SHAPE_SOUTH = VoxelRotator.rotateToDirection(Direction.SOUTH, soloShape);
+        SOLO_SHAPE_EAST = VoxelRotator.rotateToDirection(Direction.EAST, soloShape);
+        SOLO_SHAPE_WEST = VoxelRotator.rotateToDirection(Direction.WEST, soloShape);
+
+        LEFT_SHAPE_NORTH = leftShape;
+        LEFT_SHAPE_SOUTH = VoxelRotator.rotateToDirection(Direction.SOUTH, leftShape);
+        LEFT_SHAPE_EAST = VoxelRotator.rotateToDirection(Direction.EAST, leftShape);
+        LEFT_SHAPE_WEST = VoxelRotator.rotateToDirection(Direction.WEST, leftShape);
+
+        MIDDLE_SHAPE_NORTH = middleShape;
+        MIDDLE_SHAPE_SOUTH = VoxelRotator.rotateToDirection(Direction.SOUTH, middleShape);
+        MIDDLE_SHAPE_EAST = VoxelRotator.rotateToDirection(Direction.EAST, middleShape);
+        MIDDLE_SHAPE_WEST = VoxelRotator.rotateToDirection(Direction.WEST, middleShape);
+
+        RIGHT_SHAPE_NORTH = rightShape;
+        RIGHT_SHAPE_SOUTH = VoxelRotator.rotateToDirection(Direction.SOUTH, rightShape);
+        RIGHT_SHAPE_EAST = VoxelRotator.rotateToDirection(Direction.EAST, rightShape);
+        RIGHT_SHAPE_WEST = VoxelRotator.rotateToDirection(Direction.WEST, rightShape);
+
         this.BlockSetFamily = inputCompatibleBlockSet;
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(TYPE, FurnitureConnectionState.SOLO) //Default state if placed with no player present
@@ -44,7 +85,38 @@ public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implemen
 
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return SHAPE;
+        switch (pState.getValue(TYPE)) {
+
+            case SOLO: switch (pState.getValue(FACING)) {
+                case SOUTH: return SOLO_SHAPE_SOUTH;
+                case EAST: return SOLO_SHAPE_EAST;
+                case WEST: return SOLO_SHAPE_WEST;
+                default: return SOLO_SHAPE_NORTH;
+            }
+
+            case LEFT: switch (pState.getValue(FACING)) {
+                case SOUTH: return LEFT_SHAPE_SOUTH;
+                case EAST: return LEFT_SHAPE_EAST;
+                case WEST: return LEFT_SHAPE_WEST;
+                default: return LEFT_SHAPE_NORTH;
+            }
+
+            case MIDDLE: switch (pState.getValue(FACING)) {
+                case SOUTH: return MIDDLE_SHAPE_SOUTH;
+                case EAST: return MIDDLE_SHAPE_EAST;
+                case WEST: return MIDDLE_SHAPE_WEST;
+                default: return MIDDLE_SHAPE_NORTH;
+            }
+
+            case RIGHT: switch (pState.getValue(FACING)) {
+                case SOUTH: return RIGHT_SHAPE_SOUTH;
+                case EAST: return RIGHT_SHAPE_EAST;
+                case WEST: return RIGHT_SHAPE_WEST;
+                default: return RIGHT_SHAPE_NORTH;
+            }
+
+            default: return SOLO_SHAPE_NORTH;
+        }
     }
 
     @Override

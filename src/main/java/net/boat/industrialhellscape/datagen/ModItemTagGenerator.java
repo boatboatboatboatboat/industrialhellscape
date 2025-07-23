@@ -25,6 +25,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 
         this.tag(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM)
                 .add(
+                        //Full BLocks
                         ModBlocks.VESSELPLATE.get().asItem(),
                         ModBlocks.VESSELPLATE_GRATE_BLOCK.get().asItem(),
                         ModBlocks.VESSELPLATE_GRATE.get().asItem(),
@@ -34,6 +35,15 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
                         ModBlocks.SMOOTH_VESSELPLATE_TILE.get().asItem(),
                         ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem(),
+
+                        ModBlocks.GRAY_STRUT.get().asItem(),
+                        ModBlocks.GRAY_STRUT_STAIRS.get().asItem(),
+                        ModBlocks.GRAY_STRUT_SLAB.get().asItem(),
+
+                        ModBlocks.GRAY_CATWALK_STRUT.get().asItem(),
+                        ModBlocks.GRAY_CATWALK_STRUT_SLAB.get().asItem(),
+                        ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get().asItem(),
+
                         ModBlocks.HORIZONTAL_ENCASED_CABLES.get().asItem(),
                         ModBlocks.VERTICAL_ENCASED_CABLES.get().asItem()
                 );
@@ -44,13 +54,13 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 );
         this.tag(ModTags.Items.ROCKRETE_SMELTABLE_ITEM)
                 .add(
-                        ModBlocks.BUNKER_WALL.get().asItem(),
-
+                        //Full Blocks
                         ModBlocks.HAZARD_STRIPE_RED.get().asItem(),
                         ModBlocks.HAZARD_STRIPE_YELLOW.get().asItem(),
 
-                        ModBlocks.LIGHT_GRAY_ROCKRETE_REBAR.get().asItem(),
-                        ModBlocks.LIGHT_GRAY_ROCKRETE.get().asItem()
+                        ModBlocks.GRAY_ROCKRETE_PILLAR.get().asItem(),
+                        ModBlocks.GRAY_ROCKRETE_REBAR.get().asItem(),
+                        ModBlocks.GRAY_ROCKRETE.get().asItem()
                 );
 
         //----------
@@ -59,6 +69,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
         this.tag(ModTags.Items.VESSELPLATE_STONECUT_OUTPUTS)
                 .add(
                         ModBlocks.VESSELPLATE.get().asItem(),
+                        ModBlocks.RIVETED_VESSELPLATE.get().asItem(),
                         ModBlocks.VESSELPLATE_GRATE_BLOCK.get().asItem(),
                         ModBlocks.VESSELPLATE_GRATE.get().asItem(),
                         ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem(),
@@ -93,12 +104,12 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 );
         this.tag(ModTags.Items.ROCKRETE_STONECUT_OUTPUTS)
                 .add(
-                        ModBlocks.BUNKER_WALL.get().asItem(),
 
-                        ModBlocks.LIGHT_GRAY_ROCKRETE.get().asItem(),
-                        ModBlocks.LIGHT_GRAY_ROCKRETE_REBAR.get().asItem(),
-                        ModBlocks.LIGHT_GRAY_ROCKRETE_STAIRS.get().asItem(),
-                        ModBlocks.LIGHT_GRAY_ROCKRETE_SLAB.get().asItem(),
+                        ModBlocks.GRAY_ROCKRETE.get().asItem(),
+                        ModBlocks.GRAY_ROCKRETE_REBAR.get().asItem(),
+                        ModBlocks.GRAY_ROCKRETE_PILLAR.get().asItem(),
+                        ModBlocks.GRAY_ROCKRETE_STAIRS.get().asItem(),
+                        ModBlocks.GRAY_ROCKRETE_SLAB.get().asItem(),
 
                         ModBlocks.HAZARD_STRIPE_YELLOW.get().asItem(),
                         ModBlocks.HAZARD_STRIPE_RED.get().asItem(),

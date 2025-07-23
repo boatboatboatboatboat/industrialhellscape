@@ -24,6 +24,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         //IRON-LIKE BLOCKS
         blockWithItem(ModBlocks.VESSELPLATE);
+        blockWithItem(ModBlocks.RIVETED_VESSELPLATE);
         blockWithItem(ModBlocks.VESSELPLATE_GRATE_BLOCK);
         blockWithItem(ModBlocks.VESSELPLATE_GRATE);
         blockWithItem(ModBlocks.RUSTY_VESSELPLATE_GRATE);
@@ -60,14 +61,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         //STONE-LIKE BLOCKS
 
-        blockWithItem(ModBlocks.LIGHT_GRAY_ROCKRETE);
-        blockWithItem(ModBlocks.LIGHT_GRAY_ROCKRETE_REBAR);
-        stairsBlock(((StairBlock) ModBlocks.LIGHT_GRAY_ROCKRETE_STAIRS.get()), blockTexture(ModBlocks.LIGHT_GRAY_ROCKRETE.get()));
-        slabBlock(((SlabBlock) ModBlocks.LIGHT_GRAY_ROCKRETE_SLAB.get()), blockTexture(ModBlocks.LIGHT_GRAY_ROCKRETE.get()), blockTexture(ModBlocks.LIGHT_GRAY_ROCKRETE.get()));
-
         blockWithItem(ModBlocks.GRAY_ROCKRETE);
-        blockWithItem(ModBlocks.WHITE_ROCKRETE);
-        blockWithItem(ModBlocks.BLACK_ROCKRETE);
+        blockWithItem(ModBlocks.GRAY_ROCKRETE_REBAR);
+        stairsBlock(((StairBlock) ModBlocks.GRAY_ROCKRETE_STAIRS.get()), blockTexture(ModBlocks.GRAY_ROCKRETE.get()));
+        slabBlock(((SlabBlock) ModBlocks.GRAY_ROCKRETE_SLAB.get()), blockTexture(ModBlocks.GRAY_ROCKRETE.get()), blockTexture(ModBlocks.GRAY_ROCKRETE.get()));
 
         blockWithItem(ModBlocks.HAZARD_STRIPE_YELLOW);
         blockWithItem(ModBlocks.HAZARD_STRIPE_RED);

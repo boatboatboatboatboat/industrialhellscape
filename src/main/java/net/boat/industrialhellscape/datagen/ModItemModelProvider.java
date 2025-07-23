@@ -23,12 +23,12 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         simpleItem(ModItems.FLOPPY_DISK);
         simpleItem(ModItems.FLOPPY_DISKETTE);
-        //simpleItem(ModItems.INHELL_HAVEN_DEVICE);
         simpleItem(ModItems.MALEVOLENT_MULTITOOL);
         simpleItem(ModItems.VAPORWAVE_CASSETTE);
 
-        evenSimplerBlockItem(ModBlocks.LIGHT_GRAY_ROCKRETE_STAIRS);
-        evenSimplerBlockItem(ModBlocks.LIGHT_GRAY_ROCKRETE_SLAB);
+        evenSimplerBlockItem(ModBlocks.RIVETED_VESSELPLATE);
+        evenSimplerBlockItem(ModBlocks.GRAY_ROCKRETE_STAIRS);
+        evenSimplerBlockItem(ModBlocks.GRAY_ROCKRETE_SLAB);
 
         evenSimplerBlockItem(ModBlocks.STRUT_STAIRS);
         evenSimplerBlockItem(ModBlocks.STRUT_SLAB);

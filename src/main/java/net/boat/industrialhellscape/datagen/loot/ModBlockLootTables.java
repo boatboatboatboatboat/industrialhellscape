@@ -15,27 +15,26 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        //IRONLIKE BLOCKS
+        //IRONLIKE SIMPLE BLOCKS
         this.dropSelf(ModBlocks.VESSELPLATE.get());
         this.dropSelf(ModBlocks.VESSELPLATE_GRATE_BLOCK.get());
+        this.dropSelf(ModBlocks.RIVETED_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE_TILE.get());
 
         //STONELIKE BLOCKS
         this.dropSelf(ModBlocks.GRAY_ROCKRETE.get());
-        this.dropSelf(ModBlocks.LIGHT_GRAY_ROCKRETE.get());
-        this.dropSelf(ModBlocks.LIGHT_GRAY_ROCKRETE_REBAR.get());
-        this.dropSelf(ModBlocks.LIGHT_GRAY_ROCKRETE_STAIRS.get());
-        this.add(ModBlocks.LIGHT_GRAY_ROCKRETE_SLAB.get(),
-                block -> createSlabItemTable(ModBlocks.LIGHT_GRAY_ROCKRETE_SLAB.get())
+        this.dropSelf(ModBlocks.GRAY_ROCKRETE_REBAR.get());
+        this.dropSelf(ModBlocks.GRAY_ROCKRETE_STAIRS.get());
+        this.dropSelf(ModBlocks.GRAY_ROCKRETE_PILLAR.get());
+        this.add(ModBlocks.GRAY_ROCKRETE_SLAB.get(),
+                block -> createSlabItemTable(ModBlocks.GRAY_ROCKRETE_SLAB.get())
                 );
 
-        this.dropSelf(ModBlocks.WHITE_ROCKRETE.get());
-        this.dropSelf(ModBlocks.BLACK_ROCKRETE.get());
         this.dropSelf(ModBlocks.HAZARD_STRIPE_YELLOW.get());
         this.dropSelf(ModBlocks.HAZARD_STRIPE_RED.get());
         this.dropSelf(ModBlocks.GRIMY_RESTROOM_TILE.get());
 
         //SPECIAL BLOCKS
-        this.dropSelf(ModBlocks.BUNKER_WALL.get());
         this.dropSelf(ModBlocks.VESSELPLATE_PILLAR.get());
         this.dropSelf(ModBlocks.SOUND_BLOCK.get());
         this.dropSelf(ModBlocks.VESSELPLATE_GRATE.get());
@@ -45,7 +44,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.REINFORCED_VESSELGLASS.get());
         this.dropSelf(ModBlocks.VESSELGLASS.get());
         this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE.get());
-        this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE_TILE.get());
+
+        this.dropSelf(ModBlocks.HVAC_PIPES_ARRAY.get());
 
         this.dropSelf(ModBlocks.DESK.get());
         this.dropSelf(ModBlocks.DESK_DRAWER.get());

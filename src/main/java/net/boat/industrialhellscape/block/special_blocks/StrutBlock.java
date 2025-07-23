@@ -31,7 +31,7 @@ import java.util.List;
 public class StrutBlock extends Block implements SimpleWaterloggedBlock {
 
     //Smaller than full-size collision hitbox to allow player to climb block
-    protected static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
+    protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 14.0D, 14.0D);
 
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {

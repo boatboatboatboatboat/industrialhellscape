@@ -1,6 +1,8 @@
 package net.boat.industrialhellscape.block.special_blocks.StorageBlock;
 
+import net.boat.industrialhellscape.block.special_blocks_properties.HitboxGeometryCollection;
 import net.boat.industrialhellscape.block.special_blocks_properties.ModBlockEntities;
+import net.boat.industrialhellscape.block.special_blocks_properties.VoxelRotator;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -30,16 +32,23 @@ import net.minecraft.world.level.block.RenderShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class NineSlotMenuBlock extends HorizontalDirectionalBlock implements EntityBlock, SimpleWaterloggedBlock {
-    private static final VoxelShape SHAPE_NORTH = Block.box(0, 0, 8, 16, 16, 16);
-    private static final VoxelShape SHAPE_SOUTH = Block.box(0, 0, 0, 16, 16, 8);
-    private static final VoxelShape SHAPE_WEST = Block.box(8, 0, 0, 16, 16, 16);
-    private static final VoxelShape SHAPE_EAST = Block.box(0, 0, 0, 8, 16, 16);
+public class NineSlotMenuBlock extends HorizontalDirectionalBlock implements EntityBlock, SimpleWaterloggedBlock, HitboxGeometryCollection {
+
+    private VoxelShape SHAPE_NORTH;
+    private VoxelShape SHAPE_SOUTH;
+    private VoxelShape SHAPE_EAST;
+    private VoxelShape SHAPE_WEST;
+
+
     private static DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    public NineSlotMenuBlock(Properties properties) {
-        super(properties);
+    public NineSlotMenuBlock(Properties pProperties, VoxelShape pHitbox) {
+        super(pProperties);
+        SHAPE_NORTH = pHitbox;
+        SHAPE_SOUTH = VoxelRotator.rotateToDirection(Direction.SOUTH, SHAPE_NORTH);
+        SHAPE_EAST = VoxelRotator.rotateToDirection(Direction.EAST, SHAPE_NORTH);
+        SHAPE_WEST = VoxelRotator.rotateToDirection(Direction.WEST, SHAPE_NORTH);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(WATERLOGGED, false));
@@ -80,9 +89,8 @@ public class NineSlotMenuBlock extends HorizontalDirectionalBlock implements Ent
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         switch (pState.getValue(FACING)) {
-            case NORTH: return SHAPE_NORTH;
-            case SOUTH: return SHAPE_SOUTH;
             case EAST: return SHAPE_EAST;
+            case SOUTH: return SHAPE_SOUTH;
             case WEST: return SHAPE_WEST;
             default: return SHAPE_NORTH;
         }
