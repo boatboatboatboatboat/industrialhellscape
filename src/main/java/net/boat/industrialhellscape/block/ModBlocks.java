@@ -2,6 +2,7 @@ package net.boat.industrialhellscape.block;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.special_blocks.*;
+import net.boat.industrialhellscape.block.special_blocks.PipeBlock;
 import net.boat.industrialhellscape.block.special_blocks.PlacedFacingBlock;
 import net.boat.industrialhellscape.block.special_blocks.StorageBlock.ConnectedFurniture9SlotStorageBlock;
 import net.boat.industrialhellscape.block.special_blocks.StorageBlock.NineSlotMenuBlock;
@@ -93,7 +94,14 @@ public class ModBlocks {
     );
 
     public static final RegistryObject<Block> HVAC_PIPES_ARRAY = registerBlock("hvac_pipes_array",
-            () -> new PipeConduitBlock(BlockBehaviour
+            () -> new PipeBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .requiresCorrectToolForDrops()
+                    .noOcclusion()) //CHANGE
+    );
+
+    public static final RegistryObject<Block> HVAC_PIPES_ARRAY_CORNER = registerBlock("hvac_pipes_array_corner",
+            () -> new PipePlanarCornerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .requiresCorrectToolForDrops()
                     .noOcclusion()) //CHANGE

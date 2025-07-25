@@ -1,4 +1,4 @@
-// 1.20.1	2025-07-23T03:59:57.4951929	Loot Tables
+// 1.20.1	2025-07-23T15:19:59.4297518	Loot Tables
 750c3e504930a00a60029fe9b3d995f26f7c5738 data/industrialhellscape/loot_tables/blocks/amenity_furnishings.json
 1f50dc11c46010cc31defdc0888915b334455131 data/industrialhellscape/loot_tables/blocks/catwalk_strut.json
 5549c9583141205d635f628a31c96f8948d355e1 data/industrialhellscape/loot_tables/blocks/catwalk_strut_slab.json
@@ -22,6 +22,7 @@ a1ff3662417fa64990ffd4156b542c2af0b15d0c data/industrialhellscape/loot_tables/bl
 9a0c797040d77bfe9136f909e473fb52b54da1c1 data/industrialhellscape/loot_tables/blocks/horizontal_encased_cables.json
 4023609f3eac8170014221e08bdb2431400c19aa data/industrialhellscape/loot_tables/blocks/horizontal_riveted_vesselplate.json
 887ecea8f40ad9b68378ce62963bd33031ba0565 data/industrialhellscape/loot_tables/blocks/hvac_pipes_array.json
+587902066b5115a15cf9e3074dc372d71180663d data/industrialhellscape/loot_tables/blocks/hvac_pipes_array_corner.json
 47e2751643f540439ec7500f23e77b7419785e25 data/industrialhellscape/loot_tables/blocks/hygiene_furnishings.json
 64c9bc10989e67b28fe16e24249346dcada96d01 data/industrialhellscape/loot_tables/blocks/ihea_furniture_kit.json
 d079852c839464cfaa0e06fac8cb6fcc56151ff5 data/industrialhellscape/loot_tables/blocks/industrial_furnishings.json

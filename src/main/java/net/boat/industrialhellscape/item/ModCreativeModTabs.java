@@ -56,6 +56,7 @@ public class ModCreativeModTabs {
                         //output.accept(ModBlocks.SOUND_BLOCK.get());
 
                         output.accept(ModBlocks.HVAC_PIPES_ARRAY.get());
+                        output.accept(ModBlocks.HVAC_PIPES_ARRAY_CORNER.get());
 
                         output.accept(ModBlocks.DESK.get());
                         output.accept(ModBlocks.DESK_DRAWER.get());

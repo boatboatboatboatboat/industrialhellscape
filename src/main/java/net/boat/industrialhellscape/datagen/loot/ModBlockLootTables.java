@@ -46,6 +46,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE.get());
 
         this.dropSelf(ModBlocks.HVAC_PIPES_ARRAY.get());
+        this.dropSelf(ModBlocks.HVAC_PIPES_ARRAY_CORNER.get());
 
         this.dropSelf(ModBlocks.DESK.get());
         this.dropSelf(ModBlocks.DESK_DRAWER.get());

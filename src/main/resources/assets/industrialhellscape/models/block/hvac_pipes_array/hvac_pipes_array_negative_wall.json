@@ -1,0 +1,75 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "industrialhellscape:block/hvac_pipes_array",
+		"particle": "industrialhellscape:block/hvac_pipes_array"
+	},
+	"elements": [
+		{
+			"from": [3, 11, 1],
+			"to": [16, 15, 5],
+			"faces": {
+				"north": {"uv": [6.5, 6.5, 0, 8.5], "texture": "#0"},
+				"south": {"uv": [0, 6.5, 6.5, 8.5], "texture": "#0"},
+				"up": {"uv": [0, 8.5, 6.5, 6.5], "texture": "#0"},
+				"down": {"uv": [6.5, 8.5, 0, 6.5], "rotation": 180, "texture": "#0"}
+			}
+		},
+		{
+			"from": [3, 6, 1],
+			"to": [16, 10, 5],
+			"faces": {
+				"north": {"uv": [6.5, 6.5, 0, 8.5], "texture": "#0"},
+				"south": {"uv": [0, 6.5, 6.5, 8.5], "texture": "#0"},
+				"up": {"uv": [0, 8.5, 6.5, 6.5], "texture": "#0"},
+				"down": {"uv": [6.5, 8.5, 0, 6.5], "rotation": 180, "texture": "#0"}
+			}
+		},
+		{
+			"from": [3, 1, 1],
+			"to": [16, 5, 5],
+			"faces": {
+				"north": {"uv": [6.5, 6.5, 0, 8.5], "texture": "#0"},
+				"south": {"uv": [0, 6.5, 6.5, 8.5], "texture": "#0"},
+				"up": {"uv": [0, 8.5, 6.5, 6.5], "texture": "#0"},
+				"down": {"uv": [6.5, 8.5, 0, 6.5], "rotation": 180, "texture": "#0"}
+			}
+		},
+		{
+			"from": [0, 0, 0],
+			"to": [3, 16, 6],
+			"faces": {
+				"north": {"uv": [8, 1.5, 0, 0], "rotation": 270, "texture": "#0"},
+				"east": {"uv": [0, 1.5, 8, 4.5], "rotation": 90, "texture": "#0"},
+				"south": {"uv": [8, 0, 0, 1.5], "rotation": 270, "texture": "#0"},
+				"west": {"uv": [0, 4.5, 8, 1.5], "rotation": 270, "texture": "#0"},
+				"up": {"uv": [8, 0, 9.5, 3], "texture": "#0"},
+				"down": {"uv": [8, 0, 9.5, 3], "rotation": 180, "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "group",
+			"origin": [13, 1, 0],
+			"color": 0,
+			"children": [
+				{
+					"name": "pipes",
+					"origin": [7, 1, 0],
+					"color": 0,
+					"children": [0, 1, 2]
+				},
+				{
+					"name": "brackets",
+					"origin": [13, 1, 0],
+					"color": 0,
+					"children": [3]
+				}
+			]
+		}
+	]
+}
