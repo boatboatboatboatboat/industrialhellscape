@@ -36,7 +36,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
         //SPECIAL BLOCKS
         this.dropSelf(ModBlocks.VESSELPLATE_PILLAR.get());
-        this.dropSelf(ModBlocks.SOUND_BLOCK.get());
         this.dropSelf(ModBlocks.VESSELPLATE_GRATE.get());
         this.dropSelf(ModBlocks.RUSTY_VESSELPLATE_GRATE.get());
         this.dropSelf(ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get());
@@ -45,14 +44,18 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.VESSELGLASS.get());
         this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE.get());
 
-        this.dropSelf(ModBlocks.HVAC_PIPES_ARRAY.get());
-        this.dropSelf(ModBlocks.HVAC_PIPES_ARRAY_CORNER.get());
+        this.dropSelf(ModBlocks.COPPER_PIPE_CONDUIT.get());
+        this.dropSelf(ModBlocks.COPPER_PIPE_CONDUIT_PLANAR_CORNER.get());
+        this.dropSelf(ModBlocks.COPPER_PIPE_CONDUIT_INNER_CORNER.get());
+        this.dropSelf(ModBlocks.COPPER_PIPE_CONDUIT_OUTER_CORNER.get());
 
         this.dropSelf(ModBlocks.DESK.get());
         this.dropSelf(ModBlocks.DESK_DRAWER.get());
         this.dropSelf(ModBlocks.METAL_DESK.get());
         this.dropSelf(ModBlocks.METAL_DESK_DRAWER.get());
         this.dropSelf(ModBlocks.METAL_DESK_DRAWER_2.get());
+        this.dropSelf(ModBlocks.RETRO_COMPUTER.get());
+        this.dropSelf(ModBlocks.PIPEWORKS.get());
 
         this.dropSelf(ModBlocks.STRUT.get());
         this.dropSelf(ModBlocks.CATWALK_STRUT.get());

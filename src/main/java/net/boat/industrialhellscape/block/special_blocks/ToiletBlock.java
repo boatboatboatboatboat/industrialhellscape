@@ -1,7 +1,7 @@
 package net.boat.industrialhellscape.block.special_blocks;
 
 import net.boat.industrialhellscape.block.special_blocks_properties.HitboxGeometryCollection;
-import net.boat.industrialhellscape.block.special_blocks_properties.VoxelRotator;
+import net.boat.industrialhellscape.block.special_blocks_properties.RotationHelper;
 import net.boat.industrialhellscape.entity.ModEntities;
 import net.boat.industrialhellscape.entity.custom.SittableEntity;
 import net.boat.industrialhellscape.sound.ModSounds;
@@ -38,7 +38,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ToiletBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock, VoxelRotator, HitboxGeometryCollection {
+public class ToiletBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock, RotationHelper, HitboxGeometryCollection {
 
     private static VoxelShape SHAPE_NORTH;
     private static VoxelShape SHAPE_SOUTH;
@@ -53,9 +53,9 @@ public class ToiletBlock extends HorizontalDirectionalBlock implements SimpleWat
     public ToiletBlock(Properties pProperties, VoxelShape pHitBox) {
         super(pProperties);
         SHAPE_NORTH = pHitBox;
-        SHAPE_SOUTH = VoxelRotator.rotateToDirection(Direction.SOUTH, SHAPE_NORTH);
-        SHAPE_EAST = VoxelRotator.rotateToDirection(Direction.EAST, SHAPE_NORTH);
-        SHAPE_WEST = VoxelRotator.rotateToDirection(Direction.WEST, SHAPE_NORTH);
+        SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, SHAPE_NORTH);
+        SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, SHAPE_NORTH);
+        SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, SHAPE_NORTH);
 
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)

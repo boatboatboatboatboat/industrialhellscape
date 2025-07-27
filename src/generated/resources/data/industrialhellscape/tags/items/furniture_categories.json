@@ -1,6 +1,9 @@
 {
   "values": [
     "industrialhellscape:safety_furnishings",
-    "industrialhellscape:hygiene_furnishings"
+    "industrialhellscape:hygiene_furnishings",
+    "industrialhellscape:industrial_furnishings",
+    "industrialhellscape:technology_furnishings",
+    "industrialhellscape:amenity_furnishings"
   ]
 }

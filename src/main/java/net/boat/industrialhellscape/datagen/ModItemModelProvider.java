@@ -26,19 +26,22 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.MALEVOLENT_MULTITOOL);
         simpleItem(ModItems.VAPORWAVE_CASSETTE);
 
-        evenSimplerBlockItem(ModBlocks.RIVETED_VESSELPLATE);
-        evenSimplerBlockItem(ModBlocks.GRAY_ROCKRETE_STAIRS);
-        evenSimplerBlockItem(ModBlocks.GRAY_ROCKRETE_SLAB);
+        SimpleBlockItem(ModBlocks.RIVETED_VESSELPLATE);
+        SimpleBlockItem(ModBlocks.GRAY_ROCKRETE_STAIRS);
+        SimpleBlockItem(ModBlocks.GRAY_ROCKRETE_SLAB);
+        SimpleBlockItem(ModBlocks.PIPEWORKS);
 
-        evenSimplerBlockItem(ModBlocks.STRUT_STAIRS);
-        evenSimplerBlockItem(ModBlocks.STRUT_SLAB);
-        evenSimplerBlockItem(ModBlocks.CATWALK_STRUT_STAIRS);
-        evenSimplerBlockItem(ModBlocks.CATWALK_STRUT_SLAB);
+        SimpleBlockItem(ModBlocks.STRUT_STAIRS);
+        SimpleBlockItem(ModBlocks.STRUT_SLAB);
+        SimpleBlockItem(ModBlocks.CATWALK_STRUT_STAIRS);
+        SimpleBlockItem(ModBlocks.CATWALK_STRUT_SLAB);
 
-        evenSimplerBlockItem(ModBlocks.GRAY_STRUT_STAIRS);
-        evenSimplerBlockItem(ModBlocks.GRAY_STRUT_SLAB);
-        evenSimplerBlockItem(ModBlocks.GRAY_CATWALK_STRUT_STAIRS);
-        evenSimplerBlockItem(ModBlocks.GRAY_CATWALK_STRUT_SLAB);
+        SimpleBlockItem(ModBlocks.GRAY_STRUT_STAIRS);
+        SimpleBlockItem(ModBlocks.GRAY_STRUT_SLAB);
+        SimpleBlockItem(ModBlocks.GRAY_CATWALK_STRUT_STAIRS);
+        SimpleBlockItem(ModBlocks.GRAY_CATWALK_STRUT_SLAB);
+
+        SimpleBlockItem(ModBlocks.RETRO_COMPUTER);
 
     }
 
@@ -47,7 +50,7 @@ public class ModItemModelProvider extends ItemModelProvider {
                 new ResourceLocation("item/generated")).texture("layer0",
                 new ResourceLocation(IndustrialHellscape.MOD_ID,"item/" + item.getId().getPath()));
     }
-    public void evenSimplerBlockItem(RegistryObject<Block> block) {
+    public void SimpleBlockItem(RegistryObject<Block> block) {
         this.withExistingParent(IndustrialHellscape.MOD_ID + ":" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath(),
                 modLoc("block/" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath()));
     }

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "industrialhellscape:industrial_furnishings"
+  },
+  "result": "industrialhellscape:copper_pipe_conduit_planar_corner"
+}

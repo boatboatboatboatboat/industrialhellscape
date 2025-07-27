@@ -1,5 +1,6 @@
 package net.boat.industrialhellscape.block.special_blocks;
 
+import net.boat.industrialhellscape.block.special_blocks_properties.ConnectedModelCapability;
 import net.boat.industrialhellscape.block.special_blocks_properties.PillarConnectionState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -10,9 +11,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import org.jetbrains.annotations.Nullable; //This is what Hearth and Home uses instead of the default
+import org.jetbrains.annotations.Nullable;
 
-public class AxialPillarBlock extends Block {
+public class AxialPillarBlock extends Block implements ConnectedModelCapability {
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS; //"AXIS" is used to store the block state direction
     public static final EnumProperty<PillarConnectionState> TYPE = EnumProperty.create("type", PillarConnectionState.class); //"TYPE" is used to store enum value of "solo, pos, neg, middle"
 
@@ -30,8 +31,11 @@ public class AxialPillarBlock extends Block {
         BlockPos pos = context.getClickedPos();
         Direction.Axis axis = context.getClickedFace().getAxis();
 
-        BlockState state = this.defaultBlockState().setValue(AXIS, axis); //Determines and sets X/Y/Z direction block shall face when placed
-        state = state.setValue(TYPE, getType(state, getRelativeTop(level, pos, axis), getRelativeBottom(level, pos, axis))); //Determines and sets block type based on neighbor connection (top, middle, buttom, solo unconnected)
+        BlockState state = this.defaultBlockState().setValue(AXIS, axis); //Determines and sets X/Y/Z direction block shall align to when placed
+        state = state.setValue(TYPE, getType(state, getStateAxisPositive(level, pos, axis), getStateAxisNegative(level, pos, axis)));
+            //Determines and sets block type based on neighbor connection (top, middle, buttom, solo unconnected)
+            //See the interface ConnectedModelCapability for details on how neighboring blocks are read using
+            //getStateAxisPositive() and getStateAxisNegative()
         return state;
     }
 
@@ -40,39 +44,16 @@ public class AxialPillarBlock extends Block {
         if (level.isClientSide) return;
 
         Direction.Axis axis = state.getValue(AXIS);
-        PillarConnectionState type = getType(state, getRelativeTop(level, pos, axis), getRelativeBottom(level, pos, axis));
+        PillarConnectionState type = getType(state, getStateAxisPositive(level, pos, axis), getStateAxisNegative(level, pos, axis));
+            //See the interface ConnectedModelCapability for details on how neighboring blocks are read using
+            //getStateAxisPositive() and getStateAxisNegative()
         if (state.getValue(TYPE) == type) return;
 
         state = state.setValue(TYPE, type);
         level.setBlock(pos, state, 3);
     }
-    //My convention: "TOP" refers to any positive axis direction (XYZ), like positive Y, or up. Vice Versa for "BOTTOM"
 
-    //Method to find blockstate of the block in the positive axial direction of selected direction
-    //Outputs the block state in the positive axial direction of the selection's block state String. This is to identify the neighbor block.
-    public BlockState getRelativeTop(Level level, BlockPos pos, Direction.Axis axis) {
-        return level.getBlockState(pos.relative(Direction.fromAxisAndDirection(axis, Direction.AxisDirection.POSITIVE)));
-    }
-
-    //Method to find blockstate of the block in the negative axial direction of selected direction
-    //Outputs the block state in the negative axial direction of the selection's block state String. This is to identify the neighbor block.
-    public BlockState getRelativeBottom(Level level, BlockPos pos, Direction.Axis axis) {
-        return level.getBlockState(pos.relative(Direction.fromAxisAndDirection(axis, Direction.AxisDirection.NEGATIVE)));
-    }
-
-    //Method to determine placed block's blockstate in relation to adjacent blocks identified by getRelativeTop() and getRelativeBottom()
-    //Outputs a value of the PillarConnectionState enum.
-    public PillarConnectionState getType(BlockState state, BlockState above, BlockState below) {
-        boolean blockstate_above_is_same = above.is(state.getBlock()) && state.getValue(AXIS) == above.getValue(AXIS);
-        boolean blockstate_below_is_same = below.is(state.getBlock()) && state.getValue(AXIS) == below.getValue(AXIS);
-
-        //Where "above" and "below" refer to in the positive and negative axial direction respectively, like Y direction (height).
-        if (blockstate_above_is_same && !blockstate_below_is_same) return PillarConnectionState.NEGATIVE;
-        else if (!blockstate_above_is_same && blockstate_below_is_same) return PillarConnectionState.POSITIVE;
-        else if (blockstate_above_is_same) return PillarConnectionState.MIDDLE;
-        return PillarConnectionState.SOLO;
-    }
-    @Override //IT WILL NOT COMPILE IF THESE LINES ARE REMOVED
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(TYPE, AXIS);
     }

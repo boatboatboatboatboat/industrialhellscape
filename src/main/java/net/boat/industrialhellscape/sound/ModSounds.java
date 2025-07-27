@@ -3,6 +3,7 @@ package net.boat.industrialhellscape.sound;
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraftforge.common.util.ForgeSoundType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -21,6 +22,7 @@ public class ModSounds {
 
     public static final RegistryObject<SoundEvent> VULTA_SHATTERED = registerSoundEvents("vulta_shattered");
     public static final RegistryObject<SoundEvent> TOILET_FLUSH = registerSoundEvents("toilet_flush");
+    public static final RegistryObject<SoundEvent> METALPIPEFALLINGSOUNDEFFECT = registerSoundEvents("metalpipefallingsoundeffect");
 
     public static final RegistryObject<SoundEvent> METAL_BOX_OPEN = registerSoundEvents("metal_box_open");
     public static final RegistryObject<SoundEvent> METAL_BOX_CLOSE = registerSoundEvents("metal_box_close");
@@ -32,6 +34,14 @@ public class ModSounds {
             ModSounds.VESSELPLATE_PLACE,
             ModSounds.VESSELPLATE_HIT
             );
+
+    public static final ForgeSoundType PIPEWORKS_SOUNDS = new ForgeSoundType(2f,1.5f,
+            ()->     SoundEvents.METAL_BREAK,
+            ModSounds.METALPIPEFALLINGSOUNDEFFECT,
+            ModSounds.METALPIPEFALLINGSOUNDEFFECT,
+            ()->     SoundEvents.METAL_PLACE,
+            ()->     SoundEvents.METAL_HIT
+    );
 
     private static RegistryObject<SoundEvent> registerSoundEvents(String soundFileName) {
         return SOUND_EVENTS.register(soundFileName, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(IndustrialHellscape.MOD_ID, soundFileName)));

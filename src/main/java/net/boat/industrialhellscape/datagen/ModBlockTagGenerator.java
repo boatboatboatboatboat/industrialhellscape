@@ -8,6 +8,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
@@ -90,14 +91,27 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.METAL_DESK_DRAWER.get(),
                         ModBlocks.METAL_DESK_DRAWER_2.get()
                 );
+        this.tag(ModTags.Blocks.METAL_DESK)
+                .add(
+                        ModBlocks.METAL_DESK.get(),
+                        ModBlocks.METAL_DESK_DRAWER.get(),
+                        ModBlocks.METAL_DESK_DRAWER_2.get()
+                );
+        this.tag(ModTags.Blocks.COPPER_PIPE_CONDUIT)
+                .add(
+                        ModBlocks.COPPER_PIPE_CONDUIT.get(),
+                        ModBlocks.COPPER_PIPE_CONDUIT_PLANAR_CORNER.get(),
+                        ModBlocks.COPPER_PIPE_CONDUIT_INNER_CORNER.get(),
+                        ModBlocks.COPPER_PIPE_CONDUIT_OUTER_CORNER.get()
+                );
 
         //Furniture Category Tags (Block tags for mining tool purposes
         this.tag(ModTags.Blocks.ALL_FURNITURE)
                 .addTags(
                         ModTags.Blocks.AMENITY_FURNITURE_CATEGORY,
                         ModTags.Blocks.HYGIENE_FURNITURE_CATEGORY,
-                        //ModTags.Blocks.INDUSTRIAL_FURNITURE_CATEGORY,
-                        //ModTags.Blocks.TECHNOLOGY_FURNITURE_CATEGORY,
+                        ModTags.Blocks.INDUSTRIAL_FURNITURE_CATEGORY,
+                        ModTags.Blocks.TECHNOLOGY_FURNITURE_CATEGORY,
                         ModTags.Blocks.SAFETY_FURNITURE_CATEGORY
                 );
 
@@ -110,6 +124,17 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(
                         ModBlocks.TOILET.get()
                 );
+        this.tag(ModTags.Blocks.INDUSTRIAL_FURNITURE_CATEGORY)
+                .add(
+                        ModBlocks.COPPER_PIPE_CONDUIT.get(),
+                        ModBlocks.COPPER_PIPE_CONDUIT_PLANAR_CORNER.get(),
+                        ModBlocks.COPPER_PIPE_CONDUIT_INNER_CORNER.get(),
+                        ModBlocks.COPPER_PIPE_CONDUIT_OUTER_CORNER.get()
+                );
+        this.tag(ModTags.Blocks.TECHNOLOGY_FURNITURE_CATEGORY)
+                .add(
+                        ModBlocks.RETRO_COMPUTER.get()
+                );
         this.tag(ModTags.Blocks.AMENITY_FURNITURE_CATEGORY)
                 .add(
                         ModBlocks.DESK.get(),
@@ -121,13 +146,19 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
 
         //VANILLA TAGS BELOW
+
+        //BLOCK inputs
+        this.tag(BlockTags.NEEDS_IRON_TOOL) //When specific tool tiers are required
+                .add(
+                        ModBlocks.PIPEWORKS.get()
+                );
+
+        //TAG inputs
         this.tag(BlockTags.NEEDS_STONE_TOOL) //When specific tool tiers are required
                 .addTags(
                         ModTags.Blocks.VESSELPLATE_BLOCKS,
                         ModTags.Blocks.VESSELGLASS_BLOCKS,
                         ModTags.Blocks.ROCKRETE_BLOCKS
-
-
                 );
 
         this.tag(BlockTags.NEEDS_IRON_TOOL) //When specific tool tiers are required

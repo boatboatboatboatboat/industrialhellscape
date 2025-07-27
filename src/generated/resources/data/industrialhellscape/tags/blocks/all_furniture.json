@@ -2,6 +2,8 @@
   "values": [
     "#industrialhellscape:amenity_furniture_category",
     "#industrialhellscape:hygiene_furniture_category",
+    "#industrialhellscape:industrial_furniture_category",
+    "#industrialhellscape:technology_furniture_category",
     "#industrialhellscape:safety_furniture_category"
   ]
 }

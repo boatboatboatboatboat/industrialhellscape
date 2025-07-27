@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "industrialhellscape:copper_pipe_conduit"
+    },
+    {
+      "item": "industrialhellscape:copper_pipe_conduit"
+    },
+    {
+      "item": "industrialhellscape:copper_pipe_conduit"
+    },
+    {
+      "item": "industrialhellscape:copper_pipe_conduit"
+    },
+    {
+      "item": "industrialhellscape:copper_pipe_conduit"
+    },
+    {
+      "item": "industrialhellscape:copper_pipe_conduit"
+    },
+    {
+      "item": "industrialhellscape:copper_pipe_conduit"
+    },
+    {
+      "item": "industrialhellscape:copper_pipe_conduit"
+    },
+    {
+      "item": "industrialhellscape:copper_pipe_conduit"
+    }
+  ],
+  "result": {
+    "item": "industrialhellscape:pipeworks"
+  }
+}

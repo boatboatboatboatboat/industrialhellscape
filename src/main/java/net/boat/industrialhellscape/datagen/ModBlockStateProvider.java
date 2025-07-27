@@ -29,21 +29,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.VESSELPLATE_GRATE);
         blockWithItem(ModBlocks.RUSTY_VESSELPLATE_GRATE);
         blockWithItem(ModBlocks.GRIMY_RESTROOM_TILE);
-/*
-        stairsWithCustomTextures(
-                ModBlocks.CATWALK_STRUT_STAIRS.get(),
-                modLoc("block/floorgrate_catwalk"), //bottom
-                modLoc("block/floorgrate_catwalk"), //top
-                modLoc("block/reinforced_strut") //side
-        );
-        slabWithCustomTextures(
-                ModBlocks.CATWALK_STRUT_SLAB.get(),
-                modLoc("block/strut"), //bottom
-                modLoc("block/floorgrate_catwalk"), //top
-                modLoc("block/reinforced_strut"), //side
-                modLoc("block/catwalk_strut") //original full block for double-slab (Model)
-        );
-*/
+
         blockWithItem(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE);
         blockWithItem(ModBlocks.VERTICAL_RIVETED_VESSELPLATE);
         blockWithItem(ModBlocks.HORIZONTAL_ENCASED_CABLES);
@@ -53,14 +39,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.REINFORCED_VESSELGLASS);
         blockWithItem(ModBlocks.VESSELGLASS);
 
-       // stairsBlock(((StairBlock) ModBlocks.STRUT_STAIRS.get()), blockTexture(ModBlocks.STRUT.get()));
-      //  slabBlock(((SlabBlock) ModBlocks.STRUT_SLAB.get()), blockTexture(ModBlocks.STRUT.get()), blockTexture(ModBlocks.STRUT.get()));
-
-        //*stairsBlock(((StairBlock) ModBlocks.CATWALK_STRUT_STAIRS.get()), blockTexture(ModBlocks.STRUT.get()));
-        //slabBlock(((SlabBlock) ModBlocks.CATWALK_STRUT_SLAB.get()), blockTexture(ModBlocks.STRUT.get()), blockTexture(ModBlocks.STRUT.get()));
+        //-----
 
         //STONE-LIKE BLOCKS
-
         blockWithItem(ModBlocks.GRAY_ROCKRETE);
         blockWithItem(ModBlocks.GRAY_ROCKRETE_REBAR);
         stairsBlock(((StairBlock) ModBlocks.GRAY_ROCKRETE_STAIRS.get()), blockTexture(ModBlocks.GRAY_ROCKRETE.get()));
@@ -70,13 +51,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.HAZARD_STRIPE_RED);
 
         //SPECIAL BLOCKS
-        blockWithItem(ModBlocks.SOUND_BLOCK);
-
         simpleBlockWithItem(ModBlocks.SINK.get(),
             new ModelFile.UncheckedModelFile(modLoc("block/sink"))
         );
 
-
+        simpleHorizontalBlockStates(ModBlocks.RETRO_COMPUTER.get(),"retro_computer");
+        horizontalBlock(ModBlocks.PIPEWORKS.get(), buildHorizontalCylinderBlock("pipeworks", "pipeworks_front", "pipeworks_sides", "pipeworks_top"));
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {
@@ -104,5 +84,22 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private String name(Block block) {
         return BuiltInRegistries.BLOCK.getKey(block).getPath();
+    }
+
+    private void simpleHorizontalBlockStates(Block modBlock, String blockName ) {
+        horizontalBlock(modBlock, models().getExistingFile(modLoc("block/" + blockName)));
+    }
+
+    private ModelFile buildHorizontalCylinderBlock(String blockName, String frontAndBack, String leftAndRight, String topAndBottom) {
+        ModelFile model = models().cube(
+                "pipeworks",
+                modLoc( "block/" + blockName+ "/" + topAndBottom), //bottom
+                modLoc("block/" + blockName+ "/" + topAndBottom), //top
+                modLoc("block/" + blockName+ "/" + frontAndBack), //front
+                modLoc("block/" + blockName+ "/" + frontAndBack), //back
+                modLoc("block/"  + blockName+ "/" + leftAndRight), //left
+                modLoc("block/"  + blockName+ "/" + leftAndRight) //right
+                ).texture("particle", modLoc("block/" + blockName +"/" + topAndBottom));;
+        return model;
     }
 }

@@ -46,6 +46,54 @@ public interface HitboxGeometryCollection {
 
         return shape;
     }
+
+    static VoxelShape INNER_CORNER_UP(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0, 0.6875, 0, 1, 1, 1), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0, 0, 0, 1, 0.6875, 0.3125), BooleanOp.OR);
+
+        return shape;
+    }
+
+    static VoxelShape INNER_CORNER_DOWN(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0, 0, 0, 1, 0.3125, 1), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0, 0.3125, 0, 1, 1, 0.3125), BooleanOp.OR);
+
+        return shape;
+    }
+
+    static VoxelShape INNER_CORNER_SIDE(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0, 0, 0, 0.3125, 1, 1), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.3125, 0, 0, 1, 1, 0.3125), BooleanOp.OR);
+        return shape;
+    }
+
+    static VoxelShape OUTER_CORNER_UP(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0, 0.6875, 0, 0.9375, 1, 0.3125), BooleanOp.OR);
+
+        return shape;
+    }
+
+    static VoxelShape OUTER_CORNER_DOWN(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0, 0, 1, 0.3125, 0.3125), BooleanOp.OR);
+
+        return shape;
+    }
+
+    static VoxelShape OUTER_CORNER_SIDE(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0, 0, 0, 0.3125, 0.9375, 0.3125), BooleanOp.OR);
+
+        return shape;
+    }
+
+
+
+
     //CLASSIC DESK
     static VoxelShape DESK_SOLO_SHAPE(){
         VoxelShape shape = Shapes.empty();

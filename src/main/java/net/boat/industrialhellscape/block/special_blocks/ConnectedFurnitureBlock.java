@@ -1,8 +1,8 @@
 package net.boat.industrialhellscape.block.special_blocks;
 
-import net.boat.industrialhellscape.block.special_blocks_properties.HorizontalConnectedModelCapability;
+import net.boat.industrialhellscape.block.special_blocks_properties.ConnectedModelCapability;
 import net.boat.industrialhellscape.block.special_blocks_properties.FurnitureConnectionState;
-import net.boat.industrialhellscape.block.special_blocks_properties.VoxelRotator;
+import net.boat.industrialhellscape.block.special_blocks_properties.RotationHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.TagKey;
@@ -25,7 +25,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implements HorizontalConnectedModelCapability, SimpleWaterloggedBlock {
+public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implements ConnectedModelCapability, SimpleWaterloggedBlock {
 
     public static final EnumProperty<FurnitureConnectionState> TYPE = EnumProperty.create("type", FurnitureConnectionState.class); //"TYPE" is used to store enum value of "solo, left, right, middle" for block connected variants
     public static DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING; //"FACING" is used to store DirectionProperty value of "north, south, east, west" //KJ
@@ -56,24 +56,24 @@ public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implemen
         super(pProperties);
 
         SOLO_SHAPE_NORTH = soloShape;
-        SOLO_SHAPE_SOUTH = VoxelRotator.rotateToDirection(Direction.SOUTH, soloShape);
-        SOLO_SHAPE_EAST = VoxelRotator.rotateToDirection(Direction.EAST, soloShape);
-        SOLO_SHAPE_WEST = VoxelRotator.rotateToDirection(Direction.WEST, soloShape);
+        SOLO_SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, soloShape);
+        SOLO_SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, soloShape);
+        SOLO_SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, soloShape);
 
         LEFT_SHAPE_NORTH = leftShape;
-        LEFT_SHAPE_SOUTH = VoxelRotator.rotateToDirection(Direction.SOUTH, leftShape);
-        LEFT_SHAPE_EAST = VoxelRotator.rotateToDirection(Direction.EAST, leftShape);
-        LEFT_SHAPE_WEST = VoxelRotator.rotateToDirection(Direction.WEST, leftShape);
+        LEFT_SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, leftShape);
+        LEFT_SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, leftShape);
+        LEFT_SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, leftShape);
 
         MIDDLE_SHAPE_NORTH = middleShape;
-        MIDDLE_SHAPE_SOUTH = VoxelRotator.rotateToDirection(Direction.SOUTH, middleShape);
-        MIDDLE_SHAPE_EAST = VoxelRotator.rotateToDirection(Direction.EAST, middleShape);
-        MIDDLE_SHAPE_WEST = VoxelRotator.rotateToDirection(Direction.WEST, middleShape);
+        MIDDLE_SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, middleShape);
+        MIDDLE_SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, middleShape);
+        MIDDLE_SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, middleShape);
 
         RIGHT_SHAPE_NORTH = rightShape;
-        RIGHT_SHAPE_SOUTH = VoxelRotator.rotateToDirection(Direction.SOUTH, rightShape);
-        RIGHT_SHAPE_EAST = VoxelRotator.rotateToDirection(Direction.EAST, rightShape);
-        RIGHT_SHAPE_WEST = VoxelRotator.rotateToDirection(Direction.WEST, rightShape);
+        RIGHT_SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, rightShape);
+        RIGHT_SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, rightShape);
+        RIGHT_SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, rightShape);
 
         this.BlockSetFamily = inputCompatibleBlockSet;
         this.registerDefaultState(this.stateDefinition.any()
@@ -85,6 +85,9 @@ public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implemen
 
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+
+        //When placed, if the block's "TYPE" property is one of these cases, find its horizontal orientation and give it the correct hitbox
+        //North is the default orientation assumed if no other cases met
         switch (pState.getValue(TYPE)) {
 
             case SOLO: switch (pState.getValue(FACING)) {
@@ -132,12 +135,12 @@ public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implemen
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
         Direction directionClicked = pContext.getHorizontalDirection(); //Gets the cardinal direction when player places new block
         BlockState state = this.defaultBlockState().setValue(FACING, directionClicked); //First, defines facing direction of the block
-        state = state.setValue(TYPE, getType(state, getRelativeLeft(level, positionClicked, directionClicked), getRelativeRight(level, positionClicked, directionClicked), BlockSetFamily)); //Second, defines connection type of the block
+        state = state.setValue(TYPE, getTypeAndFamily(state, getStateRelativeLeft(level, positionClicked, directionClicked), getStateRelativeRight(level, positionClicked, directionClicked), BlockSetFamily)); //Second, defines connection type of the block
         state = state.setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER)); //check for waterlogging status
         return state;
     }
 
-    @Override //THIS TELLS THE NEIGHBORS TO UPDATE
+    @Override
     public void neighborChanged(BlockState state, Level level, BlockPos positionClicked, Block block, BlockPos fromPos, boolean isMoving) {
         if (!level.isClientSide) {
             if (state.getValue(WATERLOGGED)) {
@@ -148,7 +151,7 @@ public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implemen
         if (level.isClientSide) return;
 
         Direction directionClicked = state.getValue(FACING); //<<<<<< Possibly here
-        FurnitureConnectionState type = getType(state, getRelativeLeft(level, positionClicked, directionClicked), getRelativeRight(level, positionClicked, directionClicked), BlockSetFamily);
+        FurnitureConnectionState type = getTypeAndFamily(state, getStateRelativeLeft(level, positionClicked, directionClicked), getStateRelativeRight(level, positionClicked, directionClicked), BlockSetFamily);
         if (state.getValue(TYPE) == type) return;
 
         state = state.setValue(TYPE, type);

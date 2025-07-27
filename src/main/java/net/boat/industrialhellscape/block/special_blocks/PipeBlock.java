@@ -1,13 +1,12 @@
 package net.boat.industrialhellscape.block.special_blocks;
 
+import net.boat.industrialhellscape.block.special_blocks_properties.ConnectedModelCapability;
 import net.boat.industrialhellscape.block.special_blocks_properties.PillarConnectionState;
-import net.boat.industrialhellscape.block.special_blocks_properties.VoxelRotator;
+import net.boat.industrialhellscape.block.special_blocks_properties.RotationHelper;
 import net.boat.industrialhellscape.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -20,13 +19,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class PipeBlock extends Block {
+public class PipeBlock extends Block implements ConnectedModelCapability {
 
     public static final EnumProperty<Direction> SURFACE_DIRECTION = BlockStateProperties.FACING;
     public static final EnumProperty<Direction.Axis> PLANAR_AXIS = BlockStateProperties.AXIS;
@@ -36,9 +34,9 @@ public class PipeBlock extends Block {
     public static final VoxelShape SHAPE_CEILING = Block.box(0, 10, 0, 16, 16, 16);
 
     public static final VoxelShape SHAPE_NORTH = Block.box(0, 0, 0, 16, 16, 6);
-    public static final VoxelShape SHAPE_SOUTH = VoxelRotator.rotateToDirection(Direction.SOUTH, SHAPE_NORTH);
-    public static final VoxelShape SHAPE_EAST = VoxelRotator.rotateToDirection(Direction.EAST, SHAPE_NORTH);
-    public static final VoxelShape SHAPE_WEST = VoxelRotator.rotateToDirection(Direction.WEST, SHAPE_NORTH);
+    public static final VoxelShape SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, SHAPE_NORTH);
+    public static final VoxelShape SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, SHAPE_NORTH);
+    public static final VoxelShape SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, SHAPE_NORTH);
 
     public PipeBlock(Properties pProperties) {
         super(pProperties);
@@ -83,7 +81,7 @@ public class PipeBlock extends Block {
                 case Z: return state.setValue(PLANAR_AXIS, Direction.Axis.Z); //If you're facing positive Z axis or negative Z axis, the pipes placed will follow that alignment
             }
 
-        //Below cases address if you wanted to place pipes on walls. By default the pipes will place horizontally. You will have to use a tool to align them vertically (Y axis) if you want
+            //Below cases address if you wanted to place pipes on walls. By default the pipes will place horizontally. You will have to use a tool to align them vertically (Y axis) if you want
         } else if(directionClicked == Direction.EAST || directionClicked == Direction.WEST){ //If you clicked east or west, the pipes placed will align horizontal on the wall (z axis)
             return state.setValue(PLANAR_AXIS, Direction.Axis.Z);
         } else {
@@ -91,6 +89,7 @@ public class PipeBlock extends Block {
         }
 
         return state;
+
     }
 
     @Override //THIS TELLS THE NEIGHBORS TO UPDATE
@@ -98,7 +97,7 @@ public class PipeBlock extends Block {
         if (level.isClientSide) return;
 
         Direction.Axis xzaxis = state.getValue(PLANAR_AXIS);
-        PillarConnectionState type = getPipeType(state, getRelativeForward(level, pos, xzaxis), getRelativeBackward(level, pos, xzaxis));
+        PillarConnectionState type = getPipeType(state, getStateAxisPositive(level, pos, xzaxis), getStateAxisNegative(level, pos, xzaxis));
         if (state.getValue(TYPE) == type) return;
 
         state = state.setValue(TYPE, type);
@@ -122,7 +121,6 @@ public class PipeBlock extends Block {
                 default: pState = pState.setValue(PLANAR_AXIS, Direction.Axis.Z); break;
             }
             pLevel.setBlock(pPos, pState, Block.UPDATE_ALL);
-            this.playSound(pPlayer, pLevel, pPos);
             return InteractionResult.sidedSuccess(pLevel.isClientSide);
 
         } else if (hasModdedTool){ //If player has tool, change the pipe orientation for walls and floors
@@ -132,7 +130,6 @@ public class PipeBlock extends Block {
                 default: pState = pState.setValue(PLANAR_AXIS, Direction.Axis.Z); break;
             }
             pLevel.setBlock(pPos, pState, Block.UPDATE_ALL);
-            this.playSound(pPlayer, pLevel, pPos);
             return InteractionResult.sidedSuccess(pLevel.isClientSide);
 
         } else {
@@ -140,41 +137,8 @@ public class PipeBlock extends Block {
         }
     }
 
-    protected void playSound(@javax.annotation.Nullable Player pPlayer, Level pLevel, BlockPos pPos) {
-        pLevel.playSound(pPlayer, pPos, SoundEvents.ANVIL_BREAK, SoundSource.BLOCKS, 1.0F, pLevel.getRandom().nextFloat() * 0.1F + 0.9F);
-        pLevel.gameEvent(pPlayer, GameEvent.BLOCK_CHANGE, pPos);
-    }
-
-    //Method to find blockstate of the block in the positive axial direction of selected direction
-    //Outputs the block state in the positive axial direction of the selection's block state String. This is to identify the neighbor block.
-    public BlockState getRelativeForward(Level level, BlockPos pos, Direction.Axis horizontalAxis) {
-        return level.getBlockState(pos.relative(Direction.fromAxisAndDirection(horizontalAxis, Direction.AxisDirection.POSITIVE)));
-    }
-
-    //Method to find blockstate of the block in the negative axial direction of selected direction
-    //Outputs the block state in the negative axial direction of the selection's block state String. This is to identify the neighbor block.
-    public BlockState getRelativeBackward(Level level, BlockPos pos, Direction.Axis axis) {
-        return level.getBlockState(pos.relative(Direction.fromAxisAndDirection(axis, Direction.AxisDirection.NEGATIVE)));
-    }
-
-    public PillarConnectionState getPipeType(BlockState state, BlockState forward, BlockState backward) {
-
-        boolean blockstate_forward_is_same = forward.is(state.getBlock()) && state.getValue(PLANAR_AXIS) == forward.getValue(PLANAR_AXIS) && state.getValue(SURFACE_DIRECTION) == forward.getValue(SURFACE_DIRECTION);
-        //Forward block is connectible if:
-        // Both blocks are the same block
-        // Both blocks have the same axis alignment
-        // Both blocks are attached to the same planar surface.
-        boolean blockstate_backward_is_same = backward.is(state.getBlock()) && state.getValue(PLANAR_AXIS) == backward.getValue(PLANAR_AXIS) && state.getValue(SURFACE_DIRECTION) == backward.getValue(SURFACE_DIRECTION);
-
-        //Where "forward" and "backward" refer to in the positive and negative axial direction respectively, like Y direction (height).
-        if (blockstate_forward_is_same && !blockstate_backward_is_same) return PillarConnectionState.NEGATIVE;
-        else if (!blockstate_forward_is_same && blockstate_backward_is_same) return PillarConnectionState.POSITIVE;
-        else if (blockstate_forward_is_same) return PillarConnectionState.MIDDLE;
-        return PillarConnectionState.SOLO;
-    }
-
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(SURFACE_DIRECTION, PLANAR_AXIS, TYPE); //Type defines connection state, HAXIS defines horizontal orientation. UPORDOWN defines whether block attaches to floor or ceiling
+        builder.add(SURFACE_DIRECTION, PLANAR_AXIS, TYPE); //Type defines connection state, Surface Direction defines which surface (up, down, cardinal) the block is placed on. Planar Axis is used to define pipe direction lengthwise.
     }
 }

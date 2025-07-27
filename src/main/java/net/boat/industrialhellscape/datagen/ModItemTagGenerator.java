@@ -23,7 +23,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
 
-        this.tag(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM)
+        this.tag(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM) //NO HALF BLOCKS HERE
                 .add(
                         //Full BLocks
                         ModBlocks.VESSELPLATE.get().asItem(),
@@ -38,10 +38,8 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 
                         ModBlocks.GRAY_STRUT.get().asItem(),
                         ModBlocks.GRAY_STRUT_STAIRS.get().asItem(),
-                        ModBlocks.GRAY_STRUT_SLAB.get().asItem(),
 
                         ModBlocks.GRAY_CATWALK_STRUT.get().asItem(),
-                        ModBlocks.GRAY_CATWALK_STRUT_SLAB.get().asItem(),
                         ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get().asItem(),
 
                         ModBlocks.HORIZONTAL_ENCASED_CABLES.get().asItem(),
@@ -119,14 +117,18 @@ public class ModItemTagGenerator extends ItemTagsProvider {
         this.tag(ModTags.Items.FURNITURE_CATEGORIES)
                 .add(
                         ModBlocks.SAFETY_FURNISHINGS.get().asItem(),
-                        ModBlocks.HYGIENE_FURNISHINGS.get().asItem()
+                        ModBlocks.HYGIENE_FURNISHINGS.get().asItem(),
+                        ModBlocks.INDUSTRIAL_FURNISHINGS.get().asItem(),
+                        ModBlocks.TECHNOLOGY_FURNISHINGS.get().asItem(),
+                        ModBlocks.AMENITY_FURNISHINGS.get().asItem().asItem()
                 );
+
         this.tag(ModTags.Items.ALL_FURNITURE)
                 .addTags(
                         ModTags.Items.SAFETY_FURNITURE_CATEGORY,
                         ModTags.Items.HYGIENE_FURNITURE_CATEGORY,
-                        //ModTags.Items.INDUSTRIAL_FURNITURE_CATEGORY,
-                        //ModTags.Items.TECHNOLOGY_FURNITURE_CATEGORY,
+                        ModTags.Items.INDUSTRIAL_FURNITURE_CATEGORY,
+                        ModTags.Items.TECHNOLOGY_FURNITURE_CATEGORY,
                         ModTags.Items.AMENITY_FURNITURE_CATEGORY
                 );
         this.tag(ModTags.Items.SAFETY_FURNITURE_CATEGORY)
@@ -138,6 +140,21 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 .add(
                         ModBlocks.TOILET.get().asItem()
                 );
+
+        this.tag(ModTags.Items.INDUSTRIAL_FURNITURE_CATEGORY)
+                .add(
+                        ModBlocks.COPPER_PIPE_CONDUIT.get().asItem(),
+                        ModBlocks.COPPER_PIPE_CONDUIT_OUTER_CORNER.get().asItem(),
+                        ModBlocks.COPPER_PIPE_CONDUIT_INNER_CORNER.get().asItem(),
+                        ModBlocks.COPPER_PIPE_CONDUIT_PLANAR_CORNER.get().asItem()
+                );
+
+
+        this.tag(ModTags.Items.TECHNOLOGY_FURNITURE_CATEGORY)
+                .add(
+                        ModBlocks.RETRO_COMPUTER.get().asItem()
+                );
+
         this.tag(ModTags.Items.AMENITY_FURNITURE_CATEGORY)
                 .add(
                         ModBlocks.DESK.get().asItem(),
@@ -145,19 +162,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.METAL_DESK.get().asItem(),
                         ModBlocks.METAL_DESK_DRAWER_2.get().asItem()
                 );
-        /*this.tag(ModTags.Items.INDUSTRIAL_FURNITURE_CATEGORY)
-                .add(
 
-                );
-                this.tag(ModTags.Items.TECHNOLOGY_FURNITURE_CATEGORY)
-                .add(
-
-                );
-                this.tag(ModTags.Items.AMENITY_FURNITURE_CATEGORY)
-                .add(
-
-                );
-        */
         this.tag(ItemTags.MUSIC_DISCS)
                 .add(ModItems.VAPORWAVE_CASSETTE.get()
                 );

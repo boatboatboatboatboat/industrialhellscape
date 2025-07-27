@@ -20,6 +20,10 @@
   "block.industrialhellscape.vertical_encased_cables": "Vertical Encased Cables",
   "block.industrialhellscape.horizontal_encased_cables": "Horizontal Encased Cables",
 
+  "block.industrialhellscape.copper_pipe_conduit": "Copper Pipe Conduit",
+  "block.industrialhellscape.copper_pipe_conduit_planar_corner": "Copper Pipe Conduit Planar Corner",
+  "block.industrialhellscape.copper_pipe_conduit_inner_corner": "Copper Pipe Conduit Inner Corner",
+  "block.industrialhellscape.copper_pipe_conduit_outer_corner": "Copper Pipe Conduit Outer Corner",
 
   "block.industrialhellscape.gray_rockrete": "Gray Rockrete",
   "block.industrialhellscape.gray_rockrete_rebar": "Gray Rockrete Rebar",

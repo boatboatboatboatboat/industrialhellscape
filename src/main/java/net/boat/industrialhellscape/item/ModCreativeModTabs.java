@@ -53,10 +53,11 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.GRIMY_RESTROOM_TILE.get());
 
                         //SPECIAL BLOCKS FOR CREATIVE TAB
-                        //output.accept(ModBlocks.SOUND_BLOCK.get());
 
-                        output.accept(ModBlocks.HVAC_PIPES_ARRAY.get());
-                        output.accept(ModBlocks.HVAC_PIPES_ARRAY_CORNER.get());
+                        output.accept(ModBlocks.COPPER_PIPE_CONDUIT.get());
+                        output.accept(ModBlocks.COPPER_PIPE_CONDUIT_PLANAR_CORNER.get());
+                        output.accept(ModBlocks.COPPER_PIPE_CONDUIT_INNER_CORNER.get());
+                        output.accept(ModBlocks.COPPER_PIPE_CONDUIT_OUTER_CORNER.get());
 
                         output.accept(ModBlocks.DESK.get());
                         output.accept(ModBlocks.DESK_DRAWER.get());
@@ -64,6 +65,9 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.METAL_DESK_DRAWER.get());
                         output.accept(ModBlocks.METAL_DESK_DRAWER_2.get());
                         output.accept(ModBlocks.TOILET.get());
+                        output.accept(ModBlocks.RETRO_COMPUTER.get());
+                        output.accept(ModBlocks.PIPEWORKS.get());
+
                         //output.accept(ModBlocks.SINK.get());
                         output.accept(ModBlocks.WHITE_WALL_MEDKIT.get());
                         output.accept(ModBlocks.RED_WALL_MEDKIT.get());

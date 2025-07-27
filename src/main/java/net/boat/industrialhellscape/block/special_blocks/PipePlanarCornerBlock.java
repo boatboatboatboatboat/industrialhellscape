@@ -1,13 +1,11 @@
 package net.boat.industrialhellscape.block.special_blocks;
 
 import net.boat.industrialhellscape.block.special_blocks_properties.RelativePlanarDirectionState;
-import net.boat.industrialhellscape.block.special_blocks_properties.VoxelRotator;
+import net.boat.industrialhellscape.block.special_blocks_properties.RotationHelper;
 import net.boat.industrialhellscape.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -20,7 +18,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -35,9 +32,9 @@ public class PipePlanarCornerBlock extends Block {
     public static final VoxelShape SHAPE_CEILING = Block.box(0, 10, 0, 16, 16, 16);
 
     public static final VoxelShape SHAPE_NORTH = Block.box(0, 0, 0, 16, 16, 6);
-    public static final VoxelShape SHAPE_SOUTH = VoxelRotator.rotateToDirection(Direction.SOUTH, SHAPE_NORTH);
-    public static final VoxelShape SHAPE_EAST = VoxelRotator.rotateToDirection(Direction.EAST, SHAPE_NORTH);
-    public static final VoxelShape SHAPE_WEST = VoxelRotator.rotateToDirection(Direction.WEST, SHAPE_NORTH);
+    public static final VoxelShape SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, SHAPE_NORTH);
+    public static final VoxelShape SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, SHAPE_NORTH);
+    public static final VoxelShape SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, SHAPE_NORTH);
 
     public PipePlanarCornerBlock(Properties pProperties) {
         super(pProperties);
@@ -82,20 +79,14 @@ public class PipePlanarCornerBlock extends Block {
 
         boolean hasModdedTool = pPlayer.getMainHandItem().is(ModItems.INHELL_HAVEN_DEVICE.get()) || pPlayer.getOffhandItem().is(ModItems.INHELL_HAVEN_DEVICE.get());
 
-        if(hasModdedTool ) { //If player has tool, change the block state property
+        if( hasModdedTool ) { //If player has tool, change the block state property
             pState = pState.cycle(PLANE_DIRECTION);
             pLevel.setBlock(pPos, pState, 2);
 
-            this.playSound(pPlayer, pLevel, pPos);
             return InteractionResult.sidedSuccess(pLevel.isClientSide);
         }
         pPlayer.sendSystemMessage(Component.literal("INTERACTION PASS"));
         return InteractionResult.PASS;
-    }
-
-    protected void playSound(@javax.annotation.Nullable Player pPlayer, Level pLevel, BlockPos pPos) {
-        pLevel.playSound(pPlayer, pPos, SoundEvents.ANVIL_BREAK, SoundSource.BLOCKS, 1.0F, pLevel.getRandom().nextFloat() * 0.1F + 0.9F);
-        pLevel.gameEvent(pPlayer, GameEvent.BLOCK_CHANGE, pPos);
     }
 
     @Override

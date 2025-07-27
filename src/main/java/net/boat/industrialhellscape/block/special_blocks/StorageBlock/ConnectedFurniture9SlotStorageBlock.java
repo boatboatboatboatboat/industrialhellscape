@@ -1,9 +1,9 @@
 package net.boat.industrialhellscape.block.special_blocks.StorageBlock;
 
-import net.boat.industrialhellscape.block.special_blocks_properties.HorizontalConnectedModelCapability;
+import net.boat.industrialhellscape.block.special_blocks_properties.ConnectedModelCapability;
 import net.boat.industrialhellscape.block.special_blocks_properties.FurnitureConnectionState;
 import net.boat.industrialhellscape.block.special_blocks_properties.ModBlockEntities;
-import net.boat.industrialhellscape.block.special_blocks_properties.VoxelRotator;
+import net.boat.industrialhellscape.block.special_blocks_properties.RotationHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -36,7 +36,7 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ConnectedFurniture9SlotStorageBlock extends HorizontalDirectionalBlock implements EntityBlock, SimpleWaterloggedBlock, HorizontalConnectedModelCapability {
+public class ConnectedFurniture9SlotStorageBlock extends HorizontalDirectionalBlock implements EntityBlock, SimpleWaterloggedBlock, ConnectedModelCapability {
 
 
     private static final EnumProperty<FurnitureConnectionState> TYPE = EnumProperty.create("type", FurnitureConnectionState.class);
@@ -69,24 +69,24 @@ public class ConnectedFurniture9SlotStorageBlock extends HorizontalDirectionalBl
         super(properties);
 
         SOLO_SHAPE_NORTH = soloShape;
-        SOLO_SHAPE_SOUTH = VoxelRotator.rotateToDirection(Direction.SOUTH, soloShape);
-        SOLO_SHAPE_EAST = VoxelRotator.rotateToDirection(Direction.EAST, soloShape);
-        SOLO_SHAPE_WEST = VoxelRotator.rotateToDirection(Direction.WEST, soloShape);
+        SOLO_SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, soloShape);
+        SOLO_SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, soloShape);
+        SOLO_SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, soloShape);
 
         LEFT_SHAPE_NORTH = leftShape;
-        LEFT_SHAPE_SOUTH = VoxelRotator.rotateToDirection(Direction.SOUTH, leftShape);
-        LEFT_SHAPE_EAST = VoxelRotator.rotateToDirection(Direction.EAST, leftShape);
-        LEFT_SHAPE_WEST = VoxelRotator.rotateToDirection(Direction.WEST, leftShape);
+        LEFT_SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, leftShape);
+        LEFT_SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, leftShape);
+        LEFT_SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, leftShape);
 
         MIDDLE_SHAPE_NORTH = middleShape;
-        MIDDLE_SHAPE_SOUTH = VoxelRotator.rotateToDirection(Direction.SOUTH, middleShape);
-        MIDDLE_SHAPE_EAST = VoxelRotator.rotateToDirection(Direction.EAST, middleShape);
-        MIDDLE_SHAPE_WEST = VoxelRotator.rotateToDirection(Direction.WEST, middleShape);
+        MIDDLE_SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, middleShape);
+        MIDDLE_SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, middleShape);
+        MIDDLE_SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, middleShape);
 
         RIGHT_SHAPE_NORTH = rightShape;
-        RIGHT_SHAPE_SOUTH = VoxelRotator.rotateToDirection(Direction.SOUTH, rightShape);
-        RIGHT_SHAPE_EAST = VoxelRotator.rotateToDirection(Direction.EAST, rightShape);
-        RIGHT_SHAPE_WEST = VoxelRotator.rotateToDirection(Direction.WEST, rightShape);
+        RIGHT_SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, rightShape);
+        RIGHT_SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, rightShape);
+        RIGHT_SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, rightShape);
 
         this.BlockSetFamily = inputCompatibleBlockSet;
         this.registerDefaultState(this.stateDefinition.any()
@@ -111,7 +111,7 @@ public class ConnectedFurniture9SlotStorageBlock extends HorizontalDirectionalBl
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
         Direction direction = pContext.getHorizontalDirection();
         state = state.setValue(FACING, direction);
-        state = state.setValue(TYPE, getType(state, getRelativeLeft(level, positionClicked, directionClicked), getRelativeRight(level, positionClicked, directionClicked), BlockSetFamily)); //Second, defines connection type of the block
+        state = state.setValue(TYPE, getTypeAndFamily(state, getStateRelativeLeft(level, positionClicked, directionClicked), getStateRelativeRight(level, positionClicked, directionClicked), BlockSetFamily)); //Second, defines connection type of the block
         return state.setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
     }
 
@@ -184,7 +184,7 @@ public class ConnectedFurniture9SlotStorageBlock extends HorizontalDirectionalBl
         if (level.isClientSide) return;
 
         Direction directionClicked = state.getValue(FACING);
-        FurnitureConnectionState type = getType(state, getRelativeLeft(level, positionClicked, directionClicked), getRelativeRight(level, positionClicked, directionClicked), BlockSetFamily);
+        FurnitureConnectionState type = getTypeAndFamily(state, getStateRelativeLeft(level, positionClicked, directionClicked), getStateRelativeRight(level, positionClicked, directionClicked), BlockSetFamily);
         if (state.getValue(TYPE) == type) return;
 
         state = state.setValue(TYPE, type);

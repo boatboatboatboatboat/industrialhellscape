@@ -25,6 +25,7 @@ public class ModTags {
         //Furniture Blockset Families
         public static final TagKey<Block> CLASSIC_DESK = tag("classic_desk");
         public static final TagKey<Block> METAL_DESK = tag("metal_desk");
+        public static final TagKey<Block> COPPER_PIPE_CONDUIT = tag("copper_pipe_conduit");
 
         private static TagKey<Block> tag(String name) {
             return BlockTags.create(new ResourceLocation(IndustrialHellscape.MOD_ID, name));

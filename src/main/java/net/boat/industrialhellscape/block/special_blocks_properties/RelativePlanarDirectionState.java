@@ -4,11 +4,12 @@ import net.minecraft.util.StringRepresentable;
 
 //INFO:
 //-----
-
+//This enum is used to determine the block orientation along any plane surface relative to player perspective.
+//For example, an arrow-shaped block that can face left, up, right, or down on a wall, and also on a floor relative to the player viewing it
 //-----
 
 public enum RelativePlanarDirectionState implements StringRepresentable {
-    LEFT("left"), //Only these four states are allowed to be called from the enum FurnitureConnectionState
+    LEFT("left"),
     UP("up"),
     RIGHT("right"),
     DOWN("down");

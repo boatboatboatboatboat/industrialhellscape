@@ -21,7 +21,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     //COPY AND PASTE FROM ITEM TAG OF THE SAME NAME FOR REVERSIBLE STONECUTTING. REMOVE THE BASE BLOCKS TO REMOVE RECIPE REDUNDANCY
 
     private static final List<ItemLike> VESSELPLATE_STONECUT_OUTPUT = List.of(
-            //ModBlocks.VESSELPLATE.get().asItem(), //commented out or else duplicate recipe created
+            //ModBlocks.VESSELPLATE.get().asItem(), //base block commented out or else duplicate recipe created
             ModBlocks.VESSELPLATE_PILLAR.get().asItem(),
             ModBlocks.RIVETED_VESSELPLATE.get().asItem(),
             ModBlocks.VESSELPLATE_GRATE_BLOCK.get().asItem(),
@@ -52,9 +52,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem()
     );
     private static final List<ItemLike> ROCKRETE_STONECUT_OUTPUT = List.of(
-
-
-            ModBlocks.GRAY_ROCKRETE.get().asItem(),
+            
+            //ModBlocks.GRAY_ROCKRETE.get().asItem(), //base block commented out or else duplicate recipe created
             ModBlocks.GRAY_ROCKRETE_SLAB.get().asItem(),
             ModBlocks.GRAY_ROCKRETE_STAIRS.get().asItem(),
             ModBlocks.GRAY_ROCKRETE_REBAR.get().asItem(),
@@ -83,6 +82,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     );
     private static final List<ItemLike> HYGIENE_FURNITURE = List.of(
             ModBlocks.TOILET.get().asItem()
+    );
+    private static final List<ItemLike> INDUSTRIAL_FURNITURE = List.of(
+            ModBlocks.COPPER_PIPE_CONDUIT.get().asItem(),
+            ModBlocks.COPPER_PIPE_CONDUIT_PLANAR_CORNER.get().asItem(),
+            ModBlocks.COPPER_PIPE_CONDUIT_INNER_CORNER.get().asItem(),
+            ModBlocks.COPPER_PIPE_CONDUIT_OUTER_CORNER.get().asItem()
+    );
+    private static final List<ItemLike> TECHNOLOGY_FURNITURE = List.of(
+            ModBlocks.RETRO_COMPUTER.get().asItem()
     );
     private static final List<ItemLike> AMENITY_FURNITURE = List.of(
             ModBlocks.DESK.get().asItem(),
@@ -143,7 +151,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         //----------
 
         //ALL SOLID VARIANT BLOCKS CAN BE STONECUT BACK INTO BASE BLOCK
-
+        //The item tags in this section should NOT contain slabs
+        
         //Stonecut Recycle from ALL Smeltable Block Vesselplate Variants into base block
         stonecutting(
                 Ingredient.of(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM),
@@ -208,6 +217,23 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
                 .save(pWriter);
 
+        //Pipeworks
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.PIPEWORKS.get(), 1)
+                .requires(ModBlocks.COPPER_PIPE_CONDUIT.get())
+                .requires(ModBlocks.COPPER_PIPE_CONDUIT.get())
+                .requires(ModBlocks.COPPER_PIPE_CONDUIT.get())
+
+                .requires(ModBlocks.COPPER_PIPE_CONDUIT.get())
+                .requires(ModBlocks.COPPER_PIPE_CONDUIT.get())
+                .requires(ModBlocks.COPPER_PIPE_CONDUIT.get())
+
+                .requires(ModBlocks.COPPER_PIPE_CONDUIT.get())
+                .requires(ModBlocks.COPPER_PIPE_CONDUIT.get())
+                .requires(ModBlocks.COPPER_PIPE_CONDUIT.get())
+
+                .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                .save(pWriter, new ResourceLocation("industrialhellscape", "pipeworks"));
+
         //----------
 
 
@@ -224,7 +250,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                         VESSELPLATE_STONECUT_OUTPUT.get(i), //3rd Parameter "pResults"
                         2) //4rth Parameter "amount" crafting output
                         .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                        .save(pWriter, new ResourceLocation("industrialhellscape", "vesselplate_stonecut_"+i+"_"+itemName));
+                        .save(pWriter, new ResourceLocation("industrialhellscape", "vesselplate_stonecut_"+itemName+i));
             } else
                 stonecutting(
                         Ingredient.of(ModTags.Items.VESSELPLATE_STONECUT_OUTPUTS),
@@ -232,7 +258,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                         VESSELPLATE_STONECUT_OUTPUT.get(i),
                         1)
                         .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                        .save(pWriter, new ResourceLocation("industrialhellscape", "vesselplate_stonecut_"+i+"_"+itemName));
+                        .save(pWriter, new ResourceLocation("industrialhellscape", "vesselplate_stonecut_"+itemName+i));
         }
 
         //Vesselglass
@@ -246,7 +272,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                         VESSELGLASS_STONECUT_OUTPUT.get(i), //3rd Parameter "pResults"
                         2) //4rth Parameter "amount" crafting output
                         .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                        .save(pWriter, new ResourceLocation("industrialhellscape", "vesselglass_stonecut_"+i+"_"+itemName));
+                        .save(pWriter, new ResourceLocation("industrialhellscape", "vesselglass_stonecut_"+itemName+i));
             } else
 
                 stonecutting(
@@ -254,7 +280,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                         RecipeCategory.BUILDING_BLOCKS,
                         VESSELGLASS_STONECUT_OUTPUT.get(i),1)
                         .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                        .save(pWriter, new ResourceLocation("industrialhellscape", "vesselglass_stonecut_"+i+"_"+itemName));
+                        .save(pWriter, new ResourceLocation("industrialhellscape", "vesselglass_stonecut_"+itemName+i));
         }
 
         //Rockrete
@@ -266,7 +292,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                         RecipeCategory.BUILDING_BLOCKS,
                         ROCKRETE_STONECUT_OUTPUT.get(i),2)
                         .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                        .save(pWriter, new ResourceLocation("industrialhellscape", "rockrete_stonecut_"+i+"_"+itemName));
+                        .save(pWriter, new ResourceLocation("industrialhellscape", "rockrete_stonecut_"+itemName+i));
             } else
 
                 stonecutting(
@@ -274,7 +300,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                         RecipeCategory.BUILDING_BLOCKS,
                         ROCKRETE_STONECUT_OUTPUT.get(i),1)
                         .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                        .save(pWriter, new ResourceLocation("industrialhellscape", "rockrete_stonecut_"+i+"_"+itemName));
+                        .save(pWriter, new ResourceLocation("industrialhellscape", "rockrete_stonecut_"+itemName+i));
         }
 
         //Furniture Sub-Categories
@@ -285,7 +311,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                         RecipeCategory.BUILDING_BLOCKS, //Category
                         FURNITURE_CATEGORIES.get(i),1)  //Outputs into the category blocks (safety, hygiene, industrial)
                         .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                        .save(pWriter, new ResourceLocation("industrialhellscape", "furniture_kit_to_stonecut_"+i+"_"+itemName));
+                        .save(pWriter, new ResourceLocation("industrialhellscape", "furniture_kit_to_stonecut_"+itemName+i));
         }
         //Safety Furniture Blocks
         for (int i = 0; i < SAFETY_FURNITURE.size(); i++) {
@@ -295,7 +321,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                     RecipeCategory.BUILDING_BLOCKS, //Category
                     SAFETY_FURNITURE.get(i),1)  //Outputs into the category blocks (safety, hygiene, industrial)
                     .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                    .save(pWriter, new ResourceLocation("industrialhellscape", "safety_to_stonecut_"+i+"_"+itemName));
+                    .save(pWriter, new ResourceLocation("industrialhellscape", "safety_to_stonecut_"+itemName+i));
         }
         //Hygiene Furniture Blocks
         for (int i = 0; i < HYGIENE_FURNITURE.size(); i++) {
@@ -305,7 +331,28 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                     RecipeCategory.BUILDING_BLOCKS, //Category
                     HYGIENE_FURNITURE.get(i),1)  //Outputs into the category blocks (safety, hygiene, industrial)
                     .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                    .save(pWriter, new ResourceLocation("industrialhellscape", "hygiene_to_stonecut_"+i+"_"+itemName));
+                    .save(pWriter, new ResourceLocation("industrialhellscape", "hygiene_to_stonecut_"+itemName+i));
+        }
+        //Industrial Furniture Blocks
+        for (int i = 0; i < INDUSTRIAL_FURNITURE.size(); i++) {
+            String itemName = INDUSTRIAL_FURNITURE.get(i).toString().replaceAll("[^a-zA-Z]+","_");
+            stonecutting(
+                    Ingredient.of(ModBlocks.INDUSTRIAL_FURNISHINGS.get().asItem()), //Recipe Input Item
+                    RecipeCategory.BUILDING_BLOCKS, //Category
+                    INDUSTRIAL_FURNITURE.get(i),1)  //Outputs into the category blocks (safety, hygiene, industrial)
+                    .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                    .save(pWriter, new ResourceLocation("industrialhellscape", "industrial_to_stonecut_"+itemName+i));
+        }
+
+        //Technology Furniture Blocks
+        for (int i = 0; i < TECHNOLOGY_FURNITURE.size(); i++) {
+            String itemName = TECHNOLOGY_FURNITURE.get(i).toString().replaceAll("[^a-zA-Z]+","_");
+            stonecutting(
+                    Ingredient.of(ModBlocks.TECHNOLOGY_FURNISHINGS.get().asItem()), //Recipe Input Item
+                    RecipeCategory.BUILDING_BLOCKS, //Category
+                    TECHNOLOGY_FURNITURE.get(i),1)  //Outputs into the category blocks (safety, hygiene, industrial)
+                    .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                    .save(pWriter, new ResourceLocation("industrialhellscape", "technology_to_stonecut_"+itemName+i));
         }
         //Amenity Furniture Blocks
         for (int i = 0; i < AMENITY_FURNITURE.size(); i++) {
@@ -315,7 +362,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                     RecipeCategory.BUILDING_BLOCKS, //Category
                     AMENITY_FURNITURE.get(i),1)  //Outputs into the category blocks (safety, hygiene, industrial)
                     .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                    .save(pWriter, new ResourceLocation("industrialhellscape", "amenity_to_stonecut_"+i+"_"+itemName));
+                    .save(pWriter, new ResourceLocation("industrialhellscape", "amenity_to_stonecut_"+itemName+i));
         }
 
     }

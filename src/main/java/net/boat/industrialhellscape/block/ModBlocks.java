@@ -3,17 +3,19 @@ package net.boat.industrialhellscape.block;
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.special_blocks.*;
 import net.boat.industrialhellscape.block.special_blocks.PipeBlock;
-import net.boat.industrialhellscape.block.special_blocks.PlacedFacingBlock;
+import net.boat.industrialhellscape.block.special_blocks.SimplePlacedFacingBlock;
 import net.boat.industrialhellscape.block.special_blocks.StorageBlock.ConnectedFurniture9SlotStorageBlock;
 import net.boat.industrialhellscape.block.special_blocks.StorageBlock.NineSlotMenuBlock;
 import net.boat.industrialhellscape.block.special_blocks_properties.HitboxGeometryCollection;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.item.ModItems;
 import net.boat.industrialhellscape.util.ModTags;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -93,18 +95,38 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops())
     );
 
-    public static final RegistryObject<Block> HVAC_PIPES_ARRAY = registerBlock("hvac_pipes_array",
+    public static final RegistryObject<Block> COPPER_PIPE_CONDUIT = registerBlock("copper_pipe_conduit",
             () -> new PipeBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .requiresCorrectToolForDrops()
-                    .noOcclusion()) //CHANGE
+                    .noOcclusion())
     );
 
-    public static final RegistryObject<Block> HVAC_PIPES_ARRAY_CORNER = registerBlock("hvac_pipes_array_corner",
+    public static final RegistryObject<Block> COPPER_PIPE_CONDUIT_PLANAR_CORNER = registerBlock("copper_pipe_conduit_planar_corner",
             () -> new PipePlanarCornerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .requiresCorrectToolForDrops()
-                    .noOcclusion()) //CHANGE
+                    .noOcclusion())
+    );
+
+    public static final RegistryObject<Block> COPPER_PIPE_CONDUIT_INNER_CORNER = registerBlock("copper_pipe_conduit_inner_corner",
+            () -> new InnerCornerBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .requiresCorrectToolForDrops()
+                    .noOcclusion(),
+                    HitboxGeometryCollection.INNER_CORNER_UP(),
+                    HitboxGeometryCollection.INNER_CORNER_DOWN(),
+                    HitboxGeometryCollection.INNER_CORNER_SIDE())
+    );
+
+    public static final RegistryObject<Block> COPPER_PIPE_CONDUIT_OUTER_CORNER = registerBlock("copper_pipe_conduit_outer_corner",
+            () -> new InnerCornerBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .requiresCorrectToolForDrops()
+                    .noOcclusion(),
+                    HitboxGeometryCollection.OUTER_CORNER_UP(),
+                    HitboxGeometryCollection.OUTER_CORNER_DOWN(),
+                    HitboxGeometryCollection.OUTER_CORNER_SIDE())
     );
 
     //Furniture Blocks Here
@@ -185,6 +207,32 @@ public class ModBlocks {
                     HitboxGeometryCollection.WHITE_MEDKIT_NORTH()
             )
     );
+    public static final RegistryObject<Block> RETRO_COMPUTER = registerBlock("retro_computer",
+            () -> new ModelledPlacedFacingBlock(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.SLIGHTLY_SMALLER_FULL_BLOCK()
+            )
+    );
+
+    public static final RegistryObject<Block> PIPEWORKS = registerBlock("pipeworks",
+            () -> new PlacedFacingFallableBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .sound(ModSounds.PIPEWORKS_SOUNDS)
+            ) {
+                @Override
+                public BlockState mirror(BlockState pState, Mirror pMirror) {
+                    return super.mirror(pState, pMirror);
+                }
+
+                @Override
+                public BlockState rotate(BlockState pState, Rotation pRot) {
+                    return super.rotate(pState, pRot);
+                }
+            }
+    );
+
 
     //CTM BLOCKS HERE (3RD PARTY TEXTURE DEPENDENCIES) VVV
     public static final RegistryObject<Block> HORIZONTAL_ENCASED_CABLES = registerBlock("vertical_encased_cables",
@@ -325,43 +373,39 @@ public class ModBlocks {
     );
 
     //SPECIAL BLOCKS HERE VVV
-    public static final RegistryObject<Block> SOUND_BLOCK = registerBlock("sound_block",
-            () -> new SoundBlock(BlockBehaviour
-                    .Properties.copy(Blocks.STONE)
-            )
-    );
+
     public static final RegistryObject<Block> IHEA_FURNITURE_KIT = registerBlock("ihea_furniture_kit",
-            () -> new PlacedFacingBlock(BlockBehaviour
+            () -> new SimplePlacedFacingBlock(BlockBehaviour
                     .Properties.copy(Blocks.OAK_PLANKS)
                     .noOcclusion()
             )
     );
     public static final RegistryObject<Block> SAFETY_FURNISHINGS = registerBlock("safety_furnishings",
-            () -> new PlacedFacingBlock(BlockBehaviour
+            () -> new SimplePlacedFacingBlock(BlockBehaviour
                     .Properties.copy(Blocks.OAK_PLANKS)
                     .noOcclusion()
             )
     );
     public static final RegistryObject<Block> HYGIENE_FURNISHINGS = registerBlock("hygiene_furnishings",
-            () -> new PlacedFacingBlock(BlockBehaviour
+            () -> new SimplePlacedFacingBlock(BlockBehaviour
                     .Properties.copy(Blocks.OAK_PLANKS)
                     .noOcclusion()
             )
     );
     public static final RegistryObject<Block> INDUSTRIAL_FURNISHINGS = registerBlock("industrial_furnishings",
-            () -> new PlacedFacingBlock(BlockBehaviour
+            () -> new SimplePlacedFacingBlock(BlockBehaviour
                     .Properties.copy(Blocks.OAK_PLANKS)
                     .noOcclusion()
             )
     );
     public static final RegistryObject<Block> TECHNOLOGY_FURNISHINGS = registerBlock("technology_furnishings",
-            () -> new PlacedFacingBlock(BlockBehaviour
+            () -> new SimplePlacedFacingBlock(BlockBehaviour
                     .Properties.copy(Blocks.OAK_PLANKS)
                     .noOcclusion()
             )
     );
     public static final RegistryObject<Block> AMENITY_FURNISHINGS = registerBlock("amenity_furnishings",
-            () -> new PlacedFacingBlock(BlockBehaviour
+            () -> new SimplePlacedFacingBlock(BlockBehaviour
                     .Properties.copy(Blocks.OAK_PLANKS)
                     .noOcclusion()
             )

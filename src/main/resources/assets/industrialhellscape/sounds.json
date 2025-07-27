@@ -1,4 +1,10 @@
 {
+  "metalpipefallingsoundeffect": {
+    "subtitles": "sounds.industrialhellscape.metalpipefallingsoundeffect",
+    "sounds": [
+      "industrialhellscape:metalpipefallingsoundeffect"
+    ]
+  },
   "vesselplate_break": {
     "subtitles": "sounds.industrialhellscape.vesselplate_break",
     "sounds": [
