@@ -10,24 +10,24 @@
 		"facing=up,plane_direction=right": {"model": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner","x":180,"y":180},
 		"facing=up,plane_direction=down": {"model": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner","x":180,"y":270},
 
-		"facing=north,plane_direction=left": {"model": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner_wall_zrot90"},
+		"facing=north,plane_direction=left": {"model": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner_zrot90"},
 		"facing=north,plane_direction=up": {"model": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner","x":270,"y": 0},
-		"facing=north,plane_direction=right": {"model": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner_wall_zrot270"},
+		"facing=north,plane_direction=right": {"model": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner_zrot270"},
 		"facing=north,plane_direction=down": {"model": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner","x":90,"y": 180},
 
-		"facing=south,plane_direction=left": {"model": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner_wall_zrot90","y": 180},
+		"facing=south,plane_direction=left": {"model": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner_zrot90","y": 180},
 		"facing=south,plane_direction=up": {"model": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner","x":270,"y": 180},
-		"facing=south,plane_direction=right": {"model": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner_wall_zrot270","y": 180},
+		"facing=south,plane_direction=right": {"model": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner_zrot270","y": 180},
 		"facing=south,plane_direction=down": {"model": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner","x":90,"y": 0},
 
-		"facing=east,plane_direction=left": {"model": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner_wall_zrot90","y": 90},
+		"facing=east,plane_direction=left": {"model": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner_zrot90","y": 90},
 		"facing=east,plane_direction=up": {"model": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner","x":270,"y": 90},
-		"facing=east,plane_direction=right": {"model": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner_wall_zrot270","y": 90},
+		"facing=east,plane_direction=right": {"model": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner_zrot270","y": 90},
 		"facing=east,plane_direction=down": {"model": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner","x":90,"y": 270},
 
-		"facing=west,plane_direction=left": {"model": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner_wall_zrot90","y": 270},
+		"facing=west,plane_direction=left": {"model": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner_zrot90","y": 270},
 		"facing=west,plane_direction=up": {"model": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner","x":270,"y": 270},
-		"facing=west,plane_direction=right": {"model": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner_wall_zrot270","y": 270},
+		"facing=west,plane_direction=right": {"model": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner_zrot270","y": 270},
 		"facing=west,plane_direction=down": {"model": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner","x":90,"y": 90}
 	}
 }

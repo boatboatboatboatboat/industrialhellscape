@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "industrialhellscape:block/gray_rockrete",
-    "side": "industrialhellscape:block/gray_rockrete",
-    "top": "industrialhellscape:block/gray_rockrete"
-  }
-}

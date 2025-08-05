@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "group": "MISC",
+  "category": "blocks",
+  "ingredient": {
+    "tag": "industrialhellscape:pipeworks_smeltable_item"
+  },
+  "result":  "minecraft:copper_ingot",
+  "experience": 0,
+  "cookingtime": 200
+}

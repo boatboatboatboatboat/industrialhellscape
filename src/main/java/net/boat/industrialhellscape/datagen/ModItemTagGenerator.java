@@ -36,6 +36,15 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.SMOOTH_VESSELPLATE_TILE.get().asItem(),
                         ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem(),
 
+                        ModBlocks.GRAY_VESSELPLATE.get().asItem(),
+                        ModBlocks.GRAY_RIVETED_VESSELPLATE.get().asItem(),
+                        ModBlocks.GRAY_VESSELPLATE_GRATE.get().asItem(),
+                        ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
+                        ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
+                        ModBlocks.SMOOTH_GRAY_VESSELPLATE.get().asItem(),
+                        ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get().asItem(),
+                        ModBlocks.GRAY_VESSELPLATE_PILLAR.get().asItem(),
+
                         ModBlocks.GRAY_STRUT.get().asItem(),
                         ModBlocks.GRAY_STRUT_STAIRS.get().asItem(),
 
@@ -61,9 +70,28 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.GRAY_ROCKRETE.get().asItem()
                 );
 
+        this.tag(ModTags.Items.PIPEWORKS_SMELTABLE_ITEM)
+                .add(
+                        ModBlocks.PIPEWORKS.get().asItem(),
+
+                        ModBlocks.COPPER_PIPE_CONDUIT.get().asItem(),
+                        ModBlocks.COPPER_PIPE_CONDUIT_PLANAR_CORNER.get().asItem(),
+                        ModBlocks.COPPER_PIPE_CONDUIT_INNER_CORNER.get().asItem(),
+                        ModBlocks.COPPER_PIPE_CONDUIT_OUTER_CORNER.get().asItem(),
+
+                        ModBlocks.BRASS_PIPE_CONDUIT.get().asItem(),
+                        ModBlocks.BRASS_PIPE_CONDUIT_PLANAR_CORNER.get().asItem(),
+                        ModBlocks.BRASS_PIPE_CONDUIT_INNER_CORNER.get().asItem(),
+                        ModBlocks.BRASS_PIPE_CONDUIT_OUTER_CORNER.get().asItem(),
+
+                        ModBlocks.GRAY_PIPE_CONDUIT.get().asItem(),
+                        ModBlocks.GRAY_PIPE_CONDUIT_PLANAR_CORNER.get().asItem(),
+                        ModBlocks.GRAY_PIPE_CONDUIT_INNER_CORNER.get().asItem(),
+                        ModBlocks.GRAY_PIPE_CONDUIT_OUTER_CORNER.get().asItem()
+                );
+
         //----------
         //BELOW:    FOR RECIPE DATA GENERATION PURPOSES. ADD SLABS OR STAIRS
-
         this.tag(ModTags.Items.VESSELPLATE_STONECUT_OUTPUTS)
                 .add(
                         ModBlocks.VESSELPLATE.get().asItem(),
@@ -113,6 +141,12 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.HAZARD_STRIPE_RED.get().asItem(),
                         ModBlocks.GRIMY_RESTROOM_TILE.get().asItem()
                 );
+        this.tag(ModTags.Items.PIPEWORKS_STONECUT_OUTPUTS)
+                .add(
+                        ModBlocks.PIPEWORKS.get().asItem()
+                );
+
+        //FURNITURE CATEGORIES BELOW
 
         this.tag(ModTags.Items.FURNITURE_CATEGORIES)
                 .add(
@@ -123,7 +157,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.AMENITY_FURNISHINGS.get().asItem().asItem()
                 );
 
-        this.tag(ModTags.Items.ALL_FURNITURE)
+        this.tag(ModTags.Items.ALL_FURNITURE_ITEMS)
                 .addTags(
                         ModTags.Items.SAFETY_FURNITURE_CATEGORY,
                         ModTags.Items.HYGIENE_FURNITURE_CATEGORY,
@@ -141,18 +175,20 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.TOILET.get().asItem()
                 );
 
+
         this.tag(ModTags.Items.INDUSTRIAL_FURNITURE_CATEGORY)
                 .add(
-                        ModBlocks.COPPER_PIPE_CONDUIT.get().asItem(),
-                        ModBlocks.COPPER_PIPE_CONDUIT_OUTER_CORNER.get().asItem(),
-                        ModBlocks.COPPER_PIPE_CONDUIT_INNER_CORNER.get().asItem(),
-                        ModBlocks.COPPER_PIPE_CONDUIT_PLANAR_CORNER.get().asItem()
+                        ModBlocks.GRAY_BOLTED_BRACKET.get().asItem(),
+                        ModBlocks.BLACK_BOLTED_BRACKET.get().asItem(),
+                        ModBlocks.YELLOW_TRIPOD.get().asItem(),
+                        ModBlocks.WORK_LIGHT_MOUNT.get().asItem()
                 );
 
 
         this.tag(ModTags.Items.TECHNOLOGY_FURNITURE_CATEGORY)
                 .add(
-                        ModBlocks.RETRO_COMPUTER.get().asItem()
+                        ModBlocks.RETRO_COMPUTER.get().asItem(),
+                        ModBlocks.CASSETTE_PLAYER.get().asItem()
                 );
 
         this.tag(ModTags.Items.AMENITY_FURNITURE_CATEGORY)

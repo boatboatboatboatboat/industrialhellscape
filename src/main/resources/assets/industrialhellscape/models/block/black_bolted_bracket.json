@@ -1,0 +1,6 @@
+{
+	"parent": "industrialhellscape:block/gray_bolted_bracket",
+	"textures": {
+		"0": "industrialhellscape:block/black_bolted_bracket"
+	}
+}

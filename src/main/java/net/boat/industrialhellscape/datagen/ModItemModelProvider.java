@@ -26,6 +26,15 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.MALEVOLENT_MULTITOOL);
         simpleItem(ModItems.VAPORWAVE_CASSETTE);
 
+
+        SimpleBlockItem(ModBlocks.GRAY_VESSELPLATE);
+        SimpleBlockItem(ModBlocks.GRAY_VESSELPLATE_GRATE);
+        SimpleBlockItem(ModBlocks.GRAY_RIVETED_VESSELPLATE);
+        SimpleBlockItem(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE);
+        SimpleBlockItem(ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE);
+        SimpleBlockItem(ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE);
+        SimpleBlockItem(ModBlocks.SMOOTH_GRAY_VESSELPLATE);
+
         SimpleBlockItem(ModBlocks.RIVETED_VESSELPLATE);
         SimpleBlockItem(ModBlocks.GRAY_ROCKRETE_STAIRS);
         SimpleBlockItem(ModBlocks.GRAY_ROCKRETE_SLAB);
@@ -42,6 +51,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         SimpleBlockItem(ModBlocks.GRAY_CATWALK_STRUT_SLAB);
 
         SimpleBlockItem(ModBlocks.RETRO_COMPUTER);
+        SimpleBlockItem(ModBlocks.CASSETTE_PLAYER);
+        SimpleBlockItem(ModBlocks.SINK);
+        SimpleBlockItem(ModBlocks.YELLOW_TRIPOD);
+        SimpleBlockItem(ModBlocks.WORK_LIGHT_MOUNT);
+
 
     }
 

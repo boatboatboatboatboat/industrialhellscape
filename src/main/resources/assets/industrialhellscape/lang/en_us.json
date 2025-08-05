@@ -20,10 +20,31 @@
   "block.industrialhellscape.vertical_encased_cables": "Vertical Encased Cables",
   "block.industrialhellscape.horizontal_encased_cables": "Horizontal Encased Cables",
 
+  "block.industrialhellscape.gray_vesselplate": "Vesselplate",
+  "block.industrialhellscape.gray_riveted_vesselplate": "Riveted Vesselplate",
+  "block.industrialhellscape.gray_vesselplate_grate": "Vesselplate Grate",
+  "block.industrialhellscape.gray_vertical_riveted_vesselplate": "Vertical Riveted Vesselplate",
+  "block.industrialhellscape.gray_horizontal_riveted_vesselplate": "Horizontal Riveted Vesselplate",
+  "block.industrialhellscape.smooth_gray_vesselplate": "Smooth Vesselplate",
+  "block.industrialhellscape.smooth_gray_vesselplate_tile": "Smooth Vesselplate Tile",
+  "block.industrialhellscape.gray_vesselplate_pillar": "Vesselplate Pillar",
+
+  "block.industrialhellscape.pipeworks": "Pipeworks",
+
   "block.industrialhellscape.copper_pipe_conduit": "Copper Pipe Conduit",
   "block.industrialhellscape.copper_pipe_conduit_planar_corner": "Copper Pipe Conduit Planar Corner",
   "block.industrialhellscape.copper_pipe_conduit_inner_corner": "Copper Pipe Conduit Inner Corner",
   "block.industrialhellscape.copper_pipe_conduit_outer_corner": "Copper Pipe Conduit Outer Corner",
+
+  "block.industrialhellscape.brass_pipe_conduit": "Brass Pipe Conduit",
+  "block.industrialhellscape.brass_pipe_conduit_planar_corner": "Brass Pipe Conduit Planar Corner",
+  "block.industrialhellscape.brass_pipe_conduit_inner_corner": "Brass Pipe Conduit Inner Corner",
+  "block.industrialhellscape.brass_pipe_conduit_outer_corner": "Brass Pipe Conduit Outer Corner",
+
+  "block.industrialhellscape.gray_pipe_conduit": "Gray Pipe Conduit",
+  "block.industrialhellscape.gray_pipe_conduit_planar_corner": "Gray Pipe Conduit Planar Corner",
+  "block.industrialhellscape.gray_pipe_conduit_inner_corner": "Gray Pipe Conduit Inner Corner",
+  "block.industrialhellscape.gray_pipe_conduit_outer_corner": "Gray Pipe Conduit Outer Corner",
 
   "block.industrialhellscape.gray_rockrete": "Gray Rockrete",
   "block.industrialhellscape.gray_rockrete_rebar": "Gray Rockrete Rebar",
@@ -31,13 +52,14 @@
   "block.industrialhellscape.gray_rockrete_slab": "Gray Rockrete Slab",
   "block.industrialhellscape.gray_rockrete_pillar": "Gray Rockrete Pillar",
 
+  "block.industrialhellscape.gray_bolted_bracket": "Gray Bolted Bracket",
+  "block.industrialhellscape.black_bolted_bracket": "Black Bolted Bracket",
+
   "block.industrialhellscape.hazard_stripe_yellow": "Hazard Stripe Yellow",
   "block.industrialhellscape.hazard_stripe_red": "Hazard Stripe Red",
   "block.industrialhellscape.grimy_restroom_tile": "Grimy Restroom Tile",
 
   "block.industrialhellscape.sound_block": "Sound Block",
-
-  "block.industrialhellscape.hvac_pipe_array": "HVAC Pipe Array",
 
   "block.industrialhellscape.ihea_furniture_kit": "IHEA Furniture Kit",
   "block.industrialhellscape.safety_furnishings": "Safety Furnishings",
@@ -48,13 +70,21 @@
 
   "block.industrialhellscape.toilet": "Toilet",
   "block.industrialhellscape.sink": "Sink",
+
   "block.industrialhellscape.white_wall_medkit": "White Wall Medkit",
   "block.industrialhellscape.red_wall_medkit": "Red Wall Medkit",
+
   "block.industrialhellscape.desk": "Classic Desk",
   "block.industrialhellscape.desk_drawer": "Classic Desk Drawer",
   "block.industrialhellscape.metal_desk": "Metal Desk",
   "block.industrialhellscape.metal_desk_drawer": "Metal Desk Drawer",
   "block.industrialhellscape.metal_desk_drawer_2": "Metal Desk Drawer 2",
+
+  "block.industrialhellscape.retro_computer": "Retro Computer",
+  "block.industrialhellscape.cassette_player": "Cassette Player",
+
+  "block.industrialhellscape.yellow_tripod": "Yellow Tripod",
+  "block.industrialhellscape.work_light_mount": "Work Light Mount",
 
   "block.industrialhellscape.strut": "Strut",
   "block.industrialhellscape.strut_stairs": "Strut Stairs",
@@ -74,7 +104,7 @@
   "item.industrialhellscape.vaporwave_cassette.desc": "Vulta - Shattered",
   "sounds.industrialhellscape.toilet_flush": "Toilet flushes",
 
-  "tooltip.industrialhellscape.haventool.flavortext": "No user-serviceable parts. For external use only. Avoid contact with open wounds.",
+  "tooltip.industrialhellscape.haventool.flavortext": "No user-serviceable parts. For external use only. Avoid contact with open wounds. (Right-click and sneak-right-click to rotate I.H. blocks)",
 
   "tooltip.industrialhellscape.vaporwave_cassette.flavortext": "§6\"Warp signatures coming from Lagrange 4. Unidentified. All orbital guns, align prograde to solar orbit. We have 50 hours to contact.\"",
   "gui.industrialhellscape.inventory_menu": "Industrial Hellscape Storage",

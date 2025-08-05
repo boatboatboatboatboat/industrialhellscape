@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 1,
-  "ingredient": {
-    "tag": "industrialhellscape:vesselplate_blocks"
-  },
-  "result": "industrialhellscape:horizontal_riveted_vesselplate"
-}

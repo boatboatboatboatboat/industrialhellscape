@@ -59,9 +59,9 @@ public class ToiletBlock extends HorizontalDirectionalBlock implements SimpleWat
 
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
-                .setValue(OPEN, Boolean.valueOf(false))
-                .setValue(POWERED, Boolean.valueOf(false))
-                .setValue(WATERLOGGED, Boolean.valueOf(false)));
+                .setValue(OPEN,false)
+                .setValue(POWERED,false)
+                .setValue(WATERLOGGED,false));
     }
 
     @Override

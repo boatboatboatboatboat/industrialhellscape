@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "industrialhellscape:block/gray_vesselplate_pillar/gray_vesselplate_pillar_face",
+    "side": "industrialhellscape:block/gray_vesselplate_pillar/gray_vesselplate_pillar_solo"
+  }
+}

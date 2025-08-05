@@ -5,7 +5,6 @@ import net.boat.industrialhellscape.block.special_blocks_properties.RotationHelp
 import net.boat.industrialhellscape.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -27,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 public class InnerCornerBlock extends Block{
 
     public static DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING; //"FACING" is used to store DirectionProperty value of "north, south, east, west" //KJ
-    public static final EnumProperty<InnerCornerConnectionState> TYPE = EnumProperty.create("type", InnerCornerConnectionState.class); //"UP", "SIDE", or "DOWN" enum values
+    public static final EnumProperty<InnerCornerConnectionState> TYPE_CORNER = EnumProperty.create("type", InnerCornerConnectionState.class); //"UP", "SIDE", or "DOWN" enum values
 
     private VoxelShape INNER_CORNER_UP_N;
     private VoxelShape INNER_CORNER_UP_S;
@@ -64,7 +63,7 @@ public class InnerCornerBlock extends Block{
 
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
-                .setValue(TYPE, InnerCornerConnectionState.UP)
+                .setValue(TYPE_CORNER, InnerCornerConnectionState.UP)
         ); //Default state if placed with no player present
     }
 
@@ -73,7 +72,7 @@ public class InnerCornerBlock extends Block{
 
         Direction facingForShape = pState.getValue(FACING);
 
-        switch(pState.getValue(TYPE)){
+        switch(pState.getValue(TYPE_CORNER)){
             case DOWN:
                 switch(facingForShape) {
                     case NORTH: return INNER_CORNER_DOWN_N;
@@ -118,13 +117,13 @@ public class InnerCornerBlock extends Block{
 
         //This section defines the orientation "type" of the block
         switch(directionClicked) {
-            case UP: state = state.setValue(TYPE, InnerCornerConnectionState.UP); break; //Bracket faces up if player clicks the ceiling
-            case DOWN: state = state.setValue(TYPE, InnerCornerConnectionState.DOWN); break; //Bracket faces down if player clicks the floor
+            case UP: state = state.setValue(TYPE_CORNER, InnerCornerConnectionState.UP); break; //Bracket faces up if player clicks the ceiling
+            case DOWN: state = state.setValue(TYPE_CORNER, InnerCornerConnectionState.DOWN); break; //Bracket faces down if player clicks the floor
             default: //If player is not clicking the floor or ceiling
                 if(PlayerisCrouching) { //If the player is crouching
-                    state = state.setValue(TYPE, InnerCornerConnectionState.SIDE); break; //Set bracket to side
+                    state = state.setValue(TYPE_CORNER, InnerCornerConnectionState.SIDE); break; //Set bracket to side
                 } else {
-                    state = state.setValue(TYPE, InnerCornerConnectionState.UP); //If player is not crouching, default to UP orientation
+                    state = state.setValue(TYPE_CORNER, InnerCornerConnectionState.UP); //If player is not crouching, default to UP orientation
                 }
         }
         return state;
@@ -143,7 +142,7 @@ public class InnerCornerBlock extends Block{
 
 
         } else if (hasModdedTool && PlayerisCrouching) {
-            pState = pState.cycle(TYPE);
+            pState = pState.cycle(TYPE_CORNER);
             pLevel.setBlock(pPos, pState, 2);
 
             return InteractionResult.sidedSuccess(pLevel.isClientSide);
@@ -154,6 +153,6 @@ public class InnerCornerBlock extends Block{
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(FACING, TYPE);
+        pBuilder.add(FACING, TYPE_CORNER);
     }
 }

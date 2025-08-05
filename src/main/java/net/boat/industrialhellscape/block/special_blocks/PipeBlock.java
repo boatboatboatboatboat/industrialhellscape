@@ -6,7 +6,6 @@ import net.boat.industrialhellscape.block.special_blocks_properties.RotationHelp
 import net.boat.industrialhellscape.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -24,9 +23,16 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
 public class PipeBlock extends Block implements ConnectedModelCapability {
 
-    public static final EnumProperty<Direction> SURFACE_DIRECTION = BlockStateProperties.FACING;
+    public static final EnumProperty<Direction> SURFACE_ATTACHED = BlockStateProperties.FACING;
     public static final EnumProperty<Direction.Axis> PLANAR_AXIS = BlockStateProperties.AXIS;
     public static final EnumProperty<PillarConnectionState> TYPE = EnumProperty.create("type", PillarConnectionState.class); //"TYPE" is used to store enum value of "solo, pos, neg, middle"
 
@@ -41,7 +47,7 @@ public class PipeBlock extends Block implements ConnectedModelCapability {
     public PipeBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.getStateDefinition().any()
-                .setValue(SURFACE_DIRECTION, Direction.DOWN) //Default surface pipe is placed on
+                .setValue(SURFACE_ATTACHED, Direction.DOWN) //Default surface pipe is placed on
                 .setValue(PLANAR_AXIS, Direction.Axis.Z) //Default North/South pipe direction
                 .setValue(TYPE, PillarConnectionState.SOLO)
         );
@@ -49,7 +55,7 @@ public class PipeBlock extends Block implements ConnectedModelCapability {
 
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        switch(pState.getValue(SURFACE_DIRECTION)) {
+        switch(pState.getValue(SURFACE_ATTACHED)) {
             //6 Cases for collision box shape based on surface attached to. Ignores pipe axial orientation
             case UP: return SHAPE_CEILING;
             case NORTH: return SHAPE_NORTH;
@@ -68,11 +74,10 @@ public class PipeBlock extends Block implements ConnectedModelCapability {
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
         BlockState state = this.defaultBlockState();
         Direction directionClicked = pContext.getClickedFace().getOpposite(); //Are you clicking the floor, ceiling, north wall, south wall, east wall, west wall?
-        pContext.getPlayer().sendSystemMessage(Component.literal(directionClicked.toString())); //Debug message showing direction player is facing when clicking something
         Direction.Axis cardinalDirection = pContext.getHorizontalDirection().getAxis();
 
         //This section determines surface alignment based on where you click to place.
-        state = state.setValue(SURFACE_DIRECTION, directionClicked);
+        state = state.setValue(SURFACE_ATTACHED, directionClicked);
 
         //This section determines block rotation on the surface
         if(directionClicked == Direction.UP || directionClicked == Direction.DOWN) { //If you clicked to place on the floor or ceiling, the pipe axes will align with your nearest horizontal direction
@@ -107,7 +112,7 @@ public class PipeBlock extends Block implements ConnectedModelCapability {
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
 
         boolean hasModdedTool = pPlayer.getMainHandItem().is(ModItems.INHELL_HAVEN_DEVICE.get()) || pPlayer.getOffhandItem().is(ModItems.INHELL_HAVEN_DEVICE.get());
-        Direction surfaceAttached = pState.getValue(SURFACE_DIRECTION);
+        Direction surfaceAttached = pState.getValue(SURFACE_ATTACHED);
 
         //Cycles from vertical and horizontal pipes when interacting with pipes on walls
         if(hasModdedTool && (surfaceAttached != Direction.UP && surfaceAttached != Direction.DOWN)) { //If player has tool, change the pipe orientation for walls
@@ -139,6 +144,6 @@ public class PipeBlock extends Block implements ConnectedModelCapability {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(SURFACE_DIRECTION, PLANAR_AXIS, TYPE); //Type defines connection state, Surface Direction defines which surface (up, down, cardinal) the block is placed on. Planar Axis is used to define pipe direction lengthwise.
+        builder.add(SURFACE_ATTACHED, PLANAR_AXIS, TYPE); //Type defines connection state, Surface Direction defines which surface (up, down, cardinal) the block is placed on. Planar Axis is used to define pipe direction lengthwise.
     }
 }

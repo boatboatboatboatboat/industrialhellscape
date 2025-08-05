@@ -8,7 +8,6 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
@@ -21,21 +20,31 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
-        /*this.tag(Tags.Blocks.BARRELS) //Forge Tags
-                .add(
-                        ModBlocks.VESSELPLATE.get()
-                );*/
+    //MAIN CLASS BLOCKS
+        //VESSELPLATE
+        //VESSELGLASS
+        //ROCKRETE
+        //PIPEWORKS
         this.tag(ModTags.Blocks.VESSELPLATE_BLOCKS)
                 .add(
                         ModBlocks.VESSELPLATE.get(),
                         ModBlocks.RIVETED_VESSELPLATE.get(),
                         ModBlocks.VESSELPLATE_GRATE_BLOCK.get(),
                         ModBlocks.VESSELPLATE_GRATE.get(),
-                        ModBlocks.RUSTY_VESSELPLATE_GRATE.get(),
                         ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get(),
                         ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get(),
                         ModBlocks.SMOOTH_VESSELPLATE.get(),
                         ModBlocks.SMOOTH_VESSELPLATE_TILE.get(),
+                        ModBlocks.VESSELPLATE_PILLAR.get(),
+
+                        ModBlocks.GRAY_VESSELPLATE.get(),
+                        ModBlocks.GRAY_RIVETED_VESSELPLATE.get(),
+                        ModBlocks.GRAY_VESSELPLATE_GRATE.get(),
+                        ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get(),
+                        ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get(),
+                        ModBlocks.SMOOTH_GRAY_VESSELPLATE.get(),
+                        ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get(),
+                        ModBlocks.GRAY_VESSELPLATE_PILLAR.get(),
 
                         ModBlocks.STRUT.get(),
                         ModBlocks.STRUT_STAIRS.get(),
@@ -53,7 +62,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.GRAY_CATWALK_STRUT_SLAB.get(),
                         ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get(),
 
-                        ModBlocks.VESSELPLATE_PILLAR.get(),
+
                         ModBlocks.HORIZONTAL_ENCASED_CABLES.get(),
                         ModBlocks.VERTICAL_ENCASED_CABLES.get(),
                         ModBlocks.RUSTY_VESSELPLATE_GRATE.get()
@@ -79,7 +88,13 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.GRIMY_RESTROOM_TILE.get()
                 );
 
-        //Connected furniture blockset families
+        this.tag(ModTags.Blocks.PIPEWORKS_BLOCKS)
+                .addTags(
+                        ModTags.Blocks.COPPER_PIPE_CONDUIT,
+                        ModTags.Blocks.BRASS_PIPE_CONDUIT
+                );
+
+        //BLOCKSET FAMILIES
         this.tag(ModTags.Blocks.CLASSIC_DESK)
                 .add(
                         ModBlocks.DESK.get(),
@@ -99,14 +114,31 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 );
         this.tag(ModTags.Blocks.COPPER_PIPE_CONDUIT)
                 .add(
+                        ModBlocks.PIPEWORKS.get(),
                         ModBlocks.COPPER_PIPE_CONDUIT.get(),
                         ModBlocks.COPPER_PIPE_CONDUIT_PLANAR_CORNER.get(),
                         ModBlocks.COPPER_PIPE_CONDUIT_INNER_CORNER.get(),
                         ModBlocks.COPPER_PIPE_CONDUIT_OUTER_CORNER.get()
                 );
+        this.tag(ModTags.Blocks.BRASS_PIPE_CONDUIT)
+                .add(
+                        ModBlocks.PIPEWORKS.get(),
+                        ModBlocks.BRASS_PIPE_CONDUIT.get(),
+                        ModBlocks.BRASS_PIPE_CONDUIT_PLANAR_CORNER.get(),
+                        ModBlocks.BRASS_PIPE_CONDUIT_INNER_CORNER.get(),
+                        ModBlocks.BRASS_PIPE_CONDUIT_OUTER_CORNER.get()
+                );
+        this.tag(ModTags.Blocks.GRAY_PIPE_CONDUIT)
+                .add(
+                        ModBlocks.PIPEWORKS.get(),
+                        ModBlocks.GRAY_PIPE_CONDUIT.get(),
+                        ModBlocks.GRAY_PIPE_CONDUIT_PLANAR_CORNER.get(),
+                        ModBlocks.GRAY_PIPE_CONDUIT_INNER_CORNER.get(),
+                        ModBlocks.GRAY_PIPE_CONDUIT_OUTER_CORNER.get()
+                );
 
-        //Furniture Category Tags (Block tags for mining tool purposes
-        this.tag(ModTags.Blocks.ALL_FURNITURE)
+        //FURNITURE CATEGORY TAGS
+        this.tag(ModTags.Blocks.ALL_FURNITURE_BLOCKS)
                 .addTags(
                         ModTags.Blocks.AMENITY_FURNITURE_CATEGORY,
                         ModTags.Blocks.HYGIENE_FURNITURE_CATEGORY,
@@ -122,18 +154,22 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 );
         this.tag(ModTags.Blocks.HYGIENE_FURNITURE_CATEGORY)
                 .add(
-                        ModBlocks.TOILET.get()
+                        ModBlocks.TOILET.get(),
+                        ModBlocks.SINK.get()
                 );
+
         this.tag(ModTags.Blocks.INDUSTRIAL_FURNITURE_CATEGORY)
                 .add(
-                        ModBlocks.COPPER_PIPE_CONDUIT.get(),
-                        ModBlocks.COPPER_PIPE_CONDUIT_PLANAR_CORNER.get(),
-                        ModBlocks.COPPER_PIPE_CONDUIT_INNER_CORNER.get(),
-                        ModBlocks.COPPER_PIPE_CONDUIT_OUTER_CORNER.get()
+                        ModBlocks.GRAY_BOLTED_BRACKET.get(),
+                        ModBlocks.BLACK_BOLTED_BRACKET.get(),
+                        ModBlocks.YELLOW_TRIPOD.get(),
+                        ModBlocks.WORK_LIGHT_MOUNT.get()
                 );
+
         this.tag(ModTags.Blocks.TECHNOLOGY_FURNITURE_CATEGORY)
                 .add(
-                        ModBlocks.RETRO_COMPUTER.get()
+                        ModBlocks.RETRO_COMPUTER.get(),
+                        ModBlocks.CASSETTE_PLAYER.get()
                 );
         this.tag(ModTags.Blocks.AMENITY_FURNITURE_CATEGORY)
                 .add(
@@ -144,15 +180,12 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.METAL_DESK_DRAWER_2.get()
                 );
 
+        //MINING TAGS
 
-        //VANILLA TAGS BELOW
-
-        //BLOCK inputs
-        this.tag(BlockTags.NEEDS_IRON_TOOL) //When specific tool tiers are required
+        /*this.tag(BlockTags.NEEDS_STONE_TOOL) //When specific tool tiers are required
                 .add(
-                        ModBlocks.PIPEWORKS.get()
-                );
 
+                );*/
         //TAG inputs
         this.tag(BlockTags.NEEDS_STONE_TOOL) //When specific tool tiers are required
                 .addTags(
@@ -163,7 +196,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
         this.tag(BlockTags.NEEDS_IRON_TOOL) //When specific tool tiers are required
                 .addTags(
-
+                        ModTags.Blocks.PIPEWORKS_BLOCKS
                 );
 
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
@@ -171,12 +204,13 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModTags.Blocks.ROCKRETE_BLOCKS,
                         ModTags.Blocks.VESSELPLATE_BLOCKS,
                         ModTags.Blocks.VESSELGLASS_BLOCKS,
+                        ModTags.Blocks.PIPEWORKS_BLOCKS,
 
-                        ModTags.Blocks.ALL_FURNITURE //All furniture can be mined with axe or pickaxe.
+                        ModTags.Blocks.ALL_FURNITURE_BLOCKS //All furniture can be mined with axe or pickaxe.
                 );
         this.tag(BlockTags.MINEABLE_WITH_AXE)
                 .addTags(
-                        ModTags.Blocks.ALL_FURNITURE //All furniture can be mined with axe or pickaxe.
+                        ModTags.Blocks.ALL_FURNITURE_BLOCKS //All furniture can be mined with axe or pickaxe.
                 );
     }
 }

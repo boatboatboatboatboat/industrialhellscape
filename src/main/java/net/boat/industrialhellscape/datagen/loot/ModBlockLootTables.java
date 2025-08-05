@@ -20,6 +20,23 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.VESSELPLATE_GRATE_BLOCK.get());
         this.dropSelf(ModBlocks.RIVETED_VESSELPLATE.get());
         this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE_TILE.get());
+        this.dropSelf(ModBlocks.VESSELPLATE_PILLAR.get());
+        this.dropSelf(ModBlocks.VESSELPLATE_GRATE.get());
+        this.dropSelf(ModBlocks.RUSTY_VESSELPLATE_GRATE.get());
+        this.dropSelf(ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.REINFORCED_VESSELGLASS.get());
+        this.dropSelf(ModBlocks.VESSELGLASS.get());
+        this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE.get());
+
+        this.dropSelf(ModBlocks.GRAY_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.GRAY_RIVETED_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.GRAY_VESSELPLATE_GRATE.get());
+        this.dropSelf(ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.SMOOTH_GRAY_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get());
+        this.dropSelf(ModBlocks.GRAY_VESSELPLATE_PILLAR.get());
 
         //STONELIKE BLOCKS
         this.dropSelf(ModBlocks.GRAY_ROCKRETE.get());
@@ -35,19 +52,20 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.GRIMY_RESTROOM_TILE.get());
 
         //SPECIAL BLOCKS
-        this.dropSelf(ModBlocks.VESSELPLATE_PILLAR.get());
-        this.dropSelf(ModBlocks.VESSELPLATE_GRATE.get());
-        this.dropSelf(ModBlocks.RUSTY_VESSELPLATE_GRATE.get());
-        this.dropSelf(ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get());
-        this.dropSelf(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get());
-        this.dropSelf(ModBlocks.REINFORCED_VESSELGLASS.get());
-        this.dropSelf(ModBlocks.VESSELGLASS.get());
-        this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE.get());
-
         this.dropSelf(ModBlocks.COPPER_PIPE_CONDUIT.get());
         this.dropSelf(ModBlocks.COPPER_PIPE_CONDUIT_PLANAR_CORNER.get());
         this.dropSelf(ModBlocks.COPPER_PIPE_CONDUIT_INNER_CORNER.get());
         this.dropSelf(ModBlocks.COPPER_PIPE_CONDUIT_OUTER_CORNER.get());
+
+        this.dropSelf(ModBlocks.BRASS_PIPE_CONDUIT.get());
+        this.dropSelf(ModBlocks.BRASS_PIPE_CONDUIT_PLANAR_CORNER.get());
+        this.dropSelf(ModBlocks.BRASS_PIPE_CONDUIT_INNER_CORNER.get());
+        this.dropSelf(ModBlocks.BRASS_PIPE_CONDUIT_OUTER_CORNER.get());
+
+        this.dropSelf(ModBlocks.GRAY_PIPE_CONDUIT.get());
+        this.dropSelf(ModBlocks.GRAY_PIPE_CONDUIT_PLANAR_CORNER.get());
+        this.dropSelf(ModBlocks.GRAY_PIPE_CONDUIT_INNER_CORNER.get());
+        this.dropSelf(ModBlocks.GRAY_PIPE_CONDUIT_OUTER_CORNER.get());
 
         this.dropSelf(ModBlocks.DESK.get());
         this.dropSelf(ModBlocks.DESK_DRAWER.get());
@@ -55,6 +73,10 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.METAL_DESK_DRAWER.get());
         this.dropSelf(ModBlocks.METAL_DESK_DRAWER_2.get());
         this.dropSelf(ModBlocks.RETRO_COMPUTER.get());
+        this.dropSelf(ModBlocks.CASSETTE_PLAYER.get());
+        this.dropSelf(ModBlocks.YELLOW_TRIPOD.get());
+        this.dropSelf(ModBlocks.WORK_LIGHT_MOUNT.get());
+
         this.dropSelf(ModBlocks.PIPEWORKS.get());
 
         this.dropSelf(ModBlocks.STRUT.get());
@@ -70,6 +92,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.GRAY_CATWALK_STRUT_SLAB.get());
         this.dropSelf(ModBlocks.GRAY_STRUT_SLAB.get());
         this.dropSelf(ModBlocks.GRAY_STRUT_STAIRS.get());
+
+        this.dropSelf(ModBlocks.GRAY_BOLTED_BRACKET.get());
+        this.dropSelf(ModBlocks.BLACK_BOLTED_BRACKET.get());
 
 
         this.dropSelf(ModBlocks.VERTICAL_ENCASED_CABLES.get());
