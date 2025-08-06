@@ -45,7 +45,6 @@ public class TwoHalvesStorageMultiBlock extends SimpleFacingBlock implements Ent
         if (pLevel.isClientSide()) {
             return InteractionResult.SUCCESS;
         }
-
         else {
             if (pState.getValue(HALF) != TwoStageMultiBlock.POSITIVE) {
                 pPos = pPos.relative(pState.getValue(FACING));
@@ -57,16 +56,20 @@ public class TwoHalvesStorageMultiBlock extends SimpleFacingBlock implements Ent
         }
 
         BlockEntity be = pLevel.getBlockEntity(pPos);
-
         if (!(be instanceof NineSlotMenuBlockEntity blockEntity))
             return InteractionResult.PASS;
 
-        // open screen
+        //Open Screen
         if (pPlayer instanceof ServerPlayer sPlayer) {
             NetworkHooks.openScreen(sPlayer, blockEntity, pPos);
         }
-
         return InteractionResult.CONSUME;
+    }
+
+    public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
+        BlockEntity storageEntity = new NineSlotMenuBlockEntity(pos, state);
+
+        return storageEntity;
     }
 
     public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pFacingPos) {
@@ -97,12 +100,6 @@ public class TwoHalvesStorageMultiBlock extends SimpleFacingBlock implements Ent
         BlockPos blockpos = pPos.below();
         BlockState blockstate = pLevel.getBlockState(blockpos);
         return pState.getValue(HALF) == TwoStageMultiBlock.NEGATIVE ? blockstate.isFaceSturdy(pLevel, blockpos, Direction.UP) : blockstate.is(this);
-    }
-
-    public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
-        BlockEntity storageEntity = new NineSlotMenuBlockEntity(pos, state);
-
-        return storageEntity;
     }
 
     public void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) {
