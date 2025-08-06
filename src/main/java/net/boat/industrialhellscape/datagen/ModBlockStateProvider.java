@@ -2,31 +2,16 @@ package net.boat.industrialhellscape.datagen;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
-import net.boat.industrialhellscape.block.special_blocks_properties.InnerCornerConnectionState;
-import net.boat.industrialhellscape.block.special_blocks_properties.PillarConnectionState;
-import net.boat.industrialhellscape.block.special_blocks_properties.RelativePlanarDirectionState;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import javax.naming.Context;
-
 public class ModBlockStateProvider extends BlockStateProvider {
-
-    public static final EnumProperty<PillarConnectionState> TYPE = EnumProperty.create("type", PillarConnectionState.class);
-    public static final EnumProperty<InnerCornerConnectionState> TYPE_CORNER = EnumProperty.create("type", InnerCornerConnectionState.class); //"UP", "SIDE", or "DOWN" enum values
-    public static final EnumProperty<Direction> SURFACE_DIRECTION = BlockStateProperties.FACING;
-    public static final EnumProperty<Direction.Axis> PLANAR_AXIS = BlockStateProperties.AXIS;
-    public static final EnumProperty<RelativePlanarDirectionState> PLANE_DIRECTION = EnumProperty.create("plane_direction", RelativePlanarDirectionState.class);
 
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, IndustrialHellscape.MOD_ID, exFileHelper);
@@ -35,7 +20,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
 
-        //IRON-LIKE BLOCKS
+        //GENERATED MODELS, GENERATED BLOCKSTATES
+
+        //Iron-like Blocks
         blockWithItem(ModBlocks.VESSELPLATE);
         blockWithItem(ModBlocks.RIVETED_VESSELPLATE);
         blockWithItem(ModBlocks.VESSELPLATE_GRATE_BLOCK);
@@ -60,9 +47,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.REINFORCED_VESSELGLASS);
         blockWithItem(ModBlocks.VESSELGLASS);
 
-        //-----
-
-        //STONE-LIKE BLOCKS
+        //Stone-like Blocks
         blockWithItem(ModBlocks.GRAY_ROCKRETE);
         blockWithItem(ModBlocks.GRAY_ROCKRETE_REBAR);
         stairsBlock(((StairBlock) ModBlocks.GRAY_ROCKRETE_STAIRS.get()), blockTexture(ModBlocks.GRAY_ROCKRETE.get()));
@@ -71,13 +56,26 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.HAZARD_STRIPE_YELLOW);
         blockWithItem(ModBlocks.HAZARD_STRIPE_RED);
 
-        //Custom Models
-        horizontalBlock(ModBlocks.PIPEWORKS.get(), build3FaceTexturesBlock("pipeworks", "pipeworks_front", "pipeworks_sides", "pipeworks_top"));
-        WaterloggableFacingBlock(ModBlocks.SINK.get(), "sink");
-        LightableBlock(ModBlocks.WORK_LIGHT_MOUNT.get());
-        LightableBlock(ModBlocks.RETRO_COMPUTER.get());
+        //Furniture Block
+        horizontalBlock(ModBlocks.IHEA_FURNITURE_KIT.get(), build6FaceTexturesBlock("ihea_furniture_kit", "furniture_category_block", "ihea_furniture_kit_bottom","ihea_furniture_kit_top","ihea_furniture_kit_front","ihea_furniture_kit_back","ihea_furniture_kit_left","ihea_furniture_kit_right"));
+        horizontalBlock(ModBlocks.PIPEWORKS.get(), build3FaceTexturesBlock("pipeworks", "pipeworks", "pipeworks_front", "pipeworks_sides", "pipeworks_top"));
+        horizontalBlock(ModBlocks.SAFETY_FURNISHINGS.get(), build3FaceTexturesBlock("safety_furnishings", "furniture_category_block", "safety_furnishings_north", "safety_furnishings_west", "safety_furnishings_up"));
+        horizontalBlock(ModBlocks.HYGIENE_FURNISHINGS.get(), build3FaceTexturesBlock("hygiene_furnishings","furniture_category_block", "hygiene_furnishings_north", "hygiene_furnishings_west", "hygiene_furnishings_up"));
+        horizontalBlock(ModBlocks.INDUSTRIAL_FURNISHINGS.get(), build3FaceTexturesBlock("industrial_furnishings","furniture_category_block", "industrial_furnishings_north", "industrial_furnishings_west", "industrial_furnishings_up"));
+        horizontalBlock(ModBlocks.TECHNOLOGY_FURNISHINGS.get(), build3FaceTexturesBlock("technology_furnishings","furniture_category_block", "technology_furnishings_north", "technology_furnishings_west", "technology_furnishings_up"));
+        horizontalBlock(ModBlocks.AMENITY_FURNISHINGS.get(), build3FaceTexturesBlock("amenity_furnishings","furniture_category_block", "amenity_furnishings_north", "amenity_furnishings_west", "amenity_furnishings_up"));
 
-        WaterloggableBlock(ModBlocks.YELLOW_TRIPOD.get(), "yellow_tripod");
+        //CUSTOM EXISTING MODELS, GENERATED BLOCKSTATES
+        WaterloggableFacingBlock(ModBlocks.SINK.get(),"");
+        WaterloggableFacingBlock(ModBlocks.WHITE_WALL_MEDKIT.get(),"medkit_containers");
+        WaterloggableFacingBlock(ModBlocks.RED_WALL_MEDKIT.get(),"medkit_containers");
+        WaterloggableBlock(ModBlocks.YELLOW_TRIPOD.get(),"");
+
+        PowerableBlock(ModBlocks.WORK_LIGHT_MOUNT.get(), "work_light_mount");
+        PowerableBlock(ModBlocks.FLOOR_WORK_LIGHT.get(), "work_light_mount");
+        PowerableBlock(ModBlocks.RETRO_COMPUTER.get(), "retro_computer");
+        PowerableBlock(ModBlocks.CASSETTE_PLAYER.get(), "cassette_player");
+
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {
@@ -85,27 +83,36 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
     }
 
-    private ModelFile build3FaceTexturesBlock(String blockName, String frontAndBack, String leftAndRight, String topAndBottom) {
+    private ModelFile build6FaceTexturesBlock(String blockName, String folderName, String bottom, String top, String front, String back, String left, String right) {
         //Builds a textured model that uses three texture .pngs for all 6 faces.
         ModelFile model = models().cube(
-                "pipeworks",
-                modLoc( "block/" + blockName+ "/" + topAndBottom), //bottom
-                modLoc("block/" + blockName+ "/" + topAndBottom), //top
-                modLoc("block/" + blockName+ "/" + frontAndBack), //front
-                modLoc("block/" + blockName+ "/" + frontAndBack), //back
-                modLoc("block/"  + blockName+ "/" + leftAndRight), //left
-                modLoc("block/"  + blockName+ "/" + leftAndRight) //right
-                ).texture("particle", modLoc("block/" + blockName +"/" + topAndBottom));
+                blockName,
+                modLoc( "block/" + folderName+ "/" + bottom), //bottom
+                modLoc("block/" + folderName+ "/" + top), //top
+                modLoc("block/" + folderName+ "/" + front), //front
+                modLoc("block/" + folderName+ "/" + back), //back
+                modLoc("block/"  + folderName+ "/" + left), //left
+                modLoc("block/"  + folderName+ "/" + right) //right
+        ).texture("particle", modLoc("block/" + folderName +"/" + top));
         return model;
     }
 
-    private ModelFile customModel(Block block) {
-        String pathName = ForgeRegistries.BLOCKS.getKey(block).getPath();
-        ModelFile model = models().getExistingFile(modLoc(pathName));
+    private ModelFile build3FaceTexturesBlock(String blockName, String folderName, String frontAndBack, String leftAndRight, String topAndBottom) {
+        //Builds a textured model that uses three texture .pngs for all 6 faces.
+        ModelFile model = models().cube(
+                blockName,
+                modLoc( "block/" + folderName+ "/" + topAndBottom), //bottom
+                modLoc("block/" + folderName+ "/" + topAndBottom), //top
+                modLoc("block/" + folderName+ "/" + frontAndBack), //front
+                modLoc("block/" + folderName+ "/" + frontAndBack), //back
+                modLoc("block/"  + folderName+ "/" + leftAndRight), //left
+                modLoc("block/"  + folderName+ "/" + leftAndRight) //right
+                ).texture("particle", modLoc("block/" + folderName +"/" + topAndBottom));
         return model;
     }
 
-    private void WaterloggableFacingBlock(Block block, String modelName) {
+    private void WaterloggableFacingBlock(Block block, String folderName) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
         getVariantBuilder(block)
                 .forAllStatesExcept(state -> {
                     Direction facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
@@ -118,53 +125,46 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     };
 
                     return ConfiguredModel.builder()
-                            .modelFile(models().getExistingFile(modLoc("block/" + modelName)))
+                            .modelFile(models().getExistingFile(modLoc("block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName)))
                             .rotationY(yRot)
                             .build();
                 }, BlockStateProperties.WATERLOGGED);
     }
 
-    private void LightableBlock(Block block) {
-
+    private void PowerableBlock(Block block, String folderName) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
-        ModelFile unlitBlock = models().getExistingFile(modLoc("block/"+stringName)); //default
-        ModelFile litBlock = models().getExistingFile(modLoc("block/"+stringName+"_on"));
+        String unpoweredModel = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
+        String poweredModel = unpoweredModel+"_on";
 
         getVariantBuilder(block)
                 .forAllStatesExcept(state -> {
                     Direction FACING = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
                     Boolean POWERED = state.getValue(BlockStateProperties.POWERED);
+                    String modelToUse = POWERED? poweredModel : unpoweredModel;
 
-                    int yRotation = switch (FACING) {
+                    int yRot = switch (FACING   ) {
                         case SOUTH -> 180;
                         case WEST  -> 270;
                         case EAST  -> 90;
-                        default -> 0;
+                        default -> 0; //NORTH
                     };
 
-                    return
-                            ConfiguredModel.builder()
-                            .modelFile( POWERED ? litBlock : unlitBlock)
-                            .rotationY(yRotation)
+                    if(POWERED == true) {
+                    }
+                    return ConfiguredModel.builder()
+                            .modelFile(models().getExistingFile(modLoc(modelToUse)))
+                            .rotationY(yRot)
                             .build();
                 }, BlockStateProperties.WATERLOGGED);
 
-
-
     }
-    private void WaterloggableBlock(Block block, String modelName) {
+
+    private void WaterloggableBlock(Block block, String folderName) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
         getVariantBuilder(block)
                 .partialState()
                 .modelForState()
-                .modelFile(models().getExistingFile(modLoc("block/" + modelName)))
+                .modelFile(models().getExistingFile(modLoc("block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName)))
                 .addModel();
     }
 }
-
-
-//ConfiguredModel.builder().modelFile(prov.models()
-//          .withExistingParent(ctx.getName() + (state.getValue(BlockStateProperties.LIT) ? "" : "_off"), prov.modLoc("block/cage_lamp"))
-//          .texture("cage", cage)
-//          .texture("lamp", state.getValue(BlockStateProperties.LIT) ? lampOn : lampOff)
-//          .texture("particle", cage)
-//        )

@@ -291,6 +291,12 @@ public interface HitboxGeometryCollection {
 
         return shape;
     }
+    static VoxelShape FLOOR_WORK_LIGHT_SHAPE(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0.25, 0, 0.3125, 0.75, 0.625, 0.75), BooleanOp.OR);
+
+        return shape;
+    }
     //METAL DESK DRAWER 2
     static  VoxelShape METAL_DESK_DRAWER_2_SOLO_SHAPE(){
         return METAL_DESK_DRAWER_SOLO_SHAPE();

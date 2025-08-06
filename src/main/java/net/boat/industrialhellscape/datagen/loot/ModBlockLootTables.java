@@ -15,6 +15,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
+        //DEBUG BLOCKS
+        this.dropSelf(ModBlocks.MULTIBLOCK_DEBUG.get());
+
         //IRONLIKE SIMPLE BLOCKS
         this.dropSelf(ModBlocks.VESSELPLATE.get());
         this.dropSelf(ModBlocks.VESSELPLATE_GRATE_BLOCK.get());
@@ -76,6 +79,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.CASSETTE_PLAYER.get());
         this.dropSelf(ModBlocks.YELLOW_TRIPOD.get());
         this.dropSelf(ModBlocks.WORK_LIGHT_MOUNT.get());
+        this.dropSelf(ModBlocks.FLOOR_WORK_LIGHT.get());
 
         this.dropSelf(ModBlocks.PIPEWORKS.get());
 

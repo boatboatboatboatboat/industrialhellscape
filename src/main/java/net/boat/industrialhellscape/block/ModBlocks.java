@@ -30,7 +30,12 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, IndustrialHellscape.MOD_ID);
 
-    //Custom sound, add this anywhere: .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
+    //DEBUG BLOCKS HERE VVV
+    public static final RegistryObject<Block> MULTIBLOCK_DEBUG = registerBlock("multiblock_debug",
+            () -> new TwoHalvesStorageMultiBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+            )
+    );
 
     //IRONLIKE BLOCKS HERE VVV
     public static final RegistryObject<Block> VESSELPLATE_GRATE_BLOCK = registerBlock("vesselplate_grate_block",
@@ -344,6 +349,14 @@ public class ModBlocks {
                     HitboxGeometryCollection.WORK_LIGHT_MOUNT_SHAPE()
             )
     );
+    public static final RegistryObject<Block> FLOOR_WORK_LIGHT = registerBlock("floor_work_light",
+            () -> new InteractableModelledFacingBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .lightLevel(state -> state.getValue(POWERED) ? 15 : 0),
+                    HitboxGeometryCollection.FLOOR_WORK_LIGHT_SHAPE()
+            )
+    );
 
     public static final RegistryObject<Block> PIPEWORKS = registerBlock("pipeworks",
             () -> new FacingFallableBlock(BlockBehaviour
@@ -524,6 +537,7 @@ public class ModBlocks {
                     .noOcclusion()
             )
     );
+
     public static final RegistryObject<Block> SAFETY_FURNISHINGS = registerBlock("safety_furnishings",
             () -> new SimpleFacingBlock(BlockBehaviour
                     .Properties.copy(Blocks.OAK_PLANKS)

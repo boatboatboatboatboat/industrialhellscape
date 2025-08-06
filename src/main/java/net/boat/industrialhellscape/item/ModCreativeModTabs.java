@@ -24,8 +24,10 @@ public class ModCreativeModTabs {
                         output.accept(ModItems.FLOPPY_DISK.get());
                         output.accept(ModItems.FLOPPY_DISKETTE.get());
                         output.accept(ModItems.INHELL_HAVEN_DEVICE.get());
-                        //output.accept(ModItems.METAL_DETECTOR.get());
                         output.accept(ModItems.VAPORWAVE_CASSETTE.get());
+
+                        //DEBUG BLOCKS
+                        output.accept(ModBlocks.MULTIBLOCK_DEBUG.get());
 
                         //IRONLIKE BLOCKS FOR CREATIVE TAB
                         output.accept(ModBlocks.VESSELPLATE.get());
@@ -92,6 +94,7 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.CASSETTE_PLAYER.get());
                         output.accept(ModBlocks.YELLOW_TRIPOD.get());
                         output.accept(ModBlocks.WORK_LIGHT_MOUNT.get());
+                        output.accept(ModBlocks.FLOOR_WORK_LIGHT.get());
                         output.accept(ModBlocks.PIPEWORKS.get());
 
                         //output.accept(ModBlocks.SINK.get());

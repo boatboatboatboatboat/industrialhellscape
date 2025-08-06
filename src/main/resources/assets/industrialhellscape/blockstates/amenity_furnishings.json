@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "facing=north": {"model": "industrialhellscape:block/furniture_category_block/amenity_furnishings","y": 0},
-    "facing=south": {"model": "industrialhellscape:block/furniture_category_block/amenity_furnishings","y":180},
-    "facing=east": {"model": "industrialhellscape:block/furniture_category_block/amenity_furnishings","y": 90},
-    "facing=west": {"model": "industrialhellscape:block/furniture_category_block/amenity_furnishings","y": 270}
-  }
-}

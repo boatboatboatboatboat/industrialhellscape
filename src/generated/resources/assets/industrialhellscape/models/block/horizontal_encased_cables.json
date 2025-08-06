@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "industrialhellscape:block/horizontal_encased_cables"
+  }
+}

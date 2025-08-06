@@ -21,51 +21,65 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        simpleItem(ModItems.FLOPPY_DISK);
-        simpleItem(ModItems.FLOPPY_DISKETTE);
-        simpleItem(ModItems.MALEVOLENT_MULTITOOL);
-        simpleItem(ModItems.VAPORWAVE_CASSETTE);
+        makeItemModel(ModItems.FLOPPY_DISK);
+        makeItemModel(ModItems.FLOPPY_DISKETTE);
+        makeItemModel(ModItems.MALEVOLENT_MULTITOOL);
+        makeItemModel(ModItems.VAPORWAVE_CASSETTE);
 
+        makeBlockitemModel(ModBlocks.MULTIBLOCK_DEBUG);
 
-        SimpleBlockItem(ModBlocks.GRAY_VESSELPLATE);
-        SimpleBlockItem(ModBlocks.GRAY_VESSELPLATE_GRATE);
-        SimpleBlockItem(ModBlocks.GRAY_RIVETED_VESSELPLATE);
-        SimpleBlockItem(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE);
-        SimpleBlockItem(ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE);
-        SimpleBlockItem(ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE);
-        SimpleBlockItem(ModBlocks.SMOOTH_GRAY_VESSELPLATE);
+        makeBlockitemModel(ModBlocks.GRAY_VESSELPLATE);
+        makeBlockitemModel(ModBlocks.GRAY_VESSELPLATE_GRATE);
+        makeBlockitemModel(ModBlocks.GRAY_RIVETED_VESSELPLATE);
+        makeBlockitemModel(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE);
+        makeBlockitemModel(ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE);
+        makeBlockitemModel(ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE);
+        makeBlockitemModel(ModBlocks.SMOOTH_GRAY_VESSELPLATE);
 
-        SimpleBlockItem(ModBlocks.RIVETED_VESSELPLATE);
-        SimpleBlockItem(ModBlocks.GRAY_ROCKRETE_STAIRS);
-        SimpleBlockItem(ModBlocks.GRAY_ROCKRETE_SLAB);
-        SimpleBlockItem(ModBlocks.PIPEWORKS);
+        makeBlockitemModel(ModBlocks.RIVETED_VESSELPLATE);
+        makeBlockitemModel(ModBlocks.GRAY_ROCKRETE_STAIRS);
+        makeBlockitemModel(ModBlocks.GRAY_ROCKRETE_SLAB);
+        makeBlockitemModel(ModBlocks.PIPEWORKS);
 
-        SimpleBlockItem(ModBlocks.STRUT_STAIRS);
-        SimpleBlockItem(ModBlocks.STRUT_SLAB);
-        SimpleBlockItem(ModBlocks.CATWALK_STRUT_STAIRS);
-        SimpleBlockItem(ModBlocks.CATWALK_STRUT_SLAB);
+        makeBlockitemModel(ModBlocks.STRUT_STAIRS);
+        makeBlockitemModel(ModBlocks.STRUT_SLAB);
+        makeBlockitemModel(ModBlocks.CATWALK_STRUT_STAIRS);
+        makeBlockitemModel(ModBlocks.CATWALK_STRUT_SLAB);
 
-        SimpleBlockItem(ModBlocks.GRAY_STRUT_STAIRS);
-        SimpleBlockItem(ModBlocks.GRAY_STRUT_SLAB);
-        SimpleBlockItem(ModBlocks.GRAY_CATWALK_STRUT_STAIRS);
-        SimpleBlockItem(ModBlocks.GRAY_CATWALK_STRUT_SLAB);
+        makeBlockitemModel(ModBlocks.GRAY_STRUT_STAIRS);
+        makeBlockitemModel(ModBlocks.GRAY_STRUT_SLAB);
+        makeBlockitemModel(ModBlocks.GRAY_CATWALK_STRUT_STAIRS);
+        makeBlockitemModel(ModBlocks.GRAY_CATWALK_STRUT_SLAB);
 
-        SimpleBlockItem(ModBlocks.RETRO_COMPUTER);
-        SimpleBlockItem(ModBlocks.CASSETTE_PLAYER);
-        SimpleBlockItem(ModBlocks.SINK);
-        SimpleBlockItem(ModBlocks.YELLOW_TRIPOD);
-        SimpleBlockItem(ModBlocks.WORK_LIGHT_MOUNT);
+        makeBlockitemModel(ModBlocks.IHEA_FURNITURE_KIT);
+        makeBlockitemModel(ModBlocks.SAFETY_FURNISHINGS);
+        makeBlockitemModel(ModBlocks.HYGIENE_FURNISHINGS);
+        makeBlockitemModel(ModBlocks.INDUSTRIAL_FURNISHINGS);
+        makeBlockitemModel(ModBlocks.TECHNOLOGY_FURNISHINGS);
+        makeBlockitemModel(ModBlocks.AMENITY_FURNISHINGS);
 
+        makeBlockitemModel(ModBlocks.SINK);
+        makeBlockitemModel(ModBlocks.YELLOW_TRIPOD);
 
+        makeFolderedBlockitemModel(ModBlocks.RETRO_COMPUTER,"retro_computer");
+        makeFolderedBlockitemModel(ModBlocks.CASSETTE_PLAYER, "cassette_player");
+        makeFolderedBlockitemModel(ModBlocks.WORK_LIGHT_MOUNT,"work_light_mount");
+        makeFolderedBlockitemModel(ModBlocks.FLOOR_WORK_LIGHT,"work_light_mount");
     }
 
-    private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
+    private ItemModelBuilder makeItemModel(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
                 new ResourceLocation(IndustrialHellscape.MOD_ID,"item/" + item.getId().getPath()));
     }
-    public void SimpleBlockItem(RegistryObject<Block> block) {
-        this.withExistingParent(IndustrialHellscape.MOD_ID + ":" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath(),
+    public void makeBlockitemModel(RegistryObject<Block> block) {
+        this.withExistingParent(IndustrialHellscape.MOD_ID + ":item/" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath(),
                 modLoc("block/" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath()));
+    }
+    public void makeFolderedBlockitemModel(RegistryObject<Block> block, String folderName) {
+        this.withExistingParent(
+                IndustrialHellscape.MOD_ID + ":item/" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath(), //output path
+                modLoc("block/" + folderName + "/" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath())    //parent model path
+        );
     }
 }

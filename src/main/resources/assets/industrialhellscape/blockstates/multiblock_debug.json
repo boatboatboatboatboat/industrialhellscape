@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,half=positive": {
+      "model": "industrialhellscape:block/multiblock_debug_top",
+      "y": 90
+    },
+    "facing=east,half=negative": {
+      "model": "industrialhellscape:block/multiblock_debug",
+      "y": 90
+    },
+    "facing=north,half=positive": {
+      "model": "industrialhellscape:block/multiblock_debug_top"
+    },
+    "facing=north,half=negative": {
+      "model": "industrialhellscape:block/multiblock_debug"
+    },
+    "facing=south,half=positive": {
+      "model": "industrialhellscape:block/multiblock_debug_top",
+      "y": 180
+    },
+    "facing=south,half=negative": {
+      "model": "industrialhellscape:block/multiblock_debug",
+      "y": 180
+    },
+    "facing=west,half=positive": {
+      "model": "industrialhellscape:block/multiblock_debug_top",
+      "y": 270
+    },
+    "facing=west,half=negative": {
+      "model": "industrialhellscape:block/multiblock_debug",
+      "y": 270
+    }
+  }
+}

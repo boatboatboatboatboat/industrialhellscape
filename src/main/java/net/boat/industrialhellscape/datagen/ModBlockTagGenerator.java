@@ -88,10 +88,11 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.GRIMY_RESTROOM_TILE.get()
                 );
 
-        this.tag(ModTags.Blocks.PIPEWORKS_BLOCKS)
+        this.tag(ModTags.Blocks.PIPEWORKS_BLOCKS) //FOR CORRECT MINING TOOLS AND TOOL TIER
                 .addTags(
                         ModTags.Blocks.COPPER_PIPE_CONDUIT,
-                        ModTags.Blocks.BRASS_PIPE_CONDUIT
+                        ModTags.Blocks.BRASS_PIPE_CONDUIT,
+                        ModTags.Blocks.GRAY_PIPE_CONDUIT
                 );
 
         //BLOCKSET FAMILIES
@@ -163,7 +164,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.GRAY_BOLTED_BRACKET.get(),
                         ModBlocks.BLACK_BOLTED_BRACKET.get(),
                         ModBlocks.YELLOW_TRIPOD.get(),
-                        ModBlocks.WORK_LIGHT_MOUNT.get()
+                        ModBlocks.WORK_LIGHT_MOUNT.get(),
+                        ModBlocks.FLOOR_WORK_LIGHT.get()
                 );
 
         this.tag(ModTags.Blocks.TECHNOLOGY_FURNITURE_CATEGORY)

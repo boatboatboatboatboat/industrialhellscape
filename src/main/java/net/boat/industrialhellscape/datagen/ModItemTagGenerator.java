@@ -181,7 +181,8 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.GRAY_BOLTED_BRACKET.get().asItem(),
                         ModBlocks.BLACK_BOLTED_BRACKET.get().asItem(),
                         ModBlocks.YELLOW_TRIPOD.get().asItem(),
-                        ModBlocks.WORK_LIGHT_MOUNT.get().asItem()
+                        ModBlocks.WORK_LIGHT_MOUNT.get().asItem(),
+                        ModBlocks.FLOOR_WORK_LIGHT.get().asItem()
                 );
 
 

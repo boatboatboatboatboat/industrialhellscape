@@ -113,7 +113,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.GRAY_BOLTED_BRACKET.get().asItem(),
             ModBlocks.BLACK_BOLTED_BRACKET.get().asItem(),
             ModBlocks.YELLOW_TRIPOD.get().asItem(),
-            ModBlocks.WORK_LIGHT_MOUNT.get().asItem()
+            ModBlocks.WORK_LIGHT_MOUNT.get().asItem(),
+            ModBlocks.FLOOR_WORK_LIGHT.get().asItem()
     );
     private static final List<ItemLike> TECHNOLOGY_FURNITURE = List.of(
             ModBlocks.RETRO_COMPUTER.get().asItem(),
