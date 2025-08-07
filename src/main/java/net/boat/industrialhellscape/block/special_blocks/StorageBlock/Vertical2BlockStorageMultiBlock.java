@@ -1,6 +1,6 @@
-package net.boat.industrialhellscape.block.special_blocks;
+package net.boat.industrialhellscape.block.special_blocks.StorageBlock;
 
-import net.boat.industrialhellscape.block.special_blocks.StorageBlock.NineSlotMenuBlockEntity;
+import net.boat.industrialhellscape.block.special_blocks.SimpleFacingBlock;
 import net.boat.industrialhellscape.block.special_blocks_properties.TwoStageMultiBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -8,55 +8,69 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.*;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class TwoHalvesMultiBlock extends SimpleFacingBlock{
+public class Vertical2BlockStorageMultiBlock extends SimpleFacingBlock implements EntityBlock {
 
-    public static final EnumProperty<TwoStageMultiBlock> HALF = EnumProperty.create("half", TwoStageMultiBlock.class);
+    public static final EnumProperty<TwoStageMultiBlock> HALF = EnumProperty.create("half", TwoStageMultiBlock.class); //Values of "POSITIVE" and "NEGATIVE". In this context, it refers to "top block" and "bottom block" respectively
 
-    public TwoHalvesMultiBlock(Properties pProperties) {
+    public Vertical2BlockStorageMultiBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.stateDefinition.any().setValue(HALF, TwoStageMultiBlock.NEGATIVE).setValue(FACING,Direction.NORTH));
     }
 
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
 
-        BlockEntity be = pLevel.getBlockEntity(pPos);
-
         if (pLevel.isClientSide()) {
             return InteractionResult.SUCCESS;
-        } else {
-            if (pState.getValue(HALF) != TwoStageMultiBlock.POSITIVE) {
-                pPos = pPos.relative(pState.getValue(FACING));
+        }
+        else {
+            if (pState.getValue(HALF) != TwoStageMultiBlock.NEGATIVE) { //If the interacted block half is NOT the bottom block
+                pPos = pPos.below();    //Move the interacted block position one block below (the player will always interact with bottom block where the block entity is, regardless of top/bottom block clicked)
                 pState = pLevel.getBlockState(pPos);
                 if (!pState.is(this)) {
-                    return InteractionResult.CONSUME;
+                    return InteractionResult.CONSUME; //Do the interaction at the position of the bottom block
                 }
             }
         }
 
+        BlockEntity be = pLevel.getBlockEntity(pPos);
         if (!(be instanceof NineSlotMenuBlockEntity blockEntity))
             return InteractionResult.PASS;
 
-        // open screen
+        //Open Screen
         if (pPlayer instanceof ServerPlayer sPlayer) {
             NetworkHooks.openScreen(sPlayer, blockEntity, pPos);
         }
-
         return InteractionResult.CONSUME;
+    }
+
+    public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
+        BlockEntity storageEntity = new NineSlotMenuBlockEntity(pos, state);
+
+        if(state.getValue(HALF) == TwoStageMultiBlock.POSITIVE) { //If the block is the top block
+            return null; //no new block entities will be generated
+        }
+        return storageEntity; //One block entity will be present: in the bottom block
     }
 
     public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pFacingPos) {
@@ -87,6 +101,22 @@ public class TwoHalvesMultiBlock extends SimpleFacingBlock{
         BlockPos blockpos = pPos.below();
         BlockState blockstate = pLevel.getBlockState(blockpos);
         return pState.getValue(HALF) == TwoStageMultiBlock.NEGATIVE ? blockstate.isFaceSturdy(pLevel, blockpos, Direction.UP) : blockstate.is(this);
+    }
+
+    public void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) {
+        if (!level.isClientSide()) {
+            BlockEntity be = level.getBlockEntity(pos);
+            if (be instanceof NineSlotMenuBlockEntity blockEntity) {
+                ItemStackHandler inventory = blockEntity.getInventory();
+                for (int index = 0; index < inventory.getSlots(); index++) {
+                    ItemStack stack = inventory.getStackInSlot(index);
+                    var entity = new ItemEntity(level, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, stack);
+                    level.addFreshEntity(entity);
+                }
+            }
+        }
+
+        super.onRemove(state, level, pos, newState, isMoving);
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {

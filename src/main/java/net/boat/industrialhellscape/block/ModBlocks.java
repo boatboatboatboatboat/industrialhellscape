@@ -6,7 +6,7 @@ import net.boat.industrialhellscape.block.special_blocks.PipeBlock;
 import net.boat.industrialhellscape.block.special_blocks.SimpleFacingBlock;
 import net.boat.industrialhellscape.block.special_blocks.StorageBlock.ConnectedFurniture9SlotStorageBlock;
 import net.boat.industrialhellscape.block.special_blocks.StorageBlock.NineSlotMenuBlock;
-import net.boat.industrialhellscape.block.special_blocks.StorageBlock.VerticalHalvedStorageMultiBlock;
+import net.boat.industrialhellscape.block.special_blocks.StorageBlock.Vertical2BlockStorageMultiBlock;
 import net.boat.industrialhellscape.block.special_blocks_properties.HitboxGeometryCollection;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.item.ModItems;
@@ -33,7 +33,7 @@ public class ModBlocks {
 
     //DEBUG BLOCKS HERE VVV
     public static final RegistryObject<Block> MULTIBLOCK_DEBUG = registerBlock("multiblock_debug",
-            () -> new VerticalHalvedStorageMultiBlock(BlockBehaviour
+            () -> new Vertical2BlockStorageMultiBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
             )
     );
