@@ -107,7 +107,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.WHITE_WALL_MEDKIT.get().asItem()
     );
     private static final List<ItemLike> HYGIENE_FURNITURE = List.of(
-            ModBlocks.TOILET.get().asItem()
+            ModBlocks.TOILET.get().asItem(),
+            ModBlocks.SINK.get().asItem()
     );
     private static final List<ItemLike> INDUSTRIAL_FURNITURE = List.of(
             ModBlocks.GRAY_BOLTED_BRACKET.get().asItem(),

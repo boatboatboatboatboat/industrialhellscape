@@ -26,7 +26,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         makeItemModel(ModItems.MALEVOLENT_MULTITOOL);
         makeItemModel(ModItems.VAPORWAVE_CASSETTE);
 
-        makeBlockitemModel(ModBlocks.MULTIBLOCK_DEBUG);
+        //makeBlockitemModel(ModBlocks.MULTIBLOCK_DEBUG);
 
         makeBlockitemModel(ModBlocks.GRAY_VESSELPLATE);
         makeBlockitemModel(ModBlocks.GRAY_VESSELPLATE_GRATE);

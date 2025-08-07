@@ -1,8 +1,6 @@
-package net.boat.industrialhellscape.block.special_blocks;
+package net.boat.industrialhellscape.block.special_blocks.StorageBlock;
 
-import net.boat.industrialhellscape.block.ModBlocks;
-import net.boat.industrialhellscape.block.special_blocks.StorageBlock.NineSlotMenuBlockEntity;
-import net.boat.industrialhellscape.block.special_blocks_properties.ModBlockEntities;
+import net.boat.industrialhellscape.block.special_blocks.SimpleFacingBlock;
 import net.boat.industrialhellscape.block.special_blocks_properties.TwoStageMultiBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -25,17 +23,20 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class TwoHalvesStorageMultiBlock extends SimpleFacingBlock implements EntityBlock {
+public class VerticalHalvedStorageMultiBlock extends SimpleFacingBlock implements EntityBlock {
 
     public static final EnumProperty<TwoStageMultiBlock> HALF = EnumProperty.create("half", TwoStageMultiBlock.class);
 
-    public TwoHalvesStorageMultiBlock(Properties pProperties) {
+    public VerticalHalvedStorageMultiBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.stateDefinition.any().setValue(HALF, TwoStageMultiBlock.NEGATIVE).setValue(FACING,Direction.NORTH));
     }
@@ -46,14 +47,16 @@ public class TwoHalvesStorageMultiBlock extends SimpleFacingBlock implements Ent
             return InteractionResult.SUCCESS;
         }
         else {
-            if (pState.getValue(HALF) != TwoStageMultiBlock.POSITIVE) {
-                pPos = pPos.relative(pState.getValue(FACING));
+            if (pState.getValue(HALF) != TwoStageMultiBlock.NEGATIVE) { //If the interacted block half is NOT the bottom block
+                pPos = pPos.below();    //Move the block position one block above (to the top block)
                 pState = pLevel.getBlockState(pPos);
                 if (!pState.is(this)) {
-                    return InteractionResult.CONSUME;
+                    return InteractionResult.CONSUME; //Do the interaction at the position of the bottom block
                 }
             }
         }
+
+
 
         BlockEntity be = pLevel.getBlockEntity(pPos);
         if (!(be instanceof NineSlotMenuBlockEntity blockEntity))
@@ -69,7 +72,10 @@ public class TwoHalvesStorageMultiBlock extends SimpleFacingBlock implements Ent
     public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
         BlockEntity storageEntity = new NineSlotMenuBlockEntity(pos, state);
 
-        return storageEntity;
+        if(state.getValue(HALF) == TwoStageMultiBlock.POSITIVE) { //If the block is the top block
+            return null; //no block entity will be generated
+        }
+        return storageEntity; //The block entity will be present in the bottom block for vanilla hopper access.
     }
 
     public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pFacingPos) {

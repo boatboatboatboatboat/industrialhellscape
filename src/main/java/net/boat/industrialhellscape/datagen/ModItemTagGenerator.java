@@ -172,7 +172,8 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 );
         this.tag(ModTags.Items.HYGIENE_FURNITURE_CATEGORY)
                 .add(
-                        ModBlocks.TOILET.get().asItem()
+                        ModBlocks.TOILET.get().asItem(),
+                        ModBlocks.SINK.get().asItem()
                 );
 
 
