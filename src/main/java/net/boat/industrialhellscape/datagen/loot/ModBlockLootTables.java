@@ -16,7 +16,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     @Override
     protected void generate() {
         //DEBUG BLOCKS
-        this.dropSelf(ModBlocks.MULTIBLOCK_DEBUG.get());
+        this.dropSelf(ModBlocks.LARGE_LOCKER.get());
 
         //IRONLIKE SIMPLE BLOCKS
         this.dropSelf(ModBlocks.VESSELPLATE.get());
@@ -28,9 +28,12 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.RUSTY_VESSELPLATE_GRATE.get());
         this.dropSelf(ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get());
         this.dropSelf(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE.get());
+
         this.dropSelf(ModBlocks.REINFORCED_VESSELGLASS.get());
         this.dropSelf(ModBlocks.VESSELGLASS.get());
-        this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.GRAY_REINFORCED_VESSELGLASS.get());
+        this.dropSelf(ModBlocks.GRAY_VESSELGLASS.get());
 
         this.dropSelf(ModBlocks.GRAY_VESSELPLATE.get());
         this.dropSelf(ModBlocks.GRAY_RIVETED_VESSELPLATE.get());

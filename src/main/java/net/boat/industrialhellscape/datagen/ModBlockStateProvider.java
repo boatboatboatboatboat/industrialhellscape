@@ -2,16 +2,23 @@ package net.boat.industrialhellscape.datagen;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
+import net.boat.industrialhellscape.block.special_blocks_properties.TwoBlockMultiBlockState;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModBlockStateProvider extends BlockStateProvider {
+    public static final EnumProperty<TwoBlockMultiBlockState> HALF = EnumProperty.create("half", TwoBlockMultiBlockState.class);
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, IndustrialHellscape.MOD_ID, exFileHelper);
@@ -44,8 +51,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.VERTICAL_ENCASED_CABLES);
         blockWithItem(ModBlocks.SMOOTH_VESSELPLATE);
         blockWithItem(ModBlocks.SMOOTH_VESSELPLATE_TILE);
-        blockWithItem(ModBlocks.REINFORCED_VESSELGLASS);
-        blockWithItem(ModBlocks.VESSELGLASS);
+
+        ItemModelOnly(ModBlocks.REINFORCED_VESSELGLASS.get(),"");
+        ItemModelOnly(ModBlocks.VESSELGLASS.get(),"");
+        ItemModelOnly(ModBlocks.GRAY_REINFORCED_VESSELGLASS.get(),"");
+        ItemModelOnly(ModBlocks.GRAY_VESSELGLASS.get(),"");
 
         //Stone-like Blocks
         blockWithItem(ModBlocks.GRAY_ROCKRETE);
@@ -75,7 +85,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
         PowerableBlock(ModBlocks.FLOOR_WORK_LIGHT.get(), "work_light_mount");
         PowerableBlock(ModBlocks.RETRO_COMPUTER.get(), "retro_computer");
         PowerableBlock(ModBlocks.CASSETTE_PLAYER.get(), "cassette_player");
+        TwoBlockMultiBlock(ModBlocks.LARGE_LOCKER.get(), "large_locker");
 
+    }
+
+    private void ItemModelOnly(Block block, String folderName) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+        getVariantBuilder(block)
+                .partialState()
+                .modelForState()
+                .modelFile(models().getExistingFile(modLoc("block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName)))
+                .addModel();
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {
@@ -115,7 +135,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
         getVariantBuilder(block)
                 .forAllStatesExcept(state -> {
-                    Direction facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+                    Direction facing = state.getValue(FACING);
 
                     int yRot = switch (facing) {
                         case SOUTH -> 180;
@@ -138,19 +158,43 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         getVariantBuilder(block)
                 .forAllStatesExcept(state -> {
-                    Direction FACING = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
-                    Boolean POWERED = state.getValue(BlockStateProperties.POWERED);
-                    String modelToUse = POWERED? poweredModel : unpoweredModel;
+                    Direction facing = state.getValue(FACING);
+                    Boolean powered = state.getValue(POWERED);
+                    String modelToUse = powered? poweredModel : unpoweredModel;
 
-                    int yRot = switch (FACING   ) {
+                    int yRot = switch (facing   ) {
                         case SOUTH -> 180;
                         case WEST  -> 270;
                         case EAST  -> 90;
                         default -> 0; //NORTH
                     };
 
-                    if(POWERED == true) {
-                    }
+                    return ConfiguredModel.builder()
+                            .modelFile(models().getExistingFile(modLoc(modelToUse)))
+                            .rotationY(yRot)
+                            .build();
+                }, BlockStateProperties.WATERLOGGED);
+
+    }
+
+    private void TwoBlockMultiBlock(Block block, String folderName) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+        String negativeBlock = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
+        String positiveBlock = negativeBlock+"_positive";
+
+        getVariantBuilder(block)
+                .forAllStatesExcept(state -> {
+                    Direction facing = state.getValue(FACING);
+                    TwoBlockMultiBlockState half = state.getValue(HALF);
+                    String modelToUse = (half == TwoBlockMultiBlockState.POSITIVE)? positiveBlock : negativeBlock;
+
+                    int yRot = switch (facing   ) {
+                        case SOUTH -> 180;
+                        case WEST  -> 270;
+                        case EAST  -> 90;
+                        default -> 0; //NORTH
+                    };
+
                     return ConfiguredModel.builder()
                             .modelFile(models().getExistingFile(modLoc(modelToUse)))
                             .rotationY(yRot)

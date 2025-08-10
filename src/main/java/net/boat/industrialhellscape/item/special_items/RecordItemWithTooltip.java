@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class RecordItemWithTooltip extends RecordItem {
+
+    //Tooltip text is based on the "itemName" and will be different per item accordingly if its entry in the lang file is present.
     protected String itemName;
     public RecordItemWithTooltip(String itemName, int comparatorValue, Supplier<SoundEvent> soundSupplier, Properties builder, int lengthInTicks) {
         super(comparatorValue, soundSupplier, builder, lengthInTicks);
@@ -21,6 +23,4 @@ public class RecordItemWithTooltip extends RecordItem {
         pTooltipComponents.add(Component.translatable("tooltip.industrialhellscape."+itemName+".flavortext"));
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
-
-
 }

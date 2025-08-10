@@ -1,14 +1,9 @@
 package net.boat.industrialhellscape.block.special_blocks_properties;
 
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 //INFO:
 //-----

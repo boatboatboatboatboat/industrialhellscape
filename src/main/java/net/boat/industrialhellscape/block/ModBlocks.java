@@ -4,8 +4,8 @@ import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.special_blocks.*;
 import net.boat.industrialhellscape.block.special_blocks.PipeBlock;
 import net.boat.industrialhellscape.block.special_blocks.SimpleFacingBlock;
-import net.boat.industrialhellscape.block.special_blocks.StorageBlock.ConnectedFurniture9SlotStorageBlock;
-import net.boat.industrialhellscape.block.special_blocks.StorageBlock.NineSlotMenuBlock;
+import net.boat.industrialhellscape.block.special_blocks.StorageBlock.ConnectedFurniture18SlotStorageBlock;
+import net.boat.industrialhellscape.block.special_blocks.StorageBlock.Furniture9SlotStorageBlock;
 import net.boat.industrialhellscape.block.special_blocks.StorageBlock.Vertical2BlockStorageMultiBlock;
 import net.boat.industrialhellscape.block.special_blocks_properties.HitboxGeometryCollection;
 import net.boat.industrialhellscape.sound.ModSounds;
@@ -15,7 +15,6 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -26,19 +25,19 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.function.Supplier;
 
 public class ModBlocks {
-    public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
+    public static final BooleanProperty POWERED = BlockStateProperties.POWERED; //For configuring light-emitting blocks
 
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, IndustrialHellscape.MOD_ID);
 
-    //DEBUG BLOCKS HERE VVV
-    public static final RegistryObject<Block> MULTIBLOCK_DEBUG = registerBlock("multiblock_debug",
+    //EXPERIMENTAL BLOCKS
+    public static final RegistryObject<Block> LARGE_LOCKER = registerBlock("large_locker",
             () -> new Vertical2BlockStorageMultiBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
             )
     );
 
-    //IRONLIKE BLOCKS HERE VVV
+    //VESSELPLATE BLOCKS
     public static final RegistryObject<Block> VESSELPLATE_GRATE_BLOCK = registerBlock("vesselplate_grate_block",
             () -> new Block(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
@@ -61,6 +60,16 @@ public class ModBlocks {
     );
     public static final RegistryObject<Block> GRAY_RIVETED_VESSELPLATE = registerBlock("gray_riveted_vesselplate",
             () -> new Block(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+            )
+    );
+    public static final RegistryObject<Block> GRAY_VESSELPLATE_PILLAR = registerBlock("gray_vesselplate_pillar",
+            () -> new AxialPillarBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+            )
+    );
+    public static final RegistryObject<Block> VESSELPLATE_PILLAR = registerBlock("vesselplate_pillar",
+            () -> new AxialPillarBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
             )
     );
@@ -108,31 +117,26 @@ public class ModBlocks {
                     )
     );
 
-    public static final RegistryObject<Block> VESSELPLATE_PILLAR = registerBlock("vesselplate_pillar",
-            () -> new AxialPillarBlock(BlockBehaviour
+
+    //PIPE BLOCKS HERE
+    public static final RegistryObject<Block> PIPEWORKS = registerBlock("pipeworks",
+            () -> new FacingFallableBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
-                    )
-    );
-    public static final RegistryObject<Block> GRAY_VESSELPLATE_PILLAR = registerBlock("gray_vesselplate_pillar",
-            () -> new AxialPillarBlock(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
             )
     );
-
     public static final RegistryObject<Block> COPPER_PIPE_CONDUIT = registerBlock("copper_pipe_conduit",
             () -> new PipeBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     
                     .noOcclusion())
     );
-
     public static final RegistryObject<Block> COPPER_PIPE_CONDUIT_PLANAR_CORNER = registerBlock("copper_pipe_conduit_planar_corner",
             () -> new PipePlanarCornerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     
                     .noOcclusion())
     );
-
     public static final RegistryObject<Block> COPPER_PIPE_CONDUIT_INNER_CORNER = registerBlock("copper_pipe_conduit_inner_corner",
             () -> new InnerCornerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
@@ -142,7 +146,6 @@ public class ModBlocks {
                     HitboxGeometryCollection.INNER_CORNER_DOWN(),
                     HitboxGeometryCollection.INNER_CORNER_SIDE())
     );
-
     public static final RegistryObject<Block> COPPER_PIPE_CONDUIT_OUTER_CORNER = registerBlock("copper_pipe_conduit_outer_corner",
             () -> new InnerCornerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
@@ -152,21 +155,18 @@ public class ModBlocks {
                     HitboxGeometryCollection.OUTER_CORNER_DOWN(),
                     HitboxGeometryCollection.OUTER_CORNER_SIDE())
     );
-
     public static final RegistryObject<Block> BRASS_PIPE_CONDUIT = registerBlock("brass_pipe_conduit",
             () -> new PipeBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
 
                     .noOcclusion())
     );
-
     public static final RegistryObject<Block> BRASS_PIPE_CONDUIT_PLANAR_CORNER = registerBlock("brass_pipe_conduit_planar_corner",
             () -> new PipePlanarCornerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
 
                     .noOcclusion())
     );
-
     public static final RegistryObject<Block> BRASS_PIPE_CONDUIT_INNER_CORNER = registerBlock("brass_pipe_conduit_inner_corner",
             () -> new InnerCornerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
@@ -176,7 +176,6 @@ public class ModBlocks {
                     HitboxGeometryCollection.INNER_CORNER_DOWN(),
                     HitboxGeometryCollection.INNER_CORNER_SIDE())
     );
-
     public static final RegistryObject<Block> BRASS_PIPE_CONDUIT_OUTER_CORNER = registerBlock("brass_pipe_conduit_outer_corner",
             () -> new InnerCornerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
@@ -186,21 +185,18 @@ public class ModBlocks {
                     HitboxGeometryCollection.OUTER_CORNER_DOWN(),
                     HitboxGeometryCollection.OUTER_CORNER_SIDE())
     );
-
     public static final RegistryObject<Block> GRAY_PIPE_CONDUIT = registerBlock("gray_pipe_conduit",
             () -> new PipeBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
 
                     .noOcclusion())
     );
-
     public static final RegistryObject<Block> GRAY_PIPE_CONDUIT_PLANAR_CORNER = registerBlock("gray_pipe_conduit_planar_corner",
             () -> new PipePlanarCornerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
 
                     .noOcclusion())
     );
-
     public static final RegistryObject<Block> GRAY_PIPE_CONDUIT_INNER_CORNER = registerBlock("gray_pipe_conduit_inner_corner",
             () -> new InnerCornerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
@@ -210,7 +206,6 @@ public class ModBlocks {
                     HitboxGeometryCollection.INNER_CORNER_DOWN(),
                     HitboxGeometryCollection.INNER_CORNER_SIDE())
     );
-
     public static final RegistryObject<Block> GRAY_PIPE_CONDUIT_OUTER_CORNER = registerBlock("gray_pipe_conduit_outer_corner",
             () -> new InnerCornerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
@@ -221,6 +216,7 @@ public class ModBlocks {
                     HitboxGeometryCollection.OUTER_CORNER_SIDE())
     );
 
+    //FURNITURE BLOCKS HERE
     public static final RegistryObject<Block> GRAY_BOLTED_BRACKET = registerBlock("gray_bolted_bracket",
             () -> new InnerCornerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
@@ -239,8 +235,6 @@ public class ModBlocks {
                     HitboxGeometryCollection.INNER_CORNER_DOWN(),
                     HitboxGeometryCollection.INNER_CORNER_SIDE())
     );
-
-    //Furniture Blocks Here
     public static final RegistryObject<Block> DESK = registerBlock("desk",
             () -> new ConnectedFurnitureBlock(BlockBehaviour
                     .Properties.copy(Blocks.OAK_PLANKS)
@@ -252,7 +246,7 @@ public class ModBlocks {
                     HitboxGeometryCollection.DESK_RIGHT_SHAPE())
     );
     public static final RegistryObject<Block> DESK_DRAWER = registerBlock("desk_drawer",
-            () -> new ConnectedFurniture9SlotStorageBlock(BlockBehaviour
+            () -> new ConnectedFurniture18SlotStorageBlock(BlockBehaviour
                     .Properties.copy(Blocks.OAK_PLANKS)
                     .noOcclusion(),
                     ModTags.Blocks.CLASSIC_DESK,
@@ -272,7 +266,7 @@ public class ModBlocks {
                     HitboxGeometryCollection.METAL_DESK_RIGHT_SHAPE())
     );
     public static final RegistryObject<Block> METAL_DESK_DRAWER = registerBlock("metal_desk_drawer",
-            () -> new ConnectedFurniture9SlotStorageBlock(BlockBehaviour
+            () -> new ConnectedFurniture18SlotStorageBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
                     ModTags.Blocks.METAL_DESK,
@@ -283,7 +277,7 @@ public class ModBlocks {
 
     );
     public static final RegistryObject<Block> METAL_DESK_DRAWER_2 = registerBlock("metal_desk_drawer_2",
-            () -> new ConnectedFurniture9SlotStorageBlock(BlockBehaviour
+            () -> new ConnectedFurniture18SlotStorageBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
                     ModTags.Blocks.METAL_DESK,
@@ -307,14 +301,14 @@ public class ModBlocks {
     );
 
     public static final RegistryObject<Block> RED_WALL_MEDKIT = registerBlock("red_wall_medkit",
-            () -> new NineSlotMenuBlock(BlockBehaviour
+            () -> new Furniture9SlotStorageBlock(BlockBehaviour
                     .Properties.copy(Blocks.STONE)
                     .noOcclusion(),
                     HitboxGeometryCollection.RED_MEDKIT_NORTH()
             )
     );
     public static final RegistryObject<Block> WHITE_WALL_MEDKIT = registerBlock("white_wall_medkit",
-            () -> new NineSlotMenuBlock(BlockBehaviour
+            () -> new Furniture9SlotStorageBlock(BlockBehaviour
                     .Properties.copy(Blocks.STONE)
                     .noOcclusion(),
                     HitboxGeometryCollection.WHITE_MEDKIT_NORTH()
@@ -358,24 +352,6 @@ public class ModBlocks {
                     HitboxGeometryCollection.FLOOR_WORK_LIGHT_SHAPE()
             )
     );
-
-    public static final RegistryObject<Block> PIPEWORKS = registerBlock("pipeworks",
-            () -> new FacingFallableBlock(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
-                    .noOcclusion()
-            ) {
-                @Override
-                public BlockState mirror(BlockState pState, Mirror pMirror) {
-                    return super.mirror(pState, pMirror);
-                }
-
-                @Override
-                public BlockState rotate(BlockState pState, Rotation pRot) {
-                    return super.rotate(pState, pRot);
-                }
-            }
-    );
-
 
     //CTM BLOCKS HERE (3RD PARTY TEXTURE DEPENDENCIES) VVV
     public static final RegistryObject<Block> HORIZONTAL_ENCASED_CABLES = registerBlock("vertical_encased_cables",
@@ -440,6 +416,17 @@ public class ModBlocks {
             )
     );
     public static final RegistryObject<Block> VESSELGLASS = registerBlock("vesselglass",
+            () -> new GlassBlock(BlockBehaviour
+                    .Properties.copy(Blocks.GLASS)
+            )
+    );
+    public static final RegistryObject<Block> GRAY_REINFORCED_VESSELGLASS = registerBlock("gray_reinforced_vesselglass",
+            () -> new GlassBlock(BlockBehaviour
+                    .Properties
+                    .copy(Blocks.GLASS)
+            )
+    );
+    public static final RegistryObject<Block> GRAY_VESSELGLASS = registerBlock("gray_vesselglass",
             () -> new GlassBlock(BlockBehaviour
                     .Properties.copy(Blocks.GLASS)
             )

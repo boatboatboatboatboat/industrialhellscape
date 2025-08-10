@@ -35,14 +35,6 @@ public class ModSounds {
             ModSounds.VESSELPLATE_HIT
             );
 
-    public static final ForgeSoundType PIPEWORKS_SOUNDS = new ForgeSoundType(2f,1.5f,
-            ()->     SoundEvents.METAL_BREAK,
-            ModSounds.METALPIPEFALLINGSOUNDEFFECT,
-            ModSounds.METALPIPEFALLINGSOUNDEFFECT,
-            ()->     SoundEvents.METAL_PLACE,
-            ()->     SoundEvents.METAL_HIT
-    );
-
     private static RegistryObject<SoundEvent> registerSoundEvents(String soundFileName) {
         return SOUND_EVENTS.register(soundFileName, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(IndustrialHellscape.MOD_ID, soundFileName)));
     }

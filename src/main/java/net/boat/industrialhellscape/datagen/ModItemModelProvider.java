@@ -23,7 +23,6 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         makeItemModel(ModItems.FLOPPY_DISK);
         makeItemModel(ModItems.FLOPPY_DISKETTE);
-        makeItemModel(ModItems.MALEVOLENT_MULTITOOL);
         makeItemModel(ModItems.VAPORWAVE_CASSETTE);
 
         //makeBlockitemModel(ModBlocks.MULTIBLOCK_DEBUG);

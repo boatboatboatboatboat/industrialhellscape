@@ -76,7 +76,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     );
     private static final List<ItemLike> VESSELGLASS_STONECUT_OUTPUT = List.of(
             //ModBlocks.VESSELGLASS.get().asItem(),
-            ModBlocks.REINFORCED_VESSELGLASS.get().asItem()
+            ModBlocks.REINFORCED_VESSELGLASS.get().asItem(),
+            ModBlocks.GRAY_REINFORCED_VESSELGLASS.get().asItem(),
+            ModBlocks.GRAY_VESSELGLASS.get().asItem()
     );
 
     private static final List<ItemLike> PIPEWORKS_STONECUT_OUTPUT = List.of(

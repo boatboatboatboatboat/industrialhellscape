@@ -20,14 +20,13 @@ public class ModCreativeModTabs {
                     .displayItems((itemDisplayParameters, output) -> {
 
                         //ITEMS FOR CREATIVE TAB
-                        output.accept(ModItems.MALEVOLENT_MULTITOOL.get());
                         output.accept(ModItems.FLOPPY_DISK.get());
                         output.accept(ModItems.FLOPPY_DISKETTE.get());
                         output.accept(ModItems.INHELL_HAVEN_DEVICE.get());
                         output.accept(ModItems.VAPORWAVE_CASSETTE.get());
 
                         //DEBUG BLOCKS
-                        output.accept(ModBlocks.MULTIBLOCK_DEBUG.get());
+                        output.accept(ModBlocks.LARGE_LOCKER.get());
 
                         //IRONLIKE BLOCKS FOR CREATIVE TAB
                         output.accept(ModBlocks.VESSELPLATE.get());
@@ -37,11 +36,14 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.RUSTY_VESSELPLATE_GRATE.get());
                         output.accept(ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get());
                         output.accept(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get());
-                        output.accept(ModBlocks.REINFORCED_VESSELGLASS.get());
-                        output.accept(ModBlocks.VESSELGLASS.get());
                         output.accept(ModBlocks.SMOOTH_VESSELPLATE.get());
                         output.accept(ModBlocks.SMOOTH_VESSELPLATE_TILE.get());
                         output.accept(ModBlocks.VESSELPLATE_PILLAR.get());
+
+                        output.accept(ModBlocks.REINFORCED_VESSELGLASS.get());
+                        output.accept(ModBlocks.VESSELGLASS.get());
+                        output.accept(ModBlocks.GRAY_REINFORCED_VESSELGLASS.get());
+                        output.accept(ModBlocks.GRAY_VESSELGLASS.get());
 
                         output.accept(ModBlocks.GRAY_VESSELPLATE.get());
                         output.accept(ModBlocks.GRAY_RIVETED_VESSELPLATE.get());

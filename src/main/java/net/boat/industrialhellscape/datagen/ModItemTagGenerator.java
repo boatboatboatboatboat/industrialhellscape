@@ -126,7 +126,9 @@ public class ModItemTagGenerator extends ItemTagsProvider {
         this.tag(ModTags.Items.VESSELGLASS_STONECUT_OUTPUTS)
                 .add(
                         ModBlocks.REINFORCED_VESSELGLASS.get().asItem(),
-                        ModBlocks.VESSELGLASS.get().asItem()
+                        ModBlocks.VESSELGLASS.get().asItem(),
+                        ModBlocks.GRAY_REINFORCED_VESSELGLASS.get().asItem(),
+                        ModBlocks.GRAY_VESSELGLASS.get().asItem()
                 );
         this.tag(ModTags.Items.ROCKRETE_STONECUT_OUTPUTS)
                 .add(

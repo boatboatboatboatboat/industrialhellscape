@@ -14,6 +14,8 @@
   "block.industrialhellscape.horizontal_riveted_vesselplate": "Horizontal Riveted Vesselplate",
   "block.industrialhellscape.vesselglass": "Vesselglass",
   "block.industrialhellscape.reinforced_vesselglass": "Reinforced Vesselglass",
+  "block.industrialhellscape.gray_vesselglass": "Gray Vesselglass",
+  "block.industrialhellscape.gray_reinforced_vesselglass": "Gray Reinforced Vesselglass",
   "block.industrialhellscape.smooth_vesselplate": "Smooth Vesselplate",
   "block.industrialhellscape.smooth_vesselplate_tile": "Smooth Vesselplate Tile",
   "block.industrialhellscape.vesselplate_pillar": "Vesselplate Pillar",
@@ -73,6 +75,10 @@
 
   "block.industrialhellscape.white_wall_medkit": "White Wall Medkit",
   "block.industrialhellscape.red_wall_medkit": "Red Wall Medkit",
+
+  "block.industrialhellscape.locker_box": "Locker Box",
+  "block.industrialhellscape.large_locker": "Large Locker",
+
 
   "block.industrialhellscape.desk": "Classic Desk",
   "block.industrialhellscape.desk_drawer": "Classic Desk Drawer",

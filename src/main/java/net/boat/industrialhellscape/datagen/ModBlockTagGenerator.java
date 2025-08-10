@@ -71,7 +71,10 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
         this.tag(ModTags.Blocks.VESSELGLASS_BLOCKS)
                 .add(
                         ModBlocks.REINFORCED_VESSELGLASS.get(),
-                        ModBlocks.VESSELGLASS.get()
+                        ModBlocks.VESSELGLASS.get(),
+                        ModBlocks.GRAY_REINFORCED_VESSELGLASS.get(),
+                        ModBlocks.GRAY_VESSELGLASS.get()
+
                 );
 
         this.tag(ModTags.Blocks.ROCKRETE_BLOCKS)

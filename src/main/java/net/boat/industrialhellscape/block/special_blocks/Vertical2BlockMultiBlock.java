@@ -1,10 +1,9 @@
-package net.boat.industrialhellscape.block.special_blocks.StorageBlock;
+package net.boat.industrialhellscape.block.special_blocks;
 
-import net.boat.industrialhellscape.block.special_blocks.SimpleFacingBlock;
+import net.boat.industrialhellscape.block.special_blocks.StorageBlock.Storage9SlotBlockEntity;
 import net.boat.industrialhellscape.block.special_blocks_properties.TwoBlockMultiBlockState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -17,33 +16,31 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class Vertical2BlockStorageMultiBlock extends SimpleFacingBlock implements EntityBlock {
+public class Vertical2BlockMultiBlock extends SimpleFacingBlock {
 
     public static final EnumProperty<TwoBlockMultiBlockState> HALF = EnumProperty.create("half", TwoBlockMultiBlockState.class); //Values of "POSITIVE" and "NEGATIVE". In this context, it refers to "top block" and "bottom block" respectively
 
-    public Vertical2BlockStorageMultiBlock(Properties pProperties) {
+    public Vertical2BlockMultiBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.stateDefinition.any().setValue(HALF, TwoBlockMultiBlockState.NEGATIVE).setValue(FACING,Direction.NORTH));
     }
 
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-
-        if (pLevel.isClientSide()) { //On client
+        System.out.println("Block is being Used!");
+        if (pLevel.isClientSide()) {
             return InteractionResult.SUCCESS;
         }
-        else { //On server
+        else {
             if (pState.getValue(HALF) != TwoBlockMultiBlockState.NEGATIVE) { //If the interacted block half is NOT the bottom block
                 pPos = pPos.below();    //Move the interacted block position one block below (the player will always interact with bottom block where the block entity is, regardless of top/bottom block clicked)
                 pState = pLevel.getBlockState(pPos);
@@ -52,25 +49,7 @@ public class Vertical2BlockStorageMultiBlock extends SimpleFacingBlock implement
                 }
             }
         }
-
-        BlockEntity be = pLevel.getBlockEntity(pPos);
-        if (!(be instanceof Storage54SlotBlockEntity blockEntity))
-            return InteractionResult.PASS;
-
-        //Open Screen
-        if (pPlayer instanceof ServerPlayer sPlayer) {
-            NetworkHooks.openScreen(sPlayer, blockEntity, pPos);
-        }
         return InteractionResult.CONSUME;
-    }
-
-    public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
-        BlockEntity storageEntity = new Storage54SlotBlockEntity(pos, state);
-
-        if(state.getValue(HALF) == TwoBlockMultiBlockState.POSITIVE) { //If the block is the top block
-            return null; //no new block entities will be generated
-        }
-        return storageEntity; //One block entity will be present: in the bottom block
     }
 
     public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pFacingPos) {
@@ -106,7 +85,7 @@ public class Vertical2BlockStorageMultiBlock extends SimpleFacingBlock implement
     public void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) {
         if (!level.isClientSide()) {
             BlockEntity be = level.getBlockEntity(pos);
-            if (be instanceof Storage54SlotBlockEntity blockEntity) {
+            if (be instanceof Storage9SlotBlockEntity blockEntity) {
                 ItemStackHandler inventory = blockEntity.getInventory();
                 for (int index = 0; index < inventory.getSlots(); index++) {
                     ItemStack stack = inventory.getStackInSlot(index);

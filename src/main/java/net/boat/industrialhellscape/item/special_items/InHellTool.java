@@ -43,16 +43,21 @@ public class InHellTool extends Item {
     }
 
     @Override
+
+    //Allows item to have a sneak-interact functionality on blocks that allow that
+    //Default sneak-behavior bypasses any interaction. Using a tool with doesSneakBypassUse circumvents this.
     public boolean doesSneakBypassUse(ItemStack stack, LevelReader level, BlockPos pos, Player player) {
         return true;
     }
 
+    //Item has tooltip text capability.
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         pTooltipComponents.add(Component.translatable("tooltip.industrialhellscape.haventool.flavortext"));
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
 
+    //Item remains in crafting grid when used to craft something, from the two methods below.
     @Nonnull
     public ItemStack getCraftingRemainingItem(@Nonnull ItemStack stack) {
         return new ItemStack(this);

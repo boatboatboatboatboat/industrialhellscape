@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 1,
-  "ingredient": {
-    "tag": "industrialhellscape:rockrete_blocks"
-  },
-  "result": "industrialhellscape:grimy_restroom_tile"
-}

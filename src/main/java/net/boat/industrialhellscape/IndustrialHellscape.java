@@ -1,7 +1,10 @@
 package net.boat.industrialhellscape;
 
 import net.boat.industrialhellscape.block.ModBlocks;
-import net.boat.industrialhellscape.block.special_blocks.StorageBlock.NineSlotMenuScreen;
+import net.boat.industrialhellscape.block.special_blocks.StorageBlock.Storage18SlotMenuScreen;
+import net.boat.industrialhellscape.block.special_blocks.StorageBlock.Storage27SlotMenuScreen;
+import net.boat.industrialhellscape.block.special_blocks.StorageBlock.Storage54SlotMenuScreen;
+import net.boat.industrialhellscape.block.special_blocks.StorageBlock.Storage9SlotMenuScreen;
 import net.boat.industrialhellscape.block.special_blocks_properties.ModBlockEntities;
 import net.boat.industrialhellscape.entity.ModEntities;
 import net.boat.industrialhellscape.block.special_blocks_properties.SittableEntityRenderer;
@@ -58,7 +61,6 @@ public class IndustrialHellscape {
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(ModItems.MALEVOLENT_MULTITOOL);
             event.accept(ModItems.FLOPPY_DISK);
             event.accept(ModItems.FLOPPY_DISKETTE);
             event.accept(ModItems.INHELL_HAVEN_DEVICE);
@@ -85,11 +87,15 @@ public class IndustrialHellscape {
         @SubscribeEvent
         public static void clientSetup(FMLClientSetupEvent event) {
             event.enqueueWork(() -> {
-                MenuScreens.register(ModMenuTypes.STORAGE_9SLOT_MENU.get(), NineSlotMenuScreen::new);
+                MenuScreens.register(ModMenuTypes.STORAGE_9SLOT_MENU.get(), Storage9SlotMenuScreen::new);
+                MenuScreens.register(ModMenuTypes.STORAGE_18SLOT_MENU.get(), Storage18SlotMenuScreen::new);
+                MenuScreens.register(ModMenuTypes.STORAGE_27SLOT_MENU.get(), Storage27SlotMenuScreen::new);
+                MenuScreens.register(ModMenuTypes.STORAGE_54SLOT_MENU.get(), Storage54SlotMenuScreen::new);
             });
         }
     }
 
+    //DEPRECIATED CONTENT SAFE REMOVAL
     @Mod.EventBusSubscriber(modid = IndustrialHellscape.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
     public class MissingRegistryResolver {
         @SubscribeEvent
