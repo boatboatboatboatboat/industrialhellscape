@@ -6,6 +6,7 @@ import net.boat.industrialhellscape.block.special_blocks.PipeBlock;
 import net.boat.industrialhellscape.block.special_blocks.SimpleFacingBlock;
 import net.boat.industrialhellscape.block.special_blocks.StorageBlock.ConnectedFurniture18SlotStorageBlock;
 import net.boat.industrialhellscape.block.special_blocks.StorageBlock.Furniture9SlotStorageBlock;
+import net.boat.industrialhellscape.block.special_blocks.StorageBlock.Test9SlotStorageBlock;
 import net.boat.industrialhellscape.block.special_blocks.StorageBlock.Vertical2BlockStorageMultiBlock;
 import net.boat.industrialhellscape.block.special_blocks_properties.HitboxGeometryCollection;
 import net.boat.industrialhellscape.sound.ModSounds;
@@ -372,6 +373,18 @@ public class ModBlocks {
     public static final RegistryObject<Block> GRAY_VESSELPLATE_GRATE = registerBlock("gray_vesselplate_grate",
             () -> new Block(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
+            )
+    );
+    public static final RegistryObject<Block> SEETHROUGH_GRATE = registerBlock("see-through_grate",
+            () -> new GlassBlock(BlockBehaviour
+                    .Properties.copy(Blocks.GLASS)
+                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
+            )
+    );
+    public static final RegistryObject<Block> GRAY_SEETHROUGH_GRATE = registerBlock("gray_see-through_grate",
+            () -> new GlassBlock(BlockBehaviour
+                    .Properties.copy(Blocks.GLASS)
+                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
             )
     );
     public static final RegistryObject<Block> SMOOTH_VESSELPLATE = registerBlock("smooth_vesselplate",

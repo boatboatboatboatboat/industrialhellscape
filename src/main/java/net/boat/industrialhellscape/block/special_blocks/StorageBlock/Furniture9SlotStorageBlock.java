@@ -57,7 +57,7 @@ public class Furniture9SlotStorageBlock extends HorizontalDirectionalBlock imple
     @Nullable
     @Override
     public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
-        return ModBlockEntities.STORAGE_18_BLOCK_ENTITY.get().create(pos, state);
+        return ModBlockEntities.STORAGE_9_BLOCK_ENTITY.get().create(pos, state);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class Furniture9SlotStorageBlock extends HorizontalDirectionalBlock imple
     @Override
     public @NotNull InteractionResult use(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
         BlockEntity be = level.getBlockEntity(pos);
-        if (!(be instanceof Storage18SlotBlockEntity blockEntity))
+        if (!(be instanceof Storage9SlotBlockEntity blockEntity))
             return InteractionResult.PASS;
 
         if (level.isClientSide())
@@ -113,7 +113,7 @@ public class Furniture9SlotStorageBlock extends HorizontalDirectionalBlock imple
     public void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) {
         if (!level.isClientSide()) {
             BlockEntity be = level.getBlockEntity(pos);
-            if (be instanceof Storage18SlotBlockEntity blockEntity) {
+            if (be instanceof Storage9SlotBlockEntity blockEntity) {
                 ItemStackHandler inventory = blockEntity.getInventory();
                 for (int index = 0; index < inventory.getSlots(); index++) {
                     ItemStack stack = inventory.getStackInSlot(index);

@@ -33,6 +33,7 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.RIVETED_VESSELPLATE.get());
                         output.accept(ModBlocks.VESSELPLATE_GRATE_BLOCK.get());
                         output.accept(ModBlocks.VESSELPLATE_GRATE.get());
+                        output.accept(ModBlocks.SEETHROUGH_GRATE.get());
                         output.accept(ModBlocks.RUSTY_VESSELPLATE_GRATE.get());
                         output.accept(ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get());
                         output.accept(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get());
@@ -50,6 +51,7 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get());
                         output.accept(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get());
                         output.accept(ModBlocks.GRAY_VESSELPLATE_GRATE.get());
+                        output.accept(ModBlocks.GRAY_SEETHROUGH_GRATE.get());
                         output.accept(ModBlocks.SMOOTH_GRAY_VESSELPLATE.get());
                         output.accept(ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get());
                         output.accept(ModBlocks.GRAY_VESSELPLATE_PILLAR.get());

@@ -34,12 +34,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.RIVETED_VESSELPLATE);
         blockWithItem(ModBlocks.VESSELPLATE_GRATE_BLOCK);
         blockWithItem(ModBlocks.VESSELPLATE_GRATE);
+        //blockWithItem(ModBlocks.SEETHROUGH_GRATE);
         blockWithItem(ModBlocks.RUSTY_VESSELPLATE_GRATE);
         blockWithItem(ModBlocks.GRIMY_RESTROOM_TILE);
 
         blockWithItem(ModBlocks.GRAY_VESSELPLATE);
         blockWithItem(ModBlocks.GRAY_RIVETED_VESSELPLATE);
         blockWithItem(ModBlocks.GRAY_VESSELPLATE_GRATE);
+        //blockWithItem(ModBlocks.GRAY_SEETHROUGH_GRATE);
         blockWithItem(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE);
         blockWithItem(ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE);
         blockWithItem(ModBlocks.SMOOTH_GRAY_VESSELPLATE);
@@ -54,8 +56,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         ItemModelOnly(ModBlocks.REINFORCED_VESSELGLASS.get(),"");
         ItemModelOnly(ModBlocks.VESSELGLASS.get(),"");
+
         ItemModelOnly(ModBlocks.GRAY_REINFORCED_VESSELGLASS.get(),"");
         ItemModelOnly(ModBlocks.GRAY_VESSELGLASS.get(),"");
+
+        ItemModelOnly(ModBlocks.SEETHROUGH_GRATE.get(),"");
+        ItemModelOnly(ModBlocks.GRAY_SEETHROUGH_GRATE.get(),"");
 
         //Stone-like Blocks
         blockWithItem(ModBlocks.GRAY_ROCKRETE);

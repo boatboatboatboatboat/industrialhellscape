@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "industrialhellscape:block/light_gray_rockrete_pillar/light_gray_rockrete_pillar_face",
-    "side": "industrialhellscape:block/light_gray_rockrete_pillar/light_gray_rockrete_pillar_middle"
+    "end": "industrialhellscape:block/gray_rockrete_pillar/gray_rockrete_pillar_face",
+    "side": "industrialhellscape:block/gray_rockrete_pillar/gray_rockrete_pillar_middle"
   }
 }
