@@ -76,6 +76,8 @@ public class ModBlocks {
     );
 
     //STONELIKE BLOCKS  HERE vvv
+
+    //GRAY ROCKRETE
     public static final RegistryObject<Block> GRAY_ROCKRETE = registerBlock("gray_rockrete",
             () -> new Block(BlockBehaviour
                     .Properties.copy(Blocks.STONE)
@@ -95,6 +97,86 @@ public class ModBlocks {
                     .Properties.copy(Blocks.STONE)
                     )
     );
+    public static final RegistryObject<Block> GRAY_ROCKRETE_PILLAR = registerBlock("gray_rockrete_pillar",
+            () -> new AxialPillarBlock(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+            )
+    );
+//GREEN ROCKRETE
+    public static final RegistryObject<Block> GREEN_ROCKRETE = registerBlock("green_rockrete",
+            () -> new Block(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+            )
+    );
+    public static final RegistryObject<Block> GREEN_ROCKRETE_REBAR = registerBlock("green_rockrete_rebar",
+            () -> new Block(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+            )
+    );
+    public static final RegistryObject<Block> GREEN_ROCKRETE_STAIRS = registerBlock("green_rockrete_stairs",
+            () -> new StairBlock(() -> ModBlocks.GREEN_ROCKRETE.get().defaultBlockState(),
+                    BlockBehaviour.Properties.copy(Blocks.STONE))
+    );
+    public static final RegistryObject<Block> GREEN_ROCKRETE_SLAB = registerBlock("green_rockrete_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+            )
+    );
+    public static final RegistryObject<Block> GREEN_ROCKRETE_PILLAR = registerBlock("green_rockrete_pillar",
+            () -> new AxialPillarBlock(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+            )
+    );
+//YELLOW ROCKRETE
+    public static final RegistryObject<Block> YELLOW_ROCKRETE = registerBlock("yellow_rockrete",
+            () -> new Block(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+            )
+    );
+    public static final RegistryObject<Block> YELLOW_ROCKRETE_REBAR = registerBlock("yellow_rockrete_rebar",
+            () -> new Block(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+            )
+    );
+    public static final RegistryObject<Block> YELLOW_ROCKRETE_STAIRS = registerBlock("yellow_rockrete_stairs",
+            () -> new StairBlock(() -> ModBlocks.YELLOW_ROCKRETE.get().defaultBlockState(),
+                    BlockBehaviour.Properties.copy(Blocks.STONE))
+    );
+    public static final RegistryObject<Block> YELLOW_ROCKRETE_SLAB = registerBlock("yellow_rockrete_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+            )
+    );
+    public static final RegistryObject<Block> YELLOW_ROCKRETE_PILLAR = registerBlock("yellow_rockrete_pillar",
+            () -> new AxialPillarBlock(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+            )
+    );
+    //BLUE ROCKRETE
+    public static final RegistryObject<Block> BLUE_ROCKRETE = registerBlock("blue_rockrete",
+            () -> new Block(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+            )
+    );
+    public static final RegistryObject<Block> BLUE_ROCKRETE_REBAR = registerBlock("blue_rockrete_rebar",
+            () -> new Block(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+            )
+    );
+    public static final RegistryObject<Block> BLUE_ROCKRETE_STAIRS = registerBlock("blue_rockrete_stairs",
+            () -> new StairBlock(() -> ModBlocks.BLUE_ROCKRETE.get().defaultBlockState(),
+                    BlockBehaviour.Properties.copy(Blocks.STONE))
+    );
+    public static final RegistryObject<Block> BLUE_ROCKRETE_SLAB = registerBlock("blue_rockrete_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+            )
+    );
+    public static final RegistryObject<Block> BLUE_ROCKRETE_PILLAR = registerBlock("blue_rockrete_pillar",
+            () -> new AxialPillarBlock(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+            )
+    );
 
     public static final RegistryObject<Block> HAZARD_STRIPE_YELLOW = registerBlock("hazard_stripe_yellow",
             () -> new Block(BlockBehaviour
@@ -108,12 +190,6 @@ public class ModBlocks {
     );
     public static final RegistryObject<Block> GRIMY_RESTROOM_TILE = registerBlock("grimy_restroom_tile",
             () -> new Block(BlockBehaviour
-                    .Properties.copy(Blocks.STONE)
-                    )
-    );
-
-    public static final RegistryObject<Block> GRAY_ROCKRETE_PILLAR = registerBlock("gray_rockrete_pillar",
-            () -> new AxialPillarBlock(BlockBehaviour
                     .Properties.copy(Blocks.STONE)
                     )
     );
@@ -381,9 +457,22 @@ public class ModBlocks {
                     .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
             )
     );
+    public static final RegistryObject<Block> SEETHROUGH_GRATE_PANE = registerBlock("see-through_grate_pane",
+            () -> new IronBarsBlock(BlockBehaviour
+                    .Properties.copy(Blocks.GLASS)
+                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
+            )
+    );
+
     public static final RegistryObject<Block> GRAY_SEETHROUGH_GRATE = registerBlock("gray_see-through_grate",
             () -> new GlassBlock(BlockBehaviour
                     .Properties.copy(Blocks.GLASS)
+                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
+            )
+    );
+    public static final RegistryObject<Block> GRAY_SEETHROUGH_GRATE_PANE = registerBlock("gray_see-through_grate_pane",
+            () -> new IronBarsBlock(BlockBehaviour
+                    .Properties.copy(Blocks.GLASS_PANE)
                     .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
             )
     );
@@ -428,11 +517,13 @@ public class ModBlocks {
                     .copy(Blocks.GLASS)
             )
     );
+
     public static final RegistryObject<Block> VESSELGLASS = registerBlock("vesselglass",
             () -> new GlassBlock(BlockBehaviour
                     .Properties.copy(Blocks.GLASS)
             )
     );
+
     public static final RegistryObject<Block> GRAY_REINFORCED_VESSELGLASS = registerBlock("gray_reinforced_vesselglass",
             () -> new GlassBlock(BlockBehaviour
                     .Properties

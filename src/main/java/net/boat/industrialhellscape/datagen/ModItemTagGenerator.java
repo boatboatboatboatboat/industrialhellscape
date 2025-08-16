@@ -69,7 +69,18 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 
                         ModBlocks.GRAY_ROCKRETE_PILLAR.get().asItem(),
                         ModBlocks.GRAY_ROCKRETE_REBAR.get().asItem(),
-                        ModBlocks.GRAY_ROCKRETE.get().asItem()
+                        ModBlocks.GREEN_ROCKRETE_STAIRS.get().asItem(),
+                        ModBlocks.GRAY_ROCKRETE.get().asItem(),
+
+                        ModBlocks.GREEN_ROCKRETE_PILLAR.get().asItem(),
+                        ModBlocks.GREEN_ROCKRETE_REBAR.get().asItem(),
+                        ModBlocks.GREEN_ROCKRETE_STAIRS.get().asItem(),
+                        ModBlocks.GREEN_ROCKRETE.get().asItem(),
+
+                        ModBlocks.YELLOW_ROCKRETE_PILLAR.get().asItem(),
+                        ModBlocks.YELLOW_ROCKRETE_REBAR.get().asItem(),
+                        ModBlocks.YELLOW_ROCKRETE_STAIRS.get().asItem(),
+                        ModBlocks.YELLOW_ROCKRETE.get().asItem()
                 );
 
         this.tag(ModTags.Items.PIPEWORKS_SMELTABLE_ITEM)

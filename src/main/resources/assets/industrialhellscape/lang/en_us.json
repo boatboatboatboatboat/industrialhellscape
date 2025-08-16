@@ -9,6 +9,7 @@
   "block.industrialhellscape.riveted_vesselplate": "Riveted Vesselplate",
   "block.industrialhellscape.vesselplate_grate_block": "Vesselplate Grate Block",
   "block.industrialhellscape.vesselplate_grate": "Vesselplate Grate",
+  "block.industrialhellscape.see-through_grate": "See-Through Grate",
   "block.industrialhellscape.rusty_vesselplate_grate": "Rusty Vesselplate Grate",
   "block.industrialhellscape.vertical_riveted_vesselplate": "Vertical Riveted Vesselplate",
   "block.industrialhellscape.horizontal_riveted_vesselplate": "Horizontal Riveted Vesselplate",
@@ -24,7 +25,8 @@
 
   "block.industrialhellscape.gray_vesselplate": "Vesselplate",
   "block.industrialhellscape.gray_riveted_vesselplate": "Riveted Vesselplate",
-  "block.industrialhellscape.gray_vesselplate_grate": "Vesselplate Grate",
+  "block.industrialhellscape.gray_vesselplate_grate": "Gray Vesselplate Grate",
+  "block.industrialhellscape.gray_see-through_grate": "Gray See-Through Grate",
   "block.industrialhellscape.gray_vertical_riveted_vesselplate": "Vertical Riveted Vesselplate",
   "block.industrialhellscape.gray_horizontal_riveted_vesselplate": "Horizontal Riveted Vesselplate",
   "block.industrialhellscape.smooth_gray_vesselplate": "Smooth Vesselplate",
@@ -53,6 +55,24 @@
   "block.industrialhellscape.gray_rockrete_stairs": "Gray Rockrete Stairs",
   "block.industrialhellscape.gray_rockrete_slab": "Gray Rockrete Slab",
   "block.industrialhellscape.gray_rockrete_pillar": "Gray Rockrete Pillar",
+
+  "block.industrialhellscape.green_rockrete": "Green Rockrete",
+  "block.industrialhellscape.green_rockrete_rebar": "Green Rockrete Rebar",
+  "block.industrialhellscape.green_rockrete_stairs": "Green Rockrete Stairs",
+  "block.industrialhellscape.green_rockrete_slab": "Green Rockrete Slab",
+  "block.industrialhellscape.green_rockrete_pillar": "Green Rockrete Pillar",
+
+  "block.industrialhellscape.yellow_rockrete": "Yellow Rockrete",
+  "block.industrialhellscape.yellow_rockrete_rebar": "Yellow Rockrete Rebar",
+  "block.industrialhellscape.yellow_rockrete_stairs": "Yellow Rockrete Stairs",
+  "block.industrialhellscape.yellow_rockrete_slab": "Yellow Rockrete Slab",
+  "block.industrialhellscape.yellow_rockrete_pillar": "Yellow Rockrete Pillar",
+
+  "block.industrialhellscape.blue_rockrete": "Blue Rockrete",
+  "block.industrialhellscape.blue_rockrete_rebar": "Blue Rockrete Rebar",
+  "block.industrialhellscape.blue_rockrete_stairs": "Blue Rockrete Stairs",
+  "block.industrialhellscape.blue_rockrete_slab": "Blue Rockrete Slab",
+  "block.industrialhellscape.blue_rockrete_pillar": "Blue Rockrete Pillar",
 
   "block.industrialhellscape.gray_bolted_bracket": "Gray Bolted Bracket",
   "block.industrialhellscape.black_bolted_bracket": "Black Bolted Bracket",

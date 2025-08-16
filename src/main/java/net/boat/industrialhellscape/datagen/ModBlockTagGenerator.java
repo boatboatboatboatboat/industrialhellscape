@@ -85,8 +85,25 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.GRAY_ROCKRETE_SLAB.get(),
                         ModBlocks.GRAY_ROCKRETE_STAIRS.get(),
                         ModBlocks.GRAY_ROCKRETE_PILLAR.get(),
-
                         ModBlocks.GRAY_ROCKRETE_REBAR.get(),
+
+                        ModBlocks.GREEN_ROCKRETE.get(),
+                        ModBlocks.GREEN_ROCKRETE_SLAB.get(),
+                        ModBlocks.GREEN_ROCKRETE_STAIRS.get(),
+                        ModBlocks.GREEN_ROCKRETE_PILLAR.get(),
+                        ModBlocks.GREEN_ROCKRETE_REBAR.get(),
+
+                        ModBlocks.YELLOW_ROCKRETE.get(),
+                        ModBlocks.YELLOW_ROCKRETE_SLAB.get(),
+                        ModBlocks.YELLOW_ROCKRETE_STAIRS.get(),
+                        ModBlocks.YELLOW_ROCKRETE_PILLAR.get(),
+                        ModBlocks.YELLOW_ROCKRETE_REBAR.get(),
+
+                        ModBlocks.BLUE_ROCKRETE.get(),
+                        ModBlocks.BLUE_ROCKRETE_SLAB.get(),
+                        ModBlocks.BLUE_ROCKRETE_STAIRS.get(),
+                        ModBlocks.BLUE_ROCKRETE_PILLAR.get(),
+                        ModBlocks.BLUE_ROCKRETE_REBAR.get(),
 
                         ModBlocks.HAZARD_STRIPE_YELLOW.get(),
                         ModBlocks.HAZARD_STRIPE_RED.get(),

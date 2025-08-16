@@ -34,6 +34,7 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.VESSELPLATE_GRATE_BLOCK.get());
                         output.accept(ModBlocks.VESSELPLATE_GRATE.get());
                         output.accept(ModBlocks.SEETHROUGH_GRATE.get());
+                        output.accept(ModBlocks.SEETHROUGH_GRATE_PANE.get());
                         output.accept(ModBlocks.RUSTY_VESSELPLATE_GRATE.get());
                         output.accept(ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get());
                         output.accept(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get());
@@ -52,6 +53,7 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get());
                         output.accept(ModBlocks.GRAY_VESSELPLATE_GRATE.get());
                         output.accept(ModBlocks.GRAY_SEETHROUGH_GRATE.get());
+                        output.accept(ModBlocks.GRAY_SEETHROUGH_GRATE_PANE.get());
                         output.accept(ModBlocks.SMOOTH_GRAY_VESSELPLATE.get());
                         output.accept(ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get());
                         output.accept(ModBlocks.GRAY_VESSELPLATE_PILLAR.get());
@@ -62,6 +64,24 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.GRAY_ROCKRETE_STAIRS.get());
                         output.accept(ModBlocks.GRAY_ROCKRETE_SLAB.get());
                         output.accept(ModBlocks.GRAY_ROCKRETE_PILLAR.get());
+
+                        output.accept(ModBlocks.GREEN_ROCKRETE.get());
+                        output.accept(ModBlocks.GREEN_ROCKRETE_REBAR.get());
+                        output.accept(ModBlocks.GREEN_ROCKRETE_STAIRS.get());
+                        output.accept(ModBlocks.GREEN_ROCKRETE_SLAB.get());
+                        output.accept(ModBlocks.GREEN_ROCKRETE_PILLAR.get());
+
+                        output.accept(ModBlocks.YELLOW_ROCKRETE.get());
+                        output.accept(ModBlocks.YELLOW_ROCKRETE_REBAR.get());
+                        output.accept(ModBlocks.YELLOW_ROCKRETE_STAIRS.get());
+                        output.accept(ModBlocks.YELLOW_ROCKRETE_SLAB.get());
+                        output.accept(ModBlocks.YELLOW_ROCKRETE_PILLAR.get());
+
+                        output.accept(ModBlocks.BLUE_ROCKRETE.get());
+                        output.accept(ModBlocks.BLUE_ROCKRETE_REBAR.get());
+                        output.accept(ModBlocks.BLUE_ROCKRETE_STAIRS.get());
+                        output.accept(ModBlocks.BLUE_ROCKRETE_SLAB.get());
+                        output.accept(ModBlocks.BLUE_ROCKRETE_PILLAR.get());
                         
                         output.accept(ModBlocks.HAZARD_STRIPE_YELLOW.get());
                         output.accept(ModBlocks.HAZARD_STRIPE_RED.get());

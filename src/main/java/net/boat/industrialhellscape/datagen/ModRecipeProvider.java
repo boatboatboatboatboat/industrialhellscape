@@ -6,7 +6,6 @@ import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -70,6 +69,24 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.GRAY_ROCKRETE_STAIRS.get().asItem(),
             ModBlocks.GRAY_ROCKRETE_REBAR.get().asItem(),
             ModBlocks.GRAY_ROCKRETE_PILLAR.get().asItem(),
+
+            ModBlocks.GREEN_ROCKRETE.get().asItem(),
+            ModBlocks.GREEN_ROCKRETE_SLAB.get().asItem(),
+            ModBlocks.GREEN_ROCKRETE_STAIRS.get().asItem(),
+            ModBlocks.GREEN_ROCKRETE_REBAR.get().asItem(),
+            ModBlocks.GREEN_ROCKRETE_PILLAR.get().asItem(),
+
+            ModBlocks.YELLOW_ROCKRETE.get().asItem(),
+            ModBlocks.YELLOW_ROCKRETE_SLAB.get().asItem(),
+            ModBlocks.YELLOW_ROCKRETE_STAIRS.get().asItem(),
+            ModBlocks.YELLOW_ROCKRETE_REBAR.get().asItem(),
+            ModBlocks.YELLOW_ROCKRETE_PILLAR.get().asItem(),
+
+            ModBlocks.BLUE_ROCKRETE.get().asItem(),
+            ModBlocks.BLUE_ROCKRETE_SLAB.get().asItem(),
+            ModBlocks.BLUE_ROCKRETE_STAIRS.get().asItem(),
+            ModBlocks.BLUE_ROCKRETE_REBAR.get().asItem(),
+            ModBlocks.BLUE_ROCKRETE_PILLAR.get().asItem(),
 
             ModBlocks.HAZARD_STRIPE_YELLOW.get().asItem(),
             ModBlocks.HAZARD_STRIPE_RED.get().asItem(),

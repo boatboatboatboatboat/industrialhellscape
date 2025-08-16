@@ -54,20 +54,38 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.SMOOTH_VESSELPLATE);
         blockWithItem(ModBlocks.SMOOTH_VESSELPLATE_TILE);
 
-        ItemModelOnly(ModBlocks.REINFORCED_VESSELGLASS.get(),"");
-        ItemModelOnly(ModBlocks.VESSELGLASS.get(),"");
+        MakeBlockStateOnly(ModBlocks.REINFORCED_VESSELGLASS.get(),"");
+        MakeBlockStateOnly(ModBlocks.VESSELGLASS.get(),"");
 
-        ItemModelOnly(ModBlocks.GRAY_REINFORCED_VESSELGLASS.get(),"");
-        ItemModelOnly(ModBlocks.GRAY_VESSELGLASS.get(),"");
+        MakeBlockStateOnly(ModBlocks.GRAY_REINFORCED_VESSELGLASS.get(),"");
+        MakeBlockStateOnly(ModBlocks.GRAY_VESSELGLASS.get(),"");
 
-        ItemModelOnly(ModBlocks.SEETHROUGH_GRATE.get(),"");
-        ItemModelOnly(ModBlocks.GRAY_SEETHROUGH_GRATE.get(),"");
+        MakeBlockStateOnly(ModBlocks.SEETHROUGH_GRATE.get(),"");
+        MakeBlockStateOnly(ModBlocks.GRAY_SEETHROUGH_GRATE.get(),"");
+        paneBlock((IronBarsBlock) ModBlocks.SEETHROUGH_GRATE_PANE.get(), modLoc("block/see-through_grate"),modLoc("block/see-through_grate_pane_top"));
+        //paneBlock((IronBarsBlock) ModBlocks.GRAY_SEETHROUGH_GRATE_PANE.get(), modLoc("block/gray_see-through_grate"),modLoc("block/gray_see-through_grate_pane_top"));
+
 
         //Stone-like Blocks
         blockWithItem(ModBlocks.GRAY_ROCKRETE);
         blockWithItem(ModBlocks.GRAY_ROCKRETE_REBAR);
         stairsBlock(((StairBlock) ModBlocks.GRAY_ROCKRETE_STAIRS.get()), blockTexture(ModBlocks.GRAY_ROCKRETE.get()));
         slabBlock(((SlabBlock) ModBlocks.GRAY_ROCKRETE_SLAB.get()), blockTexture(ModBlocks.GRAY_ROCKRETE.get()), blockTexture(ModBlocks.GRAY_ROCKRETE.get()));
+
+        blockWithItem(ModBlocks.GREEN_ROCKRETE);
+        blockWithItem(ModBlocks.GREEN_ROCKRETE_REBAR);
+        stairsBlock(((StairBlock) ModBlocks.GREEN_ROCKRETE_STAIRS.get()), blockTexture(ModBlocks.GREEN_ROCKRETE.get()));
+        slabBlock(((SlabBlock) ModBlocks.GREEN_ROCKRETE_SLAB.get()), blockTexture(ModBlocks.GREEN_ROCKRETE.get()), blockTexture(ModBlocks.GREEN_ROCKRETE.get()));
+
+        blockWithItem(ModBlocks.YELLOW_ROCKRETE);
+        blockWithItem(ModBlocks.YELLOW_ROCKRETE_REBAR);
+        stairsBlock(((StairBlock) ModBlocks.YELLOW_ROCKRETE_STAIRS.get()), blockTexture(ModBlocks.YELLOW_ROCKRETE.get()));
+        slabBlock(((SlabBlock) ModBlocks.YELLOW_ROCKRETE_SLAB.get()), blockTexture(ModBlocks.YELLOW_ROCKRETE.get()), blockTexture(ModBlocks.YELLOW_ROCKRETE.get()));
+
+        blockWithItem(ModBlocks.BLUE_ROCKRETE);
+        blockWithItem(ModBlocks.BLUE_ROCKRETE_REBAR);
+        stairsBlock(((StairBlock) ModBlocks.BLUE_ROCKRETE_STAIRS.get()), blockTexture(ModBlocks.BLUE_ROCKRETE.get()));
+        slabBlock(((SlabBlock) ModBlocks.BLUE_ROCKRETE_SLAB.get()), blockTexture(ModBlocks.BLUE_ROCKRETE.get()), blockTexture(ModBlocks.BLUE_ROCKRETE.get()));
 
         blockWithItem(ModBlocks.HAZARD_STRIPE_YELLOW);
         blockWithItem(ModBlocks.HAZARD_STRIPE_RED);
@@ -95,7 +113,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     }
 
-    private void ItemModelOnly(Block block, String folderName) {
+    private void MakeBlockStateOnly(Block block, String folderName) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
         getVariantBuilder(block)
                 .partialState()

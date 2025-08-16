@@ -38,6 +38,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         makeBlockitemModel(ModBlocks.RIVETED_VESSELPLATE);
         makeBlockitemModel(ModBlocks.GRAY_ROCKRETE_STAIRS);
         makeBlockitemModel(ModBlocks.GRAY_ROCKRETE_SLAB);
+        makeBlockitemModel(ModBlocks.GREEN_ROCKRETE_STAIRS);
+        makeBlockitemModel(ModBlocks.GREEN_ROCKRETE_SLAB);
+        makeBlockitemModel(ModBlocks.YELLOW_ROCKRETE_STAIRS);
+        makeBlockitemModel(ModBlocks.YELLOW_ROCKRETE_SLAB);
+        makeBlockitemModel(ModBlocks.BLUE_ROCKRETE_STAIRS);
+        makeBlockitemModel(ModBlocks.BLUE_ROCKRETE_SLAB);
         makeBlockitemModel(ModBlocks.PIPEWORKS);
 
         makeBlockitemModel(ModBlocks.STRUT_STAIRS);
