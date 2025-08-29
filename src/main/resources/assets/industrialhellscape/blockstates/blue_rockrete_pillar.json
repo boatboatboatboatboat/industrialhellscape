@@ -1,19 +1,19 @@
 {
     "variants": {
-		"type=solo,axis=x": {"model": "industrialhellscape:block/blue_rockrete_pillar/blue_rockrete_pillar_solo","x": 90,"y": 90},
+		"type=solo,axis=x": {"model": "industrialhellscape:block/blue_rockrete_pillar/blue_rockrete_pillar_solo_horizontal","x": 90,"y": 90},
         "type=solo,axis=y": {"model": "industrialhellscape:block/blue_rockrete_pillar/blue_rockrete_pillar_solo"},
-		"type=solo,axis=z": {"model": "industrialhellscape:block/blue_rockrete_pillar/blue_rockrete_pillar_solo","x": 90},
+		"type=solo,axis=z": {"model": "industrialhellscape:block/blue_rockrete_pillar/blue_rockrete_pillar_solo_horizontal","x": 90, "y": 180},
 
-        "type=positive,axis=x": {"model": "industrialhellscape:block/blue_rockrete_pillar/blue_rockrete_pillar_top","x": 90,"y": 90},
+        "type=positive,axis=x": {"model": "industrialhellscape:block/blue_rockrete_pillar/blue_rockrete_pillar_top_horizontal","x": 90,"y": 90},
         "type=positive,axis=y": {"model": "industrialhellscape:block/blue_rockrete_pillar/blue_rockrete_pillar_top"},
-		"type=positive,axis=z": {"model": "industrialhellscape:block/blue_rockrete_pillar/blue_rockrete_pillar_top","x": 270},
+		"type=positive,axis=z": {"model": "industrialhellscape:block/blue_rockrete_pillar/blue_rockrete_pillar_top_horizontal","x": 90, "y": 180},
 
-        "type=middle,axis=x": {"model": "industrialhellscape:block/blue_rockrete_pillar/blue_rockrete_pillar_middle","x": 90,"y": 90},
+        "type=middle,axis=x": {"model": "industrialhellscape:block/blue_rockrete_pillar/blue_rockrete_pillar_middle_horizontal","x": 90,"y": 90},
         "type=middle,axis=y": {"model": "industrialhellscape:block/blue_rockrete_pillar/blue_rockrete_pillar_middle"},
-		"type=middle,axis=z": {"model": "industrialhellscape:block/blue_rockrete_pillar/blue_rockrete_pillar_middle","x": 270},
+		"type=middle,axis=z": {"model": "industrialhellscape:block/blue_rockrete_pillar/blue_rockrete_pillar_middle_horizontal","x": 90, "y": 180},
 
-		"type=negative,axis=x": {"model": "industrialhellscape:block/blue_rockrete_pillar/blue_rockrete_pillar_bottom","x": 90,"y": 90},
+		"type=negative,axis=x": {"model": "industrialhellscape:block/blue_rockrete_pillar/blue_rockrete_pillar_bottom_horizontal","x": 90,"y": 90},
         "type=negative,axis=y": {"model": "industrialhellscape:block/blue_rockrete_pillar/blue_rockrete_pillar_bottom"},
-		"type=negative,axis=z": {"model": "industrialhellscape:block/blue_rockrete_pillar/blue_rockrete_pillar_bottom","x": 270}
+		"type=negative,axis=z": {"model": "industrialhellscape:block/blue_rockrete_pillar/blue_rockrete_pillar_bottom_horizontal","x": 90, "y": 180}
     }
 }

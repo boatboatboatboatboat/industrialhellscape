@@ -27,19 +27,19 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 .add(
                         //Full BLocks
                         ModBlocks.VESSELPLATE.get().asItem(),
-                        ModBlocks.VESSELPLATE_GRATE_BLOCK.get().asItem(),
-                        ModBlocks.VESSELPLATE_GRATE.get().asItem(),
+                        //ModBlocks.VESSELPLATE_GRATE_BLOCK.get().asItem(),
+                        ModBlocks.GRATE.get().asItem(),
                         ModBlocks.SEETHROUGH_GRATE.get().asItem(),
-                        ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem(),
+                        ModBlocks.RUSTY_GRATE.get().asItem(),
                         ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
                         ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
                         ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
                         ModBlocks.SMOOTH_VESSELPLATE_TILE.get().asItem(),
-                        ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem(),
+                        ModBlocks.RUSTY_GRATE.get().asItem(),
 
                         ModBlocks.GRAY_VESSELPLATE.get().asItem(),
                         ModBlocks.GRAY_RIVETED_VESSELPLATE.get().asItem(),
-                        ModBlocks.GRAY_VESSELPLATE_GRATE.get().asItem(),
+                        ModBlocks.GRAY_GRATE.get().asItem(),
                         ModBlocks.GRAY_SEETHROUGH_GRATE.get().asItem(),
                         ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
                         ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
@@ -47,9 +47,13 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get().asItem(),
                         ModBlocks.GRAY_VESSELPLATE_PILLAR.get().asItem(),
 
+                        ModBlocks.STRUT.get().asItem(),
+                        ModBlocks.STRUT_STAIRS.get().asItem(),
+                        ModBlocks.CATWALK_STRUT.get().asItem(),
+                        ModBlocks.CATWALK_STRUT_STAIRS.get().asItem(),
+
                         ModBlocks.GRAY_STRUT.get().asItem(),
                         ModBlocks.GRAY_STRUT_STAIRS.get().asItem(),
-
                         ModBlocks.GRAY_CATWALK_STRUT.get().asItem(),
                         ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get().asItem(),
 
@@ -59,17 +63,20 @@ public class ModItemTagGenerator extends ItemTagsProvider {
         this.tag(ModTags.Items.VESSELGLASS_SMELTABLE_ITEM)
                 .add(
                         ModBlocks.VESSELGLASS.get().asItem(),
-                        ModBlocks.REINFORCED_VESSELGLASS.get().asItem()
+                        ModBlocks.REINFORCED_VESSELGLASS.get().asItem(),
+                        ModBlocks.GRAY_VESSELGLASS.get().asItem(),
+                        ModBlocks.GRAY_REINFORCED_VESSELGLASS.get().asItem()
                 );
         this.tag(ModTags.Items.ROCKRETE_SMELTABLE_ITEM)
                 .add(
                         //Full Blocks
                         ModBlocks.HAZARD_STRIPE_RED.get().asItem(),
                         ModBlocks.HAZARD_STRIPE_YELLOW.get().asItem(),
+                        ModBlocks.GRIMY_RESTROOM_TILE.get().asItem(),
 
                         ModBlocks.GRAY_ROCKRETE_PILLAR.get().asItem(),
                         ModBlocks.GRAY_ROCKRETE_REBAR.get().asItem(),
-                        ModBlocks.GREEN_ROCKRETE_STAIRS.get().asItem(),
+                        ModBlocks.GRAY_ROCKRETE_STAIRS.get().asItem(),
                         ModBlocks.GRAY_ROCKRETE.get().asItem(),
 
                         ModBlocks.GREEN_ROCKRETE_PILLAR.get().asItem(),
@@ -80,7 +87,12 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.YELLOW_ROCKRETE_PILLAR.get().asItem(),
                         ModBlocks.YELLOW_ROCKRETE_REBAR.get().asItem(),
                         ModBlocks.YELLOW_ROCKRETE_STAIRS.get().asItem(),
-                        ModBlocks.YELLOW_ROCKRETE.get().asItem()
+                        ModBlocks.YELLOW_ROCKRETE.get().asItem(),
+
+                        ModBlocks.BLUE_ROCKRETE_PILLAR.get().asItem(),
+                        ModBlocks.BLUE_ROCKRETE_REBAR.get().asItem(),
+                        ModBlocks.BLUE_ROCKRETE_STAIRS.get().asItem(),
+                        ModBlocks.BLUE_ROCKRETE.get().asItem()
                 );
 
         this.tag(ModTags.Items.PIPEWORKS_SMELTABLE_ITEM)
@@ -109,9 +121,12 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 .add(
                         ModBlocks.VESSELPLATE.get().asItem(),
                         ModBlocks.RIVETED_VESSELPLATE.get().asItem(),
-                        ModBlocks.VESSELPLATE_GRATE_BLOCK.get().asItem(),
-                        ModBlocks.VESSELPLATE_GRATE.get().asItem(),
-                        ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem(),
+                        //ModBlocks.VESSELPLATE_GRATE_BLOCK.get().asItem(),
+                        ModBlocks.GRATE.get().asItem(),
+                        ModBlocks.RUSTY_GRATE.get().asItem(),
+                        ModBlocks.GRAY_GRATE.get().asItem(),
+                        ModBlocks.SEETHROUGH_GRATE.get().asItem(),
+                        ModBlocks.GRAY_SEETHROUGH_GRATE.get().asItem(),
                         ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
                         ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
                         ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
@@ -134,7 +149,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.VESSELPLATE_PILLAR.get().asItem(),
                         ModBlocks.VERTICAL_ENCASED_CABLES.get().asItem(),
                         ModBlocks.HORIZONTAL_ENCASED_CABLES.get().asItem(),
-                        ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem()
+                        ModBlocks.RUSTY_GRATE.get().asItem()
                 );
         this.tag(ModTags.Items.VESSELGLASS_STONECUT_OUTPUTS)
                 .add(
@@ -152,13 +167,31 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.GRAY_ROCKRETE_STAIRS.get().asItem(),
                         ModBlocks.GRAY_ROCKRETE_SLAB.get().asItem(),
 
+                        ModBlocks.YELLOW_ROCKRETE.get().asItem(),
+                        ModBlocks.YELLOW_ROCKRETE_REBAR.get().asItem(),
+                        ModBlocks.YELLOW_ROCKRETE_PILLAR.get().asItem(),
+                        ModBlocks.YELLOW_ROCKRETE_STAIRS.get().asItem(),
+                        ModBlocks.YELLOW_ROCKRETE_SLAB.get().asItem(),
+
+                        ModBlocks.BLUE_ROCKRETE.get().asItem(),
+                        ModBlocks.BLUE_ROCKRETE_REBAR.get().asItem(),
+                        ModBlocks.BLUE_ROCKRETE_PILLAR.get().asItem(),
+                        ModBlocks.BLUE_ROCKRETE_STAIRS.get().asItem(),
+                        ModBlocks.BLUE_ROCKRETE_SLAB.get().asItem(),
+
+                        ModBlocks.GREEN_ROCKRETE.get().asItem(),
+                        ModBlocks.GREEN_ROCKRETE_REBAR.get().asItem(),
+                        ModBlocks.GREEN_ROCKRETE_PILLAR.get().asItem(),
+                        ModBlocks.GREEN_ROCKRETE_STAIRS.get().asItem(),
+                        ModBlocks.GREEN_ROCKRETE_SLAB.get().asItem(),
+
                         ModBlocks.HAZARD_STRIPE_YELLOW.get().asItem(),
                         ModBlocks.HAZARD_STRIPE_RED.get().asItem(),
                         ModBlocks.GRIMY_RESTROOM_TILE.get().asItem()
                 );
         this.tag(ModTags.Items.PIPEWORKS_STONECUT_OUTPUTS)
-                .add(
-                        ModBlocks.PIPEWORKS.get().asItem()
+                .addTags(
+                       ModTags.Items.PIPEWORKS_SMELTABLE_ITEM
                 );
 
         //FURNITURE CATEGORIES BELOW
@@ -190,18 +223,16 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.TOILET.get().asItem(),
                         ModBlocks.SINK.get().asItem()
                 );
-
-
         this.tag(ModTags.Items.INDUSTRIAL_FURNITURE_CATEGORY)
                 .add(
+                        ModBlocks.LOCKER_BOX.get().asItem(),
+                        ModBlocks.LARGE_LOCKER.get().asItem(),
                         ModBlocks.GRAY_BOLTED_BRACKET.get().asItem(),
                         ModBlocks.BLACK_BOLTED_BRACKET.get().asItem(),
                         ModBlocks.YELLOW_TRIPOD.get().asItem(),
                         ModBlocks.WORK_LIGHT_MOUNT.get().asItem(),
                         ModBlocks.FLOOR_WORK_LIGHT.get().asItem()
                 );
-
-
         this.tag(ModTags.Items.TECHNOLOGY_FURNITURE_CATEGORY)
                 .add(
                         ModBlocks.RETRO_COMPUTER.get().asItem(),
@@ -212,7 +243,9 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 .add(
                         ModBlocks.DESK.get().asItem(),
                         ModBlocks.DESK_DRAWER.get().asItem(),
+
                         ModBlocks.METAL_DESK.get().asItem(),
+                        ModBlocks.METAL_DESK_DRAWER.get().asItem(),
                         ModBlocks.METAL_DESK_DRAWER_2.get().asItem()
                 );
 

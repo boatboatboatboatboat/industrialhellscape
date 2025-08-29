@@ -17,17 +17,18 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     protected void generate() {
         //DEBUG BLOCKS
         this.dropSelf(ModBlocks.LARGE_LOCKER.get());
+        this.dropSelf(ModBlocks.HANDRAIL.get());
 
         //IRONLIKE SIMPLE BLOCKS
         this.dropSelf(ModBlocks.VESSELPLATE.get());
-        this.dropSelf(ModBlocks.VESSELPLATE_GRATE_BLOCK.get());
+        //this.dropSelf(ModBlocks.VESSELPLATE_GRATE_BLOCK.get());
         this.dropSelf(ModBlocks.RIVETED_VESSELPLATE.get());
         this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE_TILE.get());
         this.dropSelf(ModBlocks.VESSELPLATE_PILLAR.get());
-        this.dropSelf(ModBlocks.VESSELPLATE_GRATE.get());
+        this.dropSelf(ModBlocks.GRATE.get());
         this.dropSelf(ModBlocks.SEETHROUGH_GRATE.get());
-        this.dropSelf(ModBlocks.SEETHROUGH_GRATE_PANE.get());
-        this.dropSelf(ModBlocks.RUSTY_VESSELPLATE_GRATE.get());
+        //this.dropSelf(ModBlocks.SEETHROUGH_GRATE_PANE.get());
+        this.dropSelf(ModBlocks.RUSTY_GRATE.get());
         this.dropSelf(ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get());
         this.dropSelf(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get());
         this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE.get());
@@ -39,7 +40,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
         this.dropSelf(ModBlocks.GRAY_VESSELPLATE.get());
         this.dropSelf(ModBlocks.GRAY_RIVETED_VESSELPLATE.get());
-        this.dropSelf(ModBlocks.GRAY_VESSELPLATE_GRATE.get());
+        this.dropSelf(ModBlocks.GRAY_GRATE.get());
         this.dropSelf(ModBlocks.GRAY_SEETHROUGH_GRATE.get());
         this.dropSelf(ModBlocks.GRAY_SEETHROUGH_GRATE_PANE.get());
         this.dropSelf(ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get());
@@ -111,6 +112,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.YELLOW_TRIPOD.get());
         this.dropSelf(ModBlocks.WORK_LIGHT_MOUNT.get());
         this.dropSelf(ModBlocks.FLOOR_WORK_LIGHT.get());
+        this.dropSelf(ModBlocks.LOCKER_BOX.get());
+        this.dropSelf(ModBlocks.LARGE_LOCKER.get());
 
         this.dropSelf(ModBlocks.PIPEWORKS.get());
 

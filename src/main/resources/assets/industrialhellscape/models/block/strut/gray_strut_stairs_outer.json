@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "industrialhellscape:block/strut/gray_strut",
+    "side": "industrialhellscape:block/strut/gray_reinforced_strut",
+    "top": "industrialhellscape:block/strut/gray_strut"
+  }
+}

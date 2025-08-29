@@ -1,0 +1,9 @@
+{
+  "loader": "forge:obj",
+  "model": "industrialhellscape:models/block/obj_models/handrail.obj",
+  "flip-v": true,
+  "detectCullableFaces": false,
+  "textures": {
+    "#m_0375bac9-728f-d5e1-c66e-365792a492d3": "industrialhellscape:block/handrail"
+  }
+}

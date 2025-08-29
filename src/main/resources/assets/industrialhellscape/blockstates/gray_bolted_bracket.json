@@ -1,18 +1,18 @@
 {
 	"variants": {
-		"facing=north,type=up": {"model": "industrialhellscape:block/gray_bolted_bracket","x": 180,"y": 180},
-		"facing=east,type=up": {"model": "industrialhellscape:block/gray_bolted_bracket","x": 180,"y": 270},
-		"facing=south,type=up": {"model": "industrialhellscape:block/gray_bolted_bracket","x": 180,"y": 0},
-		"facing=west,type=up": {"model": "industrialhellscape:block/gray_bolted_bracket","x": 180,"y": 90},
+		"facing=north,type=up": {"model": "industrialhellscape:block/bolted_bracket/gray_bolted_bracket","x": 180,"y": 180},
+		"facing=east,type=up": {"model": "industrialhellscape:block/bolted_bracket/gray_bolted_bracket","x": 180,"y": 270},
+		"facing=south,type=up": {"model": "industrialhellscape:block/bolted_bracket/gray_bolted_bracket","x": 180,"y": 0},
+		"facing=west,type=up": {"model": "industrialhellscape:block/bolted_bracket/gray_bolted_bracket","x": 180,"y": 90},
 
-		"facing=north,type=down": {"model": "industrialhellscape:block/gray_bolted_bracket"},
-		"facing=east,type=down": {"model": "industrialhellscape:block/gray_bolted_bracket","y": 90},
-		"facing=south,type=down": {"model": "industrialhellscape:block/gray_bolted_bracket","y": 180},
-		"facing=west,type=down": {"model": "industrialhellscape:block/gray_bolted_bracket","y": 270},
+		"facing=north,type=down": {"model": "industrialhellscape:block/bolted_bracket/gray_bolted_bracket"},
+		"facing=east,type=down": {"model": "industrialhellscape:block/bolted_bracket/gray_bolted_bracket","y": 90},
+		"facing=south,type=down": {"model": "industrialhellscape:block/bolted_bracket/gray_bolted_bracket","y": 180},
+		"facing=west,type=down": {"model": "industrialhellscape:block/bolted_bracket/gray_bolted_bracket","y": 270},
 
-		"facing=north,type=side": {"model": "industrialhellscape:block/gray_bolted_bracket_side"},
-		"facing=east,type=side": {"model": "industrialhellscape:block/gray_bolted_bracket_side","y": 90},
-		"facing=south,type=side": {"model": "industrialhellscape:block/gray_bolted_bracket_side","y": 180},
-		"facing=west,type=side": {"model": "industrialhellscape:block/gray_bolted_bracket_side","y": 270}
+		"facing=north,type=side": {"model": "industrialhellscape:block/bolted_bracket/gray_bolted_bracket_side"},
+		"facing=east,type=side": {"model": "industrialhellscape:block/bolted_bracket/gray_bolted_bracket_side","y": 90},
+		"facing=south,type=side": {"model": "industrialhellscape:block/bolted_bracket/gray_bolted_bracket_side","y": 180},
+		"facing=west,type=side": {"model": "industrialhellscape:block/bolted_bracket/gray_bolted_bracket_side","y": 270}
 	}
 }

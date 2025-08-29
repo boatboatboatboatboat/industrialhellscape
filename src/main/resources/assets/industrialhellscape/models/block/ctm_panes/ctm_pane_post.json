@@ -1,6 +1,5 @@
 {
     "__comment": "Copyright © InsomniaKitten 2017",
-    "render_type": "minecraft:cutout",
     "parent": "block/block",
     "textures": {
         "particle": "#side",
@@ -8,11 +7,11 @@
     },
     "elements": [
         {
-            "from": [ 7, 0, 7 ],
-            "to": [ 9, 16, 9 ],
+            "from": [ 0, 0, 0 ],
+            "to": [ 1, 1, 1 ],
             "faces": {
-                "down": { "uv": [ 7, 7, 9, 9 ], "texture": "#cap", "cullface": "down" },
-                "up": { "uv": [ 7, 7, 9, 9 ], "texture": "#cap", "cullface": "up" }
+                "down": { "uv": [ 0, 0, 1, 1 ], "texture": "#cap", "cullface": "down" },
+                "up": { "uv": [ 0, 0, 1, 1 ], "texture": "#cap", "cullface": "up" }
             }
         }
     ]

@@ -1,6 +1,5 @@
 {
     "__comment": "Copyright © InsomniaKitten 2017",
-    "render_type": "minecraft:cutout",
     "parent": "block/block",
     "textures": {
         "particle": "#side",

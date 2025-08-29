@@ -26,16 +26,24 @@ public class ModItemModelProvider extends ItemModelProvider {
         makeItemModel(ModItems.VAPORWAVE_CASSETTE);
 
         //makeBlockitemModel(ModBlocks.MULTIBLOCK_DEBUG);
+        makeFolderedBlockitemModel(ModBlocks.HANDRAIL,"obj_models");
 
+        makeBlockitemModel(ModBlocks.VESSELPLATE);
         makeBlockitemModel(ModBlocks.GRAY_VESSELPLATE);
-        makeBlockitemModel(ModBlocks.GRAY_VESSELPLATE_GRATE);
+        makeBlockitemModel(ModBlocks.GRAY_GRATE);
+        makeBlockitemModel(ModBlocks.GRATE);
+        makeBlockitemModel(ModBlocks.RUSTY_GRATE);
         makeBlockitemModel(ModBlocks.GRAY_RIVETED_VESSELPLATE);
+        makeBlockitemModel(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE);
+        makeBlockitemModel(ModBlocks.VERTICAL_RIVETED_VESSELPLATE);
         makeBlockitemModel(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE);
         makeBlockitemModel(ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE);
         makeBlockitemModel(ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE);
         makeBlockitemModel(ModBlocks.SMOOTH_GRAY_VESSELPLATE);
-
+        makeBlockitemModel(ModBlocks.SMOOTH_VESSELPLATE_TILE);
+        makeBlockitemModel(ModBlocks.SMOOTH_VESSELPLATE);
         makeBlockitemModel(ModBlocks.RIVETED_VESSELPLATE);
+
         makeBlockitemModel(ModBlocks.GRAY_ROCKRETE_STAIRS);
         makeBlockitemModel(ModBlocks.GRAY_ROCKRETE_SLAB);
         makeBlockitemModel(ModBlocks.GREEN_ROCKRETE_STAIRS);
@@ -46,15 +54,15 @@ public class ModItemModelProvider extends ItemModelProvider {
         makeBlockitemModel(ModBlocks.BLUE_ROCKRETE_SLAB);
         makeBlockitemModel(ModBlocks.PIPEWORKS);
 
-        makeBlockitemModel(ModBlocks.STRUT_STAIRS);
-        makeBlockitemModel(ModBlocks.STRUT_SLAB);
-        makeBlockitemModel(ModBlocks.CATWALK_STRUT_STAIRS);
-        makeBlockitemModel(ModBlocks.CATWALK_STRUT_SLAB);
+        makeFolderedBlockitemModel(ModBlocks.STRUT_STAIRS,"strut");
+        makeFolderedBlockitemModel(ModBlocks.STRUT_SLAB,"strut");
+        makeFolderedBlockitemModel(ModBlocks.CATWALK_STRUT_STAIRS,"strut");
+        makeFolderedBlockitemModel(ModBlocks.CATWALK_STRUT_SLAB,"strut");
 
-        makeBlockitemModel(ModBlocks.GRAY_STRUT_STAIRS);
-        makeBlockitemModel(ModBlocks.GRAY_STRUT_SLAB);
-        makeBlockitemModel(ModBlocks.GRAY_CATWALK_STRUT_STAIRS);
-        makeBlockitemModel(ModBlocks.GRAY_CATWALK_STRUT_SLAB);
+        makeFolderedBlockitemModel(ModBlocks.GRAY_STRUT_STAIRS,"strut");
+        makeFolderedBlockitemModel(ModBlocks.GRAY_STRUT_SLAB,"strut");
+        makeFolderedBlockitemModel(ModBlocks.GRAY_CATWALK_STRUT_STAIRS,"strut");
+        makeFolderedBlockitemModel(ModBlocks.GRAY_CATWALK_STRUT_SLAB,"strut");
 
         makeBlockitemModel(ModBlocks.IHEA_FURNITURE_KIT);
         makeBlockitemModel(ModBlocks.SAFETY_FURNISHINGS);
@@ -66,6 +74,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         makeBlockitemModel(ModBlocks.SINK);
         makeBlockitemModel(ModBlocks.YELLOW_TRIPOD);
 
+        makeFolderedBlockitemModel(ModBlocks.LOCKER_BOX, "locker");
         makeFolderedBlockitemModel(ModBlocks.RETRO_COMPUTER,"retro_computer");
         makeFolderedBlockitemModel(ModBlocks.CASSETTE_PLAYER, "cassette_player");
         makeFolderedBlockitemModel(ModBlocks.WORK_LIGHT_MOUNT,"work_light_mount");

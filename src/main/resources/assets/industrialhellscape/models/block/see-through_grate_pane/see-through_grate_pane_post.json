@@ -1,7 +1,7 @@
 {
 	"parent": "industrialhellscape:block/ctm_panes/ctm_pane_post",
 	"textures": {
-		"side": "industrialhellscape:block/see-through_grate",
-		"cap": "industrialhellscape:block/see-through_grate_pane_top"
+		"side": "industrialhellscape:block/grate/see-through_grate",
+		"cap": "industrialhellscape:block/grate/see-through_grate_pane_top"
 	}
 }

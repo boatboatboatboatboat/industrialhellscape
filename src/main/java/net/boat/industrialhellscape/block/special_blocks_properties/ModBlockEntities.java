@@ -12,6 +12,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+//DO NOT REMOVE DEPRECIATED INVENTORY BLOCK ENTITIES
+
 public class ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, IndustrialHellscape.MOD_ID);
@@ -20,7 +22,10 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("storage_9slot_block_entity", () ->
                     BlockEntityType.Builder.of(Storage9SlotBlockEntity::new,
                             ModBlocks.RED_WALL_MEDKIT.get(),
-                            ModBlocks.WHITE_WALL_MEDKIT.get()
+                            ModBlocks.WHITE_WALL_MEDKIT.get(),
+                            ModBlocks.DESK_DRAWER.get(),
+                            ModBlocks.METAL_DESK_DRAWER.get(),
+                            ModBlocks.METAL_DESK_DRAWER_2.get()
                     ).build(null));
     public static final RegistryObject<BlockEntityType<Storage18SlotBlockEntity>> STORAGE_18_BLOCK_ENTITY =
             BLOCK_ENTITIES.register("storage_18slot_block_entity", () ->
@@ -33,7 +38,7 @@ public class ModBlockEntities {
     public static final RegistryObject<BlockEntityType<Storage27SlotBlockEntity>> STORAGE_27_BLOCK_ENTITY =
             BLOCK_ENTITIES.register("storage_27slot_block_entity", () ->
                     BlockEntityType.Builder.of(Storage27SlotBlockEntity::new,
-                            ModBlocks.LARGE_LOCKER.get()
+                            ModBlocks.LOCKER_BOX.get()
                     ).build(null));
     public static final RegistryObject<BlockEntityType<Storage54SlotBlockEntity>> STORAGE_54_BLOCK_ENTITY =
             BLOCK_ENTITIES.register("storage_54slot_block_entity", () ->

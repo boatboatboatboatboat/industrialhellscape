@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "industrialhellscape:block/catwalk_strut"
+      "model": "industrialhellscape:block/strut/catwalk_strut"
     }
   }
 }

@@ -15,6 +15,8 @@ import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
+//IF YOU GET AN ERROR REGARDING JAVA NOT LOOKING THROUGH A SUBFOLDER, THAT MAY BE AN ERROR CAUSED BY ModItemModelProvider, NOT FROM THIS DATAGEN CLASS
+
 public class ModBlockStateProvider extends BlockStateProvider {
     public static final EnumProperty<TwoBlockMultiBlockState> HALF = EnumProperty.create("half", TwoBlockMultiBlockState.class);
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -30,39 +32,37 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //GENERATED MODELS, GENERATED BLOCKSTATES
 
         //Iron-like Blocks
-        blockWithItem(ModBlocks.VESSELPLATE);
-        blockWithItem(ModBlocks.RIVETED_VESSELPLATE);
-        blockWithItem(ModBlocks.VESSELPLATE_GRATE_BLOCK);
-        blockWithItem(ModBlocks.VESSELPLATE_GRATE);
-        //blockWithItem(ModBlocks.SEETHROUGH_GRATE);
-        blockWithItem(ModBlocks.RUSTY_VESSELPLATE_GRATE);
+        folderedBlockWithItem(ModBlocks.VESSELPLATE.get(),"vesselplate");
+        folderedBlockWithItem(ModBlocks.RIVETED_VESSELPLATE.get(),"vesselplate");
+
         blockWithItem(ModBlocks.GRIMY_RESTROOM_TILE);
+        folderedBlockWithItem(ModBlocks.GRAY_VESSELPLATE.get(),"vesselplate");
+        folderedBlockWithItem(ModBlocks.GRAY_RIVETED_VESSELPLATE.get(),"vesselplate");
 
-        blockWithItem(ModBlocks.GRAY_VESSELPLATE);
-        blockWithItem(ModBlocks.GRAY_RIVETED_VESSELPLATE);
-        blockWithItem(ModBlocks.GRAY_VESSELPLATE_GRATE);
-        //blockWithItem(ModBlocks.GRAY_SEETHROUGH_GRATE);
-        blockWithItem(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE);
-        blockWithItem(ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE);
-        blockWithItem(ModBlocks.SMOOTH_GRAY_VESSELPLATE);
-        blockWithItem(ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE);
-
-        blockWithItem(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE);
-        blockWithItem(ModBlocks.VERTICAL_RIVETED_VESSELPLATE);
+        folderedBlockWithItem(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get(),"vesselplate");
+        folderedBlockWithItem(ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get(),"vesselplate");
+        folderedBlockWithItem(ModBlocks.SMOOTH_GRAY_VESSELPLATE.get(),"vesselplate");
+        folderedBlockWithItem(ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get(),"vesselplate");
+        folderedBlockWithItem(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get(),"vesselplate");
+        folderedBlockWithItem(ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get(),"vesselplate");
         blockWithItem(ModBlocks.HORIZONTAL_ENCASED_CABLES);
         blockWithItem(ModBlocks.VERTICAL_ENCASED_CABLES);
-        blockWithItem(ModBlocks.SMOOTH_VESSELPLATE);
-        blockWithItem(ModBlocks.SMOOTH_VESSELPLATE_TILE);
+        folderedBlockWithItem(ModBlocks.SMOOTH_VESSELPLATE.get(),"vesselplate");
+        folderedBlockWithItem(ModBlocks.SMOOTH_VESSELPLATE_TILE.get(),"vesselplate");
 
-        MakeBlockStateOnly(ModBlocks.REINFORCED_VESSELGLASS.get(),"");
-        MakeBlockStateOnly(ModBlocks.VESSELGLASS.get(),"");
+        folderedBlockWithItem(ModBlocks.GRATE.get(),"grate");
+        folderedBlockWithItem(ModBlocks.GRAY_GRATE.get(),"grate");
+        folderedBlockWithItem(ModBlocks.RUSTY_GRATE.get(),"grate");
 
-        MakeBlockStateOnly(ModBlocks.GRAY_REINFORCED_VESSELGLASS.get(),"");
-        MakeBlockStateOnly(ModBlocks.GRAY_VESSELGLASS.get(),"");
+        //For blocks that have existing item models and block models due to special rendering needs (transparency)
+        MakeBlockStateOnly(ModBlocks.REINFORCED_VESSELGLASS.get(),"vesselglass");
+        MakeBlockStateOnly(ModBlocks.VESSELGLASS.get(),"vesselglass");
+        MakeBlockStateOnly(ModBlocks.GRAY_REINFORCED_VESSELGLASS.get(),"vesselglass");
+        MakeBlockStateOnly(ModBlocks.GRAY_VESSELGLASS.get(),"vesselglass");
 
         MakeBlockStateOnly(ModBlocks.SEETHROUGH_GRATE.get(),"");
         MakeBlockStateOnly(ModBlocks.GRAY_SEETHROUGH_GRATE.get(),"");
-        paneBlock((IronBarsBlock) ModBlocks.SEETHROUGH_GRATE_PANE.get(), modLoc("block/see-through_grate"),modLoc("block/see-through_grate_pane_top"));
+        //paneBlock((IronBarsBlock) ModBlocks.SEETHROUGH_GRATE_PANE.get(), modLoc("block/see-through_grate"),modLoc("block/see-through_grate_pane_top"));
         //paneBlock((IronBarsBlock) ModBlocks.GRAY_SEETHROUGH_GRATE_PANE.get(), modLoc("block/gray_see-through_grate"),modLoc("block/gray_see-through_grate_pane_top"));
 
 
@@ -91,7 +91,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.HAZARD_STRIPE_RED);
 
         //Furniture Block
-        horizontalBlock(ModBlocks.IHEA_FURNITURE_KIT.get(), build6FaceTexturesBlock("ihea_furniture_kit", "furniture_category_block", "ihea_furniture_kit_bottom","ihea_furniture_kit_top","ihea_furniture_kit_front","ihea_furniture_kit_back","ihea_furniture_kit_left","ihea_furniture_kit_right"));
+        horizontalBlock(ModBlocks.IHEA_FURNITURE_KIT.get(), build6FaceTexturesBlock("ihea_furniture_kit", "furniture_category_block", "ihea_furniture_kit_front","ihea_furniture_kit_back","ihea_furniture_kit_left","ihea_furniture_kit_right","ihea_furniture_kit_top","ihea_furniture_kit_bottom"));
         horizontalBlock(ModBlocks.PIPEWORKS.get(), build3FaceTexturesBlock("pipeworks", "pipeworks", "pipeworks_front", "pipeworks_sides", "pipeworks_top"));
         horizontalBlock(ModBlocks.SAFETY_FURNISHINGS.get(), build3FaceTexturesBlock("safety_furnishings", "furniture_category_block", "safety_furnishings_north", "safety_furnishings_west", "safety_furnishings_up"));
         horizontalBlock(ModBlocks.HYGIENE_FURNISHINGS.get(), build3FaceTexturesBlock("hygiene_furnishings","furniture_category_block", "hygiene_furnishings_north", "hygiene_furnishings_west", "hygiene_furnishings_up"));
@@ -109,7 +109,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         PowerableBlock(ModBlocks.FLOOR_WORK_LIGHT.get(), "work_light_mount");
         PowerableBlock(ModBlocks.RETRO_COMPUTER.get(), "retro_computer");
         PowerableBlock(ModBlocks.CASSETTE_PLAYER.get(), "cassette_player");
-        TwoBlockMultiBlock(ModBlocks.LARGE_LOCKER.get(), "large_locker");
+        TwoBlockMultiBlock(ModBlocks.LARGE_LOCKER.get(), "locker");
+        WaterloggableFacingBlock(ModBlocks.LOCKER_BOX.get(),"locker");
 
     }
 
@@ -123,22 +124,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {
-        //blockWithItem expects a ModBlock. Its second parameter, the "Model" is already defined here by blockRegistryObject
         simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
     }
 
-    private ModelFile build6FaceTexturesBlock(String blockName, String folderName, String bottom, String top, String front, String back, String left, String right) {
-        //Builds a textured model that uses three texture .pngs for all 6 faces.
-        ModelFile model = models().cube(
-                blockName,
-                modLoc( "block/" + folderName+ "/" + bottom), //bottom
-                modLoc("block/" + folderName+ "/" + top), //top
-                modLoc("block/" + folderName+ "/" + front), //front
-                modLoc("block/" + folderName+ "/" + back), //back
-                modLoc("block/"  + folderName+ "/" + left), //left
-                modLoc("block/"  + folderName+ "/" + right) //right
-        ).texture("particle", modLoc("block/" + folderName +"/" + top));
-        return model;
+    private void folderedBlockWithItem(Block block, String subfolder) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+
+        simpleBlock(block,
+                models().withExistingParent(stringName, mcLoc("block/cube_all"))
+                        .texture("all", modLoc("block/" + subfolder + "/" + stringName)));
     }
 
     private ModelFile build3FaceTexturesBlock(String blockName, String folderName, String frontAndBack, String leftAndRight, String topAndBottom) {
@@ -152,6 +146,20 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 modLoc("block/"  + folderName+ "/" + leftAndRight), //left
                 modLoc("block/"  + folderName+ "/" + leftAndRight) //right
                 ).texture("particle", modLoc("block/" + folderName +"/" + topAndBottom));
+        return model;
+    }
+
+    private ModelFile build6FaceTexturesBlock(String blockName, String folderName, String front, String back, String left, String right, String top, String bottom) {
+        //Builds a textured model that uses three texture .pngs for all 6 faces.
+        ModelFile model = models().cube(
+                blockName,
+                modLoc( "block/" + folderName+ "/" + bottom), //bottom
+                modLoc("block/" + folderName+ "/" + top), //top
+                modLoc("block/" + folderName+ "/" + front), //front
+                modLoc("block/" + folderName+ "/" + back), //back
+                modLoc("block/"  + folderName+ "/" + left), //left
+                modLoc("block/"  + folderName+ "/" + right) //right
+        ).texture("particle", modLoc("block/" + folderName +"/" + top));
         return model;
     }
 

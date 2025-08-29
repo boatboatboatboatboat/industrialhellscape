@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "industrialhellscape:block/strut/floorgrate_catwalk",
+    "side": "industrialhellscape:block/strut/reinforced_strut",
+    "top": "industrialhellscape:block/strut/floorgrate_catwalk"
+  }
+}

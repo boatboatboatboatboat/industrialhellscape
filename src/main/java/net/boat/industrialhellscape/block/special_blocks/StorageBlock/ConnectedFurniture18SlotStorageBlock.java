@@ -10,6 +10,8 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.Container;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -195,24 +197,37 @@ public class ConnectedFurniture18SlotStorageBlock extends HorizontalDirectionalB
 
     @Override
     public void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) { //Determines item drop behavior when block broken
-        if (!state.is(newState.getBlock())) { //If the block in the new updated state is different
-            if (state.getBlock() != newState.getBlock()) { //If block after the update is different from the old block
-                BlockEntity be = level.getBlockEntity(pos); //Save the selected block entity as "be"
-                if (be instanceof Storage18SlotBlockEntity blockEntity) { //If the block entity is a storage block entity
-                    ItemStackHandler inventory = blockEntity.getInventory(); //read and store the block entity's inventory
-                    for (int i = 0; i < inventory.getSlots(); i++) {
-                        ItemStack stack = inventory.getStackInSlot(i); //One at a time, read and store each itemStack in each slot
-                        if (!stack.isEmpty()) { //If that stack is NOT EMPTY
-                            var entity = new ItemEntity(level, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, stack); //spawn the current itemstack as an Item Entity inworld at this positon
-                            level.addFreshEntity(entity); //Add a new entity
-                            level.setBlockEntity(be); //Place block entity into current location
-                        } //If an empty stack is reached, exit logic, remove block entity. There are no more items to salvage. If inventory is full, for loop will salvage all items inside, then then exit logic to allow block entity removal
-                    }
+        if (state.getBlock() != newState.getBlock()) { //If block after the update is different from the old block
+            BlockEntity be = level.getBlockEntity(pos); //Save the selected block entity as "be"
+            if (be instanceof Storage18SlotBlockEntity blockEntity) { //If the block entity is a storage block entity
+                ItemStackHandler inventory = blockEntity.getInventory(); //read and store the block entity's inventory
+                for (int i = 0; i < inventory.getSlots(); i++) {
+                    ItemStack stack = inventory.getStackInSlot(i); //One at a time, read and store each itemStack in each slot
+                    if (!stack.isEmpty()) { //If that stack is NOT EMPTY
+                        var entity = new ItemEntity(level, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, stack); //spawn the current itemstack as an Item Entity inworld at this positon
+                        level.addFreshEntity(entity); //Add a new entity
+                        level.setBlockEntity(be); //Place block entity into current location
+                    } //If an empty stack is reached, exit logic, remove block entity. There are no more items to salvage. If inventory is full, for loop will salvage all items inside, then then exit logic to allow block entity removal
                 }
+            } else if (be instanceof Storage9SlotBlockEntity blockEntity) { //If the block entity is a storage block entity
+                ItemStackHandler inventory = blockEntity.getInventory(); //read and store the block entity's inventory
+                for (int i = 0; i < inventory.getSlots(); i++) {
+                    ItemStack stack = inventory.getStackInSlot(i); //One at a time, read and store each itemStack in each slot
+                    if (!stack.isEmpty()) { //If that stack is NOT EMPTY
+                        var entity = new ItemEntity(level, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, stack); //spawn the current itemstack as an Item Entity inworld at this positon
+                        level.addFreshEntity(entity); //Add a new entity
+                        level.setBlockEntity(be); //Place block entity into current location
+                    } //If an empty stack is reached, exit logic, remove block entity. There are no more items to salvage. If inventory is full, for loop will salvage all items inside, then then exit logic to allow block entity removal
+                }
+            } else if (be instanceof Container container) {
+                Containers.dropContents(level, pos, container);
+                level.updateNeighbourForOutputSignal(pos, this);
             }
 
-            super.onRemove(state, level, pos, newState, isMoving); //Remove the block entity
+            super.onRemove(state, level, pos, newState, isMoving);
         }
+
+        super.onRemove(state, level, pos, newState, isMoving); //Remove the block entity
     }
 
     @Override

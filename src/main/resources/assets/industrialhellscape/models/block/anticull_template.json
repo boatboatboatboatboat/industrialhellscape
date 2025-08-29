@@ -13,8 +13,8 @@
 		}
 	},
 	{
-		"from": [ 15.9,15.9,15.9 ],
-		"to": [ 0.1, 0.1, 0.1],
+		"from": [ 16,16,16 ],
+		"to": [ 0, 0, 0],
 		"faces": {
 			"down": { "texture": "#top", "uv": [0,0,16,16], "cullface": "up" },
 			"up": { "texture": "#bottom", "uv": [0,0,16,16], "cullface": "down" },

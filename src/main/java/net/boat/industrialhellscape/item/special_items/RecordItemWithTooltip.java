@@ -11,6 +11,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.function.Supplier;
 
+//INFO:
+//-----
+//This object class is a RecordItem that allows a custom tooltip to be defined per item during mod item registration, via an extra argument
+//-----
+
 public class RecordItemWithTooltip extends RecordItem {
 
     //Tooltip text is based on the "itemName" and will be different per item accordingly if its entry in the lang file is present.

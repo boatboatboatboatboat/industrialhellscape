@@ -11,18 +11,17 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 //INFO:
 //-----
 //This block supports rotation of custom models. It also supports directional placement based on player.
 //It supports waterlogging.
-//It supports interactions for model changes
+//It supports interactions for model changes with the property "POWERED"
 //-----
 
 public class InteractableModelledFacingBlock extends ModelledFacingBlock {
-    public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
+    public static final BooleanProperty POWERED = BlockStateProperties.POWERED; //For binary states (on, off, lit, unlit)
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public InteractableModelledFacingBlock(Properties pProperties, VoxelShape soloShape) {
@@ -39,17 +38,6 @@ public class InteractableModelledFacingBlock extends ModelledFacingBlock {
         pLevel.setBlock(pPos, pState, 2);
         return InteractionResult.SUCCESS;
     }
-
-    public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
-        if (!pLevel.isClientSide) {
-            boolean flag = pLevel.hasNeighborSignal(pPos);
-            pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.valueOf(flag)), 2);
-            if (pState.getValue(WATERLOGGED)) {
-                pLevel.scheduleTick(pPos, Fluids.WATER, Fluids.WATER.getTickDelay(pLevel));
-            }
-        }
-    }
-
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(FACING, WATERLOGGED, POWERED); //Block's blockstates; its NSEW orientation, its connection type defined

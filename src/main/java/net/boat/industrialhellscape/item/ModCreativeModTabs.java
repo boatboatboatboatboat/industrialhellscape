@@ -25,17 +25,17 @@ public class ModCreativeModTabs {
                         output.accept(ModItems.INHELL_HAVEN_DEVICE.get());
                         output.accept(ModItems.VAPORWAVE_CASSETTE.get());
 
-                        //DEBUG BLOCKS
-                        output.accept(ModBlocks.LARGE_LOCKER.get());
+                        //EXPERIMENTAL BLOCKS FOR CREATIVE TAB
+                        output.accept(ModBlocks.HANDRAIL.get());
 
                         //IRONLIKE BLOCKS FOR CREATIVE TAB
                         output.accept(ModBlocks.VESSELPLATE.get());
                         output.accept(ModBlocks.RIVETED_VESSELPLATE.get());
-                        output.accept(ModBlocks.VESSELPLATE_GRATE_BLOCK.get());
-                        output.accept(ModBlocks.VESSELPLATE_GRATE.get());
+                        //output.accept(ModBlocks.VESSELPLATE_GRATE_BLOCK.get()); //Depreciated
+                        output.accept(ModBlocks.GRATE.get());
                         output.accept(ModBlocks.SEETHROUGH_GRATE.get());
-                        output.accept(ModBlocks.SEETHROUGH_GRATE_PANE.get());
-                        output.accept(ModBlocks.RUSTY_VESSELPLATE_GRATE.get());
+                        //output.accept(ModBlocks.SEETHROUGH_GRATE_PANE.get()); //Experimental
+                        output.accept(ModBlocks.RUSTY_GRATE.get());
                         output.accept(ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get());
                         output.accept(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get());
                         output.accept(ModBlocks.SMOOTH_VESSELPLATE.get());
@@ -51,9 +51,9 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.GRAY_RIVETED_VESSELPLATE.get());
                         output.accept(ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get());
                         output.accept(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get());
-                        output.accept(ModBlocks.GRAY_VESSELPLATE_GRATE.get());
+                        output.accept(ModBlocks.GRAY_GRATE.get());
                         output.accept(ModBlocks.GRAY_SEETHROUGH_GRATE.get());
-                        output.accept(ModBlocks.GRAY_SEETHROUGH_GRATE_PANE.get());
+                        output.accept(ModBlocks.GRAY_SEETHROUGH_GRATE_PANE.get()); //Experimental
                         output.accept(ModBlocks.SMOOTH_GRAY_VESSELPLATE.get());
                         output.accept(ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get());
                         output.accept(ModBlocks.GRAY_VESSELPLATE_PILLAR.get());
@@ -88,7 +88,6 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.GRIMY_RESTROOM_TILE.get());
 
                         //SPECIAL BLOCKS FOR CREATIVE TAB
-
                         output.accept(ModBlocks.COPPER_PIPE_CONDUIT.get());
                         output.accept(ModBlocks.COPPER_PIPE_CONDUIT_PLANAR_CORNER.get());
                         output.accept(ModBlocks.COPPER_PIPE_CONDUIT_INNER_CORNER.get());
@@ -112,16 +111,21 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.METAL_DESK.get());
                         output.accept(ModBlocks.METAL_DESK_DRAWER.get());
                         output.accept(ModBlocks.METAL_DESK_DRAWER_2.get());
+
                         output.accept(ModBlocks.TOILET.get());
                         output.accept(ModBlocks.SINK.get());
+
                         output.accept(ModBlocks.RETRO_COMPUTER.get());
                         output.accept(ModBlocks.CASSETTE_PLAYER.get());
+
                         output.accept(ModBlocks.YELLOW_TRIPOD.get());
                         output.accept(ModBlocks.WORK_LIGHT_MOUNT.get());
                         output.accept(ModBlocks.FLOOR_WORK_LIGHT.get());
+                        //output.accept(ModBlocks.LOCKER_BOX.get()); //Experimental
+                        //output.accept(ModBlocks.LARGE_LOCKER.get()); //Experimental
+
                         output.accept(ModBlocks.PIPEWORKS.get());
 
-                        //output.accept(ModBlocks.SINK.get());
                         output.accept(ModBlocks.WHITE_WALL_MEDKIT.get());
                         output.accept(ModBlocks.RED_WALL_MEDKIT.get());
                         output.accept(ModBlocks.IHEA_FURNITURE_KIT.get());

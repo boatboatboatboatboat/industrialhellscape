@@ -1,9 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "bottom": "industrialhellscape:block/strut",
-    "side": "industrialhellscape:block/reinforced_strut",
-    "top": "industrialhellscape:block/strut"
-  }
-}

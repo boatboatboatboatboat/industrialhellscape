@@ -47,6 +47,13 @@ public interface HitboxGeometryCollection {
         return shape;
     }
 
+    static VoxelShape FULL_BLOCK(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0, 0, 0, 1, 1, 1), BooleanOp.OR);
+
+        return shape;
+    }
+
     static VoxelShape INNER_CORNER_UP(){
         VoxelShape shape = Shapes.empty();
         shape = Shapes.join(shape, Shapes.box(0, 0.6875, 0, 1, 1, 1), BooleanOp.OR);
@@ -106,8 +113,6 @@ public interface HitboxGeometryCollection {
 
         return shape;
     }
-
-
 
     //CLASSIC DESK
     static VoxelShape DESK_SOLO_SHAPE(){
@@ -297,7 +302,7 @@ public interface HitboxGeometryCollection {
 
         return shape;
     }
-    //METAL DESK DRAWER 2
+    //METAL DESK DRAWER 2 (Same as Metal Desk Drawer 1)
     static  VoxelShape METAL_DESK_DRAWER_2_SOLO_SHAPE(){
         return METAL_DESK_DRAWER_SOLO_SHAPE();
     }
@@ -309,5 +314,11 @@ public interface HitboxGeometryCollection {
     }
     static  VoxelShape METAL_DESK_DRAWER_2_RIGHT_SHAPE(){
         return METAL_DESK_DRAWER_RIGHT_SHAPE();
+    }
+
+    static VoxelShape HANDRAIL(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0.1, 0.1, 0.1, 0.125, 0.5, 0.9), BooleanOp.OR);
+        return shape;
     }
 }

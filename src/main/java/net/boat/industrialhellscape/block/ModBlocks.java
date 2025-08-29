@@ -4,10 +4,7 @@ import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.special_blocks.*;
 import net.boat.industrialhellscape.block.special_blocks.PipeBlock;
 import net.boat.industrialhellscape.block.special_blocks.SimpleFacingBlock;
-import net.boat.industrialhellscape.block.special_blocks.StorageBlock.ConnectedFurniture18SlotStorageBlock;
-import net.boat.industrialhellscape.block.special_blocks.StorageBlock.Furniture9SlotStorageBlock;
-import net.boat.industrialhellscape.block.special_blocks.StorageBlock.Test9SlotStorageBlock;
-import net.boat.industrialhellscape.block.special_blocks.StorageBlock.Vertical2BlockStorageMultiBlock;
+import net.boat.industrialhellscape.block.special_blocks.StorageBlock.*;
 import net.boat.industrialhellscape.block.special_blocks_properties.HitboxGeometryCollection;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.item.ModItems;
@@ -37,13 +34,27 @@ public class ModBlocks {
                     .Properties.copy(Blocks.IRON_BLOCK)
             )
     );
+    public static final RegistryObject<Block> LOCKER_BOX = registerBlock("locker_box",
+            () -> new Furniture27SlotStorageBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    ,HitboxGeometryCollection.FULL_BLOCK()
+            )
+    );
+    public static final RegistryObject<Block> HANDRAIL = registerBlock("handrail",
+            () -> new ModelledWaterloggableBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.HANDRAIL()
+            )
+    );
+
 
     //VESSELPLATE BLOCKS
-    public static final RegistryObject<Block> VESSELPLATE_GRATE_BLOCK = registerBlock("vesselplate_grate_block",
-            () -> new Block(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
-                    )
-    );
+//    public static final RegistryObject<Block> VESSELPLATE_GRATE_BLOCK = registerBlock("vesselplate_grate_block",
+//            () -> new Block(BlockBehaviour
+//                    .Properties.copy(Blocks.IRON_BLOCK)
+//                    )
+//    );
     public static final RegistryObject<Block> VESSELPLATE = registerBlock("vesselplate",
             () -> new Block(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
@@ -407,7 +418,7 @@ public class ModBlocks {
             )
     );
     public static final RegistryObject<Block> YELLOW_TRIPOD = registerBlock("yellow_tripod",
-            () -> new WaterloggableBlock(BlockBehaviour
+            () -> new ModelledWaterloggableBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
                     HitboxGeometryCollection.THIN_VERTICAL_ROD_SHAPE()
@@ -441,12 +452,12 @@ public class ModBlocks {
                     .Properties.copy(Blocks.IRON_BLOCK)
             )
     );
-    public static final RegistryObject<Block> VESSELPLATE_GRATE = registerBlock("vesselplate_grate",
+    public static final RegistryObject<Block> GRATE = registerBlock("grate",
             () -> new Block(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
             )
     );
-    public static final RegistryObject<Block> GRAY_VESSELPLATE_GRATE = registerBlock("gray_vesselplate_grate",
+    public static final RegistryObject<Block> GRAY_GRATE = registerBlock("gray_grate",
             () -> new Block(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
             )
@@ -457,12 +468,12 @@ public class ModBlocks {
                     .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
             )
     );
-    public static final RegistryObject<Block> SEETHROUGH_GRATE_PANE = registerBlock("see-through_grate_pane",
-            () -> new IronBarsBlock(BlockBehaviour
-                    .Properties.copy(Blocks.GLASS)
-                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
-            )
-    );
+//    public static final RegistryObject<Block> SEETHROUGH_GRATE_PANE = registerBlock("see-through_grate_pane",
+//            () -> new IronBarsBlock(BlockBehaviour
+//                    .Properties.copy(Blocks.GLASS)
+//                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
+//            )
+//    );
 
     public static final RegistryObject<Block> GRAY_SEETHROUGH_GRATE = registerBlock("gray_see-through_grate",
             () -> new GlassBlock(BlockBehaviour
@@ -486,7 +497,7 @@ public class ModBlocks {
                     .Properties.copy(Blocks.IRON_BLOCK)
             )
     );
-    public static final RegistryObject<Block> RUSTY_VESSELPLATE_GRATE = registerBlock("rusty_vesselplate_grate",
+    public static final RegistryObject<Block> RUSTY_GRATE = registerBlock("rusty_grate",
             () -> new Block(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
             )
@@ -546,19 +557,17 @@ public class ModBlocks {
             )
     );
     public static final RegistryObject<Block> STRUT = registerBlock("strut",
-            () -> new ClimbableWaterloggableBlock(BlockBehaviour
+            () -> new SimpleWaterloggableBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()
-                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS),
-                    HitboxGeometryCollection.SLIGHTLY_SMALLER_FULL_BLOCK()
+                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
                     )
     );
     public static final RegistryObject<Block> CATWALK_STRUT = registerBlock("catwalk_strut",
-            () -> new ClimbableWaterloggableBlock(BlockBehaviour
+            () -> new SimpleWaterloggableBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()
-                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS),
-                    HitboxGeometryCollection.SLIGHTLY_SMALLER_FULL_BLOCK()
+                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
             )
     );
     public static final RegistryObject<Block> CATWALK_STRUT_STAIRS = registerBlock("catwalk_strut_stairs",
@@ -586,11 +595,10 @@ public class ModBlocks {
     );
 
     public static final RegistryObject<Block> GRAY_STRUT = registerBlock("gray_strut",
-            () -> new ClimbableWaterloggableBlock(BlockBehaviour
+            () -> new SimpleWaterloggableBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()
-                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS),
-                    HitboxGeometryCollection.SLIGHTLY_SMALLER_FULL_BLOCK()
+                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
             )
     );
     public static final RegistryObject<Block> GRAY_CATWALK_STRUT_STAIRS = registerBlock("gray_catwalk_strut_stairs",
@@ -604,12 +612,11 @@ public class ModBlocks {
                     .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
     );
     public static final RegistryObject<Block> GRAY_CATWALK_STRUT = registerBlock("gray_catwalk_strut",
-            () -> new ClimbableWaterloggableBlock(BlockBehaviour
+            () -> new SimpleWaterloggableBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     
                     .noOcclusion()
-                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS),
-                    HitboxGeometryCollection.SLIGHTLY_SMALLER_FULL_BLOCK()
+                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
             )
     );
 

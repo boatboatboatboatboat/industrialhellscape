@@ -24,8 +24,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             //ModBlocks.VESSELPLATE.get().asItem(), //base block commented out or else duplicate recipe created
             ModBlocks.VESSELPLATE_PILLAR.get().asItem(),
             ModBlocks.RIVETED_VESSELPLATE.get().asItem(),
-            ModBlocks.VESSELPLATE_GRATE_BLOCK.get().asItem(),
-            ModBlocks.VESSELPLATE_GRATE.get().asItem(),
+            //ModBlocks.VESSELPLATE_GRATE_BLOCK.get().asItem(), Depreciated
+            ModBlocks.GRATE.get().asItem(),
             ModBlocks.SEETHROUGH_GRATE.get().asItem(),
             ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
             ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
@@ -34,7 +34,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
             ModBlocks.GRAY_VESSELPLATE.get().asItem(),
             ModBlocks.GRAY_RIVETED_VESSELPLATE.get().asItem(),
-            ModBlocks.GRAY_VESSELPLATE_GRATE.get().asItem(),
+            ModBlocks.GRAY_GRATE.get().asItem(),
             ModBlocks.GRAY_SEETHROUGH_GRATE.get().asItem(),
             ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
             ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
@@ -60,7 +60,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
             ModBlocks.VERTICAL_ENCASED_CABLES.get().asItem(),
             ModBlocks.HORIZONTAL_ENCASED_CABLES.get().asItem(),
-            ModBlocks.RUSTY_VESSELPLATE_GRATE.get().asItem()
+            ModBlocks.RUSTY_GRATE.get().asItem()
     );
     private static final List<ItemLike> ROCKRETE_STONECUT_OUTPUT = List.of(
             
@@ -94,14 +94,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.GRIMY_RESTROOM_TILE.get().asItem()
     );
     private static final List<ItemLike> VESSELGLASS_STONECUT_OUTPUT = List.of(
-            //ModBlocks.VESSELGLASS.get().asItem(),
+            //ModBlocks.VESSELGLASS.get().asItem(), //base block commented out to remove redundancy
             ModBlocks.REINFORCED_VESSELGLASS.get().asItem(),
             ModBlocks.GRAY_REINFORCED_VESSELGLASS.get().asItem(),
             ModBlocks.GRAY_VESSELGLASS.get().asItem()
     );
 
     private static final List<ItemLike> PIPEWORKS_STONECUT_OUTPUT = List.of(
-            //ModBlocks.PIPEWORKS.get()
+            //ModBlocks.PIPEWORKS.get(), //base block commented out to remove redundancy
             ModBlocks.COPPER_PIPE_CONDUIT.get().asItem(),
             ModBlocks.COPPER_PIPE_CONDUIT_PLANAR_CORNER.get().asItem(),
             ModBlocks.COPPER_PIPE_CONDUIT_INNER_CORNER.get().asItem(),
@@ -132,6 +132,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.SINK.get().asItem()
     );
     private static final List<ItemLike> INDUSTRIAL_FURNITURE = List.of(
+            //ModBlocks.LOCKER_BOX.get().asItem(), //Experimental
+            //ModBlocks.LARGE_LOCKER.get().asItem(), //Experimental
             ModBlocks.GRAY_BOLTED_BRACKET.get().asItem(),
             ModBlocks.BLACK_BOLTED_BRACKET.get().asItem(),
             ModBlocks.YELLOW_TRIPOD.get().asItem(),
@@ -284,6 +286,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         //----------
 
         //Input block tag's stonecutter recipes gets iteratively registered to every block within that tag.
+        //If item in tag is a slab, produce two slabs as an output.
+        //The ingredients are of the "Smeltable" item tag and the outputs are of the "Stonecut outputs" item list. This ensures that only smeltable blocks can be crafted into slabs.
+        //And therefore slabs cannot be crafted into smeltable blocks. Slabs cannot be smelted. This prevents item duplication via smelting into base vanilla ingredient items.
 
         //Vesselplate
         for (int i = 0; i < VESSELPLATE_STONECUT_OUTPUT.size(); i++) {
@@ -291,7 +296,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             if (VESSELPLATE_STONECUT_OUTPUT.get(i).toString().contains("slab") ) {
                 stonecutting(
                         //Identify slab blocks and specify recipe output of two slab blocks
-                        Ingredient.of(ModTags.Items.VESSELPLATE_STONECUT_OUTPUTS), //1st Parameter "pIngredients"
+                        Ingredient.of(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM), //1st Parameter "pIngredients"
                         RecipeCategory.BUILDING_BLOCKS, //2nd Parameter "pCategory"
                         VESSELPLATE_STONECUT_OUTPUT.get(i), //3rd Parameter "pResults"
                         2) //4rth Parameter "amount" crafting output
@@ -299,7 +304,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                         .save(pWriter, new ResourceLocation("industrialhellscape", "vesselplate_stonecut_"+itemName+i));
             } else
                 stonecutting(
-                        Ingredient.of(ModTags.Items.VESSELPLATE_STONECUT_OUTPUTS),
+                        Ingredient.of(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM),
                         RecipeCategory.BUILDING_BLOCKS,
                         VESSELPLATE_STONECUT_OUTPUT.get(i),
                         1)
@@ -313,7 +318,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             if (VESSELGLASS_STONECUT_OUTPUT.get(i).toString().contains("slab")  ) {
                 //Identify slab blocks and specify recipe output of two slab blocks
                 stonecutting(
-                        Ingredient.of(ModTags.Items.VESSELGLASS_STONECUT_OUTPUTS), //1st Parameter "pIngredients"
+                        Ingredient.of(ModTags.Items.VESSELGLASS_SMELTABLE_ITEM), //1st Parameter "pIngredients"
                         RecipeCategory.BUILDING_BLOCKS, //2nd Parameter "pCategory"
                         VESSELGLASS_STONECUT_OUTPUT.get(i), //3rd Parameter "pResults"
                         2) //4rth Parameter "amount" crafting output
@@ -322,7 +327,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             } else
 
                 stonecutting(
-                        Ingredient.of(ModTags.Items.VESSELGLASS_STONECUT_OUTPUTS),
+                        Ingredient.of(ModTags.Items.VESSELGLASS_SMELTABLE_ITEM),
                         RecipeCategory.BUILDING_BLOCKS,
                         VESSELGLASS_STONECUT_OUTPUT.get(i),1)
                         .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
@@ -334,7 +339,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             String itemName = ROCKRETE_STONECUT_OUTPUT.get(i).toString().replaceAll("[^a-zA-Z]+","_");
             if (ROCKRETE_STONECUT_OUTPUT.get(i).toString().contains("slab")  ) {
                 stonecutting(
-                        Ingredient.of(ModTags.Items.ROCKRETE_STONECUT_OUTPUTS),
+                        Ingredient.of(ModTags.Items.ROCKRETE_SMELTABLE_ITEM),
                         RecipeCategory.BUILDING_BLOCKS,
                         ROCKRETE_STONECUT_OUTPUT.get(i),2)
                         .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
@@ -342,7 +347,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             } else
 
                 stonecutting(
-                        Ingredient.of(ModTags.Items.ROCKRETE_STONECUT_OUTPUTS),
+                        Ingredient.of(ModTags.Items.ROCKRETE_SMELTABLE_ITEM),
                         RecipeCategory.BUILDING_BLOCKS,
                         ROCKRETE_STONECUT_OUTPUT.get(i),1)
                         .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
@@ -353,7 +358,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         for (int i = 0; i < PIPEWORKS_STONECUT_OUTPUT.size(); i++) {
             String itemName = PIPEWORKS_STONECUT_OUTPUT.get(i).toString().replaceAll("[^a-zA-Z]+","_");
             stonecutting(
-                    Ingredient.of(ModBlocks.PIPEWORKS.get().asItem()),
+                    Ingredient.of(ModTags.Items.PIPEWORKS_SMELTABLE_ITEM),
                     RecipeCategory.BUILDING_BLOCKS,
                     PIPEWORKS_STONECUT_OUTPUT.get(i),1)
                     .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))

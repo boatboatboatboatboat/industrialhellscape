@@ -1,13 +1,13 @@
 {
   "variants": {
     "type=bottom": {
-      "model": "industrialhellscape:block/strut_slab"
+      "model": "industrialhellscape:block/strut/strut_slab"
     },
     "type=double": {
-      "model": "industrialhellscape:block/strut"
+      "model": "industrialhellscape:block/strut/strut"
     },
     "type=top": {
-      "model": "industrialhellscape:block/strut_slab_top"
+      "model": "industrialhellscape:block/strut/strut_slab_top"
     }
   }
 }

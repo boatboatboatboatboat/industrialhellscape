@@ -29,8 +29,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(
                         ModBlocks.VESSELPLATE.get(),
                         ModBlocks.RIVETED_VESSELPLATE.get(),
-                        ModBlocks.VESSELPLATE_GRATE_BLOCK.get(),
-                        ModBlocks.VESSELPLATE_GRATE.get(),
+                        //ModBlocks.VESSELPLATE_GRATE_BLOCK.get(),
+                        ModBlocks.GRATE.get(),
                         ModBlocks.SEETHROUGH_GRATE.get(),
                         ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get(),
                         ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get(),
@@ -40,7 +40,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
                         ModBlocks.GRAY_VESSELPLATE.get(),
                         ModBlocks.GRAY_RIVETED_VESSELPLATE.get(),
-                        ModBlocks.GRAY_VESSELPLATE_GRATE.get(),
+                        ModBlocks.GRAY_GRATE.get(),
                         ModBlocks.GRAY_SEETHROUGH_GRATE.get(),
                         ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get(),
                         ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get(),
@@ -67,7 +67,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
                         ModBlocks.HORIZONTAL_ENCASED_CABLES.get(),
                         ModBlocks.VERTICAL_ENCASED_CABLES.get(),
-                        ModBlocks.RUSTY_VESSELPLATE_GRATE.get()
+                        ModBlocks.RUSTY_GRATE.get()
                 );
 
         this.tag(ModTags.Blocks.VESSELGLASS_BLOCKS)
@@ -183,6 +183,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
         this.tag(ModTags.Blocks.INDUSTRIAL_FURNITURE_CATEGORY)
                 .add(
+                        ModBlocks.LOCKER_BOX.get(),
+                        ModBlocks.LARGE_LOCKER.get(),
                         ModBlocks.GRAY_BOLTED_BRACKET.get(),
                         ModBlocks.BLACK_BOLTED_BRACKET.get(),
                         ModBlocks.YELLOW_TRIPOD.get(),
