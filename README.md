@@ -12,10 +12,14 @@
 ### Modded Block Registration:
     src/main/java/net/boat/industrialhellscape/block/ModBlocks.java
 
-### Modded Block Classes and Prerequisite classes:
-    src/main/java/net/boat/industrialhellscape/block/special_blocks and /special_block_properties
-    Block Entity Registration is at: /special_blocks_properties/ModBlockEntities.java
-    Block Entity GUI Menu Registration at: /special_blocks_properties/ModMenuTypes.java
+### Modded Block Classes and Prerequisite Enums, Interfaces, Etc:
+    src/main/java/net/boat/industrialhellscape/block/special_blocks 
+#### and 
+    /special_block_properties
+### Block Entity Registration: 
+    /special_blocks_properties/ModBlockEntities.java
+### Block Entity GUI Menu Registration:
+    /special_blocks_properties/ModMenuTypes.java
 
 ### Modded Item Registration:
     src/main/java/net/boat/industrialhellscape/item/ModItems.java
