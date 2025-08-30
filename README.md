@@ -1,4 +1,5 @@
 # Industrial Hellscape - A Minecraft 1.20.1 mod
+#### A mod that adds gritty industrial blocksets and decor to Minecraft Java Edition.
  
 ## Navigating the files:
 
