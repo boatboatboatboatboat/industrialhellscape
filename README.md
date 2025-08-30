@@ -1,4 +1,4 @@
-# Forge-Tutorial-1.20.X
+# Industrial Hellscape - A Minecraft 1.20.1 mod
  
 ## Navigating the files:
 
