@@ -31,7 +31,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.RUSTY_GRATE.get());
         this.dropSelf(ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get());
         this.dropSelf(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get());
-        this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE.get());
 
         this.dropSelf(ModBlocks.REINFORCED_VESSELGLASS.get());
         this.dropSelf(ModBlocks.VESSELGLASS.get());
@@ -45,7 +44,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.GRAY_SEETHROUGH_GRATE_PANE.get());
         this.dropSelf(ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get());
         this.dropSelf(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get());
-        this.dropSelf(ModBlocks.SMOOTH_GRAY_VESSELPLATE.get());
         this.dropSelf(ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get());
         this.dropSelf(ModBlocks.GRAY_VESSELPLATE_PILLAR.get());
 
@@ -135,8 +133,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.BLACK_BOLTED_BRACKET.get());
 
 
-        this.dropSelf(ModBlocks.VERTICAL_ENCASED_CABLES.get());
-        this.dropSelf(ModBlocks.HORIZONTAL_ENCASED_CABLES.get());
+        this.dropSelf(ModBlocks.ENCASED_CABLES.get());
         this.dropSelf(ModBlocks.TOILET.get());
         this.dropSelf(ModBlocks.SINK.get());
         this.dropSelf(ModBlocks.RED_WALL_MEDKIT.get());

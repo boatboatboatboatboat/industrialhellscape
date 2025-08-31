@@ -4,6 +4,7 @@ import net.boat.industrialhellscape.block.special_blocks_properties.ConnectedMod
 import net.boat.industrialhellscape.block.special_blocks_properties.PillarConnectionState;
 import net.boat.industrialhellscape.block.special_blocks_properties.RotationHelper;
 import net.boat.industrialhellscape.item.ModItems;
+import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -111,11 +112,11 @@ public class PipeBlock extends Block implements ConnectedModelCapability {
 
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
 
-        boolean hasModdedTool = pPlayer.getMainHandItem().is(ModItems.INHELL_HAVEN_DEVICE.get()) || pPlayer.getOffhandItem().is(ModItems.INHELL_HAVEN_DEVICE.get());
+        boolean playerHasTool = pPlayer.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || pPlayer.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
         Direction surfaceAttached = pState.getValue(SURFACE_ATTACHED);
 
         //Cycles from vertical and horizontal pipes when interacting with pipes on walls
-        if(hasModdedTool && (surfaceAttached != Direction.UP && surfaceAttached != Direction.DOWN)) { //If player has tool, change the pipe orientation for walls
+        if(playerHasTool && (surfaceAttached != Direction.UP && surfaceAttached != Direction.DOWN)) { //If player has tool, change the pipe orientation for walls
             switch(pState.getValue(PLANAR_AXIS)) {
                 case X: pState = pState.setValue(PLANAR_AXIS, Direction.Axis.Y);break;
                 case Z: pState = pState.setValue(PLANAR_AXIS, Direction.Axis.Y);break;
@@ -128,7 +129,7 @@ public class PipeBlock extends Block implements ConnectedModelCapability {
             pLevel.setBlock(pPos, pState, Block.UPDATE_ALL);
             return InteractionResult.sidedSuccess(pLevel.isClientSide);
 
-        } else if (hasModdedTool){ //If player has tool, change the pipe orientation for walls and floors
+        } else if (playerHasTool){ //If player has tool, change the pipe orientation for walls and floors
             switch(pState.getValue(PLANAR_AXIS)) {
                 case X: pState = pState.setValue(PLANAR_AXIS, Direction.Axis.Z);break;
                 case Z: pState = pState.setValue(PLANAR_AXIS, Direction.Axis.X); break;

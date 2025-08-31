@@ -1,6 +1,7 @@
 package net.boat.industrialhellscape.util;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
@@ -39,18 +40,11 @@ public class ModTags {
     }
 
     public static class Items {
-
-        //For ungenerated recipes dictating recycling back into vanilla materials
+        //For ungenerated recipes dictating recycling back into vanilla materials (Slabs are NOT smeltable)
         public static final TagKey<Item> VESSELPLATE_SMELTABLE_ITEM = tag("vesselplate_smeltable_item");
         public static final TagKey<Item> VESSELGLASS_SMELTABLE_ITEM = tag("vesselglass_smeltable_item");
         public static final TagKey<Item> ROCKRETE_SMELTABLE_ITEM = tag("rockrete_smeltable_item");
         public static final TagKey<Item> PIPEWORKS_SMELTABLE_ITEM = tag("pipeworks_smeltable_item");
-
-        //For stonecutter recipe generation
-        public static final TagKey<Item> VESSELPLATE_STONECUT_OUTPUTS = tag("vesselplate_blocks");
-        public static final TagKey<Item> VESSELGLASS_STONECUT_OUTPUTS = tag("vesselglass_blocks");
-        public static final TagKey<Item> ROCKRETE_STONECUT_OUTPUTS = tag("rockrete_blocks");
-        public static final TagKey<Item> PIPEWORKS_STONECUT_OUTPUTS = tag("pipeworks_blocks");
 
         //Furniture Categories and Subcategories
         public static final TagKey<Item> FURNITURE_CATEGORIES = tag("furniture_categories");
@@ -63,6 +57,7 @@ public class ModTags {
 
         //For crafting convenience
         public static final TagKey<Item> IH_RECIPE_STONELIKES = tag("ih_recipe_stonelikes");
+        public static final TagKey<Item> IH_COMPATIBLE_TOOLS = tag("ih_rotation_tools");
 
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(new ResourceLocation(IndustrialHellscape.MOD_ID, name));

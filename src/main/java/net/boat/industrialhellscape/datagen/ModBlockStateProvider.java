@@ -13,7 +13,6 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.RegistryObject;
 
 //IF YOU GET AN ERROR REGARDING JAVA NOT LOOKING THROUGH A SUBFOLDER, THAT MAY BE AN ERROR CAUSED BY ModItemModelProvider, NOT FROM THIS DATAGEN CLASS
 
@@ -21,6 +20,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     public static final EnumProperty<TwoBlockMultiBlockState> HALF = EnumProperty.create("half", TwoBlockMultiBlockState.class);
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
+    public static final BooleanProperty ALT_TEXTURE = BooleanProperty.create("alt_texture");
 
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, IndustrialHellscape.MOD_ID, exFileHelper);
@@ -28,114 +28,99 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+         //Method naming convention ("SBI", "SI", etc):
+        //"S" - Generates Block State
+        //"B" - Generates Block Model (if no existing one is available). Simple full-blocks with no special rendering are being generated currently
+        //"I" - Generates Item Model
 
-        //GENERATED MODELS, GENERATED BLOCKSTATES
+        //---------- BLOCK ASSET GENERATION LIST ----------
 
         //Iron-like Blocks
-        folderedBlockWithItem(ModBlocks.VESSELPLATE.get(),"vesselplate");
-        folderedBlockWithItem(ModBlocks.RIVETED_VESSELPLATE.get(),"vesselplate");
+        genFolderedSBI(ModBlocks.VESSELPLATE.get(),"vesselplate");
+        genFolderedSBI(ModBlocks.RIVETED_VESSELPLATE.get(),"vesselplate");
 
-        blockWithItem(ModBlocks.GRIMY_RESTROOM_TILE);
-        folderedBlockWithItem(ModBlocks.GRAY_VESSELPLATE.get(),"vesselplate");
-        folderedBlockWithItem(ModBlocks.GRAY_RIVETED_VESSELPLATE.get(),"vesselplate");
+        genFolderedToggleBlockSBI(ModBlocks.SMOOTH_VESSELPLATE_TILE.get(),"vesselplate", "", true, "_tile","");
+        genFolderedToggleBlockSBI(ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get(),"vesselplate", "", true, "_tile","");
 
-        folderedBlockWithItem(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get(),"vesselplate");
-        folderedBlockWithItem(ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get(),"vesselplate");
-        folderedBlockWithItem(ModBlocks.SMOOTH_GRAY_VESSELPLATE.get(),"vesselplate");
-        folderedBlockWithItem(ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get(),"vesselplate");
-        folderedBlockWithItem(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get(),"vesselplate");
-        folderedBlockWithItem(ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get(),"vesselplate");
-        blockWithItem(ModBlocks.HORIZONTAL_ENCASED_CABLES);
-        blockWithItem(ModBlocks.VERTICAL_ENCASED_CABLES);
-        folderedBlockWithItem(ModBlocks.SMOOTH_VESSELPLATE.get(),"vesselplate");
-        folderedBlockWithItem(ModBlocks.SMOOTH_VESSELPLATE_TILE.get(),"vesselplate");
+        genFolderedSBI(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get(),"vesselplate");
+        genFolderedSBI(ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get(),"vesselplate");
 
-        folderedBlockWithItem(ModBlocks.GRATE.get(),"grate");
-        folderedBlockWithItem(ModBlocks.GRAY_GRATE.get(),"grate");
-        folderedBlockWithItem(ModBlocks.RUSTY_GRATE.get(),"grate");
+        genFolderedSBI(ModBlocks.GRAY_VESSELPLATE.get(),"vesselplate");
+        genFolderedSBI(ModBlocks.GRAY_RIVETED_VESSELPLATE.get(),"vesselplate");
+        genFolderedSBI(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get(),"vesselplate");
+        genFolderedSBI(ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get(),"vesselplate");
 
-        //For blocks that have existing item models and block models due to special rendering needs (transparency)
-        MakeBlockStateOnly(ModBlocks.REINFORCED_VESSELGLASS.get(),"vesselglass");
-        MakeBlockStateOnly(ModBlocks.VESSELGLASS.get(),"vesselglass");
-        MakeBlockStateOnly(ModBlocks.GRAY_REINFORCED_VESSELGLASS.get(),"vesselglass");
-        MakeBlockStateOnly(ModBlocks.GRAY_VESSELGLASS.get(),"vesselglass");
+        genFolderedToggleBlockSBI(ModBlocks.ENCASED_CABLES.get(),"","",true, "encased","vertical_encased");
 
-        MakeBlockStateOnly(ModBlocks.SEETHROUGH_GRATE.get(),"");
-        MakeBlockStateOnly(ModBlocks.GRAY_SEETHROUGH_GRATE.get(),"");
+        genFolderedToggleBlockSBI(ModBlocks.GRATE.get(),"grate","",true,"grate","vertical_grate");
+        genFolderedToggleBlockSBI(ModBlocks.GRAY_GRATE.get(),"grate","",true, "grate","vertical_grate");
+        genFolderedToggleBlockSBI(ModBlocks.RUSTY_GRATE.get(),"grate","",true,"grate","vertical_grate");
+
+        genFolderedSI(ModBlocks.SEETHROUGH_GRATE.get(), "grate");
+        genFolderedSI(ModBlocks.GRAY_SEETHROUGH_GRATE.get(),"grate");
         //paneBlock((IronBarsBlock) ModBlocks.SEETHROUGH_GRATE_PANE.get(), modLoc("block/see-through_grate"),modLoc("block/see-through_grate_pane_top"));
         //paneBlock((IronBarsBlock) ModBlocks.GRAY_SEETHROUGH_GRATE_PANE.get(), modLoc("block/gray_see-through_grate"),modLoc("block/gray_see-through_grate_pane_top"));
 
 
         //Stone-like Blocks
-        blockWithItem(ModBlocks.GRAY_ROCKRETE);
-        blockWithItem(ModBlocks.GRAY_ROCKRETE_REBAR);
+        genFolderedSBI(ModBlocks.GRIMY_RESTROOM_TILE.get(),"");
+
+        genFolderedSBI(ModBlocks.GRAY_ROCKRETE.get(),"");
+        genFolderedSBI(ModBlocks.GRAY_ROCKRETE_REBAR.get(),"");
         stairsBlock(((StairBlock) ModBlocks.GRAY_ROCKRETE_STAIRS.get()), blockTexture(ModBlocks.GRAY_ROCKRETE.get()));
         slabBlock(((SlabBlock) ModBlocks.GRAY_ROCKRETE_SLAB.get()), blockTexture(ModBlocks.GRAY_ROCKRETE.get()), blockTexture(ModBlocks.GRAY_ROCKRETE.get()));
 
-        blockWithItem(ModBlocks.GREEN_ROCKRETE);
-        blockWithItem(ModBlocks.GREEN_ROCKRETE_REBAR);
+        genFolderedSBI(ModBlocks.GREEN_ROCKRETE.get(),"");
+        genFolderedSBI(ModBlocks.GREEN_ROCKRETE_REBAR.get(),"");
         stairsBlock(((StairBlock) ModBlocks.GREEN_ROCKRETE_STAIRS.get()), blockTexture(ModBlocks.GREEN_ROCKRETE.get()));
         slabBlock(((SlabBlock) ModBlocks.GREEN_ROCKRETE_SLAB.get()), blockTexture(ModBlocks.GREEN_ROCKRETE.get()), blockTexture(ModBlocks.GREEN_ROCKRETE.get()));
 
-        blockWithItem(ModBlocks.YELLOW_ROCKRETE);
-        blockWithItem(ModBlocks.YELLOW_ROCKRETE_REBAR);
+        genFolderedSBI(ModBlocks.YELLOW_ROCKRETE.get(),"");
+        genFolderedSBI(ModBlocks.YELLOW_ROCKRETE_REBAR.get(),"");
         stairsBlock(((StairBlock) ModBlocks.YELLOW_ROCKRETE_STAIRS.get()), blockTexture(ModBlocks.YELLOW_ROCKRETE.get()));
         slabBlock(((SlabBlock) ModBlocks.YELLOW_ROCKRETE_SLAB.get()), blockTexture(ModBlocks.YELLOW_ROCKRETE.get()), blockTexture(ModBlocks.YELLOW_ROCKRETE.get()));
 
-        blockWithItem(ModBlocks.BLUE_ROCKRETE);
-        blockWithItem(ModBlocks.BLUE_ROCKRETE_REBAR);
+        genFolderedSBI(ModBlocks.BLUE_ROCKRETE.get(),"");
+        genFolderedSBI(ModBlocks.BLUE_ROCKRETE_REBAR.get(),"");
         stairsBlock(((StairBlock) ModBlocks.BLUE_ROCKRETE_STAIRS.get()), blockTexture(ModBlocks.BLUE_ROCKRETE.get()));
         slabBlock(((SlabBlock) ModBlocks.BLUE_ROCKRETE_SLAB.get()), blockTexture(ModBlocks.BLUE_ROCKRETE.get()), blockTexture(ModBlocks.BLUE_ROCKRETE.get()));
 
-        blockWithItem(ModBlocks.HAZARD_STRIPE_YELLOW);
-        blockWithItem(ModBlocks.HAZARD_STRIPE_RED);
+        genFolderedSBI(ModBlocks.HAZARD_STRIPE_YELLOW.get(),"");
+        genFolderedSBI(ModBlocks.HAZARD_STRIPE_RED.get(),"");
 
-        //Furniture Block
-        horizontalBlock(ModBlocks.IHEA_FURNITURE_KIT.get(), build6FaceTexturesBlock("ihea_furniture_kit", "furniture_category_block", "ihea_furniture_kit_front","ihea_furniture_kit_back","ihea_furniture_kit_left","ihea_furniture_kit_right","ihea_furniture_kit_top","ihea_furniture_kit_bottom"));
-        horizontalBlock(ModBlocks.PIPEWORKS.get(), build3FaceTexturesBlock("pipeworks", "pipeworks", "pipeworks_front", "pipeworks_sides", "pipeworks_top"));
-        horizontalBlock(ModBlocks.SAFETY_FURNISHINGS.get(), build3FaceTexturesBlock("safety_furnishings", "furniture_category_block", "safety_furnishings_north", "safety_furnishings_west", "safety_furnishings_up"));
-        horizontalBlock(ModBlocks.HYGIENE_FURNISHINGS.get(), build3FaceTexturesBlock("hygiene_furnishings","furniture_category_block", "hygiene_furnishings_north", "hygiene_furnishings_west", "hygiene_furnishings_up"));
-        horizontalBlock(ModBlocks.INDUSTRIAL_FURNISHINGS.get(), build3FaceTexturesBlock("industrial_furnishings","furniture_category_block", "industrial_furnishings_north", "industrial_furnishings_west", "industrial_furnishings_up"));
-        horizontalBlock(ModBlocks.TECHNOLOGY_FURNISHINGS.get(), build3FaceTexturesBlock("technology_furnishings","furniture_category_block", "technology_furnishings_north", "technology_furnishings_west", "technology_furnishings_up"));
-        horizontalBlock(ModBlocks.AMENITY_FURNISHINGS.get(), build3FaceTexturesBlock("amenity_furnishings","furniture_category_block", "amenity_furnishings_north", "amenity_furnishings_west", "amenity_furnishings_up"));
+        //Other Solid Opaque Full-Blocks with unique face textures
+        horizontalBlock(ModBlocks.IHEA_FURNITURE_KIT.get(), build6FaceTexturesBlockModel("ihea_furniture_kit", "furniture_category_block", "ihea_furniture_kit_front","ihea_furniture_kit_back","ihea_furniture_kit_left","ihea_furniture_kit_right","ihea_furniture_kit_top","ihea_furniture_kit_bottom"));
+        horizontalBlock(ModBlocks.PIPEWORKS.get(), build3FaceTexturesBlockModel("pipeworks", "pipeworks", "pipeworks_front", "pipeworks_sides", "pipeworks_top"));
+        horizontalBlock(ModBlocks.SAFETY_FURNISHINGS.get(), build3FaceTexturesBlockModel("safety_furnishings", "furniture_category_block", "safety_furnishings_north", "safety_furnishings_west", "safety_furnishings_up"));
+        horizontalBlock(ModBlocks.HYGIENE_FURNISHINGS.get(), build3FaceTexturesBlockModel("hygiene_furnishings","furniture_category_block", "hygiene_furnishings_north", "hygiene_furnishings_west", "hygiene_furnishings_up"));
+        horizontalBlock(ModBlocks.INDUSTRIAL_FURNISHINGS.get(), build3FaceTexturesBlockModel("industrial_furnishings","furniture_category_block", "industrial_furnishings_north", "industrial_furnishings_west", "industrial_furnishings_up"));
+        horizontalBlock(ModBlocks.TECHNOLOGY_FURNISHINGS.get(), build3FaceTexturesBlockModel("technology_furnishings","furniture_category_block", "technology_furnishings_north", "technology_furnishings_west", "technology_furnishings_up"));
+        horizontalBlock(ModBlocks.AMENITY_FURNISHINGS.get(), build3FaceTexturesBlockModel("amenity_furnishings","furniture_category_block", "amenity_furnishings_north", "amenity_furnishings_west", "amenity_furnishings_up"));
 
-        //CUSTOM EXISTING MODELS, GENERATED BLOCKSTATES
-        WaterloggableFacingBlock(ModBlocks.SINK.get(),"");
-        WaterloggableFacingBlock(ModBlocks.WHITE_WALL_MEDKIT.get(),"medkit_containers");
-        WaterloggableFacingBlock(ModBlocks.RED_WALL_MEDKIT.get(),"medkit_containers");
-        WaterloggableBlock(ModBlocks.YELLOW_TRIPOD.get(),"");
+        GenFacingWaterloggableSI(ModBlocks.SINK.get(),"");
+        GenFacingWaterloggableSI(ModBlocks.WHITE_WALL_MEDKIT.get(),"medkit_containers");
+        GenFacingWaterloggableSI(ModBlocks.RED_WALL_MEDKIT.get(),"medkit_containers");
+        genWaterloggableSI(ModBlocks.YELLOW_TRIPOD.get(),"");
 
-        PowerableBlock(ModBlocks.WORK_LIGHT_MOUNT.get(), "work_light_mount");
-        PowerableBlock(ModBlocks.FLOOR_WORK_LIGHT.get(), "work_light_mount");
-        PowerableBlock(ModBlocks.RETRO_COMPUTER.get(), "retro_computer");
-        PowerableBlock(ModBlocks.CASSETTE_PLAYER.get(), "cassette_player");
+        GenFacingPoweredSI(ModBlocks.WORK_LIGHT_MOUNT.get(), "work_light_mount");
+        GenFacingPoweredSI(ModBlocks.FLOOR_WORK_LIGHT.get(), "work_light_mount");
+        GenFacingPoweredSI(ModBlocks.RETRO_COMPUTER.get(), "retro_computer");
+        GenFacingPoweredSI(ModBlocks.CASSETTE_PLAYER.get(), "cassette_player");
+
         TwoBlockMultiBlock(ModBlocks.LARGE_LOCKER.get(), "locker");
-        WaterloggableFacingBlock(ModBlocks.LOCKER_BOX.get(),"locker");
+        GenFacingWaterloggableSI(ModBlocks.LOCKER_BOX.get(),"locker");
+
+        genFolderedSI(ModBlocks.REINFORCED_VESSELGLASS.get(),"vesselglass");
+        genFolderedSI(ModBlocks.VESSELGLASS.get(),"vesselglass");
+        genFolderedSI(ModBlocks.GRAY_REINFORCED_VESSELGLASS.get(),"vesselglass");
+        genFolderedSI(ModBlocks.GRAY_VESSELGLASS.get(),"vesselglass");
 
     }
+    //---------- END OF BLOCK ASSET GENERATION LIST ----------
 
-    private void MakeBlockStateOnly(Block block, String folderName) {
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
-        getVariantBuilder(block)
-                .partialState()
-                .modelForState()
-                .modelFile(models().getExistingFile(modLoc("block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName)))
-                .addModel();
-    }
+    //---------- CUSTOM BLOCK MODEL GENERATORS ----------
 
-    private void blockWithItem(RegistryObject<Block> blockRegistryObject) {
-        simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
-    }
-
-    private void folderedBlockWithItem(Block block, String subfolder) {
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
-
-        simpleBlock(block,
-                models().withExistingParent(stringName, mcLoc("block/cube_all"))
-                        .texture("all", modLoc("block/" + subfolder + "/" + stringName)));
-    }
-
-    private ModelFile build3FaceTexturesBlock(String blockName, String folderName, String frontAndBack, String leftAndRight, String topAndBottom) {
+    private ModelFile build3FaceTexturesBlockModel(String blockName, String folderName, String frontAndBack, String leftAndRight, String topAndBottom) {
         //Builds a textured model that uses three texture .pngs for all 6 faces.
         ModelFile model = models().cube(
                 blockName,
@@ -149,7 +134,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         return model;
     }
 
-    private ModelFile build6FaceTexturesBlock(String blockName, String folderName, String front, String back, String left, String right, String top, String bottom) {
+    private ModelFile build6FaceTexturesBlockModel(String blockName, String folderName, String front, String back, String left, String right, String top, String bottom) {
         //Builds a textured model that uses three texture .pngs for all 6 faces.
         ModelFile model = models().cube(
                 blockName,
@@ -163,8 +148,79 @@ public class ModBlockStateProvider extends BlockStateProvider {
         return model;
     }
 
-    private void WaterloggableFacingBlock(Block block, String folderName) {
+    private void buildRotatedTextureBlockModel(Block block, String folderName) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+        //Builds a textured model that uses one texture .pngs for all 6 faces. The model used here rotates the textures 90 degrees.
+        ModelFile model = models().withExistingParent(stringName + "_rotated", modLoc("block/texture_horizontal_template"))
+                .texture("all", modLoc("block/" + (folderName+(folderName.isEmpty() ? "":"/") + stringName)));
+    }
+
+    //---------- END OF CUSTOM BLOCK GENERATOR METHODS ----------
+
+    //---------- SBI ASSET GENERATOR METHODS ----------
+
+    private void genFolderedSI(Block block, String folderName) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+        String existingModelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
+        getVariantBuilder(block)
+                .partialState()
+                .modelForState()
+                .modelFile(models().getExistingFile(modLoc(existingModelPath)))
+                .addModel();
+        //Generate Item Model
+        simpleBlockItem(block, models().getExistingFile(modLoc(existingModelPath)));
+    }
+
+    private void genFolderedSBI(Block block, String subfolder) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+
+        simpleBlockWithItem(block,
+                models().withExistingParent(stringName, mcLoc("block/cube_all"))
+                        .texture("all", modLoc("block/" + subfolder+(subfolder.isEmpty() ? "":"/") + stringName)));
+    }
+
+    private void genFolderedToggleBlockSBI(Block block, String textureSubFolder, String existingBaseModelSubFolder, Boolean makeBaseModel, String nameStringToReplace, String nameStringReplacement) {
+
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+        String pathToName = "block/"+existingBaseModelSubFolder+(existingBaseModelSubFolder.isEmpty() ? "":"/");
+
+        String baseModelPath = pathToName+stringName;
+        String altModelPath = pathToName+stringName.replace(nameStringToReplace,nameStringReplacement);
+
+        String pathToTexture = "block/" + (textureSubFolder+(textureSubFolder.isEmpty() ? "":"/"));
+        String texturePath =  pathToTexture + stringName;
+        String rotatedTexturePath = pathToTexture + stringName.replace(nameStringToReplace,nameStringReplacement);
+
+        //GENERATE BASE MODEL (DEFAULT STATE), optional if not already present
+        if(makeBaseModel) {
+            models().withExistingParent(stringName, mcLoc("block/cube_all"))
+                    .texture("all", modLoc(texturePath));
+        }
+
+        //GENERATE ROTATED MODEL (ALT TEXTURE STATE)
+        models().withExistingParent(altModelPath, mcLoc("block/cube_all"))
+                .texture("all", modLoc(rotatedTexturePath)); //Generate model of alt-texture block in generated models/block folder
+
+        //GENERATE BLOCKSTATES
+        getVariantBuilder(block)
+                .forAllStates(state -> {
+                    boolean altTexture = state.getValue(ALT_TEXTURE);
+                    String modelToUse = (altTexture) ? altModelPath : baseModelPath;
+
+                    return ConfiguredModel.builder()
+                            .modelFile(models().getExistingFile(modLoc(modelToUse)))
+                            .build();
+                });
+        //GENERATE ITEM MODEL
+        simpleBlockItem(block, models().getExistingFile(modLoc(baseModelPath)));
+    }
+
+
+
+    private void GenFacingWaterloggableSI(Block block, String folderName) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+        String modelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
+
         getVariantBuilder(block)
                 .forAllStatesExcept(state -> {
                     Direction facing = state.getValue(FACING);
@@ -181,18 +237,21 @@ public class ModBlockStateProvider extends BlockStateProvider {
                             .rotationY(yRot)
                             .build();
                 }, BlockStateProperties.WATERLOGGED);
+
+        //GENERATE ITEM MODEL
+        simpleBlockItem(block, models().getExistingFile(modLoc(modelPath)));
     }
 
-    private void PowerableBlock(Block block, String folderName) {
+    private void GenFacingPoweredSI(Block block, String folderName) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
-        String unpoweredModel = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
-        String poweredModel = unpoweredModel+"_on";
+        String unpoweredModelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
+        String poweredModelPath = unpoweredModelPath+"_on";
 
         getVariantBuilder(block)
                 .forAllStatesExcept(state -> {
                     Direction facing = state.getValue(FACING);
                     Boolean powered = state.getValue(POWERED);
-                    String modelToUse = powered? poweredModel : unpoweredModel;
+                    String modelToUse = powered? poweredModelPath : unpoweredModelPath;
 
                     int yRot = switch (facing   ) {
                         case SOUTH -> 180;
@@ -207,7 +266,24 @@ public class ModBlockStateProvider extends BlockStateProvider {
                             .build();
                 }, BlockStateProperties.WATERLOGGED);
 
+        //GENERATE ITEM MODEL
+        simpleBlockItem(block, models().getExistingFile(modLoc(unpoweredModelPath)));
     }
+
+    private void genWaterloggableSI(Block block, String folderName) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+        String modelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
+
+        getVariantBuilder(block)
+                .partialState()
+                .modelForState()
+                .modelFile(models().getExistingFile(modLoc(modelPath)))
+                .addModel();
+
+        //GENERATE ITEM MODEL
+        simpleBlockItem(block, models().getExistingFile(modLoc(modelPath)));
+    }
+
 
     private void TwoBlockMultiBlock(Block block, String folderName) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
@@ -235,12 +311,5 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     }
 
-    private void WaterloggableBlock(Block block, String folderName) {
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
-        getVariantBuilder(block)
-                .partialState()
-                .modelForState()
-                .modelFile(models().getExistingFile(modLoc("block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName)))
-                .addModel();
-    }
+    //---------- END OF SBI ASSET GENERATOR METHODS ----------
 }

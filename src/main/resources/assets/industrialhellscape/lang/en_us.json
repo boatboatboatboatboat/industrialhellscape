@@ -16,11 +16,9 @@
   "block.industrialhellscape.reinforced_vesselglass": "Reinforced Vesselglass",
   "block.industrialhellscape.gray_vesselglass": "Gray Vesselglass",
   "block.industrialhellscape.gray_reinforced_vesselglass": "Gray Reinforced Vesselglass",
-  "block.industrialhellscape.smooth_vesselplate": "Smooth Vesselplate",
   "block.industrialhellscape.smooth_vesselplate_tile": "Smooth Vesselplate Tile",
   "block.industrialhellscape.vesselplate_pillar": "Vesselplate Pillar",
-  "block.industrialhellscape.vertical_encased_cables": "Vertical Encased Cables",
-  "block.industrialhellscape.horizontal_encased_cables": "Horizontal Encased Cables",
+  "block.industrialhellscape.encased_cables": "Encased Cables",
 
   "block.industrialhellscape.gray_vesselplate": "Vesselplate",
   "block.industrialhellscape.gray_riveted_vesselplate": "Riveted Vesselplate",
@@ -28,8 +26,7 @@
   "block.industrialhellscape.gray_see-through_grate": "Gray See-Through Grate",
   "block.industrialhellscape.gray_vertical_riveted_vesselplate": "Vertical Riveted Vesselplate",
   "block.industrialhellscape.gray_horizontal_riveted_vesselplate": "Horizontal Riveted Vesselplate",
-  "block.industrialhellscape.smooth_gray_vesselplate": "Smooth Vesselplate",
-  "block.industrialhellscape.smooth_gray_vesselplate_tile": "Smooth Vesselplate Tile",
+  "block.industrialhellscape.smooth_gray_vesselplate_tile": "Smooth Gray Vesselplate Tile",
   "block.industrialhellscape.gray_vesselplate_pillar": "Vesselplate Pillar",
 
   "block.industrialhellscape.pipeworks": "Pipeworks",

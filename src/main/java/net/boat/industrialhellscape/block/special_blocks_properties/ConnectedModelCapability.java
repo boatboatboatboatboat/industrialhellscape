@@ -3,12 +3,16 @@ package net.boat.industrialhellscape.block.special_blocks_properties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 
 //INFO:
 //-----
@@ -21,6 +25,8 @@ public interface ConnectedModelCapability {
     EnumProperty<Direction.Axis> PLANAR_AXIS = BlockStateProperties.AXIS;
     EnumProperty<Direction> SURFACE_DIRECTION = BlockStateProperties.FACING; //"SURFACE_DIRECTION" stores N,S,E,W, along with Up and Down. For alignment with surface clicked for placement.
     EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS; //"AXIS" is used to store which axis the block is aligned to
+    EnumProperty<FurnitureConnectionState> TYPE = EnumProperty.create("type", FurnitureConnectionState.class);
+    BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     //The following methods find the blockstate adjacent to the position clicked (this should correspond with a block being placed next to similar neighbors).
     //The blockstate of the neighboring block can also be used to identify what block that is too.
@@ -103,6 +109,4 @@ public interface ConnectedModelCapability {
         else if (blockstate_above_is_same) return PillarConnectionState.MIDDLE;
         return PillarConnectionState.SOLO;
     }
-
-
 }

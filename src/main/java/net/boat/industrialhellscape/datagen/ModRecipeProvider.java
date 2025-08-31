@@ -29,7 +29,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.SEETHROUGH_GRATE.get().asItem(),
             ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
             ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
-            ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
             ModBlocks.SMOOTH_VESSELPLATE_TILE.get().asItem(),
 
             ModBlocks.GRAY_VESSELPLATE.get().asItem(),
@@ -38,7 +37,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.GRAY_SEETHROUGH_GRATE.get().asItem(),
             ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
             ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
-            ModBlocks.SMOOTH_GRAY_VESSELPLATE.get().asItem(),
             ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get().asItem(),
             ModBlocks.GRAY_VESSELPLATE_PILLAR.get().asItem(),
 
@@ -58,8 +56,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.GRAY_CATWALK_STRUT_SLAB.get().asItem(),
             ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get().asItem(),
 
-            ModBlocks.VERTICAL_ENCASED_CABLES.get().asItem(),
-            ModBlocks.HORIZONTAL_ENCASED_CABLES.get().asItem(),
+            ModBlocks.ENCASED_CABLES.get().asItem(),
             ModBlocks.RUSTY_GRATE.get().asItem()
     );
     private static final List<ItemLike> ROCKRETE_STONECUT_OUTPUT = List.of(
@@ -200,7 +197,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(pWriter, new ResourceLocation("industrialhellscape", "furniture_kit_recipe_2"));
         //Create Pipeworks block, base block for Pipes
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.PIPEWORKS.get(), 27) //3 per copper ingot
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.PIPEWORKS.get(), 9) //ONE per copper ingot. Therefore each pipework block costs ONE copper ingot
                 .requires(Items.COPPER_BLOCK)
                 .requires(ModItems.INHELL_HAVEN_DEVICE.get())
 

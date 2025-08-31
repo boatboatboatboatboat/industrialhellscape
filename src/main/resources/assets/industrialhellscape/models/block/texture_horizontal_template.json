@@ -1,0 +1,7 @@
+{
+  "parent": "industrialhellscape:block/texture_horizontal_base_template",
+  "textures": {
+    "particle": "#all",
+    "all": "#all"
+  }
+}

@@ -114,7 +114,8 @@ public class ConnectedFurniture18SlotStorageBlock extends HorizontalDirectionalB
         Direction direction = pContext.getHorizontalDirection();
         state = state.setValue(FACING, direction);
         state = state.setValue(TYPE, getTypeAndFamily(state, getStateRelativeLeft(level, positionClicked, directionClicked), getStateRelativeRight(level, positionClicked, directionClicked), BlockSetFamily)); //Second, defines connection type of the block
-        return state.setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
+        state =  state.setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
+        return state;
     }
 
     @Override
@@ -176,7 +177,7 @@ public class ConnectedFurniture18SlotStorageBlock extends HorizontalDirectionalB
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
     }
-//BlockState state, Level level, BlockPos positionClicked, Block block, BlockPos fromPos, boolean isMoving)
+
     public void neighborChanged(BlockState state, Level level, BlockPos positionClicked, Block block, BlockPos fromPos, boolean pIsMoving) {
         if (!level.isClientSide) {
             if (state.getValue(WATERLOGGED)) {

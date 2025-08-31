@@ -34,7 +34,6 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.SEETHROUGH_GRATE.get(),
                         ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get(),
                         ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get(),
-                        ModBlocks.SMOOTH_VESSELPLATE.get(),
                         ModBlocks.SMOOTH_VESSELPLATE_TILE.get(),
                         ModBlocks.VESSELPLATE_PILLAR.get(),
 
@@ -44,7 +43,6 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.GRAY_SEETHROUGH_GRATE.get(),
                         ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get(),
                         ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get(),
-                        ModBlocks.SMOOTH_GRAY_VESSELPLATE.get(),
                         ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get(),
                         ModBlocks.GRAY_VESSELPLATE_PILLAR.get(),
 
@@ -65,8 +63,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get(),
 
 
-                        ModBlocks.HORIZONTAL_ENCASED_CABLES.get(),
-                        ModBlocks.VERTICAL_ENCASED_CABLES.get(),
+                        ModBlocks.ENCASED_CABLES.get(),
                         ModBlocks.RUSTY_GRATE.get()
                 );
 

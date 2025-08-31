@@ -3,6 +3,7 @@ package net.boat.industrialhellscape.block.special_blocks;
 import net.boat.industrialhellscape.block.special_blocks_properties.InnerCornerConnectionState;
 import net.boat.industrialhellscape.block.special_blocks_properties.RotationHelper;
 import net.boat.industrialhellscape.item.ModItems;
+import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -132,16 +133,16 @@ public class InnerCornerBlock extends Block{
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
 
-        boolean hasModdedTool = pPlayer.getMainHandItem().is(ModItems.INHELL_HAVEN_DEVICE.get()) || pPlayer.getOffhandItem().is(ModItems.INHELL_HAVEN_DEVICE.get());
+        boolean playerHasTool = pPlayer.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || pPlayer.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
         boolean PlayerisCrouching = pPlayer.isCrouching();
 
-        if(hasModdedTool && !PlayerisCrouching) {
+        if(playerHasTool && !PlayerisCrouching) {
             pState = pState.setValue(FACING, pState.getValue(FACING).getClockWise()); //Cycles horizontal orientation of the block
             pLevel.setBlock(pPos, pState, 2);
             return InteractionResult.sidedSuccess(pLevel.isClientSide);
 
 
-        } else if (hasModdedTool && PlayerisCrouching) {
+        } else if (playerHasTool && PlayerisCrouching) {
             pState = pState.cycle(TYPE_CORNER);
             pLevel.setBlock(pPos, pState, 2);
 

@@ -1,5 +1,6 @@
 package net.boat.industrialhellscape.block.special_blocks.StorageBlock;
 
+import net.boat.industrialhellscape.block.ModBlocks;
 import net.boat.industrialhellscape.block.special_blocks_properties.HitboxGeometryCollection;
 import net.boat.industrialhellscape.block.special_blocks_properties.ModBlockEntities;
 import net.boat.industrialhellscape.block.special_blocks_properties.RotationHelper;

@@ -15,7 +15,6 @@ import net.boat.industrialhellscape.item.ModItems;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -96,8 +95,6 @@ public class IndustrialHellscape {
         }
     }
 
-
-
     //DEPRECIATED CONTENT SAFE REMOVAL
     @Mod.EventBusSubscriber(modid = IndustrialHellscape.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
     public class MissingRegistryResolver {
@@ -110,94 +107,29 @@ public class IndustrialHellscape {
 
             //Locate the block to replace (both the block and the item objects)
             //This will only happen when the registration of the block is removed.
+            removeAndReplace(ModBlockMappings, ModItemMappings,"white_rockrete", ModBlocks.GRAY_ROCKRETE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"black_rockrete", ModBlocks.GRAY_ROCKRETE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"bunker_wall", ModBlocks.GREEN_ROCKRETE_PILLAR.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"light_gray_rockrete", ModBlocks.GREEN_ROCKRETE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"light_gray_rockrete_rebar", ModBlocks.GREEN_ROCKRETE_REBAR.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"light_gray_rockrete_stairs", ModBlocks.GREEN_ROCKRETE_STAIRS.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"light_gray_rockrete_slab", ModBlocks.GREEN_ROCKRETE_SLAB.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"vesselplate_grate_block", ModBlocks.GRATE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_vesselplate_grate", ModBlocks.GRAY_GRATE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"rusty_vesselplate_grate", ModBlocks.RUSTY_GRATE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"horizontal_encased_cables", ModBlocks.ENCASED_CABLES.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"vertical_encased_cables", ModBlocks.ENCASED_CABLES.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"smooth_vesselplate", ModBlocks.SMOOTH_VESSELPLATE_TILE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"smooth_gray_vesselplate", ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get());
+        }
 
-            //Depreciate the supposed-to-be-inaccessible Gray, White, and Black Rockrete of version 0.05
+        private static void removeAndReplace( List<MissingMappingsEvent.Mapping<Block>> ModBlockMappings, List<MissingMappingsEvent.Mapping<Item>> ModItemMappings,String removedRegistryName, Block blockReplacement) {
             ModBlockMappings.stream()
-                    .filter(ModBlockMapping -> ModBlockMapping.getKey().getPath().equals("gray_rockrete")) //To remove
-                    .forEach(ModBlockMapping -> ModBlockMapping.remap( ModBlocks.GRAY_ROCKRETE.get() )); //To replace
+                    .filter(ModBlockMapping -> ModBlockMapping.getKey().getPath().equals(removedRegistryName)) //To remove
+                    .forEach(ModBlockMapping -> ModBlockMapping.remap( blockReplacement )); //To replace
             ModItemMappings.stream()
-                    .filter(ModItemMapping -> ModItemMapping.getKey().getPath().equals("gray_rockrete")) //To remove
-                    .forEach(ModItemMapping -> ModItemMapping.remap( ModBlocks.GRAY_ROCKRETE.get().asItem() )); //To replace
-            ModBlockMappings.stream()
-                    .filter(ModBlockMapping -> ModBlockMapping.getKey().getPath().equals("white_rockrete")) //To remove
-                    .forEach(ModBlockMapping -> ModBlockMapping.remap( ModBlocks.GRAY_ROCKRETE.get() )); //To replace
-            ModItemMappings.stream()
-                    .filter(ModItemMapping -> ModItemMapping.getKey().getPath().equals("white_rockrete")) //To remove
-                    .forEach(ModItemMapping -> ModItemMapping.remap( ModBlocks.GRAY_ROCKRETE.get().asItem() )); //To replace
-            ModBlockMappings.stream()
-                    .filter(ModBlockMapping -> ModBlockMapping.getKey().getPath().equals("black_rockrete")) //To remove
-                    .forEach(ModBlockMapping -> ModBlockMapping.remap( ModBlocks.GRAY_ROCKRETE.get() )); //To replace
-            ModItemMappings.stream()
-                    .filter(ModItemMapping -> ModItemMapping.getKey().getPath().equals("black_rockrete")) //To remove
-                    .forEach(ModItemMapping -> ModItemMapping.remap( ModBlocks.GRAY_ROCKRETE.get().asItem() )); //To replace
-
-            //Depreciate the Bunker Wall
-            ModBlockMappings.stream()
-                    .filter(ModBlockMapping -> ModBlockMapping.getKey().getPath().equals("bunker_wall")) //To remove
-                    .forEach(ModBlockMapping -> ModBlockMapping.remap( ModBlocks.GREEN_ROCKRETE_PILLAR.get() )); //To replace
-            ModItemMappings.stream()
-                    .filter(ModItemMapping -> ModItemMapping.getKey().getPath().equals("bunker_wall")) //To remove
-                    .forEach(ModItemMapping -> ModItemMapping.remap( ModBlocks.GREEN_ROCKRETE_PILLAR.get().asItem() )); //To replace
-
-            //Depreciate LG Rockrete
-            ModBlockMappings.stream()
-                    .filter(ModBlockMapping -> ModBlockMapping.getKey().getPath().equals("light_gray_rockrete")) //To remove
-                    .forEach(ModBlockMapping -> ModBlockMapping.remap( ModBlocks.GREEN_ROCKRETE.get() )); //To replace
-            ModItemMappings.stream()
-                    .filter(ModItemMapping -> ModItemMapping.getKey().getPath().equals("light_gray_rockrete")) //To remove
-                    .forEach(ModItemMapping -> ModItemMapping.remap( ModBlocks.GREEN_ROCKRETE.get().asItem() ));
-
-            //Depreciate LG Rockrete Rebar
-            ModBlockMappings.stream()
-                    .filter(ModBlockMapping -> ModBlockMapping.getKey().getPath().equals("light_gray_rockrete_rebar")) //To remove
-                    .forEach(ModBlockMapping -> ModBlockMapping.remap( ModBlocks.GREEN_ROCKRETE_REBAR.get() )); //To replace
-            ModItemMappings.stream()
-                    .filter(ModItemMapping -> ModItemMapping.getKey().getPath().equals("light_gray_rockrete_rebar")) //To remove
-                    .forEach(ModItemMapping -> ModItemMapping.remap( ModBlocks.GREEN_ROCKRETE_REBAR.get().asItem() ));
-
-            //Depreciate LG Rockrete Stairs
-            ModBlockMappings.stream()
-                    .filter(ModBlockMapping -> ModBlockMapping.getKey().getPath().equals("light_gray_rockrete_stairs")) //To remove
-                    .forEach(ModBlockMapping -> ModBlockMapping.remap( ModBlocks.GREEN_ROCKRETE_STAIRS.get() )); //To replace
-            ModItemMappings.stream()
-                    .filter(ModItemMapping -> ModItemMapping.getKey().getPath().equals("light_gray_rockrete_stairs")) //To remove
-                    .forEach(ModItemMapping -> ModItemMapping.remap( ModBlocks.GREEN_ROCKRETE_STAIRS.get().asItem() ));
-
-            //Depreciate LG Rockrete Slab
-            ModBlockMappings.stream()
-                    .filter(ModBlockMapping -> ModBlockMapping.getKey().getPath().equals("light_gray_rockrete_slab")) //To remove
-                    .forEach(ModBlockMapping -> ModBlockMapping.remap( ModBlocks.GREEN_ROCKRETE_SLAB.get() )); //To replace
-            ModItemMappings.stream()
-                    .filter(ModItemMapping -> ModItemMapping.getKey().getPath().equals("light_gray_rockrete_slab")) //To remove
-                    .forEach(ModItemMapping -> ModItemMapping.remap( ModBlocks.GREEN_ROCKRETE_SLAB.get().asItem() ));
-
-            //Depreciate Vesselplate Grate Block
-            ModBlockMappings.stream()
-                    .filter(ModBlockMapping -> ModBlockMapping.getKey().getPath().equals("vesselplate_grate_block")) //To remove
-                    .forEach(ModBlockMapping -> ModBlockMapping.remap( ModBlocks.GRATE.get() )); //To replace
-            ModItemMappings.stream()
-                    .filter(ModItemMapping -> ModItemMapping.getKey().getPath().equals("vesselplate_grate_block")) //To remove
-                    .forEach(ModItemMapping -> ModItemMapping.remap( ModBlocks.GRATE.get().asItem() ));
-
-            //Depreciate "Vesselplate Grates" to just Grates
-            ModBlockMappings.stream()
-                    .filter(ModBlockMapping -> ModBlockMapping.getKey().getPath().equals("vesselplate_grate")) //To remove
-                    .forEach(ModBlockMapping -> ModBlockMapping.remap( ModBlocks.GRATE.get() )); //To replace
-            ModItemMappings.stream()
-                    .filter(ModItemMapping -> ModItemMapping.getKey().getPath().equals("vesselplate_grate")) //To remove
-                    .forEach(ModItemMapping -> ModItemMapping.remap( ModBlocks.GRATE.get().asItem() ));
-            ModBlockMappings.stream()
-                    .filter(ModBlockMapping -> ModBlockMapping.getKey().getPath().equals("gray_vesselplate_grate")) //To remove
-                    .forEach(ModBlockMapping -> ModBlockMapping.remap( ModBlocks.GRAY_GRATE.get() )); //To replace
-            ModItemMappings.stream()
-                    .filter(ModItemMapping -> ModItemMapping.getKey().getPath().equals("gray_vesselplate_grate")) //To remove
-                    .forEach(ModItemMapping -> ModItemMapping.remap( ModBlocks.GRAY_GRATE.get().asItem() ));
-            ModBlockMappings.stream()
-                    .filter(ModBlockMapping -> ModBlockMapping.getKey().getPath().equals("rusty_vesselplate_grate")) //To remove
-                    .forEach(ModBlockMapping -> ModBlockMapping.remap( ModBlocks.RUSTY_GRATE.get() )); //To replace
-            ModItemMappings.stream()
-                    .filter(ModItemMapping -> ModItemMapping.getKey().getPath().equals("rusty_vesselplate_grate")) //To remove
-                    .forEach(ModItemMapping -> ModItemMapping.remap( ModBlocks.RUSTY_GRATE.get().asItem() ));
+                    .filter(ModItemMapping -> ModItemMapping.getKey().getPath().equals(removedRegistryName)) //To remove
+                    .forEach(ModItemMapping -> ModItemMapping.remap( blockReplacement.asItem() ));
         }
     }
 }

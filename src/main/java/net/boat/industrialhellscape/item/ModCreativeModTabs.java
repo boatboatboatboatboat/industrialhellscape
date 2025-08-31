@@ -38,7 +38,6 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.RUSTY_GRATE.get());
                         output.accept(ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get());
                         output.accept(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get());
-                        output.accept(ModBlocks.SMOOTH_VESSELPLATE.get());
                         output.accept(ModBlocks.SMOOTH_VESSELPLATE_TILE.get());
                         output.accept(ModBlocks.VESSELPLATE_PILLAR.get());
 
@@ -54,7 +53,6 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.GRAY_GRATE.get());
                         output.accept(ModBlocks.GRAY_SEETHROUGH_GRATE.get());
                         output.accept(ModBlocks.GRAY_SEETHROUGH_GRATE_PANE.get()); //Experimental
-                        output.accept(ModBlocks.SMOOTH_GRAY_VESSELPLATE.get());
                         output.accept(ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get());
                         output.accept(ModBlocks.GRAY_VESSELPLATE_PILLAR.get());
 
@@ -150,8 +148,7 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.GRAY_STRUT_STAIRS.get());
                         output.accept(ModBlocks.GRAY_STRUT_SLAB.get());
 
-                        output.accept(ModBlocks.HORIZONTAL_ENCASED_CABLES.get());
-                        output.accept(ModBlocks.VERTICAL_ENCASED_CABLES.get());
+                        output.accept(ModBlocks.ENCASED_CABLES.get());
 
                     })
                     .build());

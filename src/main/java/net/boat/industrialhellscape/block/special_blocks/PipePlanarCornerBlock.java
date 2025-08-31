@@ -3,6 +3,7 @@ package net.boat.industrialhellscape.block.special_blocks;
 import net.boat.industrialhellscape.block.special_blocks_properties.RelativePlanarDirectionState;
 import net.boat.industrialhellscape.block.special_blocks_properties.RotationHelper;
 import net.boat.industrialhellscape.item.ModItems;
+import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -75,9 +76,9 @@ public class PipePlanarCornerBlock extends Block {
 
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
 
-        boolean hasModdedTool = pPlayer.getMainHandItem().is(ModItems.INHELL_HAVEN_DEVICE.get()) || pPlayer.getOffhandItem().is(ModItems.INHELL_HAVEN_DEVICE.get());
+        boolean playerHasTool = pPlayer.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || pPlayer.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
 
-        if( hasModdedTool ) { //If player has tool, change the block state property
+        if( playerHasTool ) { //If player has tool, change the block state property
             pState = pState.cycle(PLANE_DIRECTION);
             pLevel.setBlock(pPos, pState, 2);
 

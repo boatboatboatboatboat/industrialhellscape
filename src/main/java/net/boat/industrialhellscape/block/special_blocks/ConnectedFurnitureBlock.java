@@ -130,13 +130,15 @@ public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implemen
     //Placement Faces the player
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        Level level = pContext.getLevel(); //Reads the "level" or world
+        Level level = pContext.getLevel();
+        BlockState state = this.defaultBlockState();
         BlockPos positionClicked = pContext.getClickedPos(); //Get the position when player places new block
-        FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
         Direction directionClicked = pContext.getHorizontalDirection(); //Gets the cardinal direction when player places new block
-        BlockState state = this.defaultBlockState().setValue(FACING, directionClicked); //First, defines facing direction of the block
+        FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
+        Direction direction = pContext.getHorizontalDirection();
+        state = state.setValue(FACING, direction);
         state = state.setValue(TYPE, getTypeAndFamily(state, getStateRelativeLeft(level, positionClicked, directionClicked), getStateRelativeRight(level, positionClicked, directionClicked), BlockSetFamily)); //Second, defines connection type of the block
-        state = state.setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER)); //check for waterlogging status
+        state =  state.setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
         return state;
     }
 

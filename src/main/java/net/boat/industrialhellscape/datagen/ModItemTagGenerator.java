@@ -5,9 +5,13 @@ import net.boat.industrialhellscape.block.ModBlocks;
 import net.boat.industrialhellscape.item.ModItems;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -19,21 +23,31 @@ public class ModItemTagGenerator extends ItemTagsProvider {
     public ModItemTagGenerator(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pLookupProvider, CompletableFuture<TagLookup<Block>> pBlockTags, @Nullable ExistingFileHelper existingFileHelper) {
         super(pOutput, pLookupProvider, pBlockTags, IndustrialHellscape.MOD_ID, existingFileHelper);
     }
+    public static final TagKey<Item> PICKAXES = TagKey.create(BuiltInRegistries.ITEM.key(), new ResourceLocation("minecraft", "pickaxes"));
+    public static final TagKey<Item> WRENCHES = TagKey.create(BuiltInRegistries.ITEM.key(), new ResourceLocation("forge", "wrenches"));
+    public static final TagKey<Item> WRENCH = TagKey.create(BuiltInRegistries.ITEM.key(), new ResourceLocation("forge", "tools/wrench"));
+    public static final TagKey<Item> TOOLS = TagKey.create(BuiltInRegistries.ITEM.key(), new ResourceLocation("forge", "tools"));
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
+        //add modloader tags to this mod (imitating the Create Wrench's choice of relevant tags)
+        tag(WRENCHES);
+        tag(WRENCH);
+        tag(TOOLS);
+        //---------- END OF MODLOADER TAG REGISTRATION ----------
+
+        //---------- RECIPE DATAGEN INPUT TAGS ----------
+            //Only a Smeltable-tagged item can be stone-cut into a non-Smeltable output (e.g. slabs)
 
         this.tag(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM) //NO HALF BLOCKS HERE
                 .add(
                         //Full BLocks
                         ModBlocks.VESSELPLATE.get().asItem(),
-                        //ModBlocks.VESSELPLATE_GRATE_BLOCK.get().asItem(),
                         ModBlocks.GRATE.get().asItem(),
                         ModBlocks.SEETHROUGH_GRATE.get().asItem(),
                         ModBlocks.RUSTY_GRATE.get().asItem(),
                         ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
                         ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
-                        ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
                         ModBlocks.SMOOTH_VESSELPLATE_TILE.get().asItem(),
                         ModBlocks.RUSTY_GRATE.get().asItem(),
 
@@ -43,7 +57,6 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.GRAY_SEETHROUGH_GRATE.get().asItem(),
                         ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
                         ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
-                        ModBlocks.SMOOTH_GRAY_VESSELPLATE.get().asItem(),
                         ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get().asItem(),
                         ModBlocks.GRAY_VESSELPLATE_PILLAR.get().asItem(),
 
@@ -57,8 +70,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.GRAY_CATWALK_STRUT.get().asItem(),
                         ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get().asItem(),
 
-                        ModBlocks.HORIZONTAL_ENCASED_CABLES.get().asItem(),
-                        ModBlocks.VERTICAL_ENCASED_CABLES.get().asItem()
+                        ModBlocks.ENCASED_CABLES.get().asItem()
                 );
         this.tag(ModTags.Items.VESSELGLASS_SMELTABLE_ITEM)
                 .add(
@@ -114,85 +126,9 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.GRAY_PIPE_CONDUIT_INNER_CORNER.get().asItem(),
                         ModBlocks.GRAY_PIPE_CONDUIT_OUTER_CORNER.get().asItem()
                 );
+        //---------- END OF RECIPE DATAGEN INPUT TAGS ----------
 
-        //----------
-        //BELOW:    FOR RECIPE DATA GENERATION PURPOSES. ADD SLABS OR STAIRS
-        this.tag(ModTags.Items.VESSELPLATE_STONECUT_OUTPUTS)
-                .add(
-                        ModBlocks.VESSELPLATE.get().asItem(),
-                        ModBlocks.RIVETED_VESSELPLATE.get().asItem(),
-                        //ModBlocks.VESSELPLATE_GRATE_BLOCK.get().asItem(),
-                        ModBlocks.GRATE.get().asItem(),
-                        ModBlocks.RUSTY_GRATE.get().asItem(),
-                        ModBlocks.GRAY_GRATE.get().asItem(),
-                        ModBlocks.SEETHROUGH_GRATE.get().asItem(),
-                        ModBlocks.GRAY_SEETHROUGH_GRATE.get().asItem(),
-                        ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
-                        ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
-                        ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
-                        ModBlocks.SMOOTH_VESSELPLATE_TILE.get().asItem(),
-
-                        ModBlocks.STRUT.get().asItem(),
-                        ModBlocks.CATWALK_STRUT.get().asItem(),
-                        ModBlocks.CATWALK_STRUT_SLAB.get().asItem(),
-                        ModBlocks.CATWALK_STRUT_STAIRS.get().asItem(),
-                        ModBlocks.STRUT_STAIRS.get().asItem(),
-                        ModBlocks.STRUT_SLAB.get().asItem(),
-
-                        ModBlocks.GRAY_STRUT.get().asItem(),
-                        ModBlocks.GRAY_CATWALK_STRUT.get().asItem(),
-                        ModBlocks.GRAY_CATWALK_STRUT_SLAB.get().asItem(),
-                        ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get().asItem(),
-                        ModBlocks.GRAY_STRUT_STAIRS.get().asItem(),
-                        ModBlocks.GRAY_STRUT_SLAB.get().asItem(),
-
-                        ModBlocks.VESSELPLATE_PILLAR.get().asItem(),
-                        ModBlocks.VERTICAL_ENCASED_CABLES.get().asItem(),
-                        ModBlocks.HORIZONTAL_ENCASED_CABLES.get().asItem(),
-                        ModBlocks.RUSTY_GRATE.get().asItem()
-                );
-        this.tag(ModTags.Items.VESSELGLASS_STONECUT_OUTPUTS)
-                .add(
-                        ModBlocks.REINFORCED_VESSELGLASS.get().asItem(),
-                        ModBlocks.VESSELGLASS.get().asItem(),
-                        ModBlocks.GRAY_REINFORCED_VESSELGLASS.get().asItem(),
-                        ModBlocks.GRAY_VESSELGLASS.get().asItem()
-                );
-        this.tag(ModTags.Items.ROCKRETE_STONECUT_OUTPUTS)
-                .add(
-
-                        ModBlocks.GRAY_ROCKRETE.get().asItem(),
-                        ModBlocks.GRAY_ROCKRETE_REBAR.get().asItem(),
-                        ModBlocks.GRAY_ROCKRETE_PILLAR.get().asItem(),
-                        ModBlocks.GRAY_ROCKRETE_STAIRS.get().asItem(),
-                        ModBlocks.GRAY_ROCKRETE_SLAB.get().asItem(),
-
-                        ModBlocks.YELLOW_ROCKRETE.get().asItem(),
-                        ModBlocks.YELLOW_ROCKRETE_REBAR.get().asItem(),
-                        ModBlocks.YELLOW_ROCKRETE_PILLAR.get().asItem(),
-                        ModBlocks.YELLOW_ROCKRETE_STAIRS.get().asItem(),
-                        ModBlocks.YELLOW_ROCKRETE_SLAB.get().asItem(),
-
-                        ModBlocks.BLUE_ROCKRETE.get().asItem(),
-                        ModBlocks.BLUE_ROCKRETE_REBAR.get().asItem(),
-                        ModBlocks.BLUE_ROCKRETE_PILLAR.get().asItem(),
-                        ModBlocks.BLUE_ROCKRETE_STAIRS.get().asItem(),
-                        ModBlocks.BLUE_ROCKRETE_SLAB.get().asItem(),
-
-                        ModBlocks.GREEN_ROCKRETE.get().asItem(),
-                        ModBlocks.GREEN_ROCKRETE_REBAR.get().asItem(),
-                        ModBlocks.GREEN_ROCKRETE_PILLAR.get().asItem(),
-                        ModBlocks.GREEN_ROCKRETE_STAIRS.get().asItem(),
-                        ModBlocks.GREEN_ROCKRETE_SLAB.get().asItem(),
-
-                        ModBlocks.HAZARD_STRIPE_YELLOW.get().asItem(),
-                        ModBlocks.HAZARD_STRIPE_RED.get().asItem(),
-                        ModBlocks.GRIMY_RESTROOM_TILE.get().asItem()
-                );
-        this.tag(ModTags.Items.PIPEWORKS_STONECUT_OUTPUTS)
-                .addTags(
-                       ModTags.Items.PIPEWORKS_SMELTABLE_ITEM
-                );
+        //---------- FURNITUREA TAGS ----------
 
         //FURNITURE CATEGORIES BELOW
 
@@ -249,6 +185,8 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.METAL_DESK_DRAWER_2.get().asItem()
                 );
 
+        //---------- END OF FURNITURE TAGS ----------
+
         this.tag(ItemTags.MUSIC_DISCS)
                 .add(ModItems.VAPORWAVE_CASSETTE.get()
                 );
@@ -264,5 +202,15 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         Items.BLACKSTONE,
                         Items.END_STONE
                 );
+
+        this.tag(ModTags.Items.IH_COMPATIBLE_TOOLS)
+                .add(
+                        ModItems.INHELL_HAVEN_DEVICE.get()
+                )
+                .addTags(
+                        PICKAXES,
+                        WRENCHES
+                );
+
     }
 }

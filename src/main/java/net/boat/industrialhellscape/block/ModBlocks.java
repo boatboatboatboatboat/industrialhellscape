@@ -442,23 +442,18 @@ public class ModBlocks {
     );
 
     //CTM BLOCKS HERE (3RD PARTY TEXTURE DEPENDENCIES) VVV
-    public static final RegistryObject<Block> HORIZONTAL_ENCASED_CABLES = registerBlock("vertical_encased_cables",
-            () -> new Block(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
-            )
-    );
-    public static final RegistryObject<Block> VERTICAL_ENCASED_CABLES = registerBlock("horizontal_encased_cables",
-            () -> new Block(BlockBehaviour
+    public static final RegistryObject<Block> ENCASED_CABLES = registerBlock("encased_cables",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
             )
     );
     public static final RegistryObject<Block> GRATE = registerBlock("grate",
-            () -> new Block(BlockBehaviour
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
             )
     );
     public static final RegistryObject<Block> GRAY_GRATE = registerBlock("gray_grate",
-            () -> new Block(BlockBehaviour
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
             )
     );
@@ -487,18 +482,8 @@ public class ModBlocks {
                     .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
             )
     );
-    public static final RegistryObject<Block> SMOOTH_VESSELPLATE = registerBlock("smooth_vesselplate",
-            () -> new Block(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
-            )
-    );
-    public static final RegistryObject<Block> SMOOTH_GRAY_VESSELPLATE = registerBlock("smooth_gray_vesselplate",
-            () -> new Block(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
-            )
-    );
     public static final RegistryObject<Block> RUSTY_GRATE = registerBlock("rusty_grate",
-            () -> new Block(BlockBehaviour
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
             )
     );
@@ -547,12 +532,12 @@ public class ModBlocks {
             )
     );
     public static final RegistryObject<Block> SMOOTH_VESSELPLATE_TILE = registerBlock("smooth_vesselplate_tile",
-            () -> new Block(BlockBehaviour
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
             )
     );
     public static final RegistryObject<Block> SMOOTH_GRAY_VESSELPLATE_TILE = registerBlock("smooth_gray_vesselplate_tile",
-            () -> new Block(BlockBehaviour
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
             )
     );

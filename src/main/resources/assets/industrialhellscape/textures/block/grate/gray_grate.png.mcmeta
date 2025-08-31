@@ -4,7 +4,7 @@
     "type": "CTM",
     "layer": "SOLID",
     "textures": [
-      "industrialhellscape:ctm/ctm2x2_gray_vesselplate_grate"
+      "industrialhellscape:ctm/ctm2x2_gray_grate"
       ],
       "connect_inside": true
     }
