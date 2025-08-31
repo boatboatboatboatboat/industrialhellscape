@@ -5,7 +5,7 @@
       "industrialhellscape:metalpipefallingsoundeffect"
     ]
   },
-  "vesselplate_break": {
+  "vesselplate_clank": {
     "subtitle": "sounds.industrialhellscape.vesselplate_clank",
     "sounds": [
       "industrialhellscape:vesselplate_clank"

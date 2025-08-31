@@ -65,22 +65,22 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //Stone-like Blocks
         genFolderedSBI(ModBlocks.GRIMY_RESTROOM_TILE.get(),"");
 
-        genFolderedSBI(ModBlocks.GRAY_ROCKRETE.get(),"");
+        genFolderedToggleBlockSBI(ModBlocks.GRAY_ROCKRETE.get(),"","",true,"rockrete","rockrete_rebar");
         genFolderedSBI(ModBlocks.GRAY_ROCKRETE_REBAR.get(),"");
         stairsBlock(((StairBlock) ModBlocks.GRAY_ROCKRETE_STAIRS.get()), blockTexture(ModBlocks.GRAY_ROCKRETE.get()));
         slabBlock(((SlabBlock) ModBlocks.GRAY_ROCKRETE_SLAB.get()), blockTexture(ModBlocks.GRAY_ROCKRETE.get()), blockTexture(ModBlocks.GRAY_ROCKRETE.get()));
 
-        genFolderedSBI(ModBlocks.GREEN_ROCKRETE.get(),"");
+        genFolderedToggleBlockSBI(ModBlocks.GREEN_ROCKRETE.get(),"","",true,"rockrete","rockrete_rebar");
         genFolderedSBI(ModBlocks.GREEN_ROCKRETE_REBAR.get(),"");
         stairsBlock(((StairBlock) ModBlocks.GREEN_ROCKRETE_STAIRS.get()), blockTexture(ModBlocks.GREEN_ROCKRETE.get()));
         slabBlock(((SlabBlock) ModBlocks.GREEN_ROCKRETE_SLAB.get()), blockTexture(ModBlocks.GREEN_ROCKRETE.get()), blockTexture(ModBlocks.GREEN_ROCKRETE.get()));
 
-        genFolderedSBI(ModBlocks.YELLOW_ROCKRETE.get(),"");
+        genFolderedToggleBlockSBI(ModBlocks.YELLOW_ROCKRETE.get(),"","",true,"rockrete","rockrete_rebar");
         genFolderedSBI(ModBlocks.YELLOW_ROCKRETE_REBAR.get(),"");
         stairsBlock(((StairBlock) ModBlocks.YELLOW_ROCKRETE_STAIRS.get()), blockTexture(ModBlocks.YELLOW_ROCKRETE.get()));
         slabBlock(((SlabBlock) ModBlocks.YELLOW_ROCKRETE_SLAB.get()), blockTexture(ModBlocks.YELLOW_ROCKRETE.get()), blockTexture(ModBlocks.YELLOW_ROCKRETE.get()));
 
-        genFolderedSBI(ModBlocks.BLUE_ROCKRETE.get(),"");
+        genFolderedToggleBlockSBI(ModBlocks.BLUE_ROCKRETE.get(),"","",true,"rockrete","rockrete_rebar");
         genFolderedSBI(ModBlocks.BLUE_ROCKRETE_REBAR.get(),"");
         stairsBlock(((StairBlock) ModBlocks.BLUE_ROCKRETE_STAIRS.get()), blockTexture(ModBlocks.BLUE_ROCKRETE.get()));
         slabBlock(((SlabBlock) ModBlocks.BLUE_ROCKRETE_SLAB.get()), blockTexture(ModBlocks.BLUE_ROCKRETE.get()), blockTexture(ModBlocks.BLUE_ROCKRETE.get()));
@@ -189,7 +189,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         String pathToTexture = "block/" + (textureSubFolder+(textureSubFolder.isEmpty() ? "":"/"));
         String texturePath =  pathToTexture + stringName;
-        String rotatedTexturePath = pathToTexture + stringName.replace(nameStringToReplace,nameStringReplacement);
+        String altTexturePath = pathToTexture + stringName.replace(nameStringToReplace,nameStringReplacement);
 
         //GENERATE BASE MODEL (DEFAULT STATE), optional if not already present
         if(makeBaseModel) {
@@ -199,7 +199,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         //GENERATE ROTATED MODEL (ALT TEXTURE STATE)
         models().withExistingParent(altModelPath, mcLoc("block/cube_all"))
-                .texture("all", modLoc(rotatedTexturePath)); //Generate model of alt-texture block in generated models/block folder
+                .texture("all", modLoc(altTexturePath)); //Generate model of alt-texture block in generated models/block folder
 
         //GENERATE BLOCKSTATES
         getVariantBuilder(block)

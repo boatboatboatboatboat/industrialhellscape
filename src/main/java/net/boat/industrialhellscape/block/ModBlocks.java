@@ -50,11 +50,6 @@ public class ModBlocks {
 
 
     //VESSELPLATE BLOCKS
-//    public static final RegistryObject<Block> VESSELPLATE_GRATE_BLOCK = registerBlock("vesselplate_grate_block",
-//            () -> new Block(BlockBehaviour
-//                    .Properties.copy(Blocks.IRON_BLOCK)
-//                    )
-//    );
     public static final RegistryObject<Block> VESSELPLATE = registerBlockOnly("vesselplate",
             () -> new Block(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
@@ -90,7 +85,7 @@ public class ModBlocks {
 
     //GRAY ROCKRETE
     public static final RegistryObject<Block> GRAY_ROCKRETE = registerBlockOnly("gray_rockrete",
-            () -> new Block(BlockBehaviour
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.copy(Blocks.STONE)
                     )
     );
@@ -115,7 +110,7 @@ public class ModBlocks {
     );
 //GREEN ROCKRETE
     public static final RegistryObject<Block> GREEN_ROCKRETE = registerBlock("green_rockrete",
-            () -> new Block(BlockBehaviour
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.copy(Blocks.STONE)
             )
     );
@@ -140,7 +135,7 @@ public class ModBlocks {
     );
 //YELLOW ROCKRETE
     public static final RegistryObject<Block> YELLOW_ROCKRETE = registerBlock("yellow_rockrete",
-            () -> new Block(BlockBehaviour
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.copy(Blocks.STONE)
             )
     );
@@ -165,7 +160,7 @@ public class ModBlocks {
     );
     //BLUE ROCKRETE
     public static final RegistryObject<Block> BLUE_ROCKRETE = registerBlock("blue_rockrete",
-            () -> new Block(BlockBehaviour
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.copy(Blocks.STONE)
             )
     );
@@ -450,16 +445,19 @@ public class ModBlocks {
     public static final RegistryObject<Block> GRATE = registerBlock("grate",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
+                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
             )
     );
     public static final RegistryObject<Block> GRAY_GRATE = registerBlock("gray_grate",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
+                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
             )
     );
     public static final RegistryObject<Block> SEETHROUGH_GRATE = registerBlock("see-through_grate",
             () -> new GlassBlock(BlockBehaviour
                     .Properties.copy(Blocks.GLASS)
+                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
                     .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
             )
     );
@@ -485,6 +483,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> RUSTY_GRATE = registerBlock("rusty_grate",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
+                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
             )
     );
     public static final RegistryObject<Block> VERTICAL_RIVETED_VESSELPLATE = registerBlock("vertical_riveted_vesselplate",
