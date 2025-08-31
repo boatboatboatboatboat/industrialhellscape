@@ -55,7 +55,7 @@ public class ModBlocks {
 //                    .Properties.copy(Blocks.IRON_BLOCK)
 //                    )
 //    );
-    public static final RegistryObject<Block> VESSELPLATE = registerBlock("vesselplate",
+    public static final RegistryObject<Block> VESSELPLATE = registerBlockOnly("vesselplate",
             () -> new Block(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     )
@@ -89,7 +89,7 @@ public class ModBlocks {
     //STONELIKE BLOCKS  HERE vvv
 
     //GRAY ROCKRETE
-    public static final RegistryObject<Block> GRAY_ROCKRETE = registerBlock("gray_rockrete",
+    public static final RegistryObject<Block> GRAY_ROCKRETE = registerBlockOnly("gray_rockrete",
             () -> new Block(BlockBehaviour
                     .Properties.copy(Blocks.STONE)
                     )
@@ -659,11 +659,11 @@ public class ModBlocks {
         return toReturn;
     }
 
-    private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block) {
-        return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+    private static <T extends Block> RegistryObject<T> registerBlockOnly(String name, Supplier<T> block) {
+        return BLOCKS.register(name,block);
     }
 
-    private static <T extends Block> RegistryObject<Item> simpleRegister(String name, RegistryObject<T> block) {
+    private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block) {
         return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 

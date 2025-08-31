@@ -1,5 +1,4 @@
 {
-  "item.industrialhellscape.malevolent_multitool": "Multitool",
   "item.industrialhellscape.floppy_disk": "Floppy Disk",
   "item.industrialhellscape.floppy_diskette": "Floppy Diskette",
   "item.industrialhellscape.inhell_haven_device": "InHell HAVEN Tool",
@@ -123,13 +122,19 @@
   "block.industrialhellscape.gray_catwalk_strut_stairs": "Gray Catwalk Strut Stairs",
   "block.industrialhellscape.gray_catwalk_strut_slab": "Gray Catwalk Strut Slab",
 
-  "item.industrialhellscape.vaporwave_cassette": "Vulta - Shattered Cassette",
+  "item.industrialhellscape.vaporwave_cassette": "Vaporwave Cassette",
   "item.industrialhellscape.vaporwave_cassette.desc": "Vulta - Shattered",
+
   "sounds.industrialhellscape.toilet_flush": "Toilet flushes",
+  "sounds.industrialhellscape.metalpipefallingsoundeffect": "Pipes clanging violently",
+  "sounds.industrialhellscape.vesselplate_clank": "Vesselplate clanks",
+  "sounds.industrialhellscape.vulta_shattered": "Dubiously licensed synthwave music plays",
 
-  "tooltip.industrialhellscape.haventool.flavortext": "No user-serviceable parts. For external use only. Avoid contact with open wounds. (Right-click and sneak-right-click to rotate I.H. blocks)",
-
+  "tooltip.industrialhellscape.haventool.flavortext": "No user-serviceable parts. For external use only. (Right-click and sneak-right-click to rotate some I.H. blocks or change their texture)",
   "tooltip.industrialhellscape.vaporwave_cassette.flavortext": "§6\"Warp signatures coming from Lagrange 4. Unidentified. All orbital guns, align prograde to solar orbit. We have 50 hours to contact.\"",
+  "tooltip.industrialhellscape.vesselplate.flavortext": "Used extensively to armor the warships of the InHell Corporate Acquisition Fleet.",
+  "tooltip.industrialhellscape.gray_rockrete.flavortext": "Mass-produced for Class-3 employee accommodations and below in InHell-owned megacities.",
+
   "gui.industrialhellscape.inventory_menu": "Industrial Hellscape Storage",
 
 

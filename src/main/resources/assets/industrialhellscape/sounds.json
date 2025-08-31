@@ -1,49 +1,25 @@
 {
   "metalpipefallingsoundeffect": {
-    "subtitles": "sounds.industrialhellscape.metalpipefallingsoundeffect",
+    "subtitle": "sounds.industrialhellscape.metalpipefallingsoundeffect",
     "sounds": [
       "industrialhellscape:metalpipefallingsoundeffect"
     ]
   },
   "vesselplate_break": {
-    "subtitles": "sounds.industrialhellscape.vesselplate_break",
+    "subtitle": "sounds.industrialhellscape.vesselplate_clank",
     "sounds": [
-      "industrialhellscape:vesselplate_break"
-    ]
-  },
-  "vesselplate_place": {
-    "subtitles": "sounds.industrialhellscape.vesselplate_place",
-    "sounds": [
-      "industrialhellscape:vesselplate_break"
-    ]
-  },
-  "vesselplate_hit": {
-    "subtitles": "sounds.industrialhellscape.vesselplate_hit",
-    "sounds": [
-      "industrialhellscape:vesselplate_break"
-    ]
-  },
-  "vesselplate_fall": {
-    "subtitles": "sounds.industrialhellscape.vesselplate_fall",
-    "sounds": [
-      "industrialhellscape:vesselplate_step"
-    ]
-  },
-  "vesselplate_step": {
-    "subtitles": "sounds.industrialhellscape.vesselplate_step",
-    "sounds": [
-      "industrialhellscape:vesselplate_step"
+      "industrialhellscape:vesselplate_clank"
     ]
   },
   "toilet_flush": {
-    "subtitles": "sounds.industrialhellscape.toilet_flush",
+    "subtitle": "sounds.industrialhellscape.toilet_flush",
     "sounds": [
       "industrialhellscape:toilet_flush"
     ]
   },
 
   "vulta_shattered": {
-    "subtitles": "sounds.industrialhellscape.vulta_shattered",
+    "subtitle": "sounds.industrialhellscape.vulta_shattered",
     "sounds": [
       {
         "name": "industrialhellscape:vulta_shattered",
@@ -52,4 +28,3 @@
     ]
   }
 }
-

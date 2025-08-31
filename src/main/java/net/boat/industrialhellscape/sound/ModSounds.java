@@ -3,7 +3,6 @@ package net.boat.industrialhellscape.sound;
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraftforge.common.util.ForgeSoundType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -14,7 +13,7 @@ public class ModSounds {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS =
             DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, IndustrialHellscape.MOD_ID);
 
-    public static final RegistryObject<SoundEvent> VESSELPLATE_BREAK = registerSoundEvents("vesselplate_break");
+    public static final RegistryObject<SoundEvent> VESSELPLATE_CLANK = registerSoundEvents("vesselplate_clank");
 
     public static final RegistryObject<SoundEvent> VULTA_SHATTERED = registerSoundEvents("vulta_shattered");
     public static final RegistryObject<SoundEvent> TOILET_FLUSH = registerSoundEvents("toilet_flush");
@@ -24,11 +23,11 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> METAL_BOX_CLOSE = registerSoundEvents("metal_box_close");
 
     public static final ForgeSoundType VESSELPLATE_BLOCK_SOUNDS = new ForgeSoundType(2f,1.5f,
-            ModSounds.VESSELPLATE_BREAK, //Break
-            ModSounds.VESSELPLATE_BREAK, //Step
-            ModSounds.VESSELPLATE_BREAK, //Fall
-            ModSounds.VESSELPLATE_BREAK, //Place
-            ModSounds.VESSELPLATE_BREAK //Hit
+            ModSounds.VESSELPLATE_CLANK, //Break
+            ModSounds.VESSELPLATE_CLANK, //Step
+            ModSounds.VESSELPLATE_CLANK, //Fall
+            ModSounds.VESSELPLATE_CLANK, //Place
+            ModSounds.VESSELPLATE_CLANK //Hit
             );
 
     private static RegistryObject<SoundEvent> registerSoundEvents(String soundFileName) {

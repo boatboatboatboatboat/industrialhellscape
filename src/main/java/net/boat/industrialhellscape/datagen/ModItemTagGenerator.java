@@ -30,10 +30,20 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
-        //add modloader tags to this mod (imitating the Create Wrench's choice of relevant tags)
-        tag(WRENCHES);
-        tag(WRENCH);
-        tag(TOOLS);
+        //---------- EXTERNAL TAG REGISTRATION ----------
+        tag(WRENCHES); //Forge
+        tag(WRENCH); //Forge
+        tag(TOOLS); //Common modloader tag
+
+        this.tag(WRENCH)
+                .add(ModItems.INHELL_HAVEN_DEVICE.get()
+                );
+        this.tag(WRENCHES)
+                .add(ModItems.INHELL_HAVEN_DEVICE.get()
+                );
+        this.tag(TOOLS)
+                .add(ModItems.INHELL_HAVEN_DEVICE.get()
+                );
         //---------- END OF MODLOADER TAG REGISTRATION ----------
 
         //---------- RECIPE DATAGEN INPUT TAGS ----------
@@ -211,6 +221,5 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         PICKAXES,
                         WRENCHES
                 );
-
     }
 }
