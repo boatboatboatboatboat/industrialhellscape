@@ -1,6 +1,5 @@
-package net.boat.industrialhellscape.block.special_blocks.StorageBlock;
+package net.boat.industrialhellscape.block.special_blocks.DeprecatedStorageBlocks;
 
-import net.boat.industrialhellscape.block.ModBlocks;
 import net.boat.industrialhellscape.block.special_blocks_properties.HitboxGeometryCollection;
 import net.boat.industrialhellscape.block.special_blocks_properties.ModBlockEntities;
 import net.boat.industrialhellscape.block.special_blocks_properties.RotationHelper;
@@ -29,11 +28,10 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.network.NetworkHooks;
-import net.minecraft.world.level.block.RenderShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class Furniture9SlotStorageBlock extends HorizontalDirectionalBlock implements EntityBlock, SimpleWaterloggedBlock, HitboxGeometryCollection {
+public class Furniture27SlotStorageBlock extends HorizontalDirectionalBlock implements EntityBlock, SimpleWaterloggedBlock, HitboxGeometryCollection {
 
     private VoxelShape SHAPE_NORTH;
     private VoxelShape SHAPE_SOUTH;
@@ -44,7 +42,7 @@ public class Furniture9SlotStorageBlock extends HorizontalDirectionalBlock imple
     private static DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    public Furniture9SlotStorageBlock(Properties pProperties, VoxelShape pHitbox) {
+    public Furniture27SlotStorageBlock(Properties pProperties, VoxelShape pHitbox) {
         super(pProperties);
         SHAPE_NORTH = pHitbox;
         SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, SHAPE_NORTH);
@@ -58,7 +56,7 @@ public class Furniture9SlotStorageBlock extends HorizontalDirectionalBlock imple
     @Nullable
     @Override
     public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
-        return ModBlockEntities.STORAGE_9_BLOCK_ENTITY.get().create(pos, state);
+        return ModBlockEntities.STORAGE_27_BLOCK_ENTITY.get().create(pos, state);
     }
 
     @Override
@@ -73,7 +71,7 @@ public class Furniture9SlotStorageBlock extends HorizontalDirectionalBlock imple
     @Override
     public @NotNull InteractionResult use(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
         BlockEntity be = level.getBlockEntity(pos);
-        if (!(be instanceof Storage9SlotBlockEntity blockEntity))
+        if (!(be instanceof Storage27SlotBlockEntity blockEntity))
             return InteractionResult.PASS;
 
         if (level.isClientSide())
@@ -114,7 +112,7 @@ public class Furniture9SlotStorageBlock extends HorizontalDirectionalBlock imple
     public void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) {
         if (!level.isClientSide()) {
             BlockEntity be = level.getBlockEntity(pos);
-            if (be instanceof Storage9SlotBlockEntity blockEntity) {
+            if (be instanceof Storage27SlotBlockEntity blockEntity) {
                 ItemStackHandler inventory = blockEntity.getInventory();
                 for (int index = 0; index < inventory.getSlots(); index++) {
                     ItemStack stack = inventory.getStackInSlot(index);

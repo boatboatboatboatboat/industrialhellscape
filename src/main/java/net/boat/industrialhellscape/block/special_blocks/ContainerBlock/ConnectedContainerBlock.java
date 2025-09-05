@@ -1,27 +1,15 @@
-package net.boat.industrialhellscape.block.special_blocks.StorageBlock;
+package net.boat.industrialhellscape.block.special_blocks.ContainerBlock;
 
 import net.boat.industrialhellscape.block.special_blocks_properties.ConnectedModelCapability;
 import net.boat.industrialhellscape.block.special_blocks_properties.FurnitureConnectionState;
-import net.boat.industrialhellscape.block.special_blocks_properties.ModBlockEntities;
 import net.boat.industrialhellscape.block.special_blocks_properties.RotationHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.Container;
-import net.minecraft.world.Containers;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -30,15 +18,11 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.network.NetworkHooks;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ConnectedFurniture18SlotStorageBlock extends HorizontalDirectionalBlock implements EntityBlock, SimpleWaterloggedBlock, ConnectedModelCapability {
+public class ConnectedContainerBlock extends FacingContainerBlock implements EntityBlock, SimpleWaterloggedBlock, ConnectedModelCapability {
 
 
     private static final EnumProperty<FurnitureConnectionState> TYPE = EnumProperty.create("type", FurnitureConnectionState.class);
@@ -67,8 +51,8 @@ public class ConnectedFurniture18SlotStorageBlock extends HorizontalDirectionalB
     private VoxelShape RIGHT_SHAPE_EAST;
     private VoxelShape RIGHT_SHAPE_WEST;
 
-    public ConnectedFurniture18SlotStorageBlock(Properties properties, TagKey<Block> inputCompatibleBlockSet, VoxelShape soloShape, VoxelShape leftShape, VoxelShape middleShape, VoxelShape rightShape) {
-        super(properties);
+    public ConnectedContainerBlock(Properties properties, int slotAmount, TagKey<Block> inputCompatibleBlockSet, VoxelShape soloShape, VoxelShape leftShape, VoxelShape middleShape, VoxelShape rightShape) {
+        super(properties, slotAmount);
 
         SOLO_SHAPE_NORTH = soloShape;
         SOLO_SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, soloShape);
@@ -98,12 +82,6 @@ public class ConnectedFurniture18SlotStorageBlock extends HorizontalDirectionalB
         );
     }
 
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
-        return ModBlockEntities.STORAGE_18_BLOCK_ENTITY.get().create(pos, state);
-    }
-
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
         Level level = pContext.getLevel();
@@ -116,25 +94,6 @@ public class ConnectedFurniture18SlotStorageBlock extends HorizontalDirectionalB
         state = state.setValue(TYPE, getTypeAndFamily(state, getStateRelativeLeft(level, positionClicked, directionClicked), getStateRelativeRight(level, positionClicked, directionClicked), BlockSetFamily)); //Second, defines connection type of the block
         state =  state.setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
         return state;
-    }
-
-    @Override
-    public @NotNull InteractionResult use(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
-        BlockEntity be = level.getBlockEntity(pos);
-        if (!(be instanceof Storage18SlotBlockEntity blockEntity))
-            return InteractionResult.PASS;
-
-        if (level.isClientSide())
-            return InteractionResult.SUCCESS;
-
-        // open screen
-        if (player instanceof ServerPlayer sPlayer) {
-            level.playSound(player, pos, SoundEvents.NOTE_BLOCK_DIDGERIDOO.get(), SoundSource.BLOCKS,
-                    1f, 1f);
-            NetworkHooks.openScreen(sPlayer, blockEntity, pos);
-        }
-
-        return InteractionResult.CONSUME;
     }
 
     @Override
@@ -194,41 +153,6 @@ public class ConnectedFurniture18SlotStorageBlock extends HorizontalDirectionalB
 
 
         level.setBlock(positionClicked, state, 3); //3
-    }
-
-    @Override
-    public void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) { //Determines item drop behavior when block broken
-        if (state.getBlock() != newState.getBlock()) { //If block after the update is different from the old block
-            BlockEntity be = level.getBlockEntity(pos); //Save the selected block entity as "be"
-            if (be instanceof Storage18SlotBlockEntity blockEntity) { //If the block entity is a storage block entity
-                ItemStackHandler inventory = blockEntity.getInventory(); //read and store the block entity's inventory
-                for (int i = 0; i < inventory.getSlots(); i++) {
-                    ItemStack stack = inventory.getStackInSlot(i); //One at a time, read and store each itemStack in each slot
-                    if (!stack.isEmpty()) { //If that stack is NOT EMPTY
-                        var entity = new ItemEntity(level, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, stack); //spawn the current itemstack as an Item Entity inworld at this positon
-                        level.addFreshEntity(entity); //Add a new entity
-                        level.setBlockEntity(be); //Place block entity into current location
-                    } //If an empty stack is reached, exit logic, remove block entity. There are no more items to salvage. If inventory is full, for loop will salvage all items inside, then then exit logic to allow block entity removal
-                }
-            } else if (be instanceof Storage9SlotBlockEntity blockEntity) { //If the block entity is a storage block entity
-                ItemStackHandler inventory = blockEntity.getInventory(); //read and store the block entity's inventory
-                for (int i = 0; i < inventory.getSlots(); i++) {
-                    ItemStack stack = inventory.getStackInSlot(i); //One at a time, read and store each itemStack in each slot
-                    if (!stack.isEmpty()) { //If that stack is NOT EMPTY
-                        var entity = new ItemEntity(level, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, stack); //spawn the current itemstack as an Item Entity inworld at this positon
-                        level.addFreshEntity(entity); //Add a new entity
-                        level.setBlockEntity(be); //Place block entity into current location
-                    } //If an empty stack is reached, exit logic, remove block entity. There are no more items to salvage. If inventory is full, for loop will salvage all items inside, then then exit logic to allow block entity removal
-                }
-            } else if (be instanceof Container container) {
-                Containers.dropContents(level, pos, container);
-                level.updateNeighbourForOutputSignal(pos, this);
-            }
-
-            super.onRemove(state, level, pos, newState, isMoving);
-        }
-
-        super.onRemove(state, level, pos, newState, isMoving); //Remove the block entity
     }
 
     @Override

@@ -1,7 +1,5 @@
 package net.boat.industrialhellscape.block.special_blocks.ContainerBlock;
 
-import net.boat.industrialhellscape.block.special_blocks.ModelledFacingBlock;
-import net.boat.industrialhellscape.block.special_blocks_properties.RotationHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.Container;
@@ -11,102 +9,50 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.Method;
 
-public class ContainerBlock extends ModelledFacingBlock implements EntityBlock {
+public class FacingContainerBlock extends HorizontalDirectionalBlock implements EntityBlock {
     public final int SLOTS;
 
     private static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    private final Boolean isWaterlogged;
-    private final Boolean isCustomModelled;
 
-    private VoxelShape SOLO_SHAPE_NORTH;
-    private VoxelShape SOLO_SHAPE_SOUTH;
-    private VoxelShape SOLO_SHAPE_EAST;
-    private VoxelShape SOLO_SHAPE_WEST;
 
-    public ContainerBlock(Properties properties, VoxelShape soloShape, int SlotAmount, Boolean isWaterlogged, Boolean isCustomModelled) {
-        super(properties, soloShape);
+    public FacingContainerBlock(Properties properties, int SlotAmount) {
+        super(properties);
         this.SLOTS = SlotAmount; //The inventory capacity of the block is determined during registration
-        this.isWaterlogged = isWaterlogged;
-        this.isCustomModelled = isCustomModelled;
 
-        if(isCustomModelled) {
-            SOLO_SHAPE_NORTH = soloShape;
-            SOLO_SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, soloShape);
-            SOLO_SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, soloShape);
-            SOLO_SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, soloShape);
-        }
 
-        //SET DEFAULT STATE
-        if(isWaterlogged) {
-            this.registerDefaultState(this.stateDefinition.any()
-                    .setValue(FACING, Direction.NORTH)
-                    .setValue(WATERLOGGED, false)
-            );
-        } else {
-            this.registerDefaultState(this.stateDefinition.any()
-                    .setValue(FACING, Direction.NORTH)
-            );
-        }
-    }
-
-    @Override
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-
-        //When placed, if the block's "TYPE" property is one of these cases, find its horizontal orientation and give it the correct hitbox
-        //North is the default orientation assumed if no other cases met
-        if(isCustomModelled) {
-            switch (pState.getValue(FACING)) {
-                case SOUTH: return SOLO_SHAPE_SOUTH;
-                case EAST: return SOLO_SHAPE_EAST;
-                case WEST: return SOLO_SHAPE_WEST;
-                default: return SOLO_SHAPE_NORTH;
-            }
-        } else {
-            return Shapes.block();
-        }
+        this.registerDefaultState(this.stateDefinition.any()
+                .setValue(FACING, Direction.NORTH)
+        );
     }
 
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
         BlockState state = defaultBlockState();
-        FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
         Direction directionClicked = pContext.getHorizontalDirection(); //Gets the cardinal direction when player places new block
 
-        if(isCustomModelled) {
-            state = state.setValue(FACING, directionClicked); //Defines facing direction of the block
-        }
-
-        if(isWaterlogged) {
-            state = state.setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
-        }
-
-
-
+        state = state.setValue(FACING, directionClicked); //Defines facing direction of the block
         return state;
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(FACING);
     }
 
     @Nullable
@@ -146,7 +92,7 @@ public class ContainerBlock extends ModelledFacingBlock implements EntityBlock {
             if (be instanceof Container container) { //For container-type block entities (RandomizableContainerBlockEntity)
                 Containers.dropContents(level, pos, container);
                 level.updateNeighbourForOutputSignal(pos, this);
-            } else { //For more basic block entities
+            } else if(be !=null) { //For more basic block entities
 
                 try {
                     Method possibleGetInventory = be.getClass().getMethod("getInventory"); //Searcb for a getInventory method in this block entity
@@ -157,8 +103,7 @@ public class ContainerBlock extends ModelledFacingBlock implements EntityBlock {
                         if (!stack.isEmpty()) { //If that stack is NOT EMPTY
                             var entity = new ItemEntity(level, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, stack); //spawn the current itemstack as an Item Entity inworld at this positon
                             level.addFreshEntity(entity); //Add a new entity
-                            level.setBlockEntity(be); //Place block entity into current location
-                        } //If an empty stack is reached, exit logic, remove block entity. There are no more items to salvage. If inventory is full, for loop will salvage all items inside, then then exit logic to allow block entity removal
+                        }
                     }
                 } catch(Exception e) { //Should trip if somehow a getInventory method does not exist
                     System.out.println("This block entity is not an inventory Block Entity");

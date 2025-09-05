@@ -1,10 +1,10 @@
 package net.boat.industrialhellscape.block.special_blocks_properties;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
-import net.boat.industrialhellscape.block.special_blocks.StorageBlock.Storage18SlotMenu;
-import net.boat.industrialhellscape.block.special_blocks.StorageBlock.Storage54SlotMenu;
-import net.boat.industrialhellscape.block.special_blocks.StorageBlock.Storage9SlotMenu;
-import net.boat.industrialhellscape.block.special_blocks.StorageBlock.Storage27SlotMenu;
+import net.boat.industrialhellscape.block.special_blocks.DeprecatedStorageBlocks.Storage18SlotMenu;
+import net.boat.industrialhellscape.block.special_blocks.DeprecatedStorageBlocks.Storage54SlotMenu;
+import net.boat.industrialhellscape.block.special_blocks.DeprecatedStorageBlocks.Storage9SlotMenu;
+import net.boat.industrialhellscape.block.special_blocks.DeprecatedStorageBlocks.Storage27SlotMenu;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;

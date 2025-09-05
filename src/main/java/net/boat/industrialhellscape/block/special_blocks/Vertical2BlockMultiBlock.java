@@ -1,6 +1,6 @@
 package net.boat.industrialhellscape.block.special_blocks;
 
-import net.boat.industrialhellscape.block.special_blocks.StorageBlock.Storage9SlotBlockEntity;
+import net.boat.industrialhellscape.block.special_blocks.DeprecatedStorageBlocks.Storage9SlotBlockEntity;
 import net.boat.industrialhellscape.block.special_blocks_properties.TwoBlockMultiBlockState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

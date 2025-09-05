@@ -3,13 +3,11 @@ package net.boat.industrialhellscape.block.special_blocks.ContainerBlock;
 import net.boat.industrialhellscape.block.special_blocks_properties.ModBlockEntities;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.Vec3i;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
@@ -20,6 +18,7 @@ import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BarrelBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.ContainerOpenersCounter;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
@@ -33,11 +32,18 @@ public class GenericContainerBE extends RandomizableContainerBlockEntity {
 
     public GenericContainerBE(BlockPos pos, BlockState state) {
         super(ModBlockEntities.CONTAINER_BLOCK_ENTITY.get(), pos, state);
-        this.slotAmount = 27;
+
+        Block block = state.getBlock();
+        if (block instanceof FacingContainerBlock containerBlock) {
+            this.slotAmount = containerBlock.SLOTS;
+        } else {
+            this.slotAmount = 1; //Placeholder
+        }
+
         this.items = NonNullList.withSize(getContainerSize(), ItemStack.EMPTY);
     }
 
-    public void setSlotAmount(int slots) {
+    public void setSlotAmount(int slots) { //Called by any Container Block class to specify the slotAmount used inside this Block Entity class for each block
         this.slotAmount = slots;
 
         if (this.items == null || this.items.size() != slotAmount) { //If there are no items in the container or the supposed capacity erroneously exceeds the slot amount
@@ -142,11 +148,11 @@ public class GenericContainerBE extends RandomizableContainerBlockEntity {
 
     }
 
-    private void playSound(BlockState state, SoundEvent soundEvent) {
-        double d0 = this.worldPosition.getX() + 0.5D / 2.0D;
-        double d1 = this.worldPosition.getY() + 0.5D / 2.0D;
-        double d2 = this.worldPosition.getZ() + 0.5D / 2.0D;
-
-        this.level.playSound(null, d0, d1, d2, soundEvent, SoundSource.BLOCKS, 0.5F, this.level.getRandom().nextFloat() * 0.1F + 0.9F);
+    private void playSound(BlockState pState, SoundEvent pSound) {
+        Vec3i vec3i = pState.getValue(BarrelBlock.FACING).getNormal();
+        double d0 = (double)this.worldPosition.getX() + 0.5D + (double)vec3i.getX() / 2.0D;
+        double d1 = (double)this.worldPosition.getY() + 0.5D + (double)vec3i.getY() / 2.0D;
+        double d2 = (double)this.worldPosition.getZ() + 0.5D + (double)vec3i.getZ() / 2.0D;
+        this.level.playSound((Player)null, d0, d1, d2, pSound, SoundSource.BLOCKS, 0.5F, this.level.random.nextFloat() * 0.1F + 0.9F);
     }
 }

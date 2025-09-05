@@ -1,4 +1,4 @@
-package net.boat.industrialhellscape.block.special_blocks.StorageBlock;
+package net.boat.industrialhellscape.block.special_blocks.DeprecatedStorageBlocks;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.special_blocks_properties.ModBlockEntities;
@@ -19,9 +19,9 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class Storage18SlotBlockEntity extends BlockEntity implements MenuProvider {
+public class Storage27SlotBlockEntity extends BlockEntity implements MenuProvider {
     private int rows = 3;
-    private int columns = 6;
+    private int columns = 9;
 
     private static final Component TITLE =
             Component.translatable("gui." + IndustrialHellscape.MOD_ID + ".inventory_menu");
@@ -30,14 +30,14 @@ public class Storage18SlotBlockEntity extends BlockEntity implements MenuProvide
         @Override
         protected void onContentsChanged(int slot) {
             super.onContentsChanged(slot);
-            Storage18SlotBlockEntity.this.setChanged();
+            Storage27SlotBlockEntity.this.setChanged();
         }
     };
 
     private final LazyOptional<ItemStackHandler> optional = LazyOptional.of(() -> this.inventory);
 
-    public Storage18SlotBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.STORAGE_18_BLOCK_ENTITY.get(), pos, state);
+    public Storage27SlotBlockEntity(BlockPos pos, BlockState state) {
+        super(ModBlockEntities.STORAGE_27_BLOCK_ENTITY.get(), pos, state);
     }
 
     @Override
@@ -85,6 +85,6 @@ public class Storage18SlotBlockEntity extends BlockEntity implements MenuProvide
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, @NotNull Inventory pPlayerInventory, Player pPlayer) {
-        return new Storage18SlotMenu(pContainerId, pPlayerInventory, this);
+        return new Storage27SlotMenu(pContainerId, pPlayerInventory, this);
     }
 }

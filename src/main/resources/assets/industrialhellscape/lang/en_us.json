@@ -122,7 +122,9 @@
   "block.industrialhellscape.gray_catwalk_strut_slab": "Gray Catwalk Strut Slab",
 
   "sounds.industrialhellscape.toilet_flush": "Toilet flushes",
-  "sounds.industrialhellscape.metalpipefallingsoundeffect": "Metal Pipes Falling",
+  "sounds.industrialhellscape.metalpipefallingsoundeffect": "Metal pipes falling",
+  "sounds.industrialhellscape.metal_box_opening": "Metal container opens",
+  "sounds.industrialhellscape.metal_box_closing": "Metal container closes",
   "sounds.industrialhellscape.vesselplate_clank": "Vesselplate clanks",
   "sounds.industrialhellscape.vulta_shattered": "Dubiously licensed synthwave music plays",
   "sounds.industrialhellscape.caspro_kraftwerk": "Dubiously licensed German synthwave music plays ",

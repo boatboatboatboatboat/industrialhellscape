@@ -1,10 +1,10 @@
 package net.boat.industrialhellscape;
 
 import net.boat.industrialhellscape.block.ModBlocks;
-import net.boat.industrialhellscape.block.special_blocks.StorageBlock.Storage18SlotMenuScreen;
-import net.boat.industrialhellscape.block.special_blocks.StorageBlock.Storage27SlotMenuScreen;
-import net.boat.industrialhellscape.block.special_blocks.StorageBlock.Storage54SlotMenuScreen;
-import net.boat.industrialhellscape.block.special_blocks.StorageBlock.Storage9SlotMenuScreen;
+import net.boat.industrialhellscape.block.special_blocks.DeprecatedStorageBlocks.Storage18SlotMenuScreen;
+import net.boat.industrialhellscape.block.special_blocks.DeprecatedStorageBlocks.Storage27SlotMenuScreen;
+import net.boat.industrialhellscape.block.special_blocks.DeprecatedStorageBlocks.Storage54SlotMenuScreen;
+import net.boat.industrialhellscape.block.special_blocks.DeprecatedStorageBlocks.Storage9SlotMenuScreen;
 import net.boat.industrialhellscape.block.special_blocks_properties.ModBlockEntities;
 import net.boat.industrialhellscape.entity.ModEntities;
 import net.boat.industrialhellscape.block.special_blocks_properties.SittableEntityRenderer;
@@ -29,8 +29,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.MissingMappingsEvent;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 

@@ -29,14 +29,14 @@ public interface HitboxGeometryCollection {
 
     static VoxelShape RED_MEDKIT_NORTH(){
         VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape, Shapes.box(0.09375, 0.125, 0.5, 0.90625, 0.75, 1), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.09375, 0.125, 0, 0.90625, 0.75, 0.5), BooleanOp.OR);
 
         return shape;
     }
 
     static VoxelShape WHITE_MEDKIT_NORTH(){
         VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape, Shapes.box(0.0625, 0.0625, 0.5, 0.9375, 1, 1), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.0625, 0, 0.9375, 1, 0.5), BooleanOp.OR);
 
         return shape;
     }

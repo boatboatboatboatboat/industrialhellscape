@@ -2,10 +2,12 @@ package net.boat.industrialhellscape.block;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.special_blocks.*;
-import net.boat.industrialhellscape.block.special_blocks.ContainerBlock.ContainerBlock;
+import net.boat.industrialhellscape.block.special_blocks.ContainerBlock.ConnectedContainerBlock;
+import net.boat.industrialhellscape.block.special_blocks.ContainerBlock.FacingContainerBlock;
+import net.boat.industrialhellscape.block.special_blocks.ContainerBlock.ModelledFacingContainerBlock;
 import net.boat.industrialhellscape.block.special_blocks.PipeBlock;
 import net.boat.industrialhellscape.block.special_blocks.SimpleFacingBlock;
-import net.boat.industrialhellscape.block.special_blocks.StorageBlock.*;
+import net.boat.industrialhellscape.block.special_blocks.DeprecatedStorageBlocks.*;
 import net.boat.industrialhellscape.block.special_blocks_properties.HitboxGeometryCollection;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.item.ModItems;
@@ -36,17 +38,15 @@ public class ModBlocks {
             )
     );
     public static final RegistryObject<Block> LOCKER_BOX = registerBlockAndBlockItem("locker_box",
-            () -> new ContainerBlock(BlockBehaviour
+            () -> new FacingContainerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
-                    , 9
-                    , false
+                    , 27
             )
     );
     public static final RegistryObject<Block> FUEL_DRUM = registerBlockAndBlockItem("fuel_drum",
-            () -> new ContainerBlock(BlockBehaviour
+            () -> new FacingContainerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
-                    , 18
-                    ,false
+                    , 27
             )
     );
 
@@ -495,16 +495,19 @@ public class ModBlocks {
                     HitboxGeometryCollection.DESK_LEFT_SHAPE(),
                     HitboxGeometryCollection.DESK_MIDDLE_SHAPE(),
                     HitboxGeometryCollection.DESK_RIGHT_SHAPE())
+
     );
     public static final RegistryObject<Block> DESK_DRAWER = registerBlockAndBlockItem("desk_drawer",
-            () -> new ConnectedFurniture18SlotStorageBlock(BlockBehaviour
+            () -> new ConnectedContainerBlock(BlockBehaviour
                     .Properties.copy(Blocks.OAK_PLANKS)
                     .noOcclusion(),
+                   18,
                     ModTags.Blocks.CLASSIC_DESK,
                     HitboxGeometryCollection.DESK_DRAWER_SOLO_SHAPE(),
                     HitboxGeometryCollection.DESK_DRAWER_LEFT_SHAPE(),
                     HitboxGeometryCollection.DESK_DRAWER_MIDDLE_SHAPE(),
                     HitboxGeometryCollection.DESK_DRAWER_RIGHT_SHAPE())
+
     );
     public static final RegistryObject<Block> METAL_DESK = registerBlockAndBlockItem("metal_desk",
             () -> new ConnectedFurnitureBlock(BlockBehaviour
@@ -517,9 +520,10 @@ public class ModBlocks {
                     HitboxGeometryCollection.METAL_DESK_RIGHT_SHAPE())
     );
     public static final RegistryObject<Block> METAL_DESK_DRAWER = registerBlockAndBlockItem("metal_desk_drawer",
-            () -> new ConnectedFurniture18SlotStorageBlock(BlockBehaviour
+            () -> new ConnectedContainerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
+                    18,
                     ModTags.Blocks.METAL_DESK,
                     HitboxGeometryCollection.METAL_DESK_DRAWER_SOLO_SHAPE(),
                     HitboxGeometryCollection.METAL_DESK_DRAWER_LEFT_SHAPE(),
@@ -528,9 +532,10 @@ public class ModBlocks {
 
     );
     public static final RegistryObject<Block> METAL_DESK_DRAWER_2 = registerBlockAndBlockItem("metal_desk_drawer_2",
-            () -> new ConnectedFurniture18SlotStorageBlock(BlockBehaviour
+            () -> new ConnectedContainerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
+                    18,
                     ModTags.Blocks.METAL_DESK,
                     HitboxGeometryCollection.METAL_DESK_DRAWER_2_SOLO_SHAPE(),
                     HitboxGeometryCollection.METAL_DESK_DRAWER_2_LEFT_SHAPE(),
@@ -552,16 +557,19 @@ public class ModBlocks {
     );
 
     public static final RegistryObject<Block> RED_WALL_MEDKIT = registerBlockAndBlockItem("red_wall_medkit",
-            () -> new Furniture9SlotStorageBlock(BlockBehaviour
+            () -> new ModelledFacingContainerBlock(BlockBehaviour
                     .Properties.copy(Blocks.STONE)
                     .noOcclusion(),
+                    9,
                     HitboxGeometryCollection.RED_MEDKIT_NORTH()
             )
     );
+
     public static final RegistryObject<Block> WHITE_WALL_MEDKIT = registerBlockAndBlockItem("white_wall_medkit",
-            () -> new Furniture9SlotStorageBlock(BlockBehaviour
+            () -> new ModelledFacingContainerBlock(BlockBehaviour
                     .Properties.copy(Blocks.STONE)
                     .noOcclusion(),
+                    9,
                     HitboxGeometryCollection.WHITE_MEDKIT_NORTH()
             )
     );

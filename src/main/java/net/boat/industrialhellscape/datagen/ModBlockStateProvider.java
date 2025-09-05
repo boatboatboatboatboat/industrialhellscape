@@ -92,7 +92,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         horizontalBlock(ModBlocks.AMENITY_FURNISHINGS.get(), build3FaceTexturesBlockModel("amenity_furnishings","furniture_category_block", "amenity_furnishings_north", "amenity_furnishings_west", "amenity_furnishings_up"));
 
         build6FaceTexturesBlockModel("fuel_drum","fuel_drum", "red_labeled_fuel_drum_side", "red_labeled_fuel_drum_front", "red_labeled_fuel_drum_side", "red_labeled_fuel_drum_side", "red_fuel_drum_up","red_fuel_drum_down");
-        genFolderedSI(ModBlocks.FUEL_DRUM.get(),"");
+        GenFacingSI(ModBlocks.FUEL_DRUM.get(),"");
 
         GenFacingWaterloggableSI(ModBlocks.SINK.get(),"");
         GenFacingWaterloggableSI(ModBlocks.WHITE_WALL_MEDKIT.get(),"medkit_containers");
@@ -105,7 +105,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         GenFacingPoweredSI(ModBlocks.CASSETTE_PLAYER.get(), "cassette_player");
 
         TwoBlockMultiBlock(ModBlocks.LARGE_LOCKER.get(), "locker");
-        genWaterloggableSI(ModBlocks.LOCKER_BOX.get(),"locker");
+        GenFacingSI(ModBlocks.LOCKER_BOX.get(),"locker");
 
         genFolderedSI(ModBlocks.REINFORCED_VESSELGLASS.get(),"vesselglass");
         genFolderedSI(ModBlocks.VESSELGLASS.get(),"vesselglass");
@@ -214,7 +214,30 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, models().getExistingFile(modLoc(baseModelPath)));
     }
 
+    private void GenFacingSI(Block block, String folderName) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+        String modelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
 
+        getVariantBuilder(block)
+                .forAllStates(state -> {
+                    Direction facing = state.getValue(FACING);
+
+                    int yRot = switch (facing) {
+                        case SOUTH -> 180;
+                        case WEST  -> 270;
+                        case EAST  -> 90;
+                        default -> 0; //NORTH
+                    };
+
+                    return ConfiguredModel.builder()
+                            .modelFile(models().getExistingFile(modLoc("block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName)))
+                            .rotationY(yRot)
+                            .build();
+                });
+
+        //GENERATE ITEM MODEL
+        simpleBlockItem(block, models().getExistingFile(modLoc(modelPath)));
+    }
 
     private void GenFacingWaterloggableSI(Block block, String folderName) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();

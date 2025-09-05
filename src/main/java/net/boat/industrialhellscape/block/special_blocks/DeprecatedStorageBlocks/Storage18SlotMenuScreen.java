@@ -1,4 +1,4 @@
-package net.boat.industrialhellscape.block.special_blocks.StorageBlock;
+package net.boat.industrialhellscape.block.special_blocks.DeprecatedStorageBlocks;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.minecraft.client.gui.GuiGraphics;
@@ -8,12 +8,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import org.jetbrains.annotations.NotNull;
 
-public class Storage27SlotMenuScreen extends AbstractContainerScreen<Storage27SlotMenu> {
+public class Storage18SlotMenuScreen extends AbstractContainerScreen<Storage18SlotMenu> {
     private static final ResourceLocation TEXTURE =
             //GUI TEXTURE HERE
-            new ResourceLocation(IndustrialHellscape.MOD_ID, "textures/gui/container9x3.png");
+            new ResourceLocation(IndustrialHellscape.MOD_ID, "textures/gui/container6x3.png");
 
-    public Storage27SlotMenuScreen(Storage27SlotMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
+    public Storage18SlotMenuScreen(Storage18SlotMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
 
         this.imageWidth = 176;

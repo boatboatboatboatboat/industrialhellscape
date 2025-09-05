@@ -1,4 +1,4 @@
-package net.boat.industrialhellscape.block.special_blocks.StorageBlock;
+package net.boat.industrialhellscape.block.special_blocks.DeprecatedStorageBlocks;
 
 import net.boat.industrialhellscape.block.special_blocks_properties.ModMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
@@ -12,25 +12,25 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 
-public class Storage9SlotMenu extends AbstractContainerMenu {
-    private final Storage9SlotBlockEntity blockEntity;
+public class Storage27SlotMenu extends AbstractContainerMenu {
+    protected final Storage27SlotBlockEntity blockEntity;
     private final ContainerLevelAccess levelAccess;
 
     private int rows = 3;
-    private int columns = 3;
+    private int columns = 9;
 
     // Client Constructor
-    public Storage9SlotMenu(int containerId, Inventory playerInv, FriendlyByteBuf additionalData) {
+    public Storage27SlotMenu(int containerId, Inventory playerInv, FriendlyByteBuf additionalData) {
         this(containerId, playerInv, playerInv.player.level().getBlockEntity(additionalData.readBlockPos()));
     }
 
     // Server Constructor
-    public Storage9SlotMenu(int containerId, Inventory playerInv, BlockEntity blockEntity) {
-        super(ModMenuTypes.STORAGE_9SLOT_MENU.get(), containerId);
-        if(blockEntity instanceof Storage9SlotBlockEntity be) {
+    public Storage27SlotMenu(int containerId, Inventory playerInv, BlockEntity blockEntity) {
+        super(ModMenuTypes.STORAGE_27SLOT_MENU.get(), containerId);
+        if(blockEntity instanceof Storage27SlotBlockEntity be) {
             this.blockEntity = be;
         } else {
-            throw new IllegalStateException("Incorrect block entity class (%s) passed into Storage9SlotMenu!"
+            throw new IllegalStateException("Incorrect block entity class (%s) passed into Storage27SlotMenu!"
                     .formatted(blockEntity.getClass().getCanonicalName()));
         }
 
@@ -41,14 +41,14 @@ public class Storage9SlotMenu extends AbstractContainerMenu {
         createBlockEntityInventory(be);
     }
 
-    private void createBlockEntityInventory(Storage9SlotBlockEntity be) {
+    private void createBlockEntityInventory(Storage27SlotBlockEntity be) {
         be.getOptional().ifPresent(inventory -> {
             for (int row = 0; row < rows; row++) {
                 for (int column = 0; column < columns; column++) {
                     addSlot(new SlotItemHandler(inventory,
                             column + (row * columns),
-                            62 + (column * 18),
-                            17 + (row * 18)));
+                            8 + (column * 18),
+                            18 + (row * 18)));
                 }
             }
         });

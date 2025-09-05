@@ -1,4 +1,4 @@
-package net.boat.industrialhellscape.block.special_blocks.StorageBlock;
+package net.boat.industrialhellscape.block.special_blocks.DeprecatedStorageBlocks;
 
 import net.boat.industrialhellscape.block.special_blocks.SimpleFacingBlock;
 import net.boat.industrialhellscape.block.special_blocks_properties.TwoBlockMultiBlockState;
