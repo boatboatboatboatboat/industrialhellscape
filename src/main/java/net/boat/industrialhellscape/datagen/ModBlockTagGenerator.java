@@ -28,7 +28,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
         this.tag(ModTags.Blocks.VESSELPLATE_BLOCKS)
                 .add(
                         ModBlocks.VESSELPLATE.get(),
-                        ModBlocks.RIVETED_VESSELPLATE.get(),
+                        ModBlocks.RIVETED_VESSELPLATE_PANEL.get(),
                         //ModBlocks.VESSELPLATE_GRATE_BLOCK.get(),
                         ModBlocks.GRATE.get(),
                         ModBlocks.SEETHROUGH_GRATE.get(),
@@ -38,7 +38,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.VESSELPLATE_PILLAR.get(),
 
                         ModBlocks.GRAY_VESSELPLATE.get(),
-                        ModBlocks.GRAY_RIVETED_VESSELPLATE.get(),
+                        ModBlocks.GRAY_RIVETED_VESSELPLATE_PANEL.get(),
                         ModBlocks.GRAY_GRATE.get(),
                         ModBlocks.GRAY_SEETHROUGH_GRATE.get(),
                         ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get(),
@@ -82,25 +82,21 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.GRAY_ROCKRETE_SLAB.get(),
                         ModBlocks.GRAY_ROCKRETE_STAIRS.get(),
                         ModBlocks.GRAY_ROCKRETE_PILLAR.get(),
-                        ModBlocks.GRAY_ROCKRETE_REBAR.get(),
 
                         ModBlocks.GREEN_ROCKRETE.get(),
                         ModBlocks.GREEN_ROCKRETE_SLAB.get(),
                         ModBlocks.GREEN_ROCKRETE_STAIRS.get(),
                         ModBlocks.GREEN_ROCKRETE_PILLAR.get(),
-                        ModBlocks.GREEN_ROCKRETE_REBAR.get(),
 
                         ModBlocks.YELLOW_ROCKRETE.get(),
                         ModBlocks.YELLOW_ROCKRETE_SLAB.get(),
                         ModBlocks.YELLOW_ROCKRETE_STAIRS.get(),
                         ModBlocks.YELLOW_ROCKRETE_PILLAR.get(),
-                        ModBlocks.YELLOW_ROCKRETE_REBAR.get(),
 
                         ModBlocks.BLUE_ROCKRETE.get(),
                         ModBlocks.BLUE_ROCKRETE_SLAB.get(),
                         ModBlocks.BLUE_ROCKRETE_STAIRS.get(),
                         ModBlocks.BLUE_ROCKRETE_PILLAR.get(),
-                        ModBlocks.BLUE_ROCKRETE_REBAR.get(),
 
                         ModBlocks.HAZARD_STRIPE_YELLOW.get(),
                         ModBlocks.HAZARD_STRIPE_RED.get(),

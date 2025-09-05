@@ -18,8 +18,8 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> TOILET_FLUSH = registerSoundEvents("toilet_flush");
     public static final RegistryObject<SoundEvent> METALPIPEFALLINGSOUNDEFFECT = registerSoundEvents("metalpipefallingsoundeffect");
 
-    public static final RegistryObject<SoundEvent> METAL_BOX_OPEN = registerSoundEvents("metal_box_open");
-    public static final RegistryObject<SoundEvent> METAL_BOX_CLOSE = registerSoundEvents("metal_box_close");
+    public static final RegistryObject<SoundEvent> METAL_BOX_OPEN = registerSoundEvents("metal_box_opening");
+    public static final RegistryObject<SoundEvent> METAL_BOX_CLOSE = registerSoundEvents("metal_box_closing");
 
     public static final ForgeSoundType VESSELPLATE_BLOCK_SOUNDS = new ForgeSoundType(2f,1.5f,
             ModSounds.VESSELPLATE_CLANK, //Break

@@ -23,6 +23,9 @@ public class ModItems {
     public static final RegistryObject<Item> FLOPPY_DISKETTE = ITEMS.register("floppy_diskette",
             () -> new Item(new Item.Properties()));
 
+    public static final RegistryObject<Item> JOB_APPLICATION = ITEMS.register("job_application",
+            () -> new Item(new Item.Properties()));
+
     public static final RegistryObject<Item> INHELL_HAVEN_DEVICE = ITEMS.register("inhell_haven_device",
             () -> new InHellTool(new Item.Properties().durability(1024)));
 
@@ -35,6 +38,9 @@ public class ModItems {
             () -> new BlockItemWithTooltip("vesselplate", ModBlocks.VESSELPLATE.get(), new Item.Properties()));
     public static final RegistryObject<Item> GRAY_ROCKRETE_ITEM = ITEMS.register("gray_rockrete",
             () -> new BlockItemWithTooltip("gray_rockrete", ModBlocks.GRAY_ROCKRETE.get(), new Item.Properties()));
+    public static final RegistryObject<Item> IHEA_FURNITURE_KIT_ITEM = ITEMS.register("ihea_furniture_kit",
+            () -> new BlockItemWithTooltip("ihea_furniture_kit", ModBlocks.IHEA_FURNITURE_KIT.get(), new Item.Properties()));
+
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

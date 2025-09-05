@@ -7,6 +7,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 //INFO:
 //-----
 //This interface stores all custom hitbox geometries in one place to not clutter up the custom classes.
+//Asymmetrical hitboxes are rotated automatically in the block class for each horizontal direction by the RotationHelper interface.
 //-----
 
 public interface HitboxGeometryCollection {
@@ -291,8 +292,8 @@ public interface HitboxGeometryCollection {
     }
     static VoxelShape WORK_LIGHT_MOUNT_SHAPE(){
         VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape, Shapes.box(0.03125, 0.375, 0.375, 0.3125, 0.625, 0.6875), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.6875, 0.375, 0.375, 0.96875, 0.625, 0.6875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0375, 0.375, 0.4375, 0.31875, 0.625, 0.6875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.68125, 0.375, 0.4375, 0.9625, 0.625, 0.6875), BooleanOp.OR);
 
         return shape;
     }

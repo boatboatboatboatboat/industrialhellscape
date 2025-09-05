@@ -18,11 +18,12 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         //DEBUG BLOCKS
         this.dropSelf(ModBlocks.LARGE_LOCKER.get());
         this.dropSelf(ModBlocks.HANDRAIL.get());
+        this.dropSelf(ModBlocks.FUEL_DRUM.get());
 
         //IRONLIKE SIMPLE BLOCKS
         this.dropSelf(ModBlocks.VESSELPLATE.get());
         //this.dropSelf(ModBlocks.VESSELPLATE_GRATE_BLOCK.get());
-        this.dropSelf(ModBlocks.RIVETED_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.RIVETED_VESSELPLATE_PANEL.get());
         this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE_TILE.get());
         this.dropSelf(ModBlocks.VESSELPLATE_PILLAR.get());
         this.dropSelf(ModBlocks.GRATE.get());
@@ -38,7 +39,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.GRAY_VESSELGLASS.get());
 
         this.dropSelf(ModBlocks.GRAY_VESSELPLATE.get());
-        this.dropSelf(ModBlocks.GRAY_RIVETED_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.GRAY_RIVETED_VESSELPLATE_PANEL.get());
         this.dropSelf(ModBlocks.GRAY_GRATE.get());
         this.dropSelf(ModBlocks.GRAY_SEETHROUGH_GRATE.get());
         this.dropSelf(ModBlocks.GRAY_SEETHROUGH_GRATE_PANE.get());
@@ -49,7 +50,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
         //STONELIKE BLOCKS
         this.dropSelf(ModBlocks.GRAY_ROCKRETE.get());
-        this.dropSelf(ModBlocks.GRAY_ROCKRETE_REBAR.get());
         this.dropSelf(ModBlocks.GRAY_ROCKRETE_STAIRS.get());
         this.dropSelf(ModBlocks.GRAY_ROCKRETE_PILLAR.get());
         this.add(ModBlocks.GRAY_ROCKRETE_SLAB.get(),
@@ -57,7 +57,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 );
 
         this.dropSelf(ModBlocks.GREEN_ROCKRETE.get());
-        this.dropSelf(ModBlocks.GREEN_ROCKRETE_REBAR.get());
         this.dropSelf(ModBlocks.GREEN_ROCKRETE_STAIRS.get());
         this.dropSelf(ModBlocks.GREEN_ROCKRETE_PILLAR.get());
         this.add(ModBlocks.GREEN_ROCKRETE_SLAB.get(),
@@ -65,7 +64,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         );
 
         this.dropSelf(ModBlocks.YELLOW_ROCKRETE.get());
-        this.dropSelf(ModBlocks.YELLOW_ROCKRETE_REBAR.get());
         this.dropSelf(ModBlocks.YELLOW_ROCKRETE_STAIRS.get());
         this.dropSelf(ModBlocks.YELLOW_ROCKRETE_PILLAR.get());
         this.add(ModBlocks.YELLOW_ROCKRETE_SLAB.get(),
@@ -73,7 +71,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         );
 
         this.dropSelf(ModBlocks.BLUE_ROCKRETE.get());
-        this.dropSelf(ModBlocks.BLUE_ROCKRETE_REBAR.get());
         this.dropSelf(ModBlocks.BLUE_ROCKRETE_STAIRS.get());
         this.dropSelf(ModBlocks.BLUE_ROCKRETE_PILLAR.get());
         this.add(ModBlocks.BLUE_ROCKRETE_SLAB.get(),

@@ -1,10 +1,8 @@
 package net.boat.industrialhellscape.item.special_items;
 
 
-import net.boat.industrialhellscape.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
@@ -43,7 +41,6 @@ public class InHellTool extends Item {
     }
 
     @Override
-
     //Allows item to have a sneak-interact functionality on blocks that allow that
     //Default sneak-behavior bypasses any interaction. Using a tool with doesSneakBypassUse circumvents this.
     public boolean doesSneakBypassUse(ItemStack stack, LevelReader level, BlockPos pos, Player player) {

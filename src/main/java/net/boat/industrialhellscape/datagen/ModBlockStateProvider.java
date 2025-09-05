@@ -28,7 +28,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-         //Method naming convention ("SBI", "SI", etc):
+        //Method naming convention ("SBI", "SI", etc):
         //"S" - Generates Block State
         //"B" - Generates Block Model (if no existing one is available). Simple full-blocks with no special rendering are being generated currently
         //"I" - Generates Item Model
@@ -37,27 +37,25 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         //Iron-like Blocks
         genFolderedSBI(ModBlocks.VESSELPLATE.get(),"vesselplate");
-        genFolderedSBI(ModBlocks.RIVETED_VESSELPLATE.get(),"vesselplate");
-
-        genFolderedToggleBlockSBI(ModBlocks.SMOOTH_VESSELPLATE_TILE.get(),"vesselplate", "", true, "_tile","");
-        genFolderedToggleBlockSBI(ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get(),"vesselplate", "", true, "_tile","");
-
+        genFolderedToggleBlockSBI(ModBlocks.RIVETED_VESSELPLATE_PANEL.get(),"vesselplate","", true, true, "_panel", "");
         genFolderedSBI(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get(),"vesselplate");
         genFolderedSBI(ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get(),"vesselplate");
+        genFolderedToggleBlockSBI(ModBlocks.SMOOTH_VESSELPLATE_TILE.get(),"vesselplate", "", true, true, "_tile","");
 
         genFolderedSBI(ModBlocks.GRAY_VESSELPLATE.get(),"vesselplate");
-        genFolderedSBI(ModBlocks.GRAY_RIVETED_VESSELPLATE.get(),"vesselplate");
+        genFolderedToggleBlockSBI(ModBlocks.GRAY_RIVETED_VESSELPLATE_PANEL.get(),"vesselplate","", true, true, "_panel", "");
         genFolderedSBI(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get(),"vesselplate");
         genFolderedSBI(ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get(),"vesselplate");
+        genFolderedToggleBlockSBI(ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get(),"vesselplate", "", true, true, "_tile","");
 
-        genFolderedToggleBlockSBI(ModBlocks.ENCASED_CABLES.get(),"","",true, "encased","vertical_encased");
+        genFolderedToggleBlockSBI(ModBlocks.ENCASED_CABLES.get(),"","",true, true, "encased","vertical_encased");
 
-        genFolderedToggleBlockSBI(ModBlocks.GRATE.get(),"grate","",true,"grate","vertical_grate");
-        genFolderedToggleBlockSBI(ModBlocks.GRAY_GRATE.get(),"grate","",true, "grate","vertical_grate");
-        genFolderedToggleBlockSBI(ModBlocks.RUSTY_GRATE.get(),"grate","",true,"grate","vertical_grate");
+        genFolderedToggleBlockSBI(ModBlocks.GRATE.get(),"grate","",true, true,"grate","vertical_grate");
+        genFolderedToggleBlockSBI(ModBlocks.GRAY_GRATE.get(),"grate","",true, true, "grate","vertical_grate");
+        genFolderedToggleBlockSBI(ModBlocks.SEETHROUGH_GRATE.get(), "grate", "grate", false,false, "see-through", "vertical_see-through");
+        genFolderedToggleBlockSBI(ModBlocks.GRAY_SEETHROUGH_GRATE.get(),"grate","grate",false,false, "see-through","vertical_see-through");
 
-        genFolderedSI(ModBlocks.SEETHROUGH_GRATE.get(), "grate");
-        genFolderedSI(ModBlocks.GRAY_SEETHROUGH_GRATE.get(),"grate");
+        genFolderedToggleBlockSBI(ModBlocks.RUSTY_GRATE.get(),"grate","",true, true,"grate","vertical_grate");
         //paneBlock((IronBarsBlock) ModBlocks.SEETHROUGH_GRATE_PANE.get(), modLoc("block/see-through_grate"),modLoc("block/see-through_grate_pane_top"));
         //paneBlock((IronBarsBlock) ModBlocks.GRAY_SEETHROUGH_GRATE_PANE.get(), modLoc("block/gray_see-through_grate"),modLoc("block/gray_see-through_grate_pane_top"));
 
@@ -65,23 +63,19 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //Stone-like Blocks
         genFolderedSBI(ModBlocks.GRIMY_RESTROOM_TILE.get(),"");
 
-        genFolderedToggleBlockSBI(ModBlocks.GRAY_ROCKRETE.get(),"","",true,"rockrete","rockrete_rebar");
-        genFolderedSBI(ModBlocks.GRAY_ROCKRETE_REBAR.get(),"");
+        genFolderedToggleBlockSBI(ModBlocks.GRAY_ROCKRETE.get(),"","",true, true,"rockrete","rockrete_rebar");
         stairsBlock(((StairBlock) ModBlocks.GRAY_ROCKRETE_STAIRS.get()), blockTexture(ModBlocks.GRAY_ROCKRETE.get()));
         slabBlock(((SlabBlock) ModBlocks.GRAY_ROCKRETE_SLAB.get()), blockTexture(ModBlocks.GRAY_ROCKRETE.get()), blockTexture(ModBlocks.GRAY_ROCKRETE.get()));
 
-        genFolderedToggleBlockSBI(ModBlocks.GREEN_ROCKRETE.get(),"","",true,"rockrete","rockrete_rebar");
-        genFolderedSBI(ModBlocks.GREEN_ROCKRETE_REBAR.get(),"");
+        genFolderedToggleBlockSBI(ModBlocks.GREEN_ROCKRETE.get(),"","",true, true,"rockrete","rockrete_rebar");
         stairsBlock(((StairBlock) ModBlocks.GREEN_ROCKRETE_STAIRS.get()), blockTexture(ModBlocks.GREEN_ROCKRETE.get()));
         slabBlock(((SlabBlock) ModBlocks.GREEN_ROCKRETE_SLAB.get()), blockTexture(ModBlocks.GREEN_ROCKRETE.get()), blockTexture(ModBlocks.GREEN_ROCKRETE.get()));
 
-        genFolderedToggleBlockSBI(ModBlocks.YELLOW_ROCKRETE.get(),"","",true,"rockrete","rockrete_rebar");
-        genFolderedSBI(ModBlocks.YELLOW_ROCKRETE_REBAR.get(),"");
+        genFolderedToggleBlockSBI(ModBlocks.YELLOW_ROCKRETE.get(),"","",true, true,"rockrete","rockrete_rebar");
         stairsBlock(((StairBlock) ModBlocks.YELLOW_ROCKRETE_STAIRS.get()), blockTexture(ModBlocks.YELLOW_ROCKRETE.get()));
         slabBlock(((SlabBlock) ModBlocks.YELLOW_ROCKRETE_SLAB.get()), blockTexture(ModBlocks.YELLOW_ROCKRETE.get()), blockTexture(ModBlocks.YELLOW_ROCKRETE.get()));
 
-        genFolderedToggleBlockSBI(ModBlocks.BLUE_ROCKRETE.get(),"","",true,"rockrete","rockrete_rebar");
-        genFolderedSBI(ModBlocks.BLUE_ROCKRETE_REBAR.get(),"");
+        genFolderedToggleBlockSBI(ModBlocks.BLUE_ROCKRETE.get(),"","",true, true,"rockrete","rockrete_rebar");
         stairsBlock(((StairBlock) ModBlocks.BLUE_ROCKRETE_STAIRS.get()), blockTexture(ModBlocks.BLUE_ROCKRETE.get()));
         slabBlock(((SlabBlock) ModBlocks.BLUE_ROCKRETE_SLAB.get()), blockTexture(ModBlocks.BLUE_ROCKRETE.get()), blockTexture(ModBlocks.BLUE_ROCKRETE.get()));
 
@@ -89,13 +83,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genFolderedSBI(ModBlocks.HAZARD_STRIPE_RED.get(),"");
 
         //Other Solid Opaque Full-Blocks with unique face textures
-        horizontalBlock(ModBlocks.IHEA_FURNITURE_KIT.get(), build6FaceTexturesBlockModel("ihea_furniture_kit", "furniture_category_block", "ihea_furniture_kit_front","ihea_furniture_kit_back","ihea_furniture_kit_left","ihea_furniture_kit_right","ihea_furniture_kit_top","ihea_furniture_kit_bottom"));
+        horizontalBlock(ModBlocks.IHEA_FURNITURE_KIT.get(), build6FaceTexturesBlockModel("ihea_furniture_kit", "furniture_category_block", "ihea_furniture_kit_back", "ihea_furniture_kit_front", "ihea_furniture_kit_right", "ihea_furniture_kit_left", "ihea_furniture_kit_top", "ihea_furniture_kit_bottom"));
         horizontalBlock(ModBlocks.PIPEWORKS.get(), build3FaceTexturesBlockModel("pipeworks", "pipeworks", "pipeworks_front", "pipeworks_sides", "pipeworks_top"));
         horizontalBlock(ModBlocks.SAFETY_FURNISHINGS.get(), build3FaceTexturesBlockModel("safety_furnishings", "furniture_category_block", "safety_furnishings_north", "safety_furnishings_west", "safety_furnishings_up"));
         horizontalBlock(ModBlocks.HYGIENE_FURNISHINGS.get(), build3FaceTexturesBlockModel("hygiene_furnishings","furniture_category_block", "hygiene_furnishings_north", "hygiene_furnishings_west", "hygiene_furnishings_up"));
         horizontalBlock(ModBlocks.INDUSTRIAL_FURNISHINGS.get(), build3FaceTexturesBlockModel("industrial_furnishings","furniture_category_block", "industrial_furnishings_north", "industrial_furnishings_west", "industrial_furnishings_up"));
         horizontalBlock(ModBlocks.TECHNOLOGY_FURNISHINGS.get(), build3FaceTexturesBlockModel("technology_furnishings","furniture_category_block", "technology_furnishings_north", "technology_furnishings_west", "technology_furnishings_up"));
         horizontalBlock(ModBlocks.AMENITY_FURNISHINGS.get(), build3FaceTexturesBlockModel("amenity_furnishings","furniture_category_block", "amenity_furnishings_north", "amenity_furnishings_west", "amenity_furnishings_up"));
+
+        build6FaceTexturesBlockModel("fuel_drum","fuel_drum", "red_labeled_fuel_drum_side", "red_labeled_fuel_drum_front", "red_labeled_fuel_drum_side", "red_labeled_fuel_drum_side", "red_fuel_drum_up","red_fuel_drum_down");
+        genFolderedSI(ModBlocks.FUEL_DRUM.get(),"");
 
         GenFacingWaterloggableSI(ModBlocks.SINK.get(),"");
         GenFacingWaterloggableSI(ModBlocks.WHITE_WALL_MEDKIT.get(),"medkit_containers");
@@ -108,7 +105,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         GenFacingPoweredSI(ModBlocks.CASSETTE_PLAYER.get(), "cassette_player");
 
         TwoBlockMultiBlock(ModBlocks.LARGE_LOCKER.get(), "locker");
-        GenFacingWaterloggableSI(ModBlocks.LOCKER_BOX.get(),"locker");
+        genWaterloggableSI(ModBlocks.LOCKER_BOX.get(),"locker");
 
         genFolderedSI(ModBlocks.REINFORCED_VESSELGLASS.get(),"vesselglass");
         genFolderedSI(ModBlocks.VESSELGLASS.get(),"vesselglass");
@@ -148,14 +145,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
         return model;
     }
 
-    private void buildRotatedTextureBlockModel(Block block, String folderName) {
+    private void buildRotatedTextureBlockModel(Block block, String folderName) { //When no seperate texture is required (this is used when the block to be made has no CTM texture)
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
         //Builds a textured model that uses one texture .pngs for all 6 faces. The model used here rotates the textures 90 degrees.
         ModelFile model = models().withExistingParent(stringName + "_rotated", modLoc("block/texture_horizontal_template"))
                 .texture("all", modLoc("block/" + (folderName+(folderName.isEmpty() ? "":"/") + stringName)));
     }
 
-    //---------- END OF CUSTOM BLOCK GENERATOR METHODS ----------
+    //---------- END OF CUSTOM BLOCK MODEL GENERATOR METHODS ----------
 
     //---------- SBI ASSET GENERATOR METHODS ----------
 
@@ -179,7 +176,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                         .texture("all", modLoc("block/" + subfolder+(subfolder.isEmpty() ? "":"/") + stringName)));
     }
 
-    private void genFolderedToggleBlockSBI(Block block, String textureSubFolder, String existingBaseModelSubFolder, Boolean makeBaseModel, String nameStringToReplace, String nameStringReplacement) {
+    private void genFolderedToggleBlockSBI(Block block, String textureSubFolder, String existingBaseModelSubFolder, Boolean makeBaseModel, Boolean makeAltModel, String nameStringToReplace, String nameStringReplacement) {
 
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
         String pathToName = "block/"+existingBaseModelSubFolder+(existingBaseModelSubFolder.isEmpty() ? "":"/");
@@ -198,8 +195,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
         }
 
         //GENERATE ROTATED MODEL (ALT TEXTURE STATE)
-        models().withExistingParent(altModelPath, mcLoc("block/cube_all"))
-                .texture("all", modLoc(altTexturePath)); //Generate model of alt-texture block in generated models/block folder
+        if(makeAltModel) {
+            models().withExistingParent(altModelPath, mcLoc("block/cube_all"))
+                    .texture("all", modLoc(altTexturePath)); //Generate model of alt-texture block in generated models/block folder
+        }
 
         //GENERATE BLOCKSTATES
         getVariantBuilder(block)

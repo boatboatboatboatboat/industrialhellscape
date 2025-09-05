@@ -19,18 +19,23 @@ public class ModCreativeModTabs {
                     .title(Component.translatable("creativetab.inhell_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
 
+                        //DEV
+                        output.accept(ModBlocks.LOCKER_BOX.get());
+                        output.accept(ModBlocks.FUEL_DRUM.get());
+
                         //ITEMS FOR CREATIVE TAB
                         output.accept(ModItems.FLOPPY_DISK.get());
                         output.accept(ModItems.FLOPPY_DISKETTE.get());
                         output.accept(ModItems.INHELL_HAVEN_DEVICE.get());
                         output.accept(ModItems.VAPORWAVE_CASSETTE.get());
+                        output.accept(ModItems.JOB_APPLICATION.get());
 
                         //EXPERIMENTAL BLOCKS FOR CREATIVE TAB
                         output.accept(ModBlocks.HANDRAIL.get());
 
                         //IRONLIKE BLOCKS FOR CREATIVE TAB
                         output.accept(ModBlocks.VESSELPLATE.get());
-                        output.accept(ModBlocks.RIVETED_VESSELPLATE.get());
+                        output.accept(ModBlocks.RIVETED_VESSELPLATE_PANEL.get());
                         //output.accept(ModBlocks.VESSELPLATE_GRATE_BLOCK.get()); //Depreciated
                         output.accept(ModBlocks.GRATE.get());
                         output.accept(ModBlocks.SEETHROUGH_GRATE.get());
@@ -47,7 +52,7 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.GRAY_VESSELGLASS.get());
 
                         output.accept(ModBlocks.GRAY_VESSELPLATE.get());
-                        output.accept(ModBlocks.GRAY_RIVETED_VESSELPLATE.get());
+                        output.accept(ModBlocks.GRAY_RIVETED_VESSELPLATE_PANEL.get());
                         output.accept(ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get());
                         output.accept(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get());
                         output.accept(ModBlocks.GRAY_GRATE.get());
@@ -58,25 +63,21 @@ public class ModCreativeModTabs {
 
                         //STONELIKE BLOCKS FOR CREATIVE TAB
                         output.accept(ModBlocks.GRAY_ROCKRETE.get());
-                        output.accept(ModBlocks.GRAY_ROCKRETE_REBAR.get());
                         output.accept(ModBlocks.GRAY_ROCKRETE_STAIRS.get());
                         output.accept(ModBlocks.GRAY_ROCKRETE_SLAB.get());
                         output.accept(ModBlocks.GRAY_ROCKRETE_PILLAR.get());
 
                         output.accept(ModBlocks.GREEN_ROCKRETE.get());
-                        output.accept(ModBlocks.GREEN_ROCKRETE_REBAR.get());
                         output.accept(ModBlocks.GREEN_ROCKRETE_STAIRS.get());
                         output.accept(ModBlocks.GREEN_ROCKRETE_SLAB.get());
                         output.accept(ModBlocks.GREEN_ROCKRETE_PILLAR.get());
 
                         output.accept(ModBlocks.YELLOW_ROCKRETE.get());
-                        output.accept(ModBlocks.YELLOW_ROCKRETE_REBAR.get());
                         output.accept(ModBlocks.YELLOW_ROCKRETE_STAIRS.get());
                         output.accept(ModBlocks.YELLOW_ROCKRETE_SLAB.get());
                         output.accept(ModBlocks.YELLOW_ROCKRETE_PILLAR.get());
 
                         output.accept(ModBlocks.BLUE_ROCKRETE.get());
-                        output.accept(ModBlocks.BLUE_ROCKRETE_REBAR.get());
                         output.accept(ModBlocks.BLUE_ROCKRETE_STAIRS.get());
                         output.accept(ModBlocks.BLUE_ROCKRETE_SLAB.get());
                         output.accept(ModBlocks.BLUE_ROCKRETE_PILLAR.get());

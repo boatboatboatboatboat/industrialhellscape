@@ -1,0 +1,12 @@
+{
+  "ctm": {
+    "ctm_version": 1,
+    "type": "CTM",
+    "layer": "SOLID",
+    "textures": [
+      "industrialhellscape:ctm/ctm2x2_yellow_layered_rockrete"
+      ],
+      "connect_inside": true
+    }
+  }
+}

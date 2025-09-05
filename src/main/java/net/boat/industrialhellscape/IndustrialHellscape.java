@@ -29,6 +29,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.MissingMappingsEvent;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
@@ -41,11 +43,10 @@ public class IndustrialHellscape {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModCreativeModTabs.register(modEventBus);
-
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModSounds.register(modEventBus);
-        ModEntities.register(modEventBus); //Not Block Entities (Sitting Entities)
+        ModEntities.register(modEventBus); //Not Block Entities (Sittable Entities)
         ModBlockEntities.register(modEventBus); //Block Entities (Inventories)
         ModMenuTypes.register(modEventBus);
 
@@ -56,7 +57,6 @@ public class IndustrialHellscape {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
@@ -95,7 +95,7 @@ public class IndustrialHellscape {
         }
     }
 
-    //DEPRECIATED CONTENT SAFE REMOVAL
+    //DEPRECATED CONTENT SAFE REMOVAL
     @Mod.EventBusSubscriber(modid = IndustrialHellscape.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
     public class MissingRegistryResolver {
         @SubscribeEvent
@@ -111,16 +111,23 @@ public class IndustrialHellscape {
             removeAndReplace(ModBlockMappings, ModItemMappings,"black_rockrete", ModBlocks.GRAY_ROCKRETE.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"bunker_wall", ModBlocks.GREEN_ROCKRETE_PILLAR.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"light_gray_rockrete", ModBlocks.GREEN_ROCKRETE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"light_gray_rockrete_rebar", ModBlocks.GREEN_ROCKRETE_REBAR.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"light_gray_rockrete_rebar", ModBlocks.GREEN_ROCKRETE.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"light_gray_rockrete_stairs", ModBlocks.GREEN_ROCKRETE_STAIRS.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"light_gray_rockrete_slab", ModBlocks.GREEN_ROCKRETE_SLAB.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"vesselplate_grate_block", ModBlocks.GRATE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"vesselplate_grate", ModBlocks.GRATE.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"gray_vesselplate_grate", ModBlocks.GRAY_GRATE.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"rusty_vesselplate_grate", ModBlocks.RUSTY_GRATE.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"horizontal_encased_cables", ModBlocks.ENCASED_CABLES.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"vertical_encased_cables", ModBlocks.ENCASED_CABLES.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"smooth_vesselplate", ModBlocks.SMOOTH_VESSELPLATE_TILE.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"smooth_gray_vesselplate", ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_rockrete_rebar", ModBlocks.GRAY_ROCKRETE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"green_rockrete_rebar", ModBlocks.GREEN_ROCKRETE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"blue_rockrete_rebar", ModBlocks.BLUE_ROCKRETE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"yellow_rockrete_rebar", ModBlocks.YELLOW_ROCKRETE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"riveted_vesselplate", ModBlocks.RIVETED_VESSELPLATE_PANEL.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_riveted_vesselplate", ModBlocks.GRAY_RIVETED_VESSELPLATE_PANEL.get());
         }
 
         private static void removeAndReplace( List<MissingMappingsEvent.Mapping<Block>> ModBlockMappings, List<MissingMappingsEvent.Mapping<Item>> ModItemMappings,String removedRegistryName, Block blockReplacement) {

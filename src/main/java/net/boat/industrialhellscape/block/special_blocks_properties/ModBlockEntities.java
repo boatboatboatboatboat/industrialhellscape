@@ -2,6 +2,7 @@ package net.boat.industrialhellscape.block.special_blocks_properties;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
+import net.boat.industrialhellscape.block.special_blocks.ContainerBlock.GenericContainerBE;
 import net.boat.industrialhellscape.block.special_blocks.StorageBlock.Storage18SlotBlockEntity;
 import net.boat.industrialhellscape.block.special_blocks.StorageBlock.Storage27SlotBlockEntity;
 import net.boat.industrialhellscape.block.special_blocks.StorageBlock.Storage54SlotBlockEntity;
@@ -44,6 +45,13 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("storage_54slot_block_entity", () ->
                     BlockEntityType.Builder.of(Storage54SlotBlockEntity::new,
                             ModBlocks.LARGE_LOCKER.get()
+                    ).build(null));
+    public static final RegistryObject<BlockEntityType<GenericContainerBE>> CONTAINER_BLOCK_ENTITY =
+            BLOCK_ENTITIES.register("container_block_entity", () ->
+                    BlockEntityType.Builder.of(GenericContainerBE::new,
+
+                            ModBlocks.LOCKER_BOX.get()
+
                     ).build(null));
 
     public static void register(IEventBus eventBus) {

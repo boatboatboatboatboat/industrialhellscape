@@ -1,4 +1,16 @@
 {
+  "metal_box_opening": {
+    "subtitle": "sounds.industrialhellscape.metal_box_opening",
+    "sounds": [
+      "industrialhellscape:metal_box_opening"
+    ]
+  },
+  "metal_box_closing": {
+    "subtitle": "sounds.industrialhellscape.metal_box_closing",
+    "sounds": [
+      "industrialhellscape:metal_box_closing"
+    ]
+  },
   "metalpipefallingsoundeffect": {
     "subtitle": "sounds.industrialhellscape.metalpipefallingsoundeffect",
     "sounds": [
@@ -17,7 +29,6 @@
       "industrialhellscape:toilet_flush"
     ]
   },
-
   "vulta_shattered": {
     "subtitle": "sounds.industrialhellscape.vulta_shattered",
     "sounds": [

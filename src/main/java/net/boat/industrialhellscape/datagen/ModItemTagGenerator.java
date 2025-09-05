@@ -56,15 +56,19 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.GRATE.get().asItem(),
                         ModBlocks.SEETHROUGH_GRATE.get().asItem(),
                         ModBlocks.RUSTY_GRATE.get().asItem(),
+                        ModBlocks.RIVETED_VESSELPLATE_PANEL.get().asItem(),
                         ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
                         ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
                         ModBlocks.SMOOTH_VESSELPLATE_TILE.get().asItem(),
+                        ModBlocks.VESSELPLATE_PILLAR.get().asItem(),
+
                         ModBlocks.RUSTY_GRATE.get().asItem(),
 
                         ModBlocks.GRAY_VESSELPLATE.get().asItem(),
-                        ModBlocks.GRAY_RIVETED_VESSELPLATE.get().asItem(),
+                        ModBlocks.GRAY_RIVETED_VESSELPLATE_PANEL.get().asItem(),
                         ModBlocks.GRAY_GRATE.get().asItem(),
                         ModBlocks.GRAY_SEETHROUGH_GRATE.get().asItem(),
+                        ModBlocks.RIVETED_VESSELPLATE_PANEL.get().asItem(),
                         ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
                         ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
                         ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get().asItem(),
@@ -97,22 +101,18 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.GRIMY_RESTROOM_TILE.get().asItem(),
 
                         ModBlocks.GRAY_ROCKRETE_PILLAR.get().asItem(),
-                        ModBlocks.GRAY_ROCKRETE_REBAR.get().asItem(),
                         ModBlocks.GRAY_ROCKRETE_STAIRS.get().asItem(),
                         ModBlocks.GRAY_ROCKRETE.get().asItem(),
 
                         ModBlocks.GREEN_ROCKRETE_PILLAR.get().asItem(),
-                        ModBlocks.GREEN_ROCKRETE_REBAR.get().asItem(),
                         ModBlocks.GREEN_ROCKRETE_STAIRS.get().asItem(),
                         ModBlocks.GREEN_ROCKRETE.get().asItem(),
 
                         ModBlocks.YELLOW_ROCKRETE_PILLAR.get().asItem(),
-                        ModBlocks.YELLOW_ROCKRETE_REBAR.get().asItem(),
                         ModBlocks.YELLOW_ROCKRETE_STAIRS.get().asItem(),
                         ModBlocks.YELLOW_ROCKRETE.get().asItem(),
 
                         ModBlocks.BLUE_ROCKRETE_PILLAR.get().asItem(),
-                        ModBlocks.BLUE_ROCKRETE_REBAR.get().asItem(),
                         ModBlocks.BLUE_ROCKRETE_STAIRS.get().asItem(),
                         ModBlocks.BLUE_ROCKRETE.get().asItem()
                 );
