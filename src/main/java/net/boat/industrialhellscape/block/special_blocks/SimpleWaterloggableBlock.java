@@ -1,8 +1,6 @@
 package net.boat.industrialhellscape.block.special_blocks;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -11,10 +9,12 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
+
+// This block allows subsequent modded blocks that extend this block to inherit waterlogging properties.
+// It implements the similarly-named vanilla interface.
+// Currently, it is used for Strut blocks
 
 public class SimpleWaterloggableBlock extends Block implements SimpleWaterloggedBlock {
 

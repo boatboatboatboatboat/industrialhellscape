@@ -21,8 +21,10 @@ import org.jetbrains.annotations.Nullable;
 
 //INFO:
 //-----
-//This block supports rotation of custom models. It also supports directional placement based on player.
-//It supports waterlogging.
+// This block supports rotation of custom models. It also supports directional placement based on player.
+// It supports waterlogging via the vanilla interface, "SimpleWaterloggedBlock"
+// Custom models have their VoxelShape hitboxes chosen during registration by the HitboxGeometryCollection library.
+// The custom voxel shapes will be rotated by the mod's interface class, Rotationhelper along the appropriate cardinal directions.
 //-----
 
 public class ModelledFacingBlock extends SimpleFacingBlock implements SimpleWaterloggedBlock {

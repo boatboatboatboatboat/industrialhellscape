@@ -5,6 +5,7 @@ import net.boat.industrialhellscape.block.special_blocks_properties.FurnitureCon
 import net.boat.industrialhellscape.block.special_blocks_properties.RotationHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -51,8 +52,8 @@ public class ConnectedContainerBlock extends FacingContainerBlock implements Ent
     private VoxelShape RIGHT_SHAPE_EAST;
     private VoxelShape RIGHT_SHAPE_WEST;
 
-    public ConnectedContainerBlock(Properties properties, int slotAmount, TagKey<Block> inputCompatibleBlockSet, VoxelShape soloShape, VoxelShape leftShape, VoxelShape middleShape, VoxelShape rightShape) {
-        super(properties, slotAmount);
+    public ConnectedContainerBlock(Properties properties, int slotAmount, TagKey<Block> inputCompatibleBlockSet, VoxelShape soloShape, VoxelShape leftShape, VoxelShape middleShape, VoxelShape rightShape, SoundEvent openSound, SoundEvent closeSound) {
+        super(properties, slotAmount, openSound, closeSound);
 
         SOLO_SHAPE_NORTH = soloShape;
         SOLO_SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, soloShape);

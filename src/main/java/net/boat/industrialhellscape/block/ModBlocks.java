@@ -12,6 +12,7 @@ import net.boat.industrialhellscape.block.special_blocks_properties.HitboxGeomet
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.item.ModItems;
 import net.boat.industrialhellscape.util.ModTags;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
@@ -41,12 +42,16 @@ public class ModBlocks {
             () -> new FacingContainerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     , 27
+                    ,ModSounds.METAL_BOX_OPEN.get()
+                    ,ModSounds.METAL_BOX_CLOSE.get()
             )
     );
     public static final RegistryObject<Block> FUEL_DRUM = registerBlockAndBlockItem("fuel_drum",
             () -> new FacingContainerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     , 27
+                    ,ModSounds.METAL_BOX_OPEN.get()
+                    ,ModSounds.METAL_BOX_CLOSE.get()
             )
     );
 
@@ -389,7 +394,7 @@ public class ModBlocks {
                     .noOcclusion())
     );
     public static final RegistryObject<Block> COPPER_PIPE_CONDUIT_INNER_CORNER = registerBlockAndBlockItem("copper_pipe_conduit_inner_corner",
-            () -> new InnerCornerBlock(BlockBehaviour
+            () -> new CornerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     
                     .noOcclusion(),
@@ -398,7 +403,7 @@ public class ModBlocks {
                     HitboxGeometryCollection.INNER_CORNER_SIDE())
     );
     public static final RegistryObject<Block> COPPER_PIPE_CONDUIT_OUTER_CORNER = registerBlockAndBlockItem("copper_pipe_conduit_outer_corner",
-            () -> new InnerCornerBlock(BlockBehaviour
+            () -> new CornerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     
                     .noOcclusion(),
@@ -419,7 +424,7 @@ public class ModBlocks {
                     .noOcclusion())
     );
     public static final RegistryObject<Block> BRASS_PIPE_CONDUIT_INNER_CORNER = registerBlockAndBlockItem("brass_pipe_conduit_inner_corner",
-            () -> new InnerCornerBlock(BlockBehaviour
+            () -> new CornerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
 
                     .noOcclusion(),
@@ -428,7 +433,7 @@ public class ModBlocks {
                     HitboxGeometryCollection.INNER_CORNER_SIDE())
     );
     public static final RegistryObject<Block> BRASS_PIPE_CONDUIT_OUTER_CORNER = registerBlockAndBlockItem("brass_pipe_conduit_outer_corner",
-            () -> new InnerCornerBlock(BlockBehaviour
+            () -> new CornerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
 
                     .noOcclusion(),
@@ -449,7 +454,7 @@ public class ModBlocks {
                     .noOcclusion())
     );
     public static final RegistryObject<Block> GRAY_PIPE_CONDUIT_INNER_CORNER = registerBlockAndBlockItem("gray_pipe_conduit_inner_corner",
-            () -> new InnerCornerBlock(BlockBehaviour
+            () -> new CornerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
 
                     .noOcclusion(),
@@ -458,7 +463,7 @@ public class ModBlocks {
                     HitboxGeometryCollection.INNER_CORNER_SIDE())
     );
     public static final RegistryObject<Block> GRAY_PIPE_CONDUIT_OUTER_CORNER = registerBlockAndBlockItem("gray_pipe_conduit_outer_corner",
-            () -> new InnerCornerBlock(BlockBehaviour
+            () -> new CornerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
 
                     .noOcclusion(),
@@ -469,7 +474,7 @@ public class ModBlocks {
 
     //FURNITURE BLOCKS HERE
     public static final RegistryObject<Block> GRAY_BOLTED_BRACKET = registerBlockAndBlockItem("gray_bolted_bracket",
-            () -> new InnerCornerBlock(BlockBehaviour
+            () -> new CornerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
 
                     .noOcclusion(),
@@ -478,7 +483,7 @@ public class ModBlocks {
                     HitboxGeometryCollection.INNER_CORNER_SIDE())
     );
     public static final RegistryObject<Block> BLACK_BOLTED_BRACKET = registerBlockAndBlockItem("black_bolted_bracket",
-            () -> new InnerCornerBlock(BlockBehaviour
+            () -> new CornerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
 
                     .noOcclusion(),
@@ -506,8 +511,10 @@ public class ModBlocks {
                     HitboxGeometryCollection.DESK_DRAWER_SOLO_SHAPE(),
                     HitboxGeometryCollection.DESK_DRAWER_LEFT_SHAPE(),
                     HitboxGeometryCollection.DESK_DRAWER_MIDDLE_SHAPE(),
-                    HitboxGeometryCollection.DESK_DRAWER_RIGHT_SHAPE())
-
+                    HitboxGeometryCollection.DESK_DRAWER_RIGHT_SHAPE(),
+                    SoundEvents.BARREL_OPEN,
+                    SoundEvents.BARREL_CLOSE
+            )
     );
     public static final RegistryObject<Block> METAL_DESK = registerBlockAndBlockItem("metal_desk",
             () -> new ConnectedFurnitureBlock(BlockBehaviour
@@ -528,7 +535,10 @@ public class ModBlocks {
                     HitboxGeometryCollection.METAL_DESK_DRAWER_SOLO_SHAPE(),
                     HitboxGeometryCollection.METAL_DESK_DRAWER_LEFT_SHAPE(),
                     HitboxGeometryCollection.METAL_DESK_DRAWER_MIDDLE_SHAPE(),
-                    HitboxGeometryCollection.METAL_DESK_DRAWER_RIGHT_SHAPE())
+                    HitboxGeometryCollection.METAL_DESK_DRAWER_RIGHT_SHAPE(),
+                    ModSounds.METAL_BOX_OPEN.get(),
+                    ModSounds.METAL_BOX_CLOSE.get()
+                    )
 
     );
     public static final RegistryObject<Block> METAL_DESK_DRAWER_2 = registerBlockAndBlockItem("metal_desk_drawer_2",
@@ -540,7 +550,10 @@ public class ModBlocks {
                     HitboxGeometryCollection.METAL_DESK_DRAWER_2_SOLO_SHAPE(),
                     HitboxGeometryCollection.METAL_DESK_DRAWER_2_LEFT_SHAPE(),
                     HitboxGeometryCollection.METAL_DESK_DRAWER_2_MIDDLE_SHAPE(),
-                    HitboxGeometryCollection.METAL_DESK_DRAWER_2_RIGHT_SHAPE())
+                    HitboxGeometryCollection.METAL_DESK_DRAWER_2_RIGHT_SHAPE(),
+                    ModSounds.METAL_BOX_OPEN.get(),
+                    ModSounds.METAL_BOX_CLOSE.get()
+            )
     );
     public static final RegistryObject<Block> TOILET = registerBlockAndBlockItem("toilet",
             () -> new ToiletBlock(BlockBehaviour
@@ -561,7 +574,9 @@ public class ModBlocks {
                     .Properties.copy(Blocks.STONE)
                     .noOcclusion(),
                     9,
-                    HitboxGeometryCollection.RED_MEDKIT_NORTH()
+                    HitboxGeometryCollection.RED_MEDKIT_NORTH(),
+                    ModSounds.METAL_BOX_OPEN.get(),
+                    ModSounds.METAL_BOX_CLOSE.get()
             )
     );
 
@@ -570,7 +585,9 @@ public class ModBlocks {
                     .Properties.copy(Blocks.STONE)
                     .noOcclusion(),
                     9,
-                    HitboxGeometryCollection.WHITE_MEDKIT_NORTH()
+                    HitboxGeometryCollection.WHITE_MEDKIT_NORTH(),
+                    ModSounds.METAL_BOX_OPEN.get(),
+                    ModSounds.METAL_BOX_CLOSE.get()
             )
     );
     public static final RegistryObject<Block> RETRO_COMPUTER = registerBlockAndBlockItem("retro_computer",

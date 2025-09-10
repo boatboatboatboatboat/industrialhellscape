@@ -2,9 +2,7 @@ package net.boat.industrialhellscape.block.special_blocks_properties;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.special_blocks.DeprecatedStorageBlocks.Storage18SlotMenu;
-import net.boat.industrialhellscape.block.special_blocks.DeprecatedStorageBlocks.Storage54SlotMenu;
 import net.boat.industrialhellscape.block.special_blocks.DeprecatedStorageBlocks.Storage9SlotMenu;
-import net.boat.industrialhellscape.block.special_blocks.DeprecatedStorageBlocks.Storage27SlotMenu;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
@@ -28,12 +26,6 @@ public class ModMenuTypes {
             () -> IForgeMenuType.create(Storage9SlotMenu::new));
     public static final RegistryObject<MenuType<Storage18SlotMenu>> STORAGE_18SLOT_MENU = MENU_TYPES.register("storage_18slot_menu",
             () -> IForgeMenuType.create(Storage18SlotMenu::new));
-
-    public static final RegistryObject<MenuType<Storage27SlotMenu>> STORAGE_27SLOT_MENU = MENU_TYPES.register("storage_27slot_menu",
-            () -> IForgeMenuType.create(Storage27SlotMenu::new));
-
-    public static final RegistryObject<MenuType<Storage54SlotMenu>> STORAGE_54SLOT_MENU = MENU_TYPES.register("storage_54slot_menu",
-            () -> IForgeMenuType.create(Storage54SlotMenu::new));
 
 
     public static void register(IEventBus eventBus) {

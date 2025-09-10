@@ -15,9 +15,11 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 //INFO:
 //-----
-//This block supports rotation of custom models. It also supports directional placement based on player.
-//It supports waterlogging.
-//It supports interactions for model changes with the property "POWERED"
+// This block supports rotation of custom models. It also supports directional placement based on player.
+// It supports waterlogging.
+// It supports interactions for model changes with the boolean property "POWERED"
+// Will currently be used for blocks that emit light when "powered". The "LIT" property is omitted from usage for simplicity.
+// It extends the modded block class, ModelledFacingBlock. Rotation of hitboxes for all cardinal directions is handled in that class.
 //-----
 
 public class InteractableModelledFacingBlock extends ModelledFacingBlock {

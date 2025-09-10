@@ -2,11 +2,11 @@ package net.boat.industrialhellscape.block.special_blocks.ContainerBlock;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.Container;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -25,16 +25,24 @@ import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.Method;
 
+//INFO:
+//-----
+//This block supports cardinal directional placement, and an inventory with GUI. The inventory size is determined upon block registration.
+//It extends an already-existing vanilla block class and an already-existing
+//-----
+
 public class FacingContainerBlock extends HorizontalDirectionalBlock implements EntityBlock {
-    public final int SLOTS;
+    public final int SLOTS; //Amount of inventory slots. Should be a multiple of 9.
+    public final SoundEvent OPEN_SOUND;
+    public final SoundEvent CLOSE_SOUND;
 
     private static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-
-    public FacingContainerBlock(Properties properties, int SlotAmount) {
+    public FacingContainerBlock(Properties properties, int SlotAmount, SoundEvent openSound, SoundEvent closeSound) {
         super(properties);
         this.SLOTS = SlotAmount; //The inventory capacity of the block is determined during registration
-
+        this.OPEN_SOUND = openSound;
+        this.CLOSE_SOUND = closeSound;
 
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
@@ -55,6 +63,8 @@ public class FacingContainerBlock extends HorizontalDirectionalBlock implements 
         builder.add(FACING);
     }
 
+    //---------- Block Entity Handling Methods below ----------
+
     @Nullable
     @Override
     public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
@@ -64,8 +74,8 @@ public class FacingContainerBlock extends HorizontalDirectionalBlock implements 
     @NotNull
     @Override
     public InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
-        if (level.isClientSide()) {
-            return InteractionResult.SUCCESS;
+        if (level.isClientSide()) { //Client side
+            return InteractionResult.SUCCESS; //Allows interaction animation to occur client side
         }
 
         if (level.getBlockEntity(pos) instanceof GenericContainerBE blockEntity) {
@@ -76,16 +86,10 @@ public class FacingContainerBlock extends HorizontalDirectionalBlock implements 
     }
 
     @Override
-    public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-        //When the block is placed
-        if (level.getBlockEntity(pos) instanceof GenericContainerBE blockEntity) {
-            blockEntity.setSlotAmount(this.SLOTS); //The block entity will set the inventory slot amount that the registered block should have.
-            //setSlotAmount is a function in the GenericContainerBE
-        }
-    }
-
-    @Override
     public void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) {
+        //General method for safe removal of current (Container) and deprecated block entities.
+        //Handles both the new container entities and previous non-container block entities
+
         BlockEntity be = level.getBlockEntity(pos);
 
         if (!state.is(newState.getBlock())) {
@@ -96,6 +100,9 @@ public class FacingContainerBlock extends HorizontalDirectionalBlock implements 
 
                 try {
                     Method possibleGetInventory = be.getClass().getMethod("getInventory"); //Searcb for a getInventory method in this block entity
+
+                    //-----From TurtyWurty 1.20.1 Github-----
+
                     ItemStackHandler inventory = (ItemStackHandler) possibleGetInventory.invoke(be); //Attempt to read and store the block entity's inventory
 
                     for (int i = 0; i < inventory.getSlots(); i++) {
@@ -105,7 +112,9 @@ public class FacingContainerBlock extends HorizontalDirectionalBlock implements 
                             level.addFreshEntity(entity); //Add a new entity
                         }
                     }
-                } catch(Exception e) { //Should trip if somehow a getInventory method does not exist
+                    //----- End of Obtained Code -----
+
+                } catch(Exception e) { //Should trip if somehow a getInventory method does not exist for the old block entities
                     System.out.println("This block entity is not an inventory Block Entity");
                 }
 
@@ -113,4 +122,6 @@ public class FacingContainerBlock extends HorizontalDirectionalBlock implements 
         }
         super.onRemove(state, level, pos, newState, isMoving);
     }
+
+    //---------- End of Block Entity Handling Methods ----------
 }

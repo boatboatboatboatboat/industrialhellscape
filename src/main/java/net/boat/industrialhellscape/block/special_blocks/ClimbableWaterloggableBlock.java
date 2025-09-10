@@ -16,6 +16,13 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
 
+//INFO:
+//-----
+// This block supports basic ladder-like climability via enabling ladder logic and setting a slightly smaller block hitbox to facilitate entity climbing.
+// It supports waterlogging but otherwise has no other block-states.
+
+// Block class is adapted from Immersive Engineering's Scaffolding block class code.
+
 public class ClimbableWaterloggableBlock extends ModelledWaterloggableBlock {
 
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;

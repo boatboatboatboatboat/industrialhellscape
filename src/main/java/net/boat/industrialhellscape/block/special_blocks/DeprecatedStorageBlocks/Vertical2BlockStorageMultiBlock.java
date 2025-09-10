@@ -54,7 +54,7 @@ public class Vertical2BlockStorageMultiBlock extends SimpleFacingBlock implement
         }
 
         BlockEntity be = pLevel.getBlockEntity(pPos);
-        if (!(be instanceof Storage54SlotBlockEntity blockEntity))
+        if (!(be instanceof Storage9SlotBlockEntity blockEntity))
             return InteractionResult.PASS;
 
         //Open Screen
@@ -65,7 +65,7 @@ public class Vertical2BlockStorageMultiBlock extends SimpleFacingBlock implement
     }
 
     public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
-        BlockEntity storageEntity = new Storage54SlotBlockEntity(pos, state);
+        BlockEntity storageEntity = new Storage9SlotBlockEntity(pos, state);
 
         if(state.getValue(HALF) == TwoBlockMultiBlockState.POSITIVE) { //If the block is the top block
             return null; //no new block entities will be generated
@@ -106,7 +106,7 @@ public class Vertical2BlockStorageMultiBlock extends SimpleFacingBlock implement
     public void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) {
         if (!level.isClientSide()) {
             BlockEntity be = level.getBlockEntity(pos);
-            if (be instanceof Storage54SlotBlockEntity blockEntity) {
+            if (be instanceof Storage9SlotBlockEntity blockEntity) {
                 ItemStackHandler inventory = blockEntity.getInventory();
                 for (int index = 0; index < inventory.getSlots(); index++) {
                     ItemStack stack = inventory.getStackInSlot(index);

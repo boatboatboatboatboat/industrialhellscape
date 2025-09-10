@@ -2,8 +2,6 @@ package net.boat.industrialhellscape;
 
 import net.boat.industrialhellscape.block.ModBlocks;
 import net.boat.industrialhellscape.block.special_blocks.DeprecatedStorageBlocks.Storage18SlotMenuScreen;
-import net.boat.industrialhellscape.block.special_blocks.DeprecatedStorageBlocks.Storage27SlotMenuScreen;
-import net.boat.industrialhellscape.block.special_blocks.DeprecatedStorageBlocks.Storage54SlotMenuScreen;
 import net.boat.industrialhellscape.block.special_blocks.DeprecatedStorageBlocks.Storage9SlotMenuScreen;
 import net.boat.industrialhellscape.block.special_blocks_properties.ModBlockEntities;
 import net.boat.industrialhellscape.entity.ModEntities;
@@ -87,8 +85,6 @@ public class IndustrialHellscape {
             event.enqueueWork(() -> {
                 MenuScreens.register(ModMenuTypes.STORAGE_9SLOT_MENU.get(), Storage9SlotMenuScreen::new);
                 MenuScreens.register(ModMenuTypes.STORAGE_18SLOT_MENU.get(), Storage18SlotMenuScreen::new);
-                MenuScreens.register(ModMenuTypes.STORAGE_27SLOT_MENU.get(), Storage27SlotMenuScreen::new);
-                MenuScreens.register(ModMenuTypes.STORAGE_54SLOT_MENU.get(), Storage54SlotMenuScreen::new);
             });
         }
     }

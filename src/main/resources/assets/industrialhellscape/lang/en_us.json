@@ -1,8 +1,9 @@
 {
   "item.industrialhellscape.floppy_disk": "Floppy Disk",
   "item.industrialhellscape.floppy_diskette": "Floppy Diskette",
-  "item.industrialhellscape.inhell_haven_device": "InHell HAVEN Tool",
+  "item.industrialhellscape.inhell_haven_device": "HAVEN Tool",
   "item.industrialhellscape.job_application": "Job Application",
+
   "item.industrialhellscape.vaporwave_cassette": "Vaporwave Cassette",
   "item.industrialhellscape.vaporwave_cassette.desc": "Vulta - Shattered",
 
@@ -133,7 +134,7 @@
   "tooltip.industrialhellscape.vaporwave_cassette.flavortext": "§6\"Warp signatures coming from Lagrange 4. Unidentified. All orbital guns, align prograde to solar orbit. We have 50 hours to contact.\"",
   "tooltip.industrialhellscape.vesselplate.flavortext": "Used extensively to armor the warships of the InHell Corporate Acquisition Fleet.",
   "tooltip.industrialhellscape.gray_rockrete.flavortext": "Mass-produced for Class-3 employee accommodations and below in InHell-owned megacities.",
-  "tooltip.industrialhellscape.ihea_furniture_kit.flavortext": "Use in a stonecutter to craft furnishings.",
+  "tooltip.industrialhellscape.ihea_furniture_kit.flavortext": "InHell Ergonomic Amenities. Use in a stonecutter to craft furnishings.",
 
   "gui.industrialhellscape.inventory_menu": "Industrial Hellscape Storage",
 

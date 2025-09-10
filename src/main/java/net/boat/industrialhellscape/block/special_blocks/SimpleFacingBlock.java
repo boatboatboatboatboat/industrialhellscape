@@ -10,6 +10,11 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import org.jetbrains.annotations.Nullable;
 
+//INFO:
+//-----
+// This block, when placed, will face the player along the cardinal directions.
+// It extends the vanilla block class HorizontalDirectionBlock.
+
 public class SimpleFacingBlock extends HorizontalDirectionalBlock{
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;

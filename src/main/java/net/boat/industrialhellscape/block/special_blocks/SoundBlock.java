@@ -7,6 +7,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -32,6 +33,13 @@ public class SoundBlock extends Block {
     @Override
     public VoxelShape getInteractionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
         return super.getInteractionShape(pState, pLevel, pPos);
+    }
+
+    @Override
+    public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {
+        super.stepOn(pLevel, pPos, pState, pEntity);
+
+        //pLevel.explode()
     }
 
     @Override

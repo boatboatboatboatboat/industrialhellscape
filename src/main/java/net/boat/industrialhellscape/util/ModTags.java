@@ -57,7 +57,7 @@ public class ModTags {
 
         //For crafting convenience
         public static final TagKey<Item> IH_RECIPE_STONELIKES = tag("ih_recipe_stonelikes");
-        public static final TagKey<Item> IH_COMPATIBLE_TOOLS = tag("ih_rotation_tools");
+        public static final TagKey<Item> IH_COMPATIBLE_TOOLS = tag("ih_compatible_tools");
 
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(new ResourceLocation(IndustrialHellscape.MOD_ID, name));

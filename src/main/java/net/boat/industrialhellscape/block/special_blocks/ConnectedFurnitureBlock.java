@@ -25,6 +25,22 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
+//INFO:
+//-----
+// This block, when placed, connects with similarly aligned neighbors. Custom models allow the resulting connection to look like a seamless model (E.G. a multi-block table or desk).
+// Waterlogging and cardinal directional placement is supported.
+// The operating methods for block state detection and updating are present in this mod's ConnectedModelCapability interface.
+// Waterlogging is handled by the vanilla SimpleWaterloggedBlock interface.
+// Can connect to other block classes. This ability is determined by the block tag passed as a parameter during block registration (TagKey<Block> inputCompatibleBlockSet)
+
+// Block-state notation:
+//     Solo - Unconnected block-state. When placed for the first time by itself with no eligible adjacent connections.
+//     Left - an "end" connection that should be the left-end portion of a connected block group (a multi-block desk/table) relative to the facing player.
+//     Middle - an interior connection that may repeat based on the length of the blocks connected.
+//     Right - an "end" connection that should be the right-end portion of a connected block group (a multi-block desk/table) relative to the facing player.
+
+// Block class is adapted from Hearth and Home mod's Stone Pillar block class code.
+
 public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implements ConnectedModelCapability, SimpleWaterloggedBlock {
 
     public static final EnumProperty<FurnitureConnectionState> TYPE = EnumProperty.create("type", FurnitureConnectionState.class); //"TYPE" is used to store enum value of "solo, left, right, middle" for block connected variants

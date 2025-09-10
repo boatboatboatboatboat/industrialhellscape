@@ -3,6 +3,7 @@ package net.boat.industrialhellscape.block.special_blocks.ContainerBlock;
 import net.boat.industrialhellscape.block.special_blocks_properties.RotationHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -31,8 +32,8 @@ public class ModelledFacingContainerBlock extends FacingContainerBlock implement
     private VoxelShape SHAPE_EAST;
     private VoxelShape SHAPE_WEST;
     
-    public ModelledFacingContainerBlock(Properties properties, int slotAmount, VoxelShape modelShape) {
-        super(properties, slotAmount);
+    public ModelledFacingContainerBlock(Properties properties, int slotAmount, VoxelShape modelShape, SoundEvent openSound, SoundEvent closeSound) {
+        super(properties, slotAmount, openSound, closeSound);
 
         SHAPE_NORTH = modelShape;
         SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, modelShape);

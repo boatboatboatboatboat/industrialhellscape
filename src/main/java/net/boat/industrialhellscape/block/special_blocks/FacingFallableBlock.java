@@ -15,6 +15,12 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import org.jetbrains.annotations.Nullable;
 
+//INFO:
+//-----
+// This block has gravity enabled. It will fall like sand if there are no blocks below it.
+// Cardinal directional placement is supported.
+// Custom interaction: Upon landing, a fixed custom sound will be played.
+
 public class FacingFallableBlock extends FallingBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 

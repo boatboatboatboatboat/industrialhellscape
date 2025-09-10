@@ -3,7 +3,6 @@ package net.boat.industrialhellscape.block.special_blocks;
 import net.boat.industrialhellscape.block.special_blocks_properties.ConnectedModelCapability;
 import net.boat.industrialhellscape.block.special_blocks_properties.PillarConnectionState;
 import net.boat.industrialhellscape.block.special_blocks_properties.RotationHelper;
-import net.boat.industrialhellscape.item.ModItems;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -15,10 +14,14 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -31,11 +34,12 @@ import java.nio.file.StandardCopyOption;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class PipeBlock extends Block implements ConnectedModelCapability {
+public class PipeBlock extends Block implements ConnectedModelCapability, SimpleWaterloggedBlock {
 
     public static final EnumProperty<Direction> SURFACE_ATTACHED = BlockStateProperties.FACING;
     public static final EnumProperty<Direction.Axis> PLANAR_AXIS = BlockStateProperties.AXIS;
     public static final EnumProperty<PillarConnectionState> TYPE = EnumProperty.create("type", PillarConnectionState.class); //"TYPE" is used to store enum value of "solo, pos, neg, middle"
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public static final VoxelShape SHAPE_FLOOR = Block.box(0, 0, 0, 16, 6, 16);
     public static final VoxelShape SHAPE_CEILING = Block.box(0, 10, 0, 16, 16, 16);
@@ -51,6 +55,7 @@ public class PipeBlock extends Block implements ConnectedModelCapability {
                 .setValue(SURFACE_ATTACHED, Direction.DOWN) //Default surface pipe is placed on
                 .setValue(PLANAR_AXIS, Direction.Axis.Z) //Default North/South pipe direction
                 .setValue(TYPE, PillarConnectionState.SOLO)
+                .setValue(WATERLOGGED, false)
         );
     }
 
@@ -76,9 +81,13 @@ public class PipeBlock extends Block implements ConnectedModelCapability {
         BlockState state = this.defaultBlockState();
         Direction directionClicked = pContext.getClickedFace().getOpposite(); //Are you clicking the floor, ceiling, north wall, south wall, east wall, west wall?
         Direction.Axis cardinalDirection = pContext.getHorizontalDirection().getAxis();
+        FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
 
         //This section determines surface alignment based on where you click to place.
         state = state.setValue(SURFACE_ATTACHED, directionClicked);
+
+        //This section determines waterlogging.
+        state =  state.setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
 
         //This section determines block rotation on the surface
         if(directionClicked == Direction.UP || directionClicked == Direction.DOWN) { //If you clicked to place on the floor or ceiling, the pipe axes will align with your nearest horizontal direction
@@ -143,8 +152,12 @@ public class PipeBlock extends Block implements ConnectedModelCapability {
         }
     }
 
+    public FluidState getFluidState(BlockState pState) {
+        return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
+    }
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(SURFACE_ATTACHED, PLANAR_AXIS, TYPE); //Type defines connection state, Surface Direction defines which surface (up, down, cardinal) the block is placed on. Planar Axis is used to define pipe direction lengthwise.
+        builder.add(SURFACE_ATTACHED, PLANAR_AXIS, TYPE, WATERLOGGED); //Type defines connection state, Surface Direction defines which surface (up, down, cardinal) the block is placed on. Planar Axis is used to define pipe direction lengthwise.
     }
 }
