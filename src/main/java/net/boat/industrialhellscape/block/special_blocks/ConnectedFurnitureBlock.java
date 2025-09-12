@@ -25,6 +25,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nonnull;
+
 //INFO:
 //-----
 // This block, when placed, connects with similarly aligned neighbors. Custom models allow the resulting connection to look like a seamless model (E.G. a multi-block table or desk).
@@ -44,29 +46,29 @@ import org.jetbrains.annotations.Nullable;
 public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implements ConnectedModelCapability, SimpleWaterloggedBlock {
 
     public static final EnumProperty<FurnitureConnectionState> TYPE = EnumProperty.create("type", FurnitureConnectionState.class); //"TYPE" is used to store enum value of "solo, left, right, middle" for block connected variants
-    public static DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING; //"FACING" is used to store DirectionProperty value of "north, south, east, west" //KJ
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING; //"FACING" is used to store DirectionProperty value of "north, south, east, west" //KJ
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public TagKey<Block> BlockSetFamily;
 
-    private VoxelShape SOLO_SHAPE_NORTH;
-    private VoxelShape SOLO_SHAPE_SOUTH;
-    private VoxelShape SOLO_SHAPE_EAST;
-    private VoxelShape SOLO_SHAPE_WEST;
+    private final VoxelShape SOLO_SHAPE_NORTH;
+    private final VoxelShape SOLO_SHAPE_SOUTH;
+    private final VoxelShape SOLO_SHAPE_EAST;
+    private final VoxelShape SOLO_SHAPE_WEST;
 
-    private VoxelShape LEFT_SHAPE_NORTH;
-    private VoxelShape LEFT_SHAPE_SOUTH;
-    private VoxelShape LEFT_SHAPE_EAST;
-    private VoxelShape LEFT_SHAPE_WEST;
+    private final VoxelShape LEFT_SHAPE_NORTH;
+    private final VoxelShape LEFT_SHAPE_SOUTH;
+    private final VoxelShape LEFT_SHAPE_EAST;
+    private final VoxelShape LEFT_SHAPE_WEST;
 
-    private VoxelShape MIDDLE_SHAPE_NORTH;
-    private VoxelShape MIDDLE_SHAPE_SOUTH;
-    private VoxelShape MIDDLE_SHAPE_EAST;
-    private VoxelShape MIDDLE_SHAPE_WEST;
+    private final VoxelShape MIDDLE_SHAPE_NORTH;
+    private final VoxelShape MIDDLE_SHAPE_SOUTH;
+    private final VoxelShape MIDDLE_SHAPE_EAST;
+    private final VoxelShape MIDDLE_SHAPE_WEST;
 
-    private VoxelShape RIGHT_SHAPE_NORTH;
-    private VoxelShape RIGHT_SHAPE_SOUTH;
-    private VoxelShape RIGHT_SHAPE_EAST;
-    private VoxelShape RIGHT_SHAPE_WEST;
+    private final VoxelShape RIGHT_SHAPE_NORTH;
+    private final VoxelShape RIGHT_SHAPE_SOUTH;
+    private final VoxelShape RIGHT_SHAPE_EAST;
+    private final VoxelShape RIGHT_SHAPE_WEST;
 
     public ConnectedFurnitureBlock(Properties pProperties, TagKey<Block> inputCompatibleBlockSet, VoxelShape soloShape, VoxelShape leftShape, VoxelShape middleShape, VoxelShape rightShape) {
         super(pProperties);
@@ -100,46 +102,41 @@ public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implemen
     }
 
     @Override
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+    public @Nonnull VoxelShape getShape(BlockState pState, @Nonnull  BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull CollisionContext pContext) {
 
         //When placed, if the block's "TYPE" property is one of these cases, find its horizontal orientation and give it the correct hitbox
         //North is the default orientation assumed if no other cases met
-        switch (pState.getValue(TYPE)) {
+        return switch (pState.getValue(TYPE)) {
 
-            case SOLO: switch (pState.getValue(FACING)) {
-                case SOUTH: return SOLO_SHAPE_SOUTH;
-                case EAST: return SOLO_SHAPE_EAST;
-                case WEST: return SOLO_SHAPE_WEST;
-                default: return SOLO_SHAPE_NORTH;
-            }
-
-            case LEFT: switch (pState.getValue(FACING)) {
-                case SOUTH: return LEFT_SHAPE_SOUTH;
-                case EAST: return LEFT_SHAPE_EAST;
-                case WEST: return LEFT_SHAPE_WEST;
-                default: return LEFT_SHAPE_NORTH;
-            }
-
-            case MIDDLE: switch (pState.getValue(FACING)) {
-                case SOUTH: return MIDDLE_SHAPE_SOUTH;
-                case EAST: return MIDDLE_SHAPE_EAST;
-                case WEST: return MIDDLE_SHAPE_WEST;
-                default: return MIDDLE_SHAPE_NORTH;
-            }
-
-            case RIGHT: switch (pState.getValue(FACING)) {
-                case SOUTH: return RIGHT_SHAPE_SOUTH;
-                case EAST: return RIGHT_SHAPE_EAST;
-                case WEST: return RIGHT_SHAPE_WEST;
-                default: return RIGHT_SHAPE_NORTH;
-            }
-
-            default: return SOLO_SHAPE_NORTH;
-        }
+            case LEFT -> switch (pState.getValue(FACING)) {
+                case SOUTH -> LEFT_SHAPE_SOUTH;
+                case EAST -> LEFT_SHAPE_EAST;
+                case WEST -> LEFT_SHAPE_WEST;
+                default -> LEFT_SHAPE_NORTH;
+            };
+            case MIDDLE -> switch (pState.getValue(FACING)) {
+                case SOUTH -> MIDDLE_SHAPE_SOUTH;
+                case EAST -> MIDDLE_SHAPE_EAST;
+                case WEST -> MIDDLE_SHAPE_WEST;
+                default -> MIDDLE_SHAPE_NORTH;
+            };
+            case RIGHT -> switch (pState.getValue(FACING)) {
+                case SOUTH -> RIGHT_SHAPE_SOUTH;
+                case EAST -> RIGHT_SHAPE_EAST;
+                case WEST -> RIGHT_SHAPE_WEST;
+                default -> RIGHT_SHAPE_NORTH;
+            };
+            default -> switch (pState.getValue(FACING)) { //Default case is assumed solo case
+                case SOUTH -> SOLO_SHAPE_SOUTH;
+                case EAST -> SOLO_SHAPE_EAST;
+                case WEST -> SOLO_SHAPE_WEST;
+                default -> SOLO_SHAPE_NORTH;
+            };
+        };
     }
 
     @Override
-    public RenderShape getRenderShape(BlockState state) {
+    public @Nonnull RenderShape getRenderShape(@Nonnull BlockState state) {
         return RenderShape.MODEL;
     }
 
@@ -154,12 +151,12 @@ public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implemen
         Direction direction = pContext.getHorizontalDirection();
         state = state.setValue(FACING, direction);
         state = state.setValue(TYPE, getTypeAndFamily(state, getStateRelativeLeft(level, positionClicked, directionClicked), getStateRelativeRight(level, positionClicked, directionClicked), BlockSetFamily)); //Second, defines connection type of the block
-        state =  state.setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
+        state =  state.setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
         return state;
     }
 
     @Override
-    public void neighborChanged(BlockState state, Level level, BlockPos positionClicked, Block block, BlockPos fromPos, boolean isMoving) {
+    public void neighborChanged(@Nonnull BlockState state, Level level, @Nonnull BlockPos positionClicked, @Nonnull Block block, @Nonnull BlockPos fromPos, boolean isMoving) {
         if (!level.isClientSide) {
             if (state.getValue(WATERLOGGED)) {
                 level.scheduleTick(fromPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));

@@ -15,16 +15,7 @@ public enum RelativePlanarDirectionState implements StringRepresentable {
     DOWN("down");
 
     private final String name;
-
-    private RelativePlanarDirectionState(String type) {
-        this.name = type;
-    }
-
-    public String toString() {  //Tells the code to use the lowercase string in TOP("top") in anything external to Minecraft (such as loggers)
-        return this.name;
-    }
-
-    public String getSerializedName() {
-        return this.name;
-    }
+    private RelativePlanarDirectionState(String type) {this.name = type;}
+    public String toString() {return this.name;}
+    public String getSerializedName() {return this.name;}
 }

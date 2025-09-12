@@ -26,12 +26,12 @@ import org.jetbrains.annotations.NotNull;
 //INFO:
 //-----
 //This block entity takes the SLOTS parameter passed from FacingContainerBlock, and loads an inventory with appropriate GUI based on that item slot capacity.
-//Modified from Valhesia Furniture mod's Desk Drawer block entity code to allow a configurable inventory slot capacity determined during block registration. This avoids multiple block entity classes or registrations.
+//Allows a configurable inventory slot capacity determined during block registration. This avoids multiple block entity classes or registrations.
 //-----
 
 public class GenericContainerBE extends RandomizableContainerBlockEntity {
 
-    private int SLOTS;
+    private final int SLOTS;
     public final SoundEvent OPEN_SOUND;
     public final SoundEvent CLOSE_SOUND;
     private NonNullList<ItemStack> items;
@@ -40,6 +40,10 @@ public class GenericContainerBE extends RandomizableContainerBlockEntity {
         super(ModBlockEntities.CONTAINER_BLOCK_ENTITY.get(), pos, state);
         Block block = state.getBlock();
         if (block instanceof FacingContainerBlock containerBlock) {
+            this.SLOTS = containerBlock.SLOTS;
+            this.OPEN_SOUND = containerBlock.OPEN_SOUND;
+            this.CLOSE_SOUND = containerBlock.CLOSE_SOUND;
+        } else if (block instanceof TwoBlockContainerMultiBlock containerBlock) {
             this.SLOTS = containerBlock.SLOTS;
             this.OPEN_SOUND = containerBlock.OPEN_SOUND;
             this.CLOSE_SOUND = containerBlock.CLOSE_SOUND;
@@ -98,12 +102,12 @@ public class GenericContainerBE extends RandomizableContainerBlockEntity {
     @Override
     protected AbstractContainerMenu createMenu(int id, @NotNull Inventory inventory) {
         //Conditional GUI appearance based on inventory slot capacity chosen by registered block
-        switch(SLOTS) {
-            default: return new ChestMenu(MenuType.GENERIC_9x1, id, inventory, this, 1);
-            case(18): return new ChestMenu(MenuType.GENERIC_9x2, id, inventory, this, 2);
-            case(27): return new ChestMenu(MenuType.GENERIC_9x3, id, inventory, this, 3);
-            case(54): return new ChestMenu(MenuType.GENERIC_9x3, id, inventory, this, 6);
-        }
+        return switch (SLOTS) {
+            case (18) -> new ChestMenu(MenuType.GENERIC_9x2, id, inventory, this, 2);
+            case (27) -> new ChestMenu(MenuType.GENERIC_9x3, id, inventory, this, 3);
+            case (54) -> new ChestMenu(MenuType.GENERIC_9x6, id, inventory, this, 6);
+            default -> new ChestMenu(MenuType.GENERIC_9x1, id, inventory, this, 1); //Defaults to assuming block has 9 slot inventory
+        };
     }
 
     @Override
@@ -152,6 +156,8 @@ public class GenericContainerBE extends RandomizableContainerBlockEntity {
         double d1 = this.worldPosition.getY() + 0.5D;
         double d2 = this.worldPosition.getZ() + 0.5D;
 
-        this.level.playSound(null, d0, d1, d2, soundEvent, SoundSource.BLOCKS, 0.5F, this.level.getRandom().nextFloat() * 0.1F + 0.9F);
+        if(this.level != null){
+            this.level.playSound(null, d0, d1, d2, soundEvent, SoundSource.BLOCKS, 0.5F, this.level.getRandom().nextFloat() * 0.1F + 0.9F);
+        }
     }
 }

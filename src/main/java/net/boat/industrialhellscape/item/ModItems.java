@@ -33,7 +33,7 @@ public class ModItems {
             () -> new RecordItemWithTooltip("vaporwave_cassette", 6, ModSounds.VULTA_SHATTERED, new Item.Properties().stacksTo(1), 4620));
 
     //---------- BLOCK ITEMS ----------
-        //For flavor text purposes
+        //For flavor text purposes. Ignore the unuse warning.
     public static final RegistryObject<Item> VESSELPLATE_ITEM = ITEMS.register("vesselplate",
             () -> new BlockItemWithTooltip("vesselplate", ModBlocks.VESSELPLATE.get(), new Item.Properties()));
     public static final RegistryObject<Item> GRAY_ROCKRETE_ITEM = ITEMS.register("gray_rockrete",

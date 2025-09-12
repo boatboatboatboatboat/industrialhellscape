@@ -5,10 +5,11 @@ import net.boat.industrialhellscape.block.special_blocks.*;
 import net.boat.industrialhellscape.block.special_blocks.ContainerBlock.ConnectedContainerBlock;
 import net.boat.industrialhellscape.block.special_blocks.ContainerBlock.FacingContainerBlock;
 import net.boat.industrialhellscape.block.special_blocks.ContainerBlock.ModelledFacingContainerBlock;
+import net.boat.industrialhellscape.block.special_blocks.ContainerBlock.TwoBlockContainerMultiBlock;
 import net.boat.industrialhellscape.block.special_blocks.PipeBlock;
 import net.boat.industrialhellscape.block.special_blocks.SimpleFacingBlock;
-import net.boat.industrialhellscape.block.special_blocks.DeprecatedStorageBlocks.*;
 import net.boat.industrialhellscape.block.special_blocks_properties.HitboxGeometryCollection;
+import net.boat.industrialhellscape.block.special_blocks_properties.MultiBlockPlacementDirection;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.item.ModItems;
 import net.boat.industrialhellscape.util.ModTags;
@@ -34,24 +35,35 @@ public class ModBlocks {
 
     //EXPERIMENTAL BLOCKS
     public static final RegistryObject<Block> LARGE_LOCKER = registerBlockAndBlockItem("large_locker",
-            () -> new Vertical2BlockStorageMultiBlock(BlockBehaviour
+            () -> new TwoBlockContainerMultiBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
+                    , MultiBlockPlacementDirection.VERTICAL
+                    , 54
+                    , ModSounds.METAL_BOX_OPEN.get()
+                    , ModSounds.METAL_BOX_CLOSE.get()
+            )
+    );
+
+    public static final RegistryObject<Block> BODY_PILLOW = registerBlockAndBlockItem("body_pillow",
+            () -> new BodyPillowBlock(BlockBehaviour
+                    .Properties.copy(Blocks.WHITE_WOOL)
+                    .sound(SoundType.SLIME_BLOCK)
+                    .noOcclusion()
             )
     );
     public static final RegistryObject<Block> LOCKER_BOX = registerBlockAndBlockItem("locker_box",
             () -> new FacingContainerBlock(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
-                    , 27
-                    ,ModSounds.METAL_BOX_OPEN.get()
-                    ,ModSounds.METAL_BOX_CLOSE.get()
+                    .Properties.copy(Blocks.IRON_BLOCK),
+                    27,
+                    ModSounds.METAL_BOX_OPEN.get(),
+                    ModSounds.METAL_BOX_CLOSE.get()
             )
     );
     public static final RegistryObject<Block> FUEL_DRUM = registerBlockAndBlockItem("fuel_drum",
             () -> new FacingContainerBlock(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
-                    , 27
-                    ,ModSounds.METAL_BOX_OPEN.get()
-                    ,ModSounds.METAL_BOX_CLOSE.get()
+                    .Properties.copy(Blocks.IRON_BLOCK), 27,
+                    ModSounds.METAL_BOX_OPEN.get(),
+                    ModSounds.METAL_BOX_CLOSE.get()
             )
     );
 
@@ -596,6 +608,14 @@ public class ModBlocks {
                     .noOcclusion()
                     .lightLevel(state -> state.getValue(POWERED) ? 7 : 0),
                     HitboxGeometryCollection.RETRO_COMPUTER()
+            )
+    );
+    public static final RegistryObject<Block> RETRO_COMPUTER_2 = registerBlockAndBlockItem("retro_computer_2",
+            () -> new InteractableModelledFacingBlock(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+                    .noOcclusion()
+                    .lightLevel(state -> state.getValue(POWERED) ? 7 : 0),
+                    HitboxGeometryCollection.RETRO_COMPUTER_2()
             )
     );
     public static final RegistryObject<Block> CASSETTE_PLAYER = registerBlockAndBlockItem("cassette_player",

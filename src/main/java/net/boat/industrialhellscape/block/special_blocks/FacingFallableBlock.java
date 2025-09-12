@@ -15,11 +15,14 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nonnull;
+
 //INFO:
 //-----
 // This block has gravity enabled. It will fall like sand if there are no blocks below it.
 // Cardinal directional placement is supported.
 // Custom interaction: Upon landing, a fixed custom sound will be played.
+// For full blocks
 
 public class FacingFallableBlock extends FallingBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -32,13 +35,13 @@ public class FacingFallableBlock extends FallingBlock {
 
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        Direction directionClicked = pContext.getHorizontalDirection(); //Gets the cardinal direction when player places new block
+        Direction directionClicked = pContext.getHorizontalDirection().getOpposite(); //Gets the cardinal direction when player places new block
         BlockState state = this.defaultBlockState().setValue(FACING, directionClicked); //First, defines facing direction of the block
         return state;
     }
 
     @Override
-    public void onLand(Level pLevel, BlockPos pPos, BlockState pState, BlockState pReplaceableState, FallingBlockEntity pFallingBlock) {
+    public void onLand(Level pLevel, @Nonnull BlockPos pPos, @Nonnull BlockState pState, @Nonnull BlockState pReplaceableState, @Nonnull FallingBlockEntity pFallingBlock) {
         pLevel.playSound(null, pPos, ModSounds.METALPIPEFALLINGSOUNDEFFECT.get(), SoundSource.BLOCKS,
                 1f, 1f);
     }

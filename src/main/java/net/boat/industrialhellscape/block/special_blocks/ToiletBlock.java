@@ -35,6 +35,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
@@ -65,34 +66,25 @@ public class ToiletBlock extends HorizontalDirectionalBlock implements SimpleWat
     }
 
     @Override
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        switch (pState.getValue(FACING)) {
-            case EAST: return SHAPE_EAST;
-            case SOUTH: return SHAPE_SOUTH;
-            case WEST: return SHAPE_WEST;
-            default: return SHAPE_NORTH;
-        }
+    public @Nonnull VoxelShape getShape(BlockState pState, @Nonnull BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull CollisionContext pContext) {
+        return switch (pState.getValue(FACING)) {
+            case EAST -> SHAPE_EAST;
+            case SOUTH -> SHAPE_SOUTH;
+            case WEST -> SHAPE_WEST;
+            default -> SHAPE_NORTH;
+        };
     }
 
     @Override
-    public RenderShape getRenderShape(BlockState pState) {
+    public @Nonnull RenderShape getRenderShape(@Nonnull BlockState pState) {
         return RenderShape.MODEL;
     }
 
-    public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
-        switch (pType) {
-            case LAND:
-                return pState.getValue(OPEN);
-            case WATER:
-                return pState.getValue(WATERLOGGED);
-            case AIR:
-                return pState.getValue(OPEN);
-            default:
-                return false;
-        }
+    public boolean isPathfindable(@Nonnull BlockState pState, @Nonnull BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull PathComputationType pType) {
+        return true;
     }
 
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+    public @Nonnull InteractionResult use(@Nonnull BlockState pState, @Nonnull Level pLevel, @Nonnull BlockPos pPos, Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
 
         boolean hasEmptyHands = pPlayer.getMainHandItem().isEmpty() && pPlayer.getOffhandItem().isEmpty();
 
@@ -104,7 +96,7 @@ public class ToiletBlock extends HorizontalDirectionalBlock implements SimpleWat
             return InteractionResult.sidedSuccess(pLevel.isClientSide);
 
         } else if(!pPlayer.isSecondaryUseActive() && !pLevel.isClientSide() && hasEmptyHands ) { //For server-side logic only, if player is NOT shift-interacting, sit on block
-            Entity entity = null;
+            Entity entity;
             List<SittableEntity> entities = pLevel.getEntities(ModEntities.CHAIR.get(), new AABB(pPos), chair -> true);
             if(entities.isEmpty()) {
                 entity = ModEntities.CHAIR.get().spawn((ServerLevel) pLevel, pPos, MobSpawnType.TRIGGERED); //Sittable Entity spawns in.
@@ -112,7 +104,9 @@ public class ToiletBlock extends HorizontalDirectionalBlock implements SimpleWat
                 entity = entities.get(0); //Gets the first entity already present if one happens to be there for some reason instead of making a new one.
             }
 
-            pPlayer.startRiding(entity); //Player is now sitting.
+            if(entity !=null) {
+                pPlayer.startRiding(entity); //Player is now sitting.
+            }
             return InteractionResult.sidedSuccess(pLevel.isClientSide);
         }
         return InteractionResult.FAIL; //If player has item in either hand, Interaction fails (blocks disappear if placed at the same time player is sitting. this is my solution to that.)
@@ -123,16 +117,16 @@ public class ToiletBlock extends HorizontalDirectionalBlock implements SimpleWat
         pLevel.gameEvent(pPlayer, pIsOpened ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pPos);
     }
 
-    public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
+    public void neighborChanged(@Nonnull BlockState pState, Level pLevel, @Nonnull BlockPos pPos, @Nonnull Block pBlock, @Nonnull BlockPos pFromPos, boolean pIsMoving) {
         if (!pLevel.isClientSide) {
             boolean flag = pLevel.hasNeighborSignal(pPos);
             if (flag != pState.getValue(POWERED)) {
                 if (pState.getValue(OPEN) != flag) {
-                    pState = pState.setValue(OPEN, Boolean.valueOf(flag));
-                    this.playSound((Player)null, pLevel, pPos, flag);
+                    pState = pState.setValue(OPEN, flag);
+                    this.playSound(null, pLevel, pPos, flag);
                 }
 
-                pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.valueOf(flag)), 2);
+                pLevel.setBlock(pPos, pState.setValue(POWERED, flag), 2);
                 if (pState.getValue(WATERLOGGED)) {
                     pLevel.scheduleTick(pPos, Fluids.WATER, Fluids.WATER.getTickDelay(pLevel));
                 }
@@ -149,17 +143,17 @@ public class ToiletBlock extends HorizontalDirectionalBlock implements SimpleWat
 
 
         if (pContext.getLevel().hasNeighborSignal(pContext.getClickedPos())) {
-            blockstate = blockstate.setValue(OPEN, Boolean.valueOf(true)).setValue(POWERED, Boolean.valueOf(true));
+            blockstate = blockstate.setValue(OPEN, true).setValue(POWERED, true);
         }
 
-        return blockstate.setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
+        return blockstate.setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(FACING, OPEN, POWERED, WATERLOGGED);
     }
 
-    public FluidState getFluidState(BlockState pState) {
+    public @Nonnull FluidState getFluidState(BlockState pState) {
         return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
     }
 }

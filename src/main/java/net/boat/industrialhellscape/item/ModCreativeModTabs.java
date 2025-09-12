@@ -21,6 +21,7 @@ public class ModCreativeModTabs {
 
                         //DEV
                         output.accept(ModBlocks.LOCKER_BOX.get());
+                        output.accept(ModBlocks.LARGE_LOCKER.get());
                         output.accept(ModBlocks.FUEL_DRUM.get());
 
                         //ITEMS FOR CREATIVE TAB
@@ -110,11 +111,13 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.METAL_DESK.get());
                         output.accept(ModBlocks.METAL_DESK_DRAWER.get());
                         output.accept(ModBlocks.METAL_DESK_DRAWER_2.get());
+                        output.accept(ModBlocks.BODY_PILLOW.get());
 
                         output.accept(ModBlocks.TOILET.get());
                         output.accept(ModBlocks.SINK.get());
 
                         output.accept(ModBlocks.RETRO_COMPUTER.get());
+                        output.accept(ModBlocks.RETRO_COMPUTER_2.get());
                         output.accept(ModBlocks.CASSETTE_PLAYER.get());
 
                         output.accept(ModBlocks.YELLOW_TRIPOD.get());

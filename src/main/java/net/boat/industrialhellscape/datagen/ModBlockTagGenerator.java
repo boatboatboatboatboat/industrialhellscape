@@ -188,6 +188,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
         this.tag(ModTags.Blocks.TECHNOLOGY_FURNITURE_CATEGORY)
                 .add(
                         ModBlocks.RETRO_COMPUTER.get(),
+                        ModBlocks.RETRO_COMPUTER_2.get(),
                         ModBlocks.CASSETTE_PLAYER.get()
                 );
         this.tag(ModTags.Blocks.AMENITY_FURNITURE_CATEGORY)
@@ -230,6 +231,10 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
         this.tag(BlockTags.MINEABLE_WITH_AXE)
                 .addTags(
                         ModTags.Blocks.ALL_FURNITURE_BLOCKS //All furniture can be mined with axe or pickaxe.
+                );
+        this.tag(BlockTags.BEDS)
+                .add(
+                        ModBlocks.BODY_PILLOW.get() //All furniture can be mined with axe or pickaxe.
                 );
     }
 }

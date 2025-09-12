@@ -36,13 +36,6 @@ public class SoundBlock extends Block {
     }
 
     @Override
-    public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {
-        super.stepOn(pLevel, pPos, pState, pEntity);
-
-        //pLevel.explode()
-    }
-
-    @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
 
         pLevel.playSound(pPlayer, pPos, SoundEvents.NOTE_BLOCK_DIDGERIDOO.get(), SoundSource.BLOCKS,

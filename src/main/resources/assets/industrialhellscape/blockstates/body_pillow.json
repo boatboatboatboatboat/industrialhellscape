@@ -1,0 +1,23 @@
+{
+  "variants": {
+    "facing=north,half=positive,occupied=true": {"model": "industrialhellscape:block/body_pillow_positive","y": 0},
+    "facing=south,half=positive,occupied=true": {"model": "industrialhellscape:block/body_pillow_positive","y":180},
+    "facing=east,half=positive,occupied=true": {"model": "industrialhellscape:block/body_pillow_positive","y": 90},
+    "facing=west,half=positive,occupied=true": {"model": "industrialhellscape:block/body_pillow_positive","y": 270},
+
+    "facing=north,half=negative,occupied=true": {"model": "industrialhellscape:block/body_pillow_negative","y": 0},
+    "facing=south,half=negative,occupied=true": {"model": "industrialhellscape:block/body_pillow_negative","y": 180},
+    "facing=east,half=negative,occupied=true": {"model": "industrialhellscape:block/body_pillow_negative","y": 90},
+    "facing=west,half=negative,occupied=true": {"model": "industrialhellscape:block/body_pillow_negative","y": 270},
+
+    "facing=north,half=positive,occupied=false": {"model": "industrialhellscape:block/body_pillow_positive","y": 0},
+    "facing=south,half=positive,occupied=false": {"model": "industrialhellscape:block/body_pillow_positive","y":180},
+    "facing=east,half=positive,occupied=false": {"model": "industrialhellscape:block/body_pillow_positive","y": 90},
+    "facing=west,half=positive,occupied=false": {"model": "industrialhellscape:block/body_pillow_positive","y": 270},
+
+    "facing=north,half=negative,occupied=false": {"model": "industrialhellscape:block/body_pillow_negative","y": 0},
+    "facing=south,half=negative,occupied=false": {"model": "industrialhellscape:block/body_pillow_negative","y": 180},
+    "facing=east,half=negative,occupied=false": {"model": "industrialhellscape:block/body_pillow_negative","y": 90},
+    "facing=west,half=negative,occupied=false": {"model": "industrialhellscape:block/body_pillow_negative","y": 270}
+  }
+}

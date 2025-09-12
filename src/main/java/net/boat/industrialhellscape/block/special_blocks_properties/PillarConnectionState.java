@@ -14,17 +14,8 @@ public enum PillarConnectionState implements StringRepresentable {
     NEGATIVE("negative"),
     SOLO("solo");
 
-    private final String name; //new variable declared but not defined. It is a string and uses the strings corresponding with the enums above, NOT the uppercase enums
-
-    private PillarConnectionState(String type) { //Constructor
-        this.name = type; //The user Enum input (all uppercase), is referred to as "type", defines the string ("top") to be used. That string goes into the "name" variable
-    }
-
-    public String toString() {  //Tells the code to use the lowercase string in TOP("top") in anything external to Minecraft (such as loggers)
-        return this.name;
-    }
-
-    public String getSerializedName() { //Tells the code to use the lowercase string in TOP("top") inside Minecraft
-        return this.name;               //getSerializedName is from Minecraft, its not a default Java method. Required to be present by StringRepresentable.
-    }
+    private final String name;
+    private PillarConnectionState(String type) {this.name = type;}
+    public String toString() {return this.name;}
+    public String getSerializedName() {return this.name;}
 }

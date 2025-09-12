@@ -1,6 +1,6 @@
 package net.boat.industrialhellscape.block.special_blocks;
 
-import net.boat.industrialhellscape.block.special_blocks_properties.InnerCornerConnectionState;
+import net.boat.industrialhellscape.block.special_blocks_properties.CornerConnectionState;
 import net.boat.industrialhellscape.block.special_blocks_properties.RotationHelper;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
@@ -27,6 +27,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nonnull;
+
 //INFO:
 //-----
 // This block, when placed, will align top/bottom. It is meant for "corner" or "right-angle" shaped blocks whose models will be touching two perpendicular full-block surfaces of adjacent blocks.
@@ -43,24 +45,24 @@ import org.jetbrains.annotations.Nullable;
 public class CornerBlock extends Block implements SimpleWaterloggedBlock {
 
     public static DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING; //"FACING" is used to store DirectionProperty value of "north, south, east, west" //KJ
-    public static final EnumProperty<InnerCornerConnectionState> TYPE_CORNER = EnumProperty.create("type", InnerCornerConnectionState.class); //"UP", "SIDE", or "DOWN" enum values
+    public static final EnumProperty<CornerConnectionState> TYPE_CORNER = EnumProperty.create("type", CornerConnectionState.class); //"UP", "SIDE", or "DOWN" enum values
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     // 4 * 3 blockstates and therefore hitbox models based on above properties
-    private VoxelShape INNER_CORNER_UP_N;
-    private VoxelShape INNER_CORNER_UP_S;
-    private VoxelShape INNER_CORNER_UP_E;
-    private VoxelShape INNER_CORNER_UP_W;
+    private final VoxelShape INNER_CORNER_UP_N;
+    private final VoxelShape INNER_CORNER_UP_S;
+    private final VoxelShape INNER_CORNER_UP_E;
+    private final VoxelShape INNER_CORNER_UP_W;
 
-    private VoxelShape INNER_CORNER_DOWN_N;
-    private VoxelShape INNER_CORNER_DOWN_S;
-    private VoxelShape INNER_CORNER_DOWN_E;
-    private VoxelShape INNER_CORNER_DOWN_W;
+    private final VoxelShape INNER_CORNER_DOWN_N;
+    private final VoxelShape INNER_CORNER_DOWN_S;
+    private final VoxelShape INNER_CORNER_DOWN_E;
+    private final VoxelShape INNER_CORNER_DOWN_W;
 
-    private VoxelShape INNER_CORNER_SIDE_N;
-    private VoxelShape INNER_CORNER_SIDE_S;
-    private VoxelShape INNER_CORNER_SIDE_E;
-    private VoxelShape INNER_CORNER_SIDE_W;
+    private final VoxelShape INNER_CORNER_SIDE_N;
+    private final VoxelShape INNER_CORNER_SIDE_S;
+    private final VoxelShape INNER_CORNER_SIDE_E;
+    private final VoxelShape INNER_CORNER_SIDE_W;
 
     public CornerBlock(Properties pProperties, VoxelShape upShape, VoxelShape downShape, VoxelShape sideShape) {
         super(pProperties);
@@ -82,13 +84,13 @@ public class CornerBlock extends Block implements SimpleWaterloggedBlock {
 
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
-                .setValue(TYPE_CORNER, InnerCornerConnectionState.UP)
+                .setValue(TYPE_CORNER, CornerConnectionState.UP)
                 .setValue(WATERLOGGED, false)
         );
     }
 
     @Override
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+    public VoxelShape getShape(BlockState pState, @Nonnull BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull CollisionContext pContext) {
 
         Direction facingForShape = pState.getValue(FACING);
 
@@ -115,67 +117,67 @@ public class CornerBlock extends Block implements SimpleWaterloggedBlock {
                     case WEST: return INNER_CORNER_SIDE_W;
                 }
             default:
-                VoxelShape defaultShape = INNER_CORNER_UP_N;
-                return defaultShape;
+                return INNER_CORNER_UP_N;
         }
     }
 
     @Override
-    public RenderShape getRenderShape(BlockState pState) {
+    public @Nonnull RenderShape getRenderShape( @Nonnull BlockState pState) {
         return RenderShape.MODEL;
     }
 
     //Placement Faces the player
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        Direction directionFacing = pContext.getPlayer().getDirection(); //Gets the cardinal direction when player places new block
+        Direction directionFacing = pContext.getHorizontalDirection(); //Gets the cardinal direction when player places new block
         Direction directionClicked = pContext.getClickedFace().getOpposite();
-        Boolean PlayerisCrouching = pContext.getPlayer().isCrouching();
+        boolean PlayerisCrouching = (pContext.getPlayer() != null) && pContext.getPlayer().isCrouching();
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
 
         //This section defines the facing direction property of the block
         BlockState state = this.defaultBlockState().setValue(FACING, directionFacing);
 
         //This section determines waterlogging
-        state =  state.setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
+        state =  state.setValue(WATERLOGGED,fluidstate.getType() == Fluids.WATER);
 
         //This section defines the orientation "type" of the block (whether the block is on its side, or up or down).
         switch(directionClicked) { //Which block face in the world is the player clicking on to place this block?
-            case UP: state = state.setValue(TYPE_CORNER, InnerCornerConnectionState.UP); break; //Bracket faces up if player clicks the ceiling
-            case DOWN: state = state.setValue(TYPE_CORNER, InnerCornerConnectionState.DOWN); break; //Bracket faces down if player clicks the floor
+            case UP: state = state.setValue(TYPE_CORNER, CornerConnectionState.UP); break; //Bracket faces up if player clicks the ceiling
+            case DOWN: state = state.setValue(TYPE_CORNER, CornerConnectionState.DOWN); break; //Bracket faces down if player clicks the floor
             default: //If player is not clicking the floor or ceiling
                 if(PlayerisCrouching) { //If the player is crouching
-                    state = state.setValue(TYPE_CORNER, InnerCornerConnectionState.SIDE); break; //Set bracket to side
+                    state = state.setValue(TYPE_CORNER, CornerConnectionState.SIDE); break; //Set bracket to side
                 } else {
-                    state = state.setValue(TYPE_CORNER, InnerCornerConnectionState.UP); //If player is not crouching, default to UP orientation
+                    state = state.setValue(TYPE_CORNER, CornerConnectionState.UP); //If player is not crouching, default to UP orientation
                 }
         }
         return state;
     }
 
     @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+    public @Nonnull InteractionResult use(@Nonnull BlockState pState, @Nonnull Level pLevel, @Nonnull BlockPos pPos, Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
 
         boolean playerHasTool = pPlayer.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || pPlayer.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
-        boolean PlayerisCrouching = pPlayer.isCrouching();
+        boolean PlayerIsCrouching = pPlayer.isCrouching();
 
-        if(playerHasTool && !PlayerisCrouching) {
-            pState = pState.setValue(FACING, pState.getValue(FACING).getClockWise()); //Cycles horizontal orientation of the block
+        if(playerHasTool && PlayerIsCrouching) {
+            pState = pState.cycle(TYPE_CORNER); //Cycles attachment orientation of block (attached up, down, or side)
+            pLevel.setBlock(pPos, pState, 2);
+
+            return InteractionResult.sidedSuccess(pLevel.isClientSide);
+
+        } else if (playerHasTool) {
+            pState = pState.setValue(FACING, pState.getValue(FACING).getClockWise()); //Cycles horizontal orientation of the block (N,S,E,W)
             pLevel.setBlock(pPos, pState, 2);
             return InteractionResult.sidedSuccess(pLevel.isClientSide);
 
 
-        } else if (playerHasTool && PlayerisCrouching) {
-            pState = pState.cycle(TYPE_CORNER);
-            pLevel.setBlock(pPos, pState, 2);
-
-            return InteractionResult.sidedSuccess(pLevel.isClientSide);
         }
 
         return InteractionResult.PASS;
     }
 
-    public FluidState getFluidState(BlockState pState) {
+    public @Nonnull FluidState getFluidState(BlockState pState) {
         return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
     }
 

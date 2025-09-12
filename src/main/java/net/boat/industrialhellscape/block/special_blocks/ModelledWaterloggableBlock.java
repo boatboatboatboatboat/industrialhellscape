@@ -14,18 +14,18 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class ModelledWaterloggableBlock extends Block implements SimpleWaterloggedBlock {
 
-    private VoxelShape HITBOX_SHAPE;
+    private final VoxelShape HITBOX_SHAPE;
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     @Override
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+    public @Nonnull VoxelShape getShape(@Nonnull BlockState pState, @Nonnull BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull CollisionContext pContext) {
         return HITBOX_SHAPE;
     }
-
-    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public ModelledWaterloggableBlock(Properties pProperties, VoxelShape hitboxShape) {
         super(pProperties);
@@ -35,12 +35,13 @@ public class ModelledWaterloggableBlock extends Block implements SimpleWaterlogg
 
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
+        BlockState state = this.defaultBlockState();
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
-        boolean flag = fluidstate.getType() == Fluids.WATER;
-        return super.getStateForPlacement(pContext).setValue(WATERLOGGED, Boolean.valueOf(flag));
+        state =  state.setValue(WATERLOGGED,fluidstate.getType() == Fluids.WATER);
+        return state;
     }
 
-    public FluidState getFluidState(BlockState pState) {
+    public @Nonnull FluidState getFluidState(BlockState pState) {
         return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
     }
 

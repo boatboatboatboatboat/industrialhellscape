@@ -15,19 +15,8 @@ public enum FurnitureConnectionState implements StringRepresentable {
     RIGHT("right"),
     SOLO("solo");
 
-    //The following methods lets you refer to these enums with their lower case names above.
-
-    private final String name; //new variable declared but not defined. It is a string and uses the strings corresponding with the enums above, NOT the uppercase enums
-
-    private FurnitureConnectionState(String type) {
-        this.name = type;
-    }
-
-    public String toString() {  //Tells the code to use the lowercase string in TOP("top") in anything external to Minecraft (such as loggers)
-        return this.name;
-    }
-
-    public String getSerializedName() { //Tells the code to use the lowercase string in TOP("top") inside Minecraft
-        return this.name;               //getSerializedName is from Minecraft, its not a default Java method. Required to be present by StringRepresentable.
-    }
+    private final String name;
+    private FurnitureConnectionState(String type) {this.name = type;}
+    public String toString() {return this.name;}
+    public String getSerializedName() {return this.name;}
 }

@@ -13,6 +13,8 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nonnull;
+
 //INFO:
 //-----
 // This block, when placed, aligns with the axis of placement (x, y, z). Subsequent blocks placed adjacent in the same alignment will cause block state updates to allow directional connected textures without CTM.
@@ -43,18 +45,18 @@ public class AxialPillarBlock extends Block implements ConnectedModelCapability 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         Level level = context.getLevel();
         BlockPos pos = context.getClickedPos();
-        Direction.Axis axis = context.getClickedFace().getAxis(); //Turns the direction clicked into the axis the direction is aligned to (East/West = X axis, etc)
+        Direction.Axis axis = context.getClickedFace().getAxis(); //Turns the direction clicked into the axis the direction is aligned to (East/West = X axis, etc.)
 
         BlockState state = this.defaultBlockState().setValue(AXIS, axis); //Sets X/Y/Z direction block shall align to when placed
         state = state.setValue(TYPE, getType(state, getStateAxisPositive(level, pos, axis), getStateAxisNegative(level, pos, axis)));
-            //Determines and sets block type based on neighbor connection (top, middle, buttom, solo unconnected)
+            //Determines and sets block type based on neighbor connection (top, middle, bottom, solo unconnected)
             //See the interface ConnectedModelCapability for details on how neighboring blocks are read using interface methods
             //getStateAxisPositive() and getStateAxisNegative()
         return state;
     }
 
     @Override //THIS TELLS THE NEIGHBORS TO UPDATE
-    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
+    public void neighborChanged(@Nonnull BlockState state, Level level, @Nonnull BlockPos pos, @Nonnull Block block, @Nonnull BlockPos fromPos, boolean isMoving) {
         if (level.isClientSide) return;
 
         Direction.Axis axis = state.getValue(AXIS);

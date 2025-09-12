@@ -10,11 +10,13 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 // This block allows subsequent modded blocks that extend this block to inherit waterlogging properties.
 // It implements the similarly-named vanilla interface.
 // Currently, it is used for Strut blocks
+// For full blocks
 
 public class SimpleWaterloggableBlock extends Block implements SimpleWaterloggedBlock {
 
@@ -28,11 +30,11 @@ public class SimpleWaterloggableBlock extends Block implements SimpleWaterlogged
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
-        boolean flag = fluidstate.getType() == Fluids.WATER;
-        return super.getStateForPlacement(pContext).setValue(WATERLOGGED, Boolean.valueOf(flag));
+        BlockState state = this.defaultBlockState().setValue(WATERLOGGED,fluidstate.getType() == Fluids.WATER);
+        return state;
     }
 
-    public FluidState getFluidState(BlockState pState) {
+    public @Nonnull FluidState getFluidState(BlockState pState) {
         return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
     }
 

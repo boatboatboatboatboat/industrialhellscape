@@ -26,6 +26,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nonnull;
+
 public class PipePlanarCornerBlock extends Block implements SimpleWaterloggedBlock {
 
     public static final EnumProperty<Direction> SURFACE_ATTACHED = BlockStateProperties.FACING;
@@ -50,19 +52,19 @@ public class PipePlanarCornerBlock extends Block implements SimpleWaterloggedBlo
     }
 
     @Override
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        switch(pState.getValue(SURFACE_ATTACHED)) {
+    public @Nonnull VoxelShape getShape(BlockState pState, @Nonnull BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull CollisionContext pContext) {
+        return switch (pState.getValue(SURFACE_ATTACHED)) {
             //6 Cases for collision box shape
-            case UP: return SHAPE_CEILING;
-            case NORTH: return SHAPE_NORTH;
-            case SOUTH: return SHAPE_SOUTH;
-            case EAST: return SHAPE_EAST;
-            case WEST: return SHAPE_WEST;
-            default: return SHAPE_FLOOR;
-        }
+            case UP -> SHAPE_CEILING;
+            case NORTH -> SHAPE_NORTH;
+            case SOUTH -> SHAPE_SOUTH;
+            case EAST -> SHAPE_EAST;
+            case WEST -> SHAPE_WEST;
+            default -> SHAPE_FLOOR;
+        };
     }
     @Override
-    public RenderShape getRenderShape(BlockState pState) {
+    public @Nonnull RenderShape getRenderShape(@Nonnull BlockState pState) {
         return RenderShape.MODEL;
     }
 
@@ -76,14 +78,14 @@ public class PipePlanarCornerBlock extends Block implements SimpleWaterloggedBlo
         state = state.setValue(SURFACE_ATTACHED, directionClicked.getOpposite());
 
         //This section determines waterlogging.
-        state =  state.setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
+        state =  state.setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
 
         //This section determines block rotation on the surface
         //Currently defaults to facing down/south on the plane
         return state.setValue(PLANE_DIRECTION, RelativePlanarDirectionState.DOWN);
     }
 
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+    public @Nonnull InteractionResult use(@Nonnull BlockState pState, @Nonnull Level pLevel, @Nonnull BlockPos pPos, Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
 
         boolean playerHasTool = pPlayer.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || pPlayer.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
 
@@ -96,7 +98,7 @@ public class PipePlanarCornerBlock extends Block implements SimpleWaterloggedBlo
         return InteractionResult.PASS;
     }
 
-    public FluidState getFluidState(BlockState pState) {
+    public @Nonnull FluidState getFluidState(BlockState pState) {
         return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
     }
 

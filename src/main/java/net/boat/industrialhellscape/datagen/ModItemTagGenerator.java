@@ -182,6 +182,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
         this.tag(ModTags.Items.TECHNOLOGY_FURNITURE_CATEGORY)
                 .add(
                         ModBlocks.RETRO_COMPUTER.get().asItem(),
+                        ModBlocks.RETRO_COMPUTER_2.get().asItem(),
                         ModBlocks.CASSETTE_PLAYER.get().asItem()
                 );
 

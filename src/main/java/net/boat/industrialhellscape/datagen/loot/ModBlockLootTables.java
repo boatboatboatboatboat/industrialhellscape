@@ -103,6 +103,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.METAL_DESK_DRAWER.get());
         this.dropSelf(ModBlocks.METAL_DESK_DRAWER_2.get());
         this.dropSelf(ModBlocks.RETRO_COMPUTER.get());
+        this.dropSelf(ModBlocks.RETRO_COMPUTER_2.get());
+        this.dropSelf(ModBlocks.BODY_PILLOW.get());
         this.dropSelf(ModBlocks.CASSETTE_PLAYER.get());
         this.dropSelf(ModBlocks.YELLOW_TRIPOD.get());
         this.dropSelf(ModBlocks.WORK_LIGHT_MOUNT.get());

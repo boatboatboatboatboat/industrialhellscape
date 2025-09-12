@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 //INFO:
@@ -27,6 +28,7 @@ import javax.annotation.Nullable;
 
 // AbstractGlassBlock enables internal face culling so transparent blocks of this block class can have internal face culling (E.G. Grates)
 // Otherwise, this block class functions no different than if it uses the normal vanilla Block class
+// For full blocks
 
 public class SimpleTextureToggleBlock extends AbstractGlassBlock {
 
@@ -38,12 +40,12 @@ public class SimpleTextureToggleBlock extends AbstractGlassBlock {
     }
 
     @Nullable
-    public BlockState getStateForPlacement(BlockPlaceContext pContext) {
+    public BlockState getStateForPlacement(@Nonnull BlockPlaceContext pContext) {
         BlockState state = this.defaultBlockState();
         return state;
     }
 
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+    public @Nonnull InteractionResult use(@Nonnull BlockState pState, @Nonnull Level pLevel, @Nonnull BlockPos pPos, Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
         boolean playerHasTool = pPlayer.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || pPlayer.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
 
         if(playerHasTool) { //If player has tool, change the block texture orientation to the other value

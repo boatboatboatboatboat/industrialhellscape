@@ -13,9 +13,10 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public interface RotationHelper {
 
     static VoxelShape rotateVoxelHorizontal(Direction directionToRotate, VoxelShape shapeInput) {
+        //directionToRotate is the desired direction to rotate the ShapeInput
+        //ShapeInput is the VoxelShape you wish to rotate.
 
         //The placeHolder contains the original default voxelShape and an empty space. It is an array of size 2
-        //An operation is applied to the current sub-shape
 
         VoxelShape[] placeHolder = new VoxelShape[]{shapeInput, Shapes.empty()};
 
@@ -23,7 +24,7 @@ public interface RotationHelper {
             case EAST -> 1;
             case SOUTH -> 2;
             case WEST -> 3;
-            default -> 0;
+            default -> 0; //North. The submitted shapeInput should already be oriented North by default when modelled.
         };
 
         for (int i = 0; i < timesToRotate; i++) {

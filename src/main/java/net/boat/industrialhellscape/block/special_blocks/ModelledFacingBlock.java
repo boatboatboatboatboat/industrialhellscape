@@ -19,6 +19,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nonnull;
+
 //INFO:
 //-----
 // This block supports rotation of custom models. It also supports directional placement based on player.
@@ -32,10 +34,10 @@ public class ModelledFacingBlock extends SimpleFacingBlock implements SimpleWate
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    private VoxelShape SOLO_SHAPE_NORTH;
-    private VoxelShape SOLO_SHAPE_SOUTH;
-    private VoxelShape SOLO_SHAPE_EAST;
-    private VoxelShape SOLO_SHAPE_WEST;
+    private final VoxelShape SOLO_SHAPE_NORTH;
+    private final VoxelShape SOLO_SHAPE_SOUTH;
+    private final VoxelShape SOLO_SHAPE_EAST;
+    private final VoxelShape SOLO_SHAPE_WEST;
 
     public ModelledFacingBlock(Properties pProperties, VoxelShape soloShape) {
         super(pProperties);
@@ -52,17 +54,17 @@ public class ModelledFacingBlock extends SimpleFacingBlock implements SimpleWate
     }
 
     @Override
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+    public @Nonnull VoxelShape getShape(BlockState pState, @Nonnull BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull CollisionContext pContext) {
 
         //When placed, if the block's "TYPE" property is one of these cases, find its horizontal orientation and give it the correct hitbox
         //North is the default orientation assumed if no other cases met
 
-        switch (pState.getValue(FACING)) {
-            case SOUTH: return SOLO_SHAPE_SOUTH;
-            case EAST: return SOLO_SHAPE_EAST;
-            case WEST: return SOLO_SHAPE_WEST;
-            default: return SOLO_SHAPE_NORTH;
-        }
+        return switch (pState.getValue(FACING)) {
+            case SOUTH -> SOLO_SHAPE_SOUTH;
+            case EAST -> SOLO_SHAPE_EAST;
+            case WEST -> SOLO_SHAPE_WEST;
+            default -> SOLO_SHAPE_NORTH;
+        };
     }
 
     @Override
@@ -70,7 +72,7 @@ public class ModelledFacingBlock extends SimpleFacingBlock implements SimpleWate
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
         Direction directionClicked = pContext.getHorizontalDirection(); //Gets the cardinal direction when player places new block
 
-        BlockState state = defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER)); //check for waterlogging status
+        BlockState state = defaultBlockState().setValue(WATERLOGGED,fluidstate.getType() == Fluids.WATER); //check for waterlogging status
         state = state.setValue(FACING, directionClicked); //Defines facing direction of the block
         return state;
     }
@@ -78,11 +80,11 @@ public class ModelledFacingBlock extends SimpleFacingBlock implements SimpleWate
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(FACING, WATERLOGGED); //Block's blockstates; its NSEW orientation, its connection type defined
     }
-    public FluidState getFluidState(BlockState pState) {
+    public @Nonnull FluidState getFluidState(BlockState pState) {
         return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
     }
     @Override
-    public RenderShape getRenderShape(BlockState state) {
+    public @Nonnull RenderShape getRenderShape(@Nonnull BlockState state) {
         return RenderShape.MODEL;
     }
 }

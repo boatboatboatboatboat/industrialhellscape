@@ -58,6 +58,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         makeBlockitemModel(ModBlocks.INDUSTRIAL_FURNISHINGS);
         makeBlockitemModel(ModBlocks.TECHNOLOGY_FURNISHINGS);
         makeBlockitemModel(ModBlocks.AMENITY_FURNISHINGS);
+        makeBlockitemModel(ModBlocks.BODY_PILLOW);
 
         makeBlockitemModel(ModBlocks.BLUE_ROCKRETE_SLAB);
         makeBlockitemModel(ModBlocks.GRAY_ROCKRETE_SLAB);
@@ -67,11 +68,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         makeBlockitemModel(ModBlocks.GRAY_ROCKRETE_STAIRS);
         makeBlockitemModel(ModBlocks.GREEN_ROCKRETE_STAIRS);
         makeBlockitemModel(ModBlocks.YELLOW_ROCKRETE_STAIRS);
-
-
-
-        //Furniture Item Models
-        makeFolderedBlockitemModel(ModBlocks.LOCKER_BOX, "locker");
     }
 
     private ItemModelBuilder makeItemModel(RegistryObject<Item> item) {

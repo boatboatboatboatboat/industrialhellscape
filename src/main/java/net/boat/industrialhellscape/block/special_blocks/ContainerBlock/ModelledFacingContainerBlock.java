@@ -22,15 +22,17 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nonnull;
+
 public class ModelledFacingContainerBlock extends FacingContainerBlock implements EntityBlock, SimpleWaterloggedBlock {
 
-    private static DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    private static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    private VoxelShape SHAPE_NORTH;
-    private VoxelShape SHAPE_SOUTH;
-    private VoxelShape SHAPE_EAST;
-    private VoxelShape SHAPE_WEST;
+    private final VoxelShape SHAPE_NORTH;
+    private final VoxelShape SHAPE_SOUTH;
+    private final VoxelShape SHAPE_EAST;
+    private final VoxelShape SHAPE_WEST;
     
     public ModelledFacingContainerBlock(Properties properties, int slotAmount, VoxelShape modelShape, SoundEvent openSound, SoundEvent closeSound) {
         super(properties, slotAmount, openSound, closeSound);
@@ -52,27 +54,26 @@ public class ModelledFacingContainerBlock extends FacingContainerBlock implement
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
         Direction direction = pContext.getHorizontalDirection();
         state = state.setValue(FACING, direction);
-        state =  state.setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
+        state =  state.setValue(WATERLOGGED,fluidstate.getType() == Fluids.WATER);
         return state;
     }
 
     @Override
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        switch (pState.getValue(FACING)) {
-
-            case SOUTH: return SHAPE_SOUTH;
-            case EAST: return SHAPE_EAST;
-            case WEST: return SHAPE_WEST;
-            default: return SHAPE_NORTH;
-        }
+    public @Nonnull VoxelShape getShape(BlockState pState, @Nonnull BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull CollisionContext pContext) {
+        return switch (pState.getValue(FACING)) {
+            case SOUTH -> SHAPE_SOUTH;
+            case EAST -> SHAPE_EAST;
+            case WEST -> SHAPE_WEST;
+            default -> SHAPE_NORTH;
+        };
     }
 
     @Override
-    public RenderShape getRenderShape(BlockState pState) {
+    public @Nonnull RenderShape getRenderShape(@Nonnull BlockState pState) {
         return RenderShape.MODEL;
     }
 
-    public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
+    public void neighborChanged(@Nonnull BlockState pState, Level pLevel, @Nonnull BlockPos pPos, @Nonnull Block pBlock, @Nonnull BlockPos pFromPos, boolean pIsMoving) {
         if (!pLevel.isClientSide) {
             if (pState.getValue(WATERLOGGED)) {
                 pLevel.scheduleTick(pPos, Fluids.WATER, Fluids.WATER.getTickDelay(pLevel));
@@ -85,7 +86,7 @@ public class ModelledFacingContainerBlock extends FacingContainerBlock implement
         pBuilder.add(FACING, WATERLOGGED); //Block's blockstates; its NSEW orientation, its connection type defined
     }
 
-    public FluidState getFluidState(BlockState pState) {
+    public @Nonnull FluidState getFluidState(BlockState pState) {
         return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
     }
 }

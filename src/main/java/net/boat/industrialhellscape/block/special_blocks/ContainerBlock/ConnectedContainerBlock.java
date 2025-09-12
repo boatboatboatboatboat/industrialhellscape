@@ -23,34 +23,36 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nonnull;
+
 public class ConnectedContainerBlock extends FacingContainerBlock implements EntityBlock, SimpleWaterloggedBlock, ConnectedModelCapability {
 
 
     private static final EnumProperty<FurnitureConnectionState> TYPE = EnumProperty.create("type", FurnitureConnectionState.class);
-    private static DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    private static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public TagKey<Block> BlockSetFamily;
 
-    private VoxelShape SOLO_SHAPE_NORTH;
-    private VoxelShape SOLO_SHAPE_SOUTH;
-    private VoxelShape SOLO_SHAPE_EAST;
-    private VoxelShape SOLO_SHAPE_WEST;
+    private final VoxelShape SOLO_SHAPE_NORTH;
+    private final VoxelShape SOLO_SHAPE_SOUTH;
+    private final VoxelShape SOLO_SHAPE_EAST;
+    private final VoxelShape SOLO_SHAPE_WEST;
 
-    private VoxelShape LEFT_SHAPE_NORTH;
-    private VoxelShape LEFT_SHAPE_SOUTH;
-    private VoxelShape LEFT_SHAPE_EAST;
-    private VoxelShape LEFT_SHAPE_WEST;
+    private final VoxelShape LEFT_SHAPE_NORTH;
+    private final VoxelShape LEFT_SHAPE_SOUTH;
+    private final VoxelShape LEFT_SHAPE_EAST;
+    private final VoxelShape LEFT_SHAPE_WEST;
 
-    private VoxelShape MIDDLE_SHAPE_NORTH;
-    private VoxelShape MIDDLE_SHAPE_SOUTH;
-    private VoxelShape MIDDLE_SHAPE_EAST;
-    private VoxelShape MIDDLE_SHAPE_WEST;
+    private final VoxelShape MIDDLE_SHAPE_NORTH;
+    private final VoxelShape MIDDLE_SHAPE_SOUTH;
+    private final VoxelShape MIDDLE_SHAPE_EAST;
+    private final VoxelShape MIDDLE_SHAPE_WEST;
 
-    private VoxelShape RIGHT_SHAPE_NORTH;
-    private VoxelShape RIGHT_SHAPE_SOUTH;
-    private VoxelShape RIGHT_SHAPE_EAST;
-    private VoxelShape RIGHT_SHAPE_WEST;
+    private final VoxelShape RIGHT_SHAPE_NORTH;
+    private final VoxelShape RIGHT_SHAPE_SOUTH;
+    private final VoxelShape RIGHT_SHAPE_EAST;
+    private final VoxelShape RIGHT_SHAPE_WEST;
 
     public ConnectedContainerBlock(Properties properties, int slotAmount, TagKey<Block> inputCompatibleBlockSet, VoxelShape soloShape, VoxelShape leftShape, VoxelShape middleShape, VoxelShape rightShape, SoundEvent openSound, SoundEvent closeSound) {
         super(properties, slotAmount, openSound, closeSound);
@@ -93,52 +95,46 @@ public class ConnectedContainerBlock extends FacingContainerBlock implements Ent
         Direction direction = pContext.getHorizontalDirection();
         state = state.setValue(FACING, direction);
         state = state.setValue(TYPE, getTypeAndFamily(state, getStateRelativeLeft(level, positionClicked, directionClicked), getStateRelativeRight(level, positionClicked, directionClicked), BlockSetFamily)); //Second, defines connection type of the block
-        state =  state.setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
+        state =  state.setValue(WATERLOGGED,fluidstate.getType() == Fluids.WATER);
         return state;
     }
 
     @Override
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        switch (pState.getValue(TYPE)) {
-
-            case SOLO: switch (pState.getValue(FACING)) {
-                case SOUTH: return SOLO_SHAPE_SOUTH;
-                case EAST: return SOLO_SHAPE_EAST;
-                case WEST: return SOLO_SHAPE_WEST;
-                default: return SOLO_SHAPE_NORTH;
-            }
-
-            case LEFT: switch (pState.getValue(FACING)) {
-                case SOUTH: return LEFT_SHAPE_SOUTH;
-                case EAST: return LEFT_SHAPE_EAST;
-                case WEST: return LEFT_SHAPE_WEST;
-                default: return LEFT_SHAPE_NORTH;
-            }
-
-            case MIDDLE: switch (pState.getValue(FACING)) {
-                case SOUTH: return MIDDLE_SHAPE_SOUTH;
-                case EAST: return MIDDLE_SHAPE_EAST;
-                case WEST: return MIDDLE_SHAPE_WEST;
-                default: return MIDDLE_SHAPE_NORTH;
-            }
-
-            case RIGHT: switch (pState.getValue(FACING)) {
-                case SOUTH: return RIGHT_SHAPE_SOUTH;
-                case EAST: return RIGHT_SHAPE_EAST;
-                case WEST: return RIGHT_SHAPE_WEST;
-                default: return RIGHT_SHAPE_NORTH;
-            }
-
-            default: return SOLO_SHAPE_NORTH;
-        }
+    public @Nonnull VoxelShape getShape(BlockState pState, @Nonnull BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull CollisionContext pContext) {
+        return switch (pState.getValue(TYPE)) {
+            case LEFT -> switch (pState.getValue(FACING)) {
+                case SOUTH -> LEFT_SHAPE_SOUTH;
+                case EAST -> LEFT_SHAPE_EAST;
+                case WEST -> LEFT_SHAPE_WEST;
+                default -> LEFT_SHAPE_NORTH;
+            };
+            case MIDDLE -> switch (pState.getValue(FACING)) {
+                case SOUTH -> MIDDLE_SHAPE_SOUTH;
+                case EAST -> MIDDLE_SHAPE_EAST;
+                case WEST -> MIDDLE_SHAPE_WEST;
+                default -> MIDDLE_SHAPE_NORTH;
+            };
+            case RIGHT -> switch (pState.getValue(FACING)) {
+                case SOUTH -> RIGHT_SHAPE_SOUTH;
+                case EAST -> RIGHT_SHAPE_EAST;
+                case WEST -> RIGHT_SHAPE_WEST;
+                default -> RIGHT_SHAPE_NORTH;
+            };
+            default -> switch (pState.getValue(FACING)) { //Default case is assumed solo case
+                case SOUTH -> SOLO_SHAPE_SOUTH;
+                case EAST -> SOLO_SHAPE_EAST;
+                case WEST -> SOLO_SHAPE_WEST;
+                default -> SOLO_SHAPE_NORTH;
+            };
+        };
     }
 
     @Override
-    public RenderShape getRenderShape(BlockState pState) {
+    public @Nonnull RenderShape getRenderShape(@Nonnull BlockState pState) {
         return RenderShape.MODEL;
     }
 
-    public void neighborChanged(BlockState state, Level level, BlockPos positionClicked, Block block, BlockPos fromPos, boolean pIsMoving) {
+    public void neighborChanged(@Nonnull BlockState state, Level level, @Nonnull BlockPos positionClicked, @Nonnull Block block, @Nonnull BlockPos fromPos, boolean pIsMoving) {
         if (!level.isClientSide) {
             if (state.getValue(WATERLOGGED)) {
                 level.scheduleTick(fromPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
@@ -161,7 +157,7 @@ public class ConnectedContainerBlock extends FacingContainerBlock implements Ent
         pBuilder.add(FACING, WATERLOGGED, TYPE); //Block's blockstates; its NSEW orientation, its connection type defined
     }
 
-    public FluidState getFluidState(BlockState pState) {
+    public @Nonnull FluidState getFluidState(BlockState pState) {
         return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
     }
 }

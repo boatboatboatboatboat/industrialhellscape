@@ -27,12 +27,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-import java.util.Scanner;
-import java.util.regex.Pattern;
+import javax.annotation.Nonnull;
 
 public class PipeBlock extends Block implements ConnectedModelCapability, SimpleWaterloggedBlock {
 
@@ -60,19 +55,19 @@ public class PipeBlock extends Block implements ConnectedModelCapability, Simple
     }
 
     @Override
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        switch(pState.getValue(SURFACE_ATTACHED)) {
+    public @Nonnull VoxelShape getShape(BlockState pState, @Nonnull BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull CollisionContext pContext) {
+        return switch (pState.getValue(SURFACE_ATTACHED)) {
             //6 Cases for collision box shape based on surface attached to. Ignores pipe axial orientation
-            case UP: return SHAPE_CEILING;
-            case NORTH: return SHAPE_NORTH;
-            case SOUTH: return SHAPE_SOUTH;
-            case EAST: return SHAPE_EAST;
-            case WEST: return SHAPE_WEST;
-            default: return SHAPE_FLOOR;
-        }
+            case UP -> SHAPE_CEILING;
+            case NORTH -> SHAPE_NORTH;
+            case SOUTH -> SHAPE_SOUTH;
+            case EAST -> SHAPE_EAST;
+            case WEST -> SHAPE_WEST;
+            default -> SHAPE_FLOOR;
+        };
     }
     @Override
-    public RenderShape getRenderShape(BlockState pState) {
+    public @Nonnull RenderShape getRenderShape(@Nonnull BlockState pState) {
         return RenderShape.MODEL;
     }
 
@@ -87,7 +82,7 @@ public class PipeBlock extends Block implements ConnectedModelCapability, Simple
         state = state.setValue(SURFACE_ATTACHED, directionClicked);
 
         //This section determines waterlogging.
-        state =  state.setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
+        state =  state.setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
 
         //This section determines block rotation on the surface
         if(directionClicked == Direction.UP || directionClicked == Direction.DOWN) { //If you clicked to place on the floor or ceiling, the pipe axes will align with your nearest horizontal direction
@@ -108,7 +103,7 @@ public class PipeBlock extends Block implements ConnectedModelCapability, Simple
     }
 
     @Override //THIS TELLS THE NEIGHBORS TO UPDATE
-    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
+    public void neighborChanged(@Nonnull BlockState state, Level level, @Nonnull BlockPos pos, @Nonnull Block block, @Nonnull BlockPos fromPos, boolean isMoving) {
         if (level.isClientSide) return;
 
         Direction.Axis xzaxis = state.getValue(PLANAR_AXIS);
@@ -119,7 +114,7 @@ public class PipeBlock extends Block implements ConnectedModelCapability, Simple
         level.setBlock(pos, state, 3);
     }
 
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+    public @Nonnull InteractionResult use(BlockState pState, @Nonnull Level pLevel, @Nonnull BlockPos pPos, Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
 
         boolean playerHasTool = pPlayer.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || pPlayer.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
         Direction surfaceAttached = pState.getValue(SURFACE_ATTACHED);
@@ -140,7 +135,6 @@ public class PipeBlock extends Block implements ConnectedModelCapability, Simple
 
         } else if (playerHasTool){ //If player has tool, change the pipe orientation for walls and floors
             switch(pState.getValue(PLANAR_AXIS)) {
-                case X: pState = pState.setValue(PLANAR_AXIS, Direction.Axis.Z);break;
                 case Z: pState = pState.setValue(PLANAR_AXIS, Direction.Axis.X); break;
                 default: pState = pState.setValue(PLANAR_AXIS, Direction.Axis.Z); break;
             }
@@ -152,7 +146,7 @@ public class PipeBlock extends Block implements ConnectedModelCapability, Simple
         }
     }
 
-    public FluidState getFluidState(BlockState pState) {
+    public @Nonnull FluidState getFluidState(BlockState pState) {
         return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
     }
 

@@ -13,6 +13,8 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
+
+import javax.annotation.Nonnull;
 //INFO:
 //-----
 // This block supports rotation of custom models. It also supports directional placement based on player.
@@ -35,7 +37,7 @@ public class InteractableModelledFacingBlock extends ModelledFacingBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+    public @Nonnull InteractionResult use(@Nonnull BlockState pState, Level pLevel, @Nonnull BlockPos pPos, @Nonnull Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
         pState = pState.cycle(POWERED);
         pLevel.setBlock(pPos, pState, 2);
         return InteractionResult.SUCCESS;

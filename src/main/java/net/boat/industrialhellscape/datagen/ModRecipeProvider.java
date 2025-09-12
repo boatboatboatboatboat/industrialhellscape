@@ -21,8 +21,6 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
-    //REMOVE THE BASE BLOCKS TO REMOVE RECIPE REDUNDANCY
-
     //---------- DATAGEN VARIABLES: OUTPUT AMOUNT PER INPUT INGREDIENT(S) ----------
         //  Increasing from the default of 1 requires disabling Vesselplate, Rockrete, Pipeworks, and/or Vesselglass recycling
     private static final int vesselplatePerIronIngot = 1;
@@ -40,7 +38,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     //---------- END OF DATAGEN VARIABLES ----------
 
     private static final List<ItemLike> VESSELPLATE_STONECUT_OUTPUT = List.of(
-            ModBlocks.VESSELPLATE.get().asItem(), //base block commented out or else duplicate recipe created
+            ModBlocks.VESSELPLATE.get().asItem(),
             ModBlocks.VESSELPLATE_PILLAR.get().asItem(),
             ModBlocks.RIVETED_VESSELPLATE_PANEL.get().asItem(),
             ModBlocks.GRATE.get().asItem(),
@@ -153,6 +151,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     );
     private static final List<ItemLike> TECHNOLOGY_FURNITURE = List.of(
             ModBlocks.RETRO_COMPUTER.get().asItem(),
+            ModBlocks.RETRO_COMPUTER_2.get().asItem(),
             ModBlocks.CASSETTE_PLAYER.get().asItem()
     );
     private static final List<ItemLike> AMENITY_FURNITURE = List.of(
@@ -171,6 +170,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     protected void buildRecipes(Consumer<FinishedRecipe> pWriter) {
 
         //---------- CREATE BASE MODDED BLOCKS FROM VANILLA BLOCKS ----------
+
         //Create 9x Vesselplate from 9x iron ingots OR 1x Vesselplate from 1x iron ingots
         OneIngredientShapelessRecipe(ModBlocks.VESSELPLATE.get(), vesselplatePerIronIngot, Ingredient.of(Items.IRON_INGOT), "vesselplate_from_iron_ingot", pWriter);
         OneIngredientShapelessRecipe(ModBlocks.VESSELPLATE.get(), vesselplatePerIronIngot*9, Ingredient.of(Items.IRON_BLOCK), "vesselplate_from_iron_block", pWriter);
@@ -286,13 +286,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         //And therefore slabs cannot be crafted into smeltable blocks. Slabs cannot be smelted. This prevents item duplication via smelting into base vanilla ingredient items.
 
 
-        //Building Blocks
+        //Building Blocks - Parameters: (List of possible output items, String for generated recipe name, Tag of possible input items, pWriter)
         iterativeRecipes(VESSELPLATE_STONECUT_OUTPUT, "vesselplate", ModTags.Items.VESSELPLATE_SMELTABLE_ITEM, pWriter);
         iterativeRecipes(VESSELGLASS_STONECUT_OUTPUT, "vesselglass", ModTags.Items.VESSELGLASS_SMELTABLE_ITEM, pWriter);
         iterativeRecipes(ROCKRETE_STONECUT_OUTPUT, "rockrete", ModTags.Items.ROCKRETE_SMELTABLE_ITEM, pWriter);
         iterativeRecipes(PIPEWORKS_STONECUT_OUTPUT, "pipeworks", ModTags.Items.PIPEWORKS_SMELTABLE_ITEM, pWriter);
 
-        //Furniture
+        //Furniture - Parameters: (Tag of stonecut outputs, String for generated recipe name, Block as the single ingredient, pWriter)
         oneIngredientStonecutsToMany(FURNITURE_CATEGORIES, "furniture_categories", ModBlocks.IHEA_FURNITURE_KIT.get().asItem(), pWriter);
         oneIngredientStonecutsToMany(SAFETY_FURNITURE, "safety_furniture", ModBlocks.SAFETY_FURNISHINGS.get().asItem(), pWriter);
         oneIngredientStonecutsToMany(HYGIENE_FURNITURE, "hygiene_furniture", ModBlocks.HYGIENE_FURNISHINGS.get().asItem(), pWriter);

@@ -18,7 +18,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public static final EnumProperty<TwoBlockMultiBlockState> HALF = EnumProperty.create("half", TwoBlockMultiBlockState.class);
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final DirectionProperty FACING = BlockStateProperties.VERTICAL_DIRECTION;
+    public static final DirectionProperty HORIZONTAL_FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     public static final BooleanProperty ALT_TEXTURE = BooleanProperty.create("alt_texture");
 
@@ -28,10 +29,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        //Method naming convention ("SBI", "SI", etc):
-        //"S" - Generates Block State
-        //"B" - Generates Block Model (if no existing one is available). Simple full-blocks with no special rendering are being generated currently
-        //"I" - Generates Item Model
+        //Method naming convention ("SBI", "SI", etc.):
+        //"S" - For State. Generates block State
+        //"B" - For Block. Generates block Model (if no existing one is available). Simple full-blocks with no special rendering are being generated currently
+        //"I" - For Item. Generates Item Model
 
         //---------- BLOCK ASSET GENERATION LIST ----------
 
@@ -59,6 +60,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //paneBlock((IronBarsBlock) ModBlocks.SEETHROUGH_GRATE_PANE.get(), modLoc("block/see-through_grate"),modLoc("block/see-through_grate_pane_top"));
         //paneBlock((IronBarsBlock) ModBlocks.GRAY_SEETHROUGH_GRATE_PANE.get(), modLoc("block/gray_see-through_grate"),modLoc("block/gray_see-through_grate_pane_top"));
 
+        //Glass-like Blocks (With existing Block models that specify rendering properties for glass-transparency)
+        genFolderedSI(ModBlocks.REINFORCED_VESSELGLASS.get(),"vesselglass");
+        genFolderedSI(ModBlocks.VESSELGLASS.get(),"vesselglass");
+        genFolderedSI(ModBlocks.GRAY_REINFORCED_VESSELGLASS.get(),"vesselglass");
+        genFolderedSI(ModBlocks.GRAY_VESSELGLASS.get(),"vesselglass");
 
         //Stone-like Blocks
         genFolderedSBI(ModBlocks.GRIMY_RESTROOM_TILE.get(),"");
@@ -83,7 +89,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genFolderedSBI(ModBlocks.HAZARD_STRIPE_RED.get(),"");
 
         //Other Solid Opaque Full-Blocks with unique face textures
-        horizontalBlock(ModBlocks.IHEA_FURNITURE_KIT.get(), build6FaceTexturesBlockModel("ihea_furniture_kit", "furniture_category_block", "ihea_furniture_kit_back", "ihea_furniture_kit_front", "ihea_furniture_kit_right", "ihea_furniture_kit_left", "ihea_furniture_kit_top", "ihea_furniture_kit_bottom"));
+        horizontalBlock(ModBlocks.IHEA_FURNITURE_KIT.get(), build6FaceTexturesBlockModel("ihea_furniture_kit", "furniture_category_block", "ihea_furniture_kit_front", "ihea_furniture_kit_back", "ihea_furniture_kit_right", "ihea_furniture_kit_left", "ihea_furniture_kit_top", "ihea_furniture_kit_bottom"));
         horizontalBlock(ModBlocks.PIPEWORKS.get(), build3FaceTexturesBlockModel("pipeworks", "pipeworks", "pipeworks_front", "pipeworks_sides", "pipeworks_top"));
         horizontalBlock(ModBlocks.SAFETY_FURNISHINGS.get(), build3FaceTexturesBlockModel("safety_furnishings", "furniture_category_block", "safety_furnishings_north", "safety_furnishings_west", "safety_furnishings_up"));
         horizontalBlock(ModBlocks.HYGIENE_FURNISHINGS.get(), build3FaceTexturesBlockModel("hygiene_furnishings","furniture_category_block", "hygiene_furnishings_north", "hygiene_furnishings_west", "hygiene_furnishings_up"));
@@ -91,9 +97,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
         horizontalBlock(ModBlocks.TECHNOLOGY_FURNISHINGS.get(), build3FaceTexturesBlockModel("technology_furnishings","furniture_category_block", "technology_furnishings_north", "technology_furnishings_west", "technology_furnishings_up"));
         horizontalBlock(ModBlocks.AMENITY_FURNISHINGS.get(), build3FaceTexturesBlockModel("amenity_furnishings","furniture_category_block", "amenity_furnishings_north", "amenity_furnishings_west", "amenity_furnishings_up"));
 
-        build6FaceTexturesBlockModel("fuel_drum","fuel_drum", "red_labeled_fuel_drum_side", "red_labeled_fuel_drum_front", "red_labeled_fuel_drum_side", "red_labeled_fuel_drum_side", "red_fuel_drum_up","red_fuel_drum_down");
+        build6FaceTexturesBlockModel("locker_box","locker","locker_box_front","locker_box_side","locker_box_side","locker_box_side","locker_box_top","locker_box_bottom");
+        build6FaceTexturesBlockModel("fuel_drum","fuel_drum", "red_labeled_fuel_drum_front", "red_labeled_fuel_drum_side", "red_labeled_fuel_drum_side", "red_labeled_fuel_drum_side", "red_fuel_drum_up","red_fuel_drum_down");
         GenFacingSI(ModBlocks.FUEL_DRUM.get(),"");
 
+        //FURNITURE BLOCKS WITH EXISTING BLOCK MODELS
         GenFacingWaterloggableSI(ModBlocks.SINK.get(),"");
         GenFacingWaterloggableSI(ModBlocks.WHITE_WALL_MEDKIT.get(),"medkit_containers");
         GenFacingWaterloggableSI(ModBlocks.RED_WALL_MEDKIT.get(),"medkit_containers");
@@ -102,15 +110,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
         GenFacingPoweredSI(ModBlocks.WORK_LIGHT_MOUNT.get(), "work_light_mount");
         GenFacingPoweredSI(ModBlocks.FLOOR_WORK_LIGHT.get(), "work_light_mount");
         GenFacingPoweredSI(ModBlocks.RETRO_COMPUTER.get(), "retro_computer");
+        GenFacingPoweredSI(ModBlocks.RETRO_COMPUTER_2.get(), "retro_computer");
         GenFacingPoweredSI(ModBlocks.CASSETTE_PLAYER.get(), "cassette_player");
 
         TwoBlockMultiBlock(ModBlocks.LARGE_LOCKER.get(), "locker");
-        GenFacingSI(ModBlocks.LOCKER_BOX.get(),"locker");
-
-        genFolderedSI(ModBlocks.REINFORCED_VESSELGLASS.get(),"vesselglass");
-        genFolderedSI(ModBlocks.VESSELGLASS.get(),"vesselglass");
-        genFolderedSI(ModBlocks.GRAY_REINFORCED_VESSELGLASS.get(),"vesselglass");
-        genFolderedSI(ModBlocks.GRAY_VESSELGLASS.get(),"vesselglass");
+        GenFacingSI(ModBlocks.LOCKER_BOX.get(),"");
 
     }
     //---------- END OF BLOCK ASSET GENERATION LIST ----------
@@ -119,7 +123,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private ModelFile build3FaceTexturesBlockModel(String blockName, String folderName, String frontAndBack, String leftAndRight, String topAndBottom) {
         //Builds a textured model that uses three texture .pngs for all 6 faces.
-        ModelFile model = models().cube(
+        return models().cube(
                 blockName,
                 modLoc( "block/" + folderName+ "/" + topAndBottom), //bottom
                 modLoc("block/" + folderName+ "/" + topAndBottom), //top
@@ -128,12 +132,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 modLoc("block/"  + folderName+ "/" + leftAndRight), //left
                 modLoc("block/"  + folderName+ "/" + leftAndRight) //right
                 ).texture("particle", modLoc("block/" + folderName +"/" + topAndBottom));
-        return model;
     }
 
     private ModelFile build6FaceTexturesBlockModel(String blockName, String folderName, String front, String back, String left, String right, String top, String bottom) {
         //Builds a textured model that uses three texture .pngs for all 6 faces.
-        ModelFile model = models().cube(
+        return models().cube(
                 blockName,
                 modLoc( "block/" + folderName+ "/" + bottom), //bottom
                 modLoc("block/" + folderName+ "/" + top), //top
@@ -142,7 +145,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 modLoc("block/"  + folderName+ "/" + left), //left
                 modLoc("block/"  + folderName+ "/" + right) //right
         ).texture("particle", modLoc("block/" + folderName +"/" + top));
-        return model;
     }
 
     private void buildRotatedTextureBlockModel(Block block, String folderName) { //When no seperate texture is required (this is used when the block to be made has no CTM texture)
@@ -220,9 +222,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         getVariantBuilder(block)
                 .forAllStates(state -> {
-                    Direction facing = state.getValue(FACING);
+                    Direction horizontalFacing = state.getValue(HORIZONTAL_FACING);
 
-                    int yRot = switch (facing) {
+                    int yRot = switch (horizontalFacing) {
                         case SOUTH -> 180;
                         case WEST  -> 270;
                         case EAST  -> 90;
@@ -239,15 +241,52 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, models().getExistingFile(modLoc(modelPath)));
     }
 
+    private void GenAllSidesFacingSI(Block block, String folderName) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+        String modelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
+
+        getVariantBuilder(block)
+                .forAllStates(state -> {
+                    Direction facing = state.getValue(FACING);
+                    Direction horizontalFacing = state.getValue(HORIZONTAL_FACING);
+
+                    int yRot = switch (facing) {
+                        case SOUTH -> 180; //On Side
+                        case WEST  -> 270; //On Side
+                        case EAST  -> 90; //On side
+                        default -> 0; //NORTH
+                    };
+
+                    int XRot = switch (facing) {
+                        case SOUTH -> 90; //On Side
+                        case WEST  -> 90; //On Side
+                        case EAST  -> 90; //On side
+                        case NORTH -> 90; //On side
+                        case UP -> 0; //Placed vertically, on floor
+                        case DOWN -> 180; //Placed vertically, on ceiling
+                        default -> 0; //NORTH
+                    };
+
+                    return ConfiguredModel.builder()
+                            .modelFile(models().getExistingFile(modLoc("block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName)))
+                            .rotationY(yRot)
+                            .rotationX(XRot)
+                            .build();
+                });
+
+        //GENERATE ITEM MODEL
+        simpleBlockItem(block, models().getExistingFile(modLoc(modelPath)));
+    }
+
     private void GenFacingWaterloggableSI(Block block, String folderName) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
         String modelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
 
         getVariantBuilder(block)
                 .forAllStatesExcept(state -> {
-                    Direction facing = state.getValue(FACING);
+                    Direction horizontalFacing = state.getValue(HORIZONTAL_FACING);
 
-                    int yRot = switch (facing) {
+                    int yRot = switch (horizontalFacing) {
                         case SOUTH -> 180;
                         case WEST  -> 270;
                         case EAST  -> 90;
@@ -271,11 +310,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         getVariantBuilder(block)
                 .forAllStatesExcept(state -> {
-                    Direction facing = state.getValue(FACING);
+                    Direction horizontalFacing = state.getValue(HORIZONTAL_FACING);
                     Boolean powered = state.getValue(POWERED);
                     String modelToUse = powered? poweredModelPath : unpoweredModelPath;
 
-                    int yRot = switch (facing   ) {
+                    int yRot = switch (horizontalFacing   ) {
                         case SOUTH -> 180;
                         case WEST  -> 270;
                         case EAST  -> 90;
@@ -314,11 +353,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         getVariantBuilder(block)
                 .forAllStatesExcept(state -> {
-                    Direction facing = state.getValue(FACING);
+                    Direction horizontalFacing = state.getValue(HORIZONTAL_FACING);
                     TwoBlockMultiBlockState half = state.getValue(HALF);
                     String modelToUse = (half == TwoBlockMultiBlockState.POSITIVE)? positiveBlock : negativeBlock;
 
-                    int yRot = switch (facing   ) {
+                    int yRot = switch (horizontalFacing   ) {
                         case SOUTH -> 180;
                         case WEST  -> 270;
                         case EAST  -> 90;
