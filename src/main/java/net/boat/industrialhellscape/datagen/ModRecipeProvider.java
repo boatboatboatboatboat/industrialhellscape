@@ -141,8 +141,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.SINK.get().asItem()
     );
     private static final List<ItemLike> INDUSTRIAL_FURNITURE = List.of(
-            //ModBlocks.LOCKER_BOX.get().asItem(), //Experimental
-            //ModBlocks.LARGE_LOCKER.get().asItem(), //Experimental
+            ModBlocks.LOCKER_BOX.get().asItem(),
+            ModBlocks.LARGE_LOCKER.get().asItem(),
             ModBlocks.GRAY_BOLTED_BRACKET.get().asItem(),
             ModBlocks.BLACK_BOLTED_BRACKET.get().asItem(),
             ModBlocks.YELLOW_TRIPOD.get().asItem(),
@@ -159,7 +159,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.DESK_DRAWER.get().asItem(),
             ModBlocks.METAL_DESK.get().asItem(),
             ModBlocks.METAL_DESK_DRAWER.get().asItem(),
-            ModBlocks.METAL_DESK_DRAWER_2.get().asItem()
+            ModBlocks.METAL_DESK_DRAWER_2.get().asItem(),
+            ModBlocks.BODY_PILLOW.get().asItem()
     );
 
     public ModRecipeProvider(PackOutput pOutput) {

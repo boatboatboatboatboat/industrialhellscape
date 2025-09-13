@@ -10,12 +10,15 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class  ModEntities {
+
+    private static final float SittingHeight = 0.75f; // 1.00 is a full block height
+
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =
             DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, IndustrialHellscape.MOD_ID);
 
     public static final RegistryObject<EntityType<SittableEntity>> CHAIR =
             ENTITY_TYPES.register("chair", () -> EntityType.Builder.of(SittableEntity::new, MobCategory.MISC)
-                    .sized(0.5f, 0.75f).build("chair"));
+                    .sized(0.5f, SittingHeight).build("chair"));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

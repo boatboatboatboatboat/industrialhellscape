@@ -14,6 +14,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModItems {
 
+    //---------- NORMAL ITEMS ----------
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, IndustrialHellscape.MOD_ID);
 
@@ -32,6 +33,8 @@ public class ModItems {
     public static final RegistryObject<Item> VAPORWAVE_CASSETTE = ITEMS.register("vaporwave_cassette",
             () -> new RecordItemWithTooltip("vaporwave_cassette", 6, ModSounds.VULTA_SHATTERED, new Item.Properties().stacksTo(1), 4620));
 
+    //---------- END OF NORMAL ITEMS ----------
+
     //---------- BLOCK ITEMS ----------
         //For flavor text purposes. Ignore the unuse warning.
     public static final RegistryObject<Item> VESSELPLATE_ITEM = ITEMS.register("vesselplate",
@@ -41,6 +44,7 @@ public class ModItems {
     public static final RegistryObject<Item> IHEA_FURNITURE_KIT_ITEM = ITEMS.register("ihea_furniture_kit",
             () -> new BlockItemWithTooltip("ihea_furniture_kit", ModBlocks.IHEA_FURNITURE_KIT.get(), new Item.Properties()));
 
+    //----------- END OF BLOCK ITEMS ----------
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

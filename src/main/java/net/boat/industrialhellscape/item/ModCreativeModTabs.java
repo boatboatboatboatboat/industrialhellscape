@@ -37,7 +37,6 @@ public class ModCreativeModTabs {
                         //IRONLIKE BLOCKS FOR CREATIVE TAB
                         output.accept(ModBlocks.VESSELPLATE.get());
                         output.accept(ModBlocks.RIVETED_VESSELPLATE_PANEL.get());
-                        //output.accept(ModBlocks.VESSELPLATE_GRATE_BLOCK.get()); //Depreciated
                         output.accept(ModBlocks.GRATE.get());
                         output.accept(ModBlocks.SEETHROUGH_GRATE.get());
                         //output.accept(ModBlocks.SEETHROUGH_GRATE_PANE.get()); //Experimental

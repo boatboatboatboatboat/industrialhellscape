@@ -22,11 +22,6 @@ public class ModMenuTypes {
         return MENU_TYPES.register(name, () -> IForgeMenuType.create(factory));
     }
 
-    public static final RegistryObject<MenuType<Storage9SlotMenu>> STORAGE_9SLOT_MENU = MENU_TYPES.register("storage_9slot_menu",
-            () -> IForgeMenuType.create(Storage9SlotMenu::new));
-    public static final RegistryObject<MenuType<Storage18SlotMenu>> STORAGE_18SLOT_MENU = MENU_TYPES.register("storage_18slot_menu",
-            () -> IForgeMenuType.create(Storage18SlotMenu::new));
-
     public static void register(IEventBus eventBus) {
         MENU_TYPES.register(eventBus);
     }
