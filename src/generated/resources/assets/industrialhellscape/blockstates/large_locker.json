@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,half=negative": {
+      "model": "industrialhellscape:block/locker/large_locker",
+      "y": 90
+    },
+    "facing=east,half=positive": {
+      "model": "industrialhellscape:block/locker/large_locker_positive",
+      "y": 90
+    },
+    "facing=north,half=negative": {
+      "model": "industrialhellscape:block/locker/large_locker"
+    },
+    "facing=north,half=positive": {
+      "model": "industrialhellscape:block/locker/large_locker_positive"
+    },
+    "facing=south,half=negative": {
+      "model": "industrialhellscape:block/locker/large_locker",
+      "y": 180
+    },
+    "facing=south,half=positive": {
+      "model": "industrialhellscape:block/locker/large_locker_positive",
+      "y": 180
+    },
+    "facing=west,half=negative": {
+      "model": "industrialhellscape:block/locker/large_locker",
+      "y": 270
+    },
+    "facing=west,half=positive": {
+      "model": "industrialhellscape:block/locker/large_locker_positive",
+      "y": 270
+    }
+  }
+}

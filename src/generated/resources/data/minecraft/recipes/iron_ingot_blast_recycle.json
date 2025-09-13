@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.0,
+  "group": "Vesselplate",
+  "ingredient": {
+    "tag": "industrialhellscape:vesselplate_smeltable_item"
+  },
+  "result": "minecraft:iron_ingot"
+}

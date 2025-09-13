@@ -1,0 +1,32 @@
+{
+  "values": [
+    "industrialhellscape:vesselplate",
+    "industrialhellscape:grate",
+    "industrialhellscape:see-through_grate",
+    "industrialhellscape:rusty_grate",
+    "industrialhellscape:riveted_vesselplate_panel",
+    "industrialhellscape:horizontal_riveted_vesselplate",
+    "industrialhellscape:vertical_riveted_vesselplate",
+    "industrialhellscape:smooth_vesselplate_tile",
+    "industrialhellscape:vesselplate_pillar",
+    "industrialhellscape:rusty_grate",
+    "industrialhellscape:gray_vesselplate",
+    "industrialhellscape:gray_riveted_vesselplate_panel",
+    "industrialhellscape:gray_grate",
+    "industrialhellscape:gray_see-through_grate",
+    "industrialhellscape:riveted_vesselplate_panel",
+    "industrialhellscape:gray_horizontal_riveted_vesselplate",
+    "industrialhellscape:gray_vertical_riveted_vesselplate",
+    "industrialhellscape:smooth_gray_vesselplate_tile",
+    "industrialhellscape:gray_vesselplate_pillar",
+    "industrialhellscape:strut",
+    "industrialhellscape:strut_stairs",
+    "industrialhellscape:catwalk_strut",
+    "industrialhellscape:catwalk_strut_stairs",
+    "industrialhellscape:gray_strut",
+    "industrialhellscape:gray_strut_stairs",
+    "industrialhellscape:gray_catwalk_strut",
+    "industrialhellscape:gray_catwalk_strut_stairs",
+    "industrialhellscape:encased_cables"
+  ]
+}

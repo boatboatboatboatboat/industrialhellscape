@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "industrialhellscape:technology_furnishings"
+  },
+  "result": "industrialhellscape:cassette_player"
+}

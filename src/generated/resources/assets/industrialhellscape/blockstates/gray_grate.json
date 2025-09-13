@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "alt_texture=false": {
+      "model": "industrialhellscape:block/gray_grate"
+    },
+    "alt_texture=true": {
+      "model": "industrialhellscape:block/gray_vertical_grate"
+    }
+  }
+}

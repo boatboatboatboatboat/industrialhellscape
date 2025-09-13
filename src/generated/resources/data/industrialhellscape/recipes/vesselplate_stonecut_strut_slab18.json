@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 2,
+  "ingredient": {
+    "tag": "industrialhellscape:vesselplate_smeltable_item"
+  },
+  "result": "industrialhellscape:strut_slab"
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "industrialhellscape:block/fuel_drum/red_fuel_drum_down",
+    "east": "industrialhellscape:block/fuel_drum/red_labeled_fuel_drum_side",
+    "north": "industrialhellscape:block/fuel_drum/red_labeled_fuel_drum_front",
+    "particle": "industrialhellscape:block/fuel_drum/red_fuel_drum_up",
+    "south": "industrialhellscape:block/fuel_drum/red_labeled_fuel_drum_side",
+    "up": "industrialhellscape:block/fuel_drum/red_fuel_drum_up",
+    "west": "industrialhellscape:block/fuel_drum/red_labeled_fuel_drum_side"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "tag": "industrialhellscape:vesselplate_smeltable_item"
+  },
+  "result": "industrialhellscape:gray_grate"
+}

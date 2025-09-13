@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "industrialhellscape:block/vesselplate/gray_horizontal_riveted_vesselplate"
+  }
+}

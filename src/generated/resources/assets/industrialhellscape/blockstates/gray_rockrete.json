@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "alt_texture=false": {
+      "model": "industrialhellscape:block/gray_rockrete"
+    },
+    "alt_texture=true": {
+      "model": "industrialhellscape:block/gray_rockrete_rebar"
+    }
+  }
+}

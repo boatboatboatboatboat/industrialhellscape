@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "industrialhellscape:block/locker/locker_box_bottom",
+    "east": "industrialhellscape:block/locker/locker_box_side",
+    "north": "industrialhellscape:block/locker/locker_box_front",
+    "particle": "industrialhellscape:block/locker/locker_box_top",
+    "south": "industrialhellscape:block/locker/locker_box_side",
+    "up": "industrialhellscape:block/locker/locker_box_top",
+    "west": "industrialhellscape:block/locker/locker_box_side"
+  }
+}

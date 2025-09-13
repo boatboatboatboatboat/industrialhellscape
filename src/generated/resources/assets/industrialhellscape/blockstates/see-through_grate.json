@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "alt_texture=false": {
+      "model": "industrialhellscape:block/grate/see-through_grate"
+    },
+    "alt_texture=true": {
+      "model": "industrialhellscape:block/grate/vertical_see-through_grate"
+    }
+  }
+}

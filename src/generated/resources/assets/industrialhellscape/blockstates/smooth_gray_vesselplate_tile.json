@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "alt_texture=false": {
+      "model": "industrialhellscape:block/smooth_gray_vesselplate_tile"
+    },
+    "alt_texture=true": {
+      "model": "industrialhellscape:block/smooth_gray_vesselplate"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "industrialhellscape:inhell_haven_device"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:glass"
+    }
+  ],
+  "result": {
+    "item": "industrialhellscape:vesselglass"
+  }
+}

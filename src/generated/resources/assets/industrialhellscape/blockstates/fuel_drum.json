@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "industrialhellscape:block/fuel_drum",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "industrialhellscape:block/fuel_drum"
+    },
+    "facing=south": {
+      "model": "industrialhellscape:block/fuel_drum",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "industrialhellscape:block/fuel_drum",
+      "y": 270
+    }
+  }
+}

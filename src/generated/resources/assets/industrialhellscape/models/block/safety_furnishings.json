@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "industrialhellscape:block/furniture_category_block/safety_furnishings_up",
+    "east": "industrialhellscape:block/furniture_category_block/safety_furnishings_west",
+    "north": "industrialhellscape:block/furniture_category_block/safety_furnishings_north",
+    "particle": "industrialhellscape:block/furniture_category_block/safety_furnishings_up",
+    "south": "industrialhellscape:block/furniture_category_block/safety_furnishings_north",
+    "up": "industrialhellscape:block/furniture_category_block/safety_furnishings_up",
+    "west": "industrialhellscape:block/furniture_category_block/safety_furnishings_west"
+  }
+}
