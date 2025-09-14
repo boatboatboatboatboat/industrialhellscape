@@ -70,7 +70,7 @@ public class ModelledFacingBlock extends SimpleFacingBlock implements SimpleWate
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
-        Direction directionClicked = pContext.getHorizontalDirection(); //Gets the cardinal direction when player places new block
+        Direction directionClicked = pContext.getHorizontalDirection().getOpposite(); //Gets the cardinal direction when player places new block
 
         BlockState state = defaultBlockState().setValue(WATERLOGGED,fluidstate.getType() == Fluids.WATER); //check for waterlogging status
         state = state.setValue(FACING, directionClicked); //Defines facing direction of the block

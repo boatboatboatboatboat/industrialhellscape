@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 1,
-  "ingredient": {
-    "item": "industrialhellscape:industrial_furnishings"
-  },
-  "result": "industrialhellscape:gray_bolted_bracket"
-}

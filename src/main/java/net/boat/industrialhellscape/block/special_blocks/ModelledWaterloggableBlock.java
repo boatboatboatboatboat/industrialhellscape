@@ -17,6 +17,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+//Non-directional modelled block (radially symmetrical) that permits waterlogging.
+
 public class ModelledWaterloggableBlock extends Block implements SimpleWaterloggedBlock {
 
     private final VoxelShape HITBOX_SHAPE;

@@ -23,16 +23,17 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.LOCKER_BOX.get());
                         output.accept(ModBlocks.LARGE_LOCKER.get());
                         output.accept(ModBlocks.FUEL_DRUM.get());
+                        output.accept(ModBlocks.YELLOW_RAILING.get());
 
                         //ITEMS FOR CREATIVE TAB
                         output.accept(ModItems.FLOPPY_DISK.get());
                         output.accept(ModItems.FLOPPY_DISKETTE.get());
                         output.accept(ModItems.INHELL_HAVEN_DEVICE.get());
                         output.accept(ModItems.VAPORWAVE_CASSETTE.get());
-                        output.accept(ModItems.JOB_APPLICATION.get());
+                        //output.accept(ModItems.JOB_APPLICATION.get()); //secret item
 
                         //EXPERIMENTAL BLOCKS FOR CREATIVE TAB
-                        output.accept(ModBlocks.HANDRAIL.get());
+                        //output.accept(ModBlocks.HANDRAIL.get());
 
                         //IRONLIKE BLOCKS FOR CREATIVE TAB
                         output.accept(ModBlocks.VESSELPLATE.get());
@@ -57,7 +58,7 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get());
                         output.accept(ModBlocks.GRAY_GRATE.get());
                         output.accept(ModBlocks.GRAY_SEETHROUGH_GRATE.get());
-                        output.accept(ModBlocks.GRAY_SEETHROUGH_GRATE_PANE.get()); //Experimental
+                        //output.accept(ModBlocks.GRAY_SEETHROUGH_GRATE_PANE.get()); //Experimental
                         output.accept(ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get());
                         output.accept(ModBlocks.GRAY_VESSELPLATE_PILLAR.get());
 
@@ -110,7 +111,7 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.METAL_DESK.get());
                         output.accept(ModBlocks.METAL_DESK_DRAWER.get());
                         output.accept(ModBlocks.METAL_DESK_DRAWER_2.get());
-                        output.accept(ModBlocks.BODY_PILLOW.get());
+                        //output.accept(ModBlocks.BODY_PILLOW.get()); //secret
 
                         output.accept(ModBlocks.TOILET.get());
                         output.accept(ModBlocks.SINK.get());
@@ -122,8 +123,6 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.YELLOW_TRIPOD.get());
                         output.accept(ModBlocks.WORK_LIGHT_MOUNT.get());
                         output.accept(ModBlocks.FLOOR_WORK_LIGHT.get());
-                        //output.accept(ModBlocks.LOCKER_BOX.get()); //Experimental
-                        //output.accept(ModBlocks.LARGE_LOCKER.get()); //Experimental
 
                         output.accept(ModBlocks.PIPEWORKS.get());
 

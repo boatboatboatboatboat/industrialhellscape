@@ -85,6 +85,6 @@ public class Storage18SlotBlockEntity extends BlockEntity implements MenuProvide
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, @NotNull Inventory pPlayerInventory, Player pPlayer) {
-        return new Storage18SlotMenu(pContainerId, pPlayerInventory, this);
+        return null;
     }
 }

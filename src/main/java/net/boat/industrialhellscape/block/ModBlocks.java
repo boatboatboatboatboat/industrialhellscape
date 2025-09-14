@@ -34,6 +34,12 @@ public class ModBlocks {
             DeferredRegister.create(ForgeRegistries.BLOCKS, IndustrialHellscape.MOD_ID);
 
     //EXPERIMENTAL BLOCKS
+    public static final RegistryObject<Block> YELLOW_RAILING = registerBlockAndBlockItem("yellow_railing",
+            () -> new RailingBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+
+            )
+    );
     public static final RegistryObject<Block> LARGE_LOCKER = registerBlockAndBlockItem("large_locker",
             () -> new TwoBlockContainerMultiBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
@@ -490,18 +496,18 @@ public class ModBlocks {
                     .Properties.copy(Blocks.IRON_BLOCK)
 
                     .noOcclusion(),
-                    HitboxGeometryCollection.INNER_CORNER_UP(),
-                    HitboxGeometryCollection.INNER_CORNER_DOWN(),
-                    HitboxGeometryCollection.INNER_CORNER_SIDE())
+                    HitboxGeometryCollection.BRACKET_UP(),
+                    HitboxGeometryCollection.BRACKET_DOWN(),
+                    HitboxGeometryCollection.BRACKET_SIDE())
     );
     public static final RegistryObject<Block> BLACK_BOLTED_BRACKET = registerBlockAndBlockItem("black_bolted_bracket",
             () -> new CornerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
 
                     .noOcclusion(),
-                    HitboxGeometryCollection.INNER_CORNER_UP(),
-                    HitboxGeometryCollection.INNER_CORNER_DOWN(),
-                    HitboxGeometryCollection.INNER_CORNER_SIDE())
+                    HitboxGeometryCollection.BRACKET_UP(),
+                    HitboxGeometryCollection.BRACKET_DOWN(),
+                    HitboxGeometryCollection.BRACKET_SIDE())
     );
     public static final RegistryObject<Block> DESK = registerBlockAndBlockItem("desk",
             () -> new ConnectedFurnitureBlock(BlockBehaviour

@@ -137,7 +137,7 @@ public class ToiletBlock extends HorizontalDirectionalBlock implements SimpleWat
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         BlockState blockstate = this.defaultBlockState();
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
-        Direction direction = pContext.getHorizontalDirection();
+        Direction direction = pContext.getHorizontalDirection().getOpposite();
 
         blockstate = blockstate.setValue(FACING, direction);
 

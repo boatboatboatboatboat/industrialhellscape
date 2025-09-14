@@ -147,7 +147,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.BLACK_BOLTED_BRACKET.get().asItem(),
             ModBlocks.YELLOW_TRIPOD.get().asItem(),
             ModBlocks.WORK_LIGHT_MOUNT.get().asItem(),
-            ModBlocks.FLOOR_WORK_LIGHT.get().asItem()
+            ModBlocks.FLOOR_WORK_LIGHT.get().asItem(),
+            ModBlocks.FUEL_DRUM.get().asItem()
     );
     private static final List<ItemLike> TECHNOLOGY_FURNITURE = List.of(
             ModBlocks.RETRO_COMPUTER.get().asItem(),
@@ -159,8 +160,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.DESK_DRAWER.get().asItem(),
             ModBlocks.METAL_DESK.get().asItem(),
             ModBlocks.METAL_DESK_DRAWER.get().asItem(),
-            ModBlocks.METAL_DESK_DRAWER_2.get().asItem(),
-            ModBlocks.BODY_PILLOW.get().asItem()
+            ModBlocks.METAL_DESK_DRAWER_2.get().asItem()
     );
 
     public ModRecipeProvider(PackOutput pOutput) {
@@ -275,6 +275,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(Items.PAPER)
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(pWriter, new ResourceLocation("industrialhellscape", "job_application"));
+
+        //Create Job Application
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.BODY_PILLOW.get(), 1)
+                .requires(ModItems.INHELL_HAVEN_DEVICE.get())
+                .requires(ItemTags.WOOL)
+                .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                .save(pWriter, new ResourceLocation("industrialhellscape", "body_pillow"));
 
 
         //---------- END OF SPECIAL ITEM CRAFTING ----------

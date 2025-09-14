@@ -71,11 +71,11 @@ public class PipePlanarCornerBlock extends Block implements SimpleWaterloggedBlo
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
         BlockState state = this.defaultBlockState();
-        Direction directionClicked = pContext.getClickedFace(); //Are you clicking the floor, ceiling, north wall, south wall, east wall, west wall?
+        Direction directionClicked = pContext.getClickedFace().getOpposite(); //Are you clicking the floor, ceiling, north wall, south wall, east wall, west wall?
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
 
         //This section determines surface alignment based on where you click to place.
-        state = state.setValue(SURFACE_ATTACHED, directionClicked.getOpposite());
+        state = state.setValue(SURFACE_ATTACHED, directionClicked);
 
         //This section determines waterlogging.
         state =  state.setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);

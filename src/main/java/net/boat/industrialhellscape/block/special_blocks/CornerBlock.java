@@ -129,7 +129,7 @@ public class CornerBlock extends Block implements SimpleWaterloggedBlock {
     //Placement Faces the player
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        Direction directionFacing = pContext.getHorizontalDirection(); //Gets the cardinal direction when player places new block
+        Direction directionFacing = pContext.getHorizontalDirection().getOpposite(); //Gets the cardinal direction when player places new block
         Direction directionClicked = pContext.getClickedFace().getOpposite();
         boolean PlayerisCrouching = (pContext.getPlayer() != null) && pContext.getPlayer().isCrouching();
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());

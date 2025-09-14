@@ -19,6 +19,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.LARGE_LOCKER.get());
         this.dropSelf(ModBlocks.HANDRAIL.get());
         this.dropSelf(ModBlocks.FUEL_DRUM.get());
+        this.dropSelf(ModBlocks.YELLOW_RAILING.get());
 
         //IRONLIKE SIMPLE BLOCKS
         this.dropSelf(ModBlocks.VESSELPLATE.get());

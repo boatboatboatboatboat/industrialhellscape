@@ -1,8 +1,6 @@
 package net.boat.industrialhellscape;
 
 import net.boat.industrialhellscape.block.ModBlocks;
-import net.boat.industrialhellscape.block.special_blocks.DeprecatedStorageBlocks.Storage18SlotMenuScreen;
-import net.boat.industrialhellscape.block.special_blocks.DeprecatedStorageBlocks.Storage9SlotMenuScreen;
 import net.boat.industrialhellscape.block.special_blocks_properties.ModBlockEntities;
 import net.boat.industrialhellscape.entity.ModEntities;
 import net.boat.industrialhellscape.block.special_blocks_properties.SittableEntityRenderer;
@@ -83,8 +81,6 @@ public class IndustrialHellscape {
         @SubscribeEvent
         public static void clientSetup(FMLClientSetupEvent event) {
             event.enqueueWork(() -> {
-                MenuScreens.register(ModMenuTypes.STORAGE_9SLOT_MENU.get(), Storage9SlotMenuScreen::new);
-                MenuScreens.register(ModMenuTypes.STORAGE_18SLOT_MENU.get(), Storage18SlotMenuScreen::new);
             });
         }
     }

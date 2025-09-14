@@ -30,9 +30,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         //makeBlockitemModel(ModBlocks.MULTIBLOCK_DEBUG);
         makeFolderedBlockitemModel(ModBlocks.HANDRAIL,"obj_models");
 
-
-        makeBlockitemModel(ModBlocks.PIPEWORKS);
-
         makeFolderedBlockitemModel(ModBlocks.STRUT,"strut");
         makeFolderedBlockitemModel(ModBlocks.STRUT_STAIRS,"strut");
         makeFolderedBlockitemModel(ModBlocks.STRUT_SLAB,"strut");
@@ -68,6 +65,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         makeBlockitemModel(ModBlocks.GRAY_ROCKRETE_STAIRS);
         makeBlockitemModel(ModBlocks.GREEN_ROCKRETE_STAIRS);
         makeBlockitemModel(ModBlocks.YELLOW_ROCKRETE_STAIRS);
+
+        makeBlockitemModel(ModBlocks.YELLOW_RAILING);
     }
 
     private ItemModelBuilder makeItemModel(RegistryObject<Item> item) {

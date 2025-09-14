@@ -52,7 +52,7 @@ public class ModelledFacingContainerBlock extends FacingContainerBlock implement
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
         BlockState state = this.defaultBlockState();
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
-        Direction direction = pContext.getHorizontalDirection();
+        Direction direction = pContext.getHorizontalDirection().getOpposite();
         state = state.setValue(FACING, direction);
         state =  state.setValue(WATERLOGGED,fluidstate.getType() == Fluids.WATER);
         return state;

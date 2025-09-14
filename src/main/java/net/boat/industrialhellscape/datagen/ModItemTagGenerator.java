@@ -2,6 +2,7 @@ package net.boat.industrialhellscape.datagen;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
+import net.boat.industrialhellscape.block.special_blocks.RailingBlock;
 import net.boat.industrialhellscape.item.ModItems;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.HolderLookup;
@@ -177,7 +178,8 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.BLACK_BOLTED_BRACKET.get().asItem(),
                         ModBlocks.YELLOW_TRIPOD.get().asItem(),
                         ModBlocks.WORK_LIGHT_MOUNT.get().asItem(),
-                        ModBlocks.FLOOR_WORK_LIGHT.get().asItem()
+                        ModBlocks.FLOOR_WORK_LIGHT.get().asItem(),
+                        ModBlocks.YELLOW_RAILING.get().asItem()
                 );
         this.tag(ModTags.Items.TECHNOLOGY_FURNITURE_CATEGORY)
                 .add(

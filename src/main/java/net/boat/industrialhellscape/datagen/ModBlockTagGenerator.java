@@ -182,7 +182,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.BLACK_BOLTED_BRACKET.get(),
                         ModBlocks.YELLOW_TRIPOD.get(),
                         ModBlocks.WORK_LIGHT_MOUNT.get(),
-                        ModBlocks.FLOOR_WORK_LIGHT.get()
+                        ModBlocks.FLOOR_WORK_LIGHT.get(),
+                        ModBlocks.YELLOW_RAILING.get()
                 );
 
         this.tag(ModTags.Blocks.TECHNOLOGY_FURNITURE_CATEGORY)

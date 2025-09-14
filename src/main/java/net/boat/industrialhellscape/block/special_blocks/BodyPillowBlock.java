@@ -168,15 +168,11 @@ public class BodyPillowBlock extends TwoBlockMultiBlock implements EntityBlock {
 
     }
 
-    private static Direction getNeighbourDirection(TwoBlockMultiBlockState pPart, Direction pDirection) {
-        return pPart == TwoBlockMultiBlockState.POSITIVE ? pDirection.getClockWise(): pDirection.getCounterClockWise();
-    }
-
     public void playerWillDestroy(Level pLevel, @Nonnull BlockPos pPos, @Nonnull BlockState pState, @Nonnull Player pPlayer) {
         if (!pLevel.isClientSide && pPlayer.isCreative()) {
             TwoBlockMultiBlockState bedpart = pState.getValue(HALF_PART);
             if (bedpart == TwoBlockMultiBlockState.NEGATIVE) {
-                BlockPos blockpos = pPos.relative(getNeighbourDirection(bedpart, pState.getValue(FACING)));
+                BlockPos blockpos = posToPlaceOtherHalf(pPos, bedpart, pState.getValue(FACING), multiBlockPlacementDirection);
                 BlockState blockstate = pLevel.getBlockState(blockpos);
                 if (blockstate.is(this) && blockstate.getValue(HALF_PART) == TwoBlockMultiBlockState.POSITIVE) {
                     pLevel.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 35);

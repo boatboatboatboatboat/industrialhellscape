@@ -92,7 +92,7 @@ public class ConnectedContainerBlock extends FacingContainerBlock implements Ent
         BlockPos positionClicked = pContext.getClickedPos(); //Get the position when player places new block
         Direction directionClicked = pContext.getHorizontalDirection(); //Gets the cardinal direction when player places new block
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
-        Direction direction = pContext.getHorizontalDirection();
+        Direction direction = pContext.getHorizontalDirection().getOpposite();
         state = state.setValue(FACING, direction);
         state = state.setValue(TYPE, getTypeAndFamily(state, getStateRelativeLeft(level, positionClicked, directionClicked), getStateRelativeRight(level, positionClicked, directionClicked), BlockSetFamily)); //Second, defines connection type of the block
         state =  state.setValue(WATERLOGGED,fluidstate.getType() == Fluids.WATER);
@@ -142,7 +142,7 @@ public class ConnectedContainerBlock extends FacingContainerBlock implements Ent
         }
         if (level.isClientSide) return;
 
-        Direction directionClicked = state.getValue(FACING);
+        Direction directionClicked = state.getValue(FACING).getOpposite();
         FurnitureConnectionState type = getTypeAndFamily(state, getStateRelativeLeft(level, positionClicked, directionClicked), getStateRelativeRight(level, positionClicked, directionClicked), BlockSetFamily);
         if (state.getValue(TYPE) == type) return;
 

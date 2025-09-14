@@ -47,8 +47,8 @@ public class TwoBlockMultiBlock extends SimpleFacingBlock {
 
         return switch (multiBlockPlacementDirection) {
             case VERTICAL -> pPos.relative(pPart == TwoBlockMultiBlockState.POSITIVE ? Direction.DOWN : Direction.UP);
-            case HORIZONTAL -> pPos.relative(pPart == TwoBlockMultiBlockState.POSITIVE ? placementDirection.getClockWise() : placementDirection.getCounterClockWise());
-            default -> pPos.relative(pPart == TwoBlockMultiBlockState.POSITIVE ? placementDirection.getOpposite() : placementDirection);
+            case HORIZONTAL -> pPos.relative(pPart == TwoBlockMultiBlockState.POSITIVE ? placementDirection.getCounterClockWise() : placementDirection.getClockWise());
+            default -> pPos.relative(pPart == TwoBlockMultiBlockState.POSITIVE ? placementDirection : placementDirection.getOpposite());
         };
     }
 
@@ -69,10 +69,10 @@ public class TwoBlockMultiBlock extends SimpleFacingBlock {
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        Direction direction = pContext.getHorizontalDirection(); //Which direction is the block placed?
+        Direction direction = pContext.getHorizontalDirection().getOpposite(); //Which direction is the block placed?
 
         //BlockPos otherBlockPos = isVerticalMultiBlock ? blockpos.relative(Direction.UP) : blockpos.relative(direction.getCounterClockWise()); //top half
-        BlockPos otherBlockPos = posToPlaceOtherHalf(pContext.getClickedPos(), TwoBlockMultiBlockState.NEGATIVE, pContext.getHorizontalDirection(), multiBlockPlacementDirection);
+        BlockPos otherBlockPos = posToPlaceOtherHalf(pContext.getClickedPos(), TwoBlockMultiBlockState.NEGATIVE, direction, multiBlockPlacementDirection);
 
         Level level = pContext.getLevel();
         if (level.getBlockState(otherBlockPos).canBeReplaced(pContext) && level.getWorldBorder().isWithinBounds(otherBlockPos)) {

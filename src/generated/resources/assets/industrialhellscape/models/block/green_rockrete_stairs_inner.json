@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "industrialhellscape:block/green_rockrete",
-    "side": "industrialhellscape:block/green_rockrete",
-    "top": "industrialhellscape:block/green_rockrete"
-  }
-}
