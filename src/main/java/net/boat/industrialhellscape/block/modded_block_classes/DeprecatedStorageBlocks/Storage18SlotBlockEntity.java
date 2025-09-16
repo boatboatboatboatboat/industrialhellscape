@@ -1,7 +1,7 @@
 package net.boat.industrialhellscape.block.modded_block_classes.DeprecatedStorageBlocks;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
-import net.boat.industrialhellscape.block.modded_block_entity_registrations.ModBlockEntities;
+import net.boat.industrialhellscape.block.modded_block_entities.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;

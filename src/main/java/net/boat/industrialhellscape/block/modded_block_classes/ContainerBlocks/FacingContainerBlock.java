@@ -1,6 +1,6 @@
 package net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks;
 
-import net.boat.industrialhellscape.block.modded_block_entity_registrations.GenericContainerBE;
+import net.boat.industrialhellscape.block.modded_block_entities.GenericContainerBE;
 import net.boat.industrialhellscape.block.modded_interfaces.ContainerBlockCapability;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

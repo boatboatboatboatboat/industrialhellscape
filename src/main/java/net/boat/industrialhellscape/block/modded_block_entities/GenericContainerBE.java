@@ -1,4 +1,4 @@
-package net.boat.industrialhellscape.block.modded_block_entity_registrations;
+package net.boat.industrialhellscape.block.modded_block_entities;
 
 import net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks.FacingContainerBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks.TwoBlockContainerMultiBlock;

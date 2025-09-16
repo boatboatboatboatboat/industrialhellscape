@@ -22,45 +22,10 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
 
-        //Purely Items
+        //Make item models from Texture
         makeItemModel(ModItems.FLOPPY_DISK);
         makeItemModel(ModItems.FLOPPY_DISKETTE);
         makeItemModel(ModItems.VAPORWAVE_CASSETTE);
-
-        //makeBlockitemModel(ModBlocks.MULTIBLOCK_DEBUG);
-        makeFolderedBlockitemModel(ModBlocks.HANDRAIL,"obj_models");
-
-        makeFolderedBlockitemModel(ModBlocks.STRUT,"strut");
-        makeFolderedBlockitemModel(ModBlocks.STRUT_STAIRS,"strut");
-        makeFolderedBlockitemModel(ModBlocks.STRUT_SLAB,"strut");
-        makeFolderedBlockitemModel(ModBlocks.CATWALK_STRUT,"strut");
-        makeFolderedBlockitemModel(ModBlocks.CATWALK_STRUT_STAIRS,"strut");
-        makeFolderedBlockitemModel(ModBlocks.CATWALK_STRUT_SLAB,"strut");
-
-        makeFolderedBlockitemModel(ModBlocks.GRAY_STRUT,"strut");
-        makeFolderedBlockitemModel(ModBlocks.GRAY_STRUT_STAIRS,"strut");
-        makeFolderedBlockitemModel(ModBlocks.GRAY_STRUT_SLAB,"strut");
-        makeFolderedBlockitemModel(ModBlocks.GRAY_CATWALK_STRUT,"strut");
-        makeFolderedBlockitemModel(ModBlocks.GRAY_CATWALK_STRUT_STAIRS,"strut");
-        makeFolderedBlockitemModel(ModBlocks.GRAY_CATWALK_STRUT_SLAB,"strut");
-
-        makeFolderedBlockitemModel(ModBlocks.VESSELGLASS, "vesselglass");
-        makeFolderedBlockitemModel(ModBlocks.REINFORCED_VESSELGLASS, "vesselglass");
-        makeFolderedBlockitemModel(ModBlocks.GRAY_VESSELGLASS, "vesselglass");
-        makeFolderedBlockitemModel(ModBlocks.GRAY_REINFORCED_VESSELGLASS, "vesselglass");
-
-        makeBlockitemModel(ModBlocks.BODY_PILLOW);
-
-        makeBlockitemModel(ModBlocks.BLUE_ROCKRETE_SLAB);
-        makeBlockitemModel(ModBlocks.GRAY_ROCKRETE_SLAB);
-        makeBlockitemModel(ModBlocks.GREEN_ROCKRETE_SLAB);
-        makeBlockitemModel(ModBlocks.YELLOW_ROCKRETE_SLAB);
-        makeBlockitemModel(ModBlocks.BLUE_ROCKRETE_STAIRS);
-        makeBlockitemModel(ModBlocks.GRAY_ROCKRETE_STAIRS);
-        makeBlockitemModel(ModBlocks.GREEN_ROCKRETE_STAIRS);
-        makeBlockitemModel(ModBlocks.YELLOW_ROCKRETE_STAIRS);
-
-        makeBlockitemModel(ModBlocks.YELLOW_RAILING);
     }
 
     private ItemModelBuilder makeItemModel(RegistryObject<Item> item) {

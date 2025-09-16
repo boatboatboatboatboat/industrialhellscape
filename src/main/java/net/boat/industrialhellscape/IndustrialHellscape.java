@@ -1,10 +1,10 @@
 package net.boat.industrialhellscape;
 
 import net.boat.industrialhellscape.block.ModBlocks;
-import net.boat.industrialhellscape.block.modded_block_entity_registrations.ModBlockEntities;
+import net.boat.industrialhellscape.block.modded_block_entities.ModBlockEntities;
 import net.boat.industrialhellscape.entity.ModEntities;
 import net.boat.industrialhellscape.entity.custom.SittableEntityRenderer;
-import net.boat.industrialhellscape.block.modded_block_entity_registrations.ModMenuTypes;
+import net.boat.industrialhellscape.block.modded_block_entities.ModMenuTypes;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.item.ModCreativeModTabs;
 import net.boat.industrialhellscape.item.ModItems;

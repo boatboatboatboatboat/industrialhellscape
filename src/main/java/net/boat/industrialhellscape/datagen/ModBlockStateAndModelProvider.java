@@ -10,17 +10,19 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 //IF YOU GET AN ERROR REGARDING JAVA NOT LOOKING THROUGH A SUBFOLDER, THAT MAY BE AN ERROR CAUSED BY ModItemModelProvider, NOT FROM THIS DATAGEN CLASS
 
-public class ModBlockStateProvider extends BlockStateProvider {
+public class ModBlockStateAndModelProvider extends BlockStateProvider {
     public static final EnumProperty<TwoBlockMultiBlockState> HALF = EnumProperty.create("half", TwoBlockMultiBlockState.class);
     public static final DirectionProperty FACING = BlockStateProperties.VERTICAL_DIRECTION;
     public static final DirectionProperty HORIZONTAL_FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     public static final BooleanProperty ALT_TEXTURE = BooleanProperty.create("alt_texture");
 
-    public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
+    public ModBlockStateAndModelProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, IndustrialHellscape.MOD_ID, exFileHelper);
     }
 
@@ -112,6 +114,32 @@ public class ModBlockStateProvider extends BlockStateProvider {
         TwoBlockMultiBlock(ModBlocks.URINAL.get(), "urinal");
 
         //Use ButtonBlock() For lever/button type redstone blocks.
+        
+        //Block Item Models only (For blocks with complex states and/or models
+        genI(ModBlocks.HANDRAIL.get(),"obj_models");
+        genI(ModBlocks.STRUT.get(),"strut");
+        genI(ModBlocks.STRUT_STAIRS.get(),"strut");
+        genI(ModBlocks.STRUT_SLAB.get(),"strut");
+        genI(ModBlocks.CATWALK_STRUT.get(),"strut");
+        genI(ModBlocks.CATWALK_STRUT_STAIRS.get(),"strut");
+        genI(ModBlocks.CATWALK_STRUT_SLAB.get(),"strut");
+        genI(ModBlocks.GRAY_STRUT.get(),"strut");
+        genI(ModBlocks.GRAY_STRUT_STAIRS.get(),"strut");
+        genI(ModBlocks.GRAY_STRUT_SLAB.get(),"strut");
+        genI(ModBlocks.GRAY_CATWALK_STRUT.get(),"strut");
+        genI(ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get(),"strut");
+        genI(ModBlocks.GRAY_CATWALK_STRUT_SLAB.get(),"strut");
+        genI(ModBlocks.YELLOW_RAILING.get(),"");
+
+        genI(ModBlocks.BODY_PILLOW.get(),"");
+        genI(ModBlocks.BLUE_ROCKRETE_SLAB.get(),"");
+        genI(ModBlocks.GRAY_ROCKRETE_SLAB.get(),"");
+        genI(ModBlocks.GREEN_ROCKRETE_SLAB.get(),"");
+        genI(ModBlocks.YELLOW_ROCKRETE_SLAB.get(),"");
+        genI(ModBlocks.BLUE_ROCKRETE_STAIRS.get(),"");
+        genI(ModBlocks.GRAY_ROCKRETE_STAIRS.get(),"");
+        genI(ModBlocks.GREEN_ROCKRETE_STAIRS.get(),"");
+        genI(ModBlocks.YELLOW_ROCKRETE_STAIRS.get(),"");
     }
     //---------- END OF BLOCK ASSET GENERATION LIST ----------
 
@@ -357,6 +385,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
                             .build();
                 }, BlockStateProperties.WATERLOGGED);
 
+    }
+
+    private void genI(Block block, String folderName) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+        String modelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
+        
+        //GENERATE ITEM MODEL
+        simpleBlockItem(block, models().getExistingFile(modLoc(modelPath)));
     }
 
     //---------- END OF SBI ASSET GENERATOR METHODS ----------

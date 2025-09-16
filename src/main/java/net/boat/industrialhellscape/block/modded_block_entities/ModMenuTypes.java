@@ -1,4 +1,4 @@
-package net.boat.industrialhellscape.block.modded_block_entity_registrations;
+package net.boat.industrialhellscape.block.modded_block_entities;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.minecraft.world.inventory.AbstractContainerMenu;

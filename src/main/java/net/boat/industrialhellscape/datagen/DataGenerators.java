@@ -25,7 +25,7 @@ public class DataGenerators {
         //LOOT TABLE DATAGEN
         generator.addProvider(event.includeServer(), ModLootTableProvider.create(packOutput));
         //BLOCK STATE, MODEL, & ITEM DATAGEN
-        generator.addProvider(event.includeClient(), new ModBlockStateProvider(packOutput, existingFileHelper));
+        generator.addProvider(event.includeClient(), new ModBlockStateAndModelProvider(packOutput, existingFileHelper));
         //ITEM MODEL DATAGEN
         generator.addProvider(event.includeClient(), new ModItemModelProvider(packOutput, existingFileHelper));
 
