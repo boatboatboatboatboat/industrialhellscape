@@ -49,12 +49,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         makeFolderedBlockitemModel(ModBlocks.GRAY_VESSELGLASS, "vesselglass");
         makeFolderedBlockitemModel(ModBlocks.GRAY_REINFORCED_VESSELGLASS, "vesselglass");
 
-        makeBlockitemModel(ModBlocks.IHEA_FURNITURE_KIT);
-        makeBlockitemModel(ModBlocks.SAFETY_FURNISHINGS);
-        makeBlockitemModel(ModBlocks.HYGIENE_FURNISHINGS);
-        makeBlockitemModel(ModBlocks.INDUSTRIAL_FURNISHINGS);
-        makeBlockitemModel(ModBlocks.TECHNOLOGY_FURNISHINGS);
-        makeBlockitemModel(ModBlocks.AMENITY_FURNISHINGS);
         makeBlockitemModel(ModBlocks.BODY_PILLOW);
 
         makeBlockitemModel(ModBlocks.BLUE_ROCKRETE_SLAB);

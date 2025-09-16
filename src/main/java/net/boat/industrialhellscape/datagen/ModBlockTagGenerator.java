@@ -171,7 +171,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
         this.tag(ModTags.Blocks.HYGIENE_FURNITURE_CATEGORY)
                 .add(
                         ModBlocks.TOILET.get(),
-                        ModBlocks.SINK.get()
+                        ModBlocks.SINK.get(),
+                        ModBlocks.URINAL.get()
                 );
 
         this.tag(ModTags.Blocks.INDUSTRIAL_FURNITURE_CATEGORY)

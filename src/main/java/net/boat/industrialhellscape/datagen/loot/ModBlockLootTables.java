@@ -20,16 +20,15 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.HANDRAIL.get());
         this.dropSelf(ModBlocks.FUEL_DRUM.get());
         this.dropSelf(ModBlocks.YELLOW_RAILING.get());
+        this.dropSelf(ModBlocks.URINAL.get());
 
         //IRONLIKE SIMPLE BLOCKS
         this.dropSelf(ModBlocks.VESSELPLATE.get());
-        //this.dropSelf(ModBlocks.VESSELPLATE_GRATE_BLOCK.get());
         this.dropSelf(ModBlocks.RIVETED_VESSELPLATE_PANEL.get());
         this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE_TILE.get());
         this.dropSelf(ModBlocks.VESSELPLATE_PILLAR.get());
         this.dropSelf(ModBlocks.GRATE.get());
         this.dropSelf(ModBlocks.SEETHROUGH_GRATE.get());
-        //this.dropSelf(ModBlocks.SEETHROUGH_GRATE_PANE.get());
         this.dropSelf(ModBlocks.RUSTY_GRATE.get());
         this.dropSelf(ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get());
         this.dropSelf(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get());

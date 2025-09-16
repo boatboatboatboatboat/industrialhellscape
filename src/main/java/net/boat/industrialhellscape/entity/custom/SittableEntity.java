@@ -12,20 +12,18 @@ public class SittableEntity extends Entity {
 
     @Override
     protected void defineSynchedData() {
-
     }
 
     @Override
     protected void readAdditionalSaveData(CompoundTag pCompound) {
-
     }
 
     @Override
     protected void addAdditionalSaveData(CompoundTag pCompound) {
-
     }
 
     @Override
+    //When player stops sitting on the sitting entity, kill it to prevent ghost entities.
     protected void removePassenger(Entity pPassenger) {
         super.removePassenger(pPassenger);
         this.kill();

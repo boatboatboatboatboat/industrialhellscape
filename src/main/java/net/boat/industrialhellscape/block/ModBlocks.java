@@ -1,15 +1,23 @@
 package net.boat.industrialhellscape.block;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
-import net.boat.industrialhellscape.block.special_blocks.*;
-import net.boat.industrialhellscape.block.special_blocks.ContainerBlock.ConnectedContainerBlock;
-import net.boat.industrialhellscape.block.special_blocks.ContainerBlock.FacingContainerBlock;
-import net.boat.industrialhellscape.block.special_blocks.ContainerBlock.ModelledFacingContainerBlock;
-import net.boat.industrialhellscape.block.special_blocks.ContainerBlock.TwoBlockContainerMultiBlock;
-import net.boat.industrialhellscape.block.special_blocks.PipeBlock;
-import net.boat.industrialhellscape.block.special_blocks.SimpleFacingBlock;
-import net.boat.industrialhellscape.block.special_blocks_properties.HitboxGeometryCollection;
-import net.boat.industrialhellscape.block.special_blocks_properties.MultiBlockPlacementDirection;
+import net.boat.industrialhellscape.block.modded_block_classes.*;
+import net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks.ConnectedContainerBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks.FacingContainerBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks.ModelledFacingContainerBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks.TwoBlockContainerMultiBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.ModdedBedBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.ModelledTwoBlockMultiBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.CornerBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.PipeBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBlocks.InteractableModelledFacingBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBlocks.ModelledFacingBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBlocks.SimpleFacingBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.SimpleWaterloggableBlocks.ModelledWaterloggableBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.SimpleWaterloggableBlocks.SimpleWaterloggableBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.PipePlanarCornerBlock;
+import net.boat.industrialhellscape.block.modded_interfaces.HitboxGeometryCollection;
+import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.item.ModItems;
 import net.boat.industrialhellscape.util.ModTags;
@@ -37,7 +45,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> YELLOW_RAILING = registerBlockAndBlockItem("yellow_railing",
             () -> new RailingBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
-
+                    .noOcclusion()
             )
     );
     public static final RegistryObject<Block> LARGE_LOCKER = registerBlockAndBlockItem("large_locker",
@@ -51,7 +59,7 @@ public class ModBlocks {
     );
 
     public static final RegistryObject<Block> BODY_PILLOW = registerBlockAndBlockItem("body_pillow",
-            () -> new BodyPillowBlock(BlockBehaviour
+            () -> new ModdedBedBlock(BlockBehaviour
                     .Properties.copy(Blocks.WHITE_WOOL)
                     .sound(SoundType.SLIME_BLOCK)
                     .noOcclusion()
@@ -585,6 +593,15 @@ public class ModBlocks {
                     .Properties.copy(Blocks.STONE)
                     .noOcclusion(),
                     HitboxGeometryCollection.UPPER_SLAB())
+    );
+    public static final RegistryObject<Block> URINAL = registerBlockAndBlockItem("urinal",
+            () -> new ModelledTwoBlockMultiBlock(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+                    .noOcclusion(),
+                    MultiBlockPlacementDirection.VERTICAL,
+                    HitboxGeometryCollection.URINAL_POSITIVE(),
+                    HitboxGeometryCollection.URINAL_NEGATIVE()
+            )
     );
 
     public static final RegistryObject<Block> RED_WALL_MEDKIT = registerBlockAndBlockItem("red_wall_medkit",

@@ -2,7 +2,6 @@ package net.boat.industrialhellscape.datagen;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
-import net.boat.industrialhellscape.block.special_blocks.RailingBlock;
 import net.boat.industrialhellscape.item.ModItems;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.HolderLookup;
@@ -168,7 +167,8 @@ public class ModItemTagGenerator extends ItemTagsProvider {
         this.tag(ModTags.Items.HYGIENE_FURNITURE_CATEGORY)
                 .add(
                         ModBlocks.TOILET.get().asItem(),
-                        ModBlocks.SINK.get().asItem()
+                        ModBlocks.SINK.get().asItem(),
+                        ModBlocks.URINAL.get().asItem()
                 );
         this.tag(ModTags.Items.INDUSTRIAL_FURNITURE_CATEGORY)
                 .add(

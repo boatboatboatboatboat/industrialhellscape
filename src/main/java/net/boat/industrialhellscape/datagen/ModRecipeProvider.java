@@ -138,7 +138,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     );
     private static final List<ItemLike> HYGIENE_FURNITURE = List.of(
             ModBlocks.TOILET.get().asItem(),
-            ModBlocks.SINK.get().asItem()
+            ModBlocks.SINK.get().asItem(),
+            ModBlocks.URINAL.get().asItem()
     );
     private static final List<ItemLike> INDUSTRIAL_FURNITURE = List.of(
             ModBlocks.LOCKER_BOX.get().asItem(),

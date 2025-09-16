@@ -29,6 +29,8 @@ public class InHellTool extends Item {
             BlockPos positionClicked = pContext.getClickedPos();
             Player player = pContext.getPlayer();
 
+            if(player != null) player.displayClientMessage(Component.literal("Not an interactable block."), true);
+
             pContext.getLevel().playSeededSound(null, positionClicked.getX(), positionClicked.getY(), positionClicked.getZ(),
                     SoundEvents.BELL_BLOCK, SoundSource.BLOCKS, 1f, 10f, 0);
         }

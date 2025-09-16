@@ -1,14 +1,13 @@
 package net.boat.industrialhellscape;
 
 import net.boat.industrialhellscape.block.ModBlocks;
-import net.boat.industrialhellscape.block.special_blocks_properties.ModBlockEntities;
+import net.boat.industrialhellscape.block.modded_block_entity_registrations.ModBlockEntities;
 import net.boat.industrialhellscape.entity.ModEntities;
-import net.boat.industrialhellscape.block.special_blocks_properties.SittableEntityRenderer;
-import net.boat.industrialhellscape.block.special_blocks_properties.ModMenuTypes;
+import net.boat.industrialhellscape.entity.custom.SittableEntityRenderer;
+import net.boat.industrialhellscape.block.modded_block_entity_registrations.ModMenuTypes;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.item.ModCreativeModTabs;
 import net.boat.industrialhellscape.item.ModItems;
-import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTabs;

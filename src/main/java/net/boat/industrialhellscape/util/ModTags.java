@@ -1,7 +1,6 @@
 package net.boat.industrialhellscape.util;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
@@ -26,7 +25,7 @@ public class ModTags {
         public static final TagKey<Block> AMENITY_FURNITURE_CATEGORY = tag("amenity_furniture_category");
         public static final TagKey<Block> ALL_FURNITURE_BLOCKS = tag("all_furniture_blocks");
 
-        //Connected Blockset Families
+        //CONNECTED BLOCKSET FAMILIES
         public static final TagKey<Block> CLASSIC_DESK = tag("classic_desk");
         public static final TagKey<Block> METAL_DESK = tag("metal_desk");
         public static final TagKey<Block> COPPER_PIPE_CONDUIT = tag("copper_pipe_conduit");
@@ -40,7 +39,7 @@ public class ModTags {
     }
 
     public static class Items {
-        //For ungenerated recipes dictating recycling back into vanilla materials (Slabs are NOT smeltable)
+        //For ungenerated recipes dictating recycling back into vanilla materials (Slabs are NOT smeltable. NOT INCLUDED HERE)
         public static final TagKey<Item> VESSELPLATE_SMELTABLE_ITEM = tag("vesselplate_smeltable_item");
         public static final TagKey<Item> VESSELGLASS_SMELTABLE_ITEM = tag("vesselglass_smeltable_item");
         public static final TagKey<Item> ROCKRETE_SMELTABLE_ITEM = tag("rockrete_smeltable_item");
