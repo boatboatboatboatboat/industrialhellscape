@@ -2,6 +2,7 @@ package net.boat.industrialhellscape.block.modded_interfaces;
 
 import net.boat.industrialhellscape.block.modded_block_state_properties.FurnitureConnectionState;
 import net.boat.industrialhellscape.block.modded_block_state_properties.PillarConnectionState;
+import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.TagKey;
@@ -36,7 +37,7 @@ public interface ConnectedModelCapability {
 
     //---------- METHODS FOR CONNECTED FURNITURE BLOCKS ----------
         //Shared methods for (currently) two block classes that implement connective model capability
-    static BlockState placeTheConnectableBlock(Block block, BlockPlaceContext pContext, TagKey<Block> BlockSetFamily) {
+    static BlockState placeTheConnectableBlock(Block block, BlockPlaceContext pContext, TagKey<Block> BlockSetFamily, MultiBlockPlacementDirection placementDirection) {
         Level level = pContext.getLevel();
         BlockState state = block.defaultBlockState();
         BlockPos positionClicked = pContext.getClickedPos(); //Get the position when player places new block
@@ -45,13 +46,16 @@ public interface ConnectedModelCapability {
         Direction directionClicked = pContext.getHorizontalDirection(); //gets PLAYER click direction. Needed to check left and right of the player's clicked direction.
         Direction facing = pContext.getHorizontalDirection().getOpposite(); //gets necessary BLOCK placement direction
 
+        BlockState getPositiveState = placementDirection == MultiBlockPlacementDirection.HORIZONTAL ? getStateAtRelativeLeft(level, positionClicked, directionClicked) : getStateRelativeTop(level, positionClicked);
+        BlockState getNegativeState = placementDirection == MultiBlockPlacementDirection.HORIZONTAL ? getStateAtRelativeRight(level, positionClicked, directionClicked) : getStateRelativeBottom(level, positionClicked);
+
         state = state.setValue(FACING, facing); //For example, if the player looks north and places the block, the "front" of it will face south towards the player, hence .getOpposite()
-        state = state.setValue(TYPE, getTypeAndFamily(state, getStateAtRelativeLeft(level, positionClicked, directionClicked), getStateAtRelativeRight(level, positionClicked, directionClicked), BlockSetFamily)); //Second, defines connection type of the block
+        state = state.setValue(TYPE, getTypeAndFamily(state, getPositiveState, getNegativeState, BlockSetFamily)); //Second, defines connection type of the block
         state =  state.setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
         return state;
     }
 
-    static void whenConnectedNeighborUpdated(BlockState state, Level level, BlockPos positionClicked, Block block, BlockPos fromPos, TagKey<Block> BlockSetFamily) {
+    static void whenConnectedNeighborUpdated(BlockState state, Level level, BlockPos positionClicked, Block block, BlockPos fromPos, TagKey<Block> BlockSetFamily, MultiBlockPlacementDirection placementDirection) {
         if (!level.isClientSide) {
             if (state.getValue(WATERLOGGED)) {
                 level.scheduleTick(fromPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
@@ -59,7 +63,11 @@ public interface ConnectedModelCapability {
         }
         if (level.isClientSide) return;
         Direction directionClicked = state.getValue(FACING).getOpposite();
-        FurnitureConnectionState type = getTypeAndFamily(state, getStateAtRelativeLeft(level, positionClicked, directionClicked), getStateAtRelativeRight(level, positionClicked, directionClicked), BlockSetFamily);
+
+        BlockState getPositiveState = placementDirection == MultiBlockPlacementDirection.HORIZONTAL ? getStateAtRelativeLeft(level, positionClicked, directionClicked) : getStateRelativeTop(level, positionClicked);
+        BlockState getNegativeState = placementDirection == MultiBlockPlacementDirection.HORIZONTAL ? getStateAtRelativeRight(level, positionClicked, directionClicked) : getStateRelativeBottom(level, positionClicked);
+
+        FurnitureConnectionState type = getTypeAndFamily(state, getPositiveState, getNegativeState, BlockSetFamily);
         if (state.getValue(TYPE) == type) return;
 
         state = state.setValue(TYPE, type);
@@ -117,23 +125,21 @@ public interface ConnectedModelCapability {
     }
 
     //getStateRelativeForward and Backward are relative to the axes (X,Y,z). Note that it is not consistent with the above GRLeft and GRRight methods.
-    default BlockState getStateAtAxisPositive(Level level, BlockPos pos, Direction.Axis horizontalAxis) {
+    static BlockState getStateAtAxisPositive(Level level, BlockPos pos, Direction.Axis horizontalAxis) {
         return level.getBlockState(pos.relative(Direction.fromAxisAndDirection(horizontalAxis, Direction.AxisDirection.POSITIVE)));
     }
-    default BlockState getStateAtAxisNegative(Level level, BlockPos pos, Direction.Axis axis) {
+    static BlockState getStateAtAxisNegative(Level level, BlockPos pos, Direction.Axis axis) {
         return level.getBlockState(pos.relative(Direction.fromAxisAndDirection(axis, Direction.AxisDirection.NEGATIVE)));
     }
 
     //getStateRelativeTop checks the neighbor above and belows' blockstate.
-    default BlockState getStateRelativeTop(Level level, BlockPos positionClicked, Direction directionClicked) {
-        Direction relativeTop = directionClicked.getCounterClockWise();
+    static BlockState getStateRelativeTop(Level level, BlockPos positionClicked) {
         BlockPos leftNeighborsPos = positionClicked.above();
 
         return level.getBlockState(leftNeighborsPos);
     }
 
-    default BlockState getStateRelativeBottom(Level level, BlockPos positionClicked, Direction directionClicked) {
-        Direction relativeBottom = directionClicked.getClockWise();
+    static BlockState getStateRelativeBottom(Level level, BlockPos positionClicked) {
         BlockPos rightNeighborsPos = positionClicked.below();
 
         return level.getBlockState(rightNeighborsPos);

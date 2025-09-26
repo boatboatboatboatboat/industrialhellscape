@@ -1,9 +1,9 @@
 package net.boat.industrialhellscape.item;
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
-import net.boat.industrialhellscape.item.special_items.BlockItemWithTooltip;
-import net.boat.industrialhellscape.item.special_items.InHellTool;
-import net.boat.industrialhellscape.item.special_items.RecordItemWithTooltip;
+import net.boat.industrialhellscape.item.modded_items.BlockItemWithTooltip;
+import net.boat.industrialhellscape.item.modded_items.InHellTool;
+import net.boat.industrialhellscape.item.modded_items.RecordItemWithTooltip;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -17,6 +17,9 @@ public class ModItems {
     //---------- NORMAL ITEMS ----------
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, IndustrialHellscape.MOD_ID);
+
+    public static final RegistryObject<Item> CASSETTE_V2 = ITEMS.register("cassette_v2",
+            () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> FLOPPY_DISK = ITEMS.register("floppy_disk",
             () -> new Item(new Item.Properties()));

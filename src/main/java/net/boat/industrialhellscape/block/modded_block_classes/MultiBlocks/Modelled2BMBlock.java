@@ -23,7 +23,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nonnull;
 
-public class ModelledTwoBlockMultiBlock extends TwoBlockMultiBlock implements SimpleWaterloggedBlock {
+public class Modelled2BMBlock extends TwoBlockMultiBlock implements SimpleWaterloggedBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
@@ -37,7 +37,7 @@ public class ModelledTwoBlockMultiBlock extends TwoBlockMultiBlock implements Si
     private final VoxelShape NEGATIVE_SHAPE_EAST;
     private final VoxelShape NEGATIVE_SHAPE_WEST;
 
-    public ModelledTwoBlockMultiBlock(Properties pProperties, MultiBlockPlacementDirection multiBlockPlacementDirection, VoxelShape hitboxPositiveShape, VoxelShape hitboxNegativeShape) {
+    public Modelled2BMBlock(Properties pProperties, MultiBlockPlacementDirection multiBlockPlacementDirection, VoxelShape hitboxPositiveShape, VoxelShape hitboxNegativeShape) {
         super(pProperties, multiBlockPlacementDirection);
 
         POSITIVE_SHAPE_NORTH = hitboxPositiveShape;

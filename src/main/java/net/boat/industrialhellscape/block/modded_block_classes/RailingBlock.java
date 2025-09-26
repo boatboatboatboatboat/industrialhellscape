@@ -100,8 +100,8 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock{
         }
     }
 
-    // Loot drop behavior is hard-coded. Reminder to figure out how to data-gen loot table behavior like this instead of hard-coding
-    // So modpack makers can have more freedom
+//     Loot drop behavior is hard in the block class. Reminder to figure out how to data-gen loot table behavior like this instead of hard-coding
+//     So modpack makers can have more freedom
     @Override
     public @Nonnull List<ItemStack> getDrops(BlockState pState, @Nonnull LootParams.Builder pParams) {
         int howManyToDrop = 0;

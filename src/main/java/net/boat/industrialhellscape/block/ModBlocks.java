@@ -6,16 +6,18 @@ import net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks.C
 import net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks.FacingContainerBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks.ModelledFacingContainerBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks.TwoBlockContainerMultiBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.InteractableModelled2BMBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.SoundModelled2BMBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.ModdedBedBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.ModelledTwoBlockMultiBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.CornerBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.PipeBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.SurfaceMountAxisRotatableBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBlocks.InteractableModelledFacingBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBlocks.ModelledFacingBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBlocks.SimpleFacingBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.SimpleWaterloggableBlocks.ModelledWaterloggableBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.SimpleWaterloggableBlocks.SimpleWaterloggableBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.PipePlanarCornerBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.SurfaceMountBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.SurfaceMountRotatableBlock;
 import net.boat.industrialhellscape.block.modded_interfaces.HitboxGeometryCollection;
 import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
 import net.boat.industrialhellscape.sound.ModSounds;
@@ -55,6 +57,20 @@ public class ModBlocks {
                     , 54
                     , ModSounds.METAL_BOX_OPEN.get()
                     , ModSounds.METAL_BOX_CLOSE.get()
+            )
+    );
+    public static final RegistryObject<Block> FIRE_EXTINGUISHER = registerBlockAndBlockItem("fire_extinguisher",
+            () -> new ModelledFacingBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.FIRE_EXTINGUISHER()
+            )
+    );
+    public static final RegistryObject<Block> SMOKE_ALARM = registerBlockAndBlockItem("smoke_alarm",
+            () -> new SurfaceMountBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.SMOKE_DETECTOR_FLOOR()
             )
     );
 
@@ -252,7 +268,7 @@ public class ModBlocks {
     );
     public static final RegistryObject<Block> GRAY_CATWALK_STRUT_STAIRS = registerBlockAndBlockItem("gray_catwalk_strut_stairs",
             () -> new StairBlock(() -> ModBlocks.CATWALK_STRUT.get().defaultBlockState(),
-                    BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion().sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
+                    BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion().sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
     );
     public static final RegistryObject<Block> GRAY_STRUT_SLAB = registerBlockAndBlockItem("gray_strut_slab",
             () -> new SlabBlock(BlockBehaviour
@@ -266,6 +282,20 @@ public class ModBlocks {
                     .noOcclusion()
                     .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
             )
+    );
+
+    public static final RegistryObject<Block> VESSELPLATE_STAIRS = registerBlockAndBlockItem("vesselplate_stairs",
+            () -> new StairBlock(() -> ModBlocks.RIVETED_VESSELPLATE_PANEL.get().defaultBlockState(),
+                    BlockBehaviour
+                            .Properties.copy(Blocks.IRON_BLOCK)
+                            .noOcclusion()
+                            .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
+    );
+    public static final RegistryObject<Block> VESSELPLATE_SLAB = registerBlockAndBlockItem("vesselplate_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
     );
 
     public static final RegistryObject<Block> GRAY_CATWALK_STRUT_SLAB = registerBlockAndBlockItem("gray_catwalk_strut_slab",
@@ -408,13 +438,13 @@ public class ModBlocks {
             )
     );
     public static final RegistryObject<Block> COPPER_PIPE_CONDUIT = registerBlockAndBlockItem("copper_pipe_conduit",
-            () -> new PipeBlock(BlockBehaviour
+            () -> new SurfaceMountAxisRotatableBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     
                     .noOcclusion())
     );
     public static final RegistryObject<Block> COPPER_PIPE_CONDUIT_PLANAR_CORNER = registerBlockAndBlockItem("copper_pipe_conduit_planar_corner",
-            () -> new PipePlanarCornerBlock(BlockBehaviour
+            () -> new SurfaceMountRotatableBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     
                     .noOcclusion())
@@ -438,13 +468,13 @@ public class ModBlocks {
                     HitboxGeometryCollection.OUTER_CORNER_SIDE())
     );
     public static final RegistryObject<Block> BRASS_PIPE_CONDUIT = registerBlockAndBlockItem("brass_pipe_conduit",
-            () -> new PipeBlock(BlockBehaviour
+            () -> new SurfaceMountAxisRotatableBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
 
                     .noOcclusion())
     );
     public static final RegistryObject<Block> BRASS_PIPE_CONDUIT_PLANAR_CORNER = registerBlockAndBlockItem("brass_pipe_conduit_planar_corner",
-            () -> new PipePlanarCornerBlock(BlockBehaviour
+            () -> new SurfaceMountRotatableBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
 
                     .noOcclusion())
@@ -468,13 +498,13 @@ public class ModBlocks {
                     HitboxGeometryCollection.OUTER_CORNER_SIDE())
     );
     public static final RegistryObject<Block> GRAY_PIPE_CONDUIT = registerBlockAndBlockItem("gray_pipe_conduit",
-            () -> new PipeBlock(BlockBehaviour
+            () -> new SurfaceMountAxisRotatableBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
 
                     .noOcclusion())
     );
     public static final RegistryObject<Block> GRAY_PIPE_CONDUIT_PLANAR_CORNER = registerBlockAndBlockItem("gray_pipe_conduit_planar_corner",
-            () -> new PipePlanarCornerBlock(BlockBehaviour
+            () -> new SurfaceMountRotatableBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
 
                     .noOcclusion())
@@ -525,7 +555,8 @@ public class ModBlocks {
                     HitboxGeometryCollection.DESK_SOLO_SHAPE(),
                     HitboxGeometryCollection.DESK_LEFT_SHAPE(),
                     HitboxGeometryCollection.DESK_MIDDLE_SHAPE(),
-                    HitboxGeometryCollection.DESK_RIGHT_SHAPE())
+                    HitboxGeometryCollection.DESK_RIGHT_SHAPE(),
+                    MultiBlockPlacementDirection.HORIZONTAL)
 
     );
     public static final RegistryObject<Block> DESK_DRAWER = registerBlockAndBlockItem("desk_drawer",
@@ -539,7 +570,8 @@ public class ModBlocks {
                     HitboxGeometryCollection.DESK_DRAWER_MIDDLE_SHAPE(),
                     HitboxGeometryCollection.DESK_DRAWER_RIGHT_SHAPE(),
                     SoundEvents.BARREL_OPEN,
-                    SoundEvents.BARREL_CLOSE
+                    SoundEvents.BARREL_CLOSE,
+                    MultiBlockPlacementDirection.HORIZONTAL
             )
     );
     public static final RegistryObject<Block> METAL_DESK = registerBlockAndBlockItem("metal_desk",
@@ -550,7 +582,9 @@ public class ModBlocks {
                     HitboxGeometryCollection.METAL_DESK_SOLO_SHAPE(),
                     HitboxGeometryCollection.METAL_DESK_LEFT_SHAPE(),
                     HitboxGeometryCollection.METAL_DESK_MIDDLE_SHAPE(),
-                    HitboxGeometryCollection.METAL_DESK_RIGHT_SHAPE())
+                    HitboxGeometryCollection.METAL_DESK_RIGHT_SHAPE(),
+                    MultiBlockPlacementDirection.HORIZONTAL
+            )
     );
     public static final RegistryObject<Block> METAL_DESK_DRAWER = registerBlockAndBlockItem("metal_desk_drawer",
             () -> new ConnectedContainerBlock(BlockBehaviour
@@ -563,7 +597,8 @@ public class ModBlocks {
                     HitboxGeometryCollection.METAL_DESK_DRAWER_MIDDLE_SHAPE(),
                     HitboxGeometryCollection.METAL_DESK_DRAWER_RIGHT_SHAPE(),
                     ModSounds.METAL_BOX_OPEN.get(),
-                    ModSounds.METAL_BOX_CLOSE.get()
+                    ModSounds.METAL_BOX_CLOSE.get(),
+                    MultiBlockPlacementDirection.HORIZONTAL
                     )
 
     );
@@ -578,14 +613,17 @@ public class ModBlocks {
                     HitboxGeometryCollection.METAL_DESK_DRAWER_2_MIDDLE_SHAPE(),
                     HitboxGeometryCollection.METAL_DESK_DRAWER_2_RIGHT_SHAPE(),
                     ModSounds.METAL_BOX_OPEN.get(),
-                    ModSounds.METAL_BOX_CLOSE.get()
+                    ModSounds.METAL_BOX_CLOSE.get(),
+                    MultiBlockPlacementDirection.HORIZONTAL
             )
     );
     public static final RegistryObject<Block> TOILET = registerBlockAndBlockItem("toilet",
-            () -> new ToiletBlock(BlockBehaviour
+            () -> new InteractableModelled2BMBlock(BlockBehaviour
                     .Properties.copy(Blocks.STONE)
                     .noOcclusion(),
-                    HitboxGeometryCollection.TOILET_NORTH())
+                    MultiBlockPlacementDirection.VERTICAL,
+                    HitboxGeometryCollection.TOILET_POSITIVE(),
+                    HitboxGeometryCollection.TOILET_NEGATIVE())
     );
 
     public static final RegistryObject<Block> SINK = registerBlockAndBlockItem("sink",
@@ -595,7 +633,7 @@ public class ModBlocks {
                     HitboxGeometryCollection.UPPER_SLAB())
     );
     public static final RegistryObject<Block> URINAL = registerBlockAndBlockItem("urinal",
-            () -> new ModelledTwoBlockMultiBlock(BlockBehaviour
+            () -> new SoundModelled2BMBlock(BlockBehaviour
                     .Properties.copy(Blocks.STONE)
                     .noOcclusion(),
                     MultiBlockPlacementDirection.VERTICAL,

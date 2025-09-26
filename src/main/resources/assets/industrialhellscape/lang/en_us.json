@@ -86,6 +86,7 @@
   "block.industrialhellscape.amenity_furnishings": "Amenity Furnishings",
 
   "block.industrialhellscape.toilet": "Toilet",
+  "block.industrialhellscape.urinal": "Urinal",
   "block.industrialhellscape.sink": "Sink",
 
   "block.industrialhellscape.white_wall_medkit": "White Wall Medkit",
@@ -104,7 +105,7 @@
   "block.industrialhellscape.body_pillow": "Body_Pillow",
 
   "block.industrialhellscape.retro_computer": "Retro Computer",
-  "block.industrialhellscape.retro_computer_3": "Retro Computer",
+  "block.industrialhellscape.retro_computer_2": "Retro Computer 2",
   "block.industrialhellscape.cassette_player": "Cassette Player",
 
   "block.industrialhellscape.yellow_tripod": "Yellow Tripod",
@@ -141,8 +142,8 @@
   "tooltip.industrialhellscape.ihea_furniture_kit.flavortext": "InHell Ergonomic Amenities. Use in a stonecutter to craft furnishings.",
 
   "gui.industrialhellscape.inventory_menu": "Industrial Hellscape Storage",
+  "gui.mod_creative_tab": "InHell Facility Solutions",
   "hud.industrialhellscape.pillow_sleep_text": "What is wrong with you?",
-  "hud.industrialhellscape.pillow_occupied": "The Ozymandeas body pillow is occupied.",
+  "hud.industrialhellscape.pillow_occupied": "The Ozymandeas body pillow is occupied."
 
-  "creativetab.inhell_tab": "InHell Facility Solutions"
 }

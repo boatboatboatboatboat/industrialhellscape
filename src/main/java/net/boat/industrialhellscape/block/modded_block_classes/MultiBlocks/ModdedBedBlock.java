@@ -32,7 +32,7 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class ModdedBedBlock extends ModelledTwoBlockMultiBlock implements EntityBlock, SimpleWaterloggedBlock {
+public class ModdedBedBlock extends Modelled2BMBlock implements EntityBlock, SimpleWaterloggedBlock {
 
     public static final BooleanProperty OCCUPIED = BlockStateProperties.OCCUPIED;
 

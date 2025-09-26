@@ -76,20 +76,6 @@
 			}
 		},
 		{
-			"name": "tank_top",
-			"from": [3, 16, 10],
-			"to": [13, 22, 16],
-			"rotation": {"angle": 0, "axis": "y", "origin": [16, 8, 6]},
-			"faces": {
-				"north": {"uv": [3, 1.5, 5.5, 3], "texture": "#0"},
-				"east": {"uv": [12, 6.25, 13.5, 7.75], "texture": "#0"},
-				"south": {"uv": [3, 0, 5.5, 1.5], "texture": "#0"},
-				"west": {"uv": [12, 7.75, 13.5, 9.25], "texture": "#0"},
-				"up": {"uv": [16, 7.5, 13.5, 6], "rotation": 180, "texture": "#0", "cullface": "up"},
-				"down": {"uv": [13.5, 14.5, 11, 16], "rotation": 180, "texture": "#0"}
-			}
-		},
-		{
 			"name": "tank_bottom",
 			"from": [3, 10, 10],
 			"to": [13, 16, 16],
@@ -135,7 +121,7 @@
 			"name": "lid",
 			"from": [3.5, 12, 0.5],
 			"to": [12.5, 13, 8.5],
-			"rotation": {"angle": 0, "axis": "x", "origin": [14, 12, 8.5]},
+			"rotation": {"angle": 0, "axis": "y", "origin": [14, 12, 8.5]},
 			"faces": {
 				"north": {"uv": [12.5, 2.75, 9.5, 2.5], "texture": "#0", "cullface": "up"},
 				"east": {"uv": [3.25, 10.25, 3.5, 12.25], "rotation": 90, "texture": "#0"},
@@ -143,20 +129,6 @@
 				"west": {"uv": [3, 10.25, 3.25, 12.25], "rotation": 270, "texture": "#0"},
 				"up": {"uv": [0, 0, 3, 2], "texture": "#0"},
 				"down": {"uv": [0, 2, 3, 4], "rotation": 180, "texture": "#0"}
-			}
-		},
-		{
-			"name": "lever",
-			"from": [10, 19, 9.5],
-			"to": [14, 20, 10],
-			"rotation": {"angle": 0, "axis": "y", "origin": [10, 8, 8]},
-			"faces": {
-				"north": {"uv": [10.5, 2, 11.5, 2.25], "texture": "#0"},
-				"east": {"uv": [2.75, 4, 3, 4.25], "texture": "#0"},
-				"south": {"uv": [8, 1.25, 9, 1.5], "texture": "#0"},
-				"west": {"uv": [2.5, 4, 2.75, 4.25], "texture": "#0"},
-				"up": {"uv": [11.5, 2.5, 10.5, 2.25], "rotation": 180, "texture": "#0", "cullface": "up"},
-				"down": {"uv": [4.5, 10.5, 3.5, 10.75], "rotation": 180, "texture": "#0"}
 			}
 		}
 	],
@@ -214,11 +186,10 @@
 					"name": "tank",
 					"origin": [0, 9, 0],
 					"color": 0,
-					"children": [5, 6, 7]
+					"children": [5, 6]
 				},
-				8,
-				9,
-				10
+				7,
+				8
 			]
 		}
 	]

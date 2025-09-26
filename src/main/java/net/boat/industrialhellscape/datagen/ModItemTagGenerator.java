@@ -78,6 +78,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.STRUT_STAIRS.get().asItem(),
                         ModBlocks.CATWALK_STRUT.get().asItem(),
                         ModBlocks.CATWALK_STRUT_STAIRS.get().asItem(),
+                        ModBlocks.VESSELPLATE_STAIRS.get().asItem(),
 
                         ModBlocks.GRAY_STRUT.get().asItem(),
                         ModBlocks.GRAY_STRUT_STAIRS.get().asItem(),
@@ -162,7 +163,9 @@ public class ModItemTagGenerator extends ItemTagsProvider {
         this.tag(ModTags.Items.SAFETY_FURNITURE_CATEGORY)
                 .add(
                         ModBlocks.RED_WALL_MEDKIT.get().asItem(),
-                        ModBlocks.WHITE_WALL_MEDKIT.get().asItem()
+                        ModBlocks.WHITE_WALL_MEDKIT.get().asItem(),
+                        ModBlocks.FIRE_EXTINGUISHER.get().asItem(),
+                        ModBlocks.SMOKE_ALARM.get().asItem()
                 );
         this.tag(ModTags.Items.HYGIENE_FURNITURE_CATEGORY)
                 .add(

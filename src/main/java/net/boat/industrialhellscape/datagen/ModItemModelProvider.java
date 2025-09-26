@@ -26,6 +26,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         makeItemModel(ModItems.FLOPPY_DISK);
         makeItemModel(ModItems.FLOPPY_DISKETTE);
         makeItemModel(ModItems.VAPORWAVE_CASSETTE);
+        makeItemModel(ModItems.CASSETTE_V2);
     }
 
     private ItemModelBuilder makeItemModel(RegistryObject<Item> item) {

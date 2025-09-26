@@ -29,7 +29,7 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 
-public class PipeBlock extends Block implements ConnectedModelCapability, SimpleWaterloggedBlock {
+public class SurfaceMountAxisRotatableBlock extends Block implements ConnectedModelCapability, SimpleWaterloggedBlock {
 
     public static final EnumProperty<Direction> SURFACE_ATTACHED = BlockStateProperties.FACING;
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS;
@@ -44,7 +44,7 @@ public class PipeBlock extends Block implements ConnectedModelCapability, Simple
     public static final VoxelShape SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, SHAPE_NORTH);
     public static final VoxelShape SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, SHAPE_NORTH);
 
-    public PipeBlock(Properties pProperties) {
+    public SurfaceMountAxisRotatableBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(SURFACE_ATTACHED, Direction.DOWN) //Default surface pipe is placed on
@@ -107,7 +107,7 @@ public class PipeBlock extends Block implements ConnectedModelCapability, Simple
         if (level.isClientSide) return;
 
         Direction.Axis xzaxis = state.getValue(AXIS);
-        PillarConnectionState type = ConnectedModelCapability.getPipeType(state, getStateAtAxisPositive(level, pos, xzaxis), getStateAtAxisNegative(level, pos, xzaxis));
+        PillarConnectionState type = ConnectedModelCapability.getPipeType(state, ConnectedModelCapability.getStateAtAxisPositive(level, pos, xzaxis), ConnectedModelCapability.getStateAtAxisNegative(level, pos, xzaxis));
         if (state.getValue(TYPE) == type) return;
 
         state = state.setValue(TYPE, type);

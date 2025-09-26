@@ -50,6 +50,4 @@ public class FacingFallableBlock extends FallingBlock {
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(FACING); //Block's blockstates; its NSEW orientation, its connection type defined
     }
-
-
 }

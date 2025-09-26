@@ -1,6 +1,5 @@
 package net.boat.industrialhellscape.datagen;
 
-import net.boat.industrialhellscape.datagen.loot.ModBlockLootTables;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;

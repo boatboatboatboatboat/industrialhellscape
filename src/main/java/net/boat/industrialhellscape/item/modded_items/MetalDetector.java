@@ -1,4 +1,4 @@
-package net.boat.industrialhellscape.item.special_items;
+package net.boat.industrialhellscape.item.modded_items;
 
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.client.resources.language.I18n;

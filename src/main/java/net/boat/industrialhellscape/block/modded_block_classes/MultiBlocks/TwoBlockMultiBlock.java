@@ -63,7 +63,6 @@ public class TwoBlockMultiBlock extends SimpleFacingBlock {
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         Direction facing = pContext.getHorizontalDirection().getOpposite(); //Which direction is the block placed?
 
-        //BlockPos otherBlockPos = isVerticalMultiBlock ? blockpos.relative(Direction.UP) : blockpos.relative(direction.getCounterClockWise()); //top half
         BlockPos otherBlockPos = MultiBlockPlacementCapability.posToPlaceOtherHalf(pContext.getClickedPos(), TwoBlockMultiBlockState.NEGATIVE, facing, multiBlockPlacementDirection);
 
         Level level = pContext.getLevel();

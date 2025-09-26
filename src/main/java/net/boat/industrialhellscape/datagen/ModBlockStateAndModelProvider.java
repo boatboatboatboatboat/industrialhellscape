@@ -102,6 +102,8 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         GenFacingWaterloggableSI(ModBlocks.SINK.get(),"");
         GenFacingWaterloggableSI(ModBlocks.WHITE_WALL_MEDKIT.get(),"medkit_containers");
         GenFacingWaterloggableSI(ModBlocks.RED_WALL_MEDKIT.get(),"medkit_containers");
+        GenFacingWaterloggableSI(ModBlocks.FIRE_EXTINGUISHER.get(), "");
+        genAttachedSI(ModBlocks.SMOKE_ALARM.get(), "");
         genWaterloggableSI(ModBlocks.YELLOW_TRIPOD.get(),"");
 
         GenFacingPoweredSI(ModBlocks.WORK_LIGHT_MOUNT.get(), "work_light_mount");
@@ -130,6 +132,9 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         genI(ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get(),"strut");
         genI(ModBlocks.GRAY_CATWALK_STRUT_SLAB.get(),"strut");
         genI(ModBlocks.YELLOW_RAILING.get(),"");
+
+        genI(ModBlocks.VESSELPLATE_SLAB.get(),"vesselplate");
+        genI(ModBlocks.VESSELPLATE_STAIRS.get(),"vesselplate");
 
         genI(ModBlocks.BODY_PILLOW.get(),"");
         genI(ModBlocks.BLUE_ROCKRETE_SLAB.get(),"");
@@ -202,23 +207,22 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
                         .texture("all", modLoc("block/" + subfolder+(subfolder.isEmpty() ? "":"/") + stringName)));
     }
 
-    private void genButtonSI(Block block, String folderName, ModelFile button, ModelFile buttonPressed) {
+    private void genAttachedSI(Block block, String folderName) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
         String existingModelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
 
-        getVariantBuilder(block).forAllStates(state -> {
-            Direction facing = state.getValue(ButtonBlock.FACING);
-            AttachFace face = state.getValue(ButtonBlock.FACE);
-            boolean powered = state.getValue(ButtonBlock.POWERED);
+        getVariantBuilder(block).forAllStatesExcept(state -> {
+            Direction facing = state.getValue(FaceAttachedHorizontalDirectionalBlock.FACING);
+            AttachFace face = state.getValue(FaceAttachedHorizontalDirectionalBlock.FACE);
             simpleBlockItem(block, models().getExistingFile(modLoc(existingModelPath)));
 
             return ConfiguredModel.builder()
-                    .modelFile(powered ? buttonPressed : button)
+                    .modelFile(models().getExistingFile(modLoc("block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName)))
                     .rotationX(face == AttachFace.FLOOR ? 0 : (face == AttachFace.WALL ? 90 : 180))
                     .rotationY((int) (face == AttachFace.CEILING ? facing : facing.getOpposite()).toYRot())
-                    .uvLock(face == AttachFace.WALL)
                     .build();
-        });
+
+        }, BlockStateProperties.WATERLOGGED);
     }
 
     private void genHorizontalSBI(Block block, ModelFile model) {

@@ -1,9 +1,9 @@
-package net.boat.industrialhellscape.datagen.loot;
+package net.boat.industrialhellscape.datagen;
 
 import net.boat.industrialhellscape.block.ModBlocks;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.*;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Set;
@@ -21,6 +21,10 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.FUEL_DRUM.get());
         this.dropSelf(ModBlocks.YELLOW_RAILING.get());
         this.dropSelf(ModBlocks.URINAL.get());
+        this.dropSelf(ModBlocks.FIRE_EXTINGUISHER.get());
+        this.dropSelf(ModBlocks.SMOKE_ALARM.get());
+        this.dropSelf(ModBlocks.VESSELPLATE_STAIRS.get());
+        this.dropSelf(ModBlocks.VESSELPLATE_SLAB.get());
 
         //IRONLIKE SIMPLE BLOCKS
         this.dropSelf(ModBlocks.VESSELPLATE.get());
@@ -145,7 +149,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.SAFETY_FURNISHINGS.get());
         this.dropSelf(ModBlocks.IHEA_FURNITURE_KIT.get());
 
-        //Any Ores are added here too
     }
 
     @Override

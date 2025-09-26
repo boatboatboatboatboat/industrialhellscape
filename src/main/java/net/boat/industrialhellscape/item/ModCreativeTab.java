@@ -10,13 +10,13 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
-public class ModCreativeModTabs {
+public class ModCreativeTab {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, IndustrialHellscape.MOD_ID);
 
     public static final RegistryObject<CreativeModeTab> INHELL_TAB = CREATIVE_MODE_TABS.register("inhell_tab", //Defines Creative Tab name
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.INHELL_HAVEN_DEVICE.get())) //Defines Tab Icon texture
-                    .title(Component.translatable("creativetab.inhell_tab"))
+                    .title(Component.translatable("gui.mod_creative_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
 
                         //DEV
@@ -24,16 +24,18 @@ public class ModCreativeModTabs {
                         output.accept(ModBlocks.LARGE_LOCKER.get());
                         output.accept(ModBlocks.FUEL_DRUM.get());
                         output.accept(ModBlocks.YELLOW_RAILING.get());
+                        output.accept(ModBlocks.VESSELPLATE_SLAB.get());
+                        output.accept(ModBlocks.VESSELPLATE_STAIRS.get());
+                        output.accept(ModBlocks.FIRE_EXTINGUISHER.get());
+                        output.accept(ModBlocks.SMOKE_ALARM.get());
 
                         //ITEMS FOR CREATIVE TAB
                         output.accept(ModItems.FLOPPY_DISK.get());
                         output.accept(ModItems.FLOPPY_DISKETTE.get());
                         output.accept(ModItems.INHELL_HAVEN_DEVICE.get());
                         output.accept(ModItems.VAPORWAVE_CASSETTE.get());
+                        output.accept(ModItems.CASSETTE_V2.get());
                         //output.accept(ModItems.JOB_APPLICATION.get()); //secret item
-
-                        //EXPERIMENTAL BLOCKS FOR CREATIVE TAB
-                        //output.accept(ModBlocks.HANDRAIL.get());
 
                         //IRONLIKE BLOCKS FOR CREATIVE TAB
                         output.accept(ModBlocks.VESSELPLATE.get());

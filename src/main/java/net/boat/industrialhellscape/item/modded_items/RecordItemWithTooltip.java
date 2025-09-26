@@ -1,4 +1,4 @@
-package net.boat.industrialhellscape.item.special_items;
+package net.boat.industrialhellscape.item.modded_items;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;

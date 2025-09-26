@@ -72,6 +72,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.GRAY_CATWALK_STRUT_SLAB.get().asItem(),
             ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get().asItem(),
 
+            ModBlocks.VESSELPLATE_STAIRS.get().asItem(),
+            ModBlocks.VESSELPLATE_SLAB.get().asItem(),
+
             ModBlocks.ENCASED_CABLES.get().asItem(),
             ModBlocks.RUSTY_GRATE.get().asItem()
     );
@@ -134,7 +137,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     private static final List<ItemLike> SAFETY_FURNITURE = List.of(
             ModBlocks.RED_WALL_MEDKIT.get().asItem(),
-            ModBlocks.WHITE_WALL_MEDKIT.get().asItem()
+            ModBlocks.WHITE_WALL_MEDKIT.get().asItem(),
+            ModBlocks.FIRE_EXTINGUISHER.get().asItem(),
+            ModBlocks.SMOKE_ALARM.get().asItem()
     );
     private static final List<ItemLike> HYGIENE_FURNITURE = List.of(
             ModBlocks.TOILET.get().asItem(),

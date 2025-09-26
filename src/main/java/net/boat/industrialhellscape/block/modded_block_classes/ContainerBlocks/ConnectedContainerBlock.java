@@ -3,6 +3,7 @@ package net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks;
 import net.boat.industrialhellscape.block.modded_interfaces.ConnectedModelCapability;
 import net.boat.industrialhellscape.block.modded_block_state_properties.FurnitureConnectionState;
 import net.boat.industrialhellscape.block.modded_interfaces.RotationHelper;
+import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
@@ -49,6 +50,7 @@ public class ConnectedContainerBlock extends FacingContainerBlock implements Ent
     private static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public TagKey<Block> BlockSetFamily; //To determine other blocks aside from its own can this block connect to
+    private final MultiBlockPlacementDirection placementDirection;
 
     private final VoxelShape SOLO_SHAPE_NORTH;
     private final VoxelShape SOLO_SHAPE_SOUTH;
@@ -70,7 +72,7 @@ public class ConnectedContainerBlock extends FacingContainerBlock implements Ent
     private final VoxelShape RIGHT_SHAPE_EAST;
     private final VoxelShape RIGHT_SHAPE_WEST;
 
-    public ConnectedContainerBlock(Properties properties, int slotAmount, TagKey<Block> inputCompatibleBlockSet, VoxelShape soloShape, VoxelShape leftShape, VoxelShape middleShape, VoxelShape rightShape, SoundEvent openSound, SoundEvent closeSound) {
+    public ConnectedContainerBlock(Properties properties, int slotAmount, TagKey<Block> inputCompatibleBlockSet, VoxelShape soloShape, VoxelShape leftShape, VoxelShape middleShape, VoxelShape rightShape, SoundEvent openSound, SoundEvent closeSound, MultiBlockPlacementDirection placementDirection) {
         super(properties, slotAmount, openSound, closeSound);
 
         //Define the Voxelshape hitboxes for each state
@@ -97,6 +99,9 @@ public class ConnectedContainerBlock extends FacingContainerBlock implements Ent
         //To determine other blocks aside from its own can this block connect to
         this.BlockSetFamily = inputCompatibleBlockSet;
 
+        //To determine which direction placed blocks will connect to.
+        this.placementDirection = placementDirection;
+
         //Default state is Solo/unconnected, facing North, no waterlogging
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(TYPE, FurnitureConnectionState.SOLO)
@@ -119,11 +124,11 @@ public class ConnectedContainerBlock extends FacingContainerBlock implements Ent
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
         //See this mod's ConnectedModelCapability interface to view the following method.
-        return ConnectedModelCapability.placeTheConnectableBlock(this, pContext, BlockSetFamily);
+        return ConnectedModelCapability.placeTheConnectableBlock(this, pContext, BlockSetFamily, placementDirection);
     }
     public void neighborChanged(@Nonnull BlockState state, Level level, @Nonnull BlockPos positionClicked, @Nonnull Block block, @Nonnull BlockPos fromPos, boolean pIsMoving) {
         //See this mod's ConnectedModelCapability interface to view the following method.
-        ConnectedModelCapability.whenConnectedNeighborUpdated(state,level,positionClicked,block,fromPos,BlockSetFamily);
+        ConnectedModelCapability.whenConnectedNeighborUpdated(state,level,positionClicked,block,fromPos,BlockSetFamily, placementDirection);
     }
     //---------- END OF METHODS HANDLED BY INTERFACE ----------
 

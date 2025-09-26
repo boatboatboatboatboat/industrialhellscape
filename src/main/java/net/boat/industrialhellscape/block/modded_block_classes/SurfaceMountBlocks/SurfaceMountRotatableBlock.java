@@ -28,7 +28,7 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 
-public class PipePlanarCornerBlock extends Block implements SimpleWaterloggedBlock {
+public class SurfaceMountRotatableBlock extends Block implements SimpleWaterloggedBlock {
 
     public static final EnumProperty<Direction> SURFACE_ATTACHED = BlockStateProperties.FACING;
     public static final EnumProperty<RelativePlanarDirectionState> PLANE_DIRECTION = EnumProperty.create("plane_direction", RelativePlanarDirectionState.class);
@@ -42,7 +42,7 @@ public class PipePlanarCornerBlock extends Block implements SimpleWaterloggedBlo
     public static final VoxelShape SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, SHAPE_NORTH);
     public static final VoxelShape SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, SHAPE_NORTH);
 
-    public PipePlanarCornerBlock(Properties pProperties) {
+    public SurfaceMountRotatableBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(SURFACE_ATTACHED, Direction.NORTH)

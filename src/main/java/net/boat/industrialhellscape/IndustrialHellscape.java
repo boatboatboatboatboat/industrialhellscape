@@ -6,16 +6,14 @@ import net.boat.industrialhellscape.entity.ModEntities;
 import net.boat.industrialhellscape.entity.custom.SittableEntityRenderer;
 import net.boat.industrialhellscape.block.modded_block_entities.ModMenuTypes;
 import net.boat.industrialhellscape.sound.ModSounds;
-import net.boat.industrialhellscape.item.ModCreativeModTabs;
+import net.boat.industrialhellscape.item.ModCreativeTab;
 import net.boat.industrialhellscape.item.ModItems;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -35,7 +33,7 @@ public class IndustrialHellscape {
     public IndustrialHellscape() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        ModCreativeModTabs.register(modEventBus);
+        ModCreativeTab.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModSounds.register(modEventBus);
@@ -46,24 +44,14 @@ public class IndustrialHellscape {
         modEventBus.addListener(this::commonSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
-        modEventBus.addListener(this::addCreative);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
     }
 
-    private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(ModItems.FLOPPY_DISK);
-            event.accept(ModItems.FLOPPY_DISKETTE);
-            event.accept(ModItems.INHELL_HAVEN_DEVICE);
-        }
-    }
-
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
-
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
@@ -75,18 +63,9 @@ public class IndustrialHellscape {
         }
     }
 
-    @Mod.EventBusSubscriber(modid = IndustrialHellscape.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public class ClientModHandler {
-        @SubscribeEvent
-        public static void clientSetup(FMLClientSetupEvent event) {
-            event.enqueueWork(() -> {
-            });
-        }
-    }
-
     //DEPRECATED CONTENT SAFE REMOVAL
     @Mod.EventBusSubscriber(modid = IndustrialHellscape.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
-    public class MissingRegistryResolver {
+    public static class MissingRegistryResolver {
         @SubscribeEvent
         public static void OnMissingRegistryEvent(MissingMappingsEvent event) {
 
@@ -120,10 +99,10 @@ public class IndustrialHellscape {
         }
 
         private static void removeAndReplace( List<MissingMappingsEvent.Mapping<Block>> ModBlockMappings, List<MissingMappingsEvent.Mapping<Item>> ModItemMappings,String removedRegistryName, Block blockReplacement) {
-            ModBlockMappings.stream()
+            ModBlockMappings.stream() //For blocks in-world
                     .filter(ModBlockMapping -> ModBlockMapping.getKey().getPath().equals(removedRegistryName)) //To remove
                     .forEach(ModBlockMapping -> ModBlockMapping.remap( blockReplacement )); //To replace
-            ModItemMappings.stream()
+            ModItemMappings.stream() //For corresponding block items anywhere
                     .filter(ModItemMapping -> ModItemMapping.getKey().getPath().equals(removedRegistryName)) //To remove
                     .forEach(ModItemMapping -> ModItemMapping.remap( blockReplacement.asItem() ));
         }

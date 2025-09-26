@@ -62,6 +62,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.GRAY_CATWALK_STRUT_SLAB.get(),
                         ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get(),
 
+                        ModBlocks.VESSELPLATE_STAIRS.get(),
+                        ModBlocks.VESSELPLATE_SLAB.get(),
 
                         ModBlocks.ENCASED_CABLES.get(),
                         ModBlocks.RUSTY_GRATE.get()
@@ -166,7 +168,9 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
         this.tag(ModTags.Blocks.SAFETY_FURNITURE_CATEGORY)
                 .add(
                         ModBlocks.RED_WALL_MEDKIT.get(),
-                        ModBlocks.WHITE_WALL_MEDKIT.get()
+                        ModBlocks.WHITE_WALL_MEDKIT.get(),
+                        ModBlocks.FIRE_EXTINGUISHER.get(),
+                        ModBlocks.SMOKE_ALARM.get()
                 );
         this.tag(ModTags.Blocks.HYGIENE_FURNITURE_CATEGORY)
                 .add(

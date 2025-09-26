@@ -39,7 +39,41 @@ public interface RotationHelper {
 
             placeHolder[0].forAllBoxes((pMinX, pMinY, pMinZ, pMaxX, pMaxY, pMaxZ)
 
-                    -> placeHolder[1] = Shapes.joinUnoptimized(placeHolder[1], Shapes.box( 1 - pMaxZ, pMinY, pMinX, 1 - pMinZ, pMaxY, pMaxX), BooleanOp.OR));
+                    -> placeHolder[1] = Shapes.joinUnoptimized(placeHolder[1], Shapes.box( 1 - pMaxZ, pMinY, pMinX, 1 - pMinZ, pMaxY, pMaxX), BooleanOp.OR)); //Cartesian coordinate rotation. See: precalculus.
+
+            placeHolder[0] = placeHolder[1]; //After all operations are done for all boxes, set the array back to the original state. The first index has the geometry. The second index is cleared and becomes empty.
+            placeHolder[1] = Shapes.empty();
+        }
+
+        return placeHolder[0];
+    }
+    static VoxelShape rotateVoxelUpDown(Direction directionToRotate, VoxelShape shapeInput) {
+        //directionToRotate is the desired direction to rotate the ShapeInput
+        //ShapeInput is the VoxelShape you wish to rotate.
+
+        //The placeHolder contains the original default voxelShape and an empty space. It is an array of size 2
+
+        VoxelShape[] placeHolder = new VoxelShape[]{shapeInput, Shapes.empty()};
+
+        int timesToRotate = switch(directionToRotate) { //Convert desired direction into number of rotations Clockwise (CW)
+            case UP -> 2;
+            case DOWN -> 0; //defaults to rotating towards DOWN direction. The submitted shapeInput should be oriented DOWN by default.
+            default -> 3; //Orients to NORTH facing.
+        };
+
+        for (int i = 0; i < timesToRotate; i++) {
+
+            //The inputted VoxelShape is placed in a size 2 array as the first index. This is [0]. The second array index is empty.
+            //That index has 90 degree CW operations conducted on it for each box subcomponent of the total VoxelShape input. Each one updating the second index of the array.
+            //After all box components are rotated and collected in the second index, move [1] over to where [0] is, leaving nothing behind and replacing the old geometry.
+            //Repeats for each 90 degree clockwise rotation required.
+
+            //Returns [0] which holds the new geometry when the for-loop completes.
+
+
+            placeHolder[0].forAllBoxes((pMinX, pMinY, pMinZ, pMaxX, pMaxY, pMaxZ)
+
+                    -> placeHolder[1] = Shapes.joinUnoptimized(placeHolder[1], Shapes.box( pMinX, 1-pMaxZ, pMinY, pMaxX, 1-pMinZ, pMaxY), BooleanOp.OR)); //Cartesian coordinate rotation.
 
             placeHolder[0] = placeHolder[1]; //After all operations are done for all boxes, set the array back to the original state. The first index has the geometry. The second index is cleared and becomes empty.
             placeHolder[1] = Shapes.empty();
