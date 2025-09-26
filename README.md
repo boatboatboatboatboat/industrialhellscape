@@ -20,7 +20,7 @@ A Java Minecraft mod that adds gritty industrial-themed decorative blocks.
  - src/main/java/net/boat/industrialhellscape/**block** folder
 	 - **ModBlocks** is used for registering modded blocks. 
 	 - **modded_block_classes** is a list of block classes used in this mod, and subfolders organizing them.
-	 - **modded_block_entities** contains Block Entity class(es), along with both the Block Entity and BE menu registration class. The menu class is currently unused.
+	 - **modded_block_entities** contains Block Entity class(es), along with both the Block Entity and BE menu registration class. The menu class is currently unused. The entity class used for sitting on blocks is included here although it is strictly speaking not a block entity. Its seperate registration and rendering classes are present here.
 	 - **modded_block_state_properties** contains custom enums. These enums are used for modded block state properties.
 	 - **modded_interfaces** contains interface classes. 
 		 - Some of these classes store commonly-used functions between certain modded blocks (suffixed with -Capabilities).
@@ -33,11 +33,6 @@ A Java Minecraft mod that adds gritty industrial-themed decorative blocks.
 	 - **modded_items** contains item classes
 	 - ModCreativeModTabs - Creative mode tab registration for all modded content
 	 - ModItems - Item registration
-
-## Modded Entities
-
- - src/main/java/net/boat/industrialhellscape/**entity** folder
-	 - Contains code handling non-block entities, their rendering and registration
 
 ## Modded Sounds
 
