@@ -1,9 +1,13 @@
 package net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks;
 
 import net.boat.industrialhellscape.block.modded_interfaces.RotationHelper;
+import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -20,6 +24,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -27,10 +32,9 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
-import java.util.Arrays;
 import java.util.List;
 
-public class StairRailBlock extends Block implements SimpleWaterloggedBlock {
+public class StairRailingBlock extends Block implements SimpleWaterloggedBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty LEFT_FENCE = BooleanProperty.create("left");
     public static final BooleanProperty RIGHT_FENCE = BooleanProperty.create("right");
@@ -48,7 +52,7 @@ public class StairRailBlock extends Block implements SimpleWaterloggedBlock {
     private static final VoxelShape SHAPE_WEST_LEFT = RotationHelper.rotateVoxelHorizontal(Direction.WEST, SHAPE_NORTH_LEFT);
     private static final VoxelShape SHAPE_WEST_RIGHT = RotationHelper.rotateVoxelHorizontal(Direction.WEST, SHAPE_NORTH_RIGHT);
 
-    public StairRailBlock(Properties pProperties) {
+    public StairRailingBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.defaultBlockState()
                 .setValue(FACING, Direction.NORTH)
@@ -83,57 +87,91 @@ public class StairRailBlock extends Block implements SimpleWaterloggedBlock {
         return shape;
     }
 
+    @Override
+    public @Nonnull InteractionResult use(@Nonnull BlockState pState, @Nonnull Level pLevel, @Nonnull BlockPos pPos, Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
+
+        boolean playerHasTool = pPlayer.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || pPlayer.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
+
+        //Rotates the current railings counterclockwise.
+        if(playerHasTool) {
+            pState = pState.cycle(FACING);
+
+            pLevel.setBlock(pPos, pState, 3);
+
+            return InteractionResult.SUCCESS;
+        } else {
+            //No interaction if no eligible tool is equipped.
+            return InteractionResult.PASS;
+        }
+    }
+
     public boolean canBeReplaced(BlockState pState, @Nonnull BlockPlaceContext pUseContext) {
         //Is this block a RailingBlock? Allow additional block placement into the occupied space only if you have another block like this in your hand.
         //Like for sea-pickles or candles.
-        return pState.getBlock() instanceof StairRailBlock ? pUseContext.getItemInHand().is(this.asItem()) : super.canBeReplaced(pState, pUseContext);
+        return pState.getBlock() instanceof StairRailingBlock ? pUseContext.getItemInHand().is(this.asItem()) : super.canBeReplaced(pState, pUseContext);
     }
 
     @Nullable
     @Override
     public BlockState getStateForPlacement (BlockPlaceContext pContext) {
+        //The following code allows placement aligning to the players' facing direction, ONLY IF the block is placed on the floor surface (or ceiling surface).
+
         Level level = pContext.getLevel();
         BlockPos position = pContext.getClickedPos();
         FluidState fluid = level.getFluidState(position);
         BlockState state = pContext.getLevel().getBlockState(position);
 
+        Direction nearestHorizontalDirection = pContext.getHorizontalDirection();
+
+        //1st direction of this array is most likely UP or DOWN. This is to be ignored.
+        //2nd direction of this array is most likely the nearest horizontal direction. This is to be ignored. getHorizontalDirection() ("FACING") is more reliable than using this direction indice.
+        //3rd direction of this array is most likely the second-nearest horizontal direction. This is used to place either the left or the right railing block automatically along the FACING direction.
         Direction[] allNearestLookingDirections = pContext.getNearestLookingDirections();
-        Direction[] twoNearestLookingDirections = {allNearestLookingDirections[1], allNearestLookingDirections[2]};
-        boolean directionArrayContainsUp = Arrays.stream(twoNearestLookingDirections).anyMatch(direction -> direction == Direction.UP);
-        boolean directionArrayContainsDown = Arrays.stream(twoNearestLookingDirections).anyMatch(direction -> direction == Direction.DOWN);
+
+        //Pick the third indice from the last array. This is MOST LIKELY the player's second-nearest horizontal facing direction
+        Direction secondNearestHorizontalDirection = allNearestLookingDirections[2];
+
+        //Ideally these should be false and the nearest looked-direction should be N/S/E/W, ideally
+        boolean secondNearestHorizontalDirectionIsUp = secondNearestHorizontalDirection == Direction.UP;
+        boolean secondNearestHorizontalDirectionIsDown = secondNearestHorizontalDirection == Direction.DOWN;
+
         Block clickedBlock = level.getBlockState(position).getBlock();
-        boolean isRailingBlock = clickedBlock instanceof StairRailBlock;
+        boolean isRailingBlock = clickedBlock instanceof StairRailingBlock;
 
         if(isRailingBlock) { //If there is a RailingBlock at the location of placement
 
             //state is the railing block
-            //Set the other fence to TRUE
+            //Set the opposite fence to TRUE, placing another fence down in the same block so now there is two (or there is already two, so nothing happens).
             if(state.getValue(LEFT_FENCE)) state = state.setValue(RIGHT_FENCE, true);
             if(state.getValue(RIGHT_FENCE)) state = state.setValue(LEFT_FENCE, true);
 
+            //Update waterlogging status
             state = state.setValue(WATERLOGGED, fluid.getType() == Fluids.WATER);
             return state;
 
         } else { //Fallback. If there is NOT a detected RailingBlock at this location.
-            if(directionArrayContainsUp || directionArrayContainsDown) {
-                if(pContext.getPlayer() != null) pContext.getPlayer().displayClientMessage(Component.literal("Invalid place direction (UP/DOWN)"), true);
-                return null;
+            if(pContext.getPlayer() == null) {
+                return null; //Disallow placement by non-players to prevent nullPointException errors for locating a player to send Client Message to
+
+            } else if(secondNearestHorizontalDirectionIsUp || secondNearestHorizontalDirectionIsDown) {
+                pContext.getPlayer().displayClientMessage(Component.literal("Invalid placement surface"), true);
+                return null; //Disallow placement if the surface to place down is a vertical wall.
 
             } else { //No stair railing exists at this position
 
-                //state is redefined as the default blockstate for the stairs railing block
-                //Which cardinal direction are the stairs leading to?
+                //state is initially redefined as the default blockstate for the stairs railing block
                 state = this.defaultBlockState();
-                state = state.setValue(FACING, pContext.getHorizontalDirection());
+                //Which cardinal direction are the stairs leading to?
+                state = state.setValue(FACING, nearestHorizontalDirection); //getHorizontalDirection returns the nearest N/S/E/W direction
 
-                //If the second-nearest direction tends to the left, put a left railing down, else, put a right railing down
-                if (twoNearestLookingDirections[1] == state.getValue(FACING).getCounterClockWise()) {
+                //If the second-nearest direction tends to the relative left (Counterclockwise to nearest-horizontal facing direction), put a left railing down, else, put a right railing down
+                if (secondNearestHorizontalDirection == state.getValue(FACING).getCounterClockWise()) {
                     state = state.setValue(LEFT_FENCE, true);
                 } else {
                     state = state.setValue(RIGHT_FENCE, true);
                 }
 
-                //set waterlogging status
+                //Update waterlogging status
                 return state.setValue(WATERLOGGED, fluid.getType() == Fluids.WATER);
             }
         }
@@ -142,7 +180,7 @@ public class StairRailBlock extends Block implements SimpleWaterloggedBlock {
 
     @Override
     public void neighborChanged (@Nonnull BlockState pState, @Nonnull Level pLevel, @Nonnull BlockPos pPos, @Nonnull Block neighborBlock, @Nonnull BlockPos neighborPos, boolean movedByPiston) {
-        // Used to ensure the block doesn't leave a ghost behind if all 4 sides are gone
+        // Used to ensure the block doesn't leave a ghost behind if all 2 sides are gone
         //If there is NO railings present at the blockstate of this location (All FENCE properties were set to false)
         //Set the block at that location to be an air block, erasing the block.
         if (!railingExists(pState)) pLevel.setBlock(pPos, Blocks.AIR.defaultBlockState(), 0);
@@ -167,7 +205,7 @@ public class StairRailBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     @Override
-    public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
+    public boolean isPathfindable(@Nonnull BlockState pState, @Nonnull BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull PathComputationType pType) {
         return false;
     }
 

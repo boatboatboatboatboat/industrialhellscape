@@ -54,8 +54,6 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         genFolderedToggleBlockSBI(ModBlocks.GRAY_SEETHROUGH_GRATE.get(),"grate","grate",false,false, "see-through","vertical_see-through");
 
         genFolderedToggleBlockSBI(ModBlocks.RUSTY_GRATE.get(),"grate","",true, true,"grate","vertical_grate");
-        //paneBlock((IronBarsBlock) ModBlocks.SEETHROUGH_GRATE_PANE.get(), modLoc("block/see-through_grate"),modLoc("block/see-through_grate_pane_top"));
-        //paneBlock((IronBarsBlock) ModBlocks.GRAY_SEETHROUGH_GRATE_PANE.get(), modLoc("block/gray_see-through_grate"),modLoc("block/gray_see-through_grate_pane_top"));
 
         //Glass-like Blocks (With existing Block models that specify rendering properties for glass-transparency)
         genFolderedSI(ModBlocks.REINFORCED_VESSELGLASS.get(),"vesselglass");
@@ -131,6 +129,7 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         genI(ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get(),"strut");
         genI(ModBlocks.GRAY_CATWALK_STRUT_SLAB.get(),"strut");
         genI(ModBlocks.YELLOW_RAILING.get(),"yellow_railing");
+        genI(ModBlocks.YELLOW_STAIR_RAILING.get(),"yellow_railing");
 
         genI(ModBlocks.VESSELPLATE_SLAB.get(),"vesselplate");
         genI(ModBlocks.VESSELPLATE_STAIRS.get(),"vesselplate");
@@ -153,19 +152,11 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
 
     private ModelFile build3FaceTexturesBlockModel(String blockName, String folderName, String frontAndBack, String leftAndRight, String topAndBottom) {
         //Builds a textured model that uses three texture .pngs for all 6 faces.
-        return models().cube(
-                blockName,
-                modLoc( "block/" + folderName+ "/" + topAndBottom), //bottom
-                modLoc("block/" + folderName+ "/" + topAndBottom), //top
-                modLoc("block/" + folderName+ "/" + frontAndBack), //front
-                modLoc("block/" + folderName+ "/" + frontAndBack), //back
-                modLoc("block/"  + folderName+ "/" + leftAndRight), //left
-                modLoc("block/"  + folderName+ "/" + leftAndRight) //right
-                ).texture("particle", modLoc("block/" + folderName +"/" + topAndBottom));
+        return build6FaceTexturesBlockModel(blockName, folderName, frontAndBack, frontAndBack, leftAndRight,leftAndRight,topAndBottom,topAndBottom);
     }
 
     private ModelFile build6FaceTexturesBlockModel(String blockName, String folderName, String front, String back, String left, String right, String top, String bottom) {
-        //Builds a textured model that uses three texture .pngs for all 6 faces.
+        //Builds a textured model that uses six texture .pngs for all 6 faces.
         return models().cube(
                 blockName,
                 modLoc( "block/" + folderName+ "/" + bottom), //bottom
@@ -177,10 +168,10 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         ).texture("particle", modLoc("block/" + folderName +"/" + top));
     }
 
-    private void buildRotatedTextureBlockModel(Block block, String folderName) { //For blocks that DO NOT use CTM
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+    private ModelFile buildRotatedTextureBlockModel(Block block, String folderName) { //For blocks that DO NOT use CTM
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         //Builds a textured model that uses one texture .pngs for all 6 faces. The model used here rotates the textures 90 degrees.
-        ModelFile model = models().withExistingParent(stringName + "_rotated", modLoc("block/texture_horizontal_template"))
+        return models().withExistingParent(stringName + "_rotated", modLoc("block/texture_horizontal_template"))
                 .texture("all", modLoc("block/" + (folderName+(folderName.isEmpty() ? "":"/") + stringName)));
     }
 
@@ -190,7 +181,7 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
     // STATE, BLOCK MODEL, AND/OR ITEM MODEL GENERATION
 
     private void genFolderedSI(Block block, String folderName) { //STATES AND ITEM MODEL ONLY
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String existingModelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
         getVariantBuilder(block)
                 .partialState()
@@ -202,7 +193,7 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
     }
 
     private void genFolderedSBI(Block block, String subfolder) { //STATES, BLOCK MODEL, ITEM MODEL
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 
         simpleBlockWithItem(block,
                 models().withExistingParent(stringName, mcLoc("block/cube_all"))
@@ -210,7 +201,7 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
     }
 
     private void genAttachedSI(Block block, String folderName) {
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String existingModelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
 
         getVariantBuilder(block).forAllStatesExcept(state -> {
@@ -228,7 +219,7 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
     }
 
     private void genAttachedSBI(Block block, String folderName, ModelFile model) {
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String existingModelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
 
         getVariantBuilder(block).forAllStatesExcept(state -> {
@@ -248,7 +239,7 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
     private void genHorizontalSBI(Block block, ModelFile model) {
         horizontalBlock(block, model);
 
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String existingModelPath = "block/"+stringName;
         simpleBlockItem(block, models().getExistingFile(modLoc(existingModelPath)));
     }
@@ -256,14 +247,14 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
     private void genSimpleSBI(Block block, ModelFile model) {
         simpleBlock(block, model);
 
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String existingModelPath = "block/"+stringName;
         simpleBlockItem(block, models().getExistingFile(modLoc(existingModelPath)));
     }
 
     private void genFolderedToggleBlockSBI(Block block, String textureSubFolder, String existingBaseModelSubFolder, Boolean makeBaseModel, Boolean makeAltModel, String nameStringToReplace, String nameStringReplacement) {
 
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String pathToName = "block/"+existingBaseModelSubFolder+(existingBaseModelSubFolder.isEmpty() ? "":"/");
 
         String baseModelPath = pathToName+stringName;
@@ -300,7 +291,7 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
     }
 
     private void GenFacingModelledSI(Block block, String folderName) {
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String modelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
 
         getVariantBuilder(block)
@@ -325,7 +316,7 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
     }
 
     private void GenFacingPoweredSI(Block block, String folderName) {
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String unpoweredModelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
         String poweredModelPath = unpoweredModelPath+"_on";
 
@@ -354,7 +345,7 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
 
     private void genWaterloggableSI(Block block, String folderName) {
         //No placement rotation necessary for these blocks
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String modelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
 
         getVariantBuilder(block)
@@ -369,7 +360,7 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
 
 
     private void TwoBlockMultiBlock(Block block, String folderName) {
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String blockName = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
         String positiveBlockName = blockName+"_positive";
         String negativeBlockName = blockName+"_negative";
@@ -397,7 +388,7 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
 
     private void genI(Block block, String folderName) {
         //Only generate the item model for this block. Block states and block models are already written.
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String modelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
         
         //GENERATE ITEM MODEL

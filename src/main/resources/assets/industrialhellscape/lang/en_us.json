@@ -121,6 +121,7 @@
   "block.industrialhellscape.work_light_mount": "Work Light Mount",
   "block.industrialhellscape.floor_work_light": "Floor Work Light",
   "block.industrialhellscape.yellow_railing": "Yellow Railing",
+  "block.industrialhellscape.yellow_stair_railing": "Yellow Stair Railing",
 
   "block.industrialhellscape.strut": "Strut",
   "block.industrialhellscape.strut_stairs": "Strut Stairs",
@@ -149,6 +150,9 @@
   "tooltip.industrialhellscape.vesselplate.flavortext": "Used extensively to armor the warships of the InHell Corporate Acquisition Fleet.",
   "tooltip.industrialhellscape.gray_rockrete.flavortext": "Mass-produced for Class-3 employee accommodations and below in InHell-owned megacities.",
   "tooltip.industrialhellscape.ihea_furniture_kit.flavortext": "InHell Ergonomic Amenities. Use in a stonecutter to craft furnishings.",
+
+  "tooltip.industrialhellscape.pipeworks.flavortext": "Use a pickaxe to rotate blocks stonecut from this. Using the HAVEN tool allows full rotation functionality.",
+  "tooltip.industrialhellscape.metalworks.flavortext": "Use a pickaxe to rotate blocks stonecut from this. Using the HAVEN tool allows full rotation functionality.",
 
   "gui.industrialhellscape.inventory_menu": "Industrial Hellscape Storage",
   "gui.mod_creative_tab": "InHell Facility Solutions",

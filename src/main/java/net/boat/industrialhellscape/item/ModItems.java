@@ -47,11 +47,15 @@ public class ModItems {
     //---------- BLOCK ITEMS ----------
         //For flavor text purposes. Ignore the unuse warning.
     public static final RegistryObject<Item> VESSELPLATE_ITEM = ITEMS.register("vesselplate",
-            () -> new BlockItemWithTooltip("vesselplate", ModBlocks.VESSELPLATE.get(), new Item.Properties()));
+            () -> new BlockItemWithTooltip(ModBlocks.VESSELPLATE.get(), new Item.Properties()));
     public static final RegistryObject<Item> GRAY_ROCKRETE_ITEM = ITEMS.register("gray_rockrete",
-            () -> new BlockItemWithTooltip("gray_rockrete", ModBlocks.GRAY_ROCKRETE.get(), new Item.Properties()));
+            () -> new BlockItemWithTooltip(ModBlocks.GRAY_ROCKRETE.get(), new Item.Properties()));
     public static final RegistryObject<Item> IHEA_FURNITURE_KIT_ITEM = ITEMS.register("ihea_furniture_kit",
-            () -> new BlockItemWithTooltip("ihea_furniture_kit", ModBlocks.IHEA_FURNITURE_KIT.get(), new Item.Properties()));
+            () -> new BlockItemWithTooltip(ModBlocks.IHEA_FURNITURE_KIT.get(), new Item.Properties()));
+    public static final RegistryObject<Item> PIPEWORKS_ITEM = ITEMS.register("pipeworks",
+            () -> new BlockItemWithTooltip(ModBlocks.PIPEWORKS.get(), new Item.Properties()));
+    public static final RegistryObject<Item> METALWORKS_ITEM = ITEMS.register("metalworks",
+            () -> new BlockItemWithTooltip(ModBlocks.METALWORKS.get(), new Item.Properties()));
 
     //----------- END OF BLOCK ITEMS ----------
 

@@ -1,5 +1,6 @@
 package net.boat.industrialhellscape.item.modded_items;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
@@ -12,9 +13,9 @@ import java.util.List;
 
 public class BlockItemWithTooltip extends BlockItem {
         protected String itemName;
-    public BlockItemWithTooltip(String itemName, Block pBlock, Properties pProperties) {
+    public BlockItemWithTooltip(Block pBlock, Properties pProperties) {
         super(pBlock, pProperties);
-        this.itemName = itemName;
+        this.itemName = BuiltInRegistries.BLOCK.getKey(pBlock).getPath();
     }
 
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {

@@ -122,7 +122,7 @@ public class ModCreativeTab {
 
                         //METALWORKS BLOCKS
                         output.accept(ModBlocks.METALWORKS.get());
-                        output.accept(ModBlocks.YELLOW_STAIR_RAIL.get());
+                        output.accept(ModBlocks.YELLOW_STAIR_RAILING.get());
                         output.accept(ModBlocks.GRAY_BOLTED_BRACKET.get());
                         output.accept(ModBlocks.BLACK_BOLTED_BRACKET.get());
                         output.accept(ModBlocks.YELLOW_RAILING.get());

@@ -122,7 +122,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
         //METALWORKS BLOCKS
         this.dropSelf(ModBlocks.METALWORKS.get());
-        this.dropSelf(ModBlocks.YELLOW_STAIR_RAIL.get());
+        this.dropSelf(ModBlocks.YELLOW_STAIR_RAILING.get());
         this.dropSelf(ModBlocks.YELLOW_RAILING.get());
         this.dropSelf(ModBlocks.GRAY_BOLTED_BRACKET.get());
         this.dropSelf(ModBlocks.BLACK_BOLTED_BRACKET.get());

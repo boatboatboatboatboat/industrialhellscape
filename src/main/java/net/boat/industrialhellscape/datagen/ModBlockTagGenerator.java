@@ -113,7 +113,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
         this.tag(ModTags.Blocks.METALWORKS_BLOCKS) //FOR CORRECT MINING TOOLS AND TOOL TIER
                 .add(
                         ModBlocks.METALWORKS.get(),
-                        ModBlocks.YELLOW_STAIR_RAIL.get(),
+                        ModBlocks.YELLOW_STAIR_RAILING.get(),
                         ModBlocks.YELLOW_RAILING.get(),
                         ModBlocks.GRAY_BOLTED_BRACKET.get(),
                         ModBlocks.BLACK_BOLTED_BRACKET.get()

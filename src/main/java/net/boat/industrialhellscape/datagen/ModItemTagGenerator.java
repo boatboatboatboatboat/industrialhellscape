@@ -143,7 +143,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.METALWORKS.get().asItem(),
 
                         ModBlocks.YELLOW_RAILING.get().asItem(),
-                        ModBlocks.YELLOW_STAIR_RAIL.get().asItem(),
+                        ModBlocks.YELLOW_STAIR_RAILING.get().asItem(),
                         ModBlocks.BLACK_BOLTED_BRACKET.get().asItem(),
                         ModBlocks.GRAY_BOLTED_BRACKET.get().asItem()
                 );

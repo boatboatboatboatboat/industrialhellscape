@@ -11,7 +11,7 @@ import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.Inter
 import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.SoundModelled2BMBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.ModdedBedBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.RailingBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.StairRailBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.StairRailingBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.CornerBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.SurfaceMountAxisRotatableBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBlocks.InteractableModelledFacingBlock;
@@ -58,8 +58,8 @@ public class ModBlocks {
                     .noOcclusion()
             )
     );
-    public static final RegistryObject<Block> YELLOW_STAIR_RAIL = registerBlockAndBlockItem("yellow_stair_rail",
-            () -> new StairRailBlock(BlockBehaviour
+    public static final RegistryObject<Block> YELLOW_STAIR_RAILING = registerBlockAndBlockItem("yellow_stair_railing",
+            () -> new StairRailingBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()
             )
@@ -110,7 +110,7 @@ public class ModBlocks {
                     ModSounds.METAL_BOX_CLOSE.get()
             )
     );
-    public static final RegistryObject<Block> METALWORKS = registerBlockAndBlockItem("metalworks",
+    public static final RegistryObject<Block> METALWORKS = registerBlockOnly("metalworks",
             () -> new FallableBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
             )
@@ -123,12 +123,7 @@ public class ModBlocks {
                     HitboxGeometryCollection.HANDRAIL()
             )
     );
-    //    public static final RegistryObject<Block> SEETHROUGH_GRATE_PANE = registerBlock("see-through_grate_pane",
-//            () -> new IronBarsBlock(BlockBehaviour
-//                    .Properties.copy(Blocks.GLASS)
-//                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
-//            )
-//    );
+
     public static final RegistryObject<Block> GRAY_SEETHROUGH_GRATE_PANE = registerBlockAndBlockItem("gray_see-through_grate_pane",
             () -> new IronBarsBlock(BlockBehaviour
                     .Properties.copy(Blocks.GLASS_PANE)
@@ -464,7 +459,7 @@ public class ModBlocks {
 
 
     //PIPE BLOCKS
-    public static final RegistryObject<Block> PIPEWORKS = registerBlockAndBlockItem("pipeworks",
+    public static final RegistryObject<Block> PIPEWORKS = registerBlockOnly("pipeworks",
             () -> new FacingFallableBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()
