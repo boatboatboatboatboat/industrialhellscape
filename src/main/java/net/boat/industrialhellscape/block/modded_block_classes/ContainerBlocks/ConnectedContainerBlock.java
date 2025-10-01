@@ -1,7 +1,7 @@
 package net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks;
 
+import net.boat.industrialhellscape.block.modded_block_state_properties.DynamicConnectionState;
 import net.boat.industrialhellscape.block.modded_interfaces.ConnectedModelCapability;
-import net.boat.industrialhellscape.block.modded_block_state_properties.FurnitureConnectionState;
 import net.boat.industrialhellscape.block.modded_interfaces.RotationHelper;
 import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
 import net.minecraft.core.BlockPos;
@@ -46,7 +46,7 @@ import javax.annotation.Nonnull;
 public class ConnectedContainerBlock extends FacingContainerBlock implements EntityBlock, SimpleWaterloggedBlock {
 
 
-    private static final EnumProperty<FurnitureConnectionState> TYPE = EnumProperty.create("type", FurnitureConnectionState.class);
+    private static final EnumProperty<DynamicConnectionState> TYPE = EnumProperty.create("type", DynamicConnectionState.class);
     private static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public TagKey<Block> BlockSetFamily; //To determine other blocks aside from its own can this block connect to
@@ -104,7 +104,7 @@ public class ConnectedContainerBlock extends FacingContainerBlock implements Ent
 
         //Default state is Solo/unconnected, facing North, no waterlogging
         this.registerDefaultState(this.stateDefinition.any()
-                .setValue(TYPE, FurnitureConnectionState.SOLO)
+                .setValue(TYPE, DynamicConnectionState.SOLO)
                 .setValue(FACING, Direction.NORTH)
                 .setValue(WATERLOGGED, false)
         );
@@ -112,7 +112,7 @@ public class ConnectedContainerBlock extends FacingContainerBlock implements Ent
 
     //---------- HITBOXES, PLACEMENT, AND BLOCK UPDATES HANDLED BY INTERFACE ---------
     @Override
-    public @Nonnull VoxelShape getShape(BlockState pState, @Nonnull BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull CollisionContext pContext) {
+    public @Nonnull VoxelShape getShape(@Nonnull BlockState pState, @Nonnull BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull CollisionContext pContext) {
         //See this mod's ConnectedModelCapability interface to view the following method.
         return ConnectedModelCapability.makeConnectedHitboxes(
                 pState,
@@ -126,7 +126,7 @@ public class ConnectedContainerBlock extends FacingContainerBlock implements Ent
         //See this mod's ConnectedModelCapability interface to view the following method.
         return ConnectedModelCapability.placeTheConnectableBlock(this, pContext, BlockSetFamily, placementDirection);
     }
-    public void neighborChanged(@Nonnull BlockState state, Level level, @Nonnull BlockPos positionClicked, @Nonnull Block block, @Nonnull BlockPos fromPos, boolean pIsMoving) {
+    public void neighborChanged(@Nonnull BlockState state, @Nonnull Level level, @Nonnull BlockPos positionClicked, @Nonnull Block block, @Nonnull BlockPos fromPos, boolean pIsMoving) {
         //See this mod's ConnectedModelCapability interface to view the following method.
         ConnectedModelCapability.whenConnectedNeighborUpdated(state,level,positionClicked,block,fromPos,BlockSetFamily, placementDirection);
     }

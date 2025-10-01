@@ -1,8 +1,12 @@
-package net.boat.industrialhellscape.block.modded_block_classes;
+package net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks;
 
 import net.boat.industrialhellscape.block.modded_interfaces.RotationHelper;
+import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -14,7 +18,9 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -45,7 +51,7 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock{
     private static final VoxelShape COLLISION_SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, COLLISON_SHAPE_NORTH);
 
     // Boolean properties to check whether there is an additional fence at that direction (multiple can be placed down in each of the four cardinal directions in one block space)
-    // These block properties are handled via a block-state .json file handling "multi-block" states.
+    // These "superposition" block properties are handled via a block-state .json file handling "multi-block" states.
     public static final BooleanProperty NORTH_FENCE = BlockStateProperties.NORTH;
     public static final BooleanProperty SOUTH_FENCE = BlockStateProperties.SOUTH;
     public static final BooleanProperty EAST_FENCE  = BlockStateProperties.EAST;
@@ -63,8 +69,35 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock{
         );
     }
 
+    @Override
+    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+
+        boolean playerHasTool = pPlayer.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || pPlayer.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
+
+        //Rotates the current railings counterclockwise.
+        if(playerHasTool) {
+            boolean north = pState.getValue(NORTH_FENCE);
+            boolean south = pState.getValue(SOUTH_FENCE);
+            boolean east = pState.getValue(EAST_FENCE);
+            boolean west = pState.getValue(WEST_FENCE);
+
+            pState = pState.setValue(NORTH_FENCE, east);
+            pState = pState.setValue(EAST_FENCE, south);
+            pState = pState.setValue(SOUTH_FENCE, west);
+            pState = pState.setValue(WEST_FENCE, north);
+
+            pLevel.setBlock(pPos, pState, 3);
+
+            return InteractionResult.SUCCESS;
+        } else {
+            //No interaction if no eligible tool is equipped.
+            return InteractionResult.PASS;
+        }
+    }
+
     public boolean canBeReplaced(BlockState pState, @Nonnull BlockPlaceContext pUseContext) {
         //Is this block a RailingBlock? Allow additional block placement into the occupied space only if you have another block like this in your hand.
+        //Like for sea-pickles or candles.
         return pState.getBlock() instanceof RailingBlock ? pUseContext.getItemInHand().is(this.asItem()) : super.canBeReplaced(pState, pUseContext);
     }
 
@@ -100,7 +133,7 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock{
         }
     }
 
-//     Loot drop behavior is hard in the block class. Reminder to figure out how to data-gen loot table behavior like this instead of hard-coding
+//     Loot drop behavior is hardcoded in this block class. Reminder to figure out how to data-gen loot table behavior like this instead of hard-coding
 //     So modpack makers can have more freedom
     @Override
     public @Nonnull List<ItemStack> getDrops(BlockState pState, @Nonnull LootParams.Builder pParams) {
@@ -150,6 +183,7 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock{
         super.neighborChanged(pState, pLevel, pPos, neighborBlock, neighborPos, movedByPiston);
     }
 
+    //Corresponds a Direction input to the block-state boolean property for railing blocks.
     public static BooleanProperty fromDirection (Direction face) {
         return switch (face) {
             case SOUTH -> SOUTH_FENCE;
@@ -159,6 +193,7 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock{
         };
     }
 
+    //Checks if ANY railings exist at that block position
     public static boolean railingExists(BlockState pState) {
         boolean occupied = false;
         // For all possible cardinal values
@@ -168,6 +203,11 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock{
             occupied |= pState.getValue(fromDirection(dir));
         }
         return occupied;
+    }
+
+    @Override
+    public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
+        return false;
     }
 
     @Override

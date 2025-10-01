@@ -1,7 +1,7 @@
-package net.boat.industrialhellscape.block.modded_block_classes;
+package net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks;
 
+import net.boat.industrialhellscape.block.modded_block_state_properties.DynamicConnectionState;
 import net.boat.industrialhellscape.block.modded_interfaces.ConnectedModelCapability;
-import net.boat.industrialhellscape.block.modded_block_state_properties.PillarConnectionState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -31,12 +31,12 @@ import javax.annotation.Nonnull;
 
 public class AxialPillarBlock extends Block implements ConnectedModelCapability {
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS; //"AXIS" is used to store the block state direction
-    public static final EnumProperty<PillarConnectionState> TYPE = EnumProperty.create("type", PillarConnectionState.class); //Custom enum. "TYPE" is used to store enum value of "solo, pos, neg, middle"
+    public static final EnumProperty<DynamicConnectionState> TYPE = EnumProperty.create("type", DynamicConnectionState.class); //Custom enum. "TYPE" is used to store enum value of "solo, pos, neg, middle"
 
     public AxialPillarBlock(Properties pProperties) { //Establishes the Default State - Vertical, unconnected (solo)
         super(pProperties);
         this.registerDefaultState(this.getStateDefinition().any()
-                .setValue(TYPE, PillarConnectionState.SOLO)
+                .setValue(TYPE, DynamicConnectionState.SOLO)
                 .setValue(AXIS, Direction.Axis.Z));
     }
 
@@ -60,7 +60,7 @@ public class AxialPillarBlock extends Block implements ConnectedModelCapability 
         if (level.isClientSide) return;
 
         Direction.Axis axis = state.getValue(AXIS);
-        PillarConnectionState type = ConnectedModelCapability.getPillarType(state, ConnectedModelCapability.getStateAtAxisPositive(level, pos, axis), ConnectedModelCapability.getStateAtAxisNegative(level, pos, axis));
+        DynamicConnectionState type = ConnectedModelCapability.getPillarType(state, ConnectedModelCapability.getStateAtAxisPositive(level, pos, axis), ConnectedModelCapability.getStateAtAxisNegative(level, pos, axis));
             //See the interface ConnectedModelCapability for details on how neighboring blocks are read using
             //getStateAxisPositive() and getStateAxisNegative()
         if (state.getValue(TYPE) == type) return;

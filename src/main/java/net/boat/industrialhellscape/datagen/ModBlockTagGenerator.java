@@ -17,14 +17,9 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
         super(output, lookupProvider, IndustrialHellscape.MOD_ID, existingFileHelper);
     }
 
-
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
-    //MAIN CLASS BLOCKS
-        //VESSELPLATE
-        //VESSELGLASS
-        //ROCKRETE
-        //PIPEWORKS
+
         this.tag(ModTags.Blocks.VESSELPLATE_BLOCKS)
                 .add(
                         ModBlocks.VESSELPLATE.get(),
@@ -64,6 +59,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
                         ModBlocks.VESSELPLATE_STAIRS.get(),
                         ModBlocks.VESSELPLATE_SLAB.get(),
+                        ModBlocks.GRAY_VESSELPLATE_STAIRS.get(),
+                        ModBlocks.GRAY_VESSELPLATE_SLAB.get(),
 
                         ModBlocks.ENCASED_CABLES.get(),
                         ModBlocks.RUSTY_GRATE.get()
@@ -106,10 +103,20 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 );
 
         this.tag(ModTags.Blocks.PIPEWORKS_BLOCKS) //FOR CORRECT MINING TOOLS AND TOOL TIER
+                .add(ModBlocks.PIPEWORKS.get())
                 .addTags(
                         ModTags.Blocks.COPPER_PIPE_CONDUIT,
                         ModTags.Blocks.BRASS_PIPE_CONDUIT,
                         ModTags.Blocks.GRAY_PIPE_CONDUIT
+                );
+
+        this.tag(ModTags.Blocks.METALWORKS_BLOCKS) //FOR CORRECT MINING TOOLS AND TOOL TIER
+                .add(
+                        ModBlocks.METALWORKS.get(),
+                        ModBlocks.YELLOW_STAIR_RAIL.get(),
+                        ModBlocks.YELLOW_RAILING.get(),
+                        ModBlocks.GRAY_BOLTED_BRACKET.get(),
+                        ModBlocks.BLACK_BOLTED_BRACKET.get()
                 );
 
         //BLOCKSET FAMILIES
@@ -183,12 +190,9 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(
                         ModBlocks.LOCKER_BOX.get(),
                         ModBlocks.LARGE_LOCKER.get(),
-                        ModBlocks.GRAY_BOLTED_BRACKET.get(),
-                        ModBlocks.BLACK_BOLTED_BRACKET.get(),
                         ModBlocks.YELLOW_TRIPOD.get(),
                         ModBlocks.WORK_LIGHT_MOUNT.get(),
-                        ModBlocks.FLOOR_WORK_LIGHT.get(),
-                        ModBlocks.YELLOW_RAILING.get()
+                        ModBlocks.FLOOR_WORK_LIGHT.get()
                 );
 
         this.tag(ModTags.Blocks.TECHNOLOGY_FURNITURE_CATEGORY)
@@ -201,29 +205,28 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(
                         ModBlocks.DESK.get(),
                         ModBlocks.DESK_DRAWER.get(),
+
                         ModBlocks.METAL_DESK.get(),
                         ModBlocks.METAL_DESK_DRAWER.get(),
-                        ModBlocks.METAL_DESK_DRAWER_2.get()
+                        ModBlocks.METAL_DESK_DRAWER_2.get(),
+
+                        ModBlocks.OFFICE_DESK_DRAWER.get()
                 );
 
         //MINING TAGS
-
-        /*this.tag(BlockTags.NEEDS_STONE_TOOL) //When specific tool tiers are required
-                .add(
-
-                );*/
-        //TAG inputs
         this.tag(BlockTags.NEEDS_STONE_TOOL) //When specific tool tiers are required
                 .addTags(
                         ModTags.Blocks.VESSELPLATE_BLOCKS,
+                        ModTags.Blocks.VESSELPLATE_BLOCKS,
                         ModTags.Blocks.VESSELGLASS_BLOCKS,
-                        ModTags.Blocks.ROCKRETE_BLOCKS
+                        ModTags.Blocks.ROCKRETE_BLOCKS,
+                        ModTags.Blocks.PIPEWORKS_BLOCKS,
+                        ModTags.Blocks.METALWORKS_BLOCKS
                 );
 
-        this.tag(BlockTags.NEEDS_IRON_TOOL) //When specific tool tiers are required
-                .addTags(
-                        ModTags.Blocks.PIPEWORKS_BLOCKS
-                );
+//        this.tag(BlockTags.NEEDS_IRON_TOOL) //When specific tool tiers are required
+//                .addTags(
+//                );
 
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .addTags(
@@ -231,6 +234,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModTags.Blocks.VESSELPLATE_BLOCKS,
                         ModTags.Blocks.VESSELGLASS_BLOCKS,
                         ModTags.Blocks.PIPEWORKS_BLOCKS,
+                        ModTags.Blocks.METALWORKS_BLOCKS,
 
                         ModTags.Blocks.ALL_FURNITURE_BLOCKS //All furniture can be mined with axe or pickaxe.
                 );

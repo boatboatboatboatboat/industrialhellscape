@@ -2,13 +2,16 @@ package net.boat.industrialhellscape.block;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.modded_block_classes.*;
-import net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks.ConnectedContainerBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks.FacingContainerBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks.ModelledFacingContainerBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks.TwoBlockContainerMultiBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks.AxialPillarBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks.ConnectedFurnitureBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks.*;
+import net.boat.industrialhellscape.block.modded_block_classes.FallableBlocks.FacingFallableBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.FallableBlocks.FallableBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.InteractableModelled2BMBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.SoundModelled2BMBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.ModdedBedBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.RailingBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.StairRailBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.CornerBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.SurfaceMountAxisRotatableBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBlocks.InteractableModelledFacingBlock;
@@ -16,7 +19,7 @@ import net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBlock
 import net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBlocks.SimpleFacingBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.SimpleWaterloggableBlocks.ModelledWaterloggableBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.SimpleWaterloggableBlocks.SimpleWaterloggableBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.SurfaceMountBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.ModelledSurfaceMountBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.SurfaceMountRotatableBlock;
 import net.boat.industrialhellscape.block.modded_interfaces.HitboxGeometryCollection;
 import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
@@ -37,6 +40,11 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
 
+//THIS JAVA CLASS HANDLES BLOCK REGISTRATION AND THEIR CORRESPONDING BLOCK ITEM REGISTRATION UNLESS OTHERWISE SPECIFIED.
+// Using the methods:
+// - registerBlockAndBlockItem
+// - registerBlockOnly
+
 public class ModBlocks {
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED; //For configuring light-emitting blocks
 
@@ -46,6 +54,12 @@ public class ModBlocks {
     //EXPERIMENTAL BLOCKS
     public static final RegistryObject<Block> YELLOW_RAILING = registerBlockAndBlockItem("yellow_railing",
             () -> new RailingBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+            )
+    );
+    public static final RegistryObject<Block> YELLOW_STAIR_RAIL = registerBlockAndBlockItem("yellow_stair_rail",
+            () -> new StairRailBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()
             )
@@ -67,7 +81,7 @@ public class ModBlocks {
             )
     );
     public static final RegistryObject<Block> SMOKE_ALARM = registerBlockAndBlockItem("smoke_alarm",
-            () -> new SurfaceMountBlock(BlockBehaviour
+            () -> new ModelledSurfaceMountBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
                     HitboxGeometryCollection.SMOKE_DETECTOR_FLOOR()
@@ -90,10 +104,15 @@ public class ModBlocks {
             )
     );
     public static final RegistryObject<Block> FUEL_DRUM = registerBlockAndBlockItem("fuel_drum",
-            () -> new FacingContainerBlock(BlockBehaviour
+            () -> new SurfaceMountContainerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK), 27,
                     ModSounds.METAL_BOX_OPEN.get(),
                     ModSounds.METAL_BOX_CLOSE.get()
+            )
+    );
+    public static final RegistryObject<Block> METALWORKS = registerBlockAndBlockItem("metalworks",
+            () -> new FallableBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
             )
     );
 
@@ -285,7 +304,7 @@ public class ModBlocks {
     );
 
     public static final RegistryObject<Block> VESSELPLATE_STAIRS = registerBlockAndBlockItem("vesselplate_stairs",
-            () -> new StairBlock(() -> ModBlocks.RIVETED_VESSELPLATE_PANEL.get().defaultBlockState(),
+            () -> new StairBlock(() -> ModBlocks.VESSELPLATE.get().defaultBlockState(), //USING A SIMPLETEXTURETOGGLEBLOCK WILL CAUSE TOOLS TO CHANGE THE STAIR BLOCK TO THAT BLOCK
                     BlockBehaviour
                             .Properties.copy(Blocks.IRON_BLOCK)
                             .noOcclusion()
@@ -297,6 +316,20 @@ public class ModBlocks {
                     .noOcclusion()
                     .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
     );
+    public static final RegistryObject<Block> GRAY_VESSELPLATE_STAIRS = registerBlockAndBlockItem("gray_vesselplate_stairs",
+            () -> new StairBlock(() -> ModBlocks.VESSELPLATE.get().defaultBlockState(),
+                    BlockBehaviour
+                            .Properties.copy(Blocks.IRON_BLOCK)
+                            .noOcclusion()
+                            .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
+    );
+    public static final RegistryObject<Block> GRAY_VESSELPLATE_SLAB = registerBlockAndBlockItem("gray_vesselplate_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
+    );
+
 
     public static final RegistryObject<Block> GRAY_CATWALK_STRUT_SLAB = registerBlockAndBlockItem("gray_catwalk_strut_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion().sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
@@ -600,6 +633,22 @@ public class ModBlocks {
                     ModSounds.METAL_BOX_CLOSE.get(),
                     MultiBlockPlacementDirection.HORIZONTAL
                     )
+
+    );
+    public static final RegistryObject<Block> OFFICE_DESK_DRAWER = registerBlockAndBlockItem("office_desk_drawer",
+            () -> new ConnectedContainerBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    18,
+                    ModTags.Blocks.METAL_DESK,
+                    HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
+                    HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
+                    HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
+                    HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
+                    ModSounds.METAL_BOX_OPEN.get(),
+                    ModSounds.METAL_BOX_CLOSE.get(),
+                    MultiBlockPlacementDirection.HORIZONTAL
+            )
 
     );
     public static final RegistryObject<Block> METAL_DESK_DRAWER_2 = registerBlockAndBlockItem("metal_desk_drawer_2",

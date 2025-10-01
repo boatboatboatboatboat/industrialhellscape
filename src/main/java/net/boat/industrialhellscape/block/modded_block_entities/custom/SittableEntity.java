@@ -1,4 +1,4 @@
-package net.boat.industrialhellscape.entity.custom;
+package net.boat.industrialhellscape.block.modded_block_entities.custom;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;

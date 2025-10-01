@@ -8,14 +8,14 @@ import net.minecraft.util.StringRepresentable;
 //For different models and/or textures per section
 //-----
 
-public enum PillarConnectionState implements StringRepresentable {
-    POSITIVE("positive"), //Only these four states are allowed to be called from the enum PillarConnectionState
+public enum DynamicConnectionState implements StringRepresentable {
+    POSITIVE("positive"), //Only these four states are allowed to be called from the enum DynamicConnectionState
     MIDDLE("middle"),
     NEGATIVE("negative"),
     SOLO("solo");
 
     private final String name;
-    private PillarConnectionState(String type) {this.name = type;}
+    private DynamicConnectionState(String type) {this.name = type;}
     public String toString() {return this.name;}
     public String getSerializedName() {return this.name;}
 }

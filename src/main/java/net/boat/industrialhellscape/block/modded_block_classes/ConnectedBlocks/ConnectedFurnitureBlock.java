@@ -1,7 +1,7 @@
-package net.boat.industrialhellscape.block.modded_block_classes;
+package net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks;
 
+import net.boat.industrialhellscape.block.modded_block_state_properties.DynamicConnectionState;
 import net.boat.industrialhellscape.block.modded_interfaces.ConnectedModelCapability;
-import net.boat.industrialhellscape.block.modded_block_state_properties.FurnitureConnectionState;
 import net.boat.industrialhellscape.block.modded_interfaces.RotationHelper;
 import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
 import net.minecraft.core.BlockPos;
@@ -46,7 +46,7 @@ import javax.annotation.Nonnull;
 
 public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
 
-    public static final EnumProperty<FurnitureConnectionState> TYPE = EnumProperty.create("type", FurnitureConnectionState.class); //"TYPE" is used to store enum value of "solo, left, right, middle" for block connected variants
+    public static final EnumProperty<DynamicConnectionState> TYPE = EnumProperty.create("type", DynamicConnectionState.class); //"TYPE" is used to store enum value of "solo, left, right, middle" for block connected variants
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING; //"FACING" is used to store DirectionProperty value of "north, south, east, west" //KJ
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public TagKey<Block> BlockSetFamily; //To determine other blocks aside from its own can this block connect to
@@ -104,7 +104,7 @@ public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implemen
 
         //Default state is Solo/unconnected, facing North, no waterlogging
         this.registerDefaultState(this.stateDefinition.any()
-                .setValue(TYPE, FurnitureConnectionState.SOLO)
+                .setValue(TYPE, DynamicConnectionState.SOLO)
                 .setValue(FACING, Direction.NORTH)
                 .setValue(WATERLOGGED, false)
         );

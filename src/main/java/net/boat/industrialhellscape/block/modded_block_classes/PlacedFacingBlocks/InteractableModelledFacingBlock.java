@@ -22,7 +22,7 @@ import javax.annotation.Nonnull;
 // It supports waterlogging.
 // It supports interactions for model changes with the boolean property "POWERED"
 // Will currently be used for blocks that emit light when "powered". The "LIT" property is omitted from usage for simplicity.
-// It extends the modded block class, ModelledFacingBlock. Rotation of hitboxes for all cardinal directions is handled in that class.
+// It extends the modded block class, ModelledFacingBlock. Rotation of hitboxes for all cardinal directions is already handled in that class.
 //-----
 
 public class InteractableModelledFacingBlock extends ModelledFacingBlock implements SimpleWaterloggedBlock {

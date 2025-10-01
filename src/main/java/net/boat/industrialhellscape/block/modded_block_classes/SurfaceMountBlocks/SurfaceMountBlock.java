@@ -18,7 +18,6 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.spongepowered.asm.mixin.Pseudo;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -27,24 +26,8 @@ public class SurfaceMountBlock extends HorizontalDirectionalBlock implements Sim
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final EnumProperty<AttachFace> SURFACE_MOUNT = BlockStateProperties.ATTACH_FACE;
 
-    public final VoxelShape SHAPE_FLOOR;
-    public final VoxelShape SHAPE_CEILING;
-    private final VoxelShape SHAPE_NORTH;
-    private final VoxelShape SHAPE_SOUTH;
-    private final VoxelShape SHAPE_EAST;
-    private final VoxelShape SHAPE_WEST;
-
-
-    public SurfaceMountBlock(Properties pProperties, VoxelShape floorHitBox) {
+    public SurfaceMountBlock(Properties pProperties) {
         super(pProperties);
-
-        this.SHAPE_FLOOR = floorHitBox; //default for blocks using this block class
-        this.SHAPE_CEILING = RotationHelper.rotateVoxelUpDown(Direction.UP, floorHitBox);
-
-        this.SHAPE_NORTH = RotationHelper.rotateVoxelUpDown(Direction.NORTH, floorHitBox); //Rotates to the north surface position
-        SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, SHAPE_NORTH);
-        SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, SHAPE_NORTH);
-        SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, SHAPE_NORTH);
 
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
@@ -53,27 +36,6 @@ public class SurfaceMountBlock extends HorizontalDirectionalBlock implements Sim
         );
     }
 
-    @Override
-    public @Nonnull VoxelShape getShape(BlockState pState, @Nonnull BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull CollisionContext pContext) {
-
-        //When placed, if the block's "TYPE" property is one of these cases, find its horizontal orientation and give it the correct hitbox
-        //North is the default orientation assumed if no other cases met
-
-        if(pState.getValue(SURFACE_MOUNT) == AttachFace.WALL) {
-            return switch (pState.getValue(FACING)) {
-                case SOUTH -> SHAPE_SOUTH;
-                case EAST -> SHAPE_EAST;
-                case WEST -> SHAPE_WEST;
-                default -> SHAPE_NORTH;
-            };
-
-        } else if(pState.getValue(SURFACE_MOUNT) == AttachFace.FLOOR) {
-            return SHAPE_FLOOR;
-        } else {
-            return SHAPE_CEILING;
-        }
-
-    }
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());

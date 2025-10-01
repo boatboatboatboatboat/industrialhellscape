@@ -1,7 +1,6 @@
 package net.boat.industrialhellscape.block.modded_interfaces;
 
-import net.boat.industrialhellscape.block.modded_block_state_properties.FurnitureConnectionState;
-import net.boat.industrialhellscape.block.modded_block_state_properties.PillarConnectionState;
+import net.boat.industrialhellscape.block.modded_block_state_properties.DynamicConnectionState;
 import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -32,7 +31,7 @@ public interface ConnectedModelCapability {
     EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS; //"AXIS" is used to store which axis the block is aligned to
     BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED; //Waterlogging is true or false
 
-    EnumProperty<FurnitureConnectionState> TYPE = EnumProperty.create("type", FurnitureConnectionState.class); //CUSTOM ENUM, NOT VANILLA PROPERTY
+    EnumProperty<DynamicConnectionState> TYPE = EnumProperty.create("type", DynamicConnectionState.class); //CUSTOM ENUM, NOT VANILLA PROPERTY
     //---------- END OF PROPERTIES  ----------
 
     //---------- METHODS FOR CONNECTED FURNITURE BLOCKS ----------
@@ -67,7 +66,7 @@ public interface ConnectedModelCapability {
         BlockState getPositiveState = placementDirection == MultiBlockPlacementDirection.HORIZONTAL ? getStateAtRelativeLeft(level, positionClicked, directionClicked) : getStateRelativeTop(level, positionClicked);
         BlockState getNegativeState = placementDirection == MultiBlockPlacementDirection.HORIZONTAL ? getStateAtRelativeRight(level, positionClicked, directionClicked) : getStateRelativeBottom(level, positionClicked);
 
-        FurnitureConnectionState type = getTypeAndFamily(state, getPositiveState, getNegativeState, BlockSetFamily);
+        DynamicConnectionState type = getTypeAndFamily(state, getPositiveState, getNegativeState, BlockSetFamily);
         if (state.getValue(TYPE) == type) return;
 
         state = state.setValue(TYPE, type);
@@ -82,7 +81,7 @@ public interface ConnectedModelCapability {
                ) {
 
         return switch (pState.getValue(TYPE)) {
-            case LEFT -> switch (pState.getValue(FACING)) {
+            case POSITIVE -> switch (pState.getValue(FACING)) {
                 case SOUTH -> LEFT_SHAPE_SOUTH;
                 case EAST -> LEFT_SHAPE_EAST;
                 case WEST -> LEFT_SHAPE_WEST;
@@ -94,7 +93,7 @@ public interface ConnectedModelCapability {
                 case WEST -> MIDDLE_SHAPE_WEST;
                 default -> MIDDLE_SHAPE_NORTH;
             };
-            case RIGHT -> switch (pState.getValue(FACING)) {
+            case NEGATIVE -> switch (pState.getValue(FACING)) {
                 case SOUTH -> RIGHT_SHAPE_SOUTH;
                 case EAST -> RIGHT_SHAPE_EAST;
                 case WEST -> RIGHT_SHAPE_WEST;
@@ -150,33 +149,33 @@ public interface ConnectedModelCapability {
     //The following methods check the neighbors of the block placed and figures out how the placed block should connect to neighboring blocks, and returns the appropriate block state property.
     //They are very similar. This is why I put them in one place. I may figure out a way to make them all use one method in the future.
 
-    static FurnitureConnectionState getTypeAndFamily(BlockState state, BlockState leftState, BlockState rightState, TagKey<Block> ofBlockSetFamilyTag) {
+    static DynamicConnectionState getTypeAndFamily(BlockState state, BlockState leftState, BlockState rightState, TagKey<Block> ofBlockSetFamilyTag) {
         // Requires an additional tag parameter to connect with other similar blocks
         boolean left_neighbor_is_same_block = (leftState.is(state.getBlock()) || leftState.is(ofBlockSetFamilyTag) )
                 && state.getValue(FACING) == leftState.getValue(FACING); //Is the left blockstate the same as the current one, AND current orientation matches left blocks' orientation?
         boolean right_neighbor_is_same_block = (rightState.is(state.getBlock())|| rightState.is(ofBlockSetFamilyTag) )
                 && state.getValue(FACING) == rightState.getValue(FACING); //Is the left blockstate the same as the current one, AND current orientation matches left blocks' orientation?
 
-        if (left_neighbor_is_same_block && !right_neighbor_is_same_block) return FurnitureConnectionState.RIGHT;
-        else if (!left_neighbor_is_same_block && right_neighbor_is_same_block) return FurnitureConnectionState.LEFT;
-        else if (left_neighbor_is_same_block) return FurnitureConnectionState.MIDDLE;
-        return FurnitureConnectionState.SOLO;
+        if (left_neighbor_is_same_block && !right_neighbor_is_same_block) return DynamicConnectionState.NEGATIVE;
+        else if (!left_neighbor_is_same_block && right_neighbor_is_same_block) return DynamicConnectionState.POSITIVE;
+        else if (left_neighbor_is_same_block) return DynamicConnectionState.MIDDLE;
+        return DynamicConnectionState.SOLO;
     }
 
-    static PillarConnectionState getPillarType(BlockState state, BlockState aboveState, BlockState belowState) {
+    static DynamicConnectionState getPillarType(BlockState state, BlockState aboveState, BlockState belowState) {
         boolean blockstate_above_is_same = aboveState.is(state.getBlock()) //Is the blockstate in positive axis direction the same as the current one, AND current orientation matches that blocks' orientation?
                 && state.getValue(AXIS) == aboveState.getValue(AXIS);
         boolean blockstate_below_is_same = belowState.is(state.getBlock()) //Is the blockstate in negative axis direction the same as the current one, AND current orientation matches that blocks' orientation?
                 && state.getValue(AXIS) == belowState.getValue(AXIS);
 
         // Where "above" and "below" refer to in the positive and negative axial direction respectively, like Y direction (height).
-        if (blockstate_above_is_same && !blockstate_below_is_same) return PillarConnectionState.NEGATIVE;
-        else if (!blockstate_above_is_same && blockstate_below_is_same) return PillarConnectionState.POSITIVE;
-        else if (blockstate_above_is_same) return PillarConnectionState.MIDDLE;
-        return PillarConnectionState.SOLO;
+        if (blockstate_above_is_same && !blockstate_below_is_same) return DynamicConnectionState.NEGATIVE;
+        else if (!blockstate_above_is_same && blockstate_below_is_same) return DynamicConnectionState.POSITIVE;
+        else if (blockstate_above_is_same) return DynamicConnectionState.MIDDLE;
+        return DynamicConnectionState.SOLO;
     }
 
-    static PillarConnectionState getPipeType(BlockState state, BlockState forward, BlockState backward) {
+    static DynamicConnectionState getPipeType(BlockState state, BlockState forward, BlockState backward) {
         // Checks for axis compatibility like in getPillarType() above, but also has to check that neighbor blocks are attached to the same wall before
         // allowing connection
         boolean blockstate_forward_is_same = forward.is(state.getBlock())
@@ -184,9 +183,9 @@ public interface ConnectedModelCapability {
         boolean blockstate_backward_is_same = backward.is(state.getBlock())
                 && state.getValue(AXIS) == backward.getValue(AXIS) && state.getValue(SURFACE_DIRECTION) == backward.getValue(SURFACE_DIRECTION);
 
-        if (blockstate_forward_is_same && !blockstate_backward_is_same) return PillarConnectionState.NEGATIVE;
-        else if (!blockstate_forward_is_same && blockstate_backward_is_same) return PillarConnectionState.POSITIVE;
-        else if (blockstate_forward_is_same) return PillarConnectionState.MIDDLE;
-        return PillarConnectionState.SOLO;
+        if (blockstate_forward_is_same && !blockstate_backward_is_same) return DynamicConnectionState.NEGATIVE;
+        else if (!blockstate_forward_is_same && blockstate_backward_is_same) return DynamicConnectionState.POSITIVE;
+        else if (blockstate_forward_is_same) return DynamicConnectionState.MIDDLE;
+        return DynamicConnectionState.SOLO;
     }
 }

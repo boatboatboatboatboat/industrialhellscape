@@ -15,7 +15,9 @@ public class ModTags {
         public static final TagKey<Block> VESSELPLATE_BLOCKS = tag("vesselplate_blocks");
         public static final TagKey<Block> VESSELGLASS_BLOCKS = tag("vesselglass_blocks");
         public static final TagKey<Block> ROCKRETE_BLOCKS = tag("rockrete_blocks");
+
         public static final TagKey<Block> PIPEWORKS_BLOCKS = tag("pipeworks_blocks");
+        public static final TagKey<Block> METALWORKS_BLOCKS = tag("metalworks_blocks");
 
         //FURNITURE CATEGORIES
         public static final TagKey<Block> SAFETY_FURNITURE_CATEGORY = tag("safety_furniture_category");
@@ -43,7 +45,9 @@ public class ModTags {
         public static final TagKey<Item> VESSELPLATE_SMELTABLE_ITEM = tag("vesselplate_smeltable_item");
         public static final TagKey<Item> VESSELGLASS_SMELTABLE_ITEM = tag("vesselglass_smeltable_item");
         public static final TagKey<Item> ROCKRETE_SMELTABLE_ITEM = tag("rockrete_smeltable_item");
-        public static final TagKey<Item> PIPEWORKS_SMELTABLE_ITEM = tag("pipeworks_smeltable_item");
+
+        public static final TagKey<Item> PIPEWORKS_ITEMS = tag("pipeworks_items");
+        public static final TagKey<Item> METALWORKS_ITEMS = tag("metalworks_items");
 
         //Furniture Categories and Subcategories
         public static final TagKey<Item> FURNITURE_CATEGORIES = tag("furniture_categories");
@@ -56,6 +60,7 @@ public class ModTags {
 
         //For crafting convenience
         public static final TagKey<Item> IH_RECIPE_STONELIKES = tag("ih_recipe_stonelikes");
+        public static final TagKey<Item> IH_RECIPE_INGOTS = tag("ih_recipe_ingots");
         public static final TagKey<Item> IH_COMPATIBLE_TOOLS = tag("ih_compatible_tools");
 
         private static TagKey<Item> tag(String name) {

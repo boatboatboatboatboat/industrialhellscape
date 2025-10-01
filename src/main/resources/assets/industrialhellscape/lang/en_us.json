@@ -3,8 +3,10 @@
   "item.industrialhellscape.floppy_diskette": "Floppy Diskette",
   "item.industrialhellscape.inhell_haven_device": "HAVEN Tool",
   "item.industrialhellscape.job_application": "Job Application",
+  "item.industrialhellscape.aspic": "Aspic",
 
   "item.industrialhellscape.vaporwave_cassette": "Vaporwave Cassette",
+  "item.industrialhellscape.retro_cassette": "Retro Cassette",
   "item.industrialhellscape.vaporwave_cassette.desc": "Vulta - Shattered",
 
 
@@ -22,6 +24,10 @@
   "block.industrialhellscape.smooth_vesselplate_tile": "Smooth Vesselplate Tile",
   "block.industrialhellscape.vesselplate_pillar": "Vesselplate Pillar",
   "block.industrialhellscape.encased_cables": "Encased Cables",
+  "block.industrialhellscape.vesselplate_slab": "Vesselplate Slab",
+  "block.industrialhellscape.vesselplate_stairs": "Vesselplate Stairs",
+  "block.industrialhellscape.gray_vesselplate_slab": "Gray Vesselplate Slab",
+  "block.industrialhellscape.gray_vesselplate_stairs": "Gray Vesselplate Stairs",
 
   "block.industrialhellscape.gray_vesselplate": "Vesselplate",
   "block.industrialhellscape.gray_riveted_vesselplate_panel": "Gray Riveted Vesselplate Panel",
@@ -33,6 +39,7 @@
   "block.industrialhellscape.gray_vesselplate_pillar": "Vesselplate Pillar",
 
   "block.industrialhellscape.pipeworks": "Pipeworks",
+  "block.industrialhellscape.metalworks": "Metalworks",
 
   "block.industrialhellscape.copper_pipe_conduit": "Copper Pipe Conduit",
   "block.industrialhellscape.copper_pipe_conduit_planar_corner": "Copper Pipe Conduit Planar Corner",
@@ -91,6 +98,8 @@
 
   "block.industrialhellscape.white_wall_medkit": "White Wall Medkit",
   "block.industrialhellscape.red_wall_medkit": "Red Wall Medkit",
+  "block.industrialhellscape.fire_extinguisher": "Fire Extinguisher",
+  "block.industrialhellscape.smoke_alarm": "Smoke Alarm",
 
   "block.industrialhellscape.locker_box": "Locker Box",
   "block.industrialhellscape.large_locker": "Large Locker",

@@ -24,19 +24,18 @@ public class InHellTool extends Item {
     }
 
     @Override
-    public InteractionResult useOn(UseOnContext pContext) {
+    public @Nonnull InteractionResult useOn(UseOnContext pContext) {
         if(!pContext.getLevel().isClientSide()) {
             BlockPos positionClicked = pContext.getClickedPos();
             Player player = pContext.getPlayer();
 
+            //Text display
             if(player != null) player.displayClientMessage(Component.literal("Not an interactable block."), true);
 
+            //Play Sound
             pContext.getLevel().playSeededSound(null, positionClicked.getX(), positionClicked.getY(), positionClicked.getZ(),
                     SoundEvents.BELL_BLOCK, SoundSource.BLOCKS, 1f, 10f, 0);
         }
-
-        pContext.getItemInHand().hurtAndBreak(1, pContext.getPlayer(),
-                player -> player.broadcastBreakEvent(player.getUsedItemHand()));
 
         return InteractionResult.SUCCESS;
 
@@ -51,7 +50,7 @@ public class InHellTool extends Item {
 
     //Item has tooltip text capability.
     @Override
-    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+    public void appendHoverText(@Nonnull ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, @Nonnull TooltipFlag pIsAdvanced) {
         pTooltipComponents.add(Component.translatable("tooltip.industrialhellscape.haventool.flavortext"));
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }

@@ -24,6 +24,7 @@ import javax.annotation.Nonnull;
 //-----
 // This block supports rotation of custom models. It also supports directional placement based on player.
 // It supports waterlogging via the vanilla interface, "SimpleWaterloggedBlock"
+// It extends the modded class SimpleFacingBlock.
 // Custom models have their VoxelShape hitboxes chosen during registration by the HitboxGeometryCollection library.
 // The custom voxel shapes will be rotated by the mod's interface class, Rotationhelper along the appropriate cardinal directions.
 //-----

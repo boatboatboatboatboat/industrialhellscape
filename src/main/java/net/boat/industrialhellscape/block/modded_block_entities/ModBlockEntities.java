@@ -16,6 +16,7 @@ public class ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, IndustrialHellscape.MOD_ID);
 
+    //Comment this portion out since it is unused
     public static final RegistryObject<BlockEntityType<Storage9SlotBlockEntity>> STORAGE_9_BLOCK_ENTITY = //DEPRECATED
             BLOCK_ENTITIES.register("storage_9slot_block_entity", () ->
                     BlockEntityType.Builder.of(Storage9SlotBlockEntity::new,
@@ -25,6 +26,8 @@ public class ModBlockEntities {
                             ModBlocks.METAL_DESK_DRAWER.get(),
                             ModBlocks.METAL_DESK_DRAWER_2.get()
                     ).build(null));
+
+    //Comment this portion out since it is unused
     public static final RegistryObject<BlockEntityType<Storage18SlotBlockEntity>> STORAGE_18_BLOCK_ENTITY = //DEPRECATED
             BLOCK_ENTITIES.register("storage_18slot_block_entity", () ->
                     BlockEntityType.Builder.of(Storage18SlotBlockEntity::new,
@@ -44,7 +47,8 @@ public class ModBlockEntities {
 
                             ModBlocks.DESK_DRAWER.get(),
                             ModBlocks.METAL_DESK_DRAWER.get(),
-                            ModBlocks.METAL_DESK_DRAWER_2.get()
+                            ModBlocks.METAL_DESK_DRAWER_2.get(),
+                            ModBlocks.FUEL_DRUM.get()
 
                     ).build(null));
 

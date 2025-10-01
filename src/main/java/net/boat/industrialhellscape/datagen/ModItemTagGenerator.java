@@ -47,7 +47,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
         //---------- END OF MODLOADER TAG REGISTRATION ----------
 
         //---------- RECIPE DATAGEN INPUT TAGS ----------
-            //Only a Smeltable-tagged item can be stone-cut into a non-Smeltable output (e.g. slabs)
+        //Only a Smeltable-tagged item can be stone-cut into a non-Smeltable output (e.g. slabs)
 
         this.tag(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM) //NO HALF BLOCKS HERE
                 .add(
@@ -79,6 +79,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.CATWALK_STRUT.get().asItem(),
                         ModBlocks.CATWALK_STRUT_STAIRS.get().asItem(),
                         ModBlocks.VESSELPLATE_STAIRS.get().asItem(),
+                        ModBlocks.GRAY_VESSELPLATE_STAIRS.get().asItem(),
 
                         ModBlocks.GRAY_STRUT.get().asItem(),
                         ModBlocks.GRAY_STRUT_STAIRS.get().asItem(),
@@ -118,7 +119,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.BLUE_ROCKRETE.get().asItem()
                 );
 
-        this.tag(ModTags.Items.PIPEWORKS_SMELTABLE_ITEM)
+        this.tag(ModTags.Items.PIPEWORKS_ITEMS)
                 .add(
                         ModBlocks.PIPEWORKS.get().asItem(),
 
@@ -136,6 +137,15 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.GRAY_PIPE_CONDUIT_PLANAR_CORNER.get().asItem(),
                         ModBlocks.GRAY_PIPE_CONDUIT_INNER_CORNER.get().asItem(),
                         ModBlocks.GRAY_PIPE_CONDUIT_OUTER_CORNER.get().asItem()
+                );
+        this.tag(ModTags.Items.METALWORKS_ITEMS)
+                .add(
+                        ModBlocks.METALWORKS.get().asItem(),
+
+                        ModBlocks.YELLOW_RAILING.get().asItem(),
+                        ModBlocks.YELLOW_STAIR_RAIL.get().asItem(),
+                        ModBlocks.BLACK_BOLTED_BRACKET.get().asItem(),
+                        ModBlocks.GRAY_BOLTED_BRACKET.get().asItem()
                 );
         //---------- END OF RECIPE DATAGEN INPUT TAGS ----------
 
@@ -177,12 +187,9 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 .add(
                         ModBlocks.LOCKER_BOX.get().asItem(),
                         ModBlocks.LARGE_LOCKER.get().asItem(),
-                        ModBlocks.GRAY_BOLTED_BRACKET.get().asItem(),
-                        ModBlocks.BLACK_BOLTED_BRACKET.get().asItem(),
                         ModBlocks.YELLOW_TRIPOD.get().asItem(),
                         ModBlocks.WORK_LIGHT_MOUNT.get().asItem(),
-                        ModBlocks.FLOOR_WORK_LIGHT.get().asItem(),
-                        ModBlocks.YELLOW_RAILING.get().asItem()
+                        ModBlocks.FLOOR_WORK_LIGHT.get().asItem()
                 );
         this.tag(ModTags.Items.TECHNOLOGY_FURNITURE_CATEGORY)
                 .add(
@@ -198,7 +205,9 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 
                         ModBlocks.METAL_DESK.get().asItem(),
                         ModBlocks.METAL_DESK_DRAWER.get().asItem(),
-                        ModBlocks.METAL_DESK_DRAWER_2.get().asItem()
+                        ModBlocks.METAL_DESK_DRAWER_2.get().asItem(),
+
+                        ModBlocks.OFFICE_DESK_DRAWER.get().asItem()
                 );
 
         //---------- END OF FURNITURE TAGS ----------
@@ -226,6 +235,12 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 .addTags(
                         PICKAXES,
                         WRENCHES
+                );
+
+        this.tag(ModTags.Items.IH_RECIPE_INGOTS)
+                .add(
+                        Items.COPPER_INGOT,
+                        Items.IRON_INGOT
                 );
     }
 }

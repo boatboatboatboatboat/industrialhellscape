@@ -27,20 +27,23 @@ import javax.annotation.Nullable;
 // Tools that can rotate the block are ones tagged by this mod with the item tag IH_COMPATIBLE_TOOLS. Currently consisting of tagged pickaxes, "wrenches", and the mod's HAVEN Tool
 
 // AbstractGlassBlock enables internal face culling so transparent blocks of this block class can have internal face culling (E.G. Grates)
-// Otherwise, this block class functions no different than if it uses the normal vanilla Block class
+// Otherwise, this block class functions no different from if it uses the normal vanilla Block class
 // For full blocks
 
 public class SimpleTextureToggleBlock extends AbstractGlassBlock {
 
-    public static final BooleanProperty ALT_TEXTURE = BooleanProperty.create("alt_texture");
+    public static final BooleanProperty ALT_STATE = BooleanProperty.create("alt_state");
 
     public SimpleTextureToggleBlock(Properties pProperties) {
         super(pProperties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(ALT_TEXTURE, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(ALT_STATE, false));
     }
 
     @Nullable
     public BlockState getStateForPlacement(@Nonnull BlockPlaceContext pContext) {
+//        Direction[] facingNearest = pContext.getNearestLookingDirections();
+//        if(pContext.getPlayer() != null) pContext.getPlayer().displayClientMessage(Component.literal("Facing" + facingNearest[1] + "and" + facingNearest[2]), true);
+
         BlockState state = this.defaultBlockState();
         return state;
     }
@@ -49,7 +52,7 @@ public class SimpleTextureToggleBlock extends AbstractGlassBlock {
         boolean playerHasTool = pPlayer.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || pPlayer.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
 
         if(playerHasTool) { //If player has tool, change the block texture orientation to the other value
-            pState = pState.cycle(ALT_TEXTURE);  //Cycles from vertical and horizontal block texture variants
+            pState = pState.cycle(ALT_STATE);  //Cycles from vertical and horizontal block texture variants
             pLevel.setBlock(pPos, pState, 2);
 
             pLevel.playSeededSound(null, pPos.getX(), pPos.getY(), pPos.getZ(),
@@ -62,6 +65,6 @@ public class SimpleTextureToggleBlock extends AbstractGlassBlock {
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(ALT_TEXTURE);
+        pBuilder.add(ALT_STATE);
     }
 }

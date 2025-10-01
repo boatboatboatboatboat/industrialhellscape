@@ -14,7 +14,7 @@ public interface MultiBlockPlacementCapability {
 
     static BlockEntity newBlockEntityInNegativeBlock(BlockPos pos, BlockState state) {
         //Used when newBlockEntity() is called.
-        //Used only for multi-blocks that happen to also be block entity container blocks
+        //Used ONLY for multi-blocks that happen to also be block entity container blocks
         BlockEntity storageEntity = new GenericContainerBE(pos, state);
 
         if(state.getValue(HALF_PART) == TwoBlockMultiBlockState.POSITIVE) { //If the block is the POSITIVE block

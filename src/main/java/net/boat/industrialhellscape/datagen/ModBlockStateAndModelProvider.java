@@ -10,17 +10,15 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
-//IF YOU GET AN ERROR REGARDING JAVA NOT LOOKING THROUGH A SUBFOLDER, THAT MAY BE AN ERROR CAUSED BY ModItemModelProvider, NOT FROM THIS DATAGEN CLASS
+//THIS JAVA CLASS HANDLES BLOCK STATE, BLOCK MODEL, AND ITEM MODEL DATA-GENERATION
 
 public class ModBlockStateAndModelProvider extends BlockStateProvider {
     public static final EnumProperty<TwoBlockMultiBlockState> HALF = EnumProperty.create("half", TwoBlockMultiBlockState.class);
     public static final DirectionProperty FACING = BlockStateProperties.VERTICAL_DIRECTION;
     public static final DirectionProperty HORIZONTAL_FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
-    public static final BooleanProperty ALT_TEXTURE = BooleanProperty.create("alt_texture");
+    public static final BooleanProperty ALT_STATE = BooleanProperty.create("alt_state");
 
     public ModBlockStateAndModelProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, IndustrialHellscape.MOD_ID, exFileHelper);
@@ -96,14 +94,15 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         genHorizontalSBI(ModBlocks.TECHNOLOGY_FURNISHINGS.get(), build3FaceTexturesBlockModel("technology_furnishings","furniture_category_block", "technology_furnishings_north", "technology_furnishings_west", "technology_furnishings_up"));
         genHorizontalSBI(ModBlocks.AMENITY_FURNISHINGS.get(), build3FaceTexturesBlockModel("amenity_furnishings","furniture_category_block", "amenity_furnishings_north", "amenity_furnishings_west", "amenity_furnishings_up"));
         genHorizontalSBI(ModBlocks.LOCKER_BOX.get(), build6FaceTexturesBlockModel("locker_box","locker","locker_box_front","locker_box_side","locker_box_side","locker_box_side","locker_box_top","locker_box_bottom"));
-        genHorizontalSBI(ModBlocks.FUEL_DRUM.get(), build6FaceTexturesBlockModel("fuel_drum","fuel_drum", "red_labeled_fuel_drum_front", "red_labeled_fuel_drum_side", "red_labeled_fuel_drum_side", "red_labeled_fuel_drum_side", "red_fuel_drum_up","red_fuel_drum_down"));
+        genSimpleSBI(ModBlocks.METALWORKS.get(), build6FaceTexturesBlockModel("metalworks","metalworks","metalworks_side","metalworks_side", "metalworks_side","metalworks_side","metalworks_top","metalworks_bottom"));
 
         //FURNITURE BLOCKS WITH EXISTING BLOCK MODELS
-        GenFacingWaterloggableSI(ModBlocks.SINK.get(),"");
-        GenFacingWaterloggableSI(ModBlocks.WHITE_WALL_MEDKIT.get(),"medkit_containers");
-        GenFacingWaterloggableSI(ModBlocks.RED_WALL_MEDKIT.get(),"medkit_containers");
-        GenFacingWaterloggableSI(ModBlocks.FIRE_EXTINGUISHER.get(), "");
+        GenFacingModelledSI(ModBlocks.SINK.get(),"");
+        GenFacingModelledSI(ModBlocks.WHITE_WALL_MEDKIT.get(),"medkit_containers");
+        GenFacingModelledSI(ModBlocks.RED_WALL_MEDKIT.get(),"medkit_containers");
+        GenFacingModelledSI(ModBlocks.FIRE_EXTINGUISHER.get(), "");
         genAttachedSI(ModBlocks.SMOKE_ALARM.get(), "");
+        genAttachedSBI(ModBlocks.FUEL_DRUM.get(), "", build6FaceTexturesBlockModel("fuel_drum","fuel_drum", "red_labeled_fuel_drum_front", "red_labeled_fuel_drum_front", "red_labeled_fuel_drum_side", "red_labeled_fuel_drum_side", "red_fuel_drum_up","red_fuel_drum_down"));
         genWaterloggableSI(ModBlocks.YELLOW_TRIPOD.get(),"");
 
         GenFacingPoweredSI(ModBlocks.WORK_LIGHT_MOUNT.get(), "work_light_mount");
@@ -118,7 +117,7 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         //Use ButtonBlock() For lever/button type redstone blocks.
         
         //Block Item Models only (For blocks with complex states and/or models
-        genI(ModBlocks.HANDRAIL.get(),"obj_models");
+        genI(ModBlocks.HANDRAIL.get(),"obj_models/handrail");
         genI(ModBlocks.STRUT.get(),"strut");
         genI(ModBlocks.STRUT_STAIRS.get(),"strut");
         genI(ModBlocks.STRUT_SLAB.get(),"strut");
@@ -131,10 +130,12 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         genI(ModBlocks.GRAY_CATWALK_STRUT.get(),"strut");
         genI(ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get(),"strut");
         genI(ModBlocks.GRAY_CATWALK_STRUT_SLAB.get(),"strut");
-        genI(ModBlocks.YELLOW_RAILING.get(),"");
+        genI(ModBlocks.YELLOW_RAILING.get(),"yellow_railing");
 
         genI(ModBlocks.VESSELPLATE_SLAB.get(),"vesselplate");
         genI(ModBlocks.VESSELPLATE_STAIRS.get(),"vesselplate");
+        genI(ModBlocks.GRAY_VESSELPLATE_SLAB.get(),"vesselplate");
+        genI(ModBlocks.GRAY_VESSELPLATE_STAIRS.get(),"vesselplate");
 
         genI(ModBlocks.BODY_PILLOW.get(),"");
         genI(ModBlocks.BLUE_ROCKRETE_SLAB.get(),"");
@@ -186,6 +187,7 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
     //---------- END OF CUSTOM BLOCK MODEL GENERATOR METHODS ----------
 
     //---------- SBI ASSET GENERATOR METHODS ----------
+    // STATE, BLOCK MODEL, AND/OR ITEM MODEL GENERATION
 
     private void genFolderedSI(Block block, String folderName) { //STATES AND ITEM MODEL ONLY
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
@@ -225,8 +227,34 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         }, BlockStateProperties.WATERLOGGED);
     }
 
+    private void genAttachedSBI(Block block, String folderName, ModelFile model) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+        String existingModelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
+
+        getVariantBuilder(block).forAllStatesExcept(state -> {
+            Direction facing = state.getValue(FaceAttachedHorizontalDirectionalBlock.FACING);
+            AttachFace face = state.getValue(FaceAttachedHorizontalDirectionalBlock.FACE);
+            simpleBlockItem(block, models().getExistingFile(modLoc(existingModelPath)));
+
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .rotationX(face == AttachFace.FLOOR ? 0 : (face == AttachFace.WALL ? 90 : 180))
+                    .rotationY((int) (face == AttachFace.CEILING ? facing : facing.getOpposite()).toYRot())
+                    .build();
+
+        }, BlockStateProperties.WATERLOGGED);
+    }
+
     private void genHorizontalSBI(Block block, ModelFile model) {
         horizontalBlock(block, model);
+
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
+        String existingModelPath = "block/"+stringName;
+        simpleBlockItem(block, models().getExistingFile(modLoc(existingModelPath)));
+    }
+
+    private void genSimpleSBI(Block block, ModelFile model) {
+        simpleBlock(block, model);
 
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
         String existingModelPath = "block/"+stringName;
@@ -260,7 +288,7 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         //GENERATE BLOCKSTATES
         getVariantBuilder(block)
                 .forAllStates(state -> {
-                    boolean altTexture = state.getValue(ALT_TEXTURE);
+                    boolean altTexture = state.getValue(ALT_STATE);
                     String modelToUse = (altTexture) ? altModelPath : baseModelPath;
 
                     return ConfiguredModel.builder()
@@ -271,32 +299,7 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         simpleBlockItem(block, models().getExistingFile(modLoc(baseModelPath)));
     }
 
-    private void GenFacingSI(Block block, String folderName) {
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
-        String modelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
-
-        getVariantBuilder(block)
-                .forAllStates(state -> {
-                    Direction horizontalFacing = state.getValue(HORIZONTAL_FACING);
-
-                    int yRot = switch (horizontalFacing) {
-                        case SOUTH -> 180;
-                        case WEST  -> 270;
-                        case EAST  -> 90;
-                        default -> 0; //NORTH
-                    };
-
-                    return ConfiguredModel.builder()
-                            .modelFile(models().getExistingFile(modLoc("block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName)))
-                            .rotationY(yRot)
-                            .build();
-                });
-
-        //GENERATE ITEM MODEL
-        simpleBlockItem(block, models().getExistingFile(modLoc(modelPath)));
-    }
-
-    private void GenFacingWaterloggableSI(Block block, String folderName) {
+    private void GenFacingModelledSI(Block block, String folderName) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
         String modelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
 
@@ -350,6 +353,7 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
     }
 
     private void genWaterloggableSI(Block block, String folderName) {
+        //No placement rotation necessary for these blocks
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
         String modelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
 
@@ -392,6 +396,7 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
     }
 
     private void genI(Block block, String folderName) {
+        //Only generate the item model for this block. Block states and block models are already written.
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath().toString();
         String modelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
         

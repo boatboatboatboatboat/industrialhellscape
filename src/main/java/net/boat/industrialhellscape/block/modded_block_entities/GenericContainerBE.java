@@ -1,6 +1,7 @@
 package net.boat.industrialhellscape.block.modded_block_entities;
 
 import net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks.FacingContainerBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks.SurfaceMountContainerBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks.TwoBlockContainerMultiBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
@@ -26,7 +27,7 @@ import org.jetbrains.annotations.NotNull;
 
 //INFO:
 //-----
-//This block entity takes the SLOTS parameter passed from FacingContainerBlock, and loads an inventory with appropriate GUI based on that item slot capacity.
+//This block entity takes the SLOTS parameter passed from FacingContainerBlock, and loads an inventory with appropriate vanilla GUI based on that item slot capacity.
 //Allows a configurable inventory slot capacity determined during block registration. This avoids multiple block entity classes or registrations.
 //-----
 
@@ -38,17 +39,25 @@ public class GenericContainerBE extends RandomizableContainerBlockEntity {
     private NonNullList<ItemStack> items;
 
     public GenericContainerBE(BlockPos pos, BlockState state) {
+
         super(ModBlockEntities.CONTAINER_BLOCK_ENTITY.get(), pos, state);
+
         Block block = state.getBlock();
-        if (block instanceof FacingContainerBlock containerBlock) {
+        if (block instanceof FacingContainerBlock containerBlock) { //If block is a Facing Container Block. assign its slots and sound effects
             this.SLOTS = containerBlock.SLOTS;
             this.OPEN_SOUND = containerBlock.OPEN_SOUND;
             this.CLOSE_SOUND = containerBlock.CLOSE_SOUND;
-        } else if (block instanceof TwoBlockContainerMultiBlock containerBlock) {
+
+        } else if (block instanceof TwoBlockContainerMultiBlock containerBlock) { //If block is a 2BCMB, assign its slots and sound effects
             this.SLOTS = containerBlock.SLOTS;
             this.OPEN_SOUND = containerBlock.OPEN_SOUND;
             this.CLOSE_SOUND = containerBlock.CLOSE_SOUND;
-        } else {
+
+        } else if (block instanceof SurfaceMountContainerBlock containerBlock) {
+            this.SLOTS = containerBlock.SLOTS;
+            this.OPEN_SOUND = containerBlock.OPEN_SOUND;
+            this.CLOSE_SOUND = containerBlock.CLOSE_SOUND;
+        } else { // Else, fall-back to a non-null slot amount, and default barrel sound effects.
             this.SLOTS = 1; //Placeholder
             this.OPEN_SOUND = SoundEvents.BARREL_OPEN;
             this.CLOSE_SOUND = SoundEvents.BARREL_CLOSE;

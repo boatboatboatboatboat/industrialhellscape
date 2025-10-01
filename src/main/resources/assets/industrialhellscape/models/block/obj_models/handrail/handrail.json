@@ -1,6 +1,6 @@
 {
   "loader": "forge:obj",
-  "model": "industrialhellscape:models/block/obj_models/handrail.obj",
+  "model": "industrialhellscape:models/block/obj_models/handrail/handrail.obj",
   "flip-v": true,
   "detectCullableFaces": false,
   "textures": {

@@ -11,6 +11,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+//THIS JAVA CLASS HANDLES REGISTRATION OF ITEMS AND IN SPECIAL CASES, BLOCK ITEMS
 
 public class ModItems {
 
@@ -18,7 +19,7 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, IndustrialHellscape.MOD_ID);
 
-    public static final RegistryObject<Item> CASSETTE_V2 = ITEMS.register("cassette_v2",
+    public static final RegistryObject<Item> RETRO_CASSETTE = ITEMS.register("retro_cassette",
             () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> FLOPPY_DISK = ITEMS.register("floppy_disk",
@@ -37,6 +38,11 @@ public class ModItems {
             () -> new RecordItemWithTooltip("vaporwave_cassette", 6, ModSounds.VULTA_SHATTERED, new Item.Properties().stacksTo(1), 4620));
 
     //---------- END OF NORMAL ITEMS ----------
+
+    //---------- FOOD ITEMS ----------
+    public static final RegistryObject<Item> ASPIC = ITEMS.register("aspic",
+    () -> new Item(new Item.Properties().food(ModFoods.ASPIC)));
+    //---------- END OF FOOD ITEMS ----------
 
     //---------- BLOCK ITEMS ----------
         //For flavor text purposes. Ignore the unuse warning.

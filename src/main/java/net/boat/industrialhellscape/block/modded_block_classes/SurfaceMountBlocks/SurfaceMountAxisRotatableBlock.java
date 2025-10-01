@@ -1,7 +1,7 @@
 package net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks;
 
 import net.boat.industrialhellscape.block.modded_interfaces.ConnectedModelCapability;
-import net.boat.industrialhellscape.block.modded_block_state_properties.PillarConnectionState;
+import net.boat.industrialhellscape.block.modded_block_state_properties.DynamicConnectionState;
 import net.boat.industrialhellscape.block.modded_interfaces.RotationHelper;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
@@ -33,7 +33,7 @@ public class SurfaceMountAxisRotatableBlock extends Block implements ConnectedMo
 
     public static final EnumProperty<Direction> SURFACE_ATTACHED = BlockStateProperties.FACING;
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS;
-    public static final EnumProperty<PillarConnectionState> TYPE = EnumProperty.create("type", PillarConnectionState.class); //"TYPE" is used to store enum value of "solo, pos, neg, middle"
+    public static final EnumProperty<DynamicConnectionState> TYPE = EnumProperty.create("type", DynamicConnectionState.class); //"TYPE" is used to store enum value of "solo, pos, neg, middle"
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public static final VoxelShape SHAPE_FLOOR = Block.box(0, 0, 0, 16, 6, 16);
@@ -49,7 +49,7 @@ public class SurfaceMountAxisRotatableBlock extends Block implements ConnectedMo
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(SURFACE_ATTACHED, Direction.DOWN) //Default surface pipe is placed on
                 .setValue(AXIS, Direction.Axis.Z) //Default North/South pipe direction
-                .setValue(TYPE, PillarConnectionState.SOLO)
+                .setValue(TYPE, DynamicConnectionState.SOLO)
                 .setValue(WATERLOGGED, false)
         );
     }
@@ -107,7 +107,7 @@ public class SurfaceMountAxisRotatableBlock extends Block implements ConnectedMo
         if (level.isClientSide) return;
 
         Direction.Axis xzaxis = state.getValue(AXIS);
-        PillarConnectionState type = ConnectedModelCapability.getPipeType(state, ConnectedModelCapability.getStateAtAxisPositive(level, pos, xzaxis), ConnectedModelCapability.getStateAtAxisNegative(level, pos, xzaxis));
+        DynamicConnectionState type = ConnectedModelCapability.getPipeType(state, ConnectedModelCapability.getStateAtAxisPositive(level, pos, xzaxis), ConnectedModelCapability.getStateAtAxisNegative(level, pos, xzaxis));
         if (state.getValue(TYPE) == type) return;
 
         state = state.setValue(TYPE, type);

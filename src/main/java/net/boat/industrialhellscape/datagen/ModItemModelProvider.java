@@ -1,7 +1,6 @@
 package net.boat.industrialhellscape.datagen;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
-import net.boat.industrialhellscape.block.ModBlocks;
 import net.boat.industrialhellscape.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -13,6 +12,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+//THIS JAVA CLASS HANDLES ITEM MODEL DATA-GENERATION FOR NON-BLOCK ITEMS
 
 public class ModItemModelProvider extends ItemModelProvider {
     public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
@@ -26,7 +26,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         makeItemModel(ModItems.FLOPPY_DISK);
         makeItemModel(ModItems.FLOPPY_DISKETTE);
         makeItemModel(ModItems.VAPORWAVE_CASSETTE);
-        makeItemModel(ModItems.CASSETTE_V2);
+        makeItemModel(ModItems.RETRO_CASSETTE);
+        makeItemModel(ModItems.ASPIC);
     }
 
     private ItemModelBuilder makeItemModel(RegistryObject<Item> item) {
