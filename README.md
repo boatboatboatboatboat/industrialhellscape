@@ -2,7 +2,7 @@
 #  Industrial Hellscape - A Java Minecraft 1.20.1 mod
 
 A Java Minecraft mod that adds gritty industrial-themed decorative blocks.
-I encourage feedback on how to make this documentation more clear for new Java mod-creators. I hate MCreator. I hate the lack of written guides for Java modding. I do this out of spite.
+I encourage feedback on how to make this documentation more clear for new Java mod-creators.
 
 
 # Files
