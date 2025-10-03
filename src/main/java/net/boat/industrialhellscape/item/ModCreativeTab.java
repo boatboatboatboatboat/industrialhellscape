@@ -16,9 +16,9 @@ public class ModCreativeTab {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, IndustrialHellscape.MOD_ID);
 
-    public static final RegistryObject<CreativeModeTab> INHELL_TAB = CREATIVE_MODE_TABS.register("inhell_tab", //Defines Creative Tab name
+    public static final RegistryObject<CreativeModeTab> INDUSTRIALHELLSCAPE_CREATIVE_TAB = CREATIVE_MODE_TABS.register("industrialhellscape_creative_tab", //Defines Creative Tab name
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.INHELL_HAVEN_DEVICE.get())) //Defines Tab Icon model
-                    .title(Component.translatable("gui.mod_creative_tab"))
+                    .title(Component.translatable("gui.industrialhellscape.creative_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
 
                         //JOKE ITEMS
@@ -161,6 +161,7 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.METAL_DESK.get());
                         output.accept(ModBlocks.METAL_DESK_DRAWER.get());
                         output.accept(ModBlocks.METAL_DESK_DRAWER_2.get());
+                        output.accept(ModBlocks.OFFICE_DESK.get());
                         output.accept(ModBlocks.OFFICE_DESK_DRAWER.get());
                     })
                     .build());

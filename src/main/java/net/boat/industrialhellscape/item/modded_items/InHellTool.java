@@ -30,7 +30,7 @@ public class InHellTool extends Item {
             Player player = pContext.getPlayer();
 
             //Text display
-            if(player != null) player.displayClientMessage(Component.literal("Not an interactable block."), true);
+            if(player != null) player.displayClientMessage(Component.translatable("hud.industrialhellscape.block_not_interactable"), true);
 
             //Play Sound
             pContext.getLevel().playSeededSound(null, positionClicked.getX(), positionClicked.getY(), positionClicked.getZ(),

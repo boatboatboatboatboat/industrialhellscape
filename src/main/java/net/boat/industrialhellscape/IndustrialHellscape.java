@@ -3,11 +3,13 @@ package net.boat.industrialhellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
 import net.boat.industrialhellscape.block.modded_block_entities.ModBlockEntities;
 import net.boat.industrialhellscape.block.modded_block_entities.ModEntities;
-import net.boat.industrialhellscape.block.modded_block_entities.custom.SittableEntityRenderer;
-import net.boat.industrialhellscape.block.modded_block_entities.ModMenuTypes;
+import net.boat.industrialhellscape.block.modded_block_entities.SittableEntity.SittableEntityRenderer;
+import net.boat.industrialhellscape.screen.ModMenuTypes;
+import net.boat.industrialhellscape.screen.RecyclerScreen;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.item.ModCreativeTab;
 import net.boat.industrialhellscape.item.ModItems;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
@@ -60,6 +62,7 @@ public class IndustrialHellscape {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             EntityRenderers.register(ModEntities.CHAIR.get(), SittableEntityRenderer::new);
+            MenuScreens.register(ModMenuTypes.RECYCLER_MENU.get(), RecyclerScreen::new);
         }
     }
 

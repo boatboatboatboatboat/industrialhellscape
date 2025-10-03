@@ -155,6 +155,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 
         this.tag(ModTags.Items.FURNITURE_CATEGORIES)
                 .add(
+                        ModBlocks.IHEA_FURNITURE_KIT.get().asItem(),
                         ModBlocks.SAFETY_FURNISHINGS.get().asItem(),
                         ModBlocks.HYGIENE_FURNISHINGS.get().asItem(),
                         ModBlocks.INDUSTRIAL_FURNISHINGS.get().asItem(),
@@ -168,7 +169,8 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModTags.Items.HYGIENE_FURNITURE_CATEGORY,
                         ModTags.Items.INDUSTRIAL_FURNITURE_CATEGORY,
                         ModTags.Items.TECHNOLOGY_FURNITURE_CATEGORY,
-                        ModTags.Items.AMENITY_FURNITURE_CATEGORY
+                        ModTags.Items.AMENITY_FURNITURE_CATEGORY,
+                        ModTags.Items.FURNITURE_CATEGORIES
                 );
         this.tag(ModTags.Items.SAFETY_FURNITURE_CATEGORY)
                 .add(
@@ -207,7 +209,8 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.METAL_DESK_DRAWER.get().asItem(),
                         ModBlocks.METAL_DESK_DRAWER_2.get().asItem(),
 
-                        ModBlocks.OFFICE_DESK_DRAWER.get().asItem()
+                        ModBlocks.OFFICE_DESK_DRAWER.get().asItem(),
+                        ModBlocks.OFFICE_DESK.get().asItem()
                 );
 
         //---------- END OF FURNITURE TAGS ----------
@@ -228,6 +231,12 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         Items.END_STONE
                 );
 
+        this.tag(ModTags.Items.IH_RECIPE_INGOTS)
+                .add(
+                        Items.COPPER_INGOT,
+                        Items.IRON_INGOT
+                );
+
         this.tag(ModTags.Items.IH_COMPATIBLE_TOOLS)
                 .add(
                         ModItems.INHELL_HAVEN_DEVICE.get()
@@ -237,10 +246,12 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         WRENCHES
                 );
 
-        this.tag(ModTags.Items.IH_RECIPE_INGOTS)
+        this.tag(ModTags.Items.IH_COMPATIBLE_TOOLS)
                 .add(
-                        Items.COPPER_INGOT,
-                        Items.IRON_INGOT
+                        ModItems.INHELL_HAVEN_DEVICE.get()
+                )
+                .addTags(
+                        WRENCHES
                 );
     }
 }

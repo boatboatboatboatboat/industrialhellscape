@@ -137,6 +137,12 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.METAL_DESK_DRAWER.get(),
                         ModBlocks.METAL_DESK_DRAWER_2.get()
                 );
+        this.tag(ModTags.Blocks.OFFICE_DESK)
+                .add(
+                        ModBlocks.OFFICE_DESK.get(),
+                        ModBlocks.OFFICE_DESK_DRAWER.get()
+                );
+
         this.tag(ModTags.Blocks.COPPER_PIPE_CONDUIT)
                 .add(
                         ModBlocks.PIPEWORKS.get(),
@@ -192,7 +198,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.LARGE_LOCKER.get(),
                         ModBlocks.YELLOW_TRIPOD.get(),
                         ModBlocks.WORK_LIGHT_MOUNT.get(),
-                        ModBlocks.FLOOR_WORK_LIGHT.get()
+                        ModBlocks.FLOOR_WORK_LIGHT.get(),
+                        ModBlocks.FUEL_DRUM.get()
                 );
 
         this.tag(ModTags.Blocks.TECHNOLOGY_FURNITURE_CATEGORY)
@@ -210,6 +217,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.METAL_DESK_DRAWER.get(),
                         ModBlocks.METAL_DESK_DRAWER_2.get(),
 
+                        ModBlocks.OFFICE_DESK.get(),
                         ModBlocks.OFFICE_DESK_DRAWER.get()
                 );
 

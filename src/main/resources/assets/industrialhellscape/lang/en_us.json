@@ -9,6 +9,7 @@
   "item.industrialhellscape.retro_cassette": "Retro Cassette",
   "item.industrialhellscape.vaporwave_cassette.desc": "Vulta - Shattered",
 
+  "block.industrialhellscape.prototype_machine": "Prototype Machine",
 
   "block.industrialhellscape.vesselplate": "Vesselplate",
   "block.industrialhellscape.riveted_vesselplate_panel": "Riveted Vesselplate Panel",
@@ -111,6 +112,9 @@
   "block.industrialhellscape.metal_desk": "Metal Desk",
   "block.industrialhellscape.metal_desk_drawer": "Metal Desk Drawer",
   "block.industrialhellscape.metal_desk_drawer_2": "Metal Desk Drawer 2",
+  "block.industrialhellscape.office_desk": "Office Desk",
+  "block.industrialhellscape.office_desk_drawer": "Office Desk Drawer",
+
   "block.industrialhellscape.body_pillow": "Body_Pillow",
 
   "block.industrialhellscape.retro_computer": "Retro Computer",
@@ -145,18 +149,20 @@
   "sounds.industrialhellscape.vulta_shattered": "Dubiously licensed synthwave music plays",
   "sounds.industrialhellscape.caspro_kraftwerk": "Dubiously licensed German synthwave music plays ",
 
-  "tooltip.industrialhellscape.haventool.flavortext": "Right-click and sneak-right-click to rotate some I.H. blocks or change their texture behavior. You can also use a pickaxe instead.",
-  "tooltip.industrialhellscape.vaporwave_cassette.flavortext": "§6\"Warp signatures coming from Lagrange 4. Unidentified. All orbital guns, align prograde to solar orbit. We have 50 hours to contact.\"",
-  "tooltip.industrialhellscape.vesselplate.flavortext": "Used extensively to armor the warships of the InHell Corporate Acquisition Fleet.",
-  "tooltip.industrialhellscape.gray_rockrete.flavortext": "Mass-produced for Class-3 employee accommodations and below in InHell-owned megacities.",
-  "tooltip.industrialhellscape.ihea_furniture_kit.flavortext": "InHell Ergonomic Amenities. Use in a stonecutter to craft furnishings.",
+  "tooltip.industrialhellscape.haventool": "Right-click and sneak-right-click to rotate some I.H. blocks or change their texture behavior. You can also use a pickaxe instead.",
+  "tooltip.industrialhellscape.vaporwave_cassette": "§6\"Warp signatures coming from Lagrange 4. Unidentified. All orbital guns, align prograde to solar orbit. We have 50 hours to contact.\"",
+  "tooltip.industrialhellscape.vesselplate": "Used extensively to armor the warships of the InHell Corporate Acquisition Fleet.",
+  "tooltip.industrialhellscape.gray_rockrete": "Mass-produced for Class-3 employee accommodations and below in InHell-owned megacities.",
+  "tooltip.industrialhellscape.ihea_furniture_kit": "InHell Ergonomic Amenities. Use in a stonecutter to craft furnishings.",
 
-  "tooltip.industrialhellscape.pipeworks.flavortext": "Use a pickaxe to rotate blocks stonecut from this. Using the HAVEN tool allows full rotation functionality.",
-  "tooltip.industrialhellscape.metalworks.flavortext": "Use a pickaxe to rotate blocks stonecut from this. Using the HAVEN tool allows full rotation functionality.",
+  "tooltip.industrialhellscape.pipeworks": "Use a pickaxe to rotate blocks stonecut from this. Using the HAVEN tool allows full rotation functionality.",
+  "tooltip.industrialhellscape.metalworks": "Use a pickaxe to rotate blocks stonecut from this. Using the HAVEN tool allows full rotation functionality.",
 
   "gui.industrialhellscape.inventory_menu": "Industrial Hellscape Storage",
-  "gui.mod_creative_tab": "InHell Facility Solutions",
-  "hud.industrialhellscape.pillow_sleep_text": "What is wrong with you?",
-  "hud.industrialhellscape.pillow_occupied": "The Ozymandeas body pillow is occupied."
+  "gui.industrialhellscape.creative_tab": "InHell Facility Solutions",
 
+  "hud.industrialhellscape.pillow_sleep_text": "What is wrong with you?",
+  "hud.industrialhellscape.pillow_occupied": "The Ozymandeas body pillow is occupied.",
+  "hud.industrialhellscape.invalid_placement_surface": "Invalid placement surface.",
+  "hud.industrialhellscape.block_not_interactable": "Not an interactable block."
 }

@@ -18,7 +18,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     @Override
     protected void generate() {
         //DEBUG BLOCKS
-        this.dropSelf(ModBlocks.HANDRAIL.get());
+        this.dropSelf(ModBlocks.PROTOTYPE_MACHINE.get());
 
         //JOKE BLOCKS
         this.dropSelf(ModBlocks.BODY_PILLOW.get());
@@ -155,6 +155,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.METAL_DESK_DRAWER_2.get());
 
         this.dropSelf(ModBlocks.OFFICE_DESK_DRAWER.get());
+        this.dropSelf(ModBlocks.OFFICE_DESK.get());
 
         //FURNITURE CATEGORIES
         this.dropSelf(ModBlocks.AMENITY_FURNISHINGS.get());

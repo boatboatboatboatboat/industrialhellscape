@@ -1,4 +1,4 @@
-package net.boat.industrialhellscape.block.modded_block_entities.custom;
+package net.boat.industrialhellscape.block.modded_block_entities.SittableEntity;
 
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRenderer;

@@ -2,7 +2,7 @@ package net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks;
 
 import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
 import net.boat.industrialhellscape.block.modded_block_entities.ModEntities;
-import net.boat.industrialhellscape.block.modded_block_entities.custom.SittableEntity;
+import net.boat.industrialhellscape.block.modded_block_entities.SittableEntity.SittableEntity;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;

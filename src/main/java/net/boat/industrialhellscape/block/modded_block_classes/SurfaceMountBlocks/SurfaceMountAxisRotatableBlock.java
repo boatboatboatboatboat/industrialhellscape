@@ -1,5 +1,6 @@
 package net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks;
 
+import net.boat.industrialhellscape.block.modded_block_state_properties.SurfacePipeMountState;
 import net.boat.industrialhellscape.block.modded_interfaces.ConnectedModelCapability;
 import net.boat.industrialhellscape.block.modded_block_state_properties.DynamicConnectionState;
 import net.boat.industrialhellscape.block.modded_interfaces.RotationHelper;
@@ -32,7 +33,7 @@ import javax.annotation.Nonnull;
 public class SurfaceMountAxisRotatableBlock extends Block implements ConnectedModelCapability, SimpleWaterloggedBlock {
 
     public static final EnumProperty<Direction> SURFACE_ATTACHED = BlockStateProperties.FACING;
-    public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS;
+    public static final EnumProperty<SurfacePipeMountState> ORIENTATION = EnumProperty.create("axis", SurfacePipeMountState.class);
     public static final EnumProperty<DynamicConnectionState> TYPE = EnumProperty.create("type", DynamicConnectionState.class); //"TYPE" is used to store enum value of "solo, pos, neg, middle"
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
@@ -48,16 +49,16 @@ public class SurfaceMountAxisRotatableBlock extends Block implements ConnectedMo
         super(pProperties);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(SURFACE_ATTACHED, Direction.DOWN) //Default surface pipe is placed on
-                .setValue(AXIS, Direction.Axis.Z) //Default North/South pipe direction
-                .setValue(TYPE, DynamicConnectionState.SOLO)
-                .setValue(WATERLOGGED, false)
+                .setValue(ORIENTATION, SurfacePipeMountState.STRAIGHT) //Default pipe orientation (straight or sideways)
+                .setValue(TYPE, DynamicConnectionState.SOLO) //Default connection type is unconnected or "solo"
+                .setValue(WATERLOGGED, false) //Default waterlogging status is false
         );
     }
 
     @Override
     public @Nonnull VoxelShape getShape(BlockState pState, @Nonnull BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull CollisionContext pContext) {
         return switch (pState.getValue(SURFACE_ATTACHED)) {
-            //6 Cases for collision box shape based on surface attached to. Ignores pipe axial orientation
+            //6 Cases for collision box shape based on surface attached to
             case UP -> SHAPE_CEILING;
             case NORTH -> SHAPE_NORTH;
             case SOUTH -> SHAPE_SOUTH;
@@ -74,9 +75,11 @@ public class SurfaceMountAxisRotatableBlock extends Block implements ConnectedMo
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
         BlockState state = this.defaultBlockState();
-        Direction directionClicked = pContext.getClickedFace().getOpposite(); //Are you clicking the floor, ceiling, north wall, south wall, east wall, west wall?
-        Direction.Axis cardinalDirection = pContext.getHorizontalDirection().getAxis();
+        Direction directionClicked = pContext.getClickedFace().getOpposite(); //Are you clicking the floor, ceiling, north wall, south wall, east wall, west wall? If clicking ceiling, result is UP
+        Direction.Axis cardinalDirection = pContext.getHorizontalDirection().getAxis(); //What axis is the player facing when they place down the block?
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
+        BlockPos pos = pContext.getClickedPos();
+        Level level = pContext.getLevel();
 
         //This section determines surface alignment based on where you click to place.
         state = state.setValue(SURFACE_ATTACHED, directionClicked);
@@ -85,65 +88,56 @@ public class SurfaceMountAxisRotatableBlock extends Block implements ConnectedMo
         state =  state.setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
 
         //This section determines block rotation on the surface
-        if(directionClicked == Direction.UP || directionClicked == Direction.DOWN) { //If you clicked to place on the floor or ceiling, the pipe axes will align with your nearest horizontal direction
-            switch(cardinalDirection) {
-                case X: return state.setValue(AXIS, Direction.Axis.X); //If you're facing positive X axis or negative X axis, the pipes placed will follow that alignment
-                case Z: return state.setValue(AXIS, Direction.Axis.Z); //If you're facing positive Z axis or negative Z axis, the pipes placed will follow that alignment
+        //      If you clicked to place on the floor or ceiling, the pipe axes will align with your nearest horizontal direction
+        //      Therefore, clicking to place on walls defaults the pipe ORIENTATION to STRAIGHT. That default value is designated in the constructor matching super above.
+        if(directionClicked == Direction.UP || directionClicked == Direction.DOWN) {
+            if(cardinalDirection == Direction.Axis.X) { //Is player facing X axis? Align pipe STRAIGHT
+                state = state.setValue(ORIENTATION, SurfacePipeMountState.STRAIGHT);
+            } else { //Player must have been facing Z axis, align pipe SIDEWAYS
+                state = state.setValue(ORIENTATION, SurfacePipeMountState.SIDEWAYS);
             }
-
-            //Below cases address if you wanted to place pipes on walls. By default the pipes will place horizontally. You will have to use a tool to align them vertically (Y axis) if you want
-        } else if(directionClicked == Direction.EAST || directionClicked == Direction.WEST){ //If you clicked east or west, the pipes placed will align horizontal on the wall (z axis)
-            return state.setValue(AXIS, Direction.Axis.Z);
-        } else {
-            return state.setValue(AXIS, Direction.Axis.X); //Else (you clicked a north or south wall), the pipes placed will align horizontal on the wall (x axis)
         }
 
+        // This section determines pipe connection type upon placement based on neighbors.
+        // For surface-mounted blocks, this uses two custom methods with conditions to determine where the neighboring blocks are based on orientation and surface attachment.
+        state = state.setValue(TYPE,
+                ConnectedModelCapability.getPipeType(
+                    state,
+                    getSurfacePositivePositionState(state, pos, level),
+                    getSurfaceNegativePositionState(state, pos, level))
+                );
         return state;
 
     }
 
     @Override //THIS TELLS THE NEIGHBORS TO UPDATE
     public void neighborChanged(@Nonnull BlockState state, Level level, @Nonnull BlockPos pos, @Nonnull Block block, @Nonnull BlockPos fromPos, boolean isMoving) {
+        if (!level.isClientSide) {
+            if (state.getValue(WATERLOGGED)) {
+                level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+            }
+        }
         if (level.isClientSide) return;
 
-        Direction.Axis xzaxis = state.getValue(AXIS);
-        DynamicConnectionState type = ConnectedModelCapability.getPipeType(state, ConnectedModelCapability.getStateAtAxisPositive(level, pos, xzaxis), ConnectedModelCapability.getStateAtAxisNegative(level, pos, xzaxis));
-        if (state.getValue(TYPE) == type) return;
+        DynamicConnectionState type = ConnectedModelCapability.getPipeType(
+                                            state,
+                                            getSurfacePositivePositionState(state, pos, level),
+                                            getSurfaceNegativePositionState(state, pos, level)
+                                      );
 
         state = state.setValue(TYPE, type);
-        level.setBlock(pos, state, 3);
+        level.setBlock(pos, state, 3); //3
     }
 
-    public @Nonnull InteractionResult use(BlockState pState, @Nonnull Level pLevel, @Nonnull BlockPos pPos, Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
-
+    public @Nonnull InteractionResult use(@Nonnull BlockState pState, @Nonnull Level pLevel, @Nonnull BlockPos pPos, Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
         boolean playerHasTool = pPlayer.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || pPlayer.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
-        Direction surfaceAttached = pState.getValue(SURFACE_ATTACHED);
 
         //Cycles from vertical and horizontal pipes when interacting with pipes on walls
-        if(playerHasTool && (surfaceAttached != Direction.UP && surfaceAttached != Direction.DOWN)) { //If player has tool, change the pipe orientation for walls
-            switch(pState.getValue(AXIS)) {
-                case X: pState = pState.setValue(AXIS, Direction.Axis.Y);break;
-                case Z: pState = pState.setValue(AXIS, Direction.Axis.Y);break;
-                case Y:
-                    if(surfaceAttached == Direction.NORTH || surfaceAttached == Direction.SOUTH) {
-                        pState = pState.setValue(AXIS, Direction.Axis.X); break;
-                    }
-                default: pState = pState.setValue(AXIS, Direction.Axis.Z); break;
-            }
-            pLevel.setBlock(pPos, pState, Block.UPDATE_ALL);
-            return InteractionResult.sidedSuccess(pLevel.isClientSide);
-
-        } else if (playerHasTool){ //If player has tool, change the pipe orientation for walls and floors
-            switch(pState.getValue(AXIS)) {
-                case Z: pState = pState.setValue(AXIS, Direction.Axis.X); break;
-                default: pState = pState.setValue(AXIS, Direction.Axis.Z); break;
-            }
-            pLevel.setBlock(pPos, pState, Block.UPDATE_ALL);
-            return InteractionResult.sidedSuccess(pLevel.isClientSide);
-
-        } else {
-            return  InteractionResult.PASS;
+        if (playerHasTool) { //If player has tool, change the pipe orientation
+            pState = pState.cycle(ORIENTATION);
         }
+        pLevel.setBlock(pPos, pState, 3); //3
+        return InteractionResult.sidedSuccess(pLevel.isClientSide);
     }
 
     public @Nonnull FluidState getFluidState(BlockState pState) {
@@ -152,6 +146,63 @@ public class SurfaceMountAxisRotatableBlock extends Block implements ConnectedMo
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(SURFACE_ATTACHED, AXIS, TYPE, WATERLOGGED); //Type defines connection state, Surface Direction defines which surface (up, down, cardinal) the block is placed on. Planar Axis is used to define pipe direction lengthwise.
+        builder.add(SURFACE_ATTACHED, ORIENTATION, TYPE, WATERLOGGED); //Type defines connection state, Surface Direction defines which surface (up, down, cardinal) the block is placed on. Planar Axis is used to define pipe direction lengthwise.
     }
+
+    // ---------- CUSTOM METHODS USED FOR THIS CLASS ----------
+    //May be moved to an interface in the future if a similar block class is created with advanced getStateForPlacement or NeighborChanged functionality
+
+    static BlockState getSurfacePositivePositionState(BlockState pState, BlockPos pos, Level level) {
+        boolean facingEastWest = (pState.getValue(SURFACE_ATTACHED) == Direction.EAST) || (pState.getValue(SURFACE_ATTACHED) == Direction.WEST);
+
+        //If block is attached to a wall (NORTH, SOUTH, EAST, WEST)
+        if(pState.getValue(SURFACE_ATTACHED) != Direction.UP && pState.getValue(SURFACE_ATTACHED) != Direction.DOWN) {
+            //And the pipe orientation is Straight (meaning pipes align horizontally on walls)
+            if(pState.getValue(ORIENTATION) == SurfacePipeMountState.STRAIGHT)
+                // - If it is on the east/west wall, check the positive Z-axis direction for an adjacent block (Z axis is horizontal to these walls)
+                // - But if it is on the north/south wall, check the positive X-axis direction instead for an adjacent block (X axis is horizontal to these walls)
+                {return facingEastWest ? ConnectedModelCapability.getStateAtAxisPositive(level, pos, Direction.Axis.Z) : ConnectedModelCapability.getStateAtAxisPositive(level, pos, Direction.Axis.X);}
+
+            //But if the pipe orientation is Sideways, that means it is aligned vertical to the wall. Check the positive Y direction instead on all walls.
+            else {return ConnectedModelCapability.getStateAtAxisPositive(level, pos, Direction.Axis.Y);}
+
+        //ELSE If the block is attached to the floor or ceiling
+        } else if (pState.getValue(SURFACE_ATTACHED) == Direction.UP || pState.getValue(SURFACE_ATTACHED) == Direction.DOWN) {
+            //And the pipe orientation is Straight (meaning pipes align towards world X axis), Check the X axis for an adjacent block in positive direction.
+            if(pState.getValue(ORIENTATION) == SurfacePipeMountState.STRAIGHT) {return ConnectedModelCapability.getStateAtAxisPositive(level, pos, Direction.Axis.X);}
+
+            // But If the pipe is Sideways, check on the positive Z-axis direction instead.
+            else {return ConnectedModelCapability.getStateAtAxisPositive(level, pos, Direction.Axis.Z);}
+        }
+
+        return pState; //Fallback. This should not be possible to reach.
+    }
+
+    static BlockState getSurfaceNegativePositionState(BlockState pState, BlockPos pos, Level level) {
+        boolean facingEastWest = (pState.getValue(SURFACE_ATTACHED) == Direction.EAST) || (pState.getValue(SURFACE_ATTACHED) == Direction.WEST);
+
+        //If block is attached to a wall (NORTH, SOUTH, EAST, WEST)
+        if(pState.getValue(SURFACE_ATTACHED) != Direction.UP && pState.getValue(SURFACE_ATTACHED) != Direction.DOWN) {
+            //And the pipe orientation is Straight (meaning pipes align horizontally on walls)
+            if(pState.getValue(ORIENTATION) == SurfacePipeMountState.STRAIGHT)
+            // - If it is on the east/west wall, check the negative Z-axis direction for an adjacent block (Z axis is horizontal to these walls)
+            // - But if it is on the north/south wall, check the negative X-axis direction instead for an adjacent block (X axis is horizontal to these walls)
+            {return facingEastWest ? ConnectedModelCapability.getStateAtAxisNegative(level, pos, Direction.Axis.Z) : ConnectedModelCapability.getStateAtAxisNegative(level, pos, Direction.Axis.X);}
+
+            //But if the pipe orientation is Sideways, that means it is aligned vertical to the wall. Check the negative Y direction instead on all walls.
+            else {return ConnectedModelCapability.getStateAtAxisNegative(level, pos, Direction.Axis.Y);}
+
+            //ELSE If the block is attached to the floor or ceiling
+        } else if (pState.getValue(SURFACE_ATTACHED) == Direction.UP || pState.getValue(SURFACE_ATTACHED) == Direction.DOWN) {
+            //And the pipe orientation is Straight (meaning pipes align towards world X axis), Check the X axis for an adjacent block in negative direction.
+            if(pState.getValue(ORIENTATION) == SurfacePipeMountState.STRAIGHT) {return ConnectedModelCapability.getStateAtAxisNegative(level, pos, Direction.Axis.X);}
+
+            // But If the pipe is Sideways, check on the negative Z-axis direction instead.
+            else {return ConnectedModelCapability.getStateAtAxisNegative(level, pos, Direction.Axis.Z);}
+        }
+
+        return pState; //Fallback. This should not be possible to reach.
+    }
+
+    // ---------- END OF CUSTOM METHODS ----------
 }

@@ -52,6 +52,16 @@ public class ModBlockEntities {
 
                     ).build(null));
 
+
+    //EXPERIMENTAL
+    public static final RegistryObject<BlockEntityType<RecyclerBE>> RECYCLER_BLOCK_ENTITY =
+            BLOCK_ENTITIES.register("recycler_block_entity", () ->
+                    BlockEntityType.Builder.of(RecyclerBE::new,
+
+                            ModBlocks.PROTOTYPE_MACHINE.get()
+
+                    ).build(null));
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }

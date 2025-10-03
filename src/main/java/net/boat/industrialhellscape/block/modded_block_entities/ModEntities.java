@@ -1,7 +1,7 @@
 package net.boat.industrialhellscape.block.modded_block_entities;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
-import net.boat.industrialhellscape.block.modded_block_entities.custom.SittableEntity;
+import net.boat.industrialhellscape.block.modded_block_entities.SittableEntity.SittableEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.eventbus.api.IEventBus;

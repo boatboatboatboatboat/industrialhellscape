@@ -33,6 +33,9 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
 
         //---------- BLOCK ASSET GENERATION LIST ----------
 
+        //Debug Blocks
+        genHorizontalSBI(ModBlocks.PROTOTYPE_MACHINE.get(), build3FaceTexturesBlockModel("prototype_machine","experimental", "prototype_machine_front", "prototype_machine_side", "prototype_machine_top"));
+
         //Iron-like Blocks
         genFolderedSBI(ModBlocks.VESSELPLATE.get(),"vesselplate");
         genFolderedToggleBlockSBI(ModBlocks.RIVETED_VESSELPLATE_PANEL.get(),"vesselplate","", true, true, "_panel", "");
@@ -115,7 +118,6 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         //Use ButtonBlock() For lever/button type redstone blocks.
         
         //Block Item Models only (For blocks with complex states and/or models
-        genI(ModBlocks.HANDRAIL.get(),"obj_models/handrail");
         genI(ModBlocks.STRUT.get(),"strut");
         genI(ModBlocks.STRUT_STAIRS.get(),"strut");
         genI(ModBlocks.STRUT_SLAB.get(),"strut");

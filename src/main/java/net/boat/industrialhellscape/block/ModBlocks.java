@@ -5,6 +5,7 @@ import net.boat.industrialhellscape.block.modded_block_classes.*;
 import net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks.AxialPillarBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks.ConnectedFurnitureBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks.*;
+import net.boat.industrialhellscape.block.modded_block_classes.Experimental.RecyclingBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.FallableBlocks.FacingFallableBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.FallableBlocks.FallableBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.InteractableModelled2BMBlock;
@@ -51,7 +52,27 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, IndustrialHellscape.MOD_ID);
 
-    //EXPERIMENTAL BLOCKS
+    //DEBUG BLOCKS:
+    public static final RegistryObject<Block> PROTOTYPE_MACHINE = registerBlockAndBlockItem("prototype_machine",
+            () -> new RecyclingBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+            )
+    );
+
+    //JOKE BLOCKS
+    public static final RegistryObject<Block> BODY_PILLOW = registerBlockAndBlockItem("body_pillow",
+            () -> new ModdedBedBlock(BlockBehaviour
+                    .Properties.copy(Blocks.WHITE_WOOL)
+                    .sound(SoundType.SLIME_BLOCK)
+                    .noOcclusion()
+            )
+    );
+
+    public static final RegistryObject<Block> METALWORKS = registerBlockOnly("metalworks",
+            () -> new FallableBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+            )
+    );
     public static final RegistryObject<Block> YELLOW_RAILING = registerBlockAndBlockItem("yellow_railing",
             () -> new RailingBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
@@ -64,71 +85,30 @@ public class ModBlocks {
                     .noOcclusion()
             )
     );
-    public static final RegistryObject<Block> LARGE_LOCKER = registerBlockAndBlockItem("large_locker",
-            () -> new TwoBlockContainerMultiBlock(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
-                    , MultiBlockPlacementDirection.VERTICAL
-                    , 54
-                    , ModSounds.METAL_BOX_OPEN.get()
-                    , ModSounds.METAL_BOX_CLOSE.get()
-            )
-    );
-    public static final RegistryObject<Block> FIRE_EXTINGUISHER = registerBlockAndBlockItem("fire_extinguisher",
-            () -> new ModelledFacingBlock(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
-                    .noOcclusion(),
-                    HitboxGeometryCollection.FIRE_EXTINGUISHER()
-            )
-    );
-    public static final RegistryObject<Block> SMOKE_ALARM = registerBlockAndBlockItem("smoke_alarm",
-            () -> new ModelledSurfaceMountBlock(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
-                    .noOcclusion(),
-                    HitboxGeometryCollection.SMOKE_DETECTOR_FLOOR()
-            )
-    );
-
-    public static final RegistryObject<Block> BODY_PILLOW = registerBlockAndBlockItem("body_pillow",
-            () -> new ModdedBedBlock(BlockBehaviour
-                    .Properties.copy(Blocks.WHITE_WOOL)
-                    .sound(SoundType.SLIME_BLOCK)
-                    .noOcclusion()
-            )
-    );
-    public static final RegistryObject<Block> LOCKER_BOX = registerBlockAndBlockItem("locker_box",
-            () -> new FacingContainerBlock(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK),
-                    27,
-                    ModSounds.METAL_BOX_OPEN.get(),
-                    ModSounds.METAL_BOX_CLOSE.get()
-            )
-    );
-    public static final RegistryObject<Block> FUEL_DRUM = registerBlockAndBlockItem("fuel_drum",
-            () -> new SurfaceMountContainerBlock(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK), 27,
-                    ModSounds.METAL_BOX_OPEN.get(),
-                    ModSounds.METAL_BOX_CLOSE.get()
-            )
-    );
-    public static final RegistryObject<Block> METALWORKS = registerBlockOnly("metalworks",
-            () -> new FallableBlock(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
-            )
-    );
-
-    public static final RegistryObject<Block> HANDRAIL = registerBlockAndBlockItem("handrail",
-            () -> new ModelledWaterloggableBlock(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
-                    .noOcclusion(),
-                    HitboxGeometryCollection.HANDRAIL()
-            )
-    );
 
     public static final RegistryObject<Block> GRAY_SEETHROUGH_GRATE_PANE = registerBlockAndBlockItem("gray_see-through_grate_pane",
             () -> new IronBarsBlock(BlockBehaviour
                     .Properties.copy(Blocks.GLASS_PANE)
                     .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
             )
+    );
+    public static final RegistryObject<Block> GRAY_BOLTED_BRACKET = registerBlockAndBlockItem("gray_bolted_bracket",
+            () -> new CornerBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+
+                    .noOcclusion(),
+                    HitboxGeometryCollection.BRACKET_UP(),
+                    HitboxGeometryCollection.BRACKET_DOWN(),
+                    HitboxGeometryCollection.BRACKET_SIDE())
+    );
+    public static final RegistryObject<Block> BLACK_BOLTED_BRACKET = registerBlockAndBlockItem("black_bolted_bracket",
+            () -> new CornerBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+
+                    .noOcclusion(),
+                    HitboxGeometryCollection.BRACKET_UP(),
+                    HitboxGeometryCollection.BRACKET_DOWN(),
+                    HitboxGeometryCollection.BRACKET_SIDE())
     );
 
 
@@ -557,24 +537,33 @@ public class ModBlocks {
     );
 
     //FURNITURE BLOCKS HERE
-    public static final RegistryObject<Block> GRAY_BOLTED_BRACKET = registerBlockAndBlockItem("gray_bolted_bracket",
-            () -> new CornerBlock(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
 
-                    .noOcclusion(),
-                    HitboxGeometryCollection.BRACKET_UP(),
-                    HitboxGeometryCollection.BRACKET_DOWN(),
-                    HitboxGeometryCollection.BRACKET_SIDE())
-    );
-    public static final RegistryObject<Block> BLACK_BOLTED_BRACKET = registerBlockAndBlockItem("black_bolted_bracket",
-            () -> new CornerBlock(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
 
-                    .noOcclusion(),
-                    HitboxGeometryCollection.BRACKET_UP(),
-                    HitboxGeometryCollection.BRACKET_DOWN(),
-                    HitboxGeometryCollection.BRACKET_SIDE())
+    public static final RegistryObject<Block> LARGE_LOCKER = registerBlockAndBlockItem("large_locker",
+            () -> new TwoBlockContainerMultiBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    , MultiBlockPlacementDirection.VERTICAL
+                    , 54
+                    , ModSounds.METAL_BOX_OPEN.get()
+                    , ModSounds.METAL_BOX_CLOSE.get()
+            )
     );
+    public static final RegistryObject<Block> LOCKER_BOX = registerBlockAndBlockItem("locker_box",
+            () -> new FacingContainerBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK),
+                    27,
+                    ModSounds.METAL_BOX_OPEN.get(),
+                    ModSounds.METAL_BOX_CLOSE.get()
+            )
+    );
+    public static final RegistryObject<Block> FUEL_DRUM = registerBlockAndBlockItem("fuel_drum",
+            () -> new SurfaceMountContainerBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK), 27,
+                    ModSounds.METAL_BOX_OPEN.get(),
+                    ModSounds.METAL_BOX_CLOSE.get()
+            )
+    );
+
     public static final RegistryObject<Block> DESK = registerBlockAndBlockItem("desk",
             () -> new ConnectedFurnitureBlock(BlockBehaviour
                     .Properties.copy(Blocks.OAK_PLANKS)
@@ -635,7 +624,7 @@ public class ModBlocks {
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
                     18,
-                    ModTags.Blocks.METAL_DESK,
+                    ModTags.Blocks.OFFICE_DESK,
                     HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
                     HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
                     HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
@@ -646,6 +635,23 @@ public class ModBlocks {
             )
 
     );
+    public static final RegistryObject<Block> OFFICE_DESK = registerBlockAndBlockItem("office_desk",
+            () -> new ConnectedContainerBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    18,
+                    ModTags.Blocks.OFFICE_DESK,
+                    HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
+                    HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
+                    HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
+                    HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
+                    ModSounds.METAL_BOX_OPEN.get(),
+                    ModSounds.METAL_BOX_CLOSE.get(),
+                    MultiBlockPlacementDirection.HORIZONTAL
+            )
+
+    );
+
     public static final RegistryObject<Block> METAL_DESK_DRAWER_2 = registerBlockAndBlockItem("metal_desk_drawer_2",
             () -> new ConnectedContainerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
@@ -707,6 +713,21 @@ public class ModBlocks {
                     ModSounds.METAL_BOX_CLOSE.get()
             )
     );
+    public static final RegistryObject<Block> FIRE_EXTINGUISHER = registerBlockAndBlockItem("fire_extinguisher",
+            () -> new ModelledFacingBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.FIRE_EXTINGUISHER()
+            )
+    );
+    public static final RegistryObject<Block> SMOKE_ALARM = registerBlockAndBlockItem("smoke_alarm",
+            () -> new ModelledSurfaceMountBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.SMOKE_DETECTOR_FLOOR()
+            )
+    );
+
     public static final RegistryObject<Block> RETRO_COMPUTER = registerBlockAndBlockItem("retro_computer",
             () -> new InteractableModelledFacingBlock(BlockBehaviour
                     .Properties.copy(Blocks.STONE)
@@ -757,38 +778,38 @@ public class ModBlocks {
     //FURNITURE CATEGORY BLOCKS
     public static final RegistryObject<Block> IHEA_FURNITURE_KIT = registerBlockOnly("ihea_furniture_kit",
             () -> new SimpleFacingBlock(BlockBehaviour
-                    .Properties.copy(Blocks.OAK_PLANKS)
+                    .Properties.copy(Blocks.STONE)
                     .noOcclusion()
             )
     );
 
     public static final RegistryObject<Block> SAFETY_FURNISHINGS = registerBlockAndBlockItem("safety_furnishings",
             () -> new SimpleFacingBlock(BlockBehaviour
-                    .Properties.copy(Blocks.OAK_PLANKS)
+                    .Properties.copy(Blocks.STONE)
                     .noOcclusion()
             )
     );
     public static final RegistryObject<Block> HYGIENE_FURNISHINGS = registerBlockAndBlockItem("hygiene_furnishings",
             () -> new SimpleFacingBlock(BlockBehaviour
-                    .Properties.copy(Blocks.OAK_PLANKS)
+                    .Properties.copy(Blocks.STONE)
                     .noOcclusion()
             )
     );
     public static final RegistryObject<Block> INDUSTRIAL_FURNISHINGS = registerBlockAndBlockItem("industrial_furnishings",
             () -> new SimpleFacingBlock(BlockBehaviour
-                    .Properties.copy(Blocks.OAK_PLANKS)
+                    .Properties.copy(Blocks.STONE)
                     .noOcclusion()
             )
     );
     public static final RegistryObject<Block> TECHNOLOGY_FURNISHINGS = registerBlockAndBlockItem("technology_furnishings",
             () -> new SimpleFacingBlock(BlockBehaviour
-                    .Properties.copy(Blocks.OAK_PLANKS)
+                    .Properties.copy(Blocks.STONE)
                     .noOcclusion()
             )
     );
     public static final RegistryObject<Block> AMENITY_FURNISHINGS = registerBlockAndBlockItem("amenity_furnishings",
             () -> new SimpleFacingBlock(BlockBehaviour
-                    .Properties.copy(Blocks.OAK_PLANKS)
+                    .Properties.copy(Blocks.STONE)
                     .noOcclusion()
             )
     );

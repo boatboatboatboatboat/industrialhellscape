@@ -2,11 +2,16 @@ package net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks;
 
 import net.boat.industrialhellscape.block.modded_block_state_properties.DynamicConnectionState;
 import net.boat.industrialhellscape.block.modded_interfaces.ConnectedModelCapability;
+import net.boat.industrialhellscape.block.modded_interfaces.ContainerBlockCapability;
 import net.boat.industrialhellscape.block.modded_interfaces.RotationHelper;
 import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
+import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -22,8 +27,10 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
@@ -108,6 +115,21 @@ public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implemen
                 .setValue(FACING, Direction.NORTH)
                 .setValue(WATERLOGGED, false)
         );
+    }
+
+    @NotNull
+    @Override
+    public InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
+
+        boolean playerHasTool = player.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || player.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
+
+        if (playerHasTool) {
+            state = state.cycle(TYPE);
+            level.setBlock(pos, state, 2); //2
+            return InteractionResult.sidedSuccess(level.isClientSide);
+        } else {
+            return InteractionResult.PASS;
+        }
     }
 
     //---------- HITBOXES, PLACEMENT, AND BLOCK UPDATE METHODS HANDLED BY INTERFACE ---------

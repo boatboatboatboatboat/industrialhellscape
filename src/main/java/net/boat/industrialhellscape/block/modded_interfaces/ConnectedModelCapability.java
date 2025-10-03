@@ -1,6 +1,7 @@
 package net.boat.industrialhellscape.block.modded_interfaces;
 
 import net.boat.industrialhellscape.block.modded_block_state_properties.DynamicConnectionState;
+import net.boat.industrialhellscape.block.modded_block_state_properties.SurfacePipeMountState;
 import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -29,7 +30,9 @@ public interface ConnectedModelCapability {
     DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING; //"FACING" is used to store DirectionProperty value of "north, south, east, west". For alignment with where player is facing.
     EnumProperty<Direction> SURFACE_DIRECTION = BlockStateProperties.FACING; //"SURFACE_DIRECTION" stores N,S,E,W, along with Up and Down. For alignment with surface clicked for placement.
     EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS; //"AXIS" is used to store which axis the block is aligned to
+    public static final EnumProperty<SurfacePipeMountState> ORIENTATION = EnumProperty.create("axis", SurfacePipeMountState.class);
     BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED; //Waterlogging is true or false
+    public static final EnumProperty<Direction> SURFACE_ATTACHED = BlockStateProperties.FACING;
 
     EnumProperty<DynamicConnectionState> TYPE = EnumProperty.create("type", DynamicConnectionState.class); //CUSTOM ENUM, NOT VANILLA PROPERTY
     //---------- END OF PROPERTIES  ----------
@@ -131,7 +134,7 @@ public interface ConnectedModelCapability {
         return level.getBlockState(pos.relative(Direction.fromAxisAndDirection(axis, Direction.AxisDirection.NEGATIVE)));
     }
 
-    //getStateRelativeTop checks the neighbor above and belows' blockstate.
+    //getStateRelativeTop checks the neighbor above and belows' blockstate. Used for strictly vertical aligned blocks
     static BlockState getStateRelativeTop(Level level, BlockPos positionClicked) {
         BlockPos leftNeighborsPos = positionClicked.above();
 
@@ -179,9 +182,9 @@ public interface ConnectedModelCapability {
         // Checks for axis compatibility like in getPillarType() above, but also has to check that neighbor blocks are attached to the same wall before
         // allowing connection
         boolean blockstate_forward_is_same = forward.is(state.getBlock())
-                && state.getValue(AXIS) == forward.getValue(AXIS) && state.getValue(SURFACE_DIRECTION) == forward.getValue(SURFACE_DIRECTION);
+                && state.getValue(ORIENTATION) == forward.getValue(ORIENTATION) && state.getValue(SURFACE_DIRECTION) == forward.getValue(SURFACE_DIRECTION);
         boolean blockstate_backward_is_same = backward.is(state.getBlock())
-                && state.getValue(AXIS) == backward.getValue(AXIS) && state.getValue(SURFACE_DIRECTION) == backward.getValue(SURFACE_DIRECTION);
+                && state.getValue(ORIENTATION) == backward.getValue(ORIENTATION) && state.getValue(SURFACE_DIRECTION) == backward.getValue(SURFACE_DIRECTION);
 
         if (blockstate_forward_is_same && !blockstate_backward_is_same) return DynamicConnectionState.NEGATIVE;
         else if (!blockstate_forward_is_same && blockstate_backward_is_same) return DynamicConnectionState.POSITIVE;

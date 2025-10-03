@@ -1,5 +1,6 @@
 package net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks;
 
+import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.modded_interfaces.RotationHelper;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
@@ -154,7 +155,7 @@ public class StairRailingBlock extends Block implements SimpleWaterloggedBlock {
                 return null; //Disallow placement by non-players to prevent nullPointException errors for locating a player to send Client Message to
 
             } else if(secondNearestHorizontalDirectionIsUp || secondNearestHorizontalDirectionIsDown) {
-                pContext.getPlayer().displayClientMessage(Component.literal("Invalid placement surface"), true);
+                pContext.getPlayer().displayClientMessage(Component.translatable("hud.industrialhellscape.invalid_placement_surface"), true);
                 return null; //Disallow placement if the surface to place down is a vertical wall.
 
             } else { //No stair railing exists at this position

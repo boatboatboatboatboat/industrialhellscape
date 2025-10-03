@@ -25,7 +25,7 @@ public class RecordItemWithTooltip extends RecordItem {
         this.itemName = itemName;
     }
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        pTooltipComponents.add(Component.translatable("tooltip.industrialhellscape."+itemName+".flavortext"));
+        pTooltipComponents.add(Component.translatable("tooltip.industrialhellscape."+itemName));
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
 }

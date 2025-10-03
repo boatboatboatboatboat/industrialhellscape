@@ -179,7 +179,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.METAL_DESK_DRAWER.get().asItem(),
             ModBlocks.METAL_DESK_DRAWER_2.get().asItem(),
 
-            ModBlocks.OFFICE_DESK_DRAWER.get().asItem()
+            ModBlocks.OFFICE_DESK_DRAWER.get().asItem(),
+            ModBlocks.OFFICE_DESK.get().asItem()
     );
 
     public ModRecipeProvider(PackOutput pOutput) {
