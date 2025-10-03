@@ -121,7 +121,7 @@ public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implemen
     @Override
     public InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
 
-        boolean playerHasTool = player.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || player.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
+        boolean playerHasTool = player.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_MODDED_TOOLS) || player.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_MODDED_TOOLS);
 
         if (playerHasTool) {
             state = state.cycle(TYPE);

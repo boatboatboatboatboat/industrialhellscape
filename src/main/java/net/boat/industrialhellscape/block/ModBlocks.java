@@ -636,17 +636,14 @@ public class ModBlocks {
 
     );
     public static final RegistryObject<Block> OFFICE_DESK = registerBlockAndBlockItem("office_desk",
-            () -> new ConnectedContainerBlock(BlockBehaviour
+            () -> new ConnectedFurnitureBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
-                    18,
                     ModTags.Blocks.OFFICE_DESK,
                     HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
                     HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
                     HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
                     HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
-                    ModSounds.METAL_BOX_OPEN.get(),
-                    ModSounds.METAL_BOX_CLOSE.get(),
                     MultiBlockPlacementDirection.HORIZONTAL
             )
 

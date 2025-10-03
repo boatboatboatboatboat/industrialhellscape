@@ -246,7 +246,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         WRENCHES
                 );
 
-        this.tag(ModTags.Items.IH_COMPATIBLE_TOOLS)
+        this.tag(ModTags.Items.IH_COMPATIBLE_MODDED_TOOLS)
                 .add(
                         ModItems.INHELL_HAVEN_DEVICE.get()
                 )

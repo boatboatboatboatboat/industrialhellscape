@@ -131,12 +131,6 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.METAL_DESK_DRAWER.get(),
                         ModBlocks.METAL_DESK_DRAWER_2.get()
                 );
-        this.tag(ModTags.Blocks.METAL_DESK)
-                .add(
-                        ModBlocks.METAL_DESK.get(),
-                        ModBlocks.METAL_DESK_DRAWER.get(),
-                        ModBlocks.METAL_DESK_DRAWER_2.get()
-                );
         this.tag(ModTags.Blocks.OFFICE_DESK)
                 .add(
                         ModBlocks.OFFICE_DESK.get(),

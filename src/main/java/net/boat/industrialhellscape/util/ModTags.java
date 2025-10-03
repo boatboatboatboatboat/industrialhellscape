@@ -30,7 +30,7 @@ public class ModTags {
         //CONNECTED BLOCKSET FAMILIES
         public static final TagKey<Block> CLASSIC_DESK = tag("classic_desk");
         public static final TagKey<Block> METAL_DESK = tag("metal_desk");
-        public static final TagKey<Block> OFFICE_DESK = tag("metal_desk");
+        public static final TagKey<Block> OFFICE_DESK = tag("office_desk");
 
         public static final TagKey<Block> COPPER_PIPE_CONDUIT = tag("copper_pipe_conduit");
         public static final TagKey<Block> BRASS_PIPE_CONDUIT = tag("brass_pipe_conduit");
@@ -64,6 +64,7 @@ public class ModTags {
         public static final TagKey<Item> IH_RECIPE_STONELIKES = tag("ih_recipe_stonelikes");
         public static final TagKey<Item> IH_RECIPE_INGOTS = tag("ih_recipe_ingots");
 
+        //For tool use
         public static final TagKey<Item> IH_COMPATIBLE_TOOLS = tag("ih_compatible_tools");
         public static final TagKey<Item> IH_COMPATIBLE_MODDED_TOOLS = tag("ih_compatible_modded_tools");
 

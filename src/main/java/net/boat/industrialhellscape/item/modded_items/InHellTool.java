@@ -51,7 +51,7 @@ public class InHellTool extends Item {
     //Item has tooltip text capability.
     @Override
     public void appendHoverText(@Nonnull ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, @Nonnull TooltipFlag pIsAdvanced) {
-        pTooltipComponents.add(Component.translatable("tooltip.industrialhellscape.haventool.flavortext"));
+        pTooltipComponents.add(Component.translatable("tooltip.industrialhellscape.haventool"));
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
 

@@ -149,7 +149,7 @@
   "sounds.industrialhellscape.vulta_shattered": "Dubiously licensed synthwave music plays",
   "sounds.industrialhellscape.caspro_kraftwerk": "Dubiously licensed German synthwave music plays ",
 
-  "tooltip.industrialhellscape.haventool": "Right-click and sneak-right-click to rotate some I.H. blocks or change their texture behavior. You can also use a pickaxe instead.",
+  "tooltip.industrialhellscape.haventool": "Right-click and/or sneak-right-click to rotate some I.H. blocks, change their texture behavior, or furniture block-state (like desks).",
   "tooltip.industrialhellscape.vaporwave_cassette": "§6\"Warp signatures coming from Lagrange 4. Unidentified. All orbital guns, align prograde to solar orbit. We have 50 hours to contact.\"",
   "tooltip.industrialhellscape.vesselplate": "Used extensively to armor the warships of the InHell Corporate Acquisition Fleet.",
   "tooltip.industrialhellscape.gray_rockrete": "Mass-produced for Class-3 employee accommodations and below in InHell-owned megacities.",
