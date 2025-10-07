@@ -3,7 +3,6 @@ package net.boat.industrialhellscape.screen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;

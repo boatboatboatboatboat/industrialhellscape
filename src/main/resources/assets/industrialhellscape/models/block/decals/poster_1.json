@@ -1,0 +1,6 @@
+{
+  "parent": "industrialhellscape:block/small_decal_template",
+  "textures": {
+    "decal": "industrialhellscape:block/decals/poster_1"
+  }
+}

@@ -386,6 +386,7 @@ public interface HitboxGeometryCollection {
 
         return shape;
     }
+
     static VoxelShape SMOKE_DETECTOR_FLOOR(){
         VoxelShape shape = Shapes.empty();
         shape = Shapes.join(shape, Shapes.box(0.28125, 0, 0.28125, 0.71875, 0.125, 0.71875), BooleanOp.OR);
@@ -393,9 +394,53 @@ public interface HitboxGeometryCollection {
 
         return shape;
     }
+
+    static VoxelShape OFFICE_DESK_LEFT_SHAPE(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0, 0.8125, 0, 1, 1, 1), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.9375, 0.125, 0, 1, 0.8125, 0.9375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0, 0.125, 0.9375, 1, 0.8125, 1), BooleanOp.OR);
+
+        return shape;
+    }
+
+    static VoxelShape OFFICE_DESK_MIDDLE_SHAPE(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0, 0.8125, 0, 1, 1, 1), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0, 0.125, 0.9375, 1, 0.8125, 1), BooleanOp.OR);
+
+        return shape;
+    }
+
+    static VoxelShape OFFICE_DESK_RIGHT_SHAPE(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0, 0.8125, 0, 1, 1, 1), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0, 0.125, 0, 0.0625, 0.8125, 0.9375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0, 0.125, 0.9375, 1, 0.8125, 1), BooleanOp.OR);
+
+        return shape;
+    }
+
+    static VoxelShape OFFICE_DESK_SOLO_SHAPE(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0, 0.8125, 0, 1, 1, 1), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0, 0.125, 0, 0.0625, 0.8125, 0.9375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.9375, 0.125, 0, 1, 0.8125, 0.9375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0, 0.125, 0.9375, 1, 0.8125, 1), BooleanOp.OR);
+
+        return shape;
+    }
+
     static VoxelShape OFFICE_DESK_DRAWER_SHAPE(){
         VoxelShape shape = Shapes.empty();
         shape = Shapes.join(shape, Shapes.box(0, 0.125, 0, 1, 1, 1), BooleanOp.OR);
+
+        return shape;
+    }
+
+    static VoxelShape DECAL_FLOOR(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0.125, 0, 0.125, 0.875, 0.03125, 0.875), BooleanOp.OR);
 
         return shape;
     }

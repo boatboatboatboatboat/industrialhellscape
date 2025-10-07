@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "industrialhellscape:block/vesselplate/smooth_gray_vesselplate",
+    "side": "industrialhellscape:block/vesselplate/smooth_gray_vesselplate",
+    "top": "industrialhellscape:block/vesselplate/smooth_gray_vesselplate"
+  }
+}

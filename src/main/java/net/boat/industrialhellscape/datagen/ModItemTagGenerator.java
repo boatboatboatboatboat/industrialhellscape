@@ -48,9 +48,23 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 
         //---------- RECIPE DATAGEN INPUT TAGS ----------
         //Only a Smeltable-tagged item can be stone-cut into a non-Smeltable output (e.g. slabs)
+        this.tag(ModTags.Items.STRUT_SMELTABLE_ITEM)
+                .add(
+                        ModBlocks.STRUT.get().asItem(),
+                        ModBlocks.STRUT_STAIRS.get().asItem(),
+                        ModBlocks.CATWALK_STRUT.get().asItem(),
+                        ModBlocks.CATWALK_STRUT_STAIRS.get().asItem(),
+
+                        ModBlocks.GRAY_STRUT.get().asItem(),
+                        ModBlocks.GRAY_STRUT_STAIRS.get().asItem(),
+                        ModBlocks.GRAY_CATWALK_STRUT.get().asItem(),
+                        ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get().asItem()
+                );
+
 
         this.tag(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM) //NO HALF BLOCKS HERE
                 .add(
+                //NO HALF BLOCKS HERE
                         //Full BLocks
                         ModBlocks.VESSELPLATE.get().asItem(),
                         ModBlocks.GRATE.get().asItem(),
@@ -61,6 +75,8 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
                         ModBlocks.SMOOTH_VESSELPLATE_TILE.get().asItem(),
                         ModBlocks.VESSELPLATE_PILLAR.get().asItem(),
+                        ModBlocks.VESSELPLATE_SHEETING.get().asItem(),
+                        ModBlocks.VESSELPLATE_SHEETING_STAIRS.get().asItem(),
 
                         ModBlocks.RUSTY_GRATE.get().asItem(),
 
@@ -73,30 +89,33 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
                         ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get().asItem(),
                         ModBlocks.GRAY_VESSELPLATE_PILLAR.get().asItem(),
+                        ModBlocks.GRAY_VESSELPLATE_SHEETING.get().asItem(),
+                        ModBlocks.GRAY_VESSELPLATE_SHEETING_STAIRS.get().asItem(),
 
-                        ModBlocks.STRUT.get().asItem(),
-                        ModBlocks.STRUT_STAIRS.get().asItem(),
-                        ModBlocks.CATWALK_STRUT.get().asItem(),
-                        ModBlocks.CATWALK_STRUT_STAIRS.get().asItem(),
-                        ModBlocks.VESSELPLATE_STAIRS.get().asItem(),
-                        ModBlocks.GRAY_VESSELPLATE_STAIRS.get().asItem(),
 
-                        ModBlocks.GRAY_STRUT.get().asItem(),
-                        ModBlocks.GRAY_STRUT_STAIRS.get().asItem(),
-                        ModBlocks.GRAY_CATWALK_STRUT.get().asItem(),
-                        ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get().asItem(),
+                        ModBlocks.RIVETED_VESSELPLATE_STAIRS.get().asItem(),
+                        ModBlocks.GRAY_RIVETED_VESSELPLATE_STAIRS.get().asItem(),
+                        ModBlocks.SMOOTH_VESSELPLATE_STAIRS.get().asItem(),
+
+
+
 
                         ModBlocks.ENCASED_CABLES.get().asItem()
+
+                //NO HALF BLOCKS HERE
                 );
         this.tag(ModTags.Items.VESSELGLASS_SMELTABLE_ITEM)
                 .add(
+                //NO HALF BLOCKS HERE
                         ModBlocks.VESSELGLASS.get().asItem(),
                         ModBlocks.REINFORCED_VESSELGLASS.get().asItem(),
                         ModBlocks.GRAY_VESSELGLASS.get().asItem(),
                         ModBlocks.GRAY_REINFORCED_VESSELGLASS.get().asItem()
+                //NO HALF BLOCKS HERE
                 );
         this.tag(ModTags.Items.ROCKRETE_SMELTABLE_ITEM)
                 .add(
+                //NO HALF BLOCKS HERE
                         //Full Blocks
                         ModBlocks.HAZARD_STRIPE_RED.get().asItem(),
                         ModBlocks.HAZARD_STRIPE_YELLOW.get().asItem(),
@@ -116,7 +135,12 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 
                         ModBlocks.BLUE_ROCKRETE_PILLAR.get().asItem(),
                         ModBlocks.BLUE_ROCKRETE_STAIRS.get().asItem(),
-                        ModBlocks.BLUE_ROCKRETE.get().asItem()
+                        ModBlocks.BLUE_ROCKRETE.get().asItem(),
+
+                        ModBlocks.RED_ROCKRETE_PILLAR.get().asItem(),
+                        ModBlocks.RED_ROCKRETE_STAIRS.get().asItem(),
+                        ModBlocks.RED_ROCKRETE.get().asItem()
+                //NO HALF BLOCKS HERE
                 );
 
         this.tag(ModTags.Items.PIPEWORKS_ITEMS)

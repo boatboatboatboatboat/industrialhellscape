@@ -143,6 +143,11 @@ public class ModBlocks {
                     .Properties.copy(Blocks.IRON_BLOCK)
             )
     );
+    public static final RegistryObject<Block> VESSELPLATE_SHEETING = registerBlockAndBlockItem("vesselplate_sheeting",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+            )
+    );
 
     public static final RegistryObject<Block> GRAY_VESSELPLATE = registerBlockAndBlockItem("gray_vesselplate",
             () -> new Block(BlockBehaviour
@@ -174,6 +179,12 @@ public class ModBlocks {
                     .Properties.copy(Blocks.IRON_BLOCK)
             )
     );
+    public static final RegistryObject<Block> GRAY_VESSELPLATE_SHEETING = registerBlockAndBlockItem("gray_vesselplate_sheeting",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+            )
+    );
+
 
     //ENCASED CABLES
     public static final RegistryObject<Block> ENCASED_CABLES = registerBlockAndBlockItem("encased_cables",
@@ -233,6 +244,7 @@ public class ModBlocks {
             () -> new StairBlock(() -> ModBlocks.CATWALK_STRUT.get().defaultBlockState(),
                     BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion().sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
     );
+
     public static final RegistryObject<Block> CATWALK_STRUT_SLAB = registerBlockAndBlockItem("catwalk_strut_slab",
             () -> new SlabBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
@@ -278,27 +290,80 @@ public class ModBlocks {
             )
     );
 
-    public static final RegistryObject<Block> VESSELPLATE_STAIRS = registerBlockAndBlockItem("vesselplate_stairs",
+    public static final RegistryObject<Block> RIVETED_VESSELPLATE_STAIRS = registerBlockAndBlockItem("riveted_vesselplate_stairs",
             () -> new StairBlock(() -> ModBlocks.VESSELPLATE.get().defaultBlockState(), //USING A SIMPLETEXTURETOGGLEBLOCK WILL CAUSE TOOLS TO CHANGE THE STAIR BLOCK TO THAT BLOCK
                     BlockBehaviour
                             .Properties.copy(Blocks.IRON_BLOCK)
                             .noOcclusion()
                             .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
     );
-    public static final RegistryObject<Block> VESSELPLATE_SLAB = registerBlockAndBlockItem("vesselplate_slab",
+    public static final RegistryObject<Block> RIVETED_VESSELPLATE_SLAB = registerBlockAndBlockItem("riveted_vesselplate_slab",
             () -> new SlabBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()
                     .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
     );
-    public static final RegistryObject<Block> GRAY_VESSELPLATE_STAIRS = registerBlockAndBlockItem("gray_vesselplate_stairs",
+    public static final RegistryObject<Block> GRAY_RIVETED_VESSELPLATE_STAIRS = registerBlockAndBlockItem("gray_riveted_vesselplate_stairs",
             () -> new StairBlock(() -> ModBlocks.VESSELPLATE.get().defaultBlockState(),
                     BlockBehaviour
                             .Properties.copy(Blocks.IRON_BLOCK)
                             .noOcclusion()
                             .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
     );
-    public static final RegistryObject<Block> GRAY_VESSELPLATE_SLAB = registerBlockAndBlockItem("gray_vesselplate_slab",
+    public static final RegistryObject<Block> GRAY_RIVETED_VESSELPLATE_SLAB = registerBlockAndBlockItem("gray_riveted_vesselplate_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
+    );
+    public static final RegistryObject<Block> SMOOTH_VESSELPLATE_STAIRS = registerBlockAndBlockItem("smooth_vesselplate_stairs",
+            () -> new StairBlock(() -> ModBlocks.VESSELPLATE.get().defaultBlockState(),
+                    BlockBehaviour
+                            .Properties.copy(Blocks.IRON_BLOCK)
+                            .noOcclusion()
+                            .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
+    );
+    public static final RegistryObject<Block> SMOOTH_VESSELPLATE_SLAB = registerBlockAndBlockItem("smooth_vesselplate_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
+    );
+    public static final RegistryObject<Block> SMOOTH_GRAY_VESSELPLATE_STAIRS = registerBlockAndBlockItem("smooth_gray_vesselplate_stairs",
+            () -> new StairBlock(() -> ModBlocks.VESSELPLATE.get().defaultBlockState(),
+                    BlockBehaviour
+                            .Properties.copy(Blocks.IRON_BLOCK)
+                            .noOcclusion()
+                            .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
+    );
+    public static final RegistryObject<Block> SMOOTH_GRAY_VESSELPLATE_SLAB = registerBlockAndBlockItem("smooth_gray_vesselplate_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
+    );
+    public static final RegistryObject<Block> VESSELPLATE_SHEETING_STAIRS = registerBlockAndBlockItem("vesselplate_sheeting_stairs",
+            () -> new StairBlock(() -> ModBlocks.VESSELPLATE.get().defaultBlockState(),
+                    BlockBehaviour
+                            .Properties.copy(Blocks.IRON_BLOCK)
+                            .noOcclusion()
+                            .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
+    );
+    public static final RegistryObject<Block> VESSELPLATE_SHEETING_SLAB = registerBlockAndBlockItem("vesselplate_sheeting_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
+    );
+
+    public static final RegistryObject<Block> GRAY_VESSELPLATE_SHEETING_STAIRS = registerBlockAndBlockItem("gray_vesselplate_sheeting_stairs",
+            () -> new StairBlock(() -> ModBlocks.VESSELPLATE.get().defaultBlockState(),
+                    BlockBehaviour
+                            .Properties.copy(Blocks.IRON_BLOCK)
+                            .noOcclusion()
+                            .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
+    );
+    public static final RegistryObject<Block> GRAY_VESSELPLATE_SHEETING_SLAB = registerBlockAndBlockItem("gray_vesselplate_sheeting_slab",
             () -> new SlabBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()
@@ -361,7 +426,7 @@ public class ModBlocks {
             )
     );
     //GREEN ROCKRETE
-    public static final RegistryObject<Block> GREEN_ROCKRETE = registerBlockAndBlockItem("green_rockrete",
+    public static final RegistryObject<Block> GREEN_ROCKRETE = registerBlockOnly("green_rockrete",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.copy(Blocks.STONE)
             )
@@ -381,7 +446,7 @@ public class ModBlocks {
             )
     );
     //YELLOW ROCKRETE
-    public static final RegistryObject<Block> YELLOW_ROCKRETE = registerBlockAndBlockItem("yellow_rockrete",
+    public static final RegistryObject<Block> YELLOW_ROCKRETE = registerBlockOnly("yellow_rockrete",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.copy(Blocks.STONE)
             )
@@ -401,7 +466,7 @@ public class ModBlocks {
             )
     );
     //BLUE ROCKRETE
-    public static final RegistryObject<Block> BLUE_ROCKRETE = registerBlockAndBlockItem("blue_rockrete",
+    public static final RegistryObject<Block> BLUE_ROCKRETE = registerBlockOnly("blue_rockrete",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.copy(Blocks.STONE)
             )
@@ -416,6 +481,26 @@ public class ModBlocks {
             )
     );
     public static final RegistryObject<Block> BLUE_ROCKRETE_PILLAR = registerBlockAndBlockItem("blue_rockrete_pillar",
+            () -> new AxialPillarBlock(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+            )
+    );
+    //RED ROCKRETE
+    public static final RegistryObject<Block> RED_ROCKRETE = registerBlockOnly("red_rockrete",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+            )
+    );
+    public static final RegistryObject<Block> RED_ROCKRETE_STAIRS = registerBlockAndBlockItem("red_rockrete_stairs",
+            () -> new StairBlock(() -> ModBlocks.RED_ROCKRETE.get().defaultBlockState(),
+                    BlockBehaviour.Properties.copy(Blocks.STONE))
+    );
+    public static final RegistryObject<Block> RED_ROCKRETE_SLAB = registerBlockAndBlockItem("red_rockrete_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.copy(Blocks.STONE)
+            )
+    );
+    public static final RegistryObject<Block> RED_ROCKRETE_PILLAR = registerBlockAndBlockItem("red_rockrete_pillar",
             () -> new AxialPillarBlock(BlockBehaviour
                     .Properties.copy(Blocks.STONE)
             )
@@ -640,10 +725,11 @@ public class ModBlocks {
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
                     ModTags.Blocks.OFFICE_DESK,
-                    HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
-                    HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
-                    HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
-                    HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
+                    HitboxGeometryCollection.OFFICE_DESK_SOLO_SHAPE(),
+                    HitboxGeometryCollection.OFFICE_DESK_LEFT_SHAPE(),
+                    HitboxGeometryCollection.OFFICE_DESK_MIDDLE_SHAPE(),
+                    HitboxGeometryCollection.OFFICE_DESK_RIGHT_SHAPE(),
+
                     MultiBlockPlacementDirection.HORIZONTAL
             )
 
@@ -808,6 +894,12 @@ public class ModBlocks {
             () -> new SimpleFacingBlock(BlockBehaviour
                     .Properties.copy(Blocks.STONE)
                     .noOcclusion()
+            )
+    );
+    public static final RegistryObject<Block> POSTER_1 = registerBlockAndBlockItem("poster_1",
+            () -> new ModelledSurfaceMountBlock(BlockBehaviour
+                    .Properties.copy(Blocks.OAK_PLANKS).instabreak(),
+                    HitboxGeometryCollection.DECAL_FLOOR()
             )
     );
 

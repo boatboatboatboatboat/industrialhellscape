@@ -32,7 +32,7 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> INHELL_HAVEN_DEVICE = ITEMS.register("inhell_haven_device",
-            () -> new InHellTool(new Item.Properties().durability(1024)));
+            () -> new InHellTool(new Item.Properties()));
 
     public static final RegistryObject<Item> VAPORWAVE_CASSETTE = ITEMS.register("vaporwave_cassette",
             () -> new RecordItemWithTooltip("vaporwave_cassette", 6, ModSounds.VULTA_SHATTERED, new Item.Properties().stacksTo(1), 4620));
@@ -48,8 +48,18 @@ public class ModItems {
         //For flavor text purposes. Ignore the unuse warning.
     public static final RegistryObject<Item> VESSELPLATE_ITEM = ITEMS.register("vesselplate",
             () -> new BlockItemWithTooltip(ModBlocks.VESSELPLATE.get(), new Item.Properties()));
+
     public static final RegistryObject<Item> GRAY_ROCKRETE_ITEM = ITEMS.register("gray_rockrete",
             () -> new BlockItemWithTooltip(ModBlocks.GRAY_ROCKRETE.get(), new Item.Properties()));
+    public static final RegistryObject<Item> RED_ROCKRETE_ITEM = ITEMS.register("red_rockrete",
+            () -> new BlockItemWithTooltip(ModBlocks.RED_ROCKRETE.get(), new Item.Properties()));
+    public static final RegistryObject<Item> BLUE_ROCKRETE_ITEM = ITEMS.register("blue_rockrete",
+            () -> new BlockItemWithTooltip(ModBlocks.BLUE_ROCKRETE.get(), new Item.Properties()));
+    public static final RegistryObject<Item> YELLOW_ROCKRETE_ITEM = ITEMS.register("yellow_rockrete",
+            () -> new BlockItemWithTooltip(ModBlocks.YELLOW_ROCKRETE.get(), new Item.Properties()));
+    public static final RegistryObject<Item> GREEN_ROCKRETE_ITEM = ITEMS.register("green_rockrete",
+            () -> new BlockItemWithTooltip(ModBlocks.GREEN_ROCKRETE.get(), new Item.Properties()));
+
     public static final RegistryObject<Item> IHEA_FURNITURE_KIT_ITEM = ITEMS.register("ihea_furniture_kit",
             () -> new BlockItemWithTooltip(ModBlocks.IHEA_FURNITURE_KIT.get(), new Item.Properties()));
     public static final RegistryObject<Item> PIPEWORKS_ITEM = ITEMS.register("pipeworks",

@@ -131,13 +131,23 @@ public class SurfaceMountAxisRotatableBlock extends Block implements ConnectedMo
 
     public @Nonnull InteractionResult use(@Nonnull BlockState pState, @Nonnull Level pLevel, @Nonnull BlockPos pPos, Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
         boolean playerHasTool = pPlayer.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || pPlayer.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
+        boolean playerIsCrouching = pPlayer.isCrouching();
 
-        //Cycles from vertical and horizontal pipes when interacting with pipes on walls
-        if (playerHasTool) { //If player has tool, change the pipe orientation
+        if(playerHasTool && playerIsCrouching) {
+            //Cycles connection type. Only works with modded tools
+            pState = pState.cycle(TYPE);
+            pLevel.setBlock(pPos, pState, 2); //2
+            return InteractionResult.sidedSuccess(pLevel.isClientSide);
+
+
+
+        } else if (playerHasTool) {
+            //Cycles from vertical and horizontal pipes when interacting with pipes on walls. Works with modded tools AND pickaxes
             pState = pState.cycle(ORIENTATION);
+            pLevel.setBlock(pPos, pState, 3); //3
+            return InteractionResult.sidedSuccess(pLevel.isClientSide);
         }
-        pLevel.setBlock(pPos, pState, 3); //3
-        return InteractionResult.sidedSuccess(pLevel.isClientSide);
+       return InteractionResult.PASS;
     }
 
     public @Nonnull FluidState getFluidState(BlockState pState) {

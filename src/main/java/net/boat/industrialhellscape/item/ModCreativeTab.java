@@ -21,6 +21,9 @@ public class ModCreativeTab {
                     .title(Component.translatable("gui.industrialhellscape.creative_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
 
+                        //DEBUG ITEMS
+                        output.accept(ModBlocks.POSTER_1.get());
+
                         //JOKE ITEMS
                         //output.accept(ModItems.JOB_APPLICATION.get());
                         //output.accept(ModItems.ASPIC.get());
@@ -43,8 +46,14 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get());
                         output.accept(ModBlocks.SMOOTH_VESSELPLATE_TILE.get());
                         output.accept(ModBlocks.VESSELPLATE_PILLAR.get());
-                        output.accept(ModBlocks.VESSELPLATE_SLAB.get());
-                        output.accept(ModBlocks.VESSELPLATE_STAIRS.get());
+                        output.accept(ModBlocks.RIVETED_VESSELPLATE_SLAB.get());
+                        output.accept(ModBlocks.RIVETED_VESSELPLATE_STAIRS.get());
+                        output.accept(ModBlocks.SMOOTH_VESSELPLATE_STAIRS.get());
+                        output.accept(ModBlocks.SMOOTH_VESSELPLATE_SLAB.get());
+                        output.accept(ModBlocks.VESSELPLATE_SHEETING.get());
+                        output.accept(ModBlocks.VESSELPLATE_SHEETING_STAIRS.get());
+                        output.accept(ModBlocks.VESSELPLATE_SHEETING_SLAB.get());
+
 
                         output.accept(ModBlocks.GRAY_VESSELPLATE.get());
                         output.accept(ModBlocks.GRAY_RIVETED_VESSELPLATE_PANEL.get());
@@ -54,8 +63,13 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.GRAY_SEETHROUGH_GRATE.get());
                         output.accept(ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get());
                         output.accept(ModBlocks.GRAY_VESSELPLATE_PILLAR.get());
-                        output.accept(ModBlocks.GRAY_VESSELPLATE_SLAB.get());
-                        output.accept(ModBlocks.GRAY_VESSELPLATE_STAIRS.get());
+                        output.accept(ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get());
+                        output.accept(ModBlocks.GRAY_RIVETED_VESSELPLATE_STAIRS.get());
+                        output.accept(ModBlocks.SMOOTH_GRAY_VESSELPLATE_STAIRS.get());
+                        output.accept(ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get());
+                        output.accept(ModBlocks.GRAY_VESSELPLATE_SHEETING.get());
+                        output.accept(ModBlocks.GRAY_VESSELPLATE_SHEETING_STAIRS.get());
+                        output.accept(ModBlocks.GRAY_VESSELPLATE_SHEETING_SLAB.get());
 
                         output.accept(ModBlocks.STRUT.get());
                         output.accept(ModBlocks.CATWALK_STRUT.get());
@@ -97,6 +111,11 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.BLUE_ROCKRETE_STAIRS.get());
                         output.accept(ModBlocks.BLUE_ROCKRETE_SLAB.get());
                         output.accept(ModBlocks.BLUE_ROCKRETE_PILLAR.get());
+
+                        output.accept(ModBlocks.RED_ROCKRETE.get());
+                        output.accept(ModBlocks.RED_ROCKRETE_STAIRS.get());
+                        output.accept(ModBlocks.RED_ROCKRETE_SLAB.get());
+                        output.accept(ModBlocks.RED_ROCKRETE_PILLAR.get());
                         
                         output.accept(ModBlocks.HAZARD_STRIPE_YELLOW.get());
                         output.accept(ModBlocks.HAZARD_STRIPE_RED.get());

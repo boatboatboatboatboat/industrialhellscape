@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "industrialhellscape:block/vesselplate/riveted_vesselplate_panel",
-    "side": "industrialhellscape:block/vesselplate/vesselplate_slab"
-  }
-}

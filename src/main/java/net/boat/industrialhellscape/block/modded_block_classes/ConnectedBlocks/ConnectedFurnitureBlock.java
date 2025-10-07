@@ -124,6 +124,7 @@ public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implemen
         boolean playerHasTool = player.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_MODDED_TOOLS) || player.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_MODDED_TOOLS);
 
         if (playerHasTool) {
+            //Change block connection type without updating neighbors. Only works with modded tools.
             state = state.cycle(TYPE);
             level.setBlock(pos, state, 2); //2
             return InteractionResult.sidedSuccess(level.isClientSide);

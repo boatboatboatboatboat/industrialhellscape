@@ -41,10 +41,15 @@ public class SimpleTextureToggleBlock extends AbstractGlassBlock {
 
     @Nullable
     public BlockState getStateForPlacement(@Nonnull BlockPlaceContext pContext) {
-//        Direction[] facingNearest = pContext.getNearestLookingDirections();
-//        if(pContext.getPlayer() != null) pContext.getPlayer().displayClientMessage(Component.literal("Facing" + facingNearest[1] + "and" + facingNearest[2]), true);
-
+        Player player = pContext.getPlayer();
         BlockState state = this.defaultBlockState();
+
+        if(player != null) {
+            if(player.isCrouching()) {
+                state = state.setValue(ALT_STATE,true);
+            }
+        }
+
         return state;
     }
 

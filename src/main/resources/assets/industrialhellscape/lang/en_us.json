@@ -13,9 +13,6 @@
 
   "block.industrialhellscape.vesselplate": "Vesselplate",
   "block.industrialhellscape.riveted_vesselplate_panel": "Riveted Vesselplate Panel",
-  "block.industrialhellscape.grate": "Grate",
-  "block.industrialhellscape.see-through_grate": "See-Through Grate",
-  "block.industrialhellscape.rusty_grate": "Rusty Grate",
   "block.industrialhellscape.vertical_riveted_vesselplate": "Vertical Riveted Vesselplate",
   "block.industrialhellscape.horizontal_riveted_vesselplate": "Horizontal Riveted Vesselplate",
   "block.industrialhellscape.vesselglass": "Vesselglass",
@@ -23,21 +20,37 @@
   "block.industrialhellscape.gray_vesselglass": "Gray Vesselglass",
   "block.industrialhellscape.gray_reinforced_vesselglass": "Gray Reinforced Vesselglass",
   "block.industrialhellscape.smooth_vesselplate_tile": "Smooth Vesselplate Tile",
+  "block.industrialhellscape.smooth_vesselplate_stairs": "Smooth Vesselplate Stairs",
+  "block.industrialhellscape.smooth_vesselplate_slab": "Smooth Vesselplate Slab",
   "block.industrialhellscape.vesselplate_pillar": "Vesselplate Pillar",
-  "block.industrialhellscape.encased_cables": "Encased Cables",
-  "block.industrialhellscape.vesselplate_slab": "Vesselplate Slab",
-  "block.industrialhellscape.vesselplate_stairs": "Vesselplate Stairs",
-  "block.industrialhellscape.gray_vesselplate_slab": "Gray Vesselplate Slab",
-  "block.industrialhellscape.gray_vesselplate_stairs": "Gray Vesselplate Stairs",
+  "block.industrialhellscape.vesselplate_sheeting": "Vesselplate Sheet Panel",
+
+  "block.industrialhellscape.riveted_vesselplate_slab": "Riveted Vesselplate Slab",
+  "block.industrialhellscape.riveted_vesselplate_stairs": "Riveted Vesselplate Stairs",
+  "block.industrialhellscape.gray_riveted_vesselplate_slab": "Gray Riveted Vesselplate Slab",
+  "block.industrialhellscape.gray_riveted_vesselplate_stairs": "Gray Riveted Vesselplate Stairs",
+
+  "block.industrialhellscape.vesselplate_sheeting_stairs": "Vesselplate Sheeting Stairs",
+  "block.industrialhellscape.vesselplate_sheeting_slab": "Vesselplate Sheeting Slab",
+  "block.industrialhellscape.gray_vesselplate_sheeting_stairs": "Gray Vesselplate Sheeting Stairs",
+  "block.industrialhellscape.gray_vesselplate_sheeting_slab": "Gray Vesselplate Sheeting Slab",
 
   "block.industrialhellscape.gray_vesselplate": "Vesselplate",
   "block.industrialhellscape.gray_riveted_vesselplate_panel": "Gray Riveted Vesselplate Panel",
-  "block.industrialhellscape.gray_grate": "Gray Grate",
-  "block.industrialhellscape.gray_see-through_grate": "Gray See-Through Grate",
   "block.industrialhellscape.gray_vertical_riveted_vesselplate": "Vertical Riveted Vesselplate",
   "block.industrialhellscape.gray_horizontal_riveted_vesselplate": "Horizontal Riveted Vesselplate",
   "block.industrialhellscape.smooth_gray_vesselplate_tile": "Smooth Gray Vesselplate Tile",
-  "block.industrialhellscape.gray_vesselplate_pillar": "Vesselplate Pillar",
+  "block.industrialhellscape.smooth_gray_vesselplate_stairs": "Smooth Gray Vesselplate Stairs",
+  "block.industrialhellscape.smooth_gray_vesselplate_slab": "Smooth Gray Vesselplate Slab",
+  "block.industrialhellscape.gray_vesselplate_pillar": "Gray Vesselplate Pillar",
+  "block.industrialhellscape.gray_vesselplate_sheeting": "Vesselplate Sheet Panel",
+
+  "block.industrialhellscape.encased_cables": "Encased Cables",
+  "block.industrialhellscape.see-through_grate": "See-Through Grate",
+  "block.industrialhellscape.gray_see-through_grate": "Gray See-Through Grate",
+  "block.industrialhellscape.grate": "Grate",
+  "block.industrialhellscape.gray_grate": "Gray Grate",
+  "block.industrialhellscape.rusty_grate": "Rusty Grate",
 
   "block.industrialhellscape.pipeworks": "Pipeworks",
   "block.industrialhellscape.metalworks": "Metalworks",
@@ -77,6 +90,11 @@
   "block.industrialhellscape.blue_rockrete_slab": "Blue Rockrete Slab",
   "block.industrialhellscape.blue_rockrete_pillar": "Blue Rockrete Pillar",
 
+  "block.industrialhellscape.red_rockrete": "Red Rockrete",
+  "block.industrialhellscape.red_rockrete_stairs": "Red Rockrete Stairs",
+  "block.industrialhellscape.red_rockrete_slab": "Red Rockrete Slab",
+  "block.industrialhellscape.red_rockrete_pillar": "Red Rockrete Pillar",
+
   "block.industrialhellscape.gray_bolted_bracket": "Gray Bolted Bracket",
   "block.industrialhellscape.black_bolted_bracket": "Black Bolted Bracket",
 
@@ -115,7 +133,7 @@
   "block.industrialhellscape.office_desk": "Office Desk",
   "block.industrialhellscape.office_desk_drawer": "Office Desk Drawer",
 
-  "block.industrialhellscape.body_pillow": "Body_Pillow",
+  "block.industrialhellscape.body_pillow": "Body Pillow",
 
   "block.industrialhellscape.retro_computer": "Retro Computer",
   "block.industrialhellscape.retro_computer_2": "Retro Computer 2",
@@ -152,7 +170,13 @@
   "tooltip.industrialhellscape.haventool": "Right-click and/or sneak-right-click to rotate some I.H. blocks, change their texture behavior, or furniture block-state (like desks).",
   "tooltip.industrialhellscape.vaporwave_cassette": "§6\"Warp signatures coming from Lagrange 4. Unidentified. All orbital guns, align prograde to solar orbit. We have 50 hours to contact.\"",
   "tooltip.industrialhellscape.vesselplate": "Used extensively to armor the warships of the InHell Corporate Acquisition Fleet.",
+
   "tooltip.industrialhellscape.gray_rockrete": "Mass-produced for Class-3 employee accommodations and below in InHell-owned megacities.",
+  "tooltip.industrialhellscape.red_rockrete": "Color is tentative during beta",
+  "tooltip.industrialhellscape.blue_rockrete": "Color is tentative during beta",
+  "tooltip.industrialhellscape.yellow_rockrete": "Color is tentative during beta",
+  "tooltip.industrialhellscape.green_rockrete": "Color is tentative during beta",
+
   "tooltip.industrialhellscape.ihea_furniture_kit": "InHell Ergonomic Amenities. Use in a stonecutter to craft furnishings.",
 
   "tooltip.industrialhellscape.pipeworks": "Use a pickaxe to rotate blocks stonecut from this. Using the HAVEN tool allows full rotation functionality.",

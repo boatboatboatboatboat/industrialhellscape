@@ -19,6 +19,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     protected void generate() {
         //DEBUG BLOCKS
         this.dropSelf(ModBlocks.PROTOTYPE_MACHINE.get());
+        this.dropSelf(ModBlocks.POSTER_1.get());
 
         //JOKE BLOCKS
         this.dropSelf(ModBlocks.BODY_PILLOW.get());
@@ -33,8 +34,14 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get());
         this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE_TILE.get());
         this.dropSelf(ModBlocks.VESSELPLATE_PILLAR.get());
-        this.dropSelf(ModBlocks.VESSELPLATE_STAIRS.get());
-        this.dropSelf(ModBlocks.VESSELPLATE_SLAB.get());
+        this.dropSelf(ModBlocks.VESSELPLATE_SHEETING.get());
+        this.dropSelf(ModBlocks.VESSELPLATE_SHEETING_STAIRS.get());
+        this.dropSelf(ModBlocks.VESSELPLATE_SHEETING_SLAB.get());
+
+        this.dropSelf(ModBlocks.RIVETED_VESSELPLATE_STAIRS.get());
+        this.dropSelf(ModBlocks.RIVETED_VESSELPLATE_SLAB.get());
+        this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE_STAIRS.get());
+        this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE_SLAB.get());
 
         this.dropSelf(ModBlocks.REINFORCED_VESSELGLASS.get());
         this.dropSelf(ModBlocks.VESSELGLASS.get());
@@ -50,8 +57,14 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get());
         this.dropSelf(ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get());
         this.dropSelf(ModBlocks.GRAY_VESSELPLATE_PILLAR.get());
-        this.dropSelf(ModBlocks.GRAY_VESSELPLATE_STAIRS.get());
-        this.dropSelf(ModBlocks.GRAY_VESSELPLATE_SLAB.get());
+        this.dropSelf(ModBlocks.GRAY_VESSELPLATE_SHEETING.get());
+        this.dropSelf(ModBlocks.GRAY_VESSELPLATE_SHEETING_STAIRS.get());
+        this.dropSelf(ModBlocks.GRAY_VESSELPLATE_SHEETING_SLAB.get());
+
+        this.dropSelf(ModBlocks.GRAY_RIVETED_VESSELPLATE_STAIRS.get());
+        this.dropSelf(ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get());
+        this.dropSelf(ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get());
+        this.dropSelf(ModBlocks.SMOOTH_GRAY_VESSELPLATE_STAIRS.get());
 
         this.dropSelf(ModBlocks.STRUT.get());
         this.dropSelf(ModBlocks.CATWALK_STRUT.get());
@@ -96,6 +109,13 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.BLUE_ROCKRETE_PILLAR.get());
         this.add(ModBlocks.BLUE_ROCKRETE_SLAB.get(),
                 block -> createSlabItemTable(ModBlocks.BLUE_ROCKRETE_SLAB.get())
+        );
+
+        this.dropSelf(ModBlocks.RED_ROCKRETE.get());
+        this.dropSelf(ModBlocks.RED_ROCKRETE_STAIRS.get());
+        this.dropSelf(ModBlocks.RED_ROCKRETE_PILLAR.get());
+        this.add(ModBlocks.RED_ROCKRETE_SLAB.get(),
+                block -> createSlabItemTable(ModBlocks.RED_ROCKRETE_SLAB.get())
         );
 
         this.dropSelf(ModBlocks.HAZARD_STRIPE_YELLOW.get());

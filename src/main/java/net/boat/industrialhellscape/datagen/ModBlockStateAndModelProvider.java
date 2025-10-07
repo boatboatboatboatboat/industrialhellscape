@@ -42,12 +42,16 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         genFolderedSBI(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get(),"vesselplate");
         genFolderedSBI(ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get(),"vesselplate");
         genFolderedToggleBlockSBI(ModBlocks.SMOOTH_VESSELPLATE_TILE.get(),"vesselplate", "", true, true, "_tile","");
+        genFolderedToggleBlockSBI(ModBlocks.VESSELPLATE_SHEETING.get(),"vesselplate","", true, true, "ing", "");
+
 
         genFolderedSBI(ModBlocks.GRAY_VESSELPLATE.get(),"vesselplate");
         genFolderedToggleBlockSBI(ModBlocks.GRAY_RIVETED_VESSELPLATE_PANEL.get(),"vesselplate","", true, true, "_panel", "");
         genFolderedSBI(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get(),"vesselplate");
         genFolderedSBI(ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get(),"vesselplate");
         genFolderedToggleBlockSBI(ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get(),"vesselplate", "", true, true, "_tile","");
+        genFolderedToggleBlockSBI(ModBlocks.GRAY_VESSELPLATE_SHEETING.get(),"vesselplate","", true, true, "ing", "");
+
 
         genFolderedToggleBlockSBI(ModBlocks.ENCASED_CABLES.get(),"","",true, true, "encased","vertical_encased");
 
@@ -83,6 +87,10 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         stairsBlock(((StairBlock) ModBlocks.BLUE_ROCKRETE_STAIRS.get()), blockTexture(ModBlocks.BLUE_ROCKRETE.get()));
         slabBlock(((SlabBlock) ModBlocks.BLUE_ROCKRETE_SLAB.get()), blockTexture(ModBlocks.BLUE_ROCKRETE.get()), blockTexture(ModBlocks.BLUE_ROCKRETE.get()));
 
+        genFolderedToggleBlockSBI(ModBlocks.RED_ROCKRETE.get(),"","",true, true,"rockrete","rockrete_rebar");
+        stairsBlock(((StairBlock) ModBlocks.RED_ROCKRETE_STAIRS.get()), blockTexture(ModBlocks.RED_ROCKRETE.get()));
+        slabBlock(((SlabBlock) ModBlocks.RED_ROCKRETE_SLAB.get()), blockTexture(ModBlocks.RED_ROCKRETE.get()), blockTexture(ModBlocks.RED_ROCKRETE.get()));
+
         genFolderedSBI(ModBlocks.HAZARD_STRIPE_YELLOW.get(),"");
         genFolderedSBI(ModBlocks.HAZARD_STRIPE_RED.get(),"");
 
@@ -103,6 +111,7 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         GenFacingModelledSI(ModBlocks.RED_WALL_MEDKIT.get(),"medkit_containers");
         GenFacingModelledSI(ModBlocks.FIRE_EXTINGUISHER.get(), "");
         genAttachedSI(ModBlocks.SMOKE_ALARM.get(), "");
+        genAttachedSI(ModBlocks.POSTER_1.get(), "decals");
         genAttachedSBI(ModBlocks.FUEL_DRUM.get(), "", build6FaceTexturesBlockModel("fuel_drum","fuel_drum", "red_labeled_fuel_drum_front", "red_labeled_fuel_drum_front", "red_labeled_fuel_drum_side", "red_labeled_fuel_drum_side", "red_fuel_drum_up","red_fuel_drum_down"));
         genWaterloggableSI(ModBlocks.YELLOW_TRIPOD.get(),"");
 
@@ -133,20 +142,33 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         genI(ModBlocks.YELLOW_RAILING.get(),"yellow_railing");
         genI(ModBlocks.YELLOW_STAIR_RAILING.get(),"yellow_railing");
 
-        genI(ModBlocks.VESSELPLATE_SLAB.get(),"vesselplate");
-        genI(ModBlocks.VESSELPLATE_STAIRS.get(),"vesselplate");
-        genI(ModBlocks.GRAY_VESSELPLATE_SLAB.get(),"vesselplate");
-        genI(ModBlocks.GRAY_VESSELPLATE_STAIRS.get(),"vesselplate");
+        genI(ModBlocks.RIVETED_VESSELPLATE_SLAB.get(),"vesselplate");
+        genI(ModBlocks.RIVETED_VESSELPLATE_STAIRS.get(),"vesselplate");
+        genI(ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get(),"vesselplate");
+        genI(ModBlocks.GRAY_RIVETED_VESSELPLATE_STAIRS.get(),"vesselplate");
+
+        genI(ModBlocks.SMOOTH_VESSELPLATE_SLAB.get(),"vesselplate");
+        genI(ModBlocks.SMOOTH_VESSELPLATE_STAIRS.get(),"vesselplate");
+        genI(ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get(),"vesselplate");
+        genI(ModBlocks.SMOOTH_GRAY_VESSELPLATE_STAIRS.get(),"vesselplate");
+
+        genI(ModBlocks.VESSELPLATE_SHEETING_SLAB.get(),"vesselplate");
+        genI(ModBlocks.VESSELPLATE_SHEETING_STAIRS.get(),"vesselplate");
+        genI(ModBlocks.GRAY_VESSELPLATE_SHEETING_SLAB.get(),"vesselplate");
+        genI(ModBlocks.GRAY_VESSELPLATE_SHEETING_STAIRS.get(),"vesselplate");
 
         genI(ModBlocks.BODY_PILLOW.get(),"");
         genI(ModBlocks.BLUE_ROCKRETE_SLAB.get(),"");
         genI(ModBlocks.GRAY_ROCKRETE_SLAB.get(),"");
         genI(ModBlocks.GREEN_ROCKRETE_SLAB.get(),"");
         genI(ModBlocks.YELLOW_ROCKRETE_SLAB.get(),"");
+        genI(ModBlocks.RED_ROCKRETE_SLAB.get(),"");
+
         genI(ModBlocks.BLUE_ROCKRETE_STAIRS.get(),"");
         genI(ModBlocks.GRAY_ROCKRETE_STAIRS.get(),"");
         genI(ModBlocks.GREEN_ROCKRETE_STAIRS.get(),"");
         genI(ModBlocks.YELLOW_ROCKRETE_STAIRS.get(),"");
+        genI(ModBlocks.RED_ROCKRETE_STAIRS.get(),"");
     }
     //---------- END OF BLOCK ASSET GENERATION LIST ----------
 
