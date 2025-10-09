@@ -12,6 +12,8 @@ import net.minecraftforge.registries.RegistryObject;
 
 //THIS JAVA CLASS HANDLES THE DISPLAY OF ITEMS IN THE IN-GAME CREATIVE MENU TAB
 
+//IF YOU GET AN ERROR/CRASH THAT POINTS TO THIS CLASS. IT IS BECAUSE YOU HAD A BLOCK AND ONLY REGISTERED THE BLOCK ITEM, NOT BOTH THE BLOCK AND THE ITEM
+
 public class ModCreativeTab {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, IndustrialHellscape.MOD_ID);
@@ -83,6 +85,7 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.GRAY_CATWALK_STRUT_SLAB.get());
                         output.accept(ModBlocks.GRAY_STRUT_STAIRS.get());
                         output.accept(ModBlocks.GRAY_STRUT_SLAB.get());
+                        output.accept(ModBlocks.RUSTY_STRUT.get());
 
                         output.accept(ModBlocks.ENCASED_CABLES.get());
 
@@ -141,10 +144,16 @@ public class ModCreativeTab {
 
                         //METALWORKS BLOCKS
                         output.accept(ModBlocks.METALWORKS.get());
+                        output.accept(ModBlocks.DUCT.get());
+                        output.accept(ModBlocks.RUSTY_DUCT.get());
                         output.accept(ModBlocks.YELLOW_STAIR_RAILING.get());
                         output.accept(ModBlocks.GRAY_BOLTED_BRACKET.get());
                         output.accept(ModBlocks.BLACK_BOLTED_BRACKET.get());
                         output.accept(ModBlocks.YELLOW_RAILING.get());
+
+                        //DOORS AND TRAPDOORS
+                        output.accept(ModBlocks.VENT_TRAPDOOR.get());
+                        output.accept(ModBlocks.RUSTY_VENT_TRAPDOOR.get());
 
                         //FURNITURE BLOCKS
 
@@ -167,6 +176,7 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.LOCKER_BOX.get());
                         output.accept(ModBlocks.LARGE_LOCKER.get());
                         output.accept(ModBlocks.FUEL_DRUM.get());
+                        output.accept(ModBlocks.CCTV_CAMERA.get());
 
                         output.accept(ModBlocks.IHEA_FURNITURE_KIT.get());
                         output.accept(ModBlocks.SAFETY_FURNISHINGS.get());

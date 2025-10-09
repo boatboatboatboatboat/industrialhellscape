@@ -132,6 +132,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
         this.tag(ModTags.Blocks.METALWORKS_BLOCKS) //FOR CORRECT MINING TOOLS AND TOOL TIER
                 .add(
                         ModBlocks.METALWORKS.get(),
+                        ModBlocks.DUCT.get(),
+                        ModBlocks.RUSTY_DUCT.get(),
                         ModBlocks.YELLOW_STAIR_RAILING.get(),
                         ModBlocks.YELLOW_RAILING.get(),
                         ModBlocks.GRAY_BOLTED_BRACKET.get(),
@@ -215,7 +217,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.YELLOW_TRIPOD.get(),
                         ModBlocks.WORK_LIGHT_MOUNT.get(),
                         ModBlocks.FLOOR_WORK_LIGHT.get(),
-                        ModBlocks.FUEL_DRUM.get()
+                        ModBlocks.FUEL_DRUM.get(),
+                        ModBlocks.CCTV_CAMERA.get()
                 );
 
         this.tag(ModTags.Blocks.TECHNOLOGY_FURNITURE_CATEGORY)

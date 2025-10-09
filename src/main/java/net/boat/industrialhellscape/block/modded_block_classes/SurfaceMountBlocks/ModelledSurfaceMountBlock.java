@@ -25,18 +25,21 @@ public class ModelledSurfaceMountBlock extends SurfaceMountBlock implements Simp
     private final VoxelShape SHAPE_SOUTH;
     private final VoxelShape SHAPE_EAST;
     private final VoxelShape SHAPE_WEST;
+    private final boolean ceilingModelAlignedSameAsFloor;
 
 
-    public ModelledSurfaceMountBlock(Properties pProperties, VoxelShape floorHitBox) {
+    public ModelledSurfaceMountBlock(Properties pProperties, VoxelShape floorHitBox, boolean ceilingSurfaceMountOnly) {
         super(pProperties);
 
         this.SHAPE_FLOOR = floorHitBox; //default for blocks using this block class
         this.SHAPE_CEILING = RotationHelper.rotateVoxelUpDown(Direction.UP, floorHitBox);
 
         this.SHAPE_NORTH = RotationHelper.rotateVoxelUpDown(Direction.NORTH, floorHitBox); //Rotates to the north surface position
-        SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, SHAPE_NORTH);
-        SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, SHAPE_NORTH);
-        SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, SHAPE_NORTH);
+        this.SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, SHAPE_NORTH);
+        this.SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, SHAPE_NORTH);
+        this.SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, SHAPE_NORTH);
+
+        this.ceilingModelAlignedSameAsFloor = ceilingSurfaceMountOnly;
 
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
@@ -58,7 +61,8 @@ public class ModelledSurfaceMountBlock extends SurfaceMountBlock implements Simp
                 case WEST -> SHAPE_WEST;
                 default -> SHAPE_NORTH;
             };
-
+        } else if(pState.getValue(SURFACE_MOUNT) == AttachFace.FLOOR && ceilingModelAlignedSameAsFloor) {
+            return SHAPE_CEILING;
         } else if(pState.getValue(SURFACE_MOUNT) == AttachFace.FLOOR) {
             return SHAPE_FLOOR;
         } else {

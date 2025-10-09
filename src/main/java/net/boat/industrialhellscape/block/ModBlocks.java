@@ -32,6 +32,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -48,6 +49,7 @@ import java.util.function.Supplier;
 
 public class ModBlocks {
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED; //For configuring light-emitting blocks
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, IndustrialHellscape.MOD_ID);
@@ -70,6 +72,16 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> METALWORKS = registerBlockOnly("metalworks",
             () -> new FallableBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+            )
+    );
+    public static final RegistryObject<Block> DUCT = registerBlockAndBlockItem("duct",
+            () -> new Block(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+            )
+    );
+    public static final RegistryObject<Block> RUSTY_DUCT = registerBlockAndBlockItem("rusty_duct",
+            () -> new Block(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
             )
     );
@@ -283,6 +295,13 @@ public class ModBlocks {
                     .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
     );
     public static final RegistryObject<Block> GRAY_CATWALK_STRUT = registerBlockAndBlockItem("gray_catwalk_strut",
+            () -> new SimpleWaterloggableBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
+            )
+    );
+    public static final RegistryObject<Block> RUSTY_STRUT = registerBlockAndBlockItem("rusty_strut",
             () -> new SimpleWaterloggableBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()
@@ -621,9 +640,13 @@ public class ModBlocks {
                     HitboxGeometryCollection.OUTER_CORNER_SIDE())
     );
 
+    //DOORS, TRAPDOORS, ETC:
+    public static final RegistryObject<Block> VENT_TRAPDOOR = registerBlockAndBlockItem("vent_trapdoor",
+            () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL).noOcclusion(), BlockSetType.STONE));
+    public static final RegistryObject<Block> RUSTY_VENT_TRAPDOOR = registerBlockAndBlockItem("rusty_vent_trapdoor",
+            () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL).noOcclusion(), BlockSetType.STONE));
+
     //FURNITURE BLOCKS HERE
-
-
     public static final RegistryObject<Block> LARGE_LOCKER = registerBlockAndBlockItem("large_locker",
             () -> new TwoBlockContainerMultiBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
@@ -646,6 +669,38 @@ public class ModBlocks {
                     .Properties.copy(Blocks.IRON_BLOCK), 27,
                     ModSounds.METAL_BOX_OPEN.get(),
                     ModSounds.METAL_BOX_CLOSE.get()
+            )
+    );
+    public static final RegistryObject<Block> CCTV_CAMERA = registerBlockAndBlockItem("cctv_camera",
+            () -> new ModelledSurfaceMountBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .lightLevel(state -> state.getValue(WATERLOGGED) ? 0 : 3),
+                    HitboxGeometryCollection.DECAL_FLOOR(),
+                    true
+            )
+    );
+    public static final RegistryObject<Block> YELLOW_TRIPOD = registerBlockAndBlockItem("yellow_tripod",
+            () -> new ModelledWaterloggableBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.THIN_VERTICAL_ROD_SHAPE()
+            )
+    );
+    public static final RegistryObject<Block> WORK_LIGHT_MOUNT = registerBlockAndBlockItem("work_light_mount",
+            () -> new InteractableModelledFacingBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .lightLevel(state -> state.getValue(POWERED) ? 15 : 0),
+                    HitboxGeometryCollection.WORK_LIGHT_MOUNT_SHAPE()
+            )
+    );
+    public static final RegistryObject<Block> FLOOR_WORK_LIGHT = registerBlockAndBlockItem("floor_work_light",
+            () -> new InteractableModelledFacingBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .lightLevel(state -> state.getValue(POWERED) ? 15 : 0),
+                    HitboxGeometryCollection.FLOOR_WORK_LIGHT_SHAPE()
             )
     );
 
@@ -807,7 +862,8 @@ public class ModBlocks {
             () -> new ModelledSurfaceMountBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
-                    HitboxGeometryCollection.SMOKE_DETECTOR_FLOOR()
+                    HitboxGeometryCollection.SMOKE_DETECTOR_FLOOR(),
+                    false
             )
     );
 
@@ -832,29 +888,6 @@ public class ModBlocks {
                     .Properties.copy(Blocks.STONE)
                     .noOcclusion(),
                     HitboxGeometryCollection.CASSETTE_PLAYER()
-            )
-    );
-    public static final RegistryObject<Block> YELLOW_TRIPOD = registerBlockAndBlockItem("yellow_tripod",
-            () -> new ModelledWaterloggableBlock(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
-                    .noOcclusion(),
-                    HitboxGeometryCollection.THIN_VERTICAL_ROD_SHAPE()
-            )
-    );
-    public static final RegistryObject<Block> WORK_LIGHT_MOUNT = registerBlockAndBlockItem("work_light_mount",
-            () -> new InteractableModelledFacingBlock(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
-                    .noOcclusion()
-                    .lightLevel(state -> state.getValue(POWERED) ? 15 : 0),
-                    HitboxGeometryCollection.WORK_LIGHT_MOUNT_SHAPE()
-            )
-    );
-    public static final RegistryObject<Block> FLOOR_WORK_LIGHT = registerBlockAndBlockItem("floor_work_light",
-            () -> new InteractableModelledFacingBlock(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
-                    .noOcclusion()
-                    .lightLevel(state -> state.getValue(POWERED) ? 15 : 0),
-                    HitboxGeometryCollection.FLOOR_WORK_LIGHT_SHAPE()
             )
     );
 
@@ -899,7 +932,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> POSTER_1 = registerBlockAndBlockItem("poster_1",
             () -> new ModelledSurfaceMountBlock(BlockBehaviour
                     .Properties.copy(Blocks.OAK_PLANKS).instabreak(),
-                    HitboxGeometryCollection.DECAL_FLOOR()
+                    HitboxGeometryCollection.DECAL_FLOOR(),
+                    false
             )
     );
 

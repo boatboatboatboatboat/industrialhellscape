@@ -163,6 +163,7 @@ dependencies {
     implementation fg.deobf("curse.maven:ctm-267602:5983309")
     implementation fg.deobf("curse.maven:jade-324717:6855440")
     implementation fg.deobf("curse.maven:worldedit-225608:4586218")
+    implementation fg.deobf("curse.maven:abyssal-decor-964853:6766047")
 
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 

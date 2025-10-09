@@ -166,6 +166,8 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 .add(
                         ModBlocks.METALWORKS.get().asItem(),
 
+                        ModBlocks.DUCT.get().asItem(),
+                        ModBlocks.RUSTY_DUCT.get().asItem(),
                         ModBlocks.YELLOW_RAILING.get().asItem(),
                         ModBlocks.YELLOW_STAIR_RAILING.get().asItem(),
                         ModBlocks.BLACK_BOLTED_BRACKET.get().asItem(),
@@ -215,7 +217,8 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.LARGE_LOCKER.get().asItem(),
                         ModBlocks.YELLOW_TRIPOD.get().asItem(),
                         ModBlocks.WORK_LIGHT_MOUNT.get().asItem(),
-                        ModBlocks.FLOOR_WORK_LIGHT.get().asItem()
+                        ModBlocks.FLOOR_WORK_LIGHT.get().asItem(),
+                        ModBlocks.CCTV_CAMERA.get().asItem()
                 );
         this.tag(ModTags.Items.TECHNOLOGY_FURNITURE_CATEGORY)
                 .add(

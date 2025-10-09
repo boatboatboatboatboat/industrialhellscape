@@ -150,6 +150,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     private static final List<ItemLike> METALWORKS_STONECUT_OUTPUT = List.of(
             ModBlocks.METALWORKS.get().asItem(),
+            ModBlocks.DUCT.get().asItem(),
+            ModBlocks.RUSTY_DUCT.get().asItem(),
             ModBlocks.YELLOW_RAILING.get().asItem(),
             ModBlocks.BLACK_BOLTED_BRACKET.get().asItem(),
             ModBlocks.GRAY_BOLTED_BRACKET.get().asItem(),
@@ -180,7 +182,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.YELLOW_TRIPOD.get().asItem(),
             ModBlocks.WORK_LIGHT_MOUNT.get().asItem(),
             ModBlocks.FLOOR_WORK_LIGHT.get().asItem(),
-            ModBlocks.FUEL_DRUM.get().asItem()
+            ModBlocks.FUEL_DRUM.get().asItem(),
+            ModBlocks.CCTV_CAMERA.get().asItem()
     );
     private static final List<ItemLike> TECHNOLOGY_FURNITURE = List.of(
             ModBlocks.RETRO_COMPUTER.get().asItem(),

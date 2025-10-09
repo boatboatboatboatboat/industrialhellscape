@@ -80,6 +80,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.GRAY_STRUT_SLAB.get());
         this.dropSelf(ModBlocks.GRAY_STRUT_STAIRS.get());
 
+        this.dropSelf(ModBlocks.RUSTY_STRUT.get());
+
         this.dropSelf(ModBlocks.ENCASED_CABLES.get());
 
         //STONELIKE BLOCKS
@@ -142,6 +144,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
         //METALWORKS BLOCKS
         this.dropSelf(ModBlocks.METALWORKS.get());
+        this.dropSelf(ModBlocks.DUCT.get());
+        this.dropSelf(ModBlocks.RUSTY_DUCT.get());
         this.dropSelf(ModBlocks.YELLOW_STAIR_RAILING.get());
         this.dropSelf(ModBlocks.YELLOW_RAILING.get());
         this.dropSelf(ModBlocks.GRAY_BOLTED_BRACKET.get());
@@ -163,6 +167,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.WORK_LIGHT_MOUNT.get());
         this.dropSelf(ModBlocks.FLOOR_WORK_LIGHT.get());
         this.dropSelf(ModBlocks.FUEL_DRUM.get());
+        this.dropSelf(ModBlocks.CCTV_CAMERA.get());
 
         this.dropSelf(ModBlocks.CASSETTE_PLAYER.get());
         this.dropSelf(ModBlocks.RETRO_COMPUTER.get());
@@ -176,6 +181,10 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
         this.dropSelf(ModBlocks.OFFICE_DESK_DRAWER.get());
         this.dropSelf(ModBlocks.OFFICE_DESK.get());
+
+        //DOORS AND TRAPDOORS
+        this.dropSelf(ModBlocks.VENT_TRAPDOOR.get());
+        this.dropSelf(ModBlocks.RUSTY_VENT_TRAPDOOR.get());
 
         //FURNITURE CATEGORIES
         this.dropSelf(ModBlocks.AMENITY_FURNISHINGS.get());
