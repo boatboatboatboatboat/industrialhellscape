@@ -25,7 +25,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.BODY_PILLOW.get());
 
         //IRONLIKE SIMPLE BLOCKS
-        this.dropSelf(ModBlocks.VESSELPLATE.get());
         this.dropSelf(ModBlocks.RIVETED_VESSELPLATE_PANEL.get());
         this.dropSelf(ModBlocks.GRATE.get());
         this.dropSelf(ModBlocks.SEETHROUGH_GRATE.get());
@@ -48,7 +47,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.GRAY_REINFORCED_VESSELGLASS.get());
         this.dropSelf(ModBlocks.GRAY_VESSELGLASS.get());
 
-        this.dropSelf(ModBlocks.GRAY_VESSELPLATE.get());
         this.dropSelf(ModBlocks.GRAY_RIVETED_VESSELPLATE_PANEL.get());
         this.dropSelf(ModBlocks.GRAY_GRATE.get());
         this.dropSelf(ModBlocks.GRAY_SEETHROUGH_GRATE.get());

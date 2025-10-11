@@ -25,6 +25,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         //  Increasing from the default of 1 requires disabling Vesselplate, Rockrete, Pipeworks, and/or Vesselglass recycling
     private static final int vesselplatePerIronIngot = 1;
     private static final int strutPerIronIngot = 1;
+    private static final int ventilationPerIronIngot = 1;
     private static final int rockretePerStone = 1;
     private static final int vesselglassPerCraft = 4;
 
@@ -36,12 +37,27 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     private static final boolean doVesselplateCookRecycle = true;
     private static final boolean doRockreteCookRecycle = true;
     private static final boolean doStrutCookRecycle = true;
-    private static final boolean doVesselglassCookRecycle = false;
+    private static final boolean doVentilationCookRecycle = true;
+    private static final boolean doVesselglassCookRecycle = false; //FALSE, craft x4
 
-    private static final boolean doPipeworksCookRecycle = false;
-    private static final boolean doMetalworksCookRecycle = false;
+    private static final boolean doPipeworksCookRecycle = false; //FALSE, craft x3
+    private static final boolean doMetalworksCookRecycle = false; //FALSE, craft x3
 
     //---------- END OF DATAGEN VARIABLES ----------
+    private static final List<ItemLike> VENTILATION_STONECUT_OUTPUT = List.of(
+            ModBlocks.DUCT.get().asItem(),
+            ModBlocks.RUSTY_DUCT.get().asItem(),
+
+            ModBlocks.RUSTY_GRATE.get().asItem(),
+
+            ModBlocks.GRATE.get().asItem(),
+            ModBlocks.SEETHROUGH_GRATE.get().asItem(),
+
+            ModBlocks.GRAY_GRATE.get().asItem(),
+            ModBlocks.GRAY_SEETHROUGH_GRATE.get().asItem(),
+
+            ModBlocks.ENCASED_CABLES.get().asItem() //Temporary location
+    );
     private static final List<ItemLike> STRUT_STONECUT_OUTPUT = List.of(
             ModBlocks.STRUT.get().asItem(),
             ModBlocks.STRUT_STAIRS.get().asItem(),
@@ -61,11 +77,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     );
 
     private static final List<ItemLike> VESSELPLATE_STONECUT_OUTPUT = List.of(
-            ModBlocks.VESSELPLATE.get().asItem(),
             ModBlocks.VESSELPLATE_PILLAR.get().asItem(),
             ModBlocks.RIVETED_VESSELPLATE_PANEL.get().asItem(),
-            ModBlocks.GRATE.get().asItem(),
-            ModBlocks.SEETHROUGH_GRATE.get().asItem(),
             ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
             ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
             ModBlocks.SMOOTH_VESSELPLATE_TILE.get().asItem(),
@@ -73,10 +86,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.VESSELPLATE_SHEETING_STAIRS.get().asItem(),
             ModBlocks.VESSELPLATE_SHEETING_SLAB.get().asItem(),
 
-            ModBlocks.GRAY_VESSELPLATE.get().asItem(),
             ModBlocks.GRAY_RIVETED_VESSELPLATE_PANEL.get().asItem(),
-            ModBlocks.GRAY_GRATE.get().asItem(),
-            ModBlocks.GRAY_SEETHROUGH_GRATE.get().asItem(),
+
             ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
             ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
             ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get().asItem(),
@@ -88,10 +99,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.RIVETED_VESSELPLATE_STAIRS.get().asItem(),
             ModBlocks.RIVETED_VESSELPLATE_SLAB.get().asItem(),
             ModBlocks.GRAY_RIVETED_VESSELPLATE_STAIRS.get().asItem(),
-            ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get().asItem(),
-
-            ModBlocks.ENCASED_CABLES.get().asItem(),
-            ModBlocks.RUSTY_GRATE.get().asItem()
+            ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get().asItem()
     );
     private static final List<ItemLike> ROCKRETE_STONECUT_OUTPUT = List.of(
             
@@ -150,8 +158,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     private static final List<ItemLike> METALWORKS_STONECUT_OUTPUT = List.of(
             ModBlocks.METALWORKS.get().asItem(),
-            ModBlocks.DUCT.get().asItem(),
-            ModBlocks.RUSTY_DUCT.get().asItem(),
             ModBlocks.YELLOW_RAILING.get().asItem(),
             ModBlocks.BLACK_BOLTED_BRACKET.get().asItem(),
             ModBlocks.GRAY_BOLTED_BRACKET.get().asItem(),
@@ -211,8 +217,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         //---------- CREATE BASE MODDED BLOCKS FROM VANILLA BLOCKS ----------
 
         //Create 9x Vesselplate from 9x iron ingots OR 1x Vesselplate from 1x iron ingots
-        OneIngredientShapelessRecipe(ModBlocks.VESSELPLATE.get(), vesselplatePerIronIngot, Ingredient.of(Items.IRON_INGOT), "vesselplate_from_iron_ingot", pWriter);
-        OneIngredientShapelessRecipe(ModBlocks.VESSELPLATE.get(), vesselplatePerIronIngot*9, Ingredient.of(Items.IRON_BLOCK), "vesselplate_from_iron_block", pWriter);
+        OneIngredientShapelessRecipe(ModBlocks.RIVETED_VESSELPLATE_PANEL.get(), vesselplatePerIronIngot, Ingredient.of(Items.IRON_INGOT), "vesselplate_from_iron_ingot", pWriter);
+        OneIngredientShapelessRecipe(ModBlocks.RIVETED_VESSELPLATE_PANEL.get(), vesselplatePerIronIngot*9, Ingredient.of(Items.IRON_BLOCK), "vesselplate_from_iron_block", pWriter);
 
         //Create Rockrete Base Block from 1 stone
         OneIngredientShapelessRecipe(ModBlocks.GRAY_ROCKRETE.get(), rockretePerStone, Ingredient.of(ModTags.Items.IH_RECIPE_STONELIKES), "rockrete_from_stone", pWriter);
@@ -230,6 +236,18 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("A A")
                 .pattern(" B ")
                 .pattern("A A")
+
+                .define('A', Items.IRON_INGOT)
+                .define('B', ModItems.INHELL_HAVEN_DEVICE.get())
+
+                .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                .save(pWriter);
+
+        //Create Ventilation
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.DUCT.get(),ventilationPerIronIngot*4)
+                .pattern(" A ")
+                .pattern("ABA")
+                .pattern(" A ")
 
                 .define('A', Items.IRON_INGOT)
                 .define('B', ModItems.INHELL_HAVEN_DEVICE.get())
@@ -291,6 +309,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         }
         if(doStrutCookRecycle) {
             recipeSmeltAndBlast(pWriter, ModTags.Items.STRUT_SMELTABLE_ITEM, RecipeCategory.MISC, Items.IRON_INGOT, 200, 100, "strut");
+        }
+        if(doVentilationCookRecycle) {
+            recipeSmeltAndBlast(pWriter, ModTags.Items.HVAC_SMELTABLE_ITEM, RecipeCategory.MISC, Items.IRON_INGOT, 200, 100, "ventilation");
         }
         if(doVesselglassCookRecycle) {
             recipeSmeltAndBlast(pWriter, ModTags.Items.VESSELGLASS_SMELTABLE_ITEM, RecipeCategory.MISC, Items.GLASS, 200, 100, "vesselglass");
@@ -383,6 +404,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
 
         //Building Blocks - Parameters: (List of possible output items, String for generated recipe name, Tag of possible input items, pWriter)
+        iterativeRecipes(VENTILATION_STONECUT_OUTPUT, "ventilation", ModTags.Items.HVAC_SMELTABLE_ITEM, pWriter);
         iterativeRecipes(STRUT_STONECUT_OUTPUT, "strut", ModTags.Items.STRUT_SMELTABLE_ITEM, pWriter);
         iterativeRecipes(VESSELPLATE_STONECUT_OUTPUT, "vesselplate", ModTags.Items.VESSELPLATE_SMELTABLE_ITEM, pWriter);
         iterativeRecipes(VESSELGLASS_STONECUT_OUTPUT, "vesselglass", ModTags.Items.VESSELGLASS_SMELTABLE_ITEM, pWriter);

@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nonnull;
 import java.util.concurrent.CompletableFuture;
 
 public class ModItemTagGenerator extends ItemTagsProvider {
@@ -29,7 +30,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
     public static final TagKey<Item> TOOLS = TagKey.create(BuiltInRegistries.ITEM.key(), new ResourceLocation("forge", "tools"));
 
     @Override
-    protected void addTags(HolderLookup.Provider pProvider) {
+    protected void addTags(@Nonnull HolderLookup.Provider pProvider) {
         //---------- EXTERNAL TAG REGISTRATION ----------
         tag(WRENCHES); //Forge
         tag(WRENCH); //Forge
@@ -60,16 +61,27 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.GRAY_CATWALK_STRUT.get().asItem(),
                         ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get().asItem()
                 );
+        this.tag(ModTags.Items.HVAC_SMELTABLE_ITEM)
+                .add(
+                        ModBlocks.DUCT.get().asItem(),
+                        ModBlocks.RUSTY_DUCT.get().asItem(),
+
+                        ModBlocks.RUSTY_GRATE.get().asItem(),
+
+                        ModBlocks.GRATE.get().asItem(),
+                        ModBlocks.SEETHROUGH_GRATE.get().asItem(),
+
+                        ModBlocks.GRAY_GRATE.get().asItem(),
+                        ModBlocks.GRAY_SEETHROUGH_GRATE.get().asItem(),
+
+                        ModBlocks.ENCASED_CABLES.get().asItem()
+                );
 
 
         this.tag(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM) //NO HALF BLOCKS HERE
                 .add(
                 //NO HALF BLOCKS HERE
                         //Full BLocks
-                        ModBlocks.VESSELPLATE.get().asItem(),
-                        ModBlocks.GRATE.get().asItem(),
-                        ModBlocks.SEETHROUGH_GRATE.get().asItem(),
-                        ModBlocks.RUSTY_GRATE.get().asItem(),
                         ModBlocks.RIVETED_VESSELPLATE_PANEL.get().asItem(),
                         ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
                         ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
@@ -78,12 +90,10 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.VESSELPLATE_SHEETING.get().asItem(),
                         ModBlocks.VESSELPLATE_SHEETING_STAIRS.get().asItem(),
 
-                        ModBlocks.RUSTY_GRATE.get().asItem(),
 
-                        ModBlocks.GRAY_VESSELPLATE.get().asItem(),
+
                         ModBlocks.GRAY_RIVETED_VESSELPLATE_PANEL.get().asItem(),
-                        ModBlocks.GRAY_GRATE.get().asItem(),
-                        ModBlocks.GRAY_SEETHROUGH_GRATE.get().asItem(),
+
                         ModBlocks.RIVETED_VESSELPLATE_PANEL.get().asItem(),
                         ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
                         ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
@@ -95,12 +105,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 
                         ModBlocks.RIVETED_VESSELPLATE_STAIRS.get().asItem(),
                         ModBlocks.GRAY_RIVETED_VESSELPLATE_STAIRS.get().asItem(),
-                        ModBlocks.SMOOTH_VESSELPLATE_STAIRS.get().asItem(),
-
-
-
-
-                        ModBlocks.ENCASED_CABLES.get().asItem()
+                        ModBlocks.SMOOTH_VESSELPLATE_STAIRS.get().asItem()
 
                 //NO HALF BLOCKS HERE
                 );
@@ -166,8 +171,6 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 .add(
                         ModBlocks.METALWORKS.get().asItem(),
 
-                        ModBlocks.DUCT.get().asItem(),
-                        ModBlocks.RUSTY_DUCT.get().asItem(),
                         ModBlocks.YELLOW_RAILING.get().asItem(),
                         ModBlocks.YELLOW_STAIR_RAILING.get().asItem(),
                         ModBlocks.BLACK_BOLTED_BRACKET.get().asItem(),

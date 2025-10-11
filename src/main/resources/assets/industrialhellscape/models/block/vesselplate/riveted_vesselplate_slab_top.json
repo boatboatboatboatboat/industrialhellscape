@@ -1,9 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "bottom": "industrialhellscape:block/vesselplate/riveted_vesselplate",
-    "side": "industrialhellscape:block/vesselplate/riveted_vesselplate",
-    "top": "industrialhellscape:block/vesselplate/riveted_vesselplate"
-  }
-}

@@ -37,8 +37,8 @@
 
   "block.industrialhellscape.gray_vesselplate": "Vesselplate",
   "block.industrialhellscape.gray_riveted_vesselplate_panel": "Gray Riveted Vesselplate Panel",
-  "block.industrialhellscape.gray_vertical_riveted_vesselplate": "Vertical Riveted Vesselplate",
-  "block.industrialhellscape.gray_horizontal_riveted_vesselplate": "Horizontal Riveted Vesselplate",
+  "block.industrialhellscape.gray_vertical_riveted_vesselplate": "Gray Vertical Riveted Vesselplate",
+  "block.industrialhellscape.gray_horizontal_riveted_vesselplate": "Gray Horizontal Riveted Vesselplate",
   "block.industrialhellscape.smooth_gray_vesselplate_tile": "Smooth Gray Vesselplate Tile",
   "block.industrialhellscape.smooth_gray_vesselplate_stairs": "Smooth Gray Vesselplate Stairs",
   "block.industrialhellscape.smooth_gray_vesselplate_slab": "Smooth Gray Vesselplate Slab",
@@ -46,11 +46,6 @@
   "block.industrialhellscape.gray_vesselplate_sheeting": "Vesselplate Sheet Panel",
 
   "block.industrialhellscape.encased_cables": "Encased Cables",
-  "block.industrialhellscape.see-through_grate": "See-Through Grate",
-  "block.industrialhellscape.gray_see-through_grate": "Gray See-Through Grate",
-  "block.industrialhellscape.grate": "Grate",
-  "block.industrialhellscape.gray_grate": "Gray Grate",
-  "block.industrialhellscape.rusty_grate": "Rusty Grate",
 
   "block.industrialhellscape.pipeworks": "Pipeworks",
   "block.industrialhellscape.metalworks": "Metalworks",
@@ -102,8 +97,6 @@
   "block.industrialhellscape.hazard_stripe_red": "Hazard Stripe Red",
   "block.industrialhellscape.grimy_restroom_tile": "Grimy Restroom Tile",
 
-  "block.industrialhellscape.sound_block": "Sound Block",
-
   "block.industrialhellscape.ihea_furniture_kit": "IHEA Furniture Kit",
   "block.industrialhellscape.safety_furnishings": "Safety Furnishings",
   "block.industrialhellscape.hygiene_furnishings": "Hygiene Furnishings",
@@ -145,8 +138,6 @@
   "block.industrialhellscape.floor_work_light": "Floor Work Light",
   "block.industrialhellscape.yellow_railing": "Yellow Railing",
   "block.industrialhellscape.yellow_stair_railing": "Yellow Stair Railing",
-  "block.industrialhellscape.duct": "Duct",
-  "block.industrialhellscape.rusty_duct": "Rusty Duct",
 
   "block.industrialhellscape.strut": "Strut",
   "block.industrialhellscape.strut_stairs": "Strut Stairs",
@@ -162,6 +153,18 @@
   "block.industrialhellscape.gray_catwalk_strut_stairs": "Gray Catwalk Strut Stairs",
   "block.industrialhellscape.gray_catwalk_strut_slab": "Gray Catwalk Strut Slab",
 
+  "block.industrialhellscape.rusty_strut": "Rusty Strut",
+
+  "block.industrialhellscape.duct": "Duct",
+  "block.industrialhellscape.vent_trapdoor": "Vent Trapdoor",
+  "block.industrialhellscape.rusty_duct": "Rusty Duct",
+  "block.industrialhellscape.rusty_vent_trapdoor": "Rusty Vent Trapdoor",
+  "block.industrialhellscape.see-through_grate": "See-Through Grate",
+  "block.industrialhellscape.gray_see-through_grate": "Gray See-Through Grate",
+  "block.industrialhellscape.grate": "Grate",
+  "block.industrialhellscape.gray_grate": "Gray Grate",
+  "block.industrialhellscape.rusty_grate": "Rusty Grate",
+
   "sounds.industrialhellscape.toilet_flush": "Toilet flushes",
   "sounds.industrialhellscape.metalpipefallingsoundeffect": "Metal pipes falling",
   "sounds.industrialhellscape.metal_box_opening": "Metal container opens",
@@ -172,7 +175,7 @@
 
   "tooltip.industrialhellscape.haventool": "Right-click and/or sneak-right-click to rotate some I.H. blocks, change their texture behavior, or furniture block-state (like desks).",
   "tooltip.industrialhellscape.vaporwave_cassette": "§6\"Warp signatures coming from Lagrange 4. Unidentified. All orbital guns, align prograde to solar orbit. We have 50 hours to contact.\"",
-  "tooltip.industrialhellscape.vesselplate": "Used extensively to armor the warships of the InHell Corporate Acquisition Fleet.",
+  "tooltip.industrialhellscape.riveted_vesselplate_panel": "Used extensively to armor the warships of the InHell Corporate Acquisition Fleet.",
 
   "tooltip.industrialhellscape.gray_rockrete": "Mass-produced for Class-3 employee accommodations and below in InHell-owned megacities.",
   "tooltip.industrialhellscape.red_rockrete": "Color is tentative during beta",
@@ -182,8 +185,8 @@
 
   "tooltip.industrialhellscape.ihea_furniture_kit": "InHell Ergonomic Amenities. Use in a stonecutter to craft furnishings.",
 
-  "tooltip.industrialhellscape.pipeworks": "Use a pickaxe to rotate blocks stonecut from this. Using the HAVEN tool allows full rotation functionality.",
-  "tooltip.industrialhellscape.metalworks": "Use a pickaxe to rotate blocks stonecut from this. Using the HAVEN tool allows full rotation functionality.",
+  "tooltip.industrialhellscape.pipeworks": "Use a pickaxe to rotate blocks stone-cut from this. Using the HAVEN tool allows full rotation functionality.",
+  "tooltip.industrialhellscape.metalworks": "Use a pickaxe to rotate blocks stone-cut from this. Using the HAVEN tool allows full rotation functionality.",
 
   "gui.industrialhellscape.inventory_menu": "Industrial Hellscape Storage",
   "gui.industrialhellscape.creative_tab": "InHell Facility Solutions",

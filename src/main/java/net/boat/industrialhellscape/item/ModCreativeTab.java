@@ -39,7 +39,6 @@ public class ModCreativeTab {
                         output.accept(ModItems.RETRO_CASSETTE.get());
 
                         //IRONLIKE BLOCKS FOR CREATIVE TAB
-                        output.accept(ModBlocks.VESSELPLATE.get());
                         output.accept(ModBlocks.RIVETED_VESSELPLATE_PANEL.get());
                         output.accept(ModBlocks.GRATE.get());
                         output.accept(ModBlocks.SEETHROUGH_GRATE.get());
@@ -56,8 +55,6 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.VESSELPLATE_SHEETING_STAIRS.get());
                         output.accept(ModBlocks.VESSELPLATE_SHEETING_SLAB.get());
 
-
-                        output.accept(ModBlocks.GRAY_VESSELPLATE.get());
                         output.accept(ModBlocks.GRAY_RIVETED_VESSELPLATE_PANEL.get());
                         output.accept(ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get());
                         output.accept(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get());

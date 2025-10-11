@@ -1,9 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "bottom": "industrialhellscape:block/vesselplate/gray_riveted_vesselplate",
-    "side": "industrialhellscape:block/vesselplate/gray_riveted_vesselplate",
-    "top": "industrialhellscape:block/vesselplate/gray_riveted_vesselplate"
-  }
-}

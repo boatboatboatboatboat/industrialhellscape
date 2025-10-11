@@ -16,6 +16,7 @@ public class ModTags {
         public static final TagKey<Block> VESSELGLASS_BLOCKS = tag("vesselglass_blocks");
         public static final TagKey<Block> ROCKRETE_BLOCKS = tag("rockrete_blocks");
         public static final TagKey<Block> STRUT_BLOCKS = tag("strut_blocks");
+        public static final TagKey<Block> HVAC_BLOCKS = tag("hvac_blocks");
 
         public static final TagKey<Block> PIPEWORKS_BLOCKS = tag("pipeworks_blocks");
         public static final TagKey<Block> METALWORKS_BLOCKS = tag("metalworks_blocks");
@@ -49,6 +50,7 @@ public class ModTags {
         public static final TagKey<Item> VESSELGLASS_SMELTABLE_ITEM = tag("vesselglass_smeltable_item");
         public static final TagKey<Item> ROCKRETE_SMELTABLE_ITEM = tag("rockrete_smeltable_item");
         public static final TagKey<Item> STRUT_SMELTABLE_ITEM = tag("strut_smeltable_item");
+        public static final TagKey<Item> HVAC_SMELTABLE_ITEM = tag("hvac_smeltable_item");
 
         public static final TagKey<Item> PIPEWORKS_ITEMS = tag("pipeworks_items");
         public static final TagKey<Item> METALWORKS_ITEMS = tag("metalworks_items");

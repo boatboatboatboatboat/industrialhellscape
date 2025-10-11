@@ -46,8 +46,8 @@ public class ModItems {
 
     //---------- BLOCK ITEMS ----------
         //For flavor text purposes. Ignore the unuse warning.
-    public static final RegistryObject<Item> VESSELPLATE_ITEM = ITEMS.register("vesselplate",
-            () -> new BlockItemWithTooltip(ModBlocks.VESSELPLATE.get(), new Item.Properties()));
+    public static final RegistryObject<Item> RIVETED_VESSELPLATE_PANEL_ITEM = ITEMS.register("riveted_vesselplate_panel",
+            () -> new BlockItemWithTooltip(ModBlocks.RIVETED_VESSELPLATE_PANEL.get(), new Item.Properties()));
 
     public static final RegistryObject<Item> GRAY_ROCKRETE_ITEM = ITEMS.register("gray_rockrete",
             () -> new BlockItemWithTooltip(ModBlocks.GRAY_ROCKRETE.get(), new Item.Properties()));

@@ -125,12 +125,7 @@ public class ModBlocks {
 
 
     //VESSELPLATE BLOCKS
-    public static final RegistryObject<Block> VESSELPLATE = registerBlockOnly("vesselplate",
-            () -> new Block(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
-                    )
-    );
-    public static final RegistryObject<Block> RIVETED_VESSELPLATE_PANEL = registerBlockAndBlockItem("riveted_vesselplate_panel",
+    public static final RegistryObject<Block> RIVETED_VESSELPLATE_PANEL = registerBlockOnly("riveted_vesselplate_panel",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     )
@@ -146,7 +141,7 @@ public class ModBlocks {
             )
     );
     public static final RegistryObject<Block> HORIZONTAL_RIVETED_VESSELPLATE = registerBlockAndBlockItem("horizontal_riveted_vesselplate",
-            () -> new Block(BlockBehaviour
+            () -> new DirectionalTextureToggleBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
             )
     );
@@ -161,11 +156,6 @@ public class ModBlocks {
             )
     );
 
-    public static final RegistryObject<Block> GRAY_VESSELPLATE = registerBlockAndBlockItem("gray_vesselplate",
-            () -> new Block(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
-            )
-    );
     public static final RegistryObject<Block> GRAY_RIVETED_VESSELPLATE_PANEL = registerBlockAndBlockItem("gray_riveted_vesselplate_panel",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
@@ -177,7 +167,7 @@ public class ModBlocks {
             )
     );
     public static final RegistryObject<Block> GRAY_HORIZONTAL_RIVETED_VESSELPLATE = registerBlockAndBlockItem("gray_horizontal_riveted_vesselplate",
-            () -> new Block(BlockBehaviour
+            () -> new DirectionalTextureToggleBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
             )
     );
@@ -310,7 +300,7 @@ public class ModBlocks {
     );
 
     public static final RegistryObject<Block> RIVETED_VESSELPLATE_STAIRS = registerBlockAndBlockItem("riveted_vesselplate_stairs",
-            () -> new StairBlock(() -> ModBlocks.VESSELPLATE.get().defaultBlockState(), //USING A SIMPLETEXTURETOGGLEBLOCK WILL CAUSE TOOLS TO CHANGE THE STAIR BLOCK TO THAT BLOCK
+            () -> new StairBlock(Blocks.IRON_BLOCK::defaultBlockState, //USING A SIMPLETEXTURETOGGLEBLOCK WILL CAUSE TOOLS TO CHANGE THE STAIR BLOCK TO THAT BLOCK
                     BlockBehaviour
                             .Properties.copy(Blocks.IRON_BLOCK)
                             .noOcclusion()
@@ -323,7 +313,7 @@ public class ModBlocks {
                     .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
     );
     public static final RegistryObject<Block> GRAY_RIVETED_VESSELPLATE_STAIRS = registerBlockAndBlockItem("gray_riveted_vesselplate_stairs",
-            () -> new StairBlock(() -> ModBlocks.VESSELPLATE.get().defaultBlockState(),
+            () -> new StairBlock(Blocks.IRON_BLOCK::defaultBlockState,
                     BlockBehaviour
                             .Properties.copy(Blocks.IRON_BLOCK)
                             .noOcclusion()
@@ -336,7 +326,7 @@ public class ModBlocks {
                     .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
     );
     public static final RegistryObject<Block> SMOOTH_VESSELPLATE_STAIRS = registerBlockAndBlockItem("smooth_vesselplate_stairs",
-            () -> new StairBlock(() -> ModBlocks.VESSELPLATE.get().defaultBlockState(),
+            () -> new StairBlock(Blocks.IRON_BLOCK::defaultBlockState,
                     BlockBehaviour
                             .Properties.copy(Blocks.IRON_BLOCK)
                             .noOcclusion()
@@ -349,7 +339,7 @@ public class ModBlocks {
                     .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
     );
     public static final RegistryObject<Block> SMOOTH_GRAY_VESSELPLATE_STAIRS = registerBlockAndBlockItem("smooth_gray_vesselplate_stairs",
-            () -> new StairBlock(() -> ModBlocks.VESSELPLATE.get().defaultBlockState(),
+            () -> new StairBlock(Blocks.IRON_BLOCK::defaultBlockState,
                     BlockBehaviour
                             .Properties.copy(Blocks.IRON_BLOCK)
                             .noOcclusion()
@@ -362,7 +352,7 @@ public class ModBlocks {
                     .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
     );
     public static final RegistryObject<Block> VESSELPLATE_SHEETING_STAIRS = registerBlockAndBlockItem("vesselplate_sheeting_stairs",
-            () -> new StairBlock(() -> ModBlocks.VESSELPLATE.get().defaultBlockState(),
+            () -> new StairBlock(Blocks.IRON_BLOCK::defaultBlockState,
                     BlockBehaviour
                             .Properties.copy(Blocks.IRON_BLOCK)
                             .noOcclusion()
@@ -376,7 +366,7 @@ public class ModBlocks {
     );
 
     public static final RegistryObject<Block> GRAY_VESSELPLATE_SHEETING_STAIRS = registerBlockAndBlockItem("gray_vesselplate_sheeting_stairs",
-            () -> new StairBlock(() -> ModBlocks.VESSELPLATE.get().defaultBlockState(),
+            () -> new StairBlock(Blocks.IRON_BLOCK::defaultBlockState,
                     BlockBehaviour
                             .Properties.copy(Blocks.IRON_BLOCK)
                             .noOcclusion()

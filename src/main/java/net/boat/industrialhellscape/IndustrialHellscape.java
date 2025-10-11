@@ -102,7 +102,8 @@ public class IndustrialHellscape {
             removeAndReplace(ModBlockMappings, ModItemMappings,"yellow_rockrete_rebar", ModBlocks.YELLOW_ROCKRETE.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"riveted_vesselplate", ModBlocks.RIVETED_VESSELPLATE_PANEL.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"gray_riveted_vesselplate", ModBlocks.GRAY_RIVETED_VESSELPLATE_PANEL.get());
-
+            removeAndReplace(ModBlockMappings, ModItemMappings,"vesselplate", ModBlocks.RIVETED_VESSELPLATE_PANEL.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_vesselplate", ModBlocks.GRAY_RIVETED_VESSELPLATE_PANEL.get());
         }
 
         private static void removeAndReplace( List<MissingMappingsEvent.Mapping<Block>> ModBlockMappings, List<MissingMappingsEvent.Mapping<Item>> ModItemMappings,String removedRegistryName, Block blockReplacement) {

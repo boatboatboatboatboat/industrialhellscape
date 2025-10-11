@@ -8,9 +8,9 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nonnull;
 import java.util.concurrent.CompletableFuture;
 
 public class ModBlockTagGenerator extends BlockTagsProvider {
@@ -19,7 +19,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
     }
 
     @Override
-    protected void addTags(HolderLookup.Provider pProvider) {
+    protected void addTags(@Nonnull HolderLookup.Provider pProvider) {
         this.tag(ModTags.Blocks.STRUT_BLOCKS)
                 .add(
                         ModBlocks.STRUT.get(),
@@ -38,14 +38,25 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.GRAY_CATWALK_STRUT_SLAB.get(),
                         ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get()
                 );
+        this.tag(ModTags.Blocks.HVAC_BLOCKS)
+                .add(
+                        ModBlocks.DUCT.get(),
+                        ModBlocks.RUSTY_DUCT.get(),
+
+                        ModBlocks.RUSTY_GRATE.get(),
+
+                        ModBlocks.GRATE.get(),
+                        ModBlocks.SEETHROUGH_GRATE.get(),
+
+                        ModBlocks.GRAY_GRATE.get(),
+                        ModBlocks.GRAY_SEETHROUGH_GRATE.get(),
+
+                        ModBlocks.ENCASED_CABLES.get()
+                );
 
         this.tag(ModTags.Blocks.VESSELPLATE_BLOCKS)
                 .add(
-                        ModBlocks.VESSELPLATE.get(),
                         ModBlocks.RIVETED_VESSELPLATE_PANEL.get(),
-                        //ModBlocks.VESSELPLATE_GRATE_BLOCK.get(),
-                        ModBlocks.GRATE.get(),
-                        ModBlocks.SEETHROUGH_GRATE.get(),
                         ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get(),
                         ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get(),
                         ModBlocks.SMOOTH_VESSELPLATE_TILE.get(),
@@ -54,10 +65,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.VESSELPLATE_SHEETING_STAIRS.get(),
                         ModBlocks.VESSELPLATE_SHEETING_SLAB.get(),
 
-                        ModBlocks.GRAY_VESSELPLATE.get(),
                         ModBlocks.GRAY_RIVETED_VESSELPLATE_PANEL.get(),
-                        ModBlocks.GRAY_GRATE.get(),
-                        ModBlocks.GRAY_SEETHROUGH_GRATE.get(),
                         ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get(),
                         ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get(),
                         ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get(),
@@ -74,10 +82,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.SMOOTH_VESSELPLATE_STAIRS.get(),
                         ModBlocks.SMOOTH_VESSELPLATE_SLAB.get(),
                         ModBlocks.SMOOTH_GRAY_VESSELPLATE_STAIRS.get(),
-                        ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get(),
-
-                        ModBlocks.ENCASED_CABLES.get(),
-                        ModBlocks.RUSTY_GRATE.get()
+                        ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get()
                 );
 
         this.tag(ModTags.Blocks.VESSELGLASS_BLOCKS)
@@ -132,8 +137,6 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
         this.tag(ModTags.Blocks.METALWORKS_BLOCKS) //FOR CORRECT MINING TOOLS AND TOOL TIER
                 .add(
                         ModBlocks.METALWORKS.get(),
-                        ModBlocks.DUCT.get(),
-                        ModBlocks.RUSTY_DUCT.get(),
                         ModBlocks.YELLOW_STAIR_RAILING.get(),
                         ModBlocks.YELLOW_RAILING.get(),
                         ModBlocks.GRAY_BOLTED_BRACKET.get(),
@@ -251,6 +254,9 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModTags.Blocks.VESSELGLASS_BLOCKS,
                         ModTags.Blocks.ROCKRETE_BLOCKS,
 
+                        ModTags.Blocks.STRUT_BLOCKS,
+                        ModTags.Blocks.HVAC_BLOCKS,
+
                         ModTags.Blocks.PIPEWORKS_BLOCKS,
                         ModTags.Blocks.METALWORKS_BLOCKS,
 
@@ -266,6 +272,9 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModTags.Blocks.ROCKRETE_BLOCKS,
                         ModTags.Blocks.VESSELPLATE_BLOCKS,
                         ModTags.Blocks.VESSELGLASS_BLOCKS,
+
+                        ModTags.Blocks.STRUT_BLOCKS,
+                        ModTags.Blocks.HVAC_BLOCKS,
 
                         ModTags.Blocks.PIPEWORKS_BLOCKS,
                         ModTags.Blocks.METALWORKS_BLOCKS,
