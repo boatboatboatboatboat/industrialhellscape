@@ -154,6 +154,12 @@
   "block.industrialhellscape.gray_catwalk_strut_slab": "Gray Catwalk Strut Slab",
 
   "block.industrialhellscape.rusty_strut": "Rusty Strut",
+  "block.industrialhellscape.rusty_strut_stairs": "Rusty Strut Stairs",
+  "block.industrialhellscape.rusty_strut_slab": "Rusty Strut Slab",
+
+  "block.industrialhellscape.rusty_catwalk_strut": "Rusty Strut",
+  "block.industrialhellscape.rusty_catwalk_strut_stairs": "Rusty Catwalk Strut Stairs",
+  "block.industrialhellscape.rusty_catwalk_strut_slab": "Rusty Catwalk Strut Slab",
 
   "block.industrialhellscape.duct": "Duct",
   "block.industrialhellscape.vent_trapdoor": "Vent Trapdoor",

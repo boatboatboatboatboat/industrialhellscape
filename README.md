@@ -56,6 +56,19 @@ I encourage feedback on how to make this documentation more clear for new Java m
 
 
 # I Want to Use Your Code for My Own Mods
+
+You can probably download this whole repo and delete the registered content in
+- ModBlocks
+- ModItems
+- ModcreativeTab
+- ModTags
+- ModSounds
+
+Along with all files inside of the assets folder. 
+Change the mod namespace, mod name, and information in the mods.toml file to your mod.
+
+The other way is to selectively download the java classes you want to incorporate into your mod:
+
 ## Importing the correct content:
 ### If you're here, you're probably focusing on the block classes since those are the bulk of InHell's content.
 

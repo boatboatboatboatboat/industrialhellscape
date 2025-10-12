@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,powered=false": {
+      "model": "industrialhellscape:block/work_light_mount/floor_work_light",
+      "y": 90
+    },
+    "facing=east,powered=true": {
+      "model": "industrialhellscape:block/work_light_mount/floor_work_light_on",
+      "y": 90
+    },
+    "facing=north,powered=false": {
+      "model": "industrialhellscape:block/work_light_mount/floor_work_light"
+    },
+    "facing=north,powered=true": {
+      "model": "industrialhellscape:block/work_light_mount/floor_work_light_on"
+    },
+    "facing=south,powered=false": {
+      "model": "industrialhellscape:block/work_light_mount/floor_work_light",
+      "y": 180
+    },
+    "facing=south,powered=true": {
+      "model": "industrialhellscape:block/work_light_mount/floor_work_light_on",
+      "y": 180
+    },
+    "facing=west,powered=false": {
+      "model": "industrialhellscape:block/work_light_mount/floor_work_light",
+      "y": 270
+    },
+    "facing=west,powered=true": {
+      "model": "industrialhellscape:block/work_light_mount/floor_work_light_on",
+      "y": 270
+    }
+  }
+}

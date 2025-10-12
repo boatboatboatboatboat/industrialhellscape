@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "industrialhellscape:block/industrial_furnishings",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "industrialhellscape:block/industrial_furnishings"
+    },
+    "facing=south": {
+      "model": "industrialhellscape:block/industrial_furnishings",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "industrialhellscape:block/industrial_furnishings",
+      "y": 270
+    }
+  }
+}

@@ -12,8 +12,6 @@ import net.boat.industrialhellscape.item.ModItems;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.inventory.StonecutterMenu;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
@@ -21,7 +19,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -38,7 +35,7 @@ public class IndustrialHellscape {
     public IndustrialHellscape() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        ModCreativeTab.register(modEventBus);
+        ModCreativeTab.register(modEventBus); //Creative Mode tab for InHell
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModSounds.register(modEventBus);
@@ -104,6 +101,11 @@ public class IndustrialHellscape {
             removeAndReplace(ModBlockMappings, ModItemMappings,"gray_riveted_vesselplate", ModBlocks.GRAY_RIVETED_VESSELPLATE_PANEL.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"vesselplate", ModBlocks.RIVETED_VESSELPLATE_PANEL.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"gray_vesselplate", ModBlocks.GRAY_RIVETED_VESSELPLATE_PANEL.get());
+
+            removeAndReplace(ModBlockMappings, ModItemMappings,"horizontal_riveted_vesselplate", ModBlocks.DIRECTIONAL_RIVETED_VESSELPLATE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_horizontal_riveted_vesselplate", ModBlocks.GRAY_DIRECTIONAL_RIVETED_VESSELPLATE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"vertical_riveted_vesselplate", ModBlocks.DIRECTIONAL_RIVETED_VESSELPLATE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_vertical_riveted_vesselplate", ModBlocks.GRAY_DIRECTIONAL_RIVETED_VESSELPLATE.get());
         }
 
         private static void removeAndReplace( List<MissingMappingsEvent.Mapping<Block>> ModBlockMappings, List<MissingMappingsEvent.Mapping<Item>> ModItemMappings,String removedRegistryName, Block blockReplacement) {

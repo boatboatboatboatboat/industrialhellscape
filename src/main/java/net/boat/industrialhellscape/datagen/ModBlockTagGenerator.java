@@ -8,6 +8,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
@@ -36,7 +37,15 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
                         ModBlocks.GRAY_CATWALK_STRUT.get(),
                         ModBlocks.GRAY_CATWALK_STRUT_SLAB.get(),
-                        ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get()
+                        ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get(),
+
+                        ModBlocks.RUSTY_STRUT.get(),
+                        ModBlocks.RUSTY_STRUT_STAIRS.get(),
+                        ModBlocks.RUSTY_STRUT_SLAB.get(),
+
+                        ModBlocks.RUSTY_CATWALK_STRUT.get(),
+                        ModBlocks.RUSTY_CATWALK_STRUT_STAIRS.get(),
+                        ModBlocks.RUSTY_CATWALK_STRUT_SLAB.get()
                 );
         this.tag(ModTags.Blocks.HVAC_BLOCKS)
                 .add(
@@ -57,8 +66,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
         this.tag(ModTags.Blocks.VESSELPLATE_BLOCKS)
                 .add(
                         ModBlocks.RIVETED_VESSELPLATE_PANEL.get(),
-                        ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get(),
-                        ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get(),
+                        ModBlocks.DIRECTIONAL_RIVETED_VESSELPLATE.get(),
                         ModBlocks.SMOOTH_VESSELPLATE_TILE.get(),
                         ModBlocks.VESSELPLATE_PILLAR.get(),
                         ModBlocks.VESSELPLATE_SHEETING.get(),
@@ -66,8 +74,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.VESSELPLATE_SHEETING_SLAB.get(),
 
                         ModBlocks.GRAY_RIVETED_VESSELPLATE_PANEL.get(),
-                        ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get(),
-                        ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get(),
+                        ModBlocks.GRAY_DIRECTIONAL_RIVETED_VESSELPLATE.get(),
                         ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get(),
                         ModBlocks.GRAY_VESSELPLATE_PILLAR.get(),
                         ModBlocks.GRAY_VESSELPLATE_SHEETING.get(),

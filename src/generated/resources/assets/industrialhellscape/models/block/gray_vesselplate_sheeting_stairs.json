@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/stairs",
+  "render_type": "minecraft:solid",
+  "textures": {
+    "bottom": "industrialhellscape:block/vesselplate/gray_vesselplate_sheet",
+    "side": "industrialhellscape:block/vesselplate/gray_vesselplate_sheet",
+    "top": "industrialhellscape:block/vesselplate/gray_vesselplate_sheet"
+  }
+}

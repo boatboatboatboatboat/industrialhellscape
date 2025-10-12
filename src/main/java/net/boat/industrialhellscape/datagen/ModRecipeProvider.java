@@ -73,14 +73,21 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
             ModBlocks.GRAY_CATWALK_STRUT.get().asItem(),
             ModBlocks.GRAY_CATWALK_STRUT_SLAB.get().asItem(),
-            ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get().asItem()
+            ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get().asItem(),
+
+            ModBlocks.RUSTY_STRUT.get().asItem(),
+            ModBlocks.RUSTY_STRUT_STAIRS.get().asItem(),
+            ModBlocks.RUSTY_STRUT_SLAB.get().asItem(),
+
+            ModBlocks.RUSTY_CATWALK_STRUT.get().asItem(),
+            ModBlocks.RUSTY_CATWALK_STRUT_STAIRS.get().asItem(),
+            ModBlocks.RUSTY_CATWALK_STRUT_SLAB.get().asItem()
     );
 
     private static final List<ItemLike> VESSELPLATE_STONECUT_OUTPUT = List.of(
             ModBlocks.VESSELPLATE_PILLAR.get().asItem(),
             ModBlocks.RIVETED_VESSELPLATE_PANEL.get().asItem(),
-            ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
-            ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
+            ModBlocks.DIRECTIONAL_RIVETED_VESSELPLATE.get().asItem(),
             ModBlocks.SMOOTH_VESSELPLATE_TILE.get().asItem(),
             ModBlocks.VESSELPLATE_SHEETING.get().asItem(),
             ModBlocks.VESSELPLATE_SHEETING_STAIRS.get().asItem(),
@@ -88,8 +95,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
             ModBlocks.GRAY_RIVETED_VESSELPLATE_PANEL.get().asItem(),
 
-            ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
-            ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
+            ModBlocks.GRAY_DIRECTIONAL_RIVETED_VESSELPLATE.get().asItem(),
             ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get().asItem(),
             ModBlocks.GRAY_VESSELPLATE_PILLAR.get().asItem(),
             ModBlocks.GRAY_VESSELPLATE_SHEETING.get().asItem(),

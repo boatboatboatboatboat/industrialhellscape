@@ -40,12 +40,7 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
 
         //Vesselplate Blocks
         genFolderedToggleBlockSBI(ModBlocks.RIVETED_VESSELPLATE_PANEL.get(),"vesselplate","", true, true, "_panel", "");
-
-
-            genFolderedToggleBlockSBI(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get(),"vesselplate","",true, true,"horizontal","vertical");
-
-
-        genFolderedSBI(ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get(),"vesselplate");
+        genFolderedDirToggleBlockSBI(ModBlocks.DIRECTIONAL_RIVETED_VESSELPLATE.get(),"vesselplate","",true, true,"horizontal_riveted_vesselplate","vertical_riveted_vesselplate");
         genFolderedToggleBlockSBI(ModBlocks.SMOOTH_VESSELPLATE_TILE.get(),"vesselplate", "", true, true, "_tile","");
         genFolderedToggleBlockSBI(ModBlocks.VESSELPLATE_SHEETING.get(),"vesselplate","", true, true, "ing", "");
 
@@ -58,12 +53,7 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         genSlabsWithCustomDoubleSBI(ModBlocks.VESSELPLATE_SHEETING_SLAB.get(), ModBlocks.VESSELPLATE_SHEETING.get(),"vesselplate","vesselplate_sheeting_double_slab","vesselplate_sheeting_slab","vesselplate_sheeting","ing","");
 
         genFolderedToggleBlockSBI(ModBlocks.GRAY_RIVETED_VESSELPLATE_PANEL.get(),"vesselplate","", true, true, "_panel", "");
-
-
-            genFolderedToggleBlockSBI(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get(),"vesselplate","",true, true,"horizontal","vertical");
-
-
-        genFolderedSBI(ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get(),"vesselplate");
+        genFolderedDirToggleBlockSBI(ModBlocks.GRAY_DIRECTIONAL_RIVETED_VESSELPLATE.get(),"vesselplate","",true, true,"gray_horizontal_riveted_vesselplate","gray_vertical_riveted_vesselplate");
         genFolderedToggleBlockSBI(ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get(),"vesselplate", "", true, true, "_tile","");
         genFolderedToggleBlockSBI(ModBlocks.GRAY_VESSELPLATE_SHEETING.get(),"vesselplate","", true, true, "ing", "");
 
@@ -174,8 +164,12 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         genI(ModBlocks.GRAY_CATWALK_STRUT_SLAB.get(),"strut");
 
         genI(ModBlocks.RUSTY_STRUT.get(),"strut"); //Custom model
-        //genStairsWithRenderTypeSBI(ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get(),"strut","rusty_reinforced_strut","rusty_strut","rusty_floorgrate_catwalk","cutout");
-        //genI(ModBlocks.RUSTY_STRUT_SLAB.get(),"strut");
+        genStairsWithRenderTypeSBI(ModBlocks.RUSTY_STRUT_STAIRS.get(),"strut","rusty_reinforced_strut","rusty_strut","rusty_strut","cutout");
+        genI(ModBlocks.RUSTY_STRUT_SLAB.get(),"strut");
+
+        genI(ModBlocks.RUSTY_CATWALK_STRUT.get(),"strut");
+        genStairsWithRenderTypeSBI(ModBlocks.RUSTY_CATWALK_STRUT_STAIRS.get(),"strut","rusty_reinforced_strut","rusty_strut","rusty_floorgrate_catwalk","cutout");
+        genI(ModBlocks.RUSTY_CATWALK_STRUT_SLAB.get(),"strut");
 
         //Doors and Trapdoors
         genTrapdoorSBI(ModBlocks.VENT_TRAPDOOR.get(), "solid");
@@ -254,7 +248,7 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         ResourceLocation sideTextureLoc = new ResourceLocation(IndustrialHellscape.MOD_ID,blockPath+sideTexture );
         ResourceLocation topTextureLoc = new ResourceLocation(IndustrialHellscape.MOD_ID,blockPath+topTexture );
 
-        stairsBlockWithRenderType((StairBlock) block, bottomTextureLoc,sideTextureLoc,topTextureLoc,renderType);
+        stairsBlockWithRenderType((StairBlock) block, sideTextureLoc,bottomTextureLoc,topTextureLoc,renderType);
 
         String existingModelPath = "block/"+stringName;
         simpleBlockItem(block, models().getExistingFile(modLoc(existingModelPath)));
@@ -377,6 +371,44 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         String pathToTexture = "block/" + (textureSubFolder+(textureSubFolder.isEmpty() ? "":"/"));
         String texturePath =  pathToTexture + stringName;
         String altTexturePath = pathToTexture + stringName.replace(nameStringToReplace,nameStringReplacement);
+
+        //GENERATE BASE MODEL (DEFAULT STATE), optional if not already present
+        if(makeBaseModel) {
+            models().withExistingParent(stringName, mcLoc("block/cube_all"))
+                    .texture("all", modLoc(texturePath));
+        }
+
+        //GENERATE ROTATED MODEL (ALT TEXTURE STATE)
+        if(makeAltModel) {
+            models().withExistingParent(altModelPath, mcLoc("block/cube_all"))
+                    .texture("all", modLoc(altTexturePath)); //Generate model of alt-texture block in generated models/block folder
+        }
+
+        //GENERATE BLOCKSTATES
+        getVariantBuilder(block)
+                .forAllStates(state -> {
+                    boolean altTexture = state.getValue(ALT_STATE);
+                    String modelToUse = (altTexture) ? altModelPath : baseModelPath;
+
+                    return ConfiguredModel.builder()
+                            .modelFile(models().getExistingFile(modLoc(modelToUse)))
+                            .build();
+                });
+        //GENERATE ITEM MODEL
+        simpleBlockItem(block, models().getExistingFile(modLoc(baseModelPath)));
+    }
+
+    private void genFolderedDirToggleBlockSBI(Block block, String textureSubFolder, String existingBaseModelSubFolder, Boolean makeBaseModel, Boolean makeAltModel, String textureName, String altTextureName) {
+
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        String pathToName = "block/"+existingBaseModelSubFolder+(existingBaseModelSubFolder.isEmpty() ? "":"/");
+
+        String baseModelPath = pathToName+stringName;
+        String altModelPath = pathToName+stringName+"_alt_texture";
+
+        String pathToTexture = "block/" + (textureSubFolder+(textureSubFolder.isEmpty() ? "":"/"));
+        String texturePath =  pathToTexture + textureName;
+        String altTexturePath = pathToTexture + altTextureName;
 
         //GENERATE BASE MODEL (DEFAULT STATE), optional if not already present
         if(makeBaseModel) {

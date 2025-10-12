@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "industrialhellscape:block/furniture_category_block/ihea_furniture_kit_bottom",
+    "east": "industrialhellscape:block/furniture_category_block/ihea_furniture_kit_right",
+    "north": "industrialhellscape:block/furniture_category_block/ihea_furniture_kit_front",
+    "particle": "industrialhellscape:block/furniture_category_block/ihea_furniture_kit_top",
+    "south": "industrialhellscape:block/furniture_category_block/ihea_furniture_kit_back",
+    "up": "industrialhellscape:block/furniture_category_block/ihea_furniture_kit_top",
+    "west": "industrialhellscape:block/furniture_category_block/ihea_furniture_kit_left"
+  }
+}

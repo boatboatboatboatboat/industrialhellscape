@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.0,
+  "group": "ventilation",
+  "ingredient": {
+    "tag": "industrialhellscape:hvac_smeltable_item"
+  },
+  "result": "minecraft:iron_ingot"
+}

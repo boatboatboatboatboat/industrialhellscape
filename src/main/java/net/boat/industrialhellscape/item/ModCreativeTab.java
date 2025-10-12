@@ -43,8 +43,7 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.GRATE.get());
                         output.accept(ModBlocks.SEETHROUGH_GRATE.get());
                         output.accept(ModBlocks.RUSTY_GRATE.get());
-                        output.accept(ModBlocks.VERTICAL_RIVETED_VESSELPLATE.get());
-                        output.accept(ModBlocks.HORIZONTAL_RIVETED_VESSELPLATE.get());
+                        output.accept(ModBlocks.DIRECTIONAL_RIVETED_VESSELPLATE.get());
                         output.accept(ModBlocks.SMOOTH_VESSELPLATE_TILE.get());
                         output.accept(ModBlocks.VESSELPLATE_PILLAR.get());
                         output.accept(ModBlocks.RIVETED_VESSELPLATE_SLAB.get());
@@ -56,8 +55,7 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.VESSELPLATE_SHEETING_SLAB.get());
 
                         output.accept(ModBlocks.GRAY_RIVETED_VESSELPLATE_PANEL.get());
-                        output.accept(ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get());
-                        output.accept(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get());
+                        output.accept(ModBlocks.GRAY_DIRECTIONAL_RIVETED_VESSELPLATE.get());
                         output.accept(ModBlocks.GRAY_GRATE.get());
                         output.accept(ModBlocks.GRAY_SEETHROUGH_GRATE.get());
                         output.accept(ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get());
@@ -83,6 +81,11 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.GRAY_STRUT_STAIRS.get());
                         output.accept(ModBlocks.GRAY_STRUT_SLAB.get());
                         output.accept(ModBlocks.RUSTY_STRUT.get());
+                        output.accept(ModBlocks.RUSTY_STRUT_STAIRS.get());
+                        output.accept(ModBlocks.RUSTY_STRUT_SLAB.get());
+                        output.accept(ModBlocks.RUSTY_CATWALK_STRUT.get());
+                        output.accept(ModBlocks.RUSTY_CATWALK_STRUT_STAIRS.get());
+                        output.accept(ModBlocks.RUSTY_CATWALK_STRUT_SLAB.get());
 
                         output.accept(ModBlocks.ENCASED_CABLES.get());
 

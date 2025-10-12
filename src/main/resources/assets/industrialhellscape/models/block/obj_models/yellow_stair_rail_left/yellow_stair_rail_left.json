@@ -4,7 +4,7 @@
   "flip-v": true,
   "detectCullableFaces": false,
   "textures": {
-    "#texture": "industrialhellscape:block/hazard_stripe_red",
+    "#texture": "industrialhellscape:block/yellow_stair_rail",
     "particle": "industrialhellscape:block/yellow_stair_rail"
   }
 }
