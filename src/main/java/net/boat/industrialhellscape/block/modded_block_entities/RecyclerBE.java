@@ -146,42 +146,39 @@ public class RecyclerBE extends BlockEntity implements MenuProvider {
         ItemStack resultGlass = new ItemStack(Items.GLASS, 1); //Result is +one OUTPUT ITEM when craft is complete
 
         boolean hasVesselplate = this.itemHandler.getStackInSlot(INPUT_SLOT).is(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM);
-        boolean hasRockrete = this.itemHandler.getStackInSlot(INPUT_SLOT).is(ModTags.Items.ROCKRETE_SMELTABLE_ITEM);
+        boolean hasStrut = this.itemHandler.getStackInSlot(INPUT_SLOT).is(ModTags.Items.STRUT_SMELTABLE_ITEM);
+        boolean hasHvac = this.itemHandler.getStackInSlot(INPUT_SLOT).is(ModTags.Items.HVAC_SMELTABLE_ITEM);
         boolean hasVesselglass = this.itemHandler.getStackInSlot(INPUT_SLOT).is(ModTags.Items.VESSELGLASS_SMELTABLE_ITEM);
-        boolean hasFurniture = this.itemHandler.getStackInSlot(INPUT_SLOT).is(ModTags.Items.ALL_FURNITURE_ITEMS);
 
-        this.itemHandler.extractItem(INPUT_SLOT, 1, false); //Deduct one item from the INPUT_SLOT when crafting
+        boolean hasRockrete = this.itemHandler.getStackInSlot(INPUT_SLOT).is(ModTags.Items.ROCKRETE_SMELTABLE_ITEM);
 
         //Each time an item is crafted, get the existing amount of output from the OUTPUT_SLOT, add the result to it
-        if(hasVesselplate) {
-        this.itemHandler.setStackInSlot(OUTPUT_SLOT1, new ItemStack(resultIronIngot.getItem(),
-                this.itemHandler.getStackInSlot(OUTPUT_SLOT1).getCount() + resultIronIngot.getCount())); }
+        if(hasVesselplate || hasStrut || hasHvac) {
+            this.itemHandler.extractItem(INPUT_SLOT, 1, false);
+            this.itemHandler.setStackInSlot(OUTPUT_SLOT1, new ItemStack(resultIronIngot.getItem(),
+                    this.itemHandler.getStackInSlot(OUTPUT_SLOT1).getCount() + resultIronIngot.getCount())); }
 
         else if(hasRockrete) {
+            this.itemHandler.extractItem(INPUT_SLOT, 1, false);
             this.itemHandler.setStackInSlot(OUTPUT_SLOT2, new ItemStack(resultStone.getItem(),
                     this.itemHandler.getStackInSlot(OUTPUT_SLOT2).getCount() + resultStone.getCount())); }
 
         else if(hasVesselglass) {
-            this.itemHandler.setStackInSlot(OUTPUT_SLOT1, new ItemStack(resultIronIngot.getItem(),
-                    this.itemHandler.getStackInSlot(OUTPUT_SLOT1).getCount() + resultIronIngot.getCount()));
-
+            this.itemHandler.extractItem(INPUT_SLOT, 4, false); //HasInputItem needs to check if there is >4 vesselglass
             this.itemHandler.setStackInSlot(OUTPUT_SLOT3, new ItemStack(resultGlass.getItem(),
-                    this.itemHandler.getStackInSlot(OUTPUT_SLOT3).getCount() + resultGlass.getCount()));}
-
-        else if(hasFurniture) {
+                    this.itemHandler.getStackInSlot(OUTPUT_SLOT3).getCount() + resultGlass.getCount()));
             this.itemHandler.setStackInSlot(OUTPUT_SLOT1, new ItemStack(resultIronIngot.getItem(),
-                    this.itemHandler.getStackInSlot(OUTPUT_SLOT1).getCount() + resultIronIngot.getCount()));
-
-            this.itemHandler.setStackInSlot(OUTPUT_SLOT2, new ItemStack(resultStone.getItem(),
-                    this.itemHandler.getStackInSlot(OUTPUT_SLOT2).getCount() + resultStone.getCount()));}
+                    this.itemHandler.getStackInSlot(OUTPUT_SLOT1).getCount() + resultIronIngot.getCount())); }
     }
 
     private boolean hasInputItem() {
         //Is there INPUT ITEMS in the input slot?
         boolean hasVesselplate = this.itemHandler.getStackInSlot(INPUT_SLOT).is(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM);
+        boolean hasStrut = this.itemHandler.getStackInSlot(INPUT_SLOT).is(ModTags.Items.STRUT_SMELTABLE_ITEM);
+        boolean hasHvac = this.itemHandler.getStackInSlot(INPUT_SLOT).is(ModTags.Items.HVAC_SMELTABLE_ITEM);
+        boolean hasVesselglass = this.itemHandler.getStackInSlot(INPUT_SLOT).is(ModTags.Items.VESSELGLASS_SMELTABLE_ITEM) && ( this.itemHandler.getStackInSlot(INPUT_SLOT).getCount() >= 4 );
+
         boolean hasRockrete = this.itemHandler.getStackInSlot(INPUT_SLOT).is(ModTags.Items.ROCKRETE_SMELTABLE_ITEM);
-        boolean hasVesselGlass = this.itemHandler.getStackInSlot(INPUT_SLOT).is(ModTags.Items.VESSELGLASS_SMELTABLE_ITEM);
-        boolean hasFurniture = this.itemHandler.getStackInSlot(INPUT_SLOT).is(ModTags.Items.ALL_FURNITURE_ITEMS);
 
         //One item stack containing one OUTPUT item
         ItemStack resultIronIngot = new ItemStack(Items.IRON_INGOT);
@@ -189,24 +186,10 @@ public class RecyclerBE extends BlockEntity implements MenuProvider {
         ItemStack resultGlass = new ItemStack(Items.GLASS);
 
         //Outputs iron ingot in 1st output slot
-        if(hasVesselplate) {return canInsertAmountIntoOutputSlot(resultIronIngot.getCount(), OUTPUT_SLOT1) && canInsertItemIntoOutputSlot(resultIronIngot.getItem(), OUTPUT_SLOT1);}
+        if(hasVesselplate || hasStrut || hasHvac) {return canInsertResultIntoOutput(resultIronIngot, OUTPUT_SLOT1);}
         //Outputs stone in 2nd output slot
-        else if(hasRockrete) {return canInsertAmountIntoOutputSlot(resultStone.getCount(), OUTPUT_SLOT2) && canInsertItemIntoOutputSlot(resultStone.getItem(),OUTPUT_SLOT2);}
-        //Outputs iron ingot and glass block in 1st and 3rd output slot
-        else if(hasVesselGlass) {return canInsertAmountIntoOutputSlot(resultIronIngot.getCount(), OUTPUT_SLOT1)
-                                    && canInsertAmountIntoOutputSlot(resultGlass.getCount(),OUTPUT_SLOT3)
-
-                                    && canInsertItemIntoOutputSlot(resultIronIngot.getItem(), OUTPUT_SLOT1)
-                                    && canInsertItemIntoOutputSlot(resultGlass.getItem(), OUTPUT_SLOT3)
-        ;}
-        //Outputs iron ingot and stone block in 1st and 2nd output slot
-        else if(hasFurniture) {return canInsertAmountIntoOutputSlot(resultIronIngot.getCount(), OUTPUT_SLOT1)
-                                    && canInsertAmountIntoOutputSlot(resultStone.getCount(),OUTPUT_SLOT2)
-
-                                    && canInsertItemIntoOutputSlot(resultIronIngot.getItem(), OUTPUT_SLOT1)
-                                    && canInsertItemIntoOutputSlot(resultStone.getItem(), OUTPUT_SLOT2)
-        ;}
-
+        else if(hasRockrete) {return canInsertResultIntoOutput(resultStone, OUTPUT_SLOT2);}
+        else if(hasVesselglass) {return canInsertResultIntoOutput(resultIronIngot, OUTPUT_SLOT1) && canInsertResultIntoOutput(resultGlass, OUTPUT_SLOT3);}
         else {return false;}
 
         //There is an eligible recipe (true) to operate only if the following three conditions are true:
@@ -215,11 +198,17 @@ public class RecyclerBE extends BlockEntity implements MenuProvider {
         // - The output slot is either empty, or has OUTPUT ITEMS inside it already
     }
 
+    private boolean canInsertResultIntoOutput(ItemStack result, int outputSlot) {
+        return canInsertItemIntoOutputSlot(result.getItem(), outputSlot) && canInsertAmountIntoOutputSlot(result.getCount(), outputSlot);
+    }
+
     private boolean canInsertItemIntoOutputSlot(Item item, int outputSlot) {
+        //You can insert an item into the output slot
         return this.itemHandler.getStackInSlot(outputSlot).isEmpty() || this.itemHandler.getStackInSlot(outputSlot).is(item);
     }
 
     private boolean canInsertAmountIntoOutputSlot(int count, int outputSlot) {
+        //You can insert any amount of items into the output slot up to the max stack size of the item
         return this.itemHandler.getStackInSlot(outputSlot).getCount() + count <= this.itemHandler.getStackInSlot(outputSlot).getMaxStackSize();
     }
 

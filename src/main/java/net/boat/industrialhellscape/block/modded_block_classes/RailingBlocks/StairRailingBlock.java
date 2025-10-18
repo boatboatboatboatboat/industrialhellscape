@@ -41,8 +41,8 @@ public class StairRailingBlock extends Block implements SimpleWaterloggedBlock {
     public static final BooleanProperty RIGHT_FENCE = BooleanProperty.create("right");
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    private static final VoxelShape SHAPE_NORTH_LEFT = Block.box(0d, 0d, 0d, 2d, 14, 16d);
-    private static final VoxelShape SHAPE_NORTH_RIGHT = Block.box(14d, 0d, 0d, 16d, 14, 16d);
+    private static final VoxelShape SHAPE_NORTH_LEFT = Block.box(1d, 0d, 0d, 2d, 14, 16d);
+    private static final VoxelShape SHAPE_NORTH_RIGHT = Block.box(14d, 0d, 0d, 15d, 14, 16d);
 
     private static final VoxelShape SHAPE_SOUTH_LEFT = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, SHAPE_NORTH_LEFT);
     private static final VoxelShape SHAPE_SOUTH_RIGHT = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, SHAPE_NORTH_RIGHT);

@@ -1,3 +1,4 @@
 {
-  "parent": "industrialhellscape:block/strut/rusty_strut_slab"
+  "parent": "industrialhellscape:block/rusty_strut_slab",
+  "render_type": "minecraft:cutout"
 }

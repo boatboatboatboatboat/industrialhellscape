@@ -24,7 +24,7 @@ public class ModCreativeTab {
                     .displayItems((itemDisplayParameters, output) -> {
 
                         //DEBUG ITEMS
-                        output.accept(ModBlocks.POSTER_1.get());
+                        //output.accept(ModBlocks.POSTER_1.get());
 
                         //JOKE ITEMS
                         //output.accept(ModItems.JOB_APPLICATION.get());
@@ -32,17 +32,18 @@ public class ModCreativeTab {
                         //output.accept(ModBlocks.BODY_PILLOW.get());
 
                         //ITEMS FOR CREATIVE TAB
-                        output.accept(ModItems.FLOPPY_DISK.get());
-                        output.accept(ModItems.FLOPPY_DISKETTE.get());
+                        //output.accept(ModItems.FLOPPY_DISK.get());
+                        //output.accept(ModItems.FLOPPY_DISKETTE.get());
                         output.accept(ModItems.INHELL_HAVEN_DEVICE.get());
                         output.accept(ModItems.VAPORWAVE_CASSETTE.get());
-                        output.accept(ModItems.RETRO_CASSETTE.get());
+                        //output.accept(ModItems.RETRO_CASSETTE.get());
 
                         //IRONLIKE BLOCKS FOR CREATIVE TAB
                         output.accept(ModBlocks.RIVETED_VESSELPLATE_PANEL.get());
                         output.accept(ModBlocks.GRATE.get());
                         output.accept(ModBlocks.SEETHROUGH_GRATE.get());
                         output.accept(ModBlocks.RUSTY_GRATE.get());
+                        output.accept(ModBlocks.RUSTY_SEETHROUGH_GRATE.get());
                         output.accept(ModBlocks.DIRECTIONAL_RIVETED_VESSELPLATE.get());
                         output.accept(ModBlocks.SMOOTH_VESSELPLATE_TILE.get());
                         output.accept(ModBlocks.VESSELPLATE_PILLAR.get());
@@ -152,8 +153,8 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.YELLOW_RAILING.get());
 
                         //DOORS AND TRAPDOORS
-                        output.accept(ModBlocks.VENT_TRAPDOOR.get());
-                        output.accept(ModBlocks.RUSTY_VENT_TRAPDOOR.get());
+                        output.accept(ModBlocks.DUCT_VENT.get());
+                        output.accept(ModBlocks.RUSTY_DUCT_VENT.get());
 
                         //FURNITURE BLOCKS
 

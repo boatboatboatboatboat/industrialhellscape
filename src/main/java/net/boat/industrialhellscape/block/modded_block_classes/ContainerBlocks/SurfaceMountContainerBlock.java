@@ -45,14 +45,7 @@ public class SurfaceMountContainerBlock extends SurfaceMountBlock implements Ent
     @NotNull
     @Override
     public InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
-        //Interaction for multiblocks will always occur at the NEGATIVE (bottom, right, or back) block's position
-
-
-        if (state.is(this)) { //Since the defined block may be different, check if its still the same block
-            //If so, open the Container inventory as usual
-            return ContainerBlockCapability.OpenContainerInventory(level, pos, player);
-        }
-        return InteractionResult.PASS;
+        return ContainerBlockCapability.OpenContainerInventory(level,pos,player);
     }
 
     @Override

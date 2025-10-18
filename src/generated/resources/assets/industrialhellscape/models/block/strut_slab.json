@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/slab",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "industrialhellscape:block/strut/strut",
+    "particle": "industrialhellscape:block/strut/strut",
+    "side": "industrialhellscape:block/strut/strut",
+    "top": "industrialhellscape:block/strut/strut"
+  }
+}

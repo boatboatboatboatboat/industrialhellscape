@@ -1,11 +1,11 @@
-// 1.20.1	2025-10-11T21:24:01.6714905	Tags for minecraft:block mod id industrialhellscape
+// 1.20.1	2025-10-18T04:27:31.446898	Tags for minecraft:block mod id industrialhellscape
 fa02090bb6df3b121e47283b1608893ff2889439 data/industrialhellscape/tags/blocks/all_furniture_blocks.json
 a2948f70ec24e64f0d0d0b90906f89bfe5714597 data/industrialhellscape/tags/blocks/amenity_furniture_category.json
 929af715689237d94de5a6d267ef3e46cf18ee01 data/industrialhellscape/tags/blocks/brass_pipe_conduit.json
 2cf4cecf38c0889c1ff31838fbcf7e701333a469 data/industrialhellscape/tags/blocks/classic_desk.json
 aa078ecc5dcc70be834603934873da8d8c01b51d data/industrialhellscape/tags/blocks/copper_pipe_conduit.json
 866d8a44636a73970e8a64700b548542a7600aad data/industrialhellscape/tags/blocks/gray_pipe_conduit.json
-488df68dcddfbf297267a46f037f90b31f184143 data/industrialhellscape/tags/blocks/hvac_blocks.json
+54c15c2937c881cb001771ea1d71f4e5d4d0a479 data/industrialhellscape/tags/blocks/hvac_blocks.json
 385a1994d6c80d1bcce0640127391d569001d7c7 data/industrialhellscape/tags/blocks/hygiene_furniture_category.json
 78cb6658923d3eeaf408d9807f2087cfe6b1b93c data/industrialhellscape/tags/blocks/industrial_furniture_category.json
 b520bd5a072dfee91d6b12dbe10dd452638f2a82 data/industrialhellscape/tags/blocks/metalworks_blocks.json

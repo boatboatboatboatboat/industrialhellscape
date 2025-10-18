@@ -15,6 +15,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
@@ -70,8 +71,11 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 .add(
                         ModBlocks.DUCT.get().asItem(),
                         ModBlocks.RUSTY_DUCT.get().asItem(),
+                        ModBlocks.DUCT_VENT.get().asItem(),
+                        ModBlocks.RUSTY_DUCT_VENT.get().asItem(),
 
                         ModBlocks.RUSTY_GRATE.get().asItem(),
+                        ModBlocks.RUSTY_SEETHROUGH_GRATE.get().asItem(),
 
                         ModBlocks.GRATE.get().asItem(),
                         ModBlocks.SEETHROUGH_GRATE.get().asItem(),

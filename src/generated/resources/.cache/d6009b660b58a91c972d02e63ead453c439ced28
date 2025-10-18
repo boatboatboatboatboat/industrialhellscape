@@ -1,11 +1,11 @@
-// 1.20.1	2025-10-11T21:24:01.6734969	Tags for minecraft:item mod id industrialhellscape
+// 1.20.1	2025-10-18T04:27:31.4499082	Tags for minecraft:item mod id industrialhellscape
 48bee4ce55195270bf559d3cf28fbed9156b1bdb data/forge/tags/items/tools.json
 48bee4ce55195270bf559d3cf28fbed9156b1bdb data/forge/tags/items/tools/wrench.json
 48bee4ce55195270bf559d3cf28fbed9156b1bdb data/forge/tags/items/wrenches.json
 8051b86fd6a0b1268f5f2f565df5fc4a7ec5fb2b data/industrialhellscape/tags/items/all_furniture_items.json
 104445d64a4741fd407d5aaefd2c4975f9236d65 data/industrialhellscape/tags/items/amenity_furniture_category.json
 871749ee457cee6c32d73fe8f59e6ada81477a86 data/industrialhellscape/tags/items/furniture_categories.json
-488df68dcddfbf297267a46f037f90b31f184143 data/industrialhellscape/tags/items/hvac_smeltable_item.json
+54c15c2937c881cb001771ea1d71f4e5d4d0a479 data/industrialhellscape/tags/items/hvac_smeltable_item.json
 31e508423aab7b59051b12f66e7680ba692d155a data/industrialhellscape/tags/items/hygiene_furniture_category.json
 48d10a7a5ab30254a291a9393d4de87d9c88e4f6 data/industrialhellscape/tags/items/ih_compatible_modded_tools.json
 c6bca1eb0944a0e2bad372ebf9d471e2423fd3fd data/industrialhellscape/tags/items/ih_compatible_tools.json

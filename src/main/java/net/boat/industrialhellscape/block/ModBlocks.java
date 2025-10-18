@@ -1,7 +1,6 @@
 package net.boat.industrialhellscape.block;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
-import net.boat.industrialhellscape.block.modded_block_classes.*;
 import net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks.AxialPillarBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks.ConnectedFurnitureBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks.*;
@@ -22,6 +21,8 @@ import net.boat.industrialhellscape.block.modded_block_classes.SimpleWaterloggab
 import net.boat.industrialhellscape.block.modded_block_classes.SimpleWaterloggableBlocks.SimpleWaterloggableBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.ModelledSurfaceMountBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.SurfaceMountRotatableBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.TextureToggleBlocks.DirectionalTextureToggleBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.TextureToggleBlocks.SimpleTextureToggleBlock;
 import net.boat.industrialhellscape.block.modded_interfaces.HitboxGeometryCollection;
 import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
 import net.boat.industrialhellscape.sound.ModSounds;
@@ -32,7 +33,6 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -98,12 +98,6 @@ public class ModBlocks {
             )
     );
 
-    public static final RegistryObject<Block> GRAY_SEETHROUGH_GRATE_PANE = registerBlockAndBlockItem("gray_see-through_grate_pane",
-            () -> new IronBarsBlock(BlockBehaviour
-                    .Properties.copy(Blocks.GLASS_PANE)
-                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
-            )
-    );
     public static final RegistryObject<Block> GRAY_BOLTED_BRACKET = registerBlockAndBlockItem("gray_bolted_bracket",
             () -> new CornerBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
@@ -213,6 +207,12 @@ public class ModBlocks {
     public static final RegistryObject<Block> RUSTY_GRATE = registerBlockAndBlockItem("rusty_grate",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
+                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
+            )
+    );
+    public static final RegistryObject<Block> RUSTY_SEETHROUGH_GRATE = registerBlockAndBlockItem("rusty_see-through_grate",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
+                    .Properties.copy(Blocks.GLASS)
                     .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS)
             )
     );
@@ -649,10 +649,22 @@ public class ModBlocks {
     );
 
     //DOORS, TRAPDOORS, ETC:
-    public static final RegistryObject<Block> VENT_TRAPDOOR = registerBlockAndBlockItem("vent_trapdoor",
-            () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL).noOcclusion(), BlockSetType.STONE));
-    public static final RegistryObject<Block> RUSTY_VENT_TRAPDOOR = registerBlockAndBlockItem("rusty_vent_trapdoor",
-            () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL).noOcclusion(), BlockSetType.STONE));
+    public static final RegistryObject<Block> DUCT_VENT = registerBlockAndBlockItem("duct_vent",
+            () -> new ModelledSurfaceMountBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.PANEL_FLOOR(),
+                    false
+            )
+    );
+    public static final RegistryObject<Block> RUSTY_DUCT_VENT = registerBlockAndBlockItem("rusty_duct_vent",
+            () -> new ModelledSurfaceMountBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.PANEL_FLOOR(),
+                    false
+            )
+    );
 
     //FURNITURE BLOCKS HERE
     public static final RegistryObject<Block> LARGE_LOCKER = registerBlockAndBlockItem("large_locker",

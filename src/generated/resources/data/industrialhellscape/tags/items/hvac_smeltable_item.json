@@ -2,7 +2,10 @@
   "values": [
     "industrialhellscape:duct",
     "industrialhellscape:rusty_duct",
+    "industrialhellscape:duct_vent",
+    "industrialhellscape:rusty_duct_vent",
     "industrialhellscape:rusty_grate",
+    "industrialhellscape:rusty_see-through_grate",
     "industrialhellscape:grate",
     "industrialhellscape:see-through_grate",
     "industrialhellscape:gray_grate",

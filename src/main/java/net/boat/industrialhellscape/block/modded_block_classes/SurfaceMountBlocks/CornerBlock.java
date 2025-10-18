@@ -2,7 +2,7 @@ package net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBloc
 
 import net.boat.industrialhellscape.block.modded_block_state_properties.CornerConnectionState;
 import net.boat.industrialhellscape.block.modded_interfaces.RotationHelper;
-import net.boat.industrialhellscape.util.ModTags;
+import net.boat.industrialhellscape.block.modded_interfaces.ToolUseCapability;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -16,10 +16,7 @@ import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
@@ -45,7 +42,7 @@ import javax.annotation.Nonnull;
 public class CornerBlock extends Block implements SimpleWaterloggedBlock {
 
     public static DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING; //"FACING" is used to store DirectionProperty value of "north, south, east, west" //KJ
-    public static final EnumProperty<CornerConnectionState> TYPE_CORNER = EnumProperty.create("type", CornerConnectionState.class); //"UP", "SIDE", or "DOWN" enum values
+    public static final EnumProperty<AttachFace> ATTACH_FACE = BlockStateProperties.ATTACH_FACE;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     // 4 * 3 blockstates and therefore hitbox models based on above properties
@@ -84,7 +81,7 @@ public class CornerBlock extends Block implements SimpleWaterloggedBlock {
 
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
-                .setValue(TYPE_CORNER, CornerConnectionState.UP)
+                .setValue(ATTACH_FACE, AttachFace.CEILING)
                 .setValue(WATERLOGGED, false)
         );
     }
@@ -94,22 +91,22 @@ public class CornerBlock extends Block implements SimpleWaterloggedBlock {
 
         Direction facingForShape = pState.getValue(FACING);
 
-        switch(pState.getValue(TYPE_CORNER)){
-            case DOWN:
+        switch(pState.getValue(ATTACH_FACE)){
+            case FLOOR:
                 switch(facingForShape) {
                     case NORTH: return INNER_CORNER_DOWN_N;
                     case SOUTH: return INNER_CORNER_DOWN_S;
                     case EAST: return INNER_CORNER_DOWN_E;
                     case WEST: return INNER_CORNER_DOWN_W;
                 }
-            case UP:
+            case CEILING:
                 switch(facingForShape) {
                     case NORTH: return INNER_CORNER_UP_N;
                     case SOUTH: return INNER_CORNER_UP_S;
                     case EAST: return INNER_CORNER_UP_E;
                     case WEST: return INNER_CORNER_UP_W;
                 }
-            case SIDE:
+            case WALL:
                 switch(facingForShape) {
                     case NORTH: return INNER_CORNER_SIDE_N;
                     case SOUTH: return INNER_CORNER_SIDE_S;
@@ -142,13 +139,13 @@ public class CornerBlock extends Block implements SimpleWaterloggedBlock {
 
         //This section defines the orientation "type" of the block (whether the block is on its side, or up or down).
         switch(directionClicked) { //Which block face in the world is the player clicking on to place this block?
-            case UP: state = state.setValue(TYPE_CORNER, CornerConnectionState.UP); break; //Bracket faces up if player clicks the ceiling
-            case DOWN: state = state.setValue(TYPE_CORNER, CornerConnectionState.DOWN); break; //Bracket faces down if player clicks the floor
+            case UP: state = state.setValue(ATTACH_FACE, AttachFace.CEILING); break; //Bracket faces up if player clicks the ceiling
+            case DOWN: state = state.setValue(ATTACH_FACE, AttachFace.FLOOR); break; //Bracket faces down if player clicks the floor
             default: //If player is not clicking the floor or ceiling
                 if(PlayerisCrouching) { //If the player is crouching
-                    state = state.setValue(TYPE_CORNER, CornerConnectionState.SIDE); break; //Set bracket to side
+                    state = state.setValue(ATTACH_FACE, AttachFace.WALL); break; //Set bracket to side
                 } else {
-                    state = state.setValue(TYPE_CORNER, CornerConnectionState.UP); //If player is not crouching, default to UP orientation
+                    state = state.setValue(ATTACH_FACE, AttachFace.CEILING); //If player is not crouching, default to UP orientation
                 }
         }
         return state;
@@ -156,25 +153,7 @@ public class CornerBlock extends Block implements SimpleWaterloggedBlock {
 
     @Override
     public @Nonnull InteractionResult use(@Nonnull BlockState pState, @Nonnull Level pLevel, @Nonnull BlockPos pPos, Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
-
-        boolean playerHasTool = pPlayer.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || pPlayer.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
-        boolean PlayerIsCrouching = pPlayer.isCrouching();
-
-        if(playerHasTool && PlayerIsCrouching) {
-            pState = pState.cycle(TYPE_CORNER); //Cycles attachment orientation of block (attached up, down, or side)
-            pLevel.setBlock(pPos, pState, 2);
-
-            return InteractionResult.sidedSuccess(pLevel.isClientSide);
-
-        } else if (playerHasTool) {
-            pState = pState.setValue(FACING, pState.getValue(FACING).getClockWise()); //Cycles horizontal orientation of the block (N,S,E,W)
-            pLevel.setBlock(pPos, pState, 2);
-            return InteractionResult.sidedSuccess(pLevel.isClientSide);
-
-
-        }
-
-        return InteractionResult.PASS;
+        return ToolUseCapability.StandCrouchToolInteract(FACING, ATTACH_FACE,pPlayer,pState,pLevel,pPos);
     }
 
     public @Nonnull FluidState getFluidState(BlockState pState) {
@@ -183,6 +162,6 @@ public class CornerBlock extends Block implements SimpleWaterloggedBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(FACING, TYPE_CORNER, WATERLOGGED);
+        pBuilder.add(FACING, ATTACH_FACE, WATERLOGGED);
     }
 }

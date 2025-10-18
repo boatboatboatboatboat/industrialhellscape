@@ -52,7 +52,11 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.DUCT.get(),
                         ModBlocks.RUSTY_DUCT.get(),
 
+                        ModBlocks.DUCT_VENT.get(),
+                        ModBlocks.RUSTY_DUCT_VENT.get(),
+
                         ModBlocks.RUSTY_GRATE.get(),
+                        ModBlocks.RUSTY_SEETHROUGH_GRATE.get(),
 
                         ModBlocks.GRATE.get(),
                         ModBlocks.SEETHROUGH_GRATE.get(),

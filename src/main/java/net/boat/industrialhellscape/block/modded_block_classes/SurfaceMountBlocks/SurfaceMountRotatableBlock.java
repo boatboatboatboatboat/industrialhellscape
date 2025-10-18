@@ -86,13 +86,21 @@ public class SurfaceMountRotatableBlock extends Block implements SimpleWaterlogg
     }
 
     public @Nonnull InteractionResult use(@Nonnull BlockState pState, @Nonnull Level pLevel, @Nonnull BlockPos pPos, Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
-
         boolean playerHasTool = pPlayer.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || pPlayer.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
+        boolean playerIsCrouching = pPlayer.isCrouching();
 
-        if( playerHasTool ) { //If player has tool, change the block state property
+        if(playerHasTool && playerIsCrouching) {
+            //Cycles connection type. Only works with modded tools
+            pState = pState.cycle(SURFACE_ATTACHED);
+            pLevel.setBlock(pPos, pState, 2); //2
+            return InteractionResult.sidedSuccess(pLevel.isClientSide);
+
+
+
+        } else if (playerHasTool) {
+            //Cycles from vertical and horizontal pipes when interacting with pipes on walls. Works with modded tools AND pickaxes
             pState = pState.cycle(PLANE_DIRECTION);
-            pLevel.setBlock(pPos, pState, 2);
-
+            pLevel.setBlock(pPos, pState, 3); //3
             return InteractionResult.sidedSuccess(pLevel.isClientSide);
         }
         return InteractionResult.PASS;

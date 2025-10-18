@@ -25,7 +25,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         //  Increasing from the default of 1 requires disabling Vesselplate, Rockrete, Pipeworks, and/or Vesselglass recycling
     private static final int vesselplatePerIronIngot = 1;
     private static final int strutPerIronIngot = 1;
-    private static final int ventilationPerIronIngot = 1;
+    private static final int hvacPerIronIngot = 1;
     private static final int rockretePerStone = 1;
     private static final int vesselglassPerCraft = 4;
 
@@ -37,18 +37,21 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     private static final boolean doVesselplateCookRecycle = true;
     private static final boolean doRockreteCookRecycle = true;
     private static final boolean doStrutCookRecycle = true;
-    private static final boolean doVentilationCookRecycle = true;
+    private static final boolean doHvacCookRecycle = true;
     private static final boolean doVesselglassCookRecycle = false; //FALSE, craft x4
 
     private static final boolean doPipeworksCookRecycle = false; //FALSE, craft x3
     private static final boolean doMetalworksCookRecycle = false; //FALSE, craft x3
 
     //---------- END OF DATAGEN VARIABLES ----------
-    private static final List<ItemLike> VENTILATION_STONECUT_OUTPUT = List.of(
+    private static final List<ItemLike> HVAC_STONECUT_OUTPUT = List.of(
             ModBlocks.DUCT.get().asItem(),
             ModBlocks.RUSTY_DUCT.get().asItem(),
+            ModBlocks.DUCT_VENT.get().asItem(),
+            ModBlocks.RUSTY_DUCT_VENT.get().asItem(),
 
             ModBlocks.RUSTY_GRATE.get().asItem(),
+            ModBlocks.RUSTY_SEETHROUGH_GRATE.get().asItem(),
 
             ModBlocks.GRATE.get().asItem(),
             ModBlocks.SEETHROUGH_GRATE.get().asItem(),
@@ -249,8 +252,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(pWriter);
 
-        //Create Ventilation
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.DUCT.get(),ventilationPerIronIngot*4)
+        //Create Hvac
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.DUCT.get(),hvacPerIronIngot*4)
                 .pattern(" A ")
                 .pattern("ABA")
                 .pattern(" A ")
@@ -290,7 +293,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModItems.INHELL_HAVEN_DEVICE.get())
                 .requires(Ingredient.of(ModTags.Items.IH_RECIPE_STONELIKES))
                 .requires(Ingredient.of(ItemTags.LOGS))
-                .requires(Items.IRON_INGOT)
+                .requires(Ingredient.of(ModTags.Items.IH_RECIPE_INGOTS))
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(pWriter, new ResourceLocation("industrialhellscape", "furniture_kit_recipe_log"));
 
@@ -316,8 +319,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         if(doStrutCookRecycle) {
             recipeSmeltAndBlast(pWriter, ModTags.Items.STRUT_SMELTABLE_ITEM, RecipeCategory.MISC, Items.IRON_INGOT, 200, 100, "strut");
         }
-        if(doVentilationCookRecycle) {
-            recipeSmeltAndBlast(pWriter, ModTags.Items.HVAC_SMELTABLE_ITEM, RecipeCategory.MISC, Items.IRON_INGOT, 200, 100, "ventilation");
+        if(doHvacCookRecycle) {
+            recipeSmeltAndBlast(pWriter, ModTags.Items.HVAC_SMELTABLE_ITEM, RecipeCategory.MISC, Items.IRON_INGOT, 200, 100, "hvac");
         }
         if(doVesselglassCookRecycle) {
             recipeSmeltAndBlast(pWriter, ModTags.Items.VESSELGLASS_SMELTABLE_ITEM, RecipeCategory.MISC, Items.GLASS, 200, 100, "vesselglass");
@@ -410,7 +413,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
 
         //Building Blocks - Parameters: (List of possible output items, String for generated recipe name, Tag of possible input items, pWriter)
-        iterativeRecipes(VENTILATION_STONECUT_OUTPUT, "ventilation", ModTags.Items.HVAC_SMELTABLE_ITEM, pWriter);
+        iterativeRecipes(HVAC_STONECUT_OUTPUT, "hvac", ModTags.Items.HVAC_SMELTABLE_ITEM, pWriter);
         iterativeRecipes(STRUT_STONECUT_OUTPUT, "strut", ModTags.Items.STRUT_SMELTABLE_ITEM, pWriter);
         iterativeRecipes(VESSELPLATE_STONECUT_OUTPUT, "vesselplate", ModTags.Items.VESSELPLATE_SMELTABLE_ITEM, pWriter);
         iterativeRecipes(VESSELGLASS_STONECUT_OUTPUT, "vesselglass", ModTags.Items.VESSELGLASS_SMELTABLE_ITEM, pWriter);

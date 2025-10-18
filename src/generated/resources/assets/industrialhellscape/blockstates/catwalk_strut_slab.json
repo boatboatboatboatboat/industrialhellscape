@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "type=bottom,waterlogged=false": {
+      "model": "industrialhellscape:block/catwalk_strut_slab"
+    },
+    "type=bottom,waterlogged=true": {
+      "model": "industrialhellscape:block/catwalk_strut_slab"
+    },
+    "type=double,waterlogged=false": {
+      "model": "industrialhellscape:block/catwalk_strut_slab_double"
+    },
+    "type=double,waterlogged=true": {
+      "model": "industrialhellscape:block/catwalk_strut_slab_double"
+    },
+    "type=top,waterlogged=false": {
+      "model": "industrialhellscape:block/catwalk_strut_slab_top"
+    },
+    "type=top,waterlogged=true": {
+      "model": "industrialhellscape:block/catwalk_strut_slab_top"
+    }
+  }
+}

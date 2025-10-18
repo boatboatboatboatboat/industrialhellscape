@@ -4,6 +4,7 @@ import net.boat.industrialhellscape.block.modded_block_state_properties.DynamicC
 import net.boat.industrialhellscape.block.modded_interfaces.ConnectedModelCapability;
 import net.boat.industrialhellscape.block.modded_interfaces.ContainerBlockCapability;
 import net.boat.industrialhellscape.block.modded_interfaces.RotationHelper;
+import net.boat.industrialhellscape.block.modded_interfaces.ToolUseCapability;
 import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
@@ -117,23 +118,15 @@ public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implemen
         );
     }
 
+    //---------- USE INTERACT, HITBOXES, PLACEMENT, AND BLOCK UPDATE METHODS HANDLED BY INTERFACES ---------
+
     @NotNull
     @Override
     public InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
-
-        boolean playerHasTool = player.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_MODDED_TOOLS) || player.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_MODDED_TOOLS);
-
-        if (playerHasTool) {
-            //Change block connection type without updating neighbors. Only works with modded tools.
-            state = state.cycle(TYPE);
-            level.setBlock(pos, state, 2); //2
-            return InteractionResult.sidedSuccess(level.isClientSide);
-        } else {
-            return InteractionResult.PASS;
-        }
+        return ToolUseCapability.ModdedToolInteract(TYPE,player, state, level, pos);
     }
 
-    //---------- HITBOXES, PLACEMENT, AND BLOCK UPDATE METHODS HANDLED BY INTERFACE ---------
+
     @Override
     public @Nonnull VoxelShape getShape(BlockState pState, @Nonnull  BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull CollisionContext pContext) {
         //See this mod's ConnectedModelCapability interface to view the following method.

@@ -444,4 +444,10 @@ public interface HitboxGeometryCollection {
 
         return shape;
     }
+    static VoxelShape PANEL_FLOOR(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0, 0, 0, 1, 0.1875, 1), BooleanOp.OR);
+
+        return shape;
+    }
 }
