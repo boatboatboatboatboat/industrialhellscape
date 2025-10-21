@@ -108,7 +108,22 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.RIVETED_VESSELPLATE_STAIRS.get().asItem(),
             ModBlocks.RIVETED_VESSELPLATE_SLAB.get().asItem(),
             ModBlocks.GRAY_RIVETED_VESSELPLATE_STAIRS.get().asItem(),
-            ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get().asItem()
+            ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get().asItem(),
+
+            ModBlocks.RUSTY_RIVETED_VESSELPLATE_PANEL.get().asItem(),
+            ModBlocks.RUSTY_RIVETED_VESSELPLATE_STAIRS.get().asItem(),
+            ModBlocks.RUSTY_RIVETED_VESSELPLATE_SLAB.get().asItem(),
+
+            ModBlocks.RUSTY_VESSELPLATE_SHEETING.get().asItem(),
+            ModBlocks.RUSTY_VESSELPLATE_SHEETING_STAIRS.get().asItem(),
+            ModBlocks.RUSTY_VESSELPLATE_SHEETING_SLAB.get().asItem(),
+
+            ModBlocks.SMOOTH_RUSTY_VESSELPLATE_TILE.get().asItem(),
+            ModBlocks.SMOOTH_RUSTY_VESSELPLATE_STAIRS.get().asItem(),
+            ModBlocks.SMOOTH_RUSTY_VESSELPLATE_SLAB.get().asItem(),
+
+            ModBlocks.RUSTY_VESSELPLATE_PILLAR.get().asItem(),
+            ModBlocks.RUSTY_DIRECTIONAL_RIVETED_VESSELPLATE.get().asItem()
     );
     private static final List<ItemLike> ROCKRETE_STONECUT_OUTPUT = List.of(
             
@@ -167,10 +182,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     private static final List<ItemLike> METALWORKS_STONECUT_OUTPUT = List.of(
             ModBlocks.METALWORKS.get().asItem(),
-            ModBlocks.YELLOW_RAILING.get().asItem(),
             ModBlocks.BLACK_BOLTED_BRACKET.get().asItem(),
             ModBlocks.GRAY_BOLTED_BRACKET.get().asItem(),
-            ModBlocks.YELLOW_STAIR_RAILING.get().asItem()
+            ModBlocks.YELLOW_RAILING.get().asItem(),
+            ModBlocks.YELLOW_STAIR_RAILING.get().asItem(),
+            ModBlocks.GRAY_RAILING.get().asItem(),
+            ModBlocks.GRAY_STAIR_RAILING.get().asItem()
     );
     private static final List<ItemLike> FURNITURE_CATEGORIES = List.of(
             ModBlocks.SAFETY_FURNISHINGS.get().asItem(),

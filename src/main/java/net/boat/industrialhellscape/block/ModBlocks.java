@@ -70,11 +70,7 @@ public class ModBlocks {
             )
     );
 
-    public static final RegistryObject<Block> METALWORKS = registerBlockOnly("metalworks",
-            () -> new FallableBlock(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
-            )
-    );
+    //HVAC
     public static final RegistryObject<Block> DUCT = registerBlockAndBlockItem("duct",
             () -> new Block(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
@@ -85,6 +81,14 @@ public class ModBlocks {
                     .Properties.copy(Blocks.IRON_BLOCK)
             )
     );
+
+    //METALWORKS
+    public static final RegistryObject<Block> METALWORKS = registerBlockOnly("metalworks",
+            () -> new FallableBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+            )
+    );
+
     public static final RegistryObject<Block> YELLOW_RAILING = registerBlockAndBlockItem("yellow_railing",
             () -> new RailingBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
@@ -92,6 +96,18 @@ public class ModBlocks {
             )
     );
     public static final RegistryObject<Block> YELLOW_STAIR_RAILING = registerBlockAndBlockItem("yellow_stair_railing",
+            () -> new StairRailingBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+            )
+    );
+    public static final RegistryObject<Block> GRAY_RAILING = registerBlockAndBlockItem("gray_railing",
+            () -> new RailingBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+            )
+    );
+    public static final RegistryObject<Block> GRAY_STAIR_RAILING = registerBlockAndBlockItem("gray_stair_railing",
             () -> new StairRailingBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()
@@ -165,10 +181,87 @@ public class ModBlocks {
                     .Properties.copy(Blocks.IRON_BLOCK)
             )
     );
+    public static final RegistryObject<Block> SMOOTH_GRAY_VESSELPLATE_STAIRS = registerBlockAndBlockItem("smooth_gray_vesselplate_stairs",
+            () -> new StairBlock(Blocks.IRON_BLOCK::defaultBlockState,
+                    BlockBehaviour
+                            .Properties.copy(Blocks.IRON_BLOCK)
+                            .noOcclusion()
+                            .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
+    );
+    public static final RegistryObject<Block> SMOOTH_GRAY_VESSELPLATE_SLAB = registerBlockAndBlockItem("smooth_gray_vesselplate_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
+    );
     public static final RegistryObject<Block> GRAY_VESSELPLATE_SHEETING = registerBlockAndBlockItem("gray_vesselplate_sheeting",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
             )
+    );
+    public static final RegistryObject<Block> RUSTY_VESSELPLATE_SHEETING = registerBlockAndBlockItem("rusty_vesselplate_sheeting",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+            )
+    );
+    public static final RegistryObject<Block> RUSTY_VESSELPLATE_SHEETING_STAIRS = registerBlockAndBlockItem("rusty_vesselplate_sheeting_stairs",
+            () -> new StairBlock(Blocks.IRON_BLOCK::defaultBlockState,
+                    BlockBehaviour
+                            .Properties.copy(Blocks.IRON_BLOCK)
+                            .noOcclusion()
+                            .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
+    );
+    public static final RegistryObject<Block> RUSTY_VESSELPLATE_SHEETING_SLAB = registerBlockAndBlockItem("rusty_vesselplate_sheeting_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
+    );
+    public static final RegistryObject<Block> RUSTY_RIVETED_VESSELPLATE_PANEL = registerBlockAndBlockItem("rusty_riveted_vesselplate_panel",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+            )
+    );
+    public static final RegistryObject<Block> RUSTY_RIVETED_VESSELPLATE_STAIRS = registerBlockAndBlockItem("rusty_riveted_vesselplate_stairs",
+            () -> new StairBlock(Blocks.IRON_BLOCK::defaultBlockState, //USING A SIMPLETEXTURETOGGLEBLOCK WILL CAUSE TOOLS TO CHANGE THE STAIR BLOCK TO THAT BLOCK
+                    BlockBehaviour
+                            .Properties.copy(Blocks.IRON_BLOCK)
+                            .noOcclusion()
+                            .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
+    );
+    public static final RegistryObject<Block> RUSTY_RIVETED_VESSELPLATE_SLAB = registerBlockAndBlockItem("rusty_riveted_vesselplate_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
+    );
+    public static final RegistryObject<Block> RUSTY_VESSELPLATE_PILLAR = registerBlockAndBlockItem("rusty_vesselplate_pillar",
+            () -> new AxialPillarBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+            )
+    );
+    public static final RegistryObject<Block> RUSTY_DIRECTIONAL_RIVETED_VESSELPLATE = registerBlockAndBlockItem("rusty_directional_riveted_vesselplate",
+            () -> new DirectionalTextureToggleBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+            )
+    );
+    public static final RegistryObject<Block> SMOOTH_RUSTY_VESSELPLATE_TILE = registerBlockAndBlockItem("smooth_rusty_vesselplate_tile",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+            )
+    );
+    public static final RegistryObject<Block> SMOOTH_RUSTY_VESSELPLATE_STAIRS = registerBlockAndBlockItem("smooth_rusty_vesselplate_stairs",
+            () -> new StairBlock(Blocks.IRON_BLOCK::defaultBlockState,
+                    BlockBehaviour
+                            .Properties.copy(Blocks.IRON_BLOCK)
+                            .noOcclusion()
+                            .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
+    );
+    public static final RegistryObject<Block> SMOOTH_RUSTY_VESSELPLATE_SLAB = registerBlockAndBlockItem("smooth_rusty_vesselplate_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
     );
 
 
@@ -351,19 +444,6 @@ public class ModBlocks {
                             .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
     );
     public static final RegistryObject<Block> SMOOTH_VESSELPLATE_SLAB = registerBlockAndBlockItem("smooth_vesselplate_slab",
-            () -> new SlabBlock(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
-                    .noOcclusion()
-                    .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
-    );
-    public static final RegistryObject<Block> SMOOTH_GRAY_VESSELPLATE_STAIRS = registerBlockAndBlockItem("smooth_gray_vesselplate_stairs",
-            () -> new StairBlock(Blocks.IRON_BLOCK::defaultBlockState,
-                    BlockBehaviour
-                            .Properties.copy(Blocks.IRON_BLOCK)
-                            .noOcclusion()
-                            .sound(ModSounds.VESSELPLATE_BLOCK_SOUNDS))
-    );
-    public static final RegistryObject<Block> SMOOTH_GRAY_VESSELPLATE_SLAB = registerBlockAndBlockItem("smooth_gray_vesselplate_slab",
             () -> new SlabBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion()

@@ -2,19 +2,19 @@
   "multipart": [
     {
       "when": { "north": true },
-      "apply": { "model": "industrialhellscape:block/yellow_railing/yellow_railing", "y": 0 }
+      "apply": { "model": "industrialhellscape:block/railing/yellow_railing", "y": 0 }
     },
     {
       "when": { "east": true },
-      "apply": { "model": "industrialhellscape:block/yellow_railing/yellow_railing", "y": 90 }
+      "apply": { "model": "industrialhellscape:block/railing/yellow_railing", "y": 90 }
     },
     {
       "when": { "south": true },
-      "apply": { "model": "industrialhellscape:block/yellow_railing/yellow_railing", "y": 180 }
+      "apply": { "model": "industrialhellscape:block/railing/yellow_railing", "y": 180 }
     },
     {
       "when": { "west": true },
-      "apply": { "model": "industrialhellscape:block/yellow_railing/yellow_railing", "y": 270 }
+      "apply": { "model": "industrialhellscape:block/railing/yellow_railing", "y": 270 }
     }
   ]
 }

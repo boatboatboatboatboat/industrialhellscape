@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "industrialhellscape:metalworks_stonecut_gray_bolted_bracket3"
+        "recipe": "industrialhellscape:vesselplate_stonecut_rusty_vesselplate_sheeting21"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "industrialhellscape:metalworks_stonecut_gray_bolted_bracket3"
+      "industrialhellscape:vesselplate_stonecut_rusty_vesselplate_sheeting21"
     ]
   },
   "sends_telemetry_event": false

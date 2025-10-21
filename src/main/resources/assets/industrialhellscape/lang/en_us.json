@@ -43,6 +43,19 @@
   "block.industrialhellscape.gray_vesselplate_pillar": "Gray Vesselplate Pillar",
   "block.industrialhellscape.gray_vesselplate_sheeting": "Vesselplate Sheet Panel",
 
+  "block.industrialhellscape.rusty_directional_riveted_vesselplate": "Rusty Directional Riveted Vesselplate",
+  "block.industrialhellscape.rusty_vesselplate_pillar": "Rusty Vesselplate Pillar",
+  "block.industrialhellscape.rusty_riveted_vesselplate_panel": "Rusty Riveted Vesselplate Panel",
+  "block.industrialhellscape.rusty_riveted_vesselplate_stairs": "Rusty Riveted Vesselplate Stairs",
+  "block.industrialhellscape.rusty_riveted_vesselplate_slab": "Rusty Riveted Vesselplate Slab",
+  "block.industrialhellscape.rusty_vesselplate_sheeting": "Rusty Vesselplate Sheeting",
+  "block.industrialhellscape.rusty_vesselplate_sheeting_stairs": "Rusty Vesselplate Sheeting",
+  "block.industrialhellscape.rusty_vesselplate_sheeting_slab": "Rusty Vesselplate Sheeting",
+
+  "block.industrialhellscape.smooth_rusty_vesselplate_tile": "Smooth Rusty Vesselplate Tile",
+  "block.industrialhellscape.smooth_rusty_vesselplate_stairs": "Smooth Rusty Vesselplate Stairs",
+  "block.industrialhellscape.smooth_rusty_vesselplate_slab": "Smooth Rusty Vesselplate Slab",
+
   "block.industrialhellscape.encased_cables": "Encased Cables",
 
   "block.industrialhellscape.pipeworks": "Pipeworks",
@@ -136,6 +149,8 @@
   "block.industrialhellscape.floor_work_light": "Floor Work Light",
   "block.industrialhellscape.yellow_railing": "Yellow Railing",
   "block.industrialhellscape.yellow_stair_railing": "Yellow Stair Railing",
+  "block.industrialhellscape.gray_railing": "Gray Railing",
+  "block.industrialhellscape.gray_stair_railing": "Gray Stair Railing",
 
   "block.industrialhellscape.strut": "Strut",
   "block.industrialhellscape.strut_stairs": "Strut Stairs",

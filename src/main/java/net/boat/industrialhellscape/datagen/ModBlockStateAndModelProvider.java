@@ -41,6 +41,7 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         //Vesselplate Blocks
         genFolderedToggleBlockSBI(ModBlocks.RIVETED_VESSELPLATE_PANEL.get(),"vesselplate","", true, true, "_panel", "","solid");
         genFolderedDirToggleBlockSBI(ModBlocks.DIRECTIONAL_RIVETED_VESSELPLATE.get(),"vesselplate","",true, true,"horizontal_riveted_vesselplate","vertical_riveted_vesselplate");
+
         genFolderedToggleBlockSBI(ModBlocks.SMOOTH_VESSELPLATE_TILE.get(),"vesselplate", "", true, true, "_tile","","solid");
         genFolderedToggleBlockSBI(ModBlocks.VESSELPLATE_SHEETING.get(),"vesselplate","", true, true, "ing", "","solid");
 
@@ -64,6 +65,20 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         genSlabsWithCustomDoubleSBI(ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get(), ModBlocks.GRAY_RIVETED_VESSELPLATE_PANEL.get(),"vesselplate","gray_riveted_vesselplate_double_slab","gray_riveted_vesselplate_slab","gray_riveted_vesselplate_panel","_panel","");
         genSlabsWithCustomDoubleSBI(ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get(), ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get(),"vesselplate","smooth_gray_vesselplate_double_slab","smooth_gray_vesselplate_slab", "smooth_gray_vesselplate_tile","_tile","");
         genSlabsWithCustomDoubleSBI(ModBlocks.GRAY_VESSELPLATE_SHEETING_SLAB.get(), ModBlocks.GRAY_VESSELPLATE_SHEETING.get(),"vesselplate","gray_vesselplate_sheeting_double_slab","gray_vesselplate_sheeting_slab","gray_vesselplate_sheeting","ing","");
+
+        genFolderedDirToggleBlockSBI(ModBlocks.RUSTY_DIRECTIONAL_RIVETED_VESSELPLATE.get(),"vesselplate","",true, true,"rusty_horizontal_riveted_vesselplate","rusty_vertical_riveted_vesselplate");
+
+        genFolderedToggleBlockSBI(ModBlocks.RUSTY_RIVETED_VESSELPLATE_PANEL.get(),"vesselplate","", true, true, "_panel", "","solid");
+        genStairsWithRenderTypeSBI(ModBlocks.RUSTY_RIVETED_VESSELPLATE_STAIRS.get(),"vesselplate","rusty_riveted_vesselplate","rusty_riveted_vesselplate","rusty_riveted_vesselplate","solid");
+        genSlabsWithCustomDoubleSBI(ModBlocks.RUSTY_RIVETED_VESSELPLATE_SLAB.get(), ModBlocks.RUSTY_RIVETED_VESSELPLATE_PANEL.get(),"vesselplate","rusty_riveted_vesselplate_double_slab","rusty_riveted_vesselplate_slab","rusty_riveted_vesselplate_panel","_panel","");
+
+        genFolderedToggleBlockSBI(ModBlocks.RUSTY_VESSELPLATE_SHEETING.get(),"vesselplate","", true, true, "ing", "","solid");
+        genStairsWithRenderTypeSBI(ModBlocks.RUSTY_VESSELPLATE_SHEETING_STAIRS.get(),"vesselplate","rusty_vesselplate_sheet","rusty_vesselplate_sheet","rusty_vesselplate_sheet","solid");
+        genSlabsWithCustomDoubleSBI(ModBlocks.RUSTY_VESSELPLATE_SHEETING_SLAB.get(), ModBlocks.RUSTY_VESSELPLATE_SHEETING.get(),"vesselplate","rusty_vesselplate_sheeting_double_slab","rusty_vesselplate_sheeting_slab","rusty_vesselplate_sheeting","ing","");
+
+        genFolderedToggleBlockSBI(ModBlocks.SMOOTH_RUSTY_VESSELPLATE_TILE.get(),"vesselplate", "", true, true, "_tile","","solid");
+        genStairsWithRenderTypeSBI(ModBlocks.SMOOTH_RUSTY_VESSELPLATE_STAIRS.get(),"vesselplate","smooth_rusty_vesselplate","smooth_rusty_vesselplate","smooth_rusty_vesselplate","solid");
+        genSlabsWithCustomDoubleSBI(ModBlocks.SMOOTH_RUSTY_VESSELPLATE_SLAB.get(), ModBlocks.SMOOTH_RUSTY_VESSELPLATE_TILE.get(),"vesselplate","smooth_rusty_vesselplate_double_slab","smooth_rusty_vesselplate_slab", "smooth_rusty_vesselplate_tile","_tile","");
 
         //Grate Blocks
         genFolderedToggleBlockSBI(ModBlocks.GRATE.get(),"grate","",true, true,"grate","vertical_grate","solid");
@@ -142,8 +157,10 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         TwoBlockMultiBlock(ModBlocks.URINAL.get(), "urinal");
 
         //Metalworks Blocks
-        genI(ModBlocks.YELLOW_RAILING.get(),"yellow_railing");
-        genI(ModBlocks.YELLOW_STAIR_RAILING.get(),"yellow_railing");
+        genI(ModBlocks.YELLOW_RAILING.get(),"railing");
+        genCustomI(ModBlocks.YELLOW_STAIR_RAILING.get(),"railing","yellow_stair_rail_left");
+        genI(ModBlocks.GRAY_RAILING.get(),"railing");
+        genCustomI(ModBlocks.GRAY_STAIR_RAILING.get(),"railing","gray_stair_rail_left");
         genI(ModBlocks.BLACK_BOLTED_BRACKET.get(),"bolted_bracket");
         genI(ModBlocks.GRAY_BOLTED_BRACKET.get(),"bolted_bracket");
         
@@ -610,6 +627,13 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String modelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
         
+        //GENERATE ITEM MODEL
+        simpleBlockItem(block, models().getExistingFile(modLoc(modelPath)));
+    }
+    private void genCustomI(Block block, String folderName, String stringName) {
+        //Only generate the item model for this block. Block states and block models are already written.
+        String modelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
+
         //GENERATE ITEM MODEL
         simpleBlockItem(block, models().getExistingFile(modLoc(modelPath)));
     }

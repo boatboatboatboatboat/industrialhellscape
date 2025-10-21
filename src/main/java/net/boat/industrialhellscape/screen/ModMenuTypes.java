@@ -1,9 +1,7 @@
 package net.boat.industrialhellscape.screen;
 
-import io.netty.util.Recycler;
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.eventbus.api.IEventBus;

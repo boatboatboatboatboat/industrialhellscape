@@ -93,7 +93,19 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.SMOOTH_VESSELPLATE_STAIRS.get(),
                         ModBlocks.SMOOTH_VESSELPLATE_SLAB.get(),
                         ModBlocks.SMOOTH_GRAY_VESSELPLATE_STAIRS.get(),
-                        ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get()
+                        ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get(),
+
+                        ModBlocks.RUSTY_RIVETED_VESSELPLATE_PANEL.get(),
+                        ModBlocks.RUSTY_RIVETED_VESSELPLATE_STAIRS.get(),
+                        ModBlocks.RUSTY_RIVETED_VESSELPLATE_SLAB.get(),
+                        ModBlocks.RUSTY_VESSELPLATE_SHEETING.get(),
+                        ModBlocks.RUSTY_VESSELPLATE_SHEETING_STAIRS.get(),
+                        ModBlocks.RUSTY_VESSELPLATE_SHEETING_SLAB.get(),
+                        ModBlocks.RUSTY_VESSELPLATE_PILLAR.get(),
+                        ModBlocks.RUSTY_DIRECTIONAL_RIVETED_VESSELPLATE.get(),
+                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE_TILE.get(),
+                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE_STAIRS.get(),
+                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE_SLAB.get()
                 );
 
         this.tag(ModTags.Blocks.VESSELGLASS_BLOCKS)
@@ -150,6 +162,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.METALWORKS.get(),
                         ModBlocks.YELLOW_STAIR_RAILING.get(),
                         ModBlocks.YELLOW_RAILING.get(),
+                        ModBlocks.GRAY_STAIR_RAILING.get(),
+                        ModBlocks.GRAY_RAILING.get(),
                         ModBlocks.GRAY_BOLTED_BRACKET.get(),
                         ModBlocks.BLACK_BOLTED_BRACKET.get()
                 );

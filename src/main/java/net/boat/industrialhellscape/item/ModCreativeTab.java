@@ -69,6 +69,19 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.GRAY_VESSELPLATE_SHEETING_STAIRS.get());
                         output.accept(ModBlocks.GRAY_VESSELPLATE_SHEETING_SLAB.get());
 
+                        output.accept(ModBlocks.RUSTY_RIVETED_VESSELPLATE_PANEL.get());
+                        output.accept(ModBlocks.RUSTY_RIVETED_VESSELPLATE_STAIRS.get());
+                        output.accept(ModBlocks.RUSTY_RIVETED_VESSELPLATE_SLAB.get());
+                        output.accept(ModBlocks.RUSTY_VESSELPLATE_SHEETING.get());
+                        output.accept(ModBlocks.RUSTY_VESSELPLATE_SHEETING_STAIRS.get());
+                        output.accept(ModBlocks.RUSTY_VESSELPLATE_SHEETING_SLAB.get());
+                        output.accept(ModBlocks.RUSTY_VESSELPLATE_PILLAR.get());
+                        output.accept(ModBlocks.SMOOTH_RUSTY_VESSELPLATE_TILE.get());
+                        output.accept(ModBlocks.SMOOTH_RUSTY_VESSELPLATE_STAIRS.get());
+                        output.accept(ModBlocks.SMOOTH_RUSTY_VESSELPLATE_SLAB.get());
+
+                        output.accept(ModBlocks.RUSTY_DIRECTIONAL_RIVETED_VESSELPLATE.get());
+
                         output.accept(ModBlocks.STRUT.get());
                         output.accept(ModBlocks.CATWALK_STRUT.get());
                         output.accept(ModBlocks.CATWALK_STRUT_STAIRS.get());
@@ -147,10 +160,12 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.METALWORKS.get());
                         output.accept(ModBlocks.DUCT.get());
                         output.accept(ModBlocks.RUSTY_DUCT.get());
-                        output.accept(ModBlocks.YELLOW_STAIR_RAILING.get());
                         output.accept(ModBlocks.GRAY_BOLTED_BRACKET.get());
                         output.accept(ModBlocks.BLACK_BOLTED_BRACKET.get());
                         output.accept(ModBlocks.YELLOW_RAILING.get());
+                        output.accept(ModBlocks.YELLOW_STAIR_RAILING.get());
+                        output.accept(ModBlocks.GRAY_RAILING.get());
+                        output.accept(ModBlocks.GRAY_STAIR_RAILING.get());
 
                         //DOORS AND TRAPDOORS
                         output.accept(ModBlocks.DUCT_VENT.get());

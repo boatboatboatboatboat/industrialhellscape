@@ -1,0 +1,6 @@
+{
+	"parent": "industrialhellscape:block/railing/yellow_railing",
+	"textures": {
+		"0": "industrialhellscape:block/railing/gray_railing"
+	}
+}

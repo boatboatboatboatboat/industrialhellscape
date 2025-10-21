@@ -1,4 +1,4 @@
-// 1.20.1	2025-10-18T04:27:31.4499082	Tags for minecraft:item mod id industrialhellscape
+// 1.20.1	2025-10-20T22:33:34.6583722	Tags for minecraft:item mod id industrialhellscape
 48bee4ce55195270bf559d3cf28fbed9156b1bdb data/forge/tags/items/tools.json
 48bee4ce55195270bf559d3cf28fbed9156b1bdb data/forge/tags/items/tools/wrench.json
 48bee4ce55195270bf559d3cf28fbed9156b1bdb data/forge/tags/items/wrenches.json
@@ -12,12 +12,12 @@ c6bca1eb0944a0e2bad372ebf9d471e2423fd3fd data/industrialhellscape/tags/items/ih_
 36345922a757c6e32398b7977cb4a21838a13968 data/industrialhellscape/tags/items/ih_recipe_ingots.json
 43a13fa171afcdc024595417a7858e12cd7eec08 data/industrialhellscape/tags/items/ih_recipe_stonelikes.json
 543a3d4fe4c6f177a18b915a16066c0624c9af7e data/industrialhellscape/tags/items/industrial_furniture_category.json
-777eaf62c3d0acbd3b11ac5415e8bb33ae0c1122 data/industrialhellscape/tags/items/metalworks_items.json
+3f18fac275a1cee4c7fbe4267732b615de951ff0 data/industrialhellscape/tags/items/metalworks_items.json
 5ffc7795d51b6180aff9e6d060a5b42f67493c34 data/industrialhellscape/tags/items/pipeworks_items.json
 052ffd0d957edd32e139407344c372b832444795 data/industrialhellscape/tags/items/rockrete_smeltable_item.json
 d1f71b4ce17bd52252c21164736052732f5cce0b data/industrialhellscape/tags/items/safety_furniture_category.json
 1920fc4e33e884c6b56d3eb27bd88b2020019bb7 data/industrialhellscape/tags/items/strut_smeltable_item.json
 61499d10c43183fabb9b9eb64b17a587eb4b3649 data/industrialhellscape/tags/items/technology_furniture_category.json
 51b1b5aad9350c0c3d4fdb32974dcdab6d297cbe data/industrialhellscape/tags/items/vesselglass_smeltable_item.json
-fc1e9cc93a77ce8b6fc079a834e9f8720ba720b3 data/industrialhellscape/tags/items/vesselplate_smeltable_item.json
+7819cb16e868bd65c920ddc96b9ce7f244e9767b data/industrialhellscape/tags/items/vesselplate_smeltable_item.json
 f9cdfac50883cfaae97068988d03475a12df7173 data/minecraft/tags/items/music_discs.json

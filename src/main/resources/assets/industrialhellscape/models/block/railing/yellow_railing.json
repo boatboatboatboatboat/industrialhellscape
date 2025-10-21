@@ -2,8 +2,8 @@
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "industrialhellscape:block/yellow_railing",
-		"particle": "industrialhellscape:block/yellow_railing"
+		"0": "industrialhellscape:block/railing/yellow_railing",
+		"particle": "industrialhellscape:block/railing/yellow_railing"
 	},
 	"elements": [
 		{

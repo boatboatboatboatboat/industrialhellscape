@@ -24,10 +24,11 @@ public class InHellTool extends Item {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
+    public @Nonnull InteractionResultHolder<ItemStack> use(Level level, @Nonnull Player player, @Nonnull InteractionHand usedHand) {
         if (level.isClientSide) {
             return InteractionResultHolder.success(player.getItemInHand(usedHand));
         }
+        //Opens menu, the input slot of the stonecutter will initially be empty
         player.openMenu(getMenuProvider(level,player.blockPosition(), ItemStack.EMPTY));
         return InteractionResultHolder.consume(player.getItemInHand(usedHand));
     }
@@ -35,11 +36,13 @@ public class InHellTool extends Item {
     public static StonecutterMenu getStonecutterMenu(int i, Inventory inventory, Level level, BlockPos pos, ItemStack itemStack){
         return new StonecutterMenu(i, inventory, ContainerLevelAccess.create(level, pos)){
             {
+                //What kind of item stack will show up in slot index 0? (parameter input should be ItemStack.Empty)
                 this.getSlot(0).set(itemStack);
             }
 
             @Override
-            public boolean stillValid(Player _player) {
+            //GUI menu will always be on until player hits escape key.
+            public boolean stillValid(@Nonnull Player pPlayer) {
                 return true;
             }
 
@@ -47,7 +50,7 @@ public class InHellTool extends Item {
     }
 
     public MenuProvider getMenuProvider(Level level, BlockPos pos, ItemStack itemStack){
-        return new SimpleMenuProvider((i, inventory, _player) -> getStonecutterMenu(i,inventory,level,pos,itemStack) , getDescription());
+        return new SimpleMenuProvider((i, inventory, pPlayer) -> getStonecutterMenu(i,inventory,level,pos,itemStack) , getDescription());
     }
 
     @Override
@@ -65,7 +68,6 @@ public class InHellTool extends Item {
     }
 
     //Item remains in crafting grid when used to craft something, from the two methods below.
-    @Nonnull
     public ItemStack getCraftingRemainingItem(@Nonnull ItemStack stack) {
         return new ItemStack(this);
     }

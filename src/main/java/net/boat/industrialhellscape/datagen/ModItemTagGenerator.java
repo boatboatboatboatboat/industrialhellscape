@@ -91,28 +91,39 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 .add(
                 //NO HALF BLOCKS HERE
                         //Full BLocks
-                        ModBlocks.RIVETED_VESSELPLATE_PANEL.get().asItem(),
                         ModBlocks.DIRECTIONAL_RIVETED_VESSELPLATE.get().asItem(),
-                        ModBlocks.SMOOTH_VESSELPLATE_TILE.get().asItem(),
                         ModBlocks.VESSELPLATE_PILLAR.get().asItem(),
+
+                        ModBlocks.RIVETED_VESSELPLATE_PANEL.get().asItem(),
+                        ModBlocks.RIVETED_VESSELPLATE_STAIRS.get().asItem(),
+
                         ModBlocks.VESSELPLATE_SHEETING.get().asItem(),
                         ModBlocks.VESSELPLATE_SHEETING_STAIRS.get().asItem(),
 
-
+                        ModBlocks.SMOOTH_VESSELPLATE_TILE.get().asItem(),
+                        ModBlocks.SMOOTH_VESSELPLATE_STAIRS.get().asItem(),
 
                         ModBlocks.GRAY_RIVETED_VESSELPLATE_PANEL.get().asItem(),
 
-                        ModBlocks.RIVETED_VESSELPLATE_PANEL.get().asItem(),
                         ModBlocks.GRAY_DIRECTIONAL_RIVETED_VESSELPLATE.get().asItem(),
                         ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get().asItem(),
                         ModBlocks.GRAY_VESSELPLATE_PILLAR.get().asItem(),
                         ModBlocks.GRAY_VESSELPLATE_SHEETING.get().asItem(),
                         ModBlocks.GRAY_VESSELPLATE_SHEETING_STAIRS.get().asItem(),
 
-
-                        ModBlocks.RIVETED_VESSELPLATE_STAIRS.get().asItem(),
                         ModBlocks.GRAY_RIVETED_VESSELPLATE_STAIRS.get().asItem(),
-                        ModBlocks.SMOOTH_VESSELPLATE_STAIRS.get().asItem()
+
+                        ModBlocks.RUSTY_VESSELPLATE_PILLAR.get().asItem(),
+                        ModBlocks.RUSTY_RIVETED_VESSELPLATE_PANEL.get().asItem(),
+                        ModBlocks.RUSTY_RIVETED_VESSELPLATE_STAIRS.get().asItem(),
+
+                        ModBlocks.RUSTY_VESSELPLATE_SHEETING.get().asItem(),
+                        ModBlocks.RUSTY_VESSELPLATE_SHEETING_STAIRS.get().asItem(),
+
+                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE_TILE.get().asItem(),
+                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE_STAIRS.get().asItem(),
+
+                        ModBlocks.RUSTY_DIRECTIONAL_RIVETED_VESSELPLATE.get().asItem()
 
                 //NO HALF BLOCKS HERE
                 );
@@ -180,6 +191,8 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 
                         ModBlocks.YELLOW_RAILING.get().asItem(),
                         ModBlocks.YELLOW_STAIR_RAILING.get().asItem(),
+                        ModBlocks.GRAY_RAILING.get().asItem(),
+                        ModBlocks.GRAY_STAIR_RAILING.get().asItem(),
                         ModBlocks.BLACK_BOLTED_BRACKET.get().asItem(),
                         ModBlocks.GRAY_BOLTED_BRACKET.get().asItem()
                 );

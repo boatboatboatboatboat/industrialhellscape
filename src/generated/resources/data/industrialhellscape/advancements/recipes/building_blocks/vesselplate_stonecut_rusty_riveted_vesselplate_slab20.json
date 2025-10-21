@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "industrialhellscape:metalworks_stonecut_black_bolted_bracket2"
+        "recipe": "industrialhellscape:vesselplate_stonecut_rusty_riveted_vesselplate_slab20"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "industrialhellscape:metalworks_stonecut_black_bolted_bracket2"
+      "industrialhellscape:vesselplate_stonecut_rusty_riveted_vesselplate_slab20"
     ]
   },
   "sends_telemetry_event": false
