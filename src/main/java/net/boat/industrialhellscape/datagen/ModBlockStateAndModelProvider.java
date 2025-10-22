@@ -161,33 +161,39 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         genCustomI(ModBlocks.YELLOW_STAIR_RAILING.get(),"railing","yellow_stair_rail_left");
         genI(ModBlocks.GRAY_RAILING.get(),"railing");
         genCustomI(ModBlocks.GRAY_STAIR_RAILING.get(),"railing","gray_stair_rail_left");
+        genI(ModBlocks.BLACK_RAILING.get(),"railing");
+        genCustomI(ModBlocks.BLACK_STAIR_RAILING.get(),"railing","black_stair_rail_left");
+        genI(ModBlocks.RUSTY_RAILING.get(),"railing");
+        genCustomI(ModBlocks.RUSTY_STAIR_RAILING.get(),"railing","black_stair_rail_left");
+
+        genI(ModBlocks.RUSTY_BOLTED_BRACKET.get(),"bolted_bracket");
         genI(ModBlocks.BLACK_BOLTED_BRACKET.get(),"bolted_bracket");
         genI(ModBlocks.GRAY_BOLTED_BRACKET.get(),"bolted_bracket");
         
         //Strut Blocks
         genAntiCullBLock(ModBlocks.STRUT.get(),"strut", "strut","strut", "cutout");
         genStairsWithRenderTypeSBI(ModBlocks.STRUT_STAIRS.get(),"strut","reinforced_strut","strut","strut","cutout");
-        genSlabBlockSBI(ModBlocks.STRUT_SLAB.get(), "strut", "strut", "strut","cutout");
+        genSlabBlockSBI(ModBlocks.STRUT_SLAB.get(), "strut", "strut", "strut","strut","cutout");
 
         genAntiCullBLock(ModBlocks.CATWALK_STRUT.get(),"strut", "strut","floorgrate_catwalk", "cutout");
         genStairsWithRenderTypeSBI(ModBlocks.CATWALK_STRUT_STAIRS.get(),"strut","reinforced_strut","strut","floorgrate_catwalk","cutout");
-        genSlabBlockSBI(ModBlocks.CATWALK_STRUT_SLAB.get(), "strut", "strut", "floorgrate_catwalk","cutout");
+        genSlabBlockSBI(ModBlocks.CATWALK_STRUT_SLAB.get(), "strut", "strut", "floorgrate_catwalk","strut","cutout");
 
         genAntiCullBLock(ModBlocks.GRAY_STRUT.get(),"strut", "gray_strut","gray_strut", "cutout");
         genStairsWithRenderTypeSBI(ModBlocks.GRAY_STRUT_STAIRS.get(),"strut","gray_reinforced_strut","gray_strut","gray_strut","cutout");
-        genSlabBlockSBI(ModBlocks.GRAY_STRUT_SLAB.get(), "strut", "gray_strut", "gray_strut","cutout");
+        genSlabBlockSBI(ModBlocks.GRAY_STRUT_SLAB.get(), "strut", "gray_strut", "gray_strut","gray_strut","cutout");
 
         genAntiCullBLock(ModBlocks.GRAY_CATWALK_STRUT.get(),"strut", "gray_strut","gray_floorgrate_catwalk", "cutout");
         genStairsWithRenderTypeSBI(ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get(),"strut","gray_reinforced_strut","gray_strut","gray_floorgrate_catwalk","cutout");
-        genSlabBlockSBI(ModBlocks.GRAY_CATWALK_STRUT_SLAB.get(), "strut", "gray_strut", "gray_floorgrate_catwalk","cutout");
+        genSlabBlockSBI(ModBlocks.GRAY_CATWALK_STRUT_SLAB.get(), "strut", "gray_strut", "gray_floorgrate_catwalk","gray_strut", "cutout");
 
         genAntiCullBLock(ModBlocks.RUSTY_STRUT.get(),"strut", "rusty_strut","rusty_strut", "cutout");
         genStairsWithRenderTypeSBI(ModBlocks.RUSTY_STRUT_STAIRS.get(),"strut","rusty_reinforced_strut","rusty_strut","rusty_strut","cutout");
-        genSlabBlockSBI(ModBlocks.RUSTY_STRUT_SLAB.get(), "strut", "rusty_strut", "rusty_strut","cutout");
+        genSlabBlockSBI(ModBlocks.RUSTY_STRUT_SLAB.get(), "strut", "rusty_strut", "rusty_strut","rusty_strut","cutout");
 
         genAntiCullBLock(ModBlocks.RUSTY_CATWALK_STRUT.get(),"strut", "rusty_strut","rusty_floorgrate_catwalk", "cutout");
         genStairsWithRenderTypeSBI(ModBlocks.RUSTY_CATWALK_STRUT_STAIRS.get(),"strut","rusty_reinforced_strut","rusty_strut","rusty_floorgrate_catwalk","cutout");
-        genSlabBlockSBI(ModBlocks.RUSTY_CATWALK_STRUT_SLAB.get(), "strut", "rusty_strut", "rusty_floorgrate_catwalk","cutout");
+        genSlabBlockSBI(ModBlocks.RUSTY_CATWALK_STRUT_SLAB.get(), "strut", "rusty_strut", "rusty_floorgrate_catwalk","rusty_strut", "cutout");
 
         //Doors and Trapdoors
         genAttachedSI(ModBlocks.DUCT_VENT.get(), "duct_vent");
@@ -311,16 +317,31 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         simpleBlockItem(block, models().getExistingFile(modLoc(existingModelPath)));
     }
 
-    private void genSlabBlockSBI(Block block, String folderName, String sideTextureName, String topTextureName, String renderType) {
+    private void genSlabBlockSBI(Block block, String folderName, String sideTextureName, String topTextureName, String bottomTextureName, String renderType) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 
         ResourceLocation side = modLoc("block/" + folderName + "/" + sideTextureName);
         ResourceLocation top = modLoc("block/" + folderName + "/" + topTextureName);
-        ResourceLocation bottom = top; // bottom uses same texture as top
+        ResourceLocation bottom =  modLoc("block/" + folderName + "/" + bottomTextureName);
 
-        ModelFile slab = models().slab(stringName, side, bottom, top).texture("particle", side).renderType(renderType);
-        ModelFile slabTop = models().slabTop(stringName + "_top", side, bottom, top).texture("particle", side).renderType(renderType);
-        ModelFile slabDouble = models().cubeBottomTop(stringName + "_double", side, bottom, top).texture("particle", side).renderType(renderType);
+        ModelFile slab = models()
+                .withExistingParent(stringName, modLoc("block/anticull_slab"))
+                .texture("side", side) //side
+                .texture("top", top) //top
+                .texture("bottom", bottom) //bottom
+                .renderType(renderType);
+
+        //models().slab(stringName, side, bottom, top).texture("particle", side).renderType(renderType);
+        ModelFile slabTop = models()
+                .withExistingParent(stringName+"_top", modLoc("block/anticull_slab_top"))
+                .texture("side", side) //side
+                .texture("top", top) //top
+                .texture("bottom", bottom) //bottom
+                .renderType(renderType);
+
+        //models().slabTop(stringName + "_top", side, bottom, top).texture("particle", side).renderType(renderType);
+
+        ModelFile slabDouble = models().getExistingFile(modLoc("block/"+stringName.replace("_slab","")));
 
         getVariantBuilder(block).forAllStates(state -> {
             SlabType type = state.getValue(SlabBlock.TYPE);

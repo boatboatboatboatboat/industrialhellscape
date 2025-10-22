@@ -103,6 +103,7 @@
 
   "block.industrialhellscape.gray_bolted_bracket": "Gray Bolted Bracket",
   "block.industrialhellscape.black_bolted_bracket": "Black Bolted Bracket",
+  "block.industrialhellscape.rusty_bolted_bracket": "Rusty Bolted Bracket",
 
   "block.industrialhellscape.hazard_stripe_yellow": "Hazard Stripe Yellow",
   "block.industrialhellscape.hazard_stripe_red": "Hazard Stripe Red",
@@ -151,6 +152,10 @@
   "block.industrialhellscape.yellow_stair_railing": "Yellow Stair Railing",
   "block.industrialhellscape.gray_railing": "Gray Railing",
   "block.industrialhellscape.gray_stair_railing": "Gray Stair Railing",
+  "block.industrialhellscape.black_railing": "Black Railing",
+  "block.industrialhellscape.black_stair_railing": "Black Stair Railing",
+  "block.industrialhellscape.rusty_railing": "Rusty Railing",
+  "block.industrialhellscape.rusty_stair_railing": "Rusty Stair Railing",
 
   "block.industrialhellscape.strut": "Strut",
   "block.industrialhellscape.strut_stairs": "Strut Stairs",

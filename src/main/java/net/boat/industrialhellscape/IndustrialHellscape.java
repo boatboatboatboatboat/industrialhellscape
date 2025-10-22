@@ -5,6 +5,7 @@ import net.boat.industrialhellscape.block.modded_block_entities.ModBlockEntities
 import net.boat.industrialhellscape.block.modded_block_entities.ModEntities;
 import net.boat.industrialhellscape.block.modded_block_entities.SittableEntity.SittableEntityRenderer;
 import net.boat.industrialhellscape.screen.ModMenuTypes;
+import net.boat.industrialhellscape.screen.PosterScreen;
 import net.boat.industrialhellscape.screen.RecyclerScreen;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.item.ModCreativeTab;

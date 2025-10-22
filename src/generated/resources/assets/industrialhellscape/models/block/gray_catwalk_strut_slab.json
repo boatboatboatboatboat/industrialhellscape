@@ -1,9 +1,8 @@
 {
-  "parent": "minecraft:block/slab",
+  "parent": "industrialhellscape:block/anticull_slab",
   "render_type": "minecraft:cutout",
   "textures": {
-    "bottom": "industrialhellscape:block/strut/gray_floorgrate_catwalk",
-    "particle": "industrialhellscape:block/strut/gray_strut",
+    "bottom": "industrialhellscape:block/strut/gray_strut",
     "side": "industrialhellscape:block/strut/gray_strut",
     "top": "industrialhellscape:block/strut/gray_floorgrate_catwalk"
   }

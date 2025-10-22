@@ -182,12 +182,17 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     private static final List<ItemLike> METALWORKS_STONECUT_OUTPUT = List.of(
             ModBlocks.METALWORKS.get().asItem(),
+            ModBlocks.RUSTY_BOLTED_BRACKET.get().asItem(),
             ModBlocks.BLACK_BOLTED_BRACKET.get().asItem(),
             ModBlocks.GRAY_BOLTED_BRACKET.get().asItem(),
             ModBlocks.YELLOW_RAILING.get().asItem(),
             ModBlocks.YELLOW_STAIR_RAILING.get().asItem(),
             ModBlocks.GRAY_RAILING.get().asItem(),
-            ModBlocks.GRAY_STAIR_RAILING.get().asItem()
+            ModBlocks.GRAY_STAIR_RAILING.get().asItem(),
+            ModBlocks.BLACK_RAILING.get().asItem(),
+            ModBlocks.BLACK_STAIR_RAILING.get().asItem(),
+            ModBlocks.RUSTY_RAILING.get().asItem(),
+            ModBlocks.RUSTY_STAIR_RAILING.get().asItem()
     );
     private static final List<ItemLike> FURNITURE_CATEGORIES = List.of(
             ModBlocks.SAFETY_FURNISHINGS.get().asItem(),

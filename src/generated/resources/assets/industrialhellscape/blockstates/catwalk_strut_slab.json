@@ -7,10 +7,10 @@
       "model": "industrialhellscape:block/catwalk_strut_slab"
     },
     "type=double,waterlogged=false": {
-      "model": "industrialhellscape:block/catwalk_strut_slab_double"
+      "model": "industrialhellscape:block/catwalk_strut"
     },
     "type=double,waterlogged=true": {
-      "model": "industrialhellscape:block/catwalk_strut_slab_double"
+      "model": "industrialhellscape:block/catwalk_strut"
     },
     "type=top,waterlogged=false": {
       "model": "industrialhellscape:block/catwalk_strut_slab_top"

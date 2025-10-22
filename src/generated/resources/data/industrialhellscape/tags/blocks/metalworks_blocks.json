@@ -5,7 +5,12 @@
     "industrialhellscape:yellow_railing",
     "industrialhellscape:gray_stair_railing",
     "industrialhellscape:gray_railing",
+    "industrialhellscape:black_stair_railing",
+    "industrialhellscape:black_railing",
+    "industrialhellscape:rusty_stair_railing",
+    "industrialhellscape:rusty_railing",
     "industrialhellscape:gray_bolted_bracket",
-    "industrialhellscape:black_bolted_bracket"
+    "industrialhellscape:black_bolted_bracket",
+    "industrialhellscape:rusty_bolted_bracket"
   ]
 }

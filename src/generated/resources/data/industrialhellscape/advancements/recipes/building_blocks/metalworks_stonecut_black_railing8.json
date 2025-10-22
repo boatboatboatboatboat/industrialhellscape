@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "industrialhellscape:metalworks_stonecut_black_bolted_bracket1"
+        "recipe": "industrialhellscape:metalworks_stonecut_black_railing8"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "industrialhellscape:metalworks_stonecut_black_bolted_bracket1"
+      "industrialhellscape:metalworks_stonecut_black_railing8"
     ]
   },
   "sends_telemetry_event": false

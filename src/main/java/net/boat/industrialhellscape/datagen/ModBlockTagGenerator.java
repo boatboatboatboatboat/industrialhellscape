@@ -164,8 +164,13 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.YELLOW_RAILING.get(),
                         ModBlocks.GRAY_STAIR_RAILING.get(),
                         ModBlocks.GRAY_RAILING.get(),
+                        ModBlocks.BLACK_STAIR_RAILING.get(),
+                        ModBlocks.BLACK_RAILING.get(),
+                        ModBlocks.RUSTY_STAIR_RAILING.get(),
+                        ModBlocks.RUSTY_RAILING.get(),
                         ModBlocks.GRAY_BOLTED_BRACKET.get(),
-                        ModBlocks.BLACK_BOLTED_BRACKET.get()
+                        ModBlocks.BLACK_BOLTED_BRACKET.get(),
+                        ModBlocks.RUSTY_BOLTED_BRACKET.get()
                 );
 
         //BLOCKSET FAMILIES

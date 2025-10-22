@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "industrialhellscape:metalworks_stonecut_gray_bolted_bracket2"
+        "recipe": "industrialhellscape:metalworks_stonecut_rusty_stair_railing11"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "industrialhellscape:metalworks_stonecut_gray_bolted_bracket2"
+      "industrialhellscape:metalworks_stonecut_rusty_stair_railing11"
     ]
   },
   "sends_telemetry_event": false

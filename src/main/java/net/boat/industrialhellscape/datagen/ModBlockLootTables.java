@@ -155,8 +155,14 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.YELLOW_RAILING.get());
         this.dropSelf(ModBlocks.GRAY_STAIR_RAILING.get());
         this.dropSelf(ModBlocks.GRAY_RAILING.get());
+        this.dropSelf(ModBlocks.BLACK_STAIR_RAILING.get());
+        this.dropSelf(ModBlocks.BLACK_RAILING.get());
+        this.dropSelf(ModBlocks.RUSTY_STAIR_RAILING.get());
+        this.dropSelf(ModBlocks.RUSTY_RAILING.get());
+
         this.dropSelf(ModBlocks.GRAY_BOLTED_BRACKET.get());
         this.dropSelf(ModBlocks.BLACK_BOLTED_BRACKET.get());
+        this.dropSelf(ModBlocks.RUSTY_BOLTED_BRACKET.get());
 
         //FURNITURE BLOCKS
         this.dropSelf(ModBlocks.RED_WALL_MEDKIT.get());
