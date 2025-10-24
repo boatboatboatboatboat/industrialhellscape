@@ -2,11 +2,9 @@ package net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks;
 
 import net.boat.industrialhellscape.block.modded_block_state_properties.DynamicConnectionState;
 import net.boat.industrialhellscape.block.modded_interfaces.ConnectedModelCapability;
-import net.boat.industrialhellscape.block.modded_interfaces.ContainerBlockCapability;
 import net.boat.industrialhellscape.block.modded_interfaces.RotationHelper;
 import net.boat.industrialhellscape.block.modded_interfaces.ToolUseCapability;
 import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
-import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.TagKey;
@@ -85,24 +83,24 @@ public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implemen
 
         //Define the Voxelshape hitboxes for each state
         SOLO_SHAPE_NORTH = soloShape;
-        SOLO_SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, soloShape);
-        SOLO_SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, soloShape);
-        SOLO_SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, soloShape);
+        SOLO_SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, soloShape);
+        SOLO_SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, soloShape);
+        SOLO_SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, soloShape);
 
         LEFT_SHAPE_NORTH = leftShape;
-        LEFT_SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, leftShape);
-        LEFT_SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, leftShape);
-        LEFT_SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, leftShape);
+        LEFT_SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, leftShape);
+        LEFT_SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, leftShape);
+        LEFT_SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, leftShape);
 
         MIDDLE_SHAPE_NORTH = middleShape;
-        MIDDLE_SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, middleShape);
-        MIDDLE_SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, middleShape);
-        MIDDLE_SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, middleShape);
+        MIDDLE_SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, middleShape);
+        MIDDLE_SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, middleShape);
+        MIDDLE_SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, middleShape);
 
         RIGHT_SHAPE_NORTH = rightShape;
-        RIGHT_SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, rightShape);
-        RIGHT_SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, rightShape);
-        RIGHT_SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, rightShape);
+        RIGHT_SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, rightShape);
+        RIGHT_SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, rightShape);
+        RIGHT_SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, rightShape);
 
         //To determine other blocks aside from its own can this block connect to
         this.BlockSetFamily = inputCompatibleBlockSet;

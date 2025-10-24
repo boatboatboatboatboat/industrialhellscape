@@ -2,12 +2,12 @@ package net.boat.industrialhellscape.block.modded_block_classes.TextureToggleBlo
 
 import net.boat.industrialhellscape.block.modded_interfaces.ToolUseCapability;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.AbstractGlassBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -28,7 +28,7 @@ import javax.annotation.Nullable;
 // Otherwise, this block class functions no different from if it uses the normal vanilla Block class
 // For full blocks
 
-public class SimpleTextureToggleBlock extends AbstractGlassBlock {
+public class SimpleTextureToggleBlock extends Block {
 
     public static final BooleanProperty ALT_STATE = BooleanProperty.create("alt_state");
 
@@ -57,5 +57,9 @@ public class SimpleTextureToggleBlock extends AbstractGlassBlock {
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(ALT_STATE);
+    }
+
+    public boolean skipRendering(BlockState pState, BlockState pAdjacentBlockState, Direction pSide) {
+        return pAdjacentBlockState.is(this) ? true : super.skipRendering(pState, pAdjacentBlockState, pSide);
     }
 }

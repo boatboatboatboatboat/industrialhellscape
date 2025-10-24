@@ -224,6 +224,9 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModTags.Blocks.INDUSTRIAL_FURNITURE_CATEGORY,
                         ModTags.Blocks.TECHNOLOGY_FURNITURE_CATEGORY,
                         ModTags.Blocks.SAFETY_FURNITURE_CATEGORY
+                )
+                .add(
+                        ModBlocks.IHEA_FURNITURE_KIT.get()
                 );
 
         this.tag(ModTags.Blocks.SAFETY_FURNITURE_CATEGORY)

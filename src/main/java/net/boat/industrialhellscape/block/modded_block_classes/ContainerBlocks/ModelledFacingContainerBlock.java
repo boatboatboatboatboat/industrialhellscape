@@ -38,9 +38,9 @@ public class ModelledFacingContainerBlock extends FacingContainerBlock implement
         super(properties, slotAmount, openSound, closeSound);
 
         SHAPE_NORTH = modelShape;
-        SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, modelShape);
-        SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, modelShape);
-        SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, modelShape);
+        SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, modelShape);
+        SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, modelShape);
+        SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, modelShape);
 
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)

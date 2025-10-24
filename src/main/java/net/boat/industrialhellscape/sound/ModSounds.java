@@ -13,7 +13,7 @@ public class ModSounds {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS =
             DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, IndustrialHellscape.MOD_ID);
 
-    public static final RegistryObject<SoundEvent> VESSELPLATE_CLANK = registerSoundEvents("vesselplate_clank");
+    public static final RegistryObject<SoundEvent> METAL_CLANK = registerSoundEvents("metal_clank");
     public static final RegistryObject<SoundEvent> VULTA_SHATTERED = registerSoundEvents("vulta_shattered");
     public static final RegistryObject<SoundEvent> TOILET_FLUSH = registerSoundEvents("toilet_flush");
     public static final RegistryObject<SoundEvent> METALPIPEFALLINGSOUNDEFFECT = registerSoundEvents("metalpipefallingsoundeffect");
@@ -21,12 +21,12 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> METAL_BOX_OPEN = registerSoundEvents("metal_box_opening");
     public static final RegistryObject<SoundEvent> METAL_BOX_CLOSE = registerSoundEvents("metal_box_closing");
 
-    public static final ForgeSoundType VESSELPLATE_BLOCK_SOUNDS = new ForgeSoundType(2f,1.5f,
-            ModSounds.VESSELPLATE_CLANK, //Break
-            ModSounds.VESSELPLATE_CLANK, //Step
-            ModSounds.VESSELPLATE_CLANK, //Fall
-            ModSounds.VESSELPLATE_CLANK, //Place
-            ModSounds.VESSELPLATE_CLANK //Hit
+    public static final ForgeSoundType HOLLOW_METAL_BLOCK_SOUNDS = new ForgeSoundType(2f,1.5f,
+            ModSounds.METAL_CLANK, //Break
+            ModSounds.METAL_CLANK, //Step
+            ModSounds.METAL_CLANK, //Fall
+            ModSounds.METAL_CLANK, //Place
+            ModSounds.METAL_CLANK //Hit
             );
 
     private static RegistryObject<SoundEvent> registerSoundEvents(String soundFileName) {

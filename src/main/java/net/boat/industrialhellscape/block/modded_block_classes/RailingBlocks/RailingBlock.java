@@ -39,16 +39,16 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock{
 
     // INTERACTION SHAPE, black outline in-game is based on this shape.
     private static final VoxelShape SHAPE_NORTH = Block.box(0d, 0d, 14d, 16d, RAILING_HEIGHT, 16d);
-    private static final VoxelShape SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, SHAPE_NORTH);
-    private static final VoxelShape SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, SHAPE_NORTH);
-    private static final VoxelShape SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, SHAPE_NORTH);
+    private static final VoxelShape SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH);
+    private static final VoxelShape SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH);
+    private static final VoxelShape SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH);
 
     // COLLISION SHAPE (FOR PLAYER), arrows will collide with hitbox portion that's within the 16x16x16 block boundary only.
     // Meaning despite the RAILING_COLLISION_HEIGHT being greater than 16 units, arrows can still fly through above the edge of the block.
     private static final VoxelShape COLLISON_SHAPE_NORTH = Block.box(0d, 15d, 14d, 16d, RAILING_COLLISION_HEIGHT, 16d);
-    private static final VoxelShape COLLISION_SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, COLLISON_SHAPE_NORTH);
-    private static final VoxelShape COLLISION_SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, COLLISON_SHAPE_NORTH);
-    private static final VoxelShape COLLISION_SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, COLLISON_SHAPE_NORTH);
+    private static final VoxelShape COLLISION_SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, COLLISON_SHAPE_NORTH);
+    private static final VoxelShape COLLISION_SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, COLLISON_SHAPE_NORTH);
+    private static final VoxelShape COLLISION_SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, COLLISON_SHAPE_NORTH);
 
     // Boolean properties to check whether there is an additional fence at that direction (multiple can be placed down in each of the four cardinal directions in one block space)
     // These "superposition" block properties are handled via a block-state .json file handling "multi-block" states.

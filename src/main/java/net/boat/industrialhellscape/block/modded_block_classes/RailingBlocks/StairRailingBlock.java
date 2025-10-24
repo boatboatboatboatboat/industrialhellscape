@@ -1,6 +1,5 @@
 package net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks;
 
-import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.modded_interfaces.RotationHelper;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
@@ -44,14 +43,14 @@ public class StairRailingBlock extends Block implements SimpleWaterloggedBlock {
     private static final VoxelShape SHAPE_NORTH_LEFT = Block.box(0d, 0d, 0d, 2d, 14, 16d);
     private static final VoxelShape SHAPE_NORTH_RIGHT = Block.box(14d, 0d, 0d, 16d, 14, 16d);
 
-    private static final VoxelShape SHAPE_SOUTH_LEFT = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, SHAPE_NORTH_LEFT);
-    private static final VoxelShape SHAPE_SOUTH_RIGHT = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, SHAPE_NORTH_RIGHT);
+    private static final VoxelShape SHAPE_SOUTH_LEFT = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH_LEFT);
+    private static final VoxelShape SHAPE_SOUTH_RIGHT = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH_RIGHT);
 
-    private static final VoxelShape SHAPE_EAST_LEFT = RotationHelper.rotateVoxelHorizontal(Direction.EAST, SHAPE_NORTH_LEFT);
-    private static final VoxelShape SHAPE_EAST_RIGHT = RotationHelper.rotateVoxelHorizontal(Direction.EAST, SHAPE_NORTH_RIGHT);
+    private static final VoxelShape SHAPE_EAST_LEFT = RotationHelper.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH_LEFT);
+    private static final VoxelShape SHAPE_EAST_RIGHT = RotationHelper.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH_RIGHT);
 
-    private static final VoxelShape SHAPE_WEST_LEFT = RotationHelper.rotateVoxelHorizontal(Direction.WEST, SHAPE_NORTH_LEFT);
-    private static final VoxelShape SHAPE_WEST_RIGHT = RotationHelper.rotateVoxelHorizontal(Direction.WEST, SHAPE_NORTH_RIGHT);
+    private static final VoxelShape SHAPE_WEST_LEFT = RotationHelper.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH_LEFT);
+    private static final VoxelShape SHAPE_WEST_RIGHT = RotationHelper.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH_RIGHT);
 
     public StairRailingBlock(Properties pProperties) {
         super(pProperties);

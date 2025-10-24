@@ -1,6 +1,0 @@
-{
-	"parent": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_outer_corner_side",
-	"textures": {
-		"0": "industrialhellscape:block/brass_pipe_conduit"
-	}
-}

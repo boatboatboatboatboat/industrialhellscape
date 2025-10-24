@@ -42,9 +42,9 @@ public class ModelledFacingBlock extends SimpleFacingBlock implements SimpleWate
         super(pProperties);
 
         SOLO_SHAPE_NORTH = soloShape;
-        SOLO_SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, soloShape);
-        SOLO_SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, soloShape);
-        SOLO_SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, soloShape);
+        SOLO_SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, soloShape);
+        SOLO_SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, soloShape);
+        SOLO_SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, soloShape);
 
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)

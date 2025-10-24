@@ -1,6 +1,5 @@
 package net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks;
 
-import net.boat.industrialhellscape.block.modded_block_state_properties.CornerConnectionState;
 import net.boat.industrialhellscape.block.modded_interfaces.RotationHelper;
 import net.boat.industrialhellscape.block.modded_interfaces.ToolUseCapability;
 import net.minecraft.core.BlockPos;
@@ -46,38 +45,38 @@ public class CornerBlock extends Block implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     // 4 * 3 blockstates and therefore hitbox models based on above properties
-    private final VoxelShape INNER_CORNER_UP_N;
-    private final VoxelShape INNER_CORNER_UP_S;
     private final VoxelShape INNER_CORNER_UP_E;
+    private final VoxelShape INNER_CORNER_UP_N;
     private final VoxelShape INNER_CORNER_UP_W;
+    private final VoxelShape INNER_CORNER_UP_S;
 
-    private final VoxelShape INNER_CORNER_DOWN_N;
-    private final VoxelShape INNER_CORNER_DOWN_S;
     private final VoxelShape INNER_CORNER_DOWN_E;
+    private final VoxelShape INNER_CORNER_DOWN_N;
     private final VoxelShape INNER_CORNER_DOWN_W;
+    private final VoxelShape INNER_CORNER_DOWN_S;
 
-    private final VoxelShape INNER_CORNER_SIDE_N;
-    private final VoxelShape INNER_CORNER_SIDE_S;
     private final VoxelShape INNER_CORNER_SIDE_E;
+    private final VoxelShape INNER_CORNER_SIDE_N;
     private final VoxelShape INNER_CORNER_SIDE_W;
+    private final VoxelShape INNER_CORNER_SIDE_S;
 
-    public CornerBlock(Properties pProperties, VoxelShape upShape, VoxelShape downShape, VoxelShape sideShape) {
+    public CornerBlock(Properties pProperties, VoxelShape downShape) {
         super(pProperties);
 
-        INNER_CORNER_UP_N = upShape;
-        INNER_CORNER_UP_S = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, upShape);
-        INNER_CORNER_UP_E = RotationHelper.rotateVoxelHorizontal(Direction.EAST, upShape);
-        INNER_CORNER_UP_W = RotationHelper.rotateVoxelHorizontal(Direction.WEST, upShape);
+        INNER_CORNER_DOWN_W = downShape; //g
+        INNER_CORNER_DOWN_S = RotationHelper.rotateVoxelYAxisIntTimes(1, INNER_CORNER_DOWN_W);
+        INNER_CORNER_DOWN_E = RotationHelper.rotateVoxelYAxisIntTimes(2, INNER_CORNER_DOWN_W);
+        INNER_CORNER_DOWN_N = RotationHelper.rotateVoxelYAxisIntTimes(3, INNER_CORNER_DOWN_W);
 
-        INNER_CORNER_DOWN_N = downShape;
-        INNER_CORNER_DOWN_S = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, downShape);
-        INNER_CORNER_DOWN_E = RotationHelper.rotateVoxelHorizontal(Direction.EAST, downShape);
-        INNER_CORNER_DOWN_W = RotationHelper.rotateVoxelHorizontal(Direction.WEST, downShape);
+        INNER_CORNER_UP_W = RotationHelper.rotateVoxelXAxisIntTimes(2, downShape);
+        INNER_CORNER_UP_S = RotationHelper.rotateVoxelYAxisIntTimes(1, INNER_CORNER_UP_W);
+        INNER_CORNER_UP_E = RotationHelper.rotateVoxelYAxisIntTimes(2, INNER_CORNER_UP_W);
+        INNER_CORNER_UP_N = RotationHelper.rotateVoxelYAxisIntTimes(3, INNER_CORNER_UP_W);
 
-        INNER_CORNER_SIDE_N = sideShape;
-        INNER_CORNER_SIDE_S = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, sideShape);
-        INNER_CORNER_SIDE_E = RotationHelper.rotateVoxelHorizontal(Direction.EAST, sideShape);
-        INNER_CORNER_SIDE_W = RotationHelper.rotateVoxelHorizontal(Direction.WEST, sideShape);
+        INNER_CORNER_SIDE_W = RotationHelper.rotateVoxelXAxisIntTimes(1, downShape);
+        INNER_CORNER_SIDE_S = RotationHelper.rotateVoxelYAxisIntTimes(1, INNER_CORNER_SIDE_W);
+        INNER_CORNER_SIDE_E = RotationHelper.rotateVoxelYAxisIntTimes(2, INNER_CORNER_SIDE_W);
+        INNER_CORNER_SIDE_N = RotationHelper.rotateVoxelYAxisIntTimes(3, INNER_CORNER_SIDE_W);
 
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
@@ -127,7 +126,7 @@ public class CornerBlock extends Block implements SimpleWaterloggedBlock {
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
         Direction directionFacing = pContext.getHorizontalDirection().getOpposite(); //Gets the cardinal direction when player places new block
-        Direction directionClicked = pContext.getClickedFace().getOpposite();
+        Direction directionClicked = pContext.getClickedFace();
         boolean PlayerisCrouching = (pContext.getPlayer() != null) && pContext.getPlayer().isCrouching();
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
 
@@ -139,14 +138,9 @@ public class CornerBlock extends Block implements SimpleWaterloggedBlock {
 
         //This section defines the orientation "type" of the block (whether the block is on its side, or up or down).
         switch(directionClicked) { //Which block face in the world is the player clicking on to place this block?
-            case UP: state = state.setValue(ATTACH_FACE, AttachFace.CEILING); break; //Bracket faces up if player clicks the ceiling
-            case DOWN: state = state.setValue(ATTACH_FACE, AttachFace.FLOOR); break; //Bracket faces down if player clicks the floor
-            default: //If player is not clicking the floor or ceiling
-                if(PlayerisCrouching) { //If the player is crouching
-                    state = state.setValue(ATTACH_FACE, AttachFace.WALL); break; //Set bracket to side
-                } else {
-                    state = state.setValue(ATTACH_FACE, AttachFace.CEILING); //If player is not crouching, default to UP orientation
-                }
+            case UP: state = state.setValue(ATTACH_FACE, AttachFace.FLOOR); break; //Bracket faces down if player clicks the floor
+            case DOWN: state = state.setValue(ATTACH_FACE, AttachFace.CEILING); break; //Bracket faces up if player clicks the ceiling
+            default: state = state.setValue(ATTACH_FACE, AttachFace.WALL); break; //Bracket faces walls if player clicks the walls
         }
         return state;
     }

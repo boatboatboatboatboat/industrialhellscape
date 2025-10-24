@@ -3,9 +3,7 @@ package net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBloc
 import net.boat.industrialhellscape.block.modded_interfaces.RotationHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.AttachFace;
@@ -34,12 +32,12 @@ public class ModelledSurfaceMountBlock extends SurfaceMountBlock implements Simp
         super(pProperties);
 
         this.SHAPE_FLOOR = floorHitBox; //default for blocks using this block class
-        this.SHAPE_CEILING = RotationHelper.rotateVoxelUpDown(Direction.UP, floorHitBox);
+        this.SHAPE_CEILING = RotationHelper.rotateVoxelXAxisIntTimes(2, floorHitBox);
 
-        this.SHAPE_NORTH = RotationHelper.rotateVoxelUpDown(Direction.NORTH, floorHitBox); //Rotates to the north surface position
-        this.SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, SHAPE_NORTH);
-        this.SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, SHAPE_NORTH);
-        this.SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, SHAPE_NORTH);
+        this.SHAPE_NORTH = RotationHelper.rotateVoxelXAxisIntTimes(1, floorHitBox); //Rotates to the north surface position
+        this.SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH);
+        this.SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH);
+        this.SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH);
 
         this.ceilingModelAlignedSameAsFloor = ceilingSurfaceMountOnly;
 

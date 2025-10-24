@@ -1,18 +1,18 @@
 {
 	"variants": {
-		"facing=north,face=ceiling": {"model": "industrialhellscape:block/bolted_bracket/rusty_bolted_bracket","x": 180,"y": 180},
-		"facing=east,face=ceiling": {"model": "industrialhellscape:block/bolted_bracket/rusty_bolted_bracket","x": 180,"y": 270},
-		"facing=south,face=ceiling": {"model": "industrialhellscape:block/bolted_bracket/rusty_bolted_bracket","x": 180,"y": 0},
-		"facing=west,face=ceiling": {"model": "industrialhellscape:block/bolted_bracket/rusty_bolted_bracket","x": 180,"y": 90},
+		"facing=north,face=ceiling": {"model": "industrialhellscape:block/bolted_bracket/rusty_bolted_bracket","x": 180,"y": 90},
+		"facing=east,face=ceiling": {"model": "industrialhellscape:block/bolted_bracket/rusty_bolted_bracket","x": 180,"y": 180},
+		"facing=south,face=ceiling": {"model": "industrialhellscape:block/bolted_bracket/rusty_bolted_bracket","x": 180,"y": 270},
+		"facing=west,face=ceiling": {"model": "industrialhellscape:block/bolted_bracket/rusty_bolted_bracket","x": 180,"y": 0},
 
-		"facing=north,face=floor": {"model": "industrialhellscape:block/bolted_bracket/rusty_bolted_bracket"},
-		"facing=east,face=floor": {"model": "industrialhellscape:block/bolted_bracket/rusty_bolted_bracket","y": 90},
-		"facing=south,face=floor": {"model": "industrialhellscape:block/bolted_bracket/rusty_bolted_bracket","y": 180},
-		"facing=west,face=floor": {"model": "industrialhellscape:block/bolted_bracket/rusty_bolted_bracket","y": 270},
+		"facing=north,face=floor": {"model": "industrialhellscape:block/bolted_bracket/rusty_bolted_bracket","y": 90},
+		"facing=east,face=floor": {"model": "industrialhellscape:block/bolted_bracket/rusty_bolted_bracket","y": 180},
+		"facing=south,face=floor": {"model": "industrialhellscape:block/bolted_bracket/rusty_bolted_bracket","y": 270},
+		"facing=west,face=floor": {"model": "industrialhellscape:block/bolted_bracket/rusty_bolted_bracket","y": 0},
 
-		"facing=north,face=wall": {"model": "industrialhellscape:block/bolted_bracket/rusty_bolted_bracket_wall"},
-		"facing=east,face=wall": {"model": "industrialhellscape:block/bolted_bracket/rusty_bolted_bracket_wall","y": 90},
-		"facing=south,face=wall": {"model": "industrialhellscape:block/bolted_bracket/rusty_bolted_bracket_wall","y": 180},
-		"facing=west,face=wall": {"model": "industrialhellscape:block/bolted_bracket/rusty_bolted_bracket_wall","y": 270}
+		"facing=north,face=wall": {"model": "industrialhellscape:block/bolted_bracket/rusty_bolted_bracket","x": 90,"y": 90},
+		"facing=east,face=wall": {"model": "industrialhellscape:block/bolted_bracket/rusty_bolted_bracket","x": 90,"y": 180},
+		"facing=south,face=wall": {"model": "industrialhellscape:block/bolted_bracket/rusty_bolted_bracket","x": 90,"y": 270},
+		"facing=west,face=wall": {"model": "industrialhellscape:block/bolted_bracket/rusty_bolted_bracket","x": 90,"y": 0}
 	}
 }

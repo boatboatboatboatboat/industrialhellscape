@@ -41,14 +41,14 @@ public class Modelled2BMBlock extends TwoBlockMultiBlock implements SimpleWaterl
         super(pProperties, multiBlockPlacementDirection);
 
         POSITIVE_SHAPE_NORTH = hitboxPositiveShape;
-        POSITIVE_SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, hitboxPositiveShape);
-        POSITIVE_SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, hitboxPositiveShape);
-        POSITIVE_SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, hitboxPositiveShape);
+        POSITIVE_SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, hitboxPositiveShape);
+        POSITIVE_SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, hitboxPositiveShape);
+        POSITIVE_SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, hitboxPositiveShape);
 
         NEGATIVE_SHAPE_NORTH = hitboxNegativeShape;
-        NEGATIVE_SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, hitboxNegativeShape);
-        NEGATIVE_SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, hitboxNegativeShape);
-        NEGATIVE_SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, hitboxNegativeShape);
+        NEGATIVE_SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, hitboxNegativeShape);
+        NEGATIVE_SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, hitboxNegativeShape);
+        NEGATIVE_SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, hitboxNegativeShape);
 
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(HALF_PART, TwoBlockMultiBlockState.NEGATIVE)

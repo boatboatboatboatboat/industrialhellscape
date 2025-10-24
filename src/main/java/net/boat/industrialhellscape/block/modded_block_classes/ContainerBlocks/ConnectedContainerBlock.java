@@ -84,24 +84,24 @@ public class ConnectedContainerBlock extends FacingContainerBlock implements Ent
 
         //Define the Voxelshape hitboxes for each state
         SOLO_SHAPE_NORTH = soloShape;
-        SOLO_SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, soloShape);
-        SOLO_SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, soloShape);
-        SOLO_SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, soloShape);
+        SOLO_SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, soloShape);
+        SOLO_SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, soloShape);
+        SOLO_SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, soloShape);
 
         LEFT_SHAPE_NORTH = leftShape;
-        LEFT_SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, leftShape);
-        LEFT_SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, leftShape);
-        LEFT_SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, leftShape);
+        LEFT_SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, leftShape);
+        LEFT_SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, leftShape);
+        LEFT_SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, leftShape);
 
         MIDDLE_SHAPE_NORTH = middleShape;
-        MIDDLE_SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, middleShape);
-        MIDDLE_SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, middleShape);
-        MIDDLE_SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, middleShape);
+        MIDDLE_SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, middleShape);
+        MIDDLE_SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, middleShape);
+        MIDDLE_SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, middleShape);
 
         RIGHT_SHAPE_NORTH = rightShape;
-        RIGHT_SHAPE_SOUTH = RotationHelper.rotateVoxelHorizontal(Direction.SOUTH, rightShape);
-        RIGHT_SHAPE_EAST = RotationHelper.rotateVoxelHorizontal(Direction.EAST, rightShape);
-        RIGHT_SHAPE_WEST = RotationHelper.rotateVoxelHorizontal(Direction.WEST, rightShape);
+        RIGHT_SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, rightShape);
+        RIGHT_SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, rightShape);
+        RIGHT_SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, rightShape);
 
         //To determine other blocks aside from its own can this block connect to
         this.BlockSetFamily = inputCompatibleBlockSet;

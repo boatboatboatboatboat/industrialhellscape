@@ -17,10 +17,10 @@
       "industrialhellscape:metalpipefallingsoundeffect"
     ]
   },
-  "vesselplate_clank": {
-    "subtitle": "sounds.industrialhellscape.vesselplate_clank",
+  "metal_clank": {
+    "subtitle": "sounds.industrialhellscape.metal_clank",
     "sounds": [
-      "industrialhellscape:vesselplate_clank"
+      "industrialhellscape:metal_clank"
     ]
   },
   "toilet_flush": {
