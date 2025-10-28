@@ -8,7 +8,6 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
@@ -235,7 +234,9 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.RED_WALL_MEDKIT.get(),
                         ModBlocks.WHITE_WALL_MEDKIT.get(),
                         ModBlocks.FIRE_EXTINGUISHER.get(),
-                        ModBlocks.SMOKE_ALARM.get()
+                        ModBlocks.SMOKE_ALARM.get(),
+                        ModBlocks.OPERATING_TABLE.get(),
+                        ModBlocks.IV_DRIPSTAND.get()
                 );
         this.tag(ModTags.Blocks.HYGIENE_FURNITURE_CATEGORY)
                 .add(
@@ -251,6 +252,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.LOCKER_BOX.get(),
                         ModBlocks.LARGE_LOCKER.get(),
                         ModBlocks.YELLOW_TRIPOD.get(),
+                        ModBlocks.YELLOW_STAND.get(),
                         ModBlocks.WORK_LIGHT_MOUNT.get(),
                         ModBlocks.FLOOR_WORK_LIGHT.get(),
                         ModBlocks.FUEL_DRUM.get(),
@@ -276,7 +278,10 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.METAL_DESK_DRAWER_2.get(),
 
                         ModBlocks.OFFICE_DESK.get(),
-                        ModBlocks.OFFICE_DESK_DRAWER.get()
+                        ModBlocks.OFFICE_DESK_DRAWER.get(),
+
+                        ModBlocks.OFFICE_CHAIR.get(),
+                        ModBlocks.BLACK_OFFICE_CHAIR.get()
                 );
 
         //MINING TAGS
@@ -320,7 +325,17 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 );
         this.tag(BlockTags.BEDS)
                 .add(
-                        ModBlocks.BODY_PILLOW.get() //All furniture can be mined with axe or pickaxe.
+                        ModBlocks.BODY_PILLOW.get()
+                );
+
+        this.tag(ModTags.Blocks.MOD_CREATE_FAN_TRANSPARENT)
+                .addTags(
+                        ModTags.Blocks.STRUT_BLOCKS
+                )
+                .add(
+                        ModBlocks.SEETHROUGH_GRATE.get(),
+                        ModBlocks.GRAY_SEETHROUGH_GRATE.get(),
+                        ModBlocks.RUSTY_SEETHROUGH_GRATE.get()
                 );
     }
 }

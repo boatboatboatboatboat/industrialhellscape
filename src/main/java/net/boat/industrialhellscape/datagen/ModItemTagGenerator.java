@@ -15,7 +15,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
@@ -232,7 +231,9 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.RED_WALL_MEDKIT.get().asItem(),
                         ModBlocks.WHITE_WALL_MEDKIT.get().asItem(),
                         ModBlocks.FIRE_EXTINGUISHER.get().asItem(),
-                        ModBlocks.SMOKE_ALARM.get().asItem()
+                        ModBlocks.SMOKE_ALARM.get().asItem(),
+                        ModBlocks.OPERATING_TABLE.get().asItem(),
+                        ModBlocks.IV_DRIPSTAND.get().asItem()
                 );
         this.tag(ModTags.Items.HYGIENE_FURNITURE_CATEGORY)
                 .add(
@@ -245,6 +246,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.LOCKER_BOX.get().asItem(),
                         ModBlocks.LARGE_LOCKER.get().asItem(),
                         ModBlocks.YELLOW_TRIPOD.get().asItem(),
+                        ModBlocks.YELLOW_STAND.get().asItem(),
                         ModBlocks.WORK_LIGHT_MOUNT.get().asItem(),
                         ModBlocks.FLOOR_WORK_LIGHT.get().asItem(),
                         ModBlocks.CCTV_CAMERA.get().asItem()
@@ -266,7 +268,10 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.METAL_DESK_DRAWER_2.get().asItem(),
 
                         ModBlocks.OFFICE_DESK_DRAWER.get().asItem(),
-                        ModBlocks.OFFICE_DESK.get().asItem()
+                        ModBlocks.OFFICE_DESK.get().asItem(),
+
+                        ModBlocks.OFFICE_CHAIR.get().asItem(),
+                        ModBlocks.BLACK_OFFICE_CHAIR.get().asItem()
                 );
 
         //---------- END OF FURNITURE TAGS ----------

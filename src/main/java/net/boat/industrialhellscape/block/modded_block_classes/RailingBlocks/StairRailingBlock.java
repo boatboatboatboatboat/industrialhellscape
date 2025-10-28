@@ -35,11 +35,15 @@ import javax.annotation.Nonnull;
 import java.util.List;
 
 public class StairRailingBlock extends Block implements SimpleWaterloggedBlock {
+
+    //Properties the block possesses
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty LEFT_FENCE = BooleanProperty.create("left");
     public static final BooleanProperty RIGHT_FENCE = BooleanProperty.create("right");
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
+    // Hitbox shapes (8 total, 2x4) for left and right variants of the stair rail per cardinal direction (used both for collision and interaction)
+    // Modded interface RotationHelper helps rotate voxels along cardinal directions. See interface for more details
     private static final VoxelShape SHAPE_NORTH_LEFT = Block.box(0d, 0d, 0d, 2d, 14, 16d);
     private static final VoxelShape SHAPE_NORTH_RIGHT = Block.box(14d, 0d, 0d, 16d, 14, 16d);
 
@@ -71,6 +75,8 @@ public class StairRailingBlock extends Block implements SimpleWaterloggedBlock {
     public @Nonnull VoxelShape getInteractionShape(BlockState pState, @Nonnull BlockGetter pLevel, @Nonnull BlockPos pPos) {
         VoxelShape shape = Shapes.empty();
         Direction facingState = pState.getValue(FACING);
+
+        //Assign one of the eight hitboxes for each placement block state
 
         if(pState.getValue(LEFT_FENCE) && facingState == Direction.NORTH) shape = Shapes.join(shape, SHAPE_NORTH_LEFT, BooleanOp.OR);
         if(pState.getValue(RIGHT_FENCE) && facingState == Direction.NORTH) shape = Shapes.join(shape, SHAPE_NORTH_RIGHT, BooleanOp.OR);

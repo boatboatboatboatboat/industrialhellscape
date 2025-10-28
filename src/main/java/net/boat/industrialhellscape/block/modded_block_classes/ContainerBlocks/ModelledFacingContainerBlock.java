@@ -35,9 +35,15 @@ public class ModelledFacingContainerBlock extends FacingContainerBlock implement
     private final VoxelShape SHAPE_WEST;
     
     public ModelledFacingContainerBlock(Properties properties, int slotAmount, VoxelShape modelShape, SoundEvent openSound, SoundEvent closeSound) {
+        // When registering this block, pass in
+        // Properties
+        // Integer amount of slots the block entity inventory will have (multiple of 9)
+        // Hitbox for the block
+        // Sound to play when player opens block
+        // Sound to play when player closes block
         super(properties, slotAmount, openSound, closeSound);
 
-        SHAPE_NORTH = modelShape;
+        SHAPE_NORTH = modelShape; //By default, assumes the inputted hitbox is already facing North
         SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, modelShape);
         SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, modelShape);
         SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, modelShape);
@@ -52,7 +58,7 @@ public class ModelledFacingContainerBlock extends FacingContainerBlock implement
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
         BlockState state = this.defaultBlockState();
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
-        Direction direction = pContext.getHorizontalDirection().getOpposite();
+        Direction direction = pContext.getHorizontalDirection().getOpposite(); //Block will face BACK towards player
         state = state.setValue(FACING, direction);
         state =  state.setValue(WATERLOGGED,fluidstate.getType() == Fluids.WATER);
         return state;

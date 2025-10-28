@@ -11,6 +11,7 @@ import javax.annotation.Nullable;
 //-----
 // This block, when placed next to the horizontal (wall) surface of another block, will remain unchanged from its default state.
 // If placed vertically (on top of another block), it will change to its alternative texture block-state.
+// Currently used for Directional Riveted Vesselplate (three block variants: default, Rusty, Gray)
 
 // Extends this mod's SimpleTextureToggleBlock, that which extends the vanilla AbstractGlassBlock, see SimpleTextureToggleBlock
 // For details
@@ -27,9 +28,9 @@ public class DirectionalTextureToggleBlock extends SimpleTextureToggleBlock{
         Direction.Axis axis = pContext.getClickedFace().getAxis();
         boolean faceIsHorizontal = ( axis == Direction.Axis.X ) || ( axis == Direction.Axis.Z );
 
-        if(faceIsHorizontal) {
+        if(faceIsHorizontal) { //If the block face is horizontal (facing NSEW), don't change the blockstate to the alt-texture state
             state = state.setValue(ALT_STATE, false); //HORIZONTAL
-        } else {
+        } else { //If the block face is vertical (top or bottom), change the state
             state = state.setValue(ALT_STATE, true); //VERTICAL (NOT HORIZONTAL)
         }
 

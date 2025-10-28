@@ -39,8 +39,15 @@ public class ModTags {
         public static final TagKey<Block> GRAY_PIPE_CONDUIT = tag("gray_pipe_conduit");
         public static final TagKey<Block> WHITE_PIPE_CONDUIT = tag("white_pipe_conduit");
 
+        //Inter-Mod Compat
+        public static final TagKey<Block> MOD_CREATE_FAN_TRANSPARENT = moddedTag("create","fan_transparent");
+
+        //---------- METHODS ----------
         private static TagKey<Block> tag(String name) {
             return BlockTags.create(new ResourceLocation(IndustrialHellscape.MOD_ID, name));
+        }
+        private static TagKey<Block> moddedTag(String modNameSpace, String name) {
+            return BlockTags.create(new ResourceLocation(modNameSpace, name));
         }
     }
 
@@ -72,8 +79,12 @@ public class ModTags {
         public static final TagKey<Item> IH_COMPATIBLE_TOOLS = tag("ih_compatible_tools");
         public static final TagKey<Item> IH_COMPATIBLE_MODDED_TOOLS = tag("ih_compatible_modded_tools");
 
+        //---------- METHODS ----------
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(new ResourceLocation(IndustrialHellscape.MOD_ID, name));
+        }
+        private static TagKey<Item> moddedTag(String modNameSpace, String name) {
+            return ItemTags.create(new ResourceLocation(modNameSpace, name));
         }
     }
 }

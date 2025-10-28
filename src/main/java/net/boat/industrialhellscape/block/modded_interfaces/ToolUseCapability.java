@@ -46,6 +46,18 @@ public interface ToolUseCapability {
         return InteractionResult.PASS;
     }
 
+    static InteractionResult SimpleHandInteract(Property<?> useProperty, Player pPlayer, BlockState pState, Level pLevel, BlockPos pPos) {
+        boolean playerHandsEmpty = pPlayer.getMainHandItem().isEmpty() || pPlayer.getOffhandItem().isEmpty();
+
+        if (playerHandsEmpty) {
+            pState = pState.cycle(useProperty);
+            pLevel.setBlock(pPos, pState, 2); //2, update the block, but not neighboring blocks
+            ToolUseCapability.playInteractSound(pLevel, pPos);
+            return InteractionResult.sidedSuccess(pLevel.isClientSide);
+        }
+        return InteractionResult.PASS;
+    }
+
     static InteractionResult ModdedToolInteract(Property<?> useProperty, Player pPlayer, BlockState pState, Level pLevel, BlockPos pPos) {
         boolean playerHasTool = pPlayer.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_MODDED_TOOLS) || pPlayer.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_MODDED_TOOLS);
 

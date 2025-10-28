@@ -140,6 +140,8 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
 
         //FURNITURE BLOCKS WITH EXISTING BLOCK MODELS
         GenFacingModelledSI(ModBlocks.SINK.get(),"");
+        GenFacingModelledSI(ModBlocks.OFFICE_CHAIR.get(),"office_chair");
+        GenFacingModelledSI(ModBlocks.BLACK_OFFICE_CHAIR.get(), "office_chair");
         GenFacingModelledSI(ModBlocks.WHITE_WALL_MEDKIT.get(),"medkit_containers");
         GenFacingModelledSI(ModBlocks.RED_WALL_MEDKIT.get(),"medkit_containers");
         GenFacingModelledSI(ModBlocks.FIRE_EXTINGUISHER.get(), "");
@@ -147,6 +149,7 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         genAttachedSI(ModBlocks.POSTER_1.get(), "decals");
         genAttachedSBI(ModBlocks.FUEL_DRUM.get(), "", build6FaceTexturesBlockModel("fuel_drum","fuel_drum", "red_labeled_fuel_drum_front", "red_labeled_fuel_drum_front", "red_labeled_fuel_drum_side", "red_labeled_fuel_drum_side", "red_fuel_drum_up","red_fuel_drum_down"));
         genWaterloggableSI(ModBlocks.YELLOW_TRIPOD.get(),"");
+        genWaterloggableSI(ModBlocks.YELLOW_STAND.get(),"");
         genWAllVsCeilingSI(ModBlocks.CCTV_CAMERA.get(),"cctv_camera","ceiling","wall");
         GenFacingPoweredSI(ModBlocks.WORK_LIGHT_MOUNT.get(), "work_light_mount");
         GenFacingPoweredSI(ModBlocks.FLOOR_WORK_LIGHT.get(), "work_light_mount");
@@ -159,10 +162,13 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         //Metalworks Blocks
         genI(ModBlocks.YELLOW_RAILING.get(),"railing");
         genCustomI(ModBlocks.YELLOW_STAIR_RAILING.get(),"railing","yellow_stair_rail_left");
+
         genI(ModBlocks.GRAY_RAILING.get(),"railing");
         genCustomI(ModBlocks.GRAY_STAIR_RAILING.get(),"railing","gray_stair_rail_left");
+
         genI(ModBlocks.BLACK_RAILING.get(),"railing");
         genCustomI(ModBlocks.BLACK_STAIR_RAILING.get(),"railing","black_stair_rail_left");
+
         genI(ModBlocks.RUSTY_RAILING.get(),"railing");
         genCustomI(ModBlocks.RUSTY_STAIR_RAILING.get(),"railing","black_stair_rail_left");
 

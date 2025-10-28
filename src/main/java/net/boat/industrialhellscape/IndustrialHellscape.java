@@ -5,7 +5,6 @@ import net.boat.industrialhellscape.block.modded_block_entities.ModBlockEntities
 import net.boat.industrialhellscape.block.modded_block_entities.ModEntities;
 import net.boat.industrialhellscape.block.modded_block_entities.SittableEntity.SittableEntityRenderer;
 import net.boat.industrialhellscape.screen.ModMenuTypes;
-import net.boat.industrialhellscape.screen.PosterScreen;
 import net.boat.industrialhellscape.screen.RecyclerScreen;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.item.ModCreativeTab;
@@ -63,7 +62,7 @@ public class IndustrialHellscape {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             EntityRenderers.register(ModEntities.CHAIR.get(), SittableEntityRenderer::new);
-            MenuScreens.register(ModMenuTypes.RECYCLER_MENU.get(), RecyclerScreen::new);
+            MenuScreens.register(ModMenuTypes.RECYCLER_MENU.get(), RecyclerScreen::new); //Development Content
         }
     }
 
@@ -102,7 +101,6 @@ public class IndustrialHellscape {
             removeAndReplace(ModBlockMappings, ModItemMappings,"gray_riveted_vesselplate", ModBlocks.GRAY_RIVETED_VESSELPLATE_PANEL.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"vesselplate", ModBlocks.RIVETED_VESSELPLATE_PANEL.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"gray_vesselplate", ModBlocks.GRAY_RIVETED_VESSELPLATE_PANEL.get());
-
             removeAndReplace(ModBlockMappings, ModItemMappings,"horizontal_riveted_vesselplate", ModBlocks.DIRECTIONAL_RIVETED_VESSELPLATE.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"gray_horizontal_riveted_vesselplate", ModBlocks.GRAY_DIRECTIONAL_RIVETED_VESSELPLATE.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"vertical_riveted_vesselplate", ModBlocks.DIRECTIONAL_RIVETED_VESSELPLATE.get());

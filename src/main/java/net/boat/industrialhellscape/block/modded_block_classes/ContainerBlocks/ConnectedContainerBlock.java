@@ -52,7 +52,6 @@ import javax.annotation.Nonnull;
 
 public class ConnectedContainerBlock extends FacingContainerBlock implements EntityBlock, SimpleWaterloggedBlock {
 
-
     private static final EnumProperty<DynamicConnectionState> TYPE = EnumProperty.create("type", DynamicConnectionState.class);
     private static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -80,7 +79,20 @@ public class ConnectedContainerBlock extends FacingContainerBlock implements Ent
     private final VoxelShape RIGHT_SHAPE_WEST;
 
     public ConnectedContainerBlock(Properties properties, int slotAmount, TagKey<Block> inputCompatibleBlockSet, VoxelShape soloShape, VoxelShape leftShape, VoxelShape middleShape, VoxelShape rightShape, SoundEvent openSound, SoundEvent closeSound, MultiBlockPlacementDirection placementDirection) {
+        // When registering this block, pass in
+        // Properties,
+        // Integer slot amount (should be multiple of 9) that its block entity inventory shall possess
+        // Block Tag for related blocks that this block can physically connect to
+        // Unconnected state hitbox VoxelShape
+        // Left connection state hitbox VoxelShape
+        // Middle connection state hitbox VoxelShape
+        // Right connection state hitbox VoxelShape
+        // Sound to play when player opens block
+        // Sound to play when player closes block
+        // Whether or not blocks should be placed horizontally, vertically, or longitudinally to check for connections
+
         super(properties, slotAmount, openSound, closeSound);
+
 
         //Define the Voxelshape hitboxes for each state
         SOLO_SHAPE_NORTH = soloShape;
@@ -124,10 +136,12 @@ public class ConnectedContainerBlock extends FacingContainerBlock implements Ent
         boolean playerHasTool = player.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_MODDED_TOOLS) || player.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_MODDED_TOOLS);
 
         if (playerHasTool) {
+            //Cycles the connection state of the block WITHOUT UPDATING NEIGHBORS (This is what flag #2 does)
             state = state.cycle(TYPE);
             level.setBlock(pos, state, 2); //2
             return InteractionResult.sidedSuccess(level.isClientSide);
         } else {
+            //If player does not have an eligible tool, just open the inventory
             return ContainerBlockCapability.OpenContainerInventory(level, pos, player);
         }
     }

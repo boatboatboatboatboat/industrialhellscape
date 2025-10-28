@@ -65,7 +65,7 @@ public class SurfaceMountBlock extends HorizontalDirectionalBlock implements Sim
                     .setValue(WATERLOGGED,fluidstate.getType() == Fluids.WATER);
         }
 
-        //If block highlighted at cursor is an instance of this block, override everything and match its blockstate.
+        //If block highlighted at cursor is an instance of this block, OVERRIDE everything and match its blockstate.
         if(neighborBlockState.is(this) ) {
             state = neighborBlockState;
         }

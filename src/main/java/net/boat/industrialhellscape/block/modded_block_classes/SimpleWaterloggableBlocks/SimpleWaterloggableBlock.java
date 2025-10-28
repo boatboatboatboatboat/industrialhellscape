@@ -16,7 +16,8 @@ import javax.annotation.Nullable;
 // This block allows subsequent modded blocks that extend this block to inherit waterlogging properties.
 // It implements the similarly-named vanilla interface.
 // Currently, it is used for Strut blocks
-// For full blocks
+
+// For FULL BLOCKS. For non-full modelled blocks, see ModelledWaterloggableBlock
 
 public class SimpleWaterloggableBlock extends Block implements SimpleWaterloggedBlock {
 

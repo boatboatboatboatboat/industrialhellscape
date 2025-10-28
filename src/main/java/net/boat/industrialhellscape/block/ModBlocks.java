@@ -7,9 +7,11 @@ import net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks.*
 import net.boat.industrialhellscape.block.modded_block_classes.Experimental.RecyclingBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.FallableBlocks.FacingFallableBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.FallableBlocks.FallableBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.InteractableModelled2BMBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.ToiletBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.Modelled2BMBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.SoundModelled2BMBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.ModdedBedBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBlocks.SittableFacingBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.RailingBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.StairRailingBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.*;
@@ -63,7 +65,9 @@ public class ModBlocks {
             () -> new ModdedBedBlock(BlockBehaviour
                     .Properties.copy(Blocks.WHITE_WOOL)
                     .sound(SoundType.SLIME_BLOCK)
-                    .noOcclusion()
+                    .noOcclusion(),
+                    HitboxGeometryCollection.PILLOW_POSITIVE(),
+                    HitboxGeometryCollection.PILLOW_NEGATIVE()
             )
     );
 
@@ -753,6 +757,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> LARGE_LOCKER = registerBlockAndBlockItem("large_locker",
             () -> new TwoBlockContainerMultiBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
                     , MultiBlockPlacementDirection.VERTICAL
                     , 54
                     , ModSounds.METAL_BOX_OPEN.get()
@@ -785,15 +790,19 @@ public class ModBlocks {
     );
     public static final RegistryObject<Block> YELLOW_TRIPOD = registerBlockAndBlockItem("yellow_tripod",
             () -> new ModelledWaterloggableBlock(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
-                    .noOcclusion(),
+                    .Properties.copy(Blocks.IRON_BLOCK),
+                    HitboxGeometryCollection.THIN_VERTICAL_ROD_SHAPE()
+            )
+    );
+    public static final RegistryObject<Block> YELLOW_STAND = registerBlockAndBlockItem("yellow_stand",
+            () -> new ModelledWaterloggableBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK),
                     HitboxGeometryCollection.THIN_VERTICAL_ROD_SHAPE()
             )
     );
     public static final RegistryObject<Block> WORK_LIGHT_MOUNT = registerBlockAndBlockItem("work_light_mount",
             () -> new InteractableModelledFacingBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
-                    .noOcclusion()
                     .lightLevel(state -> state.getValue(POWERED) ? 15 : 0),
                     HitboxGeometryCollection.WORK_LIGHT_MOUNT_SHAPE()
             )
@@ -908,8 +917,22 @@ public class ModBlocks {
                     MultiBlockPlacementDirection.HORIZONTAL
             )
     );
+    public static final RegistryObject<Block> OFFICE_CHAIR = registerBlockAndBlockItem("office_chair",
+            () -> new SittableFacingBlock(BlockBehaviour
+                    .Properties.copy(Blocks.OAK_PLANKS)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.OFFICE_CHAIR_SHAPE()
+            )
+    );
+    public static final RegistryObject<Block> BLACK_OFFICE_CHAIR = registerBlockAndBlockItem("black_office_chair",
+            () -> new SittableFacingBlock(BlockBehaviour
+                    .Properties.copy(Blocks.OAK_PLANKS)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.OFFICE_CHAIR_SHAPE()
+            )
+    );
     public static final RegistryObject<Block> TOILET = registerBlockAndBlockItem("toilet",
-            () -> new InteractableModelled2BMBlock(BlockBehaviour
+            () -> new ToiletBlock(BlockBehaviour
                     .Properties.copy(Blocks.STONE)
                     .noOcclusion(),
                     MultiBlockPlacementDirection.VERTICAL,
@@ -962,11 +985,29 @@ public class ModBlocks {
             )
     );
     public static final RegistryObject<Block> SMOKE_ALARM = registerBlockAndBlockItem("smoke_alarm",
-            () -> new ModelledSurfaceMountBlock(BlockBehaviour
+            () -> new SmokeDetectorBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
                     HitboxGeometryCollection.SMOKE_DETECTOR_FLOOR(),
                     false
+            )
+    );
+    public static final RegistryObject<Block> OPERATING_TABLE = registerBlockAndBlockItem("operating_table",
+            () -> new ModdedBedBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .sound(SoundType.METAL)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.OPERATING_TABLE_POSITIVE(),
+                    HitboxGeometryCollection.OPERATING_TABLE_NEGATIVE()
+            )
+    );
+    public static final RegistryObject<Block> IV_DRIPSTAND = registerBlockAndBlockItem("iv_dripstand",
+            () -> new Modelled2BMBlock(BlockBehaviour
+                    .Properties.copy(Blocks.OAK_PLANKS)
+                    .noOcclusion(),
+                    MultiBlockPlacementDirection.VERTICAL,
+                    HitboxGeometryCollection.THIN_VERTICAL_ROD_SHAPE(),
+                    HitboxGeometryCollection.THIN_VERTICAL_ROD_SHAPE()
             )
     );
 

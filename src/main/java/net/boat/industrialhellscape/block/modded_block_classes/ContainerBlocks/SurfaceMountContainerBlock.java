@@ -18,12 +18,20 @@ import net.minecraft.world.level.block.state.properties.AttachFace;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 
+//---------- INFO ----------
+// Currently used for Fuel Drum block. Block when placed, aligns with surface placed on alongside cardinal direction. Also has an inventory
+
 public class SurfaceMountContainerBlock extends SurfaceMountBlock implements EntityBlock, SimpleWaterloggedBlock {
-    public final int SLOTS; //Amount of inventory slots. Should be a multiple of 9.
+    public final int SLOTS; //Amount of inventory slots. Should be a multiple of 9. Passed to Block Entity
     public final SoundEvent OPEN_SOUND;
     public final SoundEvent CLOSE_SOUND;
 
     public SurfaceMountContainerBlock(Properties pProperties, int SLOTS, SoundEvent OPEN_SOUND, SoundEvent CLOSE_SOUND) {
+        // When registering this block, pass in
+        // Properties
+        // Integer amount of slots the block entity inventory will have (multiple of 9)
+        // Sound to play when player opens block
+        // Sound to play when player closes block
         super(pProperties);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
@@ -45,13 +53,13 @@ public class SurfaceMountContainerBlock extends SurfaceMountBlock implements Ent
     @NotNull
     @Override
     public InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
+        //See modded interface ContainerBlockCapability for details
         return ContainerBlockCapability.OpenContainerInventory(level,pos,player);
     }
 
     @Override
     public void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) {
-        //General method for safe removal of current (Container) and deprecated block entities.
-        //Handles both the new container entities and previous non-container block entities
+        //See modded interface ContainerBlockCapability for details
         ContainerBlockCapability.dropSavedContainerInventory(this, state, level, pos, newState);
         super.onRemove(state, level, pos, newState, isMoving);
     }

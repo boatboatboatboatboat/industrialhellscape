@@ -4,7 +4,6 @@ import net.boat.industrialhellscape.block.ModBlocks;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.*;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Set;
@@ -21,6 +20,11 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         //DEBUG BLOCKS
         this.dropSelf(ModBlocks.PROTOTYPE_MACHINE.get());
         this.dropSelf(ModBlocks.POSTER_1.get());
+        this.dropSelf(ModBlocks.OFFICE_CHAIR.get());
+        this.dropSelf(ModBlocks.BLACK_OFFICE_CHAIR.get());
+        this.dropSelf(ModBlocks.YELLOW_STAND.get());
+        this.dropSelf(ModBlocks.OPERATING_TABLE.get());
+        this.dropSelf(ModBlocks.IV_DRIPSTAND.get());
 
         //JOKE BLOCKS
         this.dropSelf(ModBlocks.BODY_PILLOW.get());

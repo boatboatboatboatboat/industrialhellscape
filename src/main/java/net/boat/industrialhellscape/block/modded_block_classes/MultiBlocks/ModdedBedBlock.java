@@ -1,6 +1,5 @@
 package net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks;
 
-import net.boat.industrialhellscape.block.modded_interfaces.HitboxGeometryCollection;
 import net.boat.industrialhellscape.block.modded_interfaces.MultiBlockPlacementCapability;
 import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
 import net.boat.industrialhellscape.block.modded_block_state_properties.TwoBlockMultiBlockState;
@@ -27,6 +26,7 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
@@ -36,13 +36,23 @@ public class ModdedBedBlock extends Modelled2BMBlock implements EntityBlock, Sim
 
     public static final BooleanProperty OCCUPIED = BlockStateProperties.OCCUPIED;
 
-    public ModdedBedBlock(Properties pProperties) {
-        super(pProperties, MultiBlockPlacementDirection.FORWARD, HitboxGeometryCollection.PILLOW_POSITIVE(), HitboxGeometryCollection.PILLOW_NEGATIVE());
+    public ModdedBedBlock(Properties pProperties, VoxelShape hitboxPositiveShape, VoxelShape hitboxNegativeShape) {
+        // When registering this block, pass in:
+        // Block properties
+        // VoxelShape hitbox for positive (forward half)
+        // VoxelShape hitbox for negative (backwards half, closest towards player when placed down)
+        super(pProperties, MultiBlockPlacementDirection.FORWARD,hitboxPositiveShape,  hitboxNegativeShape);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(HALF_PART, TwoBlockMultiBlockState.NEGATIVE)
                 .setValue(FACING,Direction.NORTH)
                 .setValue(OCCUPIED, false)
         );
+    }
+
+    @Override
+    public Direction getBedDirection(BlockState state, LevelReader level, BlockPos pos) {
+        BlockState blockstate = level.getBlockState(pos);
+        return blockstate.getBlock() instanceof ModdedBedBlock ? blockstate.getValue(FACING).getOpposite() : Direction.NORTH;
     }
 
     @Override
@@ -72,14 +82,14 @@ public class ModdedBedBlock extends Modelled2BMBlock implements EntityBlock, Sim
                 return InteractionResult.SUCCESS;
             } else if (pState.getValue(OCCUPIED)) {
                 if (!this.kickVillagerOutOfBed(pLevel, pPos)) {
-                    pPlayer.displayClientMessage(Component.translatable("hud.industrialhellscape.pillow_occupied"), true);
+                    pPlayer.displayClientMessage(Component.translatable("block.minecraft.bed.occupied"), true);
                 }
 
                 return InteractionResult.SUCCESS;
             } else {
                 pPlayer.startSleepInBed(pPos).ifLeft((p_49477_) -> {
                     if (p_49477_.getMessage() != null) {
-                        pPlayer.displayClientMessage(Component.translatable("hud.industrialhellscape.pillow_sleep_text"), true);
+                        pPlayer.displayClientMessage(p_49477_.getMessage(), true);
                     }
 
                 });

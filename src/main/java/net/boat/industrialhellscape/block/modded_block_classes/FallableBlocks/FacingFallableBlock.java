@@ -41,6 +41,7 @@ public class FacingFallableBlock extends FallingBlock {
     }
 
     @Override
+    //When the falling block lands on a solid block, it will play a sound
     public void onLand(Level pLevel, @Nonnull BlockPos pPos, @Nonnull BlockState pState, @Nonnull BlockState pReplaceableState, @Nonnull FallingBlockEntity pFallingBlock) {
         pLevel.playSound(null, pPos, ModSounds.METALPIPEFALLINGSOUNDEFFECT.get(), SoundSource.BLOCKS,
                 1f, 1f);
@@ -48,6 +49,6 @@ public class FacingFallableBlock extends FallingBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(FACING); //Block's blockstates; its NSEW orientation, its connection type defined
+        pBuilder.add(FACING); //Block's blockstates; its NSEW orientation
     }
 }

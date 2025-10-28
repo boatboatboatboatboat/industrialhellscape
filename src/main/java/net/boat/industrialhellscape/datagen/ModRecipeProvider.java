@@ -206,7 +206,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.RED_WALL_MEDKIT.get().asItem(),
             ModBlocks.WHITE_WALL_MEDKIT.get().asItem(),
             ModBlocks.FIRE_EXTINGUISHER.get().asItem(),
-            ModBlocks.SMOKE_ALARM.get().asItem()
+            ModBlocks.SMOKE_ALARM.get().asItem(),
+            ModBlocks.OPERATING_TABLE.get().asItem(),
+            ModBlocks.IV_DRIPSTAND.get().asItem()
     );
     private static final List<ItemLike> HYGIENE_FURNITURE = List.of(
             ModBlocks.TOILET.get().asItem(),
@@ -217,6 +219,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.LOCKER_BOX.get().asItem(),
             ModBlocks.LARGE_LOCKER.get().asItem(),
             ModBlocks.YELLOW_TRIPOD.get().asItem(),
+            ModBlocks.YELLOW_STAND.get().asItem(),
             ModBlocks.WORK_LIGHT_MOUNT.get().asItem(),
             ModBlocks.FLOOR_WORK_LIGHT.get().asItem(),
             ModBlocks.FUEL_DRUM.get().asItem(),
@@ -235,7 +238,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.METAL_DESK_DRAWER_2.get().asItem(),
 
             ModBlocks.OFFICE_DESK_DRAWER.get().asItem(),
-            ModBlocks.OFFICE_DESK.get().asItem()
+            ModBlocks.OFFICE_DESK.get().asItem(),
+
+            ModBlocks.OFFICE_CHAIR.get().asItem(),
+            ModBlocks.BLACK_OFFICE_CHAIR.get().asItem()
     );
 
     public ModRecipeProvider(PackOutput pOutput) {

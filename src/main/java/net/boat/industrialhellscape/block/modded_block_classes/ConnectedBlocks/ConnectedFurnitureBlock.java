@@ -79,6 +79,15 @@ public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implemen
     private final VoxelShape RIGHT_SHAPE_WEST;
 
     public ConnectedFurnitureBlock(Properties pProperties, TagKey<Block> inputCompatibleBlockSet, VoxelShape soloShape, VoxelShape leftShape, VoxelShape middleShape, VoxelShape rightShape, MultiBlockPlacementDirection placementDirection) {
+        //When registering this block, pass in:
+        // Properties,
+        // Block Tag for related blocks that this block can physically connect to
+        // Unconnected state hitbox VoxelShape
+        // Left connection state hitbox VoxelShape
+        // Middle connection state hitbox VoxelShape
+        // Right connection state hitbox VoxelShape
+        // Whether or not blocks should be placed horizontally, vertically, or longitudinally to check for connections
+
         super(pProperties);
 
         //Define the Voxelshape hitboxes for each state

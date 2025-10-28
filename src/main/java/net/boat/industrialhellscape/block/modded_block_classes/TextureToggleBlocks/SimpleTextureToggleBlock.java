@@ -24,9 +24,7 @@ import javax.annotation.Nullable;
 // worth registering dedicated blocks for.
 // Tools that can rotate the block are ones tagged by this mod with the item tag IH_COMPATIBLE_TOOLS. Currently consisting of tagged pickaxes, "wrenches", and the mod's HAVEN Tool
 
-// AbstractGlassBlock enables internal face culling so transparent blocks of this block class can have internal face culling (E.G. Grates)
-// Otherwise, this block class functions no different from if it uses the normal vanilla Block class
-// For full blocks
+// skipRendering is for transparent blocks such as grates so they don't show their block sides internally.
 
 public class SimpleTextureToggleBlock extends Block {
 
@@ -52,6 +50,7 @@ public class SimpleTextureToggleBlock extends Block {
     }
 
     public @Nonnull InteractionResult use(@Nonnull BlockState pState, @Nonnull Level pLevel, @Nonnull BlockPos pPos, Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
+        //See modded interface ToolUseCapability for the list of methods used to handle common player/block interactions in this mod
         return ToolUseCapability.SimpleToolInteract(ALT_STATE, pPlayer, pState, pLevel, pPos);
     }
 

@@ -1,9 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "render_type": "minecraft:solid",
-  "textures": {
-    "bottom": "industrialhellscape:block/vesselplate/rusty_riveted_vesselplate",
-    "side": "industrialhellscape:block/vesselplate/rusty_riveted_vesselplate",
-    "top": "industrialhellscape:block/vesselplate/rusty_riveted_vesselplate"
-  }
-}

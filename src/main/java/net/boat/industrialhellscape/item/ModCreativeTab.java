@@ -25,6 +25,11 @@ public class ModCreativeTab {
 
                         //DEBUG ITEMS
                         //output.accept(ModBlocks.POSTER_1.get());
+                        output.accept(ModBlocks.OFFICE_CHAIR.get());
+                        output.accept(ModBlocks.BLACK_OFFICE_CHAIR.get());
+                        output.accept(ModBlocks.YELLOW_STAND.get());
+                        output.accept(ModBlocks.OPERATING_TABLE.get());
+                        output.accept(ModBlocks.IV_DRIPSTAND.get());
 
                         //JOKE ITEMS
                         //output.accept(ModItems.JOB_APPLICATION.get());

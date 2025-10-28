@@ -31,6 +31,13 @@ public class TwoBlockContainerMultiBlock extends TwoBlockMultiBlock implements E
     //Values of "POSITIVE" and "NEGATIVE". In this context, it refers either to TOP vs BOTTOM block, or LEFT vs RIGHT block.
 
     public TwoBlockContainerMultiBlock(Properties pProperties, MultiBlockPlacementDirection multiBlockPlacementDirection, int SLOTS, SoundEvent OPEN_SOUND, SoundEvent CLOSE_SOUND) {
+        // When registering this block, pass in:
+        // Properties,
+        // Which direction the block will place its other half (horizontally, vertically, longitudinally)
+        // Amount of inventory slots for block entity inventory (multiple of 9)
+        // Sound to play when player opens inventory
+        // Sound to play when player closes inventory
+
         super(pProperties, multiBlockPlacementDirection);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(HALF_PART, TwoBlockMultiBlockState.NEGATIVE)
@@ -51,6 +58,7 @@ public class TwoBlockContainerMultiBlock extends TwoBlockMultiBlock implements E
     //---------- Block Entity Handling Methods below ----------
 
     public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
+        //See modded interface MultiBlockPlacementCapability for more details
         return MultiBlockPlacementCapability.newBlockEntityInNegativeBlock(pos, state);
     }
 
@@ -65,12 +73,14 @@ public class TwoBlockContainerMultiBlock extends TwoBlockMultiBlock implements E
         // If top block, shift down to get to the block entity
         if (state.getValue(HALF_PART) == TwoBlockMultiBlockState.POSITIVE) { //If the block state at this position is a "Positive" block, redefine position and state to be of the "Negative Block"
             //Apply a correction to the variables to represent the correct block to apply the interaction.
+            //See modded interface MultiBlockPlacementCapability for more details
             negativeHalfPos = MultiBlockPlacementCapability.posToPlaceOtherHalf(pos, TwoBlockMultiBlockState.POSITIVE, state.getValue(FACING), multiBlockPlacementDirection); //This should be the position of the NEGATIVE block half of the multiblock
-            negativeHalfBlockState = level.getBlockState(negativeHalfPos); //This should return  the NEGATIVE block state
+            negativeHalfBlockState = level.getBlockState(negativeHalfPos); //This should return the NEGATIVE block state
         }
 
         if (negativeHalfBlockState.is(this)) { //Since the defined block may be different, check if its still the same block
-            //If so, open the Container inventory as usual
+            //If the other half is the same block, open the inventory
+            //See modded interface ContainerBlockCapability for details
             return ContainerBlockCapability.OpenContainerInventory(level, negativeHalfPos, player);
         }
         return InteractionResult.PASS;
@@ -78,8 +88,7 @@ public class TwoBlockContainerMultiBlock extends TwoBlockMultiBlock implements E
 
     @Override
     public void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) {
-        //General method for safe removal of current (Container) and deprecated block entities.
-        //Handles both the new container entities and previous non-container block entities
+        //See modded interface ContainerBlockCapability for details
         ContainerBlockCapability.dropSavedContainerInventory(this, state, level, pos, newState);
         super.onRemove(state, level, pos, newState, isMoving);
     }
