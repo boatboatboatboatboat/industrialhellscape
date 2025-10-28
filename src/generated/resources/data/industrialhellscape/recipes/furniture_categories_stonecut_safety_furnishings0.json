@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "industrialhellscape:ihea_furniture_kit"
+  },
+  "result": "industrialhellscape:safety_furnishings"
+}

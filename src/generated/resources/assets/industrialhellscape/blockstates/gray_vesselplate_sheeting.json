@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "alt_state=false": {
+      "model": "industrialhellscape:block/gray_vesselplate_sheeting"
+    },
+    "alt_state=true": {
+      "model": "industrialhellscape:block/gray_vesselplate_sheet"
+    }
+  }
+}

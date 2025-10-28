@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "industrialhellscape:block/experimental/prototype_machine_top",
+    "east": "industrialhellscape:block/experimental/prototype_machine_side",
+    "north": "industrialhellscape:block/experimental/prototype_machine_front",
+    "particle": "industrialhellscape:block/experimental/prototype_machine_top",
+    "south": "industrialhellscape:block/experimental/prototype_machine_front",
+    "up": "industrialhellscape:block/experimental/prototype_machine_top",
+    "west": "industrialhellscape:block/experimental/prototype_machine_side"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "industrialhellscape:block/gray_vesselplate_sheeting_slab"
+    },
+    "type=double": {
+      "model": "industrialhellscape:block/gray_vesselplate_sheeting_double_slab"
+    },
+    "type=top": {
+      "model": "industrialhellscape:block/gray_vesselplate_sheeting_slab_top"
+    }
+  }
+}

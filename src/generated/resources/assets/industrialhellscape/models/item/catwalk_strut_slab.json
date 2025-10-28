@@ -1,0 +1,4 @@
+{
+  "parent": "industrialhellscape:block/catwalk_strut_slab",
+  "render_type": "minecraft:cutout"
+}

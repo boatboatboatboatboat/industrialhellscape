@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "tag": "industrialhellscape:rockrete_smeltable_item"
+  },
+  "result": "industrialhellscape:green_rockrete_pillar"
+}
