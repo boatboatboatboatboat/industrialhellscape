@@ -424,4 +424,21 @@ public interface HitboxGeometryCollection {
 
         return shape;
     }
+
+    static VoxelShape VITALS_MONITOR_BASE(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0.25, 0.25, 0.3125, 0.75, 1, 0.8125), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.0625, 0.125, 0.0625, 0.9375, 0.25, 0.9375), BooleanOp.OR);
+
+        return shape;
+    }
+
+    static VoxelShape VITALS_MONITOR_TOP(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0.125, 0, 0.125, 0.875, 0.125, 0.875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.125, 0.125, 0.3125, 0.875, 0.575, 0.875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.4375, 0.18125, 0.11875, 0.8125, 0.55625, 0.11875), BooleanOp.OR);
+
+        return shape;
+    }
 }

@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "industrialhellscape:yellow_stand"
+          "name": "industrialhellscape:vitals_monitor"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "industrialhellscape:blocks/yellow_stand"
+  "random_sequence": "industrialhellscape:blocks/vitals_monitor"
 }

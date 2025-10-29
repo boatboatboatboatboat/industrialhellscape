@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "industrialhellscape:work_light_mount"
+          "name": "industrialhellscape:work_light_stand"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "industrialhellscape:blocks/work_light_mount"
+  "random_sequence": "industrialhellscape:blocks/work_light_stand"
 }

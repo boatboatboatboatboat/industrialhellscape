@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "industrialhellscape:industrial_furniture_stonecut_fuel_drum6"
+        "recipe": "industrialhellscape:safety_furniture_stonecut_vitals_monitor6"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "industrialhellscape:industrial_furniture_stonecut_fuel_drum6"
+      "industrialhellscape:safety_furniture_stonecut_vitals_monitor6"
     ]
   },
   "sends_telemetry_event": false

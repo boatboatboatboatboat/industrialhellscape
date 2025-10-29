@@ -233,7 +233,8 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.FIRE_EXTINGUISHER.get().asItem(),
                         ModBlocks.SMOKE_ALARM.get().asItem(),
                         ModBlocks.OPERATING_TABLE.get().asItem(),
-                        ModBlocks.IV_DRIPSTAND.get().asItem()
+                        ModBlocks.IV_DRIPSTAND.get().asItem(),
+                        ModBlocks.VITALS_MONITOR.get().asItem()
                 );
         this.tag(ModTags.Items.HYGIENE_FURNITURE_CATEGORY)
                 .add(
@@ -245,9 +246,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 .add(
                         ModBlocks.LOCKER_BOX.get().asItem(),
                         ModBlocks.LARGE_LOCKER.get().asItem(),
-                        ModBlocks.YELLOW_TRIPOD.get().asItem(),
-                        ModBlocks.YELLOW_STAND.get().asItem(),
-                        ModBlocks.WORK_LIGHT_MOUNT.get().asItem(),
+                        ModBlocks.WORK_LIGHT_STAND.get().asItem(),
                         ModBlocks.FLOOR_WORK_LIGHT.get().asItem(),
                         ModBlocks.CCTV_CAMERA.get().asItem()
                 );

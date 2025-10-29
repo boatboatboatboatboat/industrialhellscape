@@ -1,6 +1,0 @@
-{
-	"parent": "industrialhellscape:block/work_light_mount/floor_work_light",
-	"textures": {
-		"1": "industrialhellscape:block/work_light_on"
-	}
-}

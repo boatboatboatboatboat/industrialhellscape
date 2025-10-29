@@ -60,7 +60,7 @@ public class SmokeDetectorBlock extends ModelledSurfaceMountBlock{
     private static void playSound(Level pLevel, BlockPos pPos) {
         //Plays stonecutter sound when interaction successful and this method is called
         pLevel.playSeededSound(null, pPos.getX(), pPos.getY(), pPos.getZ(),
-                ModSounds.SMOKE_DETECTOR.get(), SoundSource.BLOCKS, 1f, 1f, 0);
+                ModSounds.SMOKE_ALARM.get(), SoundSource.BLOCKS, 1f, 1f, 0);
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {

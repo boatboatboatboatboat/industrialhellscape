@@ -14,7 +14,7 @@ public class ModSounds {
             DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, IndustrialHellscape.MOD_ID);
 
     public static final RegistryObject<SoundEvent> METAL_CLANK = registerSoundEvents("metal_clank");
-    public static final RegistryObject<SoundEvent> SMOKE_DETECTOR = registerSoundEvents("smoke_detector");
+    public static final RegistryObject<SoundEvent> SMOKE_ALARM = registerSoundEvents("smoke_alarm");
     public static final RegistryObject<SoundEvent> VULTA_SHATTERED = registerSoundEvents("vulta_shattered");
     public static final RegistryObject<SoundEvent> TOILET_FLUSH = registerSoundEvents("toilet_flush");
     public static final RegistryObject<SoundEvent> METALPIPEFALLINGSOUNDEFFECT = registerSoundEvents("metalpipefallingsoundeffect");

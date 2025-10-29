@@ -4,8 +4,8 @@
 	"ambientocclusion": false,
 	"render_type": "minecraft:cutout",
 	"textures": {
-		"1": "industrialhellscape:block/body_pillow",
-		"particle": "industrialhellscape:block/body_pillow_front_graphic"
+		"1": "industrialhellscape:block/body_pillow/body_pillow",
+		"particle": "industrialhellscape:block/body_pillow/body_pillow_front_graphic"
 	},
 	"elements": [
 		{

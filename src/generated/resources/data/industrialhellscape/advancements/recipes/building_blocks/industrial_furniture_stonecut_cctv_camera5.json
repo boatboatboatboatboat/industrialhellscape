@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "industrialhellscape:industrial_furniture_stonecut_yellow_tripod2"
+        "recipe": "industrialhellscape:industrial_furniture_stonecut_cctv_camera5"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "industrialhellscape:industrial_furniture_stonecut_yellow_tripod2"
+      "industrialhellscape:industrial_furniture_stonecut_cctv_camera5"
     ]
   },
   "sends_telemetry_event": false

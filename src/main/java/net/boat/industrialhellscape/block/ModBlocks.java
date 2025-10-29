@@ -7,10 +7,7 @@ import net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks.*
 import net.boat.industrialhellscape.block.modded_block_classes.Experimental.RecyclingBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.FallableBlocks.FacingFallableBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.FallableBlocks.FallableBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.ToiletBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.Modelled2BMBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.SoundModelled2BMBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.ModdedBedBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.*;
 import net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBlocks.SittableFacingBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.RailingBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.StairRailingBlock;
@@ -788,23 +785,13 @@ public class ModBlocks {
                     true
             )
     );
-    public static final RegistryObject<Block> YELLOW_TRIPOD = registerBlockAndBlockItem("yellow_tripod",
-            () -> new ModelledWaterloggableBlock(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK),
-                    HitboxGeometryCollection.THIN_VERTICAL_ROD_SHAPE()
-            )
-    );
-    public static final RegistryObject<Block> YELLOW_STAND = registerBlockAndBlockItem("yellow_stand",
-            () -> new ModelledWaterloggableBlock(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK),
-                    HitboxGeometryCollection.THIN_VERTICAL_ROD_SHAPE()
-            )
-    );
-    public static final RegistryObject<Block> WORK_LIGHT_MOUNT = registerBlockAndBlockItem("work_light_mount",
-            () -> new InteractableModelledFacingBlock(BlockBehaviour
+    public static final RegistryObject<Block> WORK_LIGHT_STAND = registerBlockAndBlockItem("work_light_stand",
+            () -> new LightMultiBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .lightLevel(state -> state.getValue(POWERED) ? 15 : 0),
-                    HitboxGeometryCollection.WORK_LIGHT_MOUNT_SHAPE()
+                    MultiBlockPlacementDirection.VERTICAL,
+                    HitboxGeometryCollection.WORK_LIGHT_MOUNT_SHAPE(),
+                    HitboxGeometryCollection.THIN_VERTICAL_ROD_SHAPE()
             )
     );
     public static final RegistryObject<Block> FLOOR_WORK_LIGHT = registerBlockAndBlockItem("floor_work_light",
@@ -999,6 +986,15 @@ public class ModBlocks {
                     .noOcclusion(),
                     HitboxGeometryCollection.OPERATING_TABLE_POSITIVE(),
                     HitboxGeometryCollection.OPERATING_TABLE_NEGATIVE()
+            )
+    );
+    public static final RegistryObject<Block> VITALS_MONITOR = registerBlockAndBlockItem("vitals_monitor",
+            () -> new LightMultiBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .lightLevel(state -> state.getValue(POWERED) ? 15 : 0),
+                    MultiBlockPlacementDirection.VERTICAL,
+                    HitboxGeometryCollection.VITALS_MONITOR_TOP(),
+                    HitboxGeometryCollection.VITALS_MONITOR_BASE()
             )
     );
     public static final RegistryObject<Block> IV_DRIPSTAND = registerBlockAndBlockItem("iv_dripstand",

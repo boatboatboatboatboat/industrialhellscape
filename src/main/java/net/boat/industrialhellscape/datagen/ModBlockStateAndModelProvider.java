@@ -148,11 +148,8 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         genAttachedSI(ModBlocks.SMOKE_ALARM.get(), "");
         genAttachedSI(ModBlocks.POSTER_1.get(), "decals");
         genAttachedSBI(ModBlocks.FUEL_DRUM.get(), "", build6FaceTexturesBlockModel("fuel_drum","fuel_drum", "red_labeled_fuel_drum_front", "red_labeled_fuel_drum_front", "red_labeled_fuel_drum_side", "red_labeled_fuel_drum_side", "red_fuel_drum_up","red_fuel_drum_down"));
-        genWaterloggableSI(ModBlocks.YELLOW_TRIPOD.get(),"");
-        genWaterloggableSI(ModBlocks.YELLOW_STAND.get(),"");
         genWAllVsCeilingSI(ModBlocks.CCTV_CAMERA.get(),"cctv_camera","ceiling","wall");
-        GenFacingPoweredSI(ModBlocks.WORK_LIGHT_MOUNT.get(), "work_light_mount");
-        GenFacingPoweredSI(ModBlocks.FLOOR_WORK_LIGHT.get(), "work_light_mount");
+        GenFacingPoweredSI(ModBlocks.FLOOR_WORK_LIGHT.get(), "work_light");
         GenFacingPoweredSI(ModBlocks.RETRO_COMPUTER.get(), "retro_computer");
         GenFacingPoweredSI(ModBlocks.RETRO_COMPUTER_2.get(), "retro_computer");
         GenFacingPoweredSI(ModBlocks.CASSETTE_PLAYER.get(), "cassette_player");

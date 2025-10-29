@@ -27,9 +27,9 @@ public class ModCreativeTab {
                         //output.accept(ModBlocks.POSTER_1.get());
                         output.accept(ModBlocks.OFFICE_CHAIR.get());
                         output.accept(ModBlocks.BLACK_OFFICE_CHAIR.get());
-                        output.accept(ModBlocks.YELLOW_STAND.get());
                         output.accept(ModBlocks.OPERATING_TABLE.get());
                         output.accept(ModBlocks.IV_DRIPSTAND.get());
+                        output.accept(ModBlocks.VITALS_MONITOR.get());
 
                         //JOKE ITEMS
                         //output.accept(ModItems.JOB_APPLICATION.get());
@@ -196,8 +196,7 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.RETRO_COMPUTER_2.get());
                         output.accept(ModBlocks.CASSETTE_PLAYER.get());
 
-                        output.accept(ModBlocks.YELLOW_TRIPOD.get());
-                        output.accept(ModBlocks.WORK_LIGHT_MOUNT.get());
+                        output.accept(ModBlocks.WORK_LIGHT_STAND.get());
                         output.accept(ModBlocks.FLOOR_WORK_LIGHT.get());
                         output.accept(ModBlocks.LOCKER_BOX.get());
                         output.accept(ModBlocks.LARGE_LOCKER.get());

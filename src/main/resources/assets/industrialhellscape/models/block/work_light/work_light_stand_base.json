@@ -3,8 +3,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "industrialhellscape:block/yellow_tripod",
-		"particle": "industrialhellscape:block/yellow_tripod"
+		"0": "industrialhellscape:block/work_light",
+		"particle": "industrialhellscape:block/work_light"
 	},
 	"elements": [
 		{
@@ -170,14 +170,8 @@
 					"color": 0,
 					"children": [6, 7]
 				},
-				{
-					"name": "stem",
-					"origin": [7, 0, 7],
-					"color": 0,
-					"children": []
-				}
+				8
 			]
-		},
-		8
+		}
 	]
 }

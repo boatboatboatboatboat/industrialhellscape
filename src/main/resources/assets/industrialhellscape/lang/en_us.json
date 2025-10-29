@@ -125,6 +125,7 @@
   "block.industrialhellscape.fire_extinguisher": "Fire Extinguisher",
   "block.industrialhellscape.smoke_alarm": "Smoke Alarm",
   "block.industrialhellscape.operating_table": "Operating Table",
+  "block.industrialhellscape.vitals_monitor": "Vitals Monitor",
   "block.industrialhellscape.iv_dripstand": "IV Dripstand",
 
   "block.industrialhellscape.locker_box": "Locker Box",
@@ -149,9 +150,7 @@
   "block.industrialhellscape.retro_computer_2": "Retro Computer 2",
   "block.industrialhellscape.cassette_player": "Cassette Player",
 
-  "block.industrialhellscape.yellow_tripod": "Yellow Tripod",
-  "block.industrialhellscape.yellow_stand": "Yellow Stand",
-  "block.industrialhellscape.work_light_mount": "Work Light Mount",
+  "block.industrialhellscape.work_light_stand": "Work Light Stand",
   "block.industrialhellscape.floor_work_light": "Floor Work Light",
   "block.industrialhellscape.yellow_railing": "Yellow Railing",
   "block.industrialhellscape.yellow_stair_railing": "Yellow Stair Railing",
@@ -201,9 +200,9 @@
   "sounds.industrialhellscape.metal_box_closing": "Metal container closes",
   "sounds.industrialhellscape.metal_clank": "Metal clanks",
   "sounds.industrialhellscape.vulta_shattered": "Dubiously obtained synthwave music plays",
-  "sounds.industrialhellscape.smoke_detector":"Smoke Detector Chirps",
+  "sounds.industrialhellscape.smoke_alarm":"Smoke Alarm chirps",
 
-  "tooltip.industrialhellscape.haventool": "Right-click and/or sneak-right-click to rotate some I.H. blocks, change their texture behavior, or furniture block-state (like desks).",
+  "tooltip.industrialhellscape.haventool": "Right-click and/or sneak-right-click to rotate some I.H. blocks, change their texture behavior, or furniture block-state (like desks). It also stone-cuts.",
   "tooltip.industrialhellscape.vaporwave_cassette": "§6\"Warp signatures coming from Lagrange 4. Unidentified. All orbital guns, align prograde to solar orbit. We have 50 hours to contact.\"",
   "tooltip.industrialhellscape.riveted_vesselplate_panel": "Used extensively to armor the warships of the InHell Corporate Acquisition Fleet.",
 

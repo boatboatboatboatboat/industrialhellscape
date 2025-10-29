@@ -4,7 +4,7 @@
 	"texture_size": [48, 48],
 	"textures": {
 		"0": "industrialhellscape:block/retro_computer",
-		"1": "industrialhellscape:block/retro_computer_screen_off",
+		"1": "industrialhellscape:block/lit_unlit_textures/retro_computer_screen_off",
 		"particle": "industrialhellscape:block/retro_computer"
 	},
 	"elements": [

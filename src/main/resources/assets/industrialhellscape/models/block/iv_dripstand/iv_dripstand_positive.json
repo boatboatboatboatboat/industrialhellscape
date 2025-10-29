@@ -1,8 +1,8 @@
 {
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
-	"texture_size": [32, 32],
 	"render_type": "minecraft:cutout",
+	"texture_size": [32, 32],
 	"textures": {
 		"1": "industrialhellscape:block/iv_dripstand",
 		"particle": "industrialhellscape:block/iv_dripstand"
@@ -10,31 +10,31 @@
 	"elements": [
 		{
 			"from": [7.5, 0, 7.5],
-			"to": [8.5, 8, 8.5],
-			"rotation": {"angle": 0, "axis": "y", "origin": [7.5, 0, 6.5]},
+			"to": [8.5, 12, 8.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7.5, 4, 6.5]},
 			"faces": {
-				"north": {"uv": [2.5, 5, 3, 9], "texture": "#1"},
-				"east": {"uv": [2.5, 5, 3, 9], "texture": "#1"},
-				"south": {"uv": [2.5, 5, 3, 9], "texture": "#1"},
-				"west": {"uv": [2.5, 5, 3, 9], "texture": "#1"},
+				"north": {"uv": [6, 2, 6.5, 8], "texture": "#1"},
+				"east": {"uv": [6, 2, 6.5, 8], "texture": "#1"},
+				"south": {"uv": [6, 2, 6.5, 8], "texture": "#1"},
+				"west": {"uv": [6, 2, 6.5, 8], "texture": "#1"},
 				"up": {"uv": [6, 2.5, 5.5, 2], "texture": "#1"}
 			}
 		},
 		{
-			"from": [8, 8, 2],
-			"to": [8, 11, 14],
+			"from": [8, 12, 2],
+			"to": [8, 15, 14],
 			"shade": false,
-			"rotation": {"angle": 0, "axis": "y", "origin": [7, 8, 7]},
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 12, 7]},
 			"faces": {
 				"east": {"uv": [5, 0, 11, 1.5], "texture": "#1"},
 				"west": {"uv": [5, 0, 11, 1.5], "texture": "#1"}
 			}
 		},
 		{
-			"from": [2, 8, 8],
-			"to": [14, 11, 8],
+			"from": [2, 12, 8],
+			"to": [14, 15, 8],
 			"shade": false,
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 12, 8]},
 			"faces": {
 				"north": {"uv": [5, 0, 11, 1.5], "texture": "#1"},
 				"south": {"uv": [5, 0, 11, 1.5], "texture": "#1"}
@@ -42,9 +42,9 @@
 		},
 		{
 			"name": "iv_bag",
-			"from": [5.5, -0.5, 4],
-			"to": [10.5, 9.5, 4],
-			"rotation": {"angle": 0, "axis": "y", "origin": [7.5, 7.5, 3]},
+			"from": [5.5, 3.5, 4],
+			"to": [10.5, 13.5, 4],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7.5, 11.5, 3]},
 			"faces": {
 				"north": {"uv": [2.5, 0, 5, 5], "texture": "#1"},
 				"south": {"uv": [2.5, 0, 5, 5], "texture": "#1"}
@@ -52,9 +52,9 @@
 		},
 		{
 			"name": "iv_bag",
-			"from": [12, -10.5, 5.5],
-			"to": [12, 9.5, 10.5],
-			"rotation": {"angle": 22.5, "axis": "y", "origin": [12, 7.5, 8]},
+			"from": [12, -6.5, 5.5],
+			"to": [12, 13.5, 10.5],
+			"rotation": {"angle": 22.5, "axis": "y", "origin": [12, 11.5, 8]},
 			"faces": {
 				"east": {"uv": [0, 0, 2.5, 10], "texture": "#1"},
 				"west": {"uv": [0, 0, 2.5, 10], "texture": "#1"}
@@ -62,9 +62,9 @@
 		},
 		{
 			"name": "iv_bag",
-			"from": [1.25, -0.5, 8.25],
-			"to": [6.25, 9.5, 8.25],
-			"rotation": {"angle": 22.5, "axis": "y", "origin": [3.25, 7.5, 7.25]},
+			"from": [1.25, 3.5, 8.25],
+			"to": [6.25, 13.5, 8.25],
+			"rotation": {"angle": 22.5, "axis": "y", "origin": [3.25, 11.5, 7.25]},
 			"faces": {
 				"north": {"uv": [2.5, 0, 5, 5], "texture": "#1"},
 				"south": {"uv": [2.5, 0, 5, 5], "texture": "#1"}

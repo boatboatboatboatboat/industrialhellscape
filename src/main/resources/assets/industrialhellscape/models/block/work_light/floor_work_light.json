@@ -3,9 +3,9 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "industrialhellscape:block/yellow_tripod",
-		"1": "industrialhellscape:block/work_light_off",
-		"particle": "industrialhellscape:block/yellow_tripod"
+		"0": "industrialhellscape:block/work_light",
+		"1": "industrialhellscape:block/lit_unlit_textures/work_light_lamp_off",
+		"particle": "industrialhellscape:block/work_light"
 	},
 	"elements": [
 		{

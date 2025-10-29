@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "industrialhellscape:industrial_furniture_stonecut_yellow_stand3"
+        "recipe": "industrialhellscape:industrial_furniture_stonecut_work_light_stand2"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "industrialhellscape:industrial_furniture_stonecut_yellow_stand3"
+      "industrialhellscape:industrial_furniture_stonecut_work_light_stand2"
     ]
   },
   "sends_telemetry_event": false

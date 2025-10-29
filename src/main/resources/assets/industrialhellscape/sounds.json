@@ -5,10 +5,10 @@
       "industrialhellscape:metal_box_opening"
     ]
   },
-  "smoke_detector": {
-    "subtitle": "sounds.industrialhellscape.smoke_detector",
+  "smoke_alarm": {
+    "subtitle": "sounds.industrialhellscape.smoke_alarm",
     "sounds": [
-      "industrialhellscape:smoke_detector"
+      "industrialhellscape:smoke_alarm"
     ]
   },
   "metal_box_closing": {

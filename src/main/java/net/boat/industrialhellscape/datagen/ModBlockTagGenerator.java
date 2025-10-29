@@ -236,7 +236,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.FIRE_EXTINGUISHER.get(),
                         ModBlocks.SMOKE_ALARM.get(),
                         ModBlocks.OPERATING_TABLE.get(),
-                        ModBlocks.IV_DRIPSTAND.get()
+                        ModBlocks.IV_DRIPSTAND.get(),
+                        ModBlocks.VITALS_MONITOR.get()
                 );
         this.tag(ModTags.Blocks.HYGIENE_FURNITURE_CATEGORY)
                 .add(
@@ -251,9 +252,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.INDUSTRIAL_FURNISHINGS.get(),
                         ModBlocks.LOCKER_BOX.get(),
                         ModBlocks.LARGE_LOCKER.get(),
-                        ModBlocks.YELLOW_TRIPOD.get(),
-                        ModBlocks.YELLOW_STAND.get(),
-                        ModBlocks.WORK_LIGHT_MOUNT.get(),
+                        ModBlocks.WORK_LIGHT_STAND.get(),
                         ModBlocks.FLOOR_WORK_LIGHT.get(),
                         ModBlocks.FUEL_DRUM.get(),
                         ModBlocks.CCTV_CAMERA.get()

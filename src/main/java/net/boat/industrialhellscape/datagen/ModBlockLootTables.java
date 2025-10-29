@@ -22,9 +22,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.POSTER_1.get());
         this.dropSelf(ModBlocks.OFFICE_CHAIR.get());
         this.dropSelf(ModBlocks.BLACK_OFFICE_CHAIR.get());
-        this.dropSelf(ModBlocks.YELLOW_STAND.get());
         this.dropSelf(ModBlocks.OPERATING_TABLE.get());
         this.dropSelf(ModBlocks.IV_DRIPSTAND.get());
+        this.dropSelf(ModBlocks.VITALS_MONITOR.get());
 
         //JOKE BLOCKS
         this.dropSelf(ModBlocks.BODY_PILLOW.get());
@@ -180,8 +180,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
         this.dropSelf(ModBlocks.LOCKER_BOX.get());
         this.dropSelf(ModBlocks.LARGE_LOCKER.get());
-        this.dropSelf(ModBlocks.YELLOW_TRIPOD.get());
-        this.dropSelf(ModBlocks.WORK_LIGHT_MOUNT.get());
+        this.dropSelf(ModBlocks.WORK_LIGHT_STAND.get());
         this.dropSelf(ModBlocks.FLOOR_WORK_LIGHT.get());
         this.dropSelf(ModBlocks.FUEL_DRUM.get());
         this.dropSelf(ModBlocks.CCTV_CAMERA.get());

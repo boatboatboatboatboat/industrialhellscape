@@ -208,7 +208,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.FIRE_EXTINGUISHER.get().asItem(),
             ModBlocks.SMOKE_ALARM.get().asItem(),
             ModBlocks.OPERATING_TABLE.get().asItem(),
-            ModBlocks.IV_DRIPSTAND.get().asItem()
+            ModBlocks.IV_DRIPSTAND.get().asItem(),
+            ModBlocks.VITALS_MONITOR.get().asItem()
     );
     private static final List<ItemLike> HYGIENE_FURNITURE = List.of(
             ModBlocks.TOILET.get().asItem(),
@@ -218,9 +219,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     private static final List<ItemLike> INDUSTRIAL_FURNITURE = List.of(
             ModBlocks.LOCKER_BOX.get().asItem(),
             ModBlocks.LARGE_LOCKER.get().asItem(),
-            ModBlocks.YELLOW_TRIPOD.get().asItem(),
-            ModBlocks.YELLOW_STAND.get().asItem(),
-            ModBlocks.WORK_LIGHT_MOUNT.get().asItem(),
+            ModBlocks.WORK_LIGHT_STAND.get().asItem(),
             ModBlocks.FLOOR_WORK_LIGHT.get().asItem(),
             ModBlocks.FUEL_DRUM.get().asItem(),
             ModBlocks.CCTV_CAMERA.get().asItem()
