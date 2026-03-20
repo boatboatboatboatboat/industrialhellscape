@@ -30,6 +30,11 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.OPERATING_TABLE.get());
                         output.accept(ModBlocks.IV_DRIPSTAND.get());
                         output.accept(ModBlocks.VITALS_MONITOR.get());
+                        output.accept(ModBlocks.VESSELPLATE_DOOR.get());
+                        output.accept(ModBlocks.VESSELPLATE_TRAPDOOR.get());
+                        output.accept(ModBlocks.MEDICAL_BED.get());
+                        output.accept(ModBlocks.GRAY_VESSELPLATE_DOOR.get());
+                        output.accept(ModBlocks.GRAY_VESSELPLATE_TRAPDOOR.get());
 
                         //JOKE ITEMS
                         //output.accept(ModItems.JOB_APPLICATION.get());

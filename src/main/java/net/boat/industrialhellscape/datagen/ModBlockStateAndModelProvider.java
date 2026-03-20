@@ -91,6 +91,8 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         //Duct Blocks
         genFolderedSBI(ModBlocks.DUCT.get(), "duct");
         genFolderedSBI(ModBlocks.RUSTY_DUCT.get(), "duct");
+        genAttachedSI(ModBlocks.DUCT_VENT.get(), "duct_vent");
+        genAttachedSI(ModBlocks.RUSTY_DUCT_VENT.get(), "duct_vent");
 
         //Glass Blocks
         genSimpleBlockWithRenderTypeSBI(ModBlocks.REINFORCED_VESSELGLASS.get(),"vesselglass", "translucent");
@@ -102,7 +104,6 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         genFolderedSBI(ModBlocks.GRIMY_RESTROOM_TILE.get(),"");
         genFolderedSBI(ModBlocks.HAZARD_STRIPE_YELLOW.get(),"");
         genFolderedSBI(ModBlocks.HAZARD_STRIPE_RED.get(),"");
-
 
         //Rockrete Blocks
         genFolderedToggleBlockSBI(ModBlocks.GRAY_ROCKRETE.get(),"","",true, true,"rockrete","rockrete_rebar","solid");
@@ -199,8 +200,10 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         genSlabBlockSBI(ModBlocks.RUSTY_CATWALK_STRUT_SLAB.get(), "strut", "rusty_strut", "rusty_floorgrate_catwalk","rusty_strut", "cutout");
 
         //Doors and Trapdoors
-        genAttachedSI(ModBlocks.DUCT_VENT.get(), "duct_vent");
-        genAttachedSI(ModBlocks.RUSTY_DUCT_VENT.get(), "duct_vent");
+        genDoorSBI(ModBlocks.VESSELPLATE_DOOR.get() , "cutout");
+        genTrapdoorSBI(ModBlocks.VESSELPLATE_TRAPDOOR.get(),"solid");
+        genDoorSBI(ModBlocks.GRAY_VESSELPLATE_DOOR.get() , "solid");
+        genTrapdoorSBI(ModBlocks.GRAY_VESSELPLATE_TRAPDOOR.get(),"solid");
 
         //Uncategorized
         genFolderedToggleBlockSBI(ModBlocks.ENCASED_CABLES.get(),"","",true, true, "encased","vertical_encased", "solid");
@@ -429,10 +432,16 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
 
     private void genTrapdoorSBI(Block block, String renderType) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        String existingModelPath = "block/"+stringName+"_bottom";
+        String existingModelPath = "block/"+stringName;
         trapdoorBlockWithRenderType(((TrapDoorBlock) block), modLoc("block/doors/" + stringName), true, renderType);
 
-        simpleBlockItem(block, models().getExistingFile(modLoc(existingModelPath)));
+        simpleBlockItem(block, models().getExistingFile(modLoc(existingModelPath+"_bottom")));
+    }
+
+    private void genDoorSBI(Block block, String renderType) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        String existingModelPath = "block/"+stringName;
+        doorBlockWithRenderType(((DoorBlock) block), modLoc("block/doors/"+stringName+"_bottom"), modLoc("block/doors/"+stringName+"_top"), renderType);
     }
 
     private void genSimpleSBI(Block block, ModelFile model) {

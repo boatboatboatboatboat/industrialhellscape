@@ -125,6 +125,7 @@
   "block.industrialhellscape.fire_extinguisher": "Fire Extinguisher",
   "block.industrialhellscape.smoke_alarm": "Smoke Alarm",
   "block.industrialhellscape.operating_table": "Operating Table",
+  "block.industrialhellscape.medical_bed": "Medical Bed",
   "block.industrialhellscape.vitals_monitor": "Vitals Monitor",
   "block.industrialhellscape.iv_dripstand": "IV Dripstand",
 
@@ -201,6 +202,11 @@
   "sounds.industrialhellscape.metal_clank": "Metal clanks",
   "sounds.industrialhellscape.vulta_shattered": "Dubiously obtained synthwave music plays",
   "sounds.industrialhellscape.smoke_alarm":"Smoke Alarm chirps",
+
+  "block.industrialhellscape.vesselplate_door": "Vesselplate Door",
+  "block.industrialhellscape.vesselplate_trapdoor": "Vesselplate Trapdoor",
+  "block.industrialhellscape.gray_vesselplate_door": "Gray Vesselplate Door",
+  "block.industrialhellscape.gray_vesselplate_trapdoor": "Gray Vesselplate Trapdoor",
 
   "tooltip.industrialhellscape.haventool": "Right-click and/or sneak-right-click to rotate some I.H. blocks, change their texture behavior, or furniture block-state (like desks). It also stone-cuts.",
   "tooltip.industrialhellscape.vaporwave_cassette": "§6\"Warp signatures coming from Lagrange 4. Unidentified. All orbital guns, align prograde to solar orbit. We have 50 hours to contact.\"",

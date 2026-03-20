@@ -1,6 +1,7 @@
 {
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
+	"render_type": "minecraft:cutout",
 	"texture_size": [64, 64],
 	"textures": {
 		"0": "industrialhellscape:block/vitals_monitor",
@@ -56,6 +57,16 @@
 				"up": {"uv": [0, 0, 0, 0], "texture": "#1"},
 				"down": {"uv": [0, 0, 0, 0], "texture": "#1"}
 			}
+		},
+		{
+			"name": "handrail",
+			"from": [2, 0, -1],
+			"to": [14, 0, 2],
+			"rotation": {"angle": -45, "axis": "x", "origin": [0, 0, 2]},
+			"faces": {
+				"up": {"uv": [11.25, 0, 10.5, 3], "rotation": 270, "texture": "#0"},
+				"down": {"uv": [11.25, 0, 10.5, 3], "rotation": 90, "texture": "#0"}
+			}
 		}
 	],
 	"display": {
@@ -94,7 +105,7 @@
 			"name": "display",
 			"origin": [8, 8, 8],
 			"color": 0,
-			"children": [0, 1, 2, 3]
+			"children": [0, 1, 2, 3, 4]
 		}
 	]
 }

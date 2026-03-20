@@ -29,7 +29,7 @@ public interface MultiBlockPlacementCapability {
         return switch (multiBlockPlacementDirection) {
             case VERTICAL -> pPos.relative(pPart == TwoBlockMultiBlockState.POSITIVE ? Direction.DOWN : Direction.UP);
             case HORIZONTAL -> pPos.relative(pPart == TwoBlockMultiBlockState.POSITIVE ? placementDirection.getCounterClockWise() : placementDirection.getClockWise());
-            default -> pPos.relative(pPart == TwoBlockMultiBlockState.POSITIVE ? placementDirection : placementDirection.getOpposite());
+            default -> pPos.relative(pPart == TwoBlockMultiBlockState.POSITIVE ? placementDirection.getOpposite() : placementDirection);
         };
     }
 }

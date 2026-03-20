@@ -201,9 +201,20 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.BLACK_BOLTED_BRACKET.get().asItem(),
                         ModBlocks.GRAY_BOLTED_BRACKET.get().asItem()
                 );
+
+        this.tag(ModTags.Items.DOOR_ITEMS)
+                .add(
+                        ModBlocks.VESSELPLATE_DOOR.get().asItem(),
+                        ModBlocks.GRAY_VESSELPLATE_DOOR.get().asItem()
+                );
+        this.tag(ModTags.Items.TRAPDOOR_ITEMS)
+                .add(
+                        ModBlocks.VESSELPLATE_TRAPDOOR.get().asItem(),
+                        ModBlocks.GRAY_VESSELPLATE_TRAPDOOR.get().asItem()
+                );
         //---------- END OF RECIPE DATAGEN INPUT TAGS ----------
 
-        //---------- FURNITUREA TAGS ----------
+        //---------- FURNITURE TAGS ----------
 
         //FURNITURE CATEGORIES BELOW
 
@@ -233,6 +244,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.FIRE_EXTINGUISHER.get().asItem(),
                         ModBlocks.SMOKE_ALARM.get().asItem(),
                         ModBlocks.OPERATING_TABLE.get().asItem(),
+                        ModBlocks.MEDICAL_BED.get().asItem(),
                         ModBlocks.IV_DRIPSTAND.get().asItem(),
                         ModBlocks.VITALS_MONITOR.get().asItem()
                 );
@@ -282,6 +294,8 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 
         this.tag(ModTags.Items.IH_RECIPE_STONELIKES)
                 .add(
+                        Items.COBBLESTONE,
+                        Items.COBBLED_DEEPSLATE,
                         Items.STONE,
                         Items.DEEPSLATE,
                         Items.DIORITE,

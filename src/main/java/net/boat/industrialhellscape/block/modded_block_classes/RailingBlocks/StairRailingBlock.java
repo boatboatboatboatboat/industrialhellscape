@@ -134,7 +134,8 @@ public class StairRailingBlock extends Block implements SimpleWaterloggedBlock {
         //3rd direction of this array is most likely the second-nearest horizontal direction. This is used to place either the left or the right railing block automatically along the FACING direction.
         Direction[] allNearestLookingDirections = pContext.getNearestLookingDirections();
 
-        //Pick the third indice from the last array. This is MOST LIKELY the player's second-nearest horizontal facing direction
+        //Pick the THIRD indice from the last array. This is MOST LIKELY the player's second-nearest HORIZONTAL facing direction.
+        // The first is most likely UP or DOWN, teh second is most likely the same as nearestHorizontalDirection
         Direction secondNearestHorizontalDirection = allNearestLookingDirections[2];
 
         //Ideally these should be false and the nearest looked-direction should be N/S/E/W, ideally
@@ -212,7 +213,7 @@ public class StairRailingBlock extends Block implements SimpleWaterloggedBlock {
 
     @Override
     public boolean isPathfindable(@Nonnull BlockState pState, @Nonnull BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull PathComputationType pType) {
-        return false;
+        return true;
     }
 
     @Override

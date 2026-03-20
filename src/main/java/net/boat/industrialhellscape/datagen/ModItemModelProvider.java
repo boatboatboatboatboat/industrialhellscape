@@ -1,6 +1,7 @@
 package net.boat.industrialhellscape.datagen;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
+import net.boat.industrialhellscape.block.ModBlocks;
 import net.boat.industrialhellscape.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -28,6 +29,17 @@ public class ModItemModelProvider extends ItemModelProvider {
         makeItemModel(ModItems.VAPORWAVE_CASSETTE);
         makeItemModel(ModItems.RETRO_CASSETTE);
         makeItemModel(ModItems.ASPIC);
+
+        //Make door item models
+        simpleBlockItem(ModBlocks.VESSELPLATE_DOOR);
+        simpleBlockItem(ModBlocks.GRAY_VESSELPLATE_DOOR);
+
+    }
+
+    private ItemModelBuilder simpleBlockItem(RegistryObject<Block> item) {
+        return withExistingParent(item.getId().getPath(),
+                new ResourceLocation("item/generated")).texture("layer0",
+                new ResourceLocation(IndustrialHellscape.MOD_ID,"item/" + item.getId().getPath()));
     }
 
     private ItemModelBuilder makeItemModel(RegistryObject<Item> item) {

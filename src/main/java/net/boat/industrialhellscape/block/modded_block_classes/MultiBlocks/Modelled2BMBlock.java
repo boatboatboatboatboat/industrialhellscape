@@ -37,8 +37,12 @@ public class Modelled2BMBlock extends TwoBlockMultiBlock implements SimpleWaterl
     private final VoxelShape NEGATIVE_SHAPE_EAST;
     private final VoxelShape NEGATIVE_SHAPE_WEST;
 
+    private final MultiBlockPlacementDirection multiBlockPlacementDirection;
+
     public Modelled2BMBlock(Properties pProperties, MultiBlockPlacementDirection multiBlockPlacementDirection, VoxelShape hitboxPositiveShape, VoxelShape hitboxNegativeShape) {
         super(pProperties, multiBlockPlacementDirection);
+
+        this.multiBlockPlacementDirection = multiBlockPlacementDirection;
 
         POSITIVE_SHAPE_NORTH = hitboxPositiveShape;
         POSITIVE_SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, hitboxPositiveShape);
@@ -80,6 +84,11 @@ public class Modelled2BMBlock extends TwoBlockMultiBlock implements SimpleWaterl
 
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         Direction facing = pContext.getHorizontalDirection().getOpposite(); //Which direction is the block placed?
+
+        if(multiBlockPlacementDirection == MultiBlockPlacementDirection.FORWARD) {
+            facing = pContext.getHorizontalDirection(); //To match vanilla conventions for bed-like multiblock placement
+        }
+
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
         BlockPos otherBlockPos = MultiBlockPlacementCapability.posToPlaceOtherHalf(pContext.getClickedPos(), TwoBlockMultiBlockState.NEGATIVE, facing, multiBlockPlacementDirection);
 

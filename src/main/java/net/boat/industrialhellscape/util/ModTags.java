@@ -20,6 +20,8 @@ public class ModTags {
 
         public static final TagKey<Block> PIPEWORKS_BLOCKS = tag("pipeworks_blocks");
         public static final TagKey<Block> METALWORKS_BLOCKS = tag("metalworks_blocks");
+        public static final TagKey<Block> DOOR_BLOCKS = tag("door_blocks");
+        public static final TagKey<Block> TRAPDOOR_BLOCKS = tag("trapdoor_blocks");
 
         //FURNITURE CATEGORIES
         public static final TagKey<Block> SAFETY_FURNITURE_CATEGORY = tag("safety_furniture_category");
@@ -53,6 +55,7 @@ public class ModTags {
 
     public static class Items {
         //For ungenerated recipes dictating recycling back into vanilla materials (Slabs are NOT smeltable. NOT INCLUDED HERE)
+
         public static final TagKey<Item> VESSELPLATE_SMELTABLE_ITEM = tag("vesselplate_smeltable_item");
         public static final TagKey<Item> VESSELGLASS_SMELTABLE_ITEM = tag("vesselglass_smeltable_item");
         public static final TagKey<Item> ROCKRETE_SMELTABLE_ITEM = tag("rockrete_smeltable_item");
@@ -61,6 +64,9 @@ public class ModTags {
 
         public static final TagKey<Item> PIPEWORKS_ITEMS = tag("pipeworks_items");
         public static final TagKey<Item> METALWORKS_ITEMS = tag("metalworks_items");
+
+        public static final TagKey<Item> DOOR_ITEMS = tag("door_items");
+        public static final TagKey<Item> TRAPDOOR_ITEMS = tag("trapdoor_items");
 
         //Furniture Categories and Subcategories
         public static final TagKey<Item> FURNITURE_CATEGORIES = tag("furniture_categories");

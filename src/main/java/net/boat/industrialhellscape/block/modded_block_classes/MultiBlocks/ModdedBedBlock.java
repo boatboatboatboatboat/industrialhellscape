@@ -1,17 +1,12 @@
 package net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks;
 
-import net.boat.industrialhellscape.block.modded_interfaces.MultiBlockPlacementCapability;
 import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
 import net.boat.industrialhellscape.block.modded_block_state_properties.TwoBlockMultiBlockState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
-import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.*;
@@ -23,14 +18,12 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.pathfinder.PathComputationType;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
-import java.util.List;
 
 public class ModdedBedBlock extends Modelled2BMBlock implements EntityBlock, SimpleWaterloggedBlock {
 
@@ -51,8 +44,9 @@ public class ModdedBedBlock extends Modelled2BMBlock implements EntityBlock, Sim
 
     @Override
     public Direction getBedDirection(BlockState state, LevelReader level, BlockPos pos) {
+        //Ensures player faces the correct direction when sleeping
         BlockState blockstate = level.getBlockState(pos);
-        return blockstate.getBlock() instanceof ModdedBedBlock ? blockstate.getValue(FACING).getOpposite() : Direction.NORTH;
+        return blockstate.getBlock() instanceof ModdedBedBlock ? blockstate.getValue(FACING) : Direction.NORTH;
     }
 
     @Override
@@ -62,14 +56,27 @@ public class ModdedBedBlock extends Modelled2BMBlock implements EntityBlock, Sim
 
     @Override
     public @Nullable BlockEntity newBlockEntity(@Nonnull BlockPos pPos, @Nonnull BlockState pState) {
+        //Color is arbitrary to fulfill the last parameter
         return new BedBlockEntity(pPos, pState, DyeColor.BLUE);
     }
 
     public @Nonnull InteractionResult use(@Nonnull BlockState pState, Level pLevel, @Nonnull BlockPos pPos, @Nonnull Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
-
+        //Code taken from vanilla BedBlock code with minor modifications
         if (pLevel.isClientSide) {
             return InteractionResult.CONSUME;
         } else {
+            //If the block interacted with is not the POSITIVE block
+            //Redefine pPos as that of the POSITIVE block by finding the pos behind the current block
+            //If the block at that position is an instance of the same block
+            //CONSUME
+            if (pState.getValue(HALF_PART) != TwoBlockMultiBlockState.POSITIVE) {
+                pPos = pPos.relative(pState.getValue(FACING));
+                pState = pLevel.getBlockState(pPos);
+                if (!pState.is(this)) {
+                    return InteractionResult.CONSUME;
+                }
+            }
+            //Explodes if you are disallowed to set spawn in certain dimensions
             if (!canSetSpawn(pLevel)) {
                 pLevel.removeBlock(pPos, false);
                 BlockPos blockpos = pPos.relative(pState.getValue(FACING).getOpposite());
@@ -79,22 +86,16 @@ public class ModdedBedBlock extends Modelled2BMBlock implements EntityBlock, Sim
 
                 Vec3 vec3 = pPos.getCenter();
                 pLevel.explode(null, pLevel.damageSources().badRespawnPointExplosion(vec3), null, vec3, 5.0F, true, Level.ExplosionInteraction.BLOCK);
-                return InteractionResult.SUCCESS;
-            } else if (pState.getValue(OCCUPIED)) {
-                if (!this.kickVillagerOutOfBed(pLevel, pPos)) {
-                    pPlayer.displayClientMessage(Component.translatable("block.minecraft.bed.occupied"), true);
-                }
-
-                return InteractionResult.SUCCESS;
             } else {
+                //Forbids sleeping unless nighttime or thunderstorm, I think
                 pPlayer.startSleepInBed(pPos).ifLeft((p_49477_) -> {
                     if (p_49477_.getMessage() != null) {
                         pPlayer.displayClientMessage(p_49477_.getMessage(), true);
                     }
 
                 });
-                return InteractionResult.SUCCESS;
             }
+            return InteractionResult.SUCCESS;
         }
     }
 
@@ -102,61 +103,8 @@ public class ModdedBedBlock extends Modelled2BMBlock implements EntityBlock, Sim
         return pLevel.dimensionType().bedWorks();
     }
 
-    private boolean kickVillagerOutOfBed(Level pLevel, BlockPos pPos) {
-        List<Villager> list = pLevel.getEntitiesOfClass(Villager.class, new AABB(pPos), LivingEntity::isSleeping);
-        if (list.isEmpty()) {
-            return false;
-        } else {
-            list.get(0).stopSleeping();
-            return true;
-        }
-    }
-
-    public void fallOn(@Nonnull Level pLevel, @Nonnull BlockState pState, @Nonnull BlockPos pPos, @Nonnull Entity pEntity, float pFallDistance) {
-        super.fallOn(pLevel, pState, pPos, pEntity, pFallDistance * 0.5F);
-    }
-
-    public void updateEntityAfterFallOn(@Nonnull BlockGetter pLevel, Entity pEntity) {
-        if (pEntity.isSuppressingBounce()) {
-            super.updateEntityAfterFallOn(pLevel, pEntity);
-        } else {
-            this.bounceUp(pEntity);
-        }
-
-    }
-
-    private void bounceUp(Entity pEntity) {
-        Vec3 vec3 = pEntity.getDeltaMovement();
-        if (vec3.y < 0.0D) {
-            double d0 = pEntity instanceof LivingEntity ? 1.0D : 0.8D;
-            pEntity.setDeltaMovement(vec3.x, -vec3.y * (double)0.66F * d0, vec3.z);
-        }
-
-    }
-
-    public void playerWillDestroy(Level pLevel, @Nonnull BlockPos pPos, @Nonnull BlockState pState, @Nonnull Player pPlayer) {
-        if (!pLevel.isClientSide && pPlayer.isCreative()) {
-            TwoBlockMultiBlockState bedpart = pState.getValue(HALF_PART);
-            if (bedpart == TwoBlockMultiBlockState.NEGATIVE) {
-                BlockPos blockpos = MultiBlockPlacementCapability.posToPlaceOtherHalf(pPos, bedpart, pState.getValue(FACING), multiBlockPlacementDirection);
-                BlockState blockstate = pLevel.getBlockState(blockpos);
-                if (blockstate.is(this) && blockstate.getValue(HALF_PART) == TwoBlockMultiBlockState.POSITIVE) {
-                    pLevel.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 35);
-                    pLevel.levelEvent(pPlayer, 2001, blockpos, Block.getId(blockstate));
-                }
-            }
-        }
-
-        super.playerWillDestroy(pLevel, pPos, pState, pPlayer);
-    }
-
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(FACING, HALF_PART, OCCUPIED, WATERLOGGED);
-    }
-
-    public long getSeed(BlockState pState, BlockPos pPos) {
-        BlockPos blockpos = pPos.relative(pState.getValue(FACING), pState.getValue(HALF_PART) == TwoBlockMultiBlockState.POSITIVE ? 0 : 1);
-        return Mth.getSeed(blockpos.getX(), pPos.getY(), blockpos.getZ());
     }
 
     public boolean isPathfindable(@Nonnull BlockState pState, @Nonnull BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull PathComputationType pType) {

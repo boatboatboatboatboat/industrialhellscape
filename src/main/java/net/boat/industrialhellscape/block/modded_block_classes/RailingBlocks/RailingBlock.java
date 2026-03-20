@@ -47,6 +47,7 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock{
     // Meaning despite the RAILING_COLLISION_HEIGHT being greater than 16 units, arrows can still fly through above the edge of the block.
     // However, player will still be obstructed from jumping over it, just like fences. For now this is intended behavior.
     // The modded interface RotationHelper is used to rotate the voxelshapes along appropriate cardinal directions.
+    //There is a gap from y=0 to y=15. This allows you to shoot arrows through the railing blocks since they are pretty thin.
     private static final VoxelShape COLLISON_SHAPE_NORTH = Block.box(0d, 15d, 14d, 16d, RAILING_COLLISION_HEIGHT, 16d);
     private static final VoxelShape COLLISION_SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, COLLISON_SHAPE_NORTH);
     private static final VoxelShape COLLISION_SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, COLLISON_SHAPE_NORTH);
@@ -209,7 +210,7 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock{
 
     @Override
     public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
-        return false;
+        return true;
     }
 
     @Override

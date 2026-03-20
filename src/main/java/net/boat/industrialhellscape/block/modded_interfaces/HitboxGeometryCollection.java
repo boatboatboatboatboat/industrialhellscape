@@ -19,6 +19,18 @@ public interface HitboxGeometryCollection {
 
         return shape;
     }
+    static VoxelShape FULL_BLOCK(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0, 0, 0, 1, 1, 1), BooleanOp.OR);
+
+        return shape;
+    }
+    static VoxelShape SLAB(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0, 0, 0, 1, 0.5, 1), BooleanOp.OR);
+
+        return shape;
+    }
 
     static VoxelShape UPPER_SLAB(){
         VoxelShape shape = Shapes.empty();
@@ -281,14 +293,14 @@ public interface HitboxGeometryCollection {
 
     static VoxelShape PILLOW_POSITIVE(){
         VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape, Shapes.box(0.1875, 0, 0, 0.8125, 0.3125, 0.875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.1875, 0, 0.125, 0.8125, 0.3125, 1), BooleanOp.OR);
 
         return shape;
     }
 
     static VoxelShape PILLOW_NEGATIVE(){
         VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape, Shapes.box(0.1875, 0, 0.125, 0.8125, 0.3125, 1), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.1875, 0, 0, 0.8125, 0.3125, 0.875), BooleanOp.OR);
 
         return shape;
     }
@@ -410,17 +422,33 @@ public interface HitboxGeometryCollection {
     }
     static VoxelShape OPERATING_TABLE_NEGATIVE(){
         VoxelShape shape = Shapes.empty();
+
+        shape = Shapes.join(shape, Shapes.box(0.15625, 0.0625, 0, 0.84375, 0.25, 0.75), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.25, 0.25, 0, 0.75, 0.6875, 0.3125), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.125, 0.6875, 0, 0.875, 0.875, 0.375), BooleanOp.OR);
+
+        return shape;
+    }
+    static VoxelShape OPERATING_TABLE_POSITIVE(){
+        VoxelShape shape = Shapes.empty();
         shape = Shapes.join(shape, Shapes.box(0.15625, 0.0625, 0.25, 0.84375, 0.25, 1), BooleanOp.OR);
         shape = Shapes.join(shape, Shapes.box(0.25, 0.25, 0.6875, 0.75, 0.6875, 1), BooleanOp.OR);
         shape = Shapes.join(shape, Shapes.box(0.125, 0.6875, 0.625, 0.875, 0.875, 1), BooleanOp.OR);
 
         return shape;
     }
-    static VoxelShape OPERATING_TABLE_POSITIVE(){
+    static VoxelShape MEDICAL_BED_NEGATIVE(){
         VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape, Shapes.box(0.15625, 0.0625, 0, 0.84375, 0.25, 0.75), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.25, 0.25, 0, 0.75, 0.6875, 0.3125), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.125, 0.6875, 0, 0.875, 0.875, 0.375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.03125, 0.25, 0, 0.96875, 0.625, 0.875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.03125, 0.25, 0.875, 0.96875, 0.8125, 1), BooleanOp.OR);
+
+        return shape;
+    }
+    static VoxelShape MEDICAL_BED_POSITIVE(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0.03125, 0.25, 0, 0.96875, 0.9375, 0.125), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.03125, 0.25, 0.125, 0.96875, 0.625, 1), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.125, 0.625, 0.125, 0.875, 0.8125, 0.5), BooleanOp.OR);
 
         return shape;
     }

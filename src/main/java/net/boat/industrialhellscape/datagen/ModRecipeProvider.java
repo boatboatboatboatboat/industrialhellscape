@@ -194,6 +194,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.RUSTY_RAILING.get().asItem(),
             ModBlocks.RUSTY_STAIR_RAILING.get().asItem()
     );
+
+    private static final List<ItemLike> DOORS_STONECUT_OUTPUT = List.of(
+            ModBlocks.VESSELPLATE_DOOR.get().asItem(),
+            ModBlocks.GRAY_VESSELPLATE_DOOR.get().asItem()
+    );
+    private static final List<ItemLike> TRAPDOORS_STONECUT_OUTPUT = List.of(
+            ModBlocks.VESSELPLATE_TRAPDOOR.get().asItem(),
+            ModBlocks.GRAY_VESSELPLATE_TRAPDOOR.get().asItem()
+    );
+
     private static final List<ItemLike> FURNITURE_CATEGORIES = List.of(
             ModBlocks.SAFETY_FURNISHINGS.get().asItem(),
             ModBlocks.HYGIENE_FURNISHINGS.get().asItem(),
@@ -208,6 +218,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.FIRE_EXTINGUISHER.get().asItem(),
             ModBlocks.SMOKE_ALARM.get().asItem(),
             ModBlocks.OPERATING_TABLE.get().asItem(),
+            ModBlocks.MEDICAL_BED.get().asItem(),
             ModBlocks.IV_DRIPSTAND.get().asItem(),
             ModBlocks.VITALS_MONITOR.get().asItem()
     );
@@ -267,7 +278,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(pWriter, new ResourceLocation("industrialhellscape", "vesselglass_from_iron_ingot"));
 
-        //Create Strut
+        //Create Strut recipe
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.STRUT.get(),strutPerIronIngot*4)
                 .pattern("A A")
                 .pattern(" B ")
@@ -279,7 +290,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(pWriter);
 
-        //Create Hvac
+        //Create Hvac recipe
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.DUCT.get(),hvacPerIronIngot*4)
                 .pattern(" A ")
                 .pattern("ABA")
@@ -291,7 +302,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(pWriter);
 
-        //Create Pipeworks
+        //Create Pipeworks recipe
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.PIPEWORKS.get(),pipeworksPerIngot*6)
                 .pattern("AAA")
                 .pattern(" B ")
@@ -303,7 +314,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(pWriter);
 
-        //Create Metalworks
+        //Create Metalworks recipe
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.METALWORKS.get(),metalworksPerIngot*6)
                 .pattern("A A")
                 .pattern("ABA")
@@ -311,6 +322,27 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
                 .define('A', ModTags.Items.IH_RECIPE_INGOTS)
                 .define('B', ModItems.INHELL_HAVEN_DEVICE.get())
+
+                .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                .save(pWriter);
+
+        //Create Door recipe
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.VESSELPLATE_DOOR.get(),3)
+                .pattern("AA ")
+                .pattern("AA ")
+                .pattern("AA ")
+
+                .define('A', ModTags.Items.VESSELPLATE_SMELTABLE_ITEM)
+
+                .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                .save(pWriter);
+        //Create Trapdoor recipe
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.VESSELPLATE_TRAPDOOR.get(),2)
+                .pattern("   ")
+                .pattern("AAA")
+                .pattern("AAA")
+
+                .define('A', ModTags.Items.VESSELPLATE_SMELTABLE_ITEM)
 
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(pWriter);
@@ -448,6 +480,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         iterativeRecipes(PIPEWORKS_STONECUT_OUTPUT, "pipeworks", ModTags.Items.PIPEWORKS_ITEMS, pWriter);
         iterativeRecipes(METALWORKS_STONECUT_OUTPUT, "metalworks", ModTags.Items.METALWORKS_ITEMS, pWriter);
 
+        iterativeRecipes(DOORS_STONECUT_OUTPUT, "doors", ModTags.Items.DOOR_ITEMS, pWriter);
+        iterativeRecipes(TRAPDOORS_STONECUT_OUTPUT, "trapdoors", ModTags.Items.TRAPDOOR_ITEMS, pWriter);
+
         //Furniture - Parameters: (Tag of stonecut outputs, String for generated recipe name, Block as the single ingredient, pWriter)
         oneIngredientStonecutsToMany(FURNITURE_CATEGORIES, "furniture_categories", ModBlocks.IHEA_FURNITURE_KIT.get().asItem(), pWriter);
         oneIngredientStonecutsToMany(SAFETY_FURNITURE, "safety_furniture", ModBlocks.SAFETY_FURNISHINGS.get().asItem(), pWriter);
@@ -455,6 +490,33 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         oneIngredientStonecutsToMany(INDUSTRIAL_FURNITURE, "industrial_furniture", ModBlocks.INDUSTRIAL_FURNISHINGS.get().asItem(), pWriter);
         oneIngredientStonecutsToMany(TECHNOLOGY_FURNITURE, "technology_furniture", ModBlocks.TECHNOLOGY_FURNISHINGS.get().asItem(), pWriter);
         oneIngredientStonecutsToMany(AMENITY_FURNITURE, "amenity_furniture", ModBlocks.AMENITY_FURNISHINGS.get().asItem(), pWriter);
+
+//        //Slabs
+//        slabRecipe(ModBlocks.BLUE_ROCKRETE_SLAB.get(), Ingredient.of(ModBlocks.BLUE_ROCKRETE.get()), "blue_rockrete_slab_craft", pWriter);
+//        slabRecipe(ModBlocks.RED_ROCKRETE_SLAB.get(), Ingredient.of(ModBlocks.RED_ROCKRETE.get()), "red_rockrete_slab_craft", pWriter);
+//        slabRecipe(ModBlocks.GREEN_ROCKRETE_SLAB.get(), Ingredient.of(ModBlocks.GREEN_ROCKRETE.get()),"green_rockrete_slab_craft", pWriter);
+//        slabRecipe(ModBlocks.YELLOW_ROCKRETE_SLAB.get(), Ingredient.of(ModBlocks.YELLOW_ROCKRETE.get()),"yellow_rockrete_slab_craft", pWriter);
+//        slabRecipe(ModBlocks.GRAY_ROCKRETE_SLAB.get(), Ingredient.of(ModBlocks.GRAY_ROCKRETE.get()),"gray_rockrete_slab_craft", pWriter);
+//
+//        slabRecipe(ModBlocks.STRUT_SLAB.get(), Ingredient.of(ModBlocks.STRUT.get()), "strut_slab_craft", pWriter);
+//        slabRecipe(ModBlocks.GRAY_STRUT_SLAB.get(), Ingredient.of(ModBlocks.GRAY_STRUT.get()), "gray_strut_slab_craft", pWriter);
+//        slabRecipe(ModBlocks.RUSTY_STRUT_SLAB.get(), Ingredient.of(ModBlocks.RUSTY_STRUT.get()), "rusty_strut_slab_craft", pWriter);
+//
+//        slabRecipe(ModBlocks.CATWALK_STRUT_SLAB.get(), Ingredient.of(ModBlocks.CATWALK_STRUT.get()), "catwalk_slab_craft", pWriter);
+//        slabRecipe(ModBlocks.GRAY_CATWALK_STRUT_SLAB.get(), Ingredient.of(ModBlocks.GRAY_CATWALK_STRUT.get()), "gray_catwalk_slab_craft",  pWriter);
+//        slabRecipe(ModBlocks.RUSTY_CATWALK_STRUT_SLAB.get(), Ingredient.of(ModBlocks.RUSTY_CATWALK_STRUT.get()),"rusty_catwalk_slab_craft", pWriter);
+//
+//        slabRecipe(ModBlocks.SMOOTH_VESSELPLATE_SLAB.get(), Ingredient.of(ModBlocks.SMOOTH_VESSELPLATE_TILE.get()), "smooth_vesselplate_slab_craft", pWriter);
+//        slabRecipe(ModBlocks.VESSELPLATE_SHEETING_SLAB.get(), Ingredient.of(ModBlocks.VESSELPLATE_SHEETING.get()), "vesselplate_sheeting_slab_craft", pWriter);
+//        slabRecipe(ModBlocks.RIVETED_VESSELPLATE_SLAB.get(), Ingredient.of(ModBlocks.RIVETED_VESSELPLATE_PANEL.get()), "riveted_vesselplate_slab_craft", pWriter);
+//
+//        slabRecipe(ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get(), Ingredient.of(ModBlocks.SMOOTH_GRAY_VESSELPLATE_TILE.get()),"smooth_gray_vesselplate_slab_craft", pWriter);
+//        slabRecipe(ModBlocks.GRAY_VESSELPLATE_SHEETING_SLAB.get(), Ingredient.of(ModBlocks.GRAY_VESSELPLATE_SHEETING.get()),"gray_vesselplate_sheeting_slab_craft", pWriter);
+//        slabRecipe(ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get(), Ingredient.of(ModBlocks.GRAY_RIVETED_VESSELPLATE_PANEL.get()),"gray_riveted_vesselplate_slab_craft", pWriter);
+//
+//        slabRecipe(ModBlocks.SMOOTH_RUSTY_VESSELPLATE_SLAB.get(), Ingredient.of(ModBlocks.SMOOTH_RUSTY_VESSELPLATE_TILE.get()),"smooth_rusty_vesselplate_slab_craft", pWriter);
+//        slabRecipe(ModBlocks.RUSTY_VESSELPLATE_SHEETING_SLAB.get(), Ingredient.of(ModBlocks.RUSTY_VESSELPLATE_SHEETING.get()),"rusty_vesselplate_sheeting_slab_craft", pWriter);
+//        slabRecipe(ModBlocks.RUSTY_RIVETED_VESSELPLATE_SLAB.get(), Ingredient.of(ModBlocks.RUSTY_RIVETED_VESSELPLATE_PANEL.get()),"rusty_riveted_vesselplate_slab_craft", pWriter);
 
         //---------- END OF INTERCHANGEABLE STONECUTTER CRAFTING ----------
     }
@@ -498,6 +560,19 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, outputBlock, outputAmount)
                 .requires(ModItems.INHELL_HAVEN_DEVICE.get())
                 .requires(inputIngredient)
+                .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                .save(pWriter, new ResourceLocation("industrialhellscape", recipeName));
+    }
+
+    protected static void slabRecipe(Block outputBlock, Ingredient inputIngredient, String recipeName, Consumer<FinishedRecipe> pWriter) {
+        //Create Door recipe
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, outputBlock,6)
+                .pattern("AA ")
+                .pattern("AA ")
+                .pattern("AA ")
+
+                .define('A', inputIngredient)
+
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(pWriter, new ResourceLocation("industrialhellscape", recipeName));
     }

@@ -29,6 +29,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -77,6 +78,22 @@ public class ModBlocks {
     public static final RegistryObject<Block> RUSTY_DUCT = registerBlockAndBlockItem("rusty_duct",
             () -> new Block(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
+            )
+    );
+    public static final RegistryObject<Block> DUCT_VENT = registerBlockAndBlockItem("duct_vent",
+            () -> new ModelledSurfaceMountBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.PANEL_FLOOR(),
+                    false
+            )
+    );
+    public static final RegistryObject<Block> RUSTY_DUCT_VENT = registerBlockAndBlockItem("rusty_duct_vent",
+            () -> new ModelledSurfaceMountBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.PANEL_FLOOR(),
+                    false
             )
     );
 
@@ -733,22 +750,17 @@ public class ModBlocks {
     );
 
     //DOORS, TRAPDOORS, ETC:
-    public static final RegistryObject<Block> DUCT_VENT = registerBlockAndBlockItem("duct_vent",
-            () -> new ModelledSurfaceMountBlock(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
-                    .noOcclusion(),
-                    HitboxGeometryCollection.PANEL_FLOOR(),
-                    false
-            )
-    );
-    public static final RegistryObject<Block> RUSTY_DUCT_VENT = registerBlockAndBlockItem("rusty_duct_vent",
-            () -> new ModelledSurfaceMountBlock(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
-                    .noOcclusion(),
-                    HitboxGeometryCollection.PANEL_FLOOR(),
-                    false
-            )
-    );
+    public static final RegistryObject<Block> VESSELPLATE_DOOR = registerBlockAndBlockItem("vesselplate_door",
+            () -> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL).noOcclusion(), BlockSetType.STONE));
+    public static final RegistryObject<Block> VESSELPLATE_TRAPDOOR = registerBlockAndBlockItem("vesselplate_trapdoor",
+            () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL).noOcclusion(), BlockSetType.STONE));
+
+    public static final RegistryObject<Block> GRAY_VESSELPLATE_DOOR = registerBlockAndBlockItem("gray_vesselplate_door",
+            () -> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL).noOcclusion(), BlockSetType.STONE));
+    public static final RegistryObject<Block> GRAY_VESSELPLATE_TRAPDOOR = registerBlockAndBlockItem("gray_vesselplate_trapdoor",
+            () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL).noOcclusion(), BlockSetType.STONE));
+
+
 
     //FURNITURE BLOCKS HERE
     public static final RegistryObject<Block> LARGE_LOCKER = registerBlockAndBlockItem("large_locker",
@@ -980,12 +992,22 @@ public class ModBlocks {
             )
     );
     public static final RegistryObject<Block> OPERATING_TABLE = registerBlockAndBlockItem("operating_table",
+            () -> new Modelled2BMBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .sound(SoundType.METAL)
+                    .noOcclusion(),
+                    MultiBlockPlacementDirection.FORWARD,
+                    HitboxGeometryCollection.OPERATING_TABLE_POSITIVE(),
+                    HitboxGeometryCollection.OPERATING_TABLE_NEGATIVE()
+            )
+    );
+    public static final RegistryObject<Block> MEDICAL_BED = registerBlockAndBlockItem("medical_bed",
             () -> new ModdedBedBlock(BlockBehaviour
                     .Properties.copy(Blocks.IRON_BLOCK)
                     .sound(SoundType.METAL)
                     .noOcclusion(),
-                    HitboxGeometryCollection.OPERATING_TABLE_POSITIVE(),
-                    HitboxGeometryCollection.OPERATING_TABLE_NEGATIVE()
+                    HitboxGeometryCollection.MEDICAL_BED_POSITIVE(),
+                    HitboxGeometryCollection.MEDICAL_BED_NEGATIVE()
             )
     );
     public static final RegistryObject<Block> VITALS_MONITOR = registerBlockAndBlockItem("vitals_monitor",
@@ -1064,13 +1086,10 @@ public class ModBlocks {
             )
     );
     public static final RegistryObject<Block> POSTER_1 = registerBlockAndBlockItem("poster_1",
-            () -> new PosterBlock(BlockBehaviour
+            () -> new ModelledSurfaceMountBlock(BlockBehaviour
                     .Properties.copy(Blocks.OAK_PLANKS).instabreak(),
                     HitboxGeometryCollection.DECAL_FLOOR(),
-                    false,
-                    "poster1.png",
-                    128,
-                    256
+                    false
             )
     );
 

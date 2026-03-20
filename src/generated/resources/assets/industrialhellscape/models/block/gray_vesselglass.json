@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "render_type": "minecraft:translucent",
-  "textures": {
-    "all": "industrialhellscape:block/vesselglass/gray_vesselglass",
-    "particle": "industrialhellscape:block/vesselglass/gray_vesselglass"
-  }
-}

@@ -171,6 +171,16 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.BLACK_BOLTED_BRACKET.get(),
                         ModBlocks.RUSTY_BOLTED_BRACKET.get()
                 );
+        this.tag(ModTags.Blocks.DOOR_BLOCKS) //FOR CORRECT MINING TOOLS AND TOOL TIER
+                .add(
+                        ModBlocks.VESSELPLATE_DOOR.get(),
+                        ModBlocks.GRAY_VESSELPLATE_DOOR.get()
+                );
+        this.tag(ModTags.Blocks.TRAPDOOR_BLOCKS) //FOR CORRECT MINING TOOLS AND TOOL TIER
+                .add(
+                        ModBlocks.VESSELPLATE_TRAPDOOR.get(),
+                        ModBlocks.GRAY_VESSELPLATE_TRAPDOOR.get()
+                );
 
         //BLOCKSET FAMILIES
         this.tag(ModTags.Blocks.CLASSIC_DESK)
@@ -236,6 +246,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.FIRE_EXTINGUISHER.get(),
                         ModBlocks.SMOKE_ALARM.get(),
                         ModBlocks.OPERATING_TABLE.get(),
+                        ModBlocks.MEDICAL_BED.get(),
                         ModBlocks.IV_DRIPSTAND.get(),
                         ModBlocks.VITALS_MONITOR.get()
                 );
@@ -297,6 +308,9 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModTags.Blocks.PIPEWORKS_BLOCKS,
                         ModTags.Blocks.METALWORKS_BLOCKS,
 
+                        ModTags.Blocks.DOOR_BLOCKS,
+                        ModTags.Blocks.TRAPDOOR_BLOCKS,
+
                         ModTags.Blocks.ALL_FURNITURE_BLOCKS
                 );
 
@@ -315,6 +329,9 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
                         ModTags.Blocks.PIPEWORKS_BLOCKS,
                         ModTags.Blocks.METALWORKS_BLOCKS,
+
+                        ModTags.Blocks.DOOR_BLOCKS,
+                        ModTags.Blocks.TRAPDOOR_BLOCKS,
 
                         ModTags.Blocks.ALL_FURNITURE_BLOCKS //All furniture can be mined with axe or pickaxe.
                 );

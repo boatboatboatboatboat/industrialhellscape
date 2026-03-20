@@ -23,8 +23,16 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.OFFICE_CHAIR.get());
         this.dropSelf(ModBlocks.BLACK_OFFICE_CHAIR.get());
         this.dropSelf(ModBlocks.OPERATING_TABLE.get());
+        this.dropSelf(ModBlocks.MEDICAL_BED.get());
         this.dropSelf(ModBlocks.IV_DRIPSTAND.get());
         this.dropSelf(ModBlocks.VITALS_MONITOR.get());
+        this.add(ModBlocks.VESSELPLATE_DOOR.get(),
+                block -> createDoorTable(ModBlocks.VESSELPLATE_DOOR.get()));
+        this.add(ModBlocks.GRAY_VESSELPLATE_DOOR.get(),
+                block -> createDoorTable(ModBlocks.GRAY_VESSELPLATE_DOOR.get()));
+        this.dropSelf(ModBlocks.VESSELPLATE_TRAPDOOR.get());
+        this.dropSelf(ModBlocks.GRAY_VESSELPLATE_TRAPDOOR.get());
+
 
         //JOKE BLOCKS
         this.dropSelf(ModBlocks.BODY_PILLOW.get());

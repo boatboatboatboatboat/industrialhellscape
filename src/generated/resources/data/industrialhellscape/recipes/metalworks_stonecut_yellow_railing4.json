@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 1,
-  "ingredient": {
-    "tag": "industrialhellscape:metalworks_items"
-  },
-  "result": "industrialhellscape:yellow_railing"
-}
