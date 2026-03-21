@@ -10,9 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.RenderShape;
-import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
@@ -21,6 +19,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
@@ -86,7 +85,7 @@ public class CornerBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState pState, @Nonnull BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull CollisionContext pContext) {
+    public @NotNull VoxelShape getShape(BlockState pState, @Nonnull BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull CollisionContext pContext) {
 
         Direction facingForShape = pState.getValue(FACING);
 
@@ -146,12 +145,55 @@ public class CornerBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     @Override
-    public @Nonnull InteractionResult use(@Nonnull BlockState pState, @Nonnull Level pLevel, @Nonnull BlockPos pPos, Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
+    public @Nonnull InteractionResult use(@Nonnull BlockState pState, @Nonnull Level pLevel, @Nonnull BlockPos pPos, @NotNull Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
         return ToolUseCapability.StandCrouchToolInteract(FACING, ATTACH_FACE,pPlayer,pState,pLevel,pPos);
     }
 
     public @Nonnull FluidState getFluidState(BlockState pState) {
         return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
+    }
+
+    @Override
+    public @NotNull BlockState rotate(BlockState pState, Rotation pRot) {
+        return pState.setValue(FACING, pRot.rotate(pState.getValue(FACING)));
+    }
+
+    @Override
+    public @NotNull BlockState mirror(BlockState pState, @NotNull Mirror pMirror) {
+        if (pState.getValue(ATTACH_FACE) == AttachFace.WALL) { //sideways placement is different from ceiling/floor placement
+            Direction originallyFacing = pState.getValue(FACING);
+            Direction leftRightMirror;
+            Direction frontBackMirror;
+            switch(originallyFacing) {
+                case SOUTH:
+                    leftRightMirror = Direction.EAST;
+                    frontBackMirror = Direction.WEST;
+                    break;
+                case EAST:
+                    leftRightMirror = Direction.NORTH;
+                    frontBackMirror = Direction.SOUTH;
+                    break;
+                case WEST:
+                    leftRightMirror = Direction.SOUTH;
+                    frontBackMirror = Direction.NORTH;
+                    break;
+                default:
+                    leftRightMirror = Direction.WEST;
+                    frontBackMirror = Direction.EAST;
+                    break;
+            }
+            switch (pMirror) {
+                case LEFT_RIGHT -> pState = pState.setValue(FACING, leftRightMirror);
+                case FRONT_BACK -> pState = pState.setValue(FACING, frontBackMirror);
+                default -> {
+                    //Assumed to be case "NONE", therefore block is unchanged
+                }
+            }
+            return pState;
+        }
+
+        return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
+
     }
 
     @Override

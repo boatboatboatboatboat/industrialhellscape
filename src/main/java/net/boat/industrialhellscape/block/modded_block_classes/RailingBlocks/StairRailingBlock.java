@@ -8,13 +8,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -23,7 +20,6 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
-import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -32,7 +28,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
-import java.util.List;
 
 public class StairRailingBlock extends Block implements SimpleWaterloggedBlock {
 
@@ -194,18 +189,6 @@ public class StairRailingBlock extends Block implements SimpleWaterloggedBlock {
         super.neighborChanged(pState, pLevel, pPos, neighborBlock, neighborPos, movedByPiston);
     }
 
-    // Loot drop behavior is hardcoded in this block class. Reminder to figure out how to data-gen loot table behavior like this instead of hard-coding
-    // So modpack makers can have more freedom
-    @Override
-    public @Nonnull List<ItemStack> getDrops(BlockState pState, @Nonnull LootParams.Builder pParams) {
-        int howManyToDrop = 0;
-        if(pState.getValue(LEFT_FENCE)) howManyToDrop++; //increments for each railing placed
-        if(pState.getValue(RIGHT_FENCE)) howManyToDrop++;
-        return List.of(
-                new ItemStack(this.asItem(), howManyToDrop)
-        );
-    }
-
     //Checks if ANY railings exist at that block position
     public static boolean railingExists(BlockState pState) {
         return pState.getValue(LEFT_FENCE) || pState.getValue(RIGHT_FENCE);
@@ -220,6 +203,15 @@ public class StairRailingBlock extends Block implements SimpleWaterloggedBlock {
     public @Nonnull FluidState getFluidState(BlockState state) {
         return state.getValue(BlockStateProperties.WATERLOGGED) ? Fluids.WATER.getSource(false) : Fluids.EMPTY.defaultFluidState();
     }
+
+    public BlockState rotate(BlockState pState, Rotation pRotation) {
+        return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));
+    }
+
+    public BlockState mirror(BlockState pState, Mirror pMirror) {
+        return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
+    }
+
 
     @Override
     protected void createBlockStateDefinition (StateDefinition.Builder<Block, BlockState> pBuilder) {

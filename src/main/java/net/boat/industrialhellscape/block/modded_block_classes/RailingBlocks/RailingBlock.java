@@ -7,7 +7,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -19,16 +18,15 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
-import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
-import java.util.List;
 
 // Modified from the mod Create Deco. Based on Catwalk Railing block class code (CC0 license)
 
@@ -73,7 +71,7 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock{
     }
 
     @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+    public @NotNull InteractionResult use(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
 
         boolean playerHasTool = pPlayer.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || pPlayer.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
 
@@ -136,21 +134,6 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock{
         }
     }
 
-//     Loot drop behavior is hardcoded in this block class. Reminder to figure out how to data-gen loot table behavior like this instead of hard-coding
-//     So modpack makers can have more freedom
-    @Override
-    public @Nonnull List<ItemStack> getDrops(BlockState pState, @Nonnull LootParams.Builder pParams) {
-        int howManyToDrop = 0;
-        if(pState.getValue(NORTH_FENCE)) howManyToDrop++; //increments for each railing placed
-        if(pState.getValue(SOUTH_FENCE)) howManyToDrop++;
-        if(pState.getValue(EAST_FENCE)) howManyToDrop++;
-        if(pState.getValue(WEST_FENCE)) howManyToDrop++;
-
-        return List.of(
-                new ItemStack(this.asItem(), howManyToDrop)
-        );
-    }
-
     @Override
     public @Nonnull VoxelShape getShape(@Nonnull BlockState pState, @Nonnull BlockGetter reader, @Nonnull BlockPos pos, @Nonnull CollisionContext ctx) {
         return getInteractionShape(pState, reader, pos);
@@ -209,7 +192,7 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock{
     }
 
     @Override
-    public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
+    public boolean isPathfindable(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull PathComputationType pType) {
         return true;
     }
 
@@ -219,7 +202,53 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock{
     }
 
     @Override
-    protected void createBlockStateDefinition (StateDefinition.Builder<Block, BlockState> builder) {
+    public @NotNull BlockState rotate(BlockState state, Rotation rotation) {
+        boolean north = state.getValue(NORTH_FENCE);
+        boolean south = state.getValue(SOUTH_FENCE);
+        boolean east = state.getValue(EAST_FENCE);
+        boolean west = state.getValue(WEST_FENCE);
+
+        switch (rotation){
+            case CLOCKWISE_90 -> state = state.setValue(NORTH_FENCE, west)
+                    .setValue(WEST_FENCE, south)
+                    .setValue(SOUTH_FENCE, east)
+                    .setValue(EAST_FENCE, north);
+            case CLOCKWISE_180 -> state = state.setValue(NORTH_FENCE, south)
+                    .setValue(WEST_FENCE, east)
+                    .setValue(SOUTH_FENCE, north)
+                    .setValue(EAST_FENCE, west);
+            case COUNTERCLOCKWISE_90 -> state = state.setValue(NORTH_FENCE, east)
+                    .setValue(EAST_FENCE, south)
+                    .setValue(SOUTH_FENCE, west)
+                    .setValue(WEST_FENCE, north);
+            default -> {
+                //Assumed to be case "NONE", therefore block is unchanged
+            }
+        }
+        return state;
+    }
+
+    @Override
+    public @NotNull BlockState mirror(BlockState state, Mirror mirror) {
+        boolean north = state.getValue(NORTH_FENCE);
+        boolean south = state.getValue(SOUTH_FENCE);
+        boolean east = state.getValue(EAST_FENCE);
+        boolean west = state.getValue(WEST_FENCE);
+
+        switch (mirror) {
+            case LEFT_RIGHT -> state = state.setValue(NORTH_FENCE, south)
+                    .setValue(SOUTH_FENCE, north);
+            case FRONT_BACK -> state = state.setValue(EAST_FENCE, west)
+                    .setValue(WEST_FENCE, east);
+            default -> {
+                //Assumed to be case "NONE", therefore block is unchanged
+            }
+        }
+        return state;
+    }
+
+    @Override
+    protected void createBlockStateDefinition (StateDefinition.@NotNull Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(NORTH_FENCE, SOUTH_FENCE, EAST_FENCE, WEST_FENCE, WATERLOGGED);
     }
