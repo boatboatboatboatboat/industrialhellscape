@@ -1,0 +1,18 @@
+{
+	"variants": {
+		"facing=north,face=ceiling": {"model": "industrialhellscape:block/gray_pipe_conduit/gray_pipe_conduit_outer_corner","x": 180,"y": 90},
+		"facing=east,face=ceiling": {"model": "industrialhellscape:block/gray_pipe_conduit/gray_pipe_conduit_outer_corner","x": 180,"y": 180},
+		"facing=south,face=ceiling": {"model": "industrialhellscape:block/gray_pipe_conduit/gray_pipe_conduit_outer_corner","x": 180,"y": 270},
+		"facing=west,face=ceiling": {"model": "industrialhellscape:block/gray_pipe_conduit/gray_pipe_conduit_outer_corner","x": 180,"y": 0},
+
+		"facing=north,face=floor": {"model": "industrialhellscape:block/gray_pipe_conduit/gray_pipe_conduit_outer_corner","y": 90},
+		"facing=east,face=floor": {"model": "industrialhellscape:block/gray_pipe_conduit/gray_pipe_conduit_outer_corner","y": 180},
+		"facing=south,face=floor": {"model": "industrialhellscape:block/gray_pipe_conduit/gray_pipe_conduit_outer_corner","y": 270},
+		"facing=west,face=floor": {"model": "industrialhellscape:block/gray_pipe_conduit/gray_pipe_conduit_outer_corner","y": 0},
+
+		"facing=north,face=wall": {"model": "industrialhellscape:block/gray_pipe_conduit/gray_pipe_conduit_outer_corner","x": 90,"y": 90},
+		"facing=east,face=wall": {"model": "industrialhellscape:block/gray_pipe_conduit/gray_pipe_conduit_outer_corner","x": 90,"y": 180},
+		"facing=south,face=wall": {"model": "industrialhellscape:block/gray_pipe_conduit/gray_pipe_conduit_outer_corner","x": 90,"y": 270},
+		"facing=west,face=wall": {"model": "industrialhellscape:block/gray_pipe_conduit/gray_pipe_conduit_outer_corner","x": 90,"y": 0}
+	}
+}

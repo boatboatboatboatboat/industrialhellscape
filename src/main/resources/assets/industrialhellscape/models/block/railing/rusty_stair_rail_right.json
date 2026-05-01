@@ -1,0 +1,7 @@
+{
+	"parent": "industrialhellscape:block/railing/yellow_stair_rail_right",
+	"textures": {
+		"0": "industrialhellscape:block/railing/rusty_stair_rail",
+		"particle": "industrialhellscape:block/railing/rusty_stair_rail"
+	}
+}

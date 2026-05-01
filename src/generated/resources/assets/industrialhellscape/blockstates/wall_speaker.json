@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "industrialhellscape:block/wall_speaker",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "industrialhellscape:block/wall_speaker"
+    },
+    "facing=south": {
+      "model": "industrialhellscape:block/wall_speaker",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "industrialhellscape:block/wall_speaker",
+      "y": 270
+    }
+  }
+}

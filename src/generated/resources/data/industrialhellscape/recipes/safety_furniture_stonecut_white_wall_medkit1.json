@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "industrialhellscape:safety_furnishings"
+  },
+  "result": "industrialhellscape:white_wall_medkit"
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "industrialhellscape:block/modern_computer/desktop_tower",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "industrialhellscape:block/modern_computer/desktop_tower"
+    },
+    "facing=south": {
+      "model": "industrialhellscape:block/modern_computer/desktop_tower",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "industrialhellscape:block/modern_computer/desktop_tower",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,powered=false": {
+      "model": "industrialhellscape:block/retro_computer/retro_computer_2",
+      "y": 90
+    },
+    "facing=east,powered=true": {
+      "model": "industrialhellscape:block/retro_computer/retro_computer_2_on",
+      "y": 90
+    },
+    "facing=north,powered=false": {
+      "model": "industrialhellscape:block/retro_computer/retro_computer_2"
+    },
+    "facing=north,powered=true": {
+      "model": "industrialhellscape:block/retro_computer/retro_computer_2_on"
+    },
+    "facing=south,powered=false": {
+      "model": "industrialhellscape:block/retro_computer/retro_computer_2",
+      "y": 180
+    },
+    "facing=south,powered=true": {
+      "model": "industrialhellscape:block/retro_computer/retro_computer_2_on",
+      "y": 180
+    },
+    "facing=west,powered=false": {
+      "model": "industrialhellscape:block/retro_computer/retro_computer_2",
+      "y": 270
+    },
+    "facing=west,powered=true": {
+      "model": "industrialhellscape:block/retro_computer/retro_computer_2_on",
+      "y": 270
+    }
+  }
+}

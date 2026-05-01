@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "facing=north,half=positive": {"model": "industrialhellscape:block/iv_dripstand/iv_dripstand_positive","y": 0},
+    "facing=south,half=positive": {"model": "industrialhellscape:block/iv_dripstand/iv_dripstand_positive","y":180},
+    "facing=east,half=positive": {"model": "industrialhellscape:block/iv_dripstand/iv_dripstand_positive","y": 90},
+    "facing=west,half=positive": {"model": "industrialhellscape:block/iv_dripstand/iv_dripstand_positive","y": 270},
+
+    "facing=north,half=negative": {"model": "industrialhellscape:block/iv_dripstand/iv_dripstand_negative","y": 0},
+    "facing=south,half=negative": {"model": "industrialhellscape:block/iv_dripstand/iv_dripstand_negative","y": 180},
+    "facing=east,half=negative": {"model": "industrialhellscape:block/iv_dripstand/iv_dripstand_negative","y": 90},
+    "facing=west,half=negative": {"model": "industrialhellscape:block/iv_dripstand/iv_dripstand_negative","y": 270}
+  }
+}

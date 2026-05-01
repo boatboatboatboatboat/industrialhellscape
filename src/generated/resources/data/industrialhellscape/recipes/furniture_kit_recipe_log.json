@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "industrialhellscape:inhell_haven_device"
+    },
+    {
+      "tag": "industrialhellscape:ih_recipe_stonelikes"
+    },
+    {
+      "tag": "minecraft:logs"
+    },
+    {
+      "tag": "industrialhellscape:ih_recipe_ingots"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "item": "industrialhellscape:ihea_furniture_kit"
+  }
+}

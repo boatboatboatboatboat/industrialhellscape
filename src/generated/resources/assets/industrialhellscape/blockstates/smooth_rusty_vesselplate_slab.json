@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "industrialhellscape:block/smooth_rusty_vesselplate_slab"
+    },
+    "type=double": {
+      "model": "industrialhellscape:block/smooth_rusty_vesselplate_double_slab"
+    },
+    "type=top": {
+      "model": "industrialhellscape:block/smooth_rusty_vesselplate_slab_top"
+    }
+  }
+}

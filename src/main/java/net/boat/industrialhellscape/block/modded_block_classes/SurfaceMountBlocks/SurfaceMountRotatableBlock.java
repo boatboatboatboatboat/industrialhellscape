@@ -1,0 +1,252 @@
+package net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks;
+
+import net.boat.industrialhellscape.block.modded_block_state_properties.RelativePlanarDirectionState;
+import net.boat.industrialhellscape.block.modded_interfaces.RotationHelper;
+import net.boat.industrialhellscape.util.ModTags;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.Nonnull;
+
+public class SurfaceMountRotatableBlock extends Block implements SimpleWaterloggedBlock {
+
+    public static final DirectionProperty FACING = BlockStateProperties.FACING;
+    public static final EnumProperty<RelativePlanarDirectionState> PLANE_DIRECTION = EnumProperty.create("plane_direction", RelativePlanarDirectionState.class);
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+
+    public static final VoxelShape SHAPE_FLOOR = Block.box(0, 0, 0, 16, 6, 16);
+    public static final VoxelShape SHAPE_CEILING = Block.box(0, 10, 0, 16, 16, 16);
+
+    public static final VoxelShape SHAPE_NORTH = Block.box(0, 0, 0, 16, 16, 6);
+    public static final VoxelShape SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH);
+    public static final VoxelShape SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH);
+    public static final VoxelShape SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH);
+
+    public SurfaceMountRotatableBlock(Properties pProperties) {
+        super(pProperties);
+        this.registerDefaultState(this.getStateDefinition().any()
+                .setValue(FACING, Direction.NORTH)
+                .setValue(PLANE_DIRECTION, RelativePlanarDirectionState.UP)
+                .setValue(WATERLOGGED, false)
+        );
+    }
+
+    @Override
+    public @Nonnull VoxelShape getShape(BlockState pState, @Nonnull BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull CollisionContext pContext) {
+        return switch (pState.getValue(FACING)) {
+            //6 Cases for collision box shape
+            case UP -> SHAPE_CEILING;
+            case NORTH -> SHAPE_NORTH;
+            case SOUTH -> SHAPE_SOUTH;
+            case EAST -> SHAPE_EAST;
+            case WEST -> SHAPE_WEST;
+            default -> SHAPE_FLOOR;
+        };
+    }
+    @Override
+    public @Nonnull RenderShape getRenderShape(@Nonnull BlockState pState) {
+        return RenderShape.MODEL;
+    }
+
+    @Override
+    public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
+        BlockState state = this.defaultBlockState();
+        Direction directionClicked = pContext.getClickedFace().getOpposite(); //Are you clicking the floor, ceiling, north wall, south wall, east wall, west wall?
+        FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
+
+        //This section determines surface alignment based on where you click to place.
+        state = state.setValue(FACING, directionClicked);
+
+        //This section determines waterlogging.
+        state =  state.setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
+
+        //This section determines block rotation on the surface
+        //Currently defaults to facing down/south on the plane
+        return state.setValue(PLANE_DIRECTION, RelativePlanarDirectionState.DOWN);
+    }
+
+    public @Nonnull InteractionResult use(@Nonnull BlockState pState, @Nonnull Level pLevel, @Nonnull BlockPos pPos, Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
+        boolean playerHasTool = pPlayer.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || pPlayer.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
+        boolean playerIsCrouching = pPlayer.isCrouching();
+
+        if(playerHasTool && playerIsCrouching) {
+            //Cycles connection type. Only works with modded tools
+            pState = pState.cycle(FACING);
+            pLevel.setBlock(pPos, pState, 2); //2
+            return InteractionResult.sidedSuccess(pLevel.isClientSide);
+
+
+
+        } else if (playerHasTool) {
+            //Cycles from vertical and horizontal pipes when interacting with pipes on walls. Works with modded tools AND pickaxes
+            pState = pState.cycle(PLANE_DIRECTION);
+            pLevel.setBlock(pPos, pState, 3); //3
+            return InteractionResult.sidedSuccess(pLevel.isClientSide);
+        }
+        return InteractionResult.PASS;
+    }
+
+    public @Nonnull FluidState getFluidState(BlockState pState) {
+        return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
+    }
+
+    @Override
+    public @NotNull BlockState rotate(BlockState pState, @NotNull Rotation pRot) {
+        if (pState.getValue(FACING).getAxis() == Direction.Axis.Y) { //Block is placed up or down
+            RelativePlanarDirectionState originallyFacing = pState.getValue(PLANE_DIRECTION);
+            RelativePlanarDirectionState clockwise90Facing;
+            RelativePlanarDirectionState clockwise180Facing;
+            RelativePlanarDirectionState counterClockwise90Facing;
+            switch(originallyFacing) {
+                case LEFT:
+                    clockwise90Facing = RelativePlanarDirectionState.UP;
+                    clockwise180Facing = RelativePlanarDirectionState.RIGHT;
+                    counterClockwise90Facing = RelativePlanarDirectionState.DOWN;
+                    break;
+                case DOWN:
+                    clockwise90Facing = RelativePlanarDirectionState.LEFT;
+                    clockwise180Facing = RelativePlanarDirectionState.UP;
+                    counterClockwise90Facing = RelativePlanarDirectionState.RIGHT;
+                    break;
+                case RIGHT:
+                    clockwise90Facing = RelativePlanarDirectionState.DOWN;
+                    clockwise180Facing = RelativePlanarDirectionState.LEFT;
+                    counterClockwise90Facing = RelativePlanarDirectionState.UP;
+                    break;
+                default:
+                    clockwise90Facing = RelativePlanarDirectionState.RIGHT;
+                    clockwise180Facing = RelativePlanarDirectionState.DOWN;
+                    counterClockwise90Facing = RelativePlanarDirectionState.LEFT;
+                    break;
+            }
+            switch (pRot){
+                case CLOCKWISE_90 -> pState = pState.setValue(PLANE_DIRECTION, clockwise90Facing);
+                case CLOCKWISE_180 -> pState = pState.setValue(PLANE_DIRECTION, clockwise180Facing);
+                case COUNTERCLOCKWISE_90 -> pState = pState.setValue(PLANE_DIRECTION, counterClockwise90Facing);
+                default -> {} //Assumed to be case "NONE", therefore block is unchanged
+            }
+            return pState;
+
+        } else { //block is not placed up or down (it is in the cardinal directions)
+            return pState.setValue(FACING, pRot.rotate(pState.getValue(FACING)));
+        }
+    }
+
+    @Override
+    public @NotNull BlockState mirror(BlockState pState, Mirror mirror) {
+        RelativePlanarDirectionState originallyFacing = pState.getValue(PLANE_DIRECTION);
+        RelativePlanarDirectionState leftRightMirror;
+        RelativePlanarDirectionState frontBackMirror;
+
+        if (pState.getValue(FACING) == Direction.DOWN) { //Block is placed on floor or ceiling
+            switch (originallyFacing) {
+                case LEFT:
+                    leftRightMirror = RelativePlanarDirectionState.UP;
+                    frontBackMirror = RelativePlanarDirectionState.DOWN;
+                    break;
+                case DOWN:
+                    leftRightMirror = RelativePlanarDirectionState.RIGHT;
+                    frontBackMirror = RelativePlanarDirectionState.LEFT;
+                    break;
+                case RIGHT:
+                    leftRightMirror = RelativePlanarDirectionState.DOWN;
+                    frontBackMirror = RelativePlanarDirectionState.UP;
+                    break;
+                default:
+                    leftRightMirror = RelativePlanarDirectionState.LEFT;
+                    frontBackMirror = RelativePlanarDirectionState.RIGHT;
+                    break;
+            }
+            switch (mirror) {
+                case LEFT_RIGHT -> pState = pState.setValue(PLANE_DIRECTION, leftRightMirror);
+                case FRONT_BACK -> pState = pState.setValue(PLANE_DIRECTION, frontBackMirror);
+                default -> {
+                    //Assumed to be case "NONE", therefore block is unchanged
+                }
+            }
+            return pState.rotate(mirror.getRotation(pState.getValue(FACING)));
+
+        } else if (pState.getValue(FACING) == Direction.UP) {
+            switch (originallyFacing) {
+                case LEFT:
+                    leftRightMirror = RelativePlanarDirectionState.DOWN;
+                    frontBackMirror = RelativePlanarDirectionState.UP;
+                    break;
+                case DOWN:
+                    leftRightMirror = RelativePlanarDirectionState.LEFT;
+                    frontBackMirror = RelativePlanarDirectionState.RIGHT;
+                    break;
+                case RIGHT:
+                    leftRightMirror = RelativePlanarDirectionState.UP;
+                    frontBackMirror = RelativePlanarDirectionState.DOWN;
+                    break;
+                default:
+                    leftRightMirror = RelativePlanarDirectionState.RIGHT;
+                    frontBackMirror = RelativePlanarDirectionState.LEFT;
+                    break;
+            }
+            switch (mirror) {
+                case LEFT_RIGHT -> pState = pState.setValue(PLANE_DIRECTION, leftRightMirror);
+                case FRONT_BACK -> pState = pState.setValue(PLANE_DIRECTION, frontBackMirror);
+                default -> {
+                    //Assumed to be case "NONE", therefore block is unchanged
+                }
+            }
+            return pState.rotate(mirror.getRotation(pState.getValue(FACING)));
+
+
+        } else { //Block is placed on walls
+            switch (originallyFacing) {
+                case LEFT:
+                    leftRightMirror = RelativePlanarDirectionState.DOWN;
+                    frontBackMirror = RelativePlanarDirectionState.DOWN;
+                    break;
+                case DOWN:
+                    leftRightMirror = RelativePlanarDirectionState.LEFT;
+                    frontBackMirror = RelativePlanarDirectionState.LEFT;
+                    break;
+                case RIGHT:
+                    leftRightMirror = RelativePlanarDirectionState.UP;
+                    frontBackMirror = RelativePlanarDirectionState.UP;
+                    break;
+                default:
+                    leftRightMirror = RelativePlanarDirectionState.RIGHT;
+                    frontBackMirror = RelativePlanarDirectionState.RIGHT;
+                    break;
+            }
+            switch (mirror) {
+                case LEFT_RIGHT -> pState = pState.setValue(PLANE_DIRECTION, leftRightMirror);
+                case FRONT_BACK -> pState = pState.setValue(PLANE_DIRECTION, frontBackMirror);
+                default -> {
+                    //Assumed to be case "NONE", therefore block is unchanged
+                }
+            }
+            return pState.rotate(mirror.getRotation(pState.getValue(FACING)));
+        }
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(FACING, PLANE_DIRECTION, WATERLOGGED);
+    }
+}

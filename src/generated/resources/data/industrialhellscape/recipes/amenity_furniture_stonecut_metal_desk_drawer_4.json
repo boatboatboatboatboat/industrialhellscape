@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "industrialhellscape:amenity_furnishings"
+  },
+  "result": "industrialhellscape:metal_desk_drawer_2"
+}

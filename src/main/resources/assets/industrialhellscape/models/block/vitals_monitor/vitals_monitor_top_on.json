@@ -1,0 +1,6 @@
+{
+	"parent": "industrialhellscape:block/vitals_monitor/vitals_monitor_top",
+	"textures": {
+		"1": "industrialhellscape:block/lit_unlit_textures/vitals_monitor_screen_on"
+	}
+}

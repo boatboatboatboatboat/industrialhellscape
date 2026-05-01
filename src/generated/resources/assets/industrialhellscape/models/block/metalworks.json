@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "industrialhellscape:block/metalworks/metalworks_bottom",
+    "east": "industrialhellscape:block/metalworks/metalworks_side",
+    "north": "industrialhellscape:block/metalworks/metalworks_side",
+    "particle": "industrialhellscape:block/metalworks/metalworks_top",
+    "south": "industrialhellscape:block/metalworks/metalworks_side",
+    "up": "industrialhellscape:block/metalworks/metalworks_top",
+    "west": "industrialhellscape:block/metalworks/metalworks_side"
+  }
+}

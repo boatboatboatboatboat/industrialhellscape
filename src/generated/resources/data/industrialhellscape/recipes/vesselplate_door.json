@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "industrialhellscape:vesselplate_smeltable_item"
+    }
+  },
+  "pattern": [
+    "AA ",
+    "AA ",
+    "AA "
+  ],
+  "result": {
+    "count": 3,
+    "item": "industrialhellscape:vesselplate_door"
+  },
+  "show_notification": true
+}

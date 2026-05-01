@@ -1,0 +1,20 @@
+{
+  "multipart": [
+    {
+      "when": { "north": true },
+      "apply": { "model": "industrialhellscape:block/railing/rusty_railing", "y": 0 }
+    },
+    {
+      "when": { "east": true },
+      "apply": { "model": "industrialhellscape:block/railing/rusty_railing", "y": 90 }
+    },
+    {
+      "when": { "south": true },
+      "apply": { "model": "industrialhellscape:block/railing/rusty_railing", "y": 180 }
+    },
+    {
+      "when": { "west": true },
+      "apply": { "model": "industrialhellscape:block/railing/rusty_railing", "y": 270 }
+    }
+  ]
+}
