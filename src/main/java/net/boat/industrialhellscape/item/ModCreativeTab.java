@@ -50,30 +50,25 @@ public class ModCreativeTab {
                         //output.accept(ModItems.RETRO_CASSETTE.get());
 
                         //IRONLIKE BLOCKS FOR CREATIVE TAB
-                        output.accept(ModBlocks.RIVETED_VESSELPLATE_PANEL.get());
-                        output.accept(ModBlocks.GRATE.get());
-                        output.accept(ModBlocks.SEETHROUGH_GRATE.get());
+                        output.accept(ModBlocks.RIVETED_VESSELPLATE.get());
+                        output.accept(ModBlocks.HORIZONTAL_GRATE.get());
+                        output.accept(ModBlocks.HORIZONTAL_CUTOUT_GRATE.get());
                         output.accept(ModBlocks.RUSTY_GRATE.get());
                         output.accept(ModBlocks.RUSTY_SEETHROUGH_GRATE.get());
-                        output.accept(ModBlocks.DIRECTIONAL_RIVETED_VESSELPLATE.get());
-                        output.accept(ModBlocks.SMOOTH_VESSELPLATE_TILE.get());
+                        output.accept(ModBlocks.HORIZONTAL_VESSELPLATE.get());
+                        output.accept(ModBlocks.SMOOTH_VESSELPLATE.get());
                         output.accept(ModBlocks.VESSELPLATE_PILLAR.get());
                         output.accept(ModBlocks.RIVETED_VESSELPLATE_SLAB.get());
                         output.accept(ModBlocks.RIVETED_VESSELPLATE_STAIRS.get());
                         output.accept(ModBlocks.SMOOTH_VESSELPLATE_STAIRS.get());
                         output.accept(ModBlocks.SMOOTH_VESSELPLATE_SLAB.get());
-                        output.accept(ModBlocks.VESSELPLATE_SHEETING.get());
-                        output.accept(ModBlocks.VESSELPLATE_SHEETING_STAIRS.get());
-                        output.accept(ModBlocks.VESSELPLATE_SHEETING_SLAB.get());
+                        output.accept(ModBlocks.HORIZONTAL_REINFORCED_VESSELPLATE.get());
 
                         output.accept(ModBlocks.GRAY_RIVETED_VESSELPLATE.get());
-                        //output.accept(ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get());
-                        output.accept(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get());
+                        output.accept(ModBlocks.GRAY_HORIZONTAL_REINFORCED_VESSELPLATE.get());
 
                         output.accept(ModBlocks.GRAY_HORIZONTAL_GRATE.get());
                         output.accept(ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get());
-                        //output.accept(ModBlocks.GRAY_VERTICAL_GRATE.get());
-                        //output.accept(ModBlocks.GRAY_VERTICAL_SEETHROUGH_GRATE.get());
 
                         output.accept(ModBlocks.SMOOTH_GRAY_VESSELPLATE.get());
                         output.accept(ModBlocks.GRAY_VESSELPLATE_PILLAR.get());
@@ -81,9 +76,7 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.GRAY_RIVETED_VESSELPLATE_STAIRS.get());
                         output.accept(ModBlocks.SMOOTH_GRAY_VESSELPLATE_STAIRS.get());
                         output.accept(ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get());
-                        output.accept(ModBlocks.GRAY_VESSELPLATE_PANEL.get());
-                        output.accept(ModBlocks.GRAY_VESSELPLATE_PANEL_STAIRS.get());
-                        output.accept(ModBlocks.GRAY_VESSELPLATE_PANEL_SLAB.get());
+                        output.accept(ModBlocks.GRAY_HORIZONTAL_VESSELPLATE.get());
 
                         output.accept(ModBlocks.RUSTY_RIVETED_VESSELPLATE_PANEL.get());
                         output.accept(ModBlocks.RUSTY_RIVETED_VESSELPLATE_STAIRS.get());
@@ -98,24 +91,24 @@ public class ModCreativeTab {
 
                         output.accept(ModBlocks.RUSTY_DIRECTIONAL_RIVETED_VESSELPLATE.get());
 
-                        output.accept(ModBlocks.STRUT.get());
-                        output.accept(ModBlocks.CATWALK_STRUT.get());
-                        output.accept(ModBlocks.CATWALK_STRUT_STAIRS.get());
-                        output.accept(ModBlocks.CATWALK_STRUT_SLAB.get());
-                        output.accept(ModBlocks.STRUT_STAIRS.get());
-                        output.accept(ModBlocks.STRUT_SLAB.get());
-                        output.accept(ModBlocks.GRAY_STRUT.get());
-                        output.accept(ModBlocks.GRAY_CATWALK_STRUT.get());
-                        output.accept(ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get());
-                        output.accept(ModBlocks.GRAY_CATWALK_STRUT_SLAB.get());
-                        output.accept(ModBlocks.GRAY_STRUT_STAIRS.get());
-                        output.accept(ModBlocks.GRAY_STRUT_SLAB.get());
-                        output.accept(ModBlocks.RUSTY_STRUT.get());
-                        output.accept(ModBlocks.RUSTY_STRUT_STAIRS.get());
-                        output.accept(ModBlocks.RUSTY_STRUT_SLAB.get());
-                        output.accept(ModBlocks.RUSTY_CATWALK_STRUT.get());
-                        output.accept(ModBlocks.RUSTY_CATWALK_STRUT_STAIRS.get());
-                        output.accept(ModBlocks.RUSTY_CATWALK_STRUT_SLAB.get());
+                        output.accept(ModBlocks.TRUSS.get());
+                        output.accept(ModBlocks.CATWALK_TRUSS.get());
+                        output.accept(ModBlocks.CATWALK_TRUSS_STAIRS.get());
+                        output.accept(ModBlocks.CATWALK_TRUSS_SLAB.get());
+                        output.accept(ModBlocks.TRUSS_STAIRS.get());
+                        output.accept(ModBlocks.TRUSS_SLAB.get());
+                        output.accept(ModBlocks.GRAY_TRUSS.get());
+                        output.accept(ModBlocks.GRAY_CATWALK_TRUSS.get());
+                        output.accept(ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.get());
+                        output.accept(ModBlocks.GRAY_CATWALK_TRUSS_SLAB.get());
+                        output.accept(ModBlocks.GRAY_TRUSS_STAIRS.get());
+                        output.accept(ModBlocks.GRAY_TRUSS_SLAB.get());
+                        output.accept(ModBlocks.RUSTY_TRUSS.get());
+                        output.accept(ModBlocks.RUSTY_TRUSS_STAIRS.get());
+                        output.accept(ModBlocks.RUSTY_TRUSS_SLAB.get());
+                        output.accept(ModBlocks.RUSTY_CATWALK_TRUSS.get());
+                        output.accept(ModBlocks.RUSTY_CATWALK_TRUSS_STAIRS.get());
+                        output.accept(ModBlocks.RUSTY_CATWALK_TRUSS_SLAB.get());
 
                         output.accept(ModBlocks.ENCASED_CABLES.get());
 

@@ -11,48 +11,50 @@
 
   "block.industrialhellscape.prototype_machine": "Prototype Machine",
 
-  "block.industrialhellscape.vesselplate": "Vesselplate",
-  "block.industrialhellscape.directional_riveted_vesselplate": "Directional Riveted Vesselplate",
   "block.industrialhellscape.riveted_vesselplate": "Riveted Vesselplate",
-  "block.industrialhellscape.vesselglass": "Vesselglass",
-  "block.industrialhellscape.reinforced_vesselglass": "Reinforced Vesselglass",
-  "block.industrialhellscape.gray_vesselglass": "Gray Vesselglass",
-  "block.industrialhellscape.gray_reinforced_vesselglass": "Gray Reinforced Vesselglass",
-  "block.industrialhellscape.smooth_vesselplate_tile": "Smooth Vesselplate Tile",
+  "block.industrialhellscape.horizontal_vesselplate": "Vesselplate",
+  "block.industrialhellscape.vertical_vesselplate": "Vesselplate",
+  "block.industrialhellscape.vertical_reinforced_vesselplate": "Reinforced Vesselplate",
+  "block.industrialhellscape.horizontal_reinforced_vesselplate": "Reinforced Vesselplate",
+
+
+
+
+  "block.industrialhellscape.smooth_vesselplate": "Smooth Vesselplate",
   "block.industrialhellscape.smooth_vesselplate_stairs": "Smooth Vesselplate Stairs",
   "block.industrialhellscape.smooth_vesselplate_slab": "Smooth Vesselplate Slab",
   "block.industrialhellscape.vesselplate_pillar": "Vesselplate Pillar",
-  "block.industrialhellscape.vesselplate_sheeting": "Vesselplate Sheet",
 
   "block.industrialhellscape.riveted_vesselplate_slab": "Riveted Vesselplate Slab",
   "block.industrialhellscape.riveted_vesselplate_stairs": "Riveted Vesselplate Stairs",
   "block.industrialhellscape.gray_riveted_vesselplate_slab": "Gray Riveted Vesselplate Slab",
   "block.industrialhellscape.gray_riveted_vesselplate_stairs": "Gray Riveted Vesselplate Stairs",
 
-  "block.industrialhellscape.vesselplate_sheeting_stairs": "Vesselplate Sheeting Stairs",
-  "block.industrialhellscape.vesselplate_sheeting_slab": "Vesselplate Sheeting Slab",
-  "block.industrialhellscape.gray_vesselplate_panel_stairs": "Gray Vesselplate Panel Stairs",
-  "block.industrialhellscape.gray_vesselplate_panel_slab": "Gray Vesselplate Panel Slab",
+  "block.industrialhellscape.gray_horizontal_vesselplate": "Gray Vesselplate",
+  "block.industrialhellscape.gray_vertical_vesselplate": "Gray Vesselplate",
 
-  "block.industrialhellscape.gray_vesselplate": "Gray Vesselplate",
-  "block.industrialhellscape.gray_vertical_riveted_vesselplate": "Gray Vertical Riveted Vesselplate",
-  "block.industrialhellscape.gray_horizontal_riveted_vesselplate": "Gray Horizontal Riveted Vesselplate",
   "block.industrialhellscape.gray_riveted_vesselplate": "Gray Riveted Vesselplate",
+  "block.industrialhellscape.gray_vertical_reinforced_vesselplate": "Gray Reinforced Vesselplate",
+  "block.industrialhellscape.gray_horizontal_reinforced_vesselplate": "Gray Reinforced Vesselplate",
+
   "block.industrialhellscape.smooth_gray_vesselplate": "Smooth Gray Vesselplate",
   "block.industrialhellscape.smooth_gray_vesselplate_stairs": "Smooth Gray Vesselplate Stairs",
   "block.industrialhellscape.smooth_gray_vesselplate_slab": "Smooth Gray Vesselplate Slab",
+
   "block.industrialhellscape.gray_vesselplate_pillar": "Gray Vesselplate Pillar",
-  "block.industrialhellscape.gray_vesselplate_panel": "Gray Vesselplate Panel",
+
+
+
+  "block.industrialhellscape.vesselglass": "Vesselglass",
+  "block.industrialhellscape.reinforced_vesselglass": "Reinforced Vesselglass",
+  "block.industrialhellscape.gray_vesselglass": "Gray Vesselglass",
+  "block.industrialhellscape.gray_reinforced_vesselglass": "Gray Reinforced Vesselglass",
+
 
   "block.industrialhellscape.rusty_directional_riveted_vesselplate": "Rusty Directional Riveted Vesselplate",
   "block.industrialhellscape.rusty_vesselplate_pillar": "Rusty Vesselplate Pillar",
-  "block.industrialhellscape.rusty_riveted_vesselplate_panel": "Rusty Riveted Vesselplate Panel",
   "block.industrialhellscape.rusty_riveted_vesselplate_stairs": "Rusty Riveted Vesselplate Stairs",
   "block.industrialhellscape.rusty_riveted_vesselplate_slab": "Rusty Riveted Vesselplate Slab",
-  "block.industrialhellscape.rusty_vesselplate_sheeting": "Rusty Vesselplate Sheeting",
-  "block.industrialhellscape.rusty_vesselplate_sheeting_stairs": "Rusty Vesselplate Sheeting",
-  "block.industrialhellscape.rusty_vesselplate_sheeting_slab": "Rusty Vesselplate Sheeting",
-
   "block.industrialhellscape.smooth_rusty_vesselplate_tile": "Smooth Rusty Vesselplate Tile",
   "block.industrialhellscape.smooth_rusty_vesselplate_stairs": "Smooth Rusty Vesselplate Stairs",
   "block.industrialhellscape.smooth_rusty_vesselplate_slab": "Smooth Rusty Vesselplate Slab",
@@ -176,27 +178,27 @@
   "block.industrialhellscape.rusty_railing": "Rusty Railing",
   "block.industrialhellscape.rusty_stair_railing": "Rusty Stair Railing",
 
-  "block.industrialhellscape.strut": "Strut",
-  "block.industrialhellscape.strut_stairs": "Strut Stairs",
-  "block.industrialhellscape.strut_slab": "Strut Slab",
-  "block.industrialhellscape.catwalk_strut": "Catwalk Strut",
-  "block.industrialhellscape.catwalk_strut_stairs": "Catwalk Strut Stairs",
-  "block.industrialhellscape.catwalk_strut_slab": "Catwalk Strut Slab",
+  "block.industrialhellscape.truss": "Truss",
+  "block.industrialhellscape.truss_stairs": "Truss Stairs",
+  "block.industrialhellscape.truss_slab": "Truss Slab",
+  "block.industrialhellscape.catwalk_truss": "Catwalk Truss",
+  "block.industrialhellscape.catwalk_truss_stairs": "Catwalk Truss Stairs",
+  "block.industrialhellscape.catwalk_truss_slab": "Catwalk Truss Slab",
 
-  "block.industrialhellscape.gray_strut": "Gray Strut",
-  "block.industrialhellscape.gray_strut_stairs": "Gray Strut Stairs",
-  "block.industrialhellscape.gray_strut_slab": "Gray Strut Slab",
-  "block.industrialhellscape.gray_catwalk_strut": "Gray Catwalk Strut",
-  "block.industrialhellscape.gray_catwalk_strut_stairs": "Gray Catwalk Strut Stairs",
-  "block.industrialhellscape.gray_catwalk_strut_slab": "Gray Catwalk Strut Slab",
+  "block.industrialhellscape.gray_truss": "Gray Truss",
+  "block.industrialhellscape.gray_truss_stairs": "Gray Truss Stairs",
+  "block.industrialhellscape.gray_truss_slab": "Gray Truss Slab",
+  "block.industrialhellscape.gray_catwalk_truss": "Gray Catwalk Truss",
+  "block.industrialhellscape.gray_catwalk_truss_stairs": "Gray Catwalk Truss Stairs",
+  "block.industrialhellscape.gray_catwalk_truss_slab": "Gray Catwalk Truss Slab",
 
-  "block.industrialhellscape.rusty_strut": "Rusty Strut",
-  "block.industrialhellscape.rusty_strut_stairs": "Rusty Strut Stairs",
-  "block.industrialhellscape.rusty_strut_slab": "Rusty Strut Slab",
+  "block.industrialhellscape.rusty_truss": "Rusty Truss",
+  "block.industrialhellscape.rusty_truss_stairs": "Rusty Truss Stairs",
+  "block.industrialhellscape.rusty_truss_slab": "Rusty Truss Slab",
 
-  "block.industrialhellscape.rusty_catwalk_strut": "Rusty Catwalk Strut",
-  "block.industrialhellscape.rusty_catwalk_strut_stairs": "Rusty Catwalk Strut Stairs",
-  "block.industrialhellscape.rusty_catwalk_strut_slab": "Rusty Catwalk Strut Slab",
+  "block.industrialhellscape.rusty_catwalk_truss": "Rusty Catwalk Truss",
+  "block.industrialhellscape.rusty_catwalk_truss_stairs": "Rusty Catwalk Truss Stairs",
+  "block.industrialhellscape.rusty_catwalk_truss_slab": "Rusty Catwalk Truss Slab",
 
   "block.industrialhellscape.duct": "Duct",
   "block.industrialhellscape.duct_vent": "Duct Vent",

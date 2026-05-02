@@ -2,9 +2,9 @@
   "ctm": {
     "ctm_version": 1,
     "type": "CTM",
-    "layer": "SOLID",
+    "layer": "CUTOUT",
     "textures": [
-      "industrialhellscape:ctm/ctm2x2_gray_vertical_riveted_vesselplate"
+      "industrialhellscape:ctm/ctm2x2_rusty_truss"
       ],
       "connect_inside": true
     }

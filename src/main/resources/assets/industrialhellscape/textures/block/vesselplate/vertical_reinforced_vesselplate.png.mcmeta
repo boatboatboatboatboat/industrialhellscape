@@ -4,7 +4,7 @@
     "type": "CTM",
     "layer": "SOLID",
     "textures": [
-      "industrialhellscape:ctm/ctm2x2_horizontal_riveted_vesselplate"
+      "industrialhellscape:ctm/ctm2x2_vertical_reinforced_vesselplate"
       ],
       "connect_inside": true
     }

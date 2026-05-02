@@ -4,7 +4,7 @@
     "type": "CTM",
     "layer": "CUTOUT",
     "textures": [
-      "industrialhellscape:ctm/ctm2x2_rusty_strut"
+      "industrialhellscape:ctm/ctm2x2_truss"
       ],
       "connect_inside": true
     }

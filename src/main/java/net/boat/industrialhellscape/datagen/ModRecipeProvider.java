@@ -54,8 +54,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.RUSTY_GRATE.get().asItem(),
             ModBlocks.RUSTY_SEETHROUGH_GRATE.get().asItem(),
 
-            ModBlocks.GRATE.get().asItem(),
-            ModBlocks.SEETHROUGH_GRATE.get().asItem(),
+            ModBlocks.HORIZONTAL_GRATE.get().asItem(),
+            ModBlocks.HORIZONTAL_CUTOUT_GRATE.get().asItem(),
 
             ModBlocks.GRAY_HORIZONTAL_GRATE.get().asItem(),
             ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get().asItem(),
@@ -63,48 +63,44 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.ENCASED_CABLES.get().asItem() //Temporary location
     );
     private static final List<ItemLike> STRUT_STONECUT_OUTPUT = List.of(
-            ModBlocks.STRUT.get().asItem(),
-            ModBlocks.STRUT_STAIRS.get().asItem(),
-            ModBlocks.STRUT_SLAB.get().asItem(),
+            ModBlocks.TRUSS.get().asItem(),
+            ModBlocks.TRUSS_STAIRS.get().asItem(),
+            ModBlocks.TRUSS_SLAB.get().asItem(),
 
-            ModBlocks.CATWALK_STRUT.get().asItem(),
-            ModBlocks.CATWALK_STRUT_SLAB.get().asItem(),
-            ModBlocks.CATWALK_STRUT_STAIRS.get().asItem(),
+            ModBlocks.CATWALK_TRUSS.get().asItem(),
+            ModBlocks.CATWALK_TRUSS_SLAB.get().asItem(),
+            ModBlocks.CATWALK_TRUSS_STAIRS.get().asItem(),
 
-            ModBlocks.GRAY_STRUT.get().asItem(),
-            ModBlocks.GRAY_STRUT_STAIRS.get().asItem(),
-            ModBlocks.GRAY_STRUT_SLAB.get().asItem(),
+            ModBlocks.GRAY_TRUSS.get().asItem(),
+            ModBlocks.GRAY_TRUSS_STAIRS.get().asItem(),
+            ModBlocks.GRAY_TRUSS_SLAB.get().asItem(),
 
-            ModBlocks.GRAY_CATWALK_STRUT.get().asItem(),
-            ModBlocks.GRAY_CATWALK_STRUT_SLAB.get().asItem(),
-            ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get().asItem(),
+            ModBlocks.GRAY_CATWALK_TRUSS.get().asItem(),
+            ModBlocks.GRAY_CATWALK_TRUSS_SLAB.get().asItem(),
+            ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.get().asItem(),
 
-            ModBlocks.RUSTY_STRUT.get().asItem(),
-            ModBlocks.RUSTY_STRUT_STAIRS.get().asItem(),
-            ModBlocks.RUSTY_STRUT_SLAB.get().asItem(),
+            ModBlocks.RUSTY_TRUSS.get().asItem(),
+            ModBlocks.RUSTY_TRUSS_STAIRS.get().asItem(),
+            ModBlocks.RUSTY_TRUSS_SLAB.get().asItem(),
 
-            ModBlocks.RUSTY_CATWALK_STRUT.get().asItem(),
-            ModBlocks.RUSTY_CATWALK_STRUT_STAIRS.get().asItem(),
-            ModBlocks.RUSTY_CATWALK_STRUT_SLAB.get().asItem()
+            ModBlocks.RUSTY_CATWALK_TRUSS.get().asItem(),
+            ModBlocks.RUSTY_CATWALK_TRUSS_STAIRS.get().asItem(),
+            ModBlocks.RUSTY_CATWALK_TRUSS_SLAB.get().asItem()
     );
 
     private static final List<ItemLike> VESSELPLATE_STONECUT_OUTPUT = List.of(
+            ModBlocks.RIVETED_VESSELPLATE.get().asItem(),
+            ModBlocks.HORIZONTAL_VESSELPLATE.get().asItem(),
+
             ModBlocks.VESSELPLATE_PILLAR.get().asItem(),
-            ModBlocks.RIVETED_VESSELPLATE_PANEL.get().asItem(),
-            ModBlocks.DIRECTIONAL_RIVETED_VESSELPLATE.get().asItem(),
-            ModBlocks.SMOOTH_VESSELPLATE_TILE.get().asItem(),
-            ModBlocks.VESSELPLATE_SHEETING.get().asItem(),
-            ModBlocks.VESSELPLATE_SHEETING_STAIRS.get().asItem(),
-            ModBlocks.VESSELPLATE_SHEETING_SLAB.get().asItem(),
+            ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
+            ModBlocks.HORIZONTAL_REINFORCED_VESSELPLATE.get().asItem(),
 
             ModBlocks.GRAY_RIVETED_VESSELPLATE.get().asItem(),
 
-            ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
             ModBlocks.SMOOTH_GRAY_VESSELPLATE.get().asItem(),
             ModBlocks.GRAY_VESSELPLATE_PILLAR.get().asItem(),
-            ModBlocks.GRAY_VESSELPLATE_PANEL.get().asItem(),
-            ModBlocks.GRAY_VESSELPLATE_PANEL_STAIRS.get().asItem(),
-            ModBlocks.GRAY_VESSELPLATE_PANEL_SLAB.get().asItem(),
+            ModBlocks.GRAY_HORIZONTAL_VESSELPLATE.get().asItem(),
 
             ModBlocks.RIVETED_VESSELPLATE_STAIRS.get().asItem(),
             ModBlocks.RIVETED_VESSELPLATE_SLAB.get().asItem(),
@@ -277,8 +273,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         //---------- CREATE BASE MODDED BLOCKS FROM VANILLA BLOCKS ----------
 
         //Create 9x Vesselplate from 9x iron ingots OR 1x Vesselplate from 1x iron ingots
-        OneIngredientShapelessRecipe(ModBlocks.RIVETED_VESSELPLATE_PANEL.get(), vesselplatePerIronIngot, Ingredient.of(Items.IRON_INGOT), "vesselplate_from_iron_ingot", pWriter);
-        OneIngredientShapelessRecipe(ModBlocks.RIVETED_VESSELPLATE_PANEL.get(), vesselplatePerIronIngot*9, Ingredient.of(Items.IRON_BLOCK), "vesselplate_from_iron_block", pWriter);
+        OneIngredientShapelessRecipe(ModBlocks.RIVETED_VESSELPLATE.get(), vesselplatePerIronIngot, Ingredient.of(Items.IRON_INGOT), "vesselplate_from_iron_ingot", pWriter);
+        OneIngredientShapelessRecipe(ModBlocks.RIVETED_VESSELPLATE.get(), vesselplatePerIronIngot*9, Ingredient.of(Items.IRON_BLOCK), "vesselplate_from_iron_block", pWriter);
 
         //Create Rockrete Base Block from 1 stone
         OneIngredientShapelessRecipe(ModBlocks.GRAY_ROCKRETE.get(), rockretePerStone, Ingredient.of(ModTags.Items.IH_RECIPE_STONELIKES), "rockrete_from_stone", pWriter);
@@ -292,7 +288,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(pWriter, new ResourceLocation("industrialhellscape", "vesselglass_from_iron_ingot"));
 
         //Create Strut recipe
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.STRUT.get(),strutPerIronIngot*4)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.TRUSS.get(),strutPerIronIngot*4)
                 .pattern("A A")
                 .pattern(" B ")
                 .pattern("A A")
@@ -475,14 +471,29 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(pWriter, new ResourceLocation("industrialhellscape", "aspic"));
 
+        //Create Horizontal Vesselplate
+        SingleBlockShapelessRecipe(ModBlocks.HORIZONTAL_VESSELPLATE.get(), ModBlocks.VERTICAL_VESSELPLATE.get(), pWriter);
+
+        //Create Horizontal Reinforced Vesselplate
+        SingleBlockShapelessRecipe(ModBlocks.HORIZONTAL_REINFORCED_VESSELPLATE.get(), ModBlocks.VERTICAL_REINFORCED_VESSELPLATE.get(), pWriter);
+
+        //Create Horizontal Grate
+        SingleBlockShapelessRecipe(ModBlocks.HORIZONTAL_GRATE.get(), ModBlocks.VERTICAL_GRATE.get(), pWriter);
+
+        //Create Horizontal Cutout Grate
+        SingleBlockShapelessRecipe(ModBlocks.HORIZONTAL_CUTOUT_GRATE.get(), ModBlocks.VERTICAL_CUTOUT_GRATE.get(), pWriter);
+
         //Create GRAY Horizontal Riveted Vesselplate
-        SingleBlockShapelessRecipe(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get(), ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get(), pWriter);
+        SingleBlockShapelessRecipe(ModBlocks.GRAY_HORIZONTAL_REINFORCED_VESSELPLATE.get(), ModBlocks.GRAY_VERTICAL_REINFORCED_VESSELPLATE.get(), pWriter);
 
         //Create GRAY Horizontal Grate
         SingleBlockShapelessRecipe(ModBlocks.GRAY_HORIZONTAL_GRATE.get(), ModBlocks.GRAY_VERTICAL_GRATE.get(), pWriter);
 
-        //Create GRAY Horizontal See-through Grate
+        //Create GRAY Horizontal Cutout Grate
         SingleBlockShapelessRecipe(ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get(), ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get(), pWriter);
+
+        //Create GRAY Horizontal Vesselplate
+        SingleBlockShapelessRecipe(ModBlocks.GRAY_HORIZONTAL_VESSELPLATE.get(), ModBlocks.GRAY_VERTICAL_VESSELPLATE.get(), pWriter);
 
         //---------- END OF SPECIAL ITEM CRAFTING ----------
 

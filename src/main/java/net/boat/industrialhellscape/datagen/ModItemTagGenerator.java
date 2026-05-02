@@ -51,20 +51,20 @@ public class ModItemTagGenerator extends ItemTagsProvider {
         //Only a Smeltable-tagged item can be stone-cut into a non-Smeltable output (e.g. slabs)
         this.tag(ModTags.Items.STRUT_SMELTABLE_ITEM)
                 .add(
-                        ModBlocks.STRUT.get().asItem(),
-                        ModBlocks.STRUT_STAIRS.get().asItem(),
-                        ModBlocks.CATWALK_STRUT.get().asItem(),
-                        ModBlocks.CATWALK_STRUT_STAIRS.get().asItem(),
+                        ModBlocks.TRUSS.get().asItem(),
+                        ModBlocks.TRUSS_STAIRS.get().asItem(),
+                        ModBlocks.CATWALK_TRUSS.get().asItem(),
+                        ModBlocks.CATWALK_TRUSS_STAIRS.get().asItem(),
 
-                        ModBlocks.GRAY_STRUT.get().asItem(),
-                        ModBlocks.GRAY_STRUT_STAIRS.get().asItem(),
-                        ModBlocks.GRAY_CATWALK_STRUT.get().asItem(),
-                        ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get().asItem(),
+                        ModBlocks.GRAY_TRUSS.get().asItem(),
+                        ModBlocks.GRAY_TRUSS_STAIRS.get().asItem(),
+                        ModBlocks.GRAY_CATWALK_TRUSS.get().asItem(),
+                        ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.get().asItem(),
 
-                        ModBlocks.RUSTY_STRUT.get().asItem(),
-                        ModBlocks.RUSTY_STRUT_STAIRS.get().asItem(),
-                        ModBlocks.RUSTY_CATWALK_STRUT.get().asItem(),
-                        ModBlocks.RUSTY_CATWALK_STRUT_STAIRS.get().asItem()
+                        ModBlocks.RUSTY_TRUSS.get().asItem(),
+                        ModBlocks.RUSTY_TRUSS_STAIRS.get().asItem(),
+                        ModBlocks.RUSTY_CATWALK_TRUSS.get().asItem(),
+                        ModBlocks.RUSTY_CATWALK_TRUSS_STAIRS.get().asItem()
                 );
         this.tag(ModTags.Items.HVAC_SMELTABLE_ITEM)
                 .add(
@@ -76,8 +76,10 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.RUSTY_GRATE.get().asItem(),
                         ModBlocks.RUSTY_SEETHROUGH_GRATE.get().asItem(),
 
-                        ModBlocks.GRATE.get().asItem(),
-                        ModBlocks.SEETHROUGH_GRATE.get().asItem(),
+                        ModBlocks.HORIZONTAL_GRATE.get().asItem(),
+                        ModBlocks.VERTICAL_GRATE.get().asItem(),
+                        ModBlocks.HORIZONTAL_CUTOUT_GRATE.get().asItem(),
+                        ModBlocks.VERTICAL_CUTOUT_GRATE.get().asItem(),
 
                         ModBlocks.GRAY_HORIZONTAL_GRATE.get().asItem(),
                         ModBlocks.GRAY_VERTICAL_GRATE.get().asItem(),
@@ -92,26 +94,31 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 .add(
                 //NO HALF BLOCKS HERE
                         //Full BLocks
-                        ModBlocks.DIRECTIONAL_RIVETED_VESSELPLATE.get().asItem(),
+                        ModBlocks.RIVETED_VESSELPLATE.get().asItem(),
+                        ModBlocks.HORIZONTAL_VESSELPLATE.get().asItem(),
+                        ModBlocks.VERTICAL_VESSELPLATE.get().asItem(),
+
                         ModBlocks.VESSELPLATE_PILLAR.get().asItem(),
 
-                        ModBlocks.RIVETED_VESSELPLATE_PANEL.get().asItem(),
+
                         ModBlocks.RIVETED_VESSELPLATE_STAIRS.get().asItem(),
 
-                        ModBlocks.VESSELPLATE_SHEETING.get().asItem(),
-                        ModBlocks.VESSELPLATE_SHEETING_STAIRS.get().asItem(),
+                        ModBlocks.HORIZONTAL_REINFORCED_VESSELPLATE.get().asItem(),
+                        ModBlocks.VERTICAL_REINFORCED_VESSELPLATE.get().asItem(),
 
-                        ModBlocks.SMOOTH_VESSELPLATE_TILE.get().asItem(),
+                        ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
                         ModBlocks.SMOOTH_VESSELPLATE_STAIRS.get().asItem(),
 
                         ModBlocks.GRAY_RIVETED_VESSELPLATE.get().asItem(),
 
-                        ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get().asItem(),
-                        ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get().asItem(),
+                        ModBlocks.GRAY_HORIZONTAL_REINFORCED_VESSELPLATE.get().asItem(),
+                        ModBlocks.GRAY_VERTICAL_REINFORCED_VESSELPLATE.get().asItem(),
+
                         ModBlocks.SMOOTH_GRAY_VESSELPLATE.get().asItem(),
                         ModBlocks.GRAY_VESSELPLATE_PILLAR.get().asItem(),
-                        ModBlocks.GRAY_VESSELPLATE_PANEL.get().asItem(),
-                        ModBlocks.GRAY_VESSELPLATE_PANEL_STAIRS.get().asItem(),
+                        ModBlocks.GRAY_HORIZONTAL_VESSELPLATE.get().asItem(),
+                        ModBlocks.GRAY_VERTICAL_VESSELPLATE.get().asItem(),
+                        //ModBlocks.GRAY_VESSELPLATE_PANEL_STAIRS.get().asItem(),
 
                         ModBlocks.GRAY_RIVETED_VESSELPLATE_STAIRS.get().asItem(),
 

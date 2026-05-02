@@ -8,6 +8,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
@@ -22,29 +23,29 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
     protected void addTags(@Nonnull HolderLookup.Provider pProvider) {
         this.tag(ModTags.Blocks.STRUT_BLOCKS)
                 .add(
-                        ModBlocks.STRUT.get(),
-                        ModBlocks.STRUT_STAIRS.get(),
-                        ModBlocks.STRUT_SLAB.get(),
+                        ModBlocks.TRUSS.get(),
+                        ModBlocks.TRUSS_STAIRS.get(),
+                        ModBlocks.TRUSS_SLAB.get(),
 
-                        ModBlocks.CATWALK_STRUT.get(),
-                        ModBlocks.CATWALK_STRUT_SLAB.get(),
-                        ModBlocks.CATWALK_STRUT_STAIRS.get(),
+                        ModBlocks.CATWALK_TRUSS.get(),
+                        ModBlocks.CATWALK_TRUSS_SLAB.get(),
+                        ModBlocks.CATWALK_TRUSS_STAIRS.get(),
 
-                        ModBlocks.GRAY_STRUT.get(),
-                        ModBlocks.GRAY_STRUT_STAIRS.get(),
-                        ModBlocks.GRAY_STRUT_SLAB.get(),
+                        ModBlocks.GRAY_TRUSS.get(),
+                        ModBlocks.GRAY_TRUSS_STAIRS.get(),
+                        ModBlocks.GRAY_TRUSS_SLAB.get(),
 
-                        ModBlocks.GRAY_CATWALK_STRUT.get(),
-                        ModBlocks.GRAY_CATWALK_STRUT_SLAB.get(),
-                        ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get(),
+                        ModBlocks.GRAY_CATWALK_TRUSS.get(),
+                        ModBlocks.GRAY_CATWALK_TRUSS_SLAB.get(),
+                        ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.get(),
 
-                        ModBlocks.RUSTY_STRUT.get(),
-                        ModBlocks.RUSTY_STRUT_STAIRS.get(),
-                        ModBlocks.RUSTY_STRUT_SLAB.get(),
+                        ModBlocks.RUSTY_TRUSS.get(),
+                        ModBlocks.RUSTY_TRUSS_STAIRS.get(),
+                        ModBlocks.RUSTY_TRUSS_SLAB.get(),
 
-                        ModBlocks.RUSTY_CATWALK_STRUT.get(),
-                        ModBlocks.RUSTY_CATWALK_STRUT_STAIRS.get(),
-                        ModBlocks.RUSTY_CATWALK_STRUT_SLAB.get()
+                        ModBlocks.RUSTY_CATWALK_TRUSS.get(),
+                        ModBlocks.RUSTY_CATWALK_TRUSS_STAIRS.get(),
+                        ModBlocks.RUSTY_CATWALK_TRUSS_SLAB.get()
                 );
         this.tag(ModTags.Blocks.HVAC_BLOCKS)
                 .add(
@@ -57,8 +58,10 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.RUSTY_GRATE.get(),
                         ModBlocks.RUSTY_SEETHROUGH_GRATE.get(),
 
-                        ModBlocks.GRATE.get(),
-                        ModBlocks.SEETHROUGH_GRATE.get(),
+                        ModBlocks.HORIZONTAL_GRATE.get(),
+                        ModBlocks.VERTICAL_GRATE.get(),
+                        ModBlocks.HORIZONTAL_CUTOUT_GRATE.get(),
+                        ModBlocks.VERTICAL_CUTOUT_GRATE.get(),
 
                         ModBlocks.GRAY_HORIZONTAL_GRATE.get(),
                         ModBlocks.GRAY_VERTICAL_GRATE.get(),
@@ -70,22 +73,24 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
         this.tag(ModTags.Blocks.VESSELPLATE_BLOCKS)
                 .add(
-                        ModBlocks.RIVETED_VESSELPLATE_PANEL.get(),
-                        ModBlocks.DIRECTIONAL_RIVETED_VESSELPLATE.get(),
-                        ModBlocks.SMOOTH_VESSELPLATE_TILE.get(),
+                        ModBlocks.RIVETED_VESSELPLATE.get(),
+                        ModBlocks.HORIZONTAL_VESSELPLATE.get(),
+                        ModBlocks.VERTICAL_VESSELPLATE.get(),
+
+                        ModBlocks.SMOOTH_VESSELPLATE.get(),
                         ModBlocks.VESSELPLATE_PILLAR.get(),
-                        ModBlocks.VESSELPLATE_SHEETING.get(),
-                        ModBlocks.VESSELPLATE_SHEETING_STAIRS.get(),
-                        ModBlocks.VESSELPLATE_SHEETING_SLAB.get(),
+                        ModBlocks.HORIZONTAL_REINFORCED_VESSELPLATE.get(),
+                        ModBlocks.VERTICAL_REINFORCED_VESSELPLATE.get(),
 
                         ModBlocks.GRAY_RIVETED_VESSELPLATE.get(),
-                        ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get(),
-                        ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get(),
+                        ModBlocks.GRAY_VERTICAL_REINFORCED_VESSELPLATE.get(),
+                        ModBlocks.GRAY_HORIZONTAL_REINFORCED_VESSELPLATE.get(),
                         ModBlocks.SMOOTH_GRAY_VESSELPLATE.get(),
                         ModBlocks.GRAY_VESSELPLATE_PILLAR.get(),
-                        ModBlocks.GRAY_VESSELPLATE_PANEL.get(),
-                        ModBlocks.GRAY_VESSELPLATE_PANEL_STAIRS.get(),
-                        ModBlocks.GRAY_VESSELPLATE_PANEL_SLAB.get(),
+                        ModBlocks.GRAY_HORIZONTAL_VESSELPLATE.get(),
+                        ModBlocks.GRAY_VERTICAL_VESSELPLATE.get(),
+                        //ModBlocks.GRAY_VESSELPLATE_PANEL_STAIRS.get(),
+                        //ModBlocks.GRAY_VESSELPLATE_PANEL_SLAB.get(),
 
                         ModBlocks.RIVETED_VESSELPLATE_STAIRS.get(),
                         ModBlocks.RIVETED_VESSELPLATE_SLAB.get(),
@@ -376,7 +381,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModTags.Blocks.STRUT_BLOCKS
                 )
                 .add(
-                        ModBlocks.SEETHROUGH_GRATE.get(),
+                        ModBlocks.HORIZONTAL_CUTOUT_GRATE.get(),
+                        ModBlocks.VERTICAL_CUTOUT_GRATE.get(),
                         ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get(),
                         ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get(),
                         ModBlocks.RUSTY_SEETHROUGH_GRATE.get()

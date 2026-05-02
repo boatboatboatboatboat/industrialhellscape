@@ -91,20 +91,20 @@ public class IndustrialHellscape {
             removeAndReplace(ModBlockMappings, ModItemMappings,"rusty_vesselplate_grate", ModBlocks.RUSTY_GRATE.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"horizontal_encased_cables", ModBlocks.ENCASED_CABLES.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"vertical_encased_cables", ModBlocks.ENCASED_CABLES.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"smooth_vesselplate", ModBlocks.SMOOTH_VESSELPLATE_TILE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"smooth_vesselplate", ModBlocks.SMOOTH_VESSELPLATE.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"smooth_gray_vesselplate", ModBlocks.SMOOTH_GRAY_VESSELPLATE.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"gray_rockrete_rebar", ModBlocks.GRAY_ROCKRETE.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"green_rockrete_rebar", ModBlocks.GREEN_ROCKRETE.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"blue_rockrete_rebar", ModBlocks.BLUE_ROCKRETE.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"yellow_rockrete_rebar", ModBlocks.YELLOW_ROCKRETE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"riveted_vesselplate", ModBlocks.RIVETED_VESSELPLATE_PANEL.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"riveted_vesselplate", ModBlocks.RIVETED_VESSELPLATE.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"gray_riveted_vesselplate", ModBlocks.GRAY_RIVETED_VESSELPLATE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"vesselplate", ModBlocks.RIVETED_VESSELPLATE_PANEL.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"vesselplate", ModBlocks.RIVETED_VESSELPLATE.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"gray_vesselplate", ModBlocks.GRAY_RIVETED_VESSELPLATE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"horizontal_riveted_vesselplate", ModBlocks.DIRECTIONAL_RIVETED_VESSELPLATE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_horizontal_riveted_vesselplate", ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"vertical_riveted_vesselplate", ModBlocks.DIRECTIONAL_RIVETED_VESSELPLATE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_vertical_riveted_vesselplate", ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"horizontal_riveted_vesselplate", ModBlocks.HORIZONTAL_VESSELPLATE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_horizontal_riveted_vesselplate", ModBlocks.GRAY_VERTICAL_REINFORCED_VESSELPLATE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"vertical_riveted_vesselplate", ModBlocks.HORIZONTAL_VESSELPLATE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_vertical_riveted_vesselplate", ModBlocks.GRAY_VERTICAL_REINFORCED_VESSELPLATE.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"work_light_mount", ModBlocks.WORK_LIGHT_STAND.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"yellow_tripod", ModBlocks.WORK_LIGHT_STAND.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"gray_vesselplate_trapdoor", ModBlocks.GRAY_VESSELPLATE_TRAPDOOR.get());
@@ -117,14 +117,21 @@ public class IndustrialHellscape {
             removeAndReplace(ModBlockMappings, ModItemMappings,"gray_riveted_vesselplate_panel", ModBlocks.GRAY_RIVETED_VESSELPLATE.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"smooth_gray_vesselplate_tile", ModBlocks.SMOOTH_GRAY_VESSELPLATE.get());
 
-            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_vesselplate_sheeting", ModBlocks.GRAY_VESSELPLATE_PANEL.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_vesselplate_sheeting_slab", ModBlocks.GRAY_VESSELPLATE_PANEL_SLAB.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_vesselplate_sheeting_stairs", ModBlocks.GRAY_VESSELPLATE_PANEL_STAIRS.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_vesselplate_sheeting", ModBlocks.GRAY_HORIZONTAL_VESSELPLATE.get());
+            //removeAndReplace(ModBlockMappings, ModItemMappings,"gray_vesselplate_sheeting_slab", ModBlocks.GRAY_VESSELPLATE_PANEL_SLAB.get());
+            //removeAndReplace(ModBlockMappings, ModItemMappings,"gray_vesselplate_sheeting_stairs", ModBlocks.GRAY_VESSELPLATE_PANEL_STAIRS.get());
 
-            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_directional_riveted_vesselplate", ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_directional_riveted_vesselplate", ModBlocks.GRAY_VERTICAL_REINFORCED_VESSELPLATE.get());
 
             removeAndReplace(ModBlockMappings, ModItemMappings,"gray_grate", ModBlocks.GRAY_HORIZONTAL_GRATE.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"gray_seethrough_grate", ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get());
+
+            removeAndReplace(ModBlockMappings, ModItemMappings,"strut", ModBlocks.GRAY_HORIZONTAL_GRATE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_strut", ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"rusty_strut", ModBlocks.GRAY_HORIZONTAL_GRATE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"catwalk_strut", ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_catwalk_strut", ModBlocks.GRAY_HORIZONTAL_GRATE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"rusty_catwalk_strut", ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get());
         }
 
         private static void removeAndReplace( List<MissingMappingsEvent.Mapping<Block>> ModBlockMappings, List<MissingMappingsEvent.Mapping<Item>> ModItemMappings,String removedRegistryName, Block blockReplacement) {

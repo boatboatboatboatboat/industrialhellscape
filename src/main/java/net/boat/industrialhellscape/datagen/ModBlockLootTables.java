@@ -52,17 +52,20 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.BODY_PILLOW.get());
 
         //IRONLIKE SIMPLE BLOCKS
-        this.dropSelf(ModBlocks.RIVETED_VESSELPLATE_PANEL.get());
-        this.dropSelf(ModBlocks.GRATE.get());
-        this.dropSelf(ModBlocks.SEETHROUGH_GRATE.get());
+        this.dropSelf(ModBlocks.RIVETED_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.HORIZONTAL_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.VERTICAL_VESSELPLATE.get());
+
+        this.dropSelf(ModBlocks.HORIZONTAL_GRATE.get());
+        this.dropSelf(ModBlocks.HORIZONTAL_CUTOUT_GRATE.get());
         this.dropSelf(ModBlocks.RUSTY_GRATE.get());
         this.dropSelf(ModBlocks.RUSTY_SEETHROUGH_GRATE.get());
-        this.dropSelf(ModBlocks.DIRECTIONAL_RIVETED_VESSELPLATE.get());
-        this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE_TILE.get());
+
+        this.dropSelf(ModBlocks.HORIZONTAL_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE.get());
         this.dropSelf(ModBlocks.VESSELPLATE_PILLAR.get());
-        this.dropSelf(ModBlocks.VESSELPLATE_SHEETING.get());
-        this.dropSelf(ModBlocks.VESSELPLATE_SHEETING_STAIRS.get());
-        this.add(ModBlocks.VESSELPLATE_SHEETING_SLAB.get(), block -> createSlabItemTable(ModBlocks.VESSELPLATE_SHEETING_SLAB.get()));
+        this.dropSelf(ModBlocks.HORIZONTAL_REINFORCED_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.VERTICAL_REINFORCED_VESSELPLATE.get());
         this.dropSelf(ModBlocks.RIVETED_VESSELPLATE_STAIRS.get());
         this.add(ModBlocks.RIVETED_VESSELPLATE_SLAB.get(), block -> createSlabItemTable(ModBlocks.RIVETED_VESSELPLATE_SLAB.get()));
         this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE_STAIRS.get());
@@ -75,14 +78,15 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.GRAY_VERTICAL_GRATE.get());
         this.dropSelf(ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get());
 
-        this.dropSelf(ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.GRAY_VERTICAL_REINFORCED_VESSELPLATE.get());
 
-        this.dropSelf(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.GRAY_HORIZONTAL_REINFORCED_VESSELPLATE.get());
         this.dropSelf(ModBlocks.SMOOTH_GRAY_VESSELPLATE.get());
         this.dropSelf(ModBlocks.GRAY_VESSELPLATE_PILLAR.get());
-        this.dropSelf(ModBlocks.GRAY_VESSELPLATE_PANEL.get());
-        this.dropSelf(ModBlocks.GRAY_VESSELPLATE_PANEL_STAIRS.get());
-        this.add(ModBlocks.GRAY_VESSELPLATE_PANEL_SLAB.get(), block -> createSlabItemTable(ModBlocks.GRAY_VESSELPLATE_PANEL_SLAB.get()));
+        this.dropSelf(ModBlocks.GRAY_HORIZONTAL_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.GRAY_VERTICAL_VESSELPLATE.get());
+//        this.dropSelf(ModBlocks.GRAY_VESSELPLATE_PANEL_STAIRS.get());
+//        this.add(ModBlocks.GRAY_VESSELPLATE_PANEL_SLAB.get(), block -> createSlabItemTable(ModBlocks.GRAY_VESSELPLATE_PANEL_SLAB.get()));
         this.dropSelf(ModBlocks.GRAY_RIVETED_VESSELPLATE_STAIRS.get());
         this.add(ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get(), block -> createSlabItemTable(ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get()));
         this.dropSelf(ModBlocks.SMOOTH_GRAY_VESSELPLATE_STAIRS.get());
@@ -108,26 +112,26 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.GRAY_VESSELGLASS.get());
 
         //STRUTS
-        this.dropSelf(ModBlocks.STRUT.get());
-        this.dropSelf(ModBlocks.CATWALK_STRUT.get());
-        this.dropSelf(ModBlocks.CATWALK_STRUT_STAIRS.get());
-        this.add(ModBlocks.CATWALK_STRUT_SLAB.get(), block -> createSlabItemTable(ModBlocks.CATWALK_STRUT_SLAB.get()));
-        this.add(ModBlocks.STRUT_SLAB.get(), block -> createSlabItemTable(ModBlocks.STRUT_SLAB.get()));
-        this.dropSelf(ModBlocks.STRUT_STAIRS.get());
+        this.dropSelf(ModBlocks.TRUSS.get());
+        this.dropSelf(ModBlocks.CATWALK_TRUSS.get());
+        this.dropSelf(ModBlocks.CATWALK_TRUSS_STAIRS.get());
+        this.add(ModBlocks.CATWALK_TRUSS_SLAB.get(), block -> createSlabItemTable(ModBlocks.CATWALK_TRUSS_SLAB.get()));
+        this.add(ModBlocks.TRUSS_SLAB.get(), block -> createSlabItemTable(ModBlocks.TRUSS_SLAB.get()));
+        this.dropSelf(ModBlocks.TRUSS_STAIRS.get());
 
-        this.dropSelf(ModBlocks.GRAY_STRUT.get());
-        this.dropSelf(ModBlocks.GRAY_CATWALK_STRUT.get());
-        this.dropSelf(ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get());
-        this.add(ModBlocks.GRAY_CATWALK_STRUT_SLAB.get(), block -> createSlabItemTable(ModBlocks.GRAY_CATWALK_STRUT_SLAB.get()));
-        this.add(ModBlocks.GRAY_STRUT_SLAB.get(), block -> createSlabItemTable(ModBlocks.GRAY_STRUT_SLAB.get()));
-        this.dropSelf(ModBlocks.GRAY_STRUT_STAIRS.get());
+        this.dropSelf(ModBlocks.GRAY_TRUSS.get());
+        this.dropSelf(ModBlocks.GRAY_CATWALK_TRUSS.get());
+        this.dropSelf(ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.get());
+        this.add(ModBlocks.GRAY_CATWALK_TRUSS_SLAB.get(), block -> createSlabItemTable(ModBlocks.GRAY_CATWALK_TRUSS_SLAB.get()));
+        this.add(ModBlocks.GRAY_TRUSS_SLAB.get(), block -> createSlabItemTable(ModBlocks.GRAY_TRUSS_SLAB.get()));
+        this.dropSelf(ModBlocks.GRAY_TRUSS_STAIRS.get());
 
-        this.dropSelf(ModBlocks.RUSTY_STRUT.get());
-        this.dropSelf(ModBlocks.RUSTY_STRUT_STAIRS.get());
-        this.add(ModBlocks.RUSTY_STRUT_SLAB.get(), block -> createSlabItemTable(ModBlocks.RUSTY_STRUT_SLAB.get()));
-        this.dropSelf(ModBlocks.RUSTY_CATWALK_STRUT.get());
-        this.dropSelf(ModBlocks.RUSTY_CATWALK_STRUT_STAIRS.get());
-        this.add(ModBlocks.RUSTY_CATWALK_STRUT_SLAB.get(), block -> createSlabItemTable(ModBlocks.RUSTY_CATWALK_STRUT_SLAB.get()));
+        this.dropSelf(ModBlocks.RUSTY_TRUSS.get());
+        this.dropSelf(ModBlocks.RUSTY_TRUSS_STAIRS.get());
+        this.add(ModBlocks.RUSTY_TRUSS_SLAB.get(), block -> createSlabItemTable(ModBlocks.RUSTY_TRUSS_SLAB.get()));
+        this.dropSelf(ModBlocks.RUSTY_CATWALK_TRUSS.get());
+        this.dropSelf(ModBlocks.RUSTY_CATWALK_TRUSS_STAIRS.get());
+        this.add(ModBlocks.RUSTY_CATWALK_TRUSS_SLAB.get(), block -> createSlabItemTable(ModBlocks.RUSTY_CATWALK_TRUSS_SLAB.get()));
 
         this.dropSelf(ModBlocks.ENCASED_CABLES.get());
 

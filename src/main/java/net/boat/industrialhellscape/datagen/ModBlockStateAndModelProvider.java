@@ -39,58 +39,58 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         genHorizontalSBI(ModBlocks.PROTOTYPE_MACHINE.get(), build3FaceTexturesBlockModel("prototype_machine","experimental", "prototype_machine_front", "prototype_machine_side", "prototype_machine_top"));
 
         //Vesselplate Blocks
-        genFolderedToggleBlockSBI(ModBlocks.RIVETED_VESSELPLATE_PANEL.get(),"vesselplate","", true, true, "_panel", "","solid");
-        genFolderedDirToggleBlockSBI(ModBlocks.DIRECTIONAL_RIVETED_VESSELPLATE.get(),"vesselplate","",true, true,"horizontal_riveted_vesselplate","vertical_riveted_vesselplate");
+        genFolderedToggleBlockSBI(ModBlocks.RIVETED_VESSELPLATE.get(),"vesselplate","", true, true, "", "","solid");
+        genFolderedToggleBlockSBI(ModBlocks.HORIZONTAL_VESSELPLATE.get(),"vesselplate","",true, true,"","","solid");
+        genFolderedToggleBlockSBI(ModBlocks.VERTICAL_VESSELPLATE.get(),"vesselplate","",true, true,"","", "solid");
 
-        genFolderedToggleBlockSBI(ModBlocks.SMOOTH_VESSELPLATE_TILE.get(),"vesselplate", "", true, true, "_tile","","solid");
-        genFolderedToggleBlockSBI(ModBlocks.VESSELPLATE_SHEETING.get(),"vesselplate","", true, true, "ing", "","solid");
+        genFolderedToggleBlockSBI(ModBlocks.SMOOTH_VESSELPLATE.get(),"vesselplate", "", true, true, "","","solid");
+        genFolderedToggleBlockSBI(ModBlocks.HORIZONTAL_REINFORCED_VESSELPLATE.get(),"vesselplate","", true, true, "", "","solid");
+        genFolderedToggleBlockSBI(ModBlocks.VERTICAL_REINFORCED_VESSELPLATE.get(),"vesselplate","", true, true, "", "","solid");
 
         genStairsWithRenderTypeSBI(ModBlocks.RIVETED_VESSELPLATE_STAIRS.get(),"vesselplate","riveted_vesselplate","riveted_vesselplate","riveted_vesselplate","solid");
-        genStairsWithRenderTypeSBI(ModBlocks.VESSELPLATE_SHEETING_STAIRS.get(),"vesselplate","vesselplate_sheet","vesselplate_sheet","vesselplate_sheet","solid");
         genStairsWithRenderTypeSBI(ModBlocks.SMOOTH_VESSELPLATE_STAIRS.get(),"vesselplate","smooth_vesselplate","smooth_vesselplate","smooth_vesselplate","solid");
 
-        genSlabsWithCustomDoubleSBI(ModBlocks.RIVETED_VESSELPLATE_SLAB.get(), ModBlocks.RIVETED_VESSELPLATE_PANEL.get(),"vesselplate","riveted_vesselplate_double_slab", "riveted_vesselplate_slab","riveted_vesselplate","","");
-        genSlabsWithCustomDoubleSBI(ModBlocks.SMOOTH_VESSELPLATE_SLAB.get(), ModBlocks.SMOOTH_VESSELPLATE_TILE.get(),"vesselplate","smooth_vesselplate_double_slab","smooth_vesselplate_slab", "smooth_vesselplate_tile","_tile","");
-        genSlabsWithCustomDoubleSBI(ModBlocks.VESSELPLATE_SHEETING_SLAB.get(), ModBlocks.VESSELPLATE_SHEETING.get(),"vesselplate","vesselplate_sheeting_double_slab","vesselplate_sheeting_slab","vesselplate_sheeting","ing","");
+        genSlabsWithCustomDoubleSBI(ModBlocks.RIVETED_VESSELPLATE_SLAB.get(), ModBlocks.RIVETED_VESSELPLATE.get(),"vesselplate","riveted_vesselplate_double_slab", "riveted_vesselplate","riveted_vesselplate","","");
+        genSlabsWithCustomDoubleSBI(ModBlocks.SMOOTH_VESSELPLATE_SLAB.get(), ModBlocks.SMOOTH_VESSELPLATE.get(),"vesselplate","smooth_vesselplate_double_slab","smooth_vesselplate", "smooth_vesselplate","","");
 
         genFolderedToggleBlockSBI(ModBlocks.GRAY_RIVETED_VESSELPLATE.get(),"vesselplate","",true, true,"","","solid");
-        genFolderedToggleBlockSBI(ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get(),"vesselplate","",true, true,"","", "solid");
-        genFolderedToggleBlockSBI(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get(),"vesselplate","",true, true,"","", "solid");
+        genFolderedToggleBlockSBI(ModBlocks.GRAY_VERTICAL_REINFORCED_VESSELPLATE.get(),"vesselplate","",true, true,"","", "solid");
+        genFolderedToggleBlockSBI(ModBlocks.GRAY_HORIZONTAL_REINFORCED_VESSELPLATE.get(),"vesselplate","",true, true,"","", "solid");
         genFolderedToggleBlockSBI(ModBlocks.SMOOTH_GRAY_VESSELPLATE.get(),"vesselplate", "", true, true, "","","solid");
-        genFolderedToggleBlockSBI(ModBlocks.GRAY_VESSELPLATE_PANEL.get(),"vesselplate","", true, true, "", "","solid");
+        genFolderedToggleBlockSBI(ModBlocks.GRAY_HORIZONTAL_VESSELPLATE.get(),"vesselplate","", true, true, "", "","solid");
+        genFolderedToggleBlockSBI(ModBlocks.GRAY_VERTICAL_VESSELPLATE.get(),"vesselplate","", true, true, "", "","solid");
 
         genStairsWithRenderTypeSBI(ModBlocks.GRAY_RIVETED_VESSELPLATE_STAIRS.get(),"vesselplate","gray_riveted_vesselplate","gray_riveted_vesselplate","gray_riveted_vesselplate","solid");
-        genStairsWithRenderTypeSBI(ModBlocks.GRAY_VESSELPLATE_PANEL_STAIRS.get(),"vesselplate","gray_vesselplate_panel","gray_vesselplate_panel","gray_vesselplate_panel","solid");
+        //genStairsWithRenderTypeSBI(ModBlocks.GRAY_VESSELPLATE_PANEL_STAIRS.get(),"vesselplate","gray_vesselplate_panel","gray_vesselplate_panel","gray_vesselplate_panel","solid");
         genStairsWithRenderTypeSBI(ModBlocks.SMOOTH_GRAY_VESSELPLATE_STAIRS.get(),"vesselplate","smooth_gray_vesselplate","smooth_gray_vesselplate","smooth_gray_vesselplate","solid");
 
         genSlabsWithCustomDoubleSBI(ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get(), ModBlocks.GRAY_RIVETED_VESSELPLATE.get(),"vesselplate","gray_riveted_vesselplate_double_slab","gray_riveted_vesselplate","gray_riveted_vesselplate","","");
         genSlabsWithCustomDoubleSBI(ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get(), ModBlocks.SMOOTH_GRAY_VESSELPLATE.get(),"vesselplate","smooth_gray_vesselplate_double_slab","smooth_gray_vesselplate", "smooth_gray_vesselplate","","");
-        genSlabsWithCustomDoubleSBI(ModBlocks.GRAY_VESSELPLATE_PANEL_SLAB.get(), ModBlocks.GRAY_VESSELPLATE_PANEL.get(),"vesselplate","gray_vesselplate_panel_double_slab","gray_vesselplate_panel","gray_vesselplate_panel","","");
+        //genSlabsWithCustomDoubleSBI(ModBlocks.GRAY_VESSELPLATE_PANEL_SLAB.get(), ModBlocks.GRAY_HORIZONTAL_VESSELPLATE.get(),"vesselplate","gray_vesselplate_panel_double_slab","gray_vesselplate_panel","gray_vesselplate_panel","","");
 
         genFolderedDirToggleBlockSBI(ModBlocks.RUSTY_DIRECTIONAL_RIVETED_VESSELPLATE.get(),"vesselplate","",true, true,"rusty_horizontal_riveted_vesselplate","rusty_vertical_riveted_vesselplate");
 
         genFolderedToggleBlockSBI(ModBlocks.RUSTY_RIVETED_VESSELPLATE_PANEL.get(),"vesselplate","", true, true, "_panel", "","solid");
-        genStairsWithRenderTypeSBI(ModBlocks.RUSTY_RIVETED_VESSELPLATE_STAIRS.get(),"vesselplate","gray_riveted_vesselplate_slab","rusty_riveted_vesselplate","rusty_riveted_vesselplate","solid");
+        genStairsWithRenderTypeSBI(ModBlocks.RUSTY_RIVETED_VESSELPLATE_STAIRS.get(),"vesselplate","rusty_riveted_vesselplate_slab","rusty_riveted_vesselplate","rusty_riveted_vesselplate","solid");
         genSlabsWithCustomDoubleSBI(ModBlocks.RUSTY_RIVETED_VESSELPLATE_SLAB.get(), ModBlocks.RUSTY_RIVETED_VESSELPLATE_PANEL.get(),"vesselplate","rusty_riveted_vesselplate_double_slab","rusty_riveted_vesselplate_slab","rusty_riveted_vesselplate_panel","_panel","");
-
         genFolderedToggleBlockSBI(ModBlocks.RUSTY_VESSELPLATE_SHEETING.get(),"vesselplate","", true, true, "ing", "","solid");
         genStairsWithRenderTypeSBI(ModBlocks.RUSTY_VESSELPLATE_SHEETING_STAIRS.get(),"vesselplate","rusty_vesselplate_sheet","rusty_vesselplate_sheet","rusty_vesselplate_sheet","solid");
         genSlabsWithCustomDoubleSBI(ModBlocks.RUSTY_VESSELPLATE_SHEETING_SLAB.get(), ModBlocks.RUSTY_VESSELPLATE_SHEETING.get(),"vesselplate","rusty_vesselplate_sheeting_double_slab","rusty_vesselplate_sheeting_slab","rusty_vesselplate_sheeting","ing","");
-
         genFolderedToggleBlockSBI(ModBlocks.SMOOTH_RUSTY_VESSELPLATE_TILE.get(),"vesselplate", "", true, true, "_tile","","solid");
         genStairsWithRenderTypeSBI(ModBlocks.SMOOTH_RUSTY_VESSELPLATE_STAIRS.get(),"vesselplate","smooth_rusty_vesselplate","smooth_rusty_vesselplate","smooth_rusty_vesselplate","solid");
         genSlabsWithCustomDoubleSBI(ModBlocks.SMOOTH_RUSTY_VESSELPLATE_SLAB.get(), ModBlocks.SMOOTH_RUSTY_VESSELPLATE_TILE.get(),"vesselplate","smooth_rusty_vesselplate_double_slab","smooth_rusty_vesselplate_slab", "smooth_rusty_vesselplate_tile","_tile","");
 
         //Grate Blocks
-        genFolderedToggleBlockSBI(ModBlocks.GRATE.get(),"grate","",true, true,"grate","vertical_grate","solid");
+        genFolderedToggleBlock2SBI(ModBlocks.HORIZONTAL_GRATE.get(),"grate","solid");
+        genFolderedToggleBlock2SBI(ModBlocks.VERTICAL_GRATE.get(),"grate","solid");
+        genFolderedToggleBlock2SBI(ModBlocks.HORIZONTAL_CUTOUT_GRATE.get(),"grate","cutout");
+        genFolderedToggleBlock2SBI(ModBlocks.VERTICAL_CUTOUT_GRATE.get(),"grate","cutout");
+
 
         genFolderedToggleBlock2SBI(ModBlocks.GRAY_HORIZONTAL_GRATE.get(),"grate","solid");
         genFolderedToggleBlock2SBI(ModBlocks.GRAY_VERTICAL_GRATE.get(),"grate","solid");
         genFolderedToggleBlock2SBI(ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get(),"grate","cutout");
         genFolderedToggleBlock2SBI(ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get(),"grate","cutout");
-
-
-        genFolderedToggleBlockSBI(ModBlocks.SEETHROUGH_GRATE.get(), "grate", "grate", true,true, "", "","cutout");
 
         genFolderedToggleBlockSBI(ModBlocks.RUSTY_GRATE.get(),"grate","",true, true,"grate","vertical_grate","solid");
         genFolderedToggleBlockSBI(ModBlocks.RUSTY_SEETHROUGH_GRATE.get(),"grate","grate",true,true, "see-through","vertical_see-through","cutout");
@@ -193,30 +193,30 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
         genCornerShapedBlocksSI(ModBlocks.SMALL_BLACK_BOLTED_BRACKET.get(),"bolted_bracket");
         genCornerShapedBlocksSI(ModBlocks.SMALL_RUSTY_BOLTED_BRACKET.get(),"bolted_bracket");
         
-        //Strut Blocks
-        genAntiCullBLock(ModBlocks.STRUT.get(),"strut", "strut","strut", "cutout");
-        genStairsWithRenderTypeSBI(ModBlocks.STRUT_STAIRS.get(),"strut","reinforced_strut","strut","strut","cutout");
-        genSlabBlockSBI(ModBlocks.STRUT_SLAB.get(), "strut", "strut", "strut","strut","cutout");
+        //truss Blocks
+        genAntiCullBLock(ModBlocks.TRUSS.get(),"truss", "truss","truss", "cutout");
+        genStairsWithRenderTypeSBI(ModBlocks.TRUSS_STAIRS.get(),"truss","reinforced_truss","truss","truss","cutout");
+        genSlabBlockSBI(ModBlocks.TRUSS_SLAB.get(), "truss", "truss", "truss","truss","cutout");
 
-        genAntiCullBLock(ModBlocks.CATWALK_STRUT.get(),"strut", "strut","floorgrate_catwalk", "cutout");
-        genStairsWithRenderTypeSBI(ModBlocks.CATWALK_STRUT_STAIRS.get(),"strut","reinforced_strut","strut","floorgrate_catwalk","cutout");
-        genSlabBlockSBI(ModBlocks.CATWALK_STRUT_SLAB.get(), "strut", "strut", "floorgrate_catwalk","strut","cutout");
+        genAntiCullBLock(ModBlocks.CATWALK_TRUSS.get(),"truss", "truss","floorgrate_catwalk", "cutout");
+        genStairsWithRenderTypeSBI(ModBlocks.CATWALK_TRUSS_STAIRS.get(),"truss","reinforced_truss","truss","floorgrate_catwalk","cutout");
+        genSlabBlockSBI(ModBlocks.CATWALK_TRUSS_SLAB.get(), "truss", "truss", "floorgrate_catwalk","truss","cutout");
 
-        genAntiCullBLock(ModBlocks.GRAY_STRUT.get(),"strut", "gray_strut","gray_strut", "cutout");
-        genStairsWithRenderTypeSBI(ModBlocks.GRAY_STRUT_STAIRS.get(),"strut","gray_reinforced_strut","gray_strut","gray_strut","cutout");
-        genSlabBlockSBI(ModBlocks.GRAY_STRUT_SLAB.get(), "strut", "gray_strut", "gray_strut","gray_strut","cutout");
+        genAntiCullBLock(ModBlocks.GRAY_TRUSS.get(),"truss", "gray_truss","gray_truss", "cutout");
+        genStairsWithRenderTypeSBI(ModBlocks.GRAY_TRUSS_STAIRS.get(),"truss","gray_reinforced_truss","gray_truss","gray_truss","cutout");
+        genSlabBlockSBI(ModBlocks.GRAY_TRUSS_SLAB.get(), "truss", "gray_truss", "gray_truss","gray_truss","cutout");
 
-        genAntiCullBLock(ModBlocks.GRAY_CATWALK_STRUT.get(),"strut", "gray_strut","gray_floorgrate_catwalk", "cutout");
-        genStairsWithRenderTypeSBI(ModBlocks.GRAY_CATWALK_STRUT_STAIRS.get(),"strut","gray_reinforced_strut","gray_strut","gray_floorgrate_catwalk","cutout");
-        genSlabBlockSBI(ModBlocks.GRAY_CATWALK_STRUT_SLAB.get(), "strut", "gray_strut", "gray_floorgrate_catwalk","gray_strut", "cutout");
+        genAntiCullBLock(ModBlocks.GRAY_CATWALK_TRUSS.get(),"truss", "gray_truss","gray_floorgrate_catwalk", "cutout");
+        genStairsWithRenderTypeSBI(ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.get(),"truss","gray_reinforced_truss","gray_truss","gray_floorgrate_catwalk","cutout");
+        genSlabBlockSBI(ModBlocks.GRAY_CATWALK_TRUSS_SLAB.get(), "truss", "gray_truss", "gray_floorgrate_catwalk","gray_truss", "cutout");
 
-        genAntiCullBLock(ModBlocks.RUSTY_STRUT.get(),"strut", "rusty_strut","rusty_strut", "cutout");
-        genStairsWithRenderTypeSBI(ModBlocks.RUSTY_STRUT_STAIRS.get(),"strut","rusty_reinforced_strut","rusty_strut","rusty_strut","cutout");
-        genSlabBlockSBI(ModBlocks.RUSTY_STRUT_SLAB.get(), "strut", "rusty_strut", "rusty_strut","rusty_strut","cutout");
+        genAntiCullBLock(ModBlocks.RUSTY_TRUSS.get(),"truss", "rusty_truss","rusty_truss", "cutout");
+        genStairsWithRenderTypeSBI(ModBlocks.RUSTY_TRUSS_STAIRS.get(),"truss","rusty_reinforced_truss","rusty_truss","rusty_truss","cutout");
+        genSlabBlockSBI(ModBlocks.RUSTY_TRUSS_SLAB.get(), "truss", "rusty_truss", "rusty_truss","rusty_truss","cutout");
 
-        genAntiCullBLock(ModBlocks.RUSTY_CATWALK_STRUT.get(),"strut", "rusty_strut","rusty_floorgrate_catwalk", "cutout");
-        genStairsWithRenderTypeSBI(ModBlocks.RUSTY_CATWALK_STRUT_STAIRS.get(),"strut","rusty_reinforced_strut","rusty_strut","rusty_floorgrate_catwalk","cutout");
-        genSlabBlockSBI(ModBlocks.RUSTY_CATWALK_STRUT_SLAB.get(), "strut", "rusty_strut", "rusty_floorgrate_catwalk","rusty_strut", "cutout");
+        genAntiCullBLock(ModBlocks.RUSTY_CATWALK_TRUSS.get(),"truss", "rusty_truss","rusty_floorgrate_catwalk", "cutout");
+        genStairsWithRenderTypeSBI(ModBlocks.RUSTY_CATWALK_TRUSS_STAIRS.get(),"truss","rusty_reinforced_truss","rusty_truss","rusty_floorgrate_catwalk","cutout");
+        genSlabBlockSBI(ModBlocks.RUSTY_CATWALK_TRUSS_SLAB.get(), "truss", "rusty_truss", "rusty_floorgrate_catwalk","rusty_truss", "cutout");
 
         //Doors and Trapdoors
         genDoorSBI(ModBlocks.VESSELPLATE_DOOR.get() , "cutout");
@@ -291,7 +291,7 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
     }
 
     private void genAntiCullBLock(Block block, String folderName, String side, String top, String renderType) {
-        //For Strut blocks. A side and top texture are required to accomodate Catwalk Struts
+        //For truss blocks. A side and top texture are required to accomodate Catwalk trusss
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         simpleBlock(block, buildAntiCullBlock(stringName, folderName, side, top, renderType));
 
