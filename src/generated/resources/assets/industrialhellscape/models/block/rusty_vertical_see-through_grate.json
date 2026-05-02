@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "all": "industrialhellscape:block/grate/rusty_vertical_see-through_grate"
-  }
-}

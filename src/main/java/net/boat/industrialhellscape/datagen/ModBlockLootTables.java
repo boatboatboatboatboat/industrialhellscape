@@ -69,9 +69,14 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.add(ModBlocks.SMOOTH_VESSELPLATE_SLAB.get(), block -> createSlabItemTable(ModBlocks.SMOOTH_VESSELPLATE_SLAB.get()));
 
         this.dropSelf(ModBlocks.GRAY_RIVETED_VESSELPLATE.get());
-        this.dropSelf(ModBlocks.GRAY_GRATE.get());
-        this.dropSelf(ModBlocks.GRAY_SEETHROUGH_GRATE.get());
+
+        this.dropSelf(ModBlocks.GRAY_HORIZONTAL_GRATE.get());
+        this.dropSelf(ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get());
+        this.dropSelf(ModBlocks.GRAY_VERTICAL_GRATE.get());
+        this.dropSelf(ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get());
+
         this.dropSelf(ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get());
+
         this.dropSelf(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get());
         this.dropSelf(ModBlocks.SMOOTH_GRAY_VESSELPLATE.get());
         this.dropSelf(ModBlocks.GRAY_VESSELPLATE_PILLAR.get());

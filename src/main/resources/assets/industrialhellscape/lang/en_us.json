@@ -203,9 +203,14 @@
   "block.industrialhellscape.rusty_duct": "Rusty Duct",
   "block.industrialhellscape.rusty_duct_vent": "Rusty Duct Vent",
   "block.industrialhellscape.see-through_grate": "See-Through Grate",
-  "block.industrialhellscape.gray_see-through_grate": "Gray See-Through Grate",
+
+  "block.industrialhellscape.gray_horizontal_grate": "Gray Grate",
+  "block.industrialhellscape.gray_vertical_grate": "Gray Grate",
+  "block.industrialhellscape.gray_horizontal_cutout_grate": "Gray Cutout Grate",
+  "block.industrialhellscape.gray_vertical_cutout_grate": "Gray Cutout Grate",
+
   "block.industrialhellscape.grate": "Grate",
-  "block.industrialhellscape.gray_grate": "Gray Grate",
+
   "block.industrialhellscape.rusty_grate": "Rusty Grate",
   "block.industrialhellscape.rusty_see-through_grate": "Rusty See-Through Grate",
 

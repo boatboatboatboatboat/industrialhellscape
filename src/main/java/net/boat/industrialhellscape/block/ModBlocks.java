@@ -332,19 +332,33 @@ public class ModBlocks {
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
             )
     );
-    public static final RegistryObject<Block> GRAY_GRATE = registerBlockAndBlockItem("gray_grate",
-            () -> new SimpleTextureToggleBlock(BlockBehaviour
-                    .Properties.copy(Blocks.IRON_BLOCK)
-                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
-            )
-    );
-    public static final RegistryObject<Block> SEETHROUGH_GRATE = registerBlockAndBlockItem("see-through_grate",
+    public static final RegistryObject<Block> SEETHROUGH_GRATE = registerBlockAndBlockItem("seethrough_grate",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.copy(Blocks.GLASS)
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
             )
     );
-    public static final RegistryObject<Block> GRAY_SEETHROUGH_GRATE = registerBlockAndBlockItem("gray_see-through_grate",
+
+    public static final RegistryObject<Block> GRAY_HORIZONTAL_GRATE = registerBlockAndBlockItem("gray_horizontal_grate",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
+            )
+    );
+    public static final RegistryObject<Block> GRAY_VERTICAL_GRATE = registerBlockAndBlockItem("gray_vertical_grate",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
+                    .Properties.copy(Blocks.IRON_BLOCK)
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
+            )
+    );
+
+    public static final RegistryObject<Block> GRAY_HORIZONTAL_CUTOUT_GRATE = registerBlockAndBlockItem("gray_horizontal_cutout_grate",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
+                    .Properties.copy(Blocks.GLASS)
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
+            )
+    );
+    public static final RegistryObject<Block> GRAY_VERTICAL_CUTOUT_GRATE = registerBlockAndBlockItem("gray_vertical_cutout_grate",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.copy(Blocks.GLASS)
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)

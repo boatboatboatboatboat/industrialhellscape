@@ -60,8 +60,10 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.GRATE.get(),
                         ModBlocks.SEETHROUGH_GRATE.get(),
 
-                        ModBlocks.GRAY_GRATE.get(),
-                        ModBlocks.GRAY_SEETHROUGH_GRATE.get(),
+                        ModBlocks.GRAY_HORIZONTAL_GRATE.get(),
+                        ModBlocks.GRAY_VERTICAL_GRATE.get(),
+                        ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get(),
+                        ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get(),
 
                         ModBlocks.ENCASED_CABLES.get()
                 );
@@ -375,7 +377,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 )
                 .add(
                         ModBlocks.SEETHROUGH_GRATE.get(),
-                        ModBlocks.GRAY_SEETHROUGH_GRATE.get(),
+                        ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get(),
+                        ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get(),
                         ModBlocks.RUSTY_SEETHROUGH_GRATE.get()
                 );
 

@@ -83,9 +83,15 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
 
         //Grate Blocks
         genFolderedToggleBlockSBI(ModBlocks.GRATE.get(),"grate","",true, true,"grate","vertical_grate","solid");
-        genFolderedToggleBlockSBI(ModBlocks.GRAY_GRATE.get(),"grate","",true, true, "grate","vertical_grate","solid");
-        genFolderedToggleBlockSBI(ModBlocks.SEETHROUGH_GRATE.get(), "grate", "grate", true,true, "see-through", "vertical_see-through","cutout");
-        genFolderedToggleBlockSBI(ModBlocks.GRAY_SEETHROUGH_GRATE.get(),"grate","grate",true,true, "see-through","vertical_see-through","cutout");
+
+        genFolderedToggleBlock2SBI(ModBlocks.GRAY_HORIZONTAL_GRATE.get(),"grate","solid");
+        genFolderedToggleBlock2SBI(ModBlocks.GRAY_VERTICAL_GRATE.get(),"grate","solid");
+        genFolderedToggleBlock2SBI(ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get(),"grate","cutout");
+        genFolderedToggleBlock2SBI(ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get(),"grate","cutout");
+
+
+        genFolderedToggleBlockSBI(ModBlocks.SEETHROUGH_GRATE.get(), "grate", "grate", true,true, "", "","cutout");
+
         genFolderedToggleBlockSBI(ModBlocks.RUSTY_GRATE.get(),"grate","",true, true,"grate","vertical_grate","solid");
         genFolderedToggleBlockSBI(ModBlocks.RUSTY_SEETHROUGH_GRATE.get(),"grate","grate",true,true, "see-through","vertical_see-through","cutout");
 
@@ -536,6 +542,30 @@ public class ModBlockStateAndModelProvider extends BlockStateProvider {
                             .modelFile(models().getExistingFile(modLoc(modelToUse)))
                             .build();
                 });
+        //GENERATE ITEM MODEL
+        simpleBlockItem(block, models().getExistingFile(modLoc(baseModelPath)));
+    }
+
+    private void genFolderedToggleBlock2SBI(Block block, String textureSubFolder, String renderType) {
+
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+
+        String baseModelPath = "block/"+stringName;
+
+
+        String pathToTexture = "block/" + (textureSubFolder+(textureSubFolder.isEmpty() ? "":"/"));
+        String texturePathWithFolder =  pathToTexture + stringName;
+
+        //GENERATE BASE MODEL (DEFAULT STATE), optional if not already present
+        models().withExistingParent(stringName, mcLoc("block/cube_all"))
+                    .texture("all", modLoc(texturePathWithFolder)).renderType(renderType);
+
+        //GENERATE BLOCKSTATES
+        getVariantBuilder(block)
+                .forAllStates(state -> ConfiguredModel.builder()
+                        .modelFile(models().getExistingFile(modLoc(baseModelPath)))
+                        .build());
+
         //GENERATE ITEM MODEL
         simpleBlockItem(block, models().getExistingFile(modLoc(baseModelPath)));
     }

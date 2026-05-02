@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 1,
-  "ingredient": {
-    "tag": "industrialhellscape:door_items"
-  },
-  "result": "industrialhellscape:vesselplate_door"
-}

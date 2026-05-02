@@ -67,10 +67,14 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.VESSELPLATE_SHEETING_SLAB.get());
 
                         output.accept(ModBlocks.GRAY_RIVETED_VESSELPLATE.get());
-                        output.accept(ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get());
+                        //output.accept(ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get());
                         output.accept(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get());
-                        output.accept(ModBlocks.GRAY_GRATE.get());
-                        output.accept(ModBlocks.GRAY_SEETHROUGH_GRATE.get());
+
+                        output.accept(ModBlocks.GRAY_HORIZONTAL_GRATE.get());
+                        output.accept(ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get());
+                        //output.accept(ModBlocks.GRAY_VERTICAL_GRATE.get());
+                        //output.accept(ModBlocks.GRAY_VERTICAL_SEETHROUGH_GRATE.get());
+
                         output.accept(ModBlocks.SMOOTH_GRAY_VESSELPLATE.get());
                         output.accept(ModBlocks.GRAY_VESSELPLATE_PILLAR.get());
                         output.accept(ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get());

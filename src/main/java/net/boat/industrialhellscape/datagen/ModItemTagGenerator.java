@@ -79,8 +79,10 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.GRATE.get().asItem(),
                         ModBlocks.SEETHROUGH_GRATE.get().asItem(),
 
-                        ModBlocks.GRAY_GRATE.get().asItem(),
-                        ModBlocks.GRAY_SEETHROUGH_GRATE.get().asItem(),
+                        ModBlocks.GRAY_HORIZONTAL_GRATE.get().asItem(),
+                        ModBlocks.GRAY_VERTICAL_GRATE.get().asItem(),
+                        ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get().asItem(),
+                        ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get().asItem(),
 
                         ModBlocks.ENCASED_CABLES.get().asItem()
                 );

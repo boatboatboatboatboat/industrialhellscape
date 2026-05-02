@@ -57,8 +57,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.GRATE.get().asItem(),
             ModBlocks.SEETHROUGH_GRATE.get().asItem(),
 
-            ModBlocks.GRAY_GRATE.get().asItem(),
-            ModBlocks.GRAY_SEETHROUGH_GRATE.get().asItem(),
+            ModBlocks.GRAY_HORIZONTAL_GRATE.get().asItem(),
+            ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get().asItem(),
 
             ModBlocks.ENCASED_CABLES.get().asItem() //Temporary location
     );
@@ -477,6 +477,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         //Create GRAY Horizontal Riveted Vesselplate
         SingleBlockShapelessRecipe(ModBlocks.GRAY_HORIZONTAL_RIVETED_VESSELPLATE.get(), ModBlocks.GRAY_VERTICAL_RIVETED_VESSELPLATE.get(), pWriter);
+
+        //Create GRAY Horizontal Grate
+        SingleBlockShapelessRecipe(ModBlocks.GRAY_HORIZONTAL_GRATE.get(), ModBlocks.GRAY_VERTICAL_GRATE.get(), pWriter);
+
+        //Create GRAY Horizontal See-through Grate
+        SingleBlockShapelessRecipe(ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get(), ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get(), pWriter);
+
         //---------- END OF SPECIAL ITEM CRAFTING ----------
 
         //---------- INTERCHANGEABLE STONECUTTER CRAFTING ----------
