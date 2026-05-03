@@ -51,9 +51,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.DUCT_VENT.get().asItem(),
             ModBlocks.RUSTY_DUCT_VENT.get().asItem(),
 
-            ModBlocks.RUSTY_GRATE.get().asItem(),
-            ModBlocks.RUSTY_SEETHROUGH_GRATE.get().asItem(),
-
             ModBlocks.HORIZONTAL_GRATE.get().asItem(),
             ModBlocks.HORIZONTAL_CUTOUT_GRATE.get().asItem(),
 
@@ -77,15 +74,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
             ModBlocks.GRAY_CATWALK_TRUSS.get().asItem(),
             ModBlocks.GRAY_CATWALK_TRUSS_SLAB.get().asItem(),
-            ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.get().asItem(),
-
-            ModBlocks.RUSTY_TRUSS.get().asItem(),
-            ModBlocks.RUSTY_TRUSS_STAIRS.get().asItem(),
-            ModBlocks.RUSTY_TRUSS_SLAB.get().asItem(),
-
-            ModBlocks.RUSTY_CATWALK_TRUSS.get().asItem(),
-            ModBlocks.RUSTY_CATWALK_TRUSS_STAIRS.get().asItem(),
-            ModBlocks.RUSTY_CATWALK_TRUSS_SLAB.get().asItem()
+            ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.get().asItem()
     );
 
     private static final List<ItemLike> VESSELPLATE_STONECUT_OUTPUT = List.of(
@@ -107,20 +96,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.GRAY_RIVETED_VESSELPLATE_STAIRS.get().asItem(),
             ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get().asItem(),
 
-            ModBlocks.RUSTY_RIVETED_VESSELPLATE_PANEL.get().asItem(),
-            ModBlocks.RUSTY_RIVETED_VESSELPLATE_STAIRS.get().asItem(),
-            ModBlocks.RUSTY_RIVETED_VESSELPLATE_SLAB.get().asItem(),
-
-            ModBlocks.RUSTY_VESSELPLATE_SHEETING.get().asItem(),
-            ModBlocks.RUSTY_VESSELPLATE_SHEETING_STAIRS.get().asItem(),
-            ModBlocks.RUSTY_VESSELPLATE_SHEETING_SLAB.get().asItem(),
-
-            ModBlocks.SMOOTH_RUSTY_VESSELPLATE_TILE.get().asItem(),
-            ModBlocks.SMOOTH_RUSTY_VESSELPLATE_STAIRS.get().asItem(),
-            ModBlocks.SMOOTH_RUSTY_VESSELPLATE_SLAB.get().asItem(),
-
-            ModBlocks.RUSTY_VESSELPLATE_PILLAR.get().asItem(),
-            ModBlocks.RUSTY_DIRECTIONAL_RIVETED_VESSELPLATE.get().asItem()
+            ModBlocks.RUSTY_VESSELPLATE_PILLAR.get().asItem()
     );
     private static final List<ItemLike> ROCKRETE_STONECUT_OUTPUT = List.of(
             

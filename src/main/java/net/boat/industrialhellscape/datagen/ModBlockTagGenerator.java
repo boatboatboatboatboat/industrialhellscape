@@ -37,15 +37,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
                         ModBlocks.GRAY_CATWALK_TRUSS.get(),
                         ModBlocks.GRAY_CATWALK_TRUSS_SLAB.get(),
-                        ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.get(),
-
-                        ModBlocks.RUSTY_TRUSS.get(),
-                        ModBlocks.RUSTY_TRUSS_STAIRS.get(),
-                        ModBlocks.RUSTY_TRUSS_SLAB.get(),
-
-                        ModBlocks.RUSTY_CATWALK_TRUSS.get(),
-                        ModBlocks.RUSTY_CATWALK_TRUSS_STAIRS.get(),
-                        ModBlocks.RUSTY_CATWALK_TRUSS_SLAB.get()
+                        ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.get()
                 );
         this.tag(ModTags.Blocks.HVAC_BLOCKS)
                 .add(
@@ -54,9 +46,6 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
                         ModBlocks.DUCT_VENT.get(),
                         ModBlocks.RUSTY_DUCT_VENT.get(),
-
-                        ModBlocks.RUSTY_GRATE.get(),
-                        ModBlocks.RUSTY_SEETHROUGH_GRATE.get(),
 
                         ModBlocks.HORIZONTAL_GRATE.get(),
                         ModBlocks.VERTICAL_GRATE.get(),
@@ -102,17 +91,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.SMOOTH_GRAY_VESSELPLATE_STAIRS.get(),
                         ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get(),
 
-                        ModBlocks.RUSTY_RIVETED_VESSELPLATE_PANEL.get(),
-                        ModBlocks.RUSTY_RIVETED_VESSELPLATE_STAIRS.get(),
-                        ModBlocks.RUSTY_RIVETED_VESSELPLATE_SLAB.get(),
-                        ModBlocks.RUSTY_VESSELPLATE_SHEETING.get(),
-                        ModBlocks.RUSTY_VESSELPLATE_SHEETING_STAIRS.get(),
-                        ModBlocks.RUSTY_VESSELPLATE_SHEETING_SLAB.get(),
-                        ModBlocks.RUSTY_VESSELPLATE_PILLAR.get(),
-                        ModBlocks.RUSTY_DIRECTIONAL_RIVETED_VESSELPLATE.get(),
-                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE_TILE.get(),
-                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE_STAIRS.get(),
-                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE_SLAB.get()
+                        ModBlocks.RUSTY_VESSELPLATE_PILLAR.get()
+
                 );
 
         this.tag(ModTags.Blocks.VESSELGLASS_BLOCKS)
@@ -383,9 +363,9 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(
                         ModBlocks.HORIZONTAL_CUTOUT_GRATE.get(),
                         ModBlocks.VERTICAL_CUTOUT_GRATE.get(),
+
                         ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get(),
-                        ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get(),
-                        ModBlocks.RUSTY_SEETHROUGH_GRATE.get()
+                        ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get()
                 );
 
         this.tag(ModTags.Blocks.MOD_CREATE_SIMPLE_MOUNTED_STORAGE)

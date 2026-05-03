@@ -59,12 +59,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.GRAY_TRUSS.get().asItem(),
                         ModBlocks.GRAY_TRUSS_STAIRS.get().asItem(),
                         ModBlocks.GRAY_CATWALK_TRUSS.get().asItem(),
-                        ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.get().asItem(),
-
-                        ModBlocks.RUSTY_TRUSS.get().asItem(),
-                        ModBlocks.RUSTY_TRUSS_STAIRS.get().asItem(),
-                        ModBlocks.RUSTY_CATWALK_TRUSS.get().asItem(),
-                        ModBlocks.RUSTY_CATWALK_TRUSS_STAIRS.get().asItem()
+                        ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.get().asItem()
                 );
         this.tag(ModTags.Items.HVAC_SMELTABLE_ITEM)
                 .add(
@@ -72,9 +67,6 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModBlocks.RUSTY_DUCT.get().asItem(),
                         ModBlocks.DUCT_VENT.get().asItem(),
                         ModBlocks.RUSTY_DUCT_VENT.get().asItem(),
-
-                        ModBlocks.RUSTY_GRATE.get().asItem(),
-                        ModBlocks.RUSTY_SEETHROUGH_GRATE.get().asItem(),
 
                         ModBlocks.HORIZONTAL_GRATE.get().asItem(),
                         ModBlocks.VERTICAL_GRATE.get().asItem(),
@@ -122,17 +114,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 
                         ModBlocks.GRAY_RIVETED_VESSELPLATE_STAIRS.get().asItem(),
 
-                        ModBlocks.RUSTY_VESSELPLATE_PILLAR.get().asItem(),
-                        ModBlocks.RUSTY_RIVETED_VESSELPLATE_PANEL.get().asItem(),
-                        ModBlocks.RUSTY_RIVETED_VESSELPLATE_STAIRS.get().asItem(),
-
-                        ModBlocks.RUSTY_VESSELPLATE_SHEETING.get().asItem(),
-                        ModBlocks.RUSTY_VESSELPLATE_SHEETING_STAIRS.get().asItem(),
-
-                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE_TILE.get().asItem(),
-                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE_STAIRS.get().asItem(),
-
-                        ModBlocks.RUSTY_DIRECTIONAL_RIVETED_VESSELPLATE.get().asItem()
+                        ModBlocks.RUSTY_VESSELPLATE_PILLAR.get().asItem()
 
                 //NO HALF BLOCKS HERE
                 );

@@ -85,10 +85,9 @@ public class IndustrialHellscape {
             removeAndReplace(ModBlockMappings, ModItemMappings,"light_gray_rockrete_rebar", ModBlocks.GREEN_ROCKRETE.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"light_gray_rockrete_stairs", ModBlocks.GREEN_ROCKRETE_STAIRS.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"light_gray_rockrete_slab", ModBlocks.GREEN_ROCKRETE_SLAB.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"vesselplate_grate_block", ModBlocks.GRATE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"vesselplate_grate", ModBlocks.GRATE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"vesselplate_grate_block", ModBlocks.HORIZONTAL_GRATE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"vesselplate_grate", ModBlocks.HORIZONTAL_GRATE.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"gray_vesselplate_grate", ModBlocks.GRAY_HORIZONTAL_GRATE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"rusty_vesselplate_grate", ModBlocks.RUSTY_GRATE.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"horizontal_encased_cables", ModBlocks.ENCASED_CABLES.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"vertical_encased_cables", ModBlocks.ENCASED_CABLES.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"smooth_vesselplate", ModBlocks.SMOOTH_VESSELPLATE.get());

@@ -50,14 +50,7 @@
   "block.industrialhellscape.gray_vesselglass": "Gray Vesselglass",
   "block.industrialhellscape.gray_reinforced_vesselglass": "Gray Reinforced Vesselglass",
 
-
-  "block.industrialhellscape.rusty_directional_riveted_vesselplate": "Rusty Directional Riveted Vesselplate",
   "block.industrialhellscape.rusty_vesselplate_pillar": "Rusty Vesselplate Pillar",
-  "block.industrialhellscape.rusty_riveted_vesselplate_stairs": "Rusty Riveted Vesselplate Stairs",
-  "block.industrialhellscape.rusty_riveted_vesselplate_slab": "Rusty Riveted Vesselplate Slab",
-  "block.industrialhellscape.smooth_rusty_vesselplate_tile": "Smooth Rusty Vesselplate Tile",
-  "block.industrialhellscape.smooth_rusty_vesselplate_stairs": "Smooth Rusty Vesselplate Stairs",
-  "block.industrialhellscape.smooth_rusty_vesselplate_slab": "Smooth Rusty Vesselplate Slab",
 
   "block.industrialhellscape.encased_cables": "Encased Cables",
 
@@ -192,29 +185,20 @@
   "block.industrialhellscape.gray_catwalk_truss_stairs": "Gray Catwalk Truss Stairs",
   "block.industrialhellscape.gray_catwalk_truss_slab": "Gray Catwalk Truss Slab",
 
-  "block.industrialhellscape.rusty_truss": "Rusty Truss",
-  "block.industrialhellscape.rusty_truss_stairs": "Rusty Truss Stairs",
-  "block.industrialhellscape.rusty_truss_slab": "Rusty Truss Slab",
-
-  "block.industrialhellscape.rusty_catwalk_truss": "Rusty Catwalk Truss",
-  "block.industrialhellscape.rusty_catwalk_truss_stairs": "Rusty Catwalk Truss Stairs",
-  "block.industrialhellscape.rusty_catwalk_truss_slab": "Rusty Catwalk Truss Slab",
-
   "block.industrialhellscape.duct": "Duct",
   "block.industrialhellscape.duct_vent": "Duct Vent",
   "block.industrialhellscape.rusty_duct": "Rusty Duct",
   "block.industrialhellscape.rusty_duct_vent": "Rusty Duct Vent",
-  "block.industrialhellscape.see-through_grate": "See-Through Grate",
 
   "block.industrialhellscape.gray_horizontal_grate": "Gray Grate",
   "block.industrialhellscape.gray_vertical_grate": "Gray Grate",
   "block.industrialhellscape.gray_horizontal_cutout_grate": "Gray Cutout Grate",
   "block.industrialhellscape.gray_vertical_cutout_grate": "Gray Cutout Grate",
 
-  "block.industrialhellscape.grate": "Grate",
-
-  "block.industrialhellscape.rusty_grate": "Rusty Grate",
-  "block.industrialhellscape.rusty_see-through_grate": "Rusty See-Through Grate",
+  "block.industrialhellscape.horizontal_grate": "Grate",
+  "block.industrialhellscape.vertical_grate": "Grate",
+  "block.industrialhellscape.horizontal_cutout_grate": "Cutout Grate",
+  "block.industrialhellscape.vertical_cutout_grate": "Cutout Grate",
 
   "sounds.industrialhellscape.toilet_flush": "Toilet flushes",
   "sounds.industrialhellscape.metalpipefallingsoundeffect": "Metal pipes falling",

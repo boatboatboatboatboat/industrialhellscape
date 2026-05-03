@@ -2,11 +2,11 @@
   "ctm": {
     "ctm_version": 1,
     "type": "CTM",
-    "layer": "SOLID",
+    "layer": "CUTOUT",
     "textures": [
       "industrialhellscape:ctm/ctm2x2_vertical_grate"
       ],
-      "connect_inside": true
+    "connect_inside": true
     }
   }
 }

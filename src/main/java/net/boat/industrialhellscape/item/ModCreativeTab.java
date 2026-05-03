@@ -53,8 +53,6 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.RIVETED_VESSELPLATE.get());
                         output.accept(ModBlocks.HORIZONTAL_GRATE.get());
                         output.accept(ModBlocks.HORIZONTAL_CUTOUT_GRATE.get());
-                        output.accept(ModBlocks.RUSTY_GRATE.get());
-                        output.accept(ModBlocks.RUSTY_SEETHROUGH_GRATE.get());
                         output.accept(ModBlocks.HORIZONTAL_VESSELPLATE.get());
                         output.accept(ModBlocks.SMOOTH_VESSELPLATE.get());
                         output.accept(ModBlocks.VESSELPLATE_PILLAR.get());
@@ -78,18 +76,8 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get());
                         output.accept(ModBlocks.GRAY_HORIZONTAL_VESSELPLATE.get());
 
-                        output.accept(ModBlocks.RUSTY_RIVETED_VESSELPLATE_PANEL.get());
-                        output.accept(ModBlocks.RUSTY_RIVETED_VESSELPLATE_STAIRS.get());
-                        output.accept(ModBlocks.RUSTY_RIVETED_VESSELPLATE_SLAB.get());
-                        output.accept(ModBlocks.RUSTY_VESSELPLATE_SHEETING.get());
-                        output.accept(ModBlocks.RUSTY_VESSELPLATE_SHEETING_STAIRS.get());
-                        output.accept(ModBlocks.RUSTY_VESSELPLATE_SHEETING_SLAB.get());
-                        output.accept(ModBlocks.RUSTY_VESSELPLATE_PILLAR.get());
-                        output.accept(ModBlocks.SMOOTH_RUSTY_VESSELPLATE_TILE.get());
-                        output.accept(ModBlocks.SMOOTH_RUSTY_VESSELPLATE_STAIRS.get());
-                        output.accept(ModBlocks.SMOOTH_RUSTY_VESSELPLATE_SLAB.get());
 
-                        output.accept(ModBlocks.RUSTY_DIRECTIONAL_RIVETED_VESSELPLATE.get());
+                        output.accept(ModBlocks.RUSTY_VESSELPLATE_PILLAR.get());
 
                         output.accept(ModBlocks.TRUSS.get());
                         output.accept(ModBlocks.CATWALK_TRUSS.get());
@@ -103,12 +91,6 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.GRAY_CATWALK_TRUSS_SLAB.get());
                         output.accept(ModBlocks.GRAY_TRUSS_STAIRS.get());
                         output.accept(ModBlocks.GRAY_TRUSS_SLAB.get());
-                        output.accept(ModBlocks.RUSTY_TRUSS.get());
-                        output.accept(ModBlocks.RUSTY_TRUSS_STAIRS.get());
-                        output.accept(ModBlocks.RUSTY_TRUSS_SLAB.get());
-                        output.accept(ModBlocks.RUSTY_CATWALK_TRUSS.get());
-                        output.accept(ModBlocks.RUSTY_CATWALK_TRUSS_STAIRS.get());
-                        output.accept(ModBlocks.RUSTY_CATWALK_TRUSS_SLAB.get());
 
                         output.accept(ModBlocks.ENCASED_CABLES.get());
 

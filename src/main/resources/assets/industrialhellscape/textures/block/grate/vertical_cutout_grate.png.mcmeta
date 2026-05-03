@@ -4,9 +4,9 @@
     "type": "CTM",
     "layer": "CUTOUT",
     "textures": [
-      "industrialhellscape:ctm/ctm2x2_rusty_vertical_see-through_grate"
+      "industrialhellscape:ctm/ctm2x2_vertical_cutout_grate"
       ],
-      "connect_inside": true
+    "connect_inside": true
     }
   }
 }

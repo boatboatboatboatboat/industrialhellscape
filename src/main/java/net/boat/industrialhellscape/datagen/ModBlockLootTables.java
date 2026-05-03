@@ -57,9 +57,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.VERTICAL_VESSELPLATE.get());
 
         this.dropSelf(ModBlocks.HORIZONTAL_GRATE.get());
+        this.dropSelf(ModBlocks.VERTICAL_GRATE.get());
         this.dropSelf(ModBlocks.HORIZONTAL_CUTOUT_GRATE.get());
-        this.dropSelf(ModBlocks.RUSTY_GRATE.get());
-        this.dropSelf(ModBlocks.RUSTY_SEETHROUGH_GRATE.get());
+        this.dropSelf(ModBlocks.VERTICAL_CUTOUT_GRATE.get());
 
         this.dropSelf(ModBlocks.HORIZONTAL_VESSELPLATE.get());
         this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE.get());
@@ -92,19 +92,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.SMOOTH_GRAY_VESSELPLATE_STAIRS.get());
         this.add(ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get(), block -> createSlabItemTable(ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get()));
 
-        this.dropSelf(ModBlocks.RUSTY_VESSELPLATE_SHEETING.get());
-        this.dropSelf(ModBlocks.RUSTY_VESSELPLATE_SHEETING_STAIRS.get());
-        this.add(ModBlocks.RUSTY_VESSELPLATE_SHEETING_SLAB.get(), block -> createSlabItemTable(ModBlocks.RUSTY_VESSELPLATE_SHEETING_SLAB.get()));
-
-        this.dropSelf(ModBlocks.RUSTY_RIVETED_VESSELPLATE_PANEL.get());
-        this.dropSelf(ModBlocks.RUSTY_RIVETED_VESSELPLATE_STAIRS.get());
-        this.add(ModBlocks.RUSTY_RIVETED_VESSELPLATE_SLAB.get(), block -> createSlabItemTable(ModBlocks.RUSTY_RIVETED_VESSELPLATE_SLAB.get()));
         this.dropSelf(ModBlocks.RUSTY_VESSELPLATE_PILLAR.get());
-        this.dropSelf(ModBlocks.RUSTY_DIRECTIONAL_RIVETED_VESSELPLATE.get());
 
-        this.dropSelf(ModBlocks.SMOOTH_RUSTY_VESSELPLATE_TILE.get());
-        this.dropSelf(ModBlocks.SMOOTH_RUSTY_VESSELPLATE_STAIRS.get());
-        this.dropSelf(ModBlocks.SMOOTH_RUSTY_VESSELPLATE_SLAB.get());
         //VESSELGLASS
         this.dropSelf(ModBlocks.REINFORCED_VESSELGLASS.get());
         this.dropSelf(ModBlocks.VESSELGLASS.get());
@@ -125,13 +114,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.add(ModBlocks.GRAY_CATWALK_TRUSS_SLAB.get(), block -> createSlabItemTable(ModBlocks.GRAY_CATWALK_TRUSS_SLAB.get()));
         this.add(ModBlocks.GRAY_TRUSS_SLAB.get(), block -> createSlabItemTable(ModBlocks.GRAY_TRUSS_SLAB.get()));
         this.dropSelf(ModBlocks.GRAY_TRUSS_STAIRS.get());
-
-        this.dropSelf(ModBlocks.RUSTY_TRUSS.get());
-        this.dropSelf(ModBlocks.RUSTY_TRUSS_STAIRS.get());
-        this.add(ModBlocks.RUSTY_TRUSS_SLAB.get(), block -> createSlabItemTable(ModBlocks.RUSTY_TRUSS_SLAB.get()));
-        this.dropSelf(ModBlocks.RUSTY_CATWALK_TRUSS.get());
-        this.dropSelf(ModBlocks.RUSTY_CATWALK_TRUSS_STAIRS.get());
-        this.add(ModBlocks.RUSTY_CATWALK_TRUSS_SLAB.get(), block -> createSlabItemTable(ModBlocks.RUSTY_CATWALK_TRUSS_SLAB.get()));
 
         this.dropSelf(ModBlocks.ENCASED_CABLES.get());
 
