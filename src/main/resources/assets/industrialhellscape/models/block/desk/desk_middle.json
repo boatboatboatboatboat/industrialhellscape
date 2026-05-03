@@ -1,0 +1,93 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"texture_size": [64, 64],
+	"textures": {
+		"0": "industrialhellscape:block/uv_desk",
+		"particle": "industrialhellscape:block/uv_desk"
+	},
+	"elements": [
+		{
+			"name": "tabletop",
+			"from": [0, 13, 0],
+			"to": [16, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [4, 12.25, 0, 13], "texture": "#0", "cullface": "north"},
+				"south": {"uv": [0, 12.25, 4, 13], "texture": "#0", "cullface": "south"},
+				"up": {"uv": [8, 4, 12, 0], "rotation": 180, "texture": "#0", "cullface": "up"},
+				"down": {"uv": [4, 4, 0, 8], "rotation": 180, "texture": "#0"}
+			}
+		},
+		{
+			"name": "skirt_middle",
+			"from": [0, 2, 13],
+			"to": [16, 13, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [7, 4, 11, 6.75], "texture": "#0"},
+				"south": {"uv": [11, 4, 7, 6.75], "texture": "#0"},
+				"down": {"uv": [4.75, 10.75, 5, 6.75], "rotation": 270, "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 45, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, -135, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [30, -135, 0],
+			"scale": [0.625, 0.625, 0.625]
+		},
+		"head": {
+			"rotation": [0, -180, 0],
+			"translation": [0, 13, 7]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5]
+		}
+	},
+	"groups": [
+		{
+			"name": "desk_solo",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [
+				0,
+				{
+					"name": "left_side",
+					"origin": [8, 8, 8],
+					"color": 0,
+					"children": []
+				},
+				{
+					"name": "right_side",
+					"origin": [8, 8, 8],
+					"color": 0,
+					"children": []
+				},
+				1
+			]
+		}
+	]
+}

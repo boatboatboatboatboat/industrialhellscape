@@ -1,0 +1,10 @@
+{
+  "loader": "forge:obj",
+  "model": "industrialhellscape:models/block/obj_models/yellow_stair_rail_left/yellow_stair_rail_left.obj",
+  "flip-v": true,
+  "detectCullableFaces": false,
+  "textures": {
+    "#m_0223b0f2-5372-55d8-8ef7-c11876553dc0": "industrialhellscape:block/yellow_stair_rail",
+    "particle": "industrialhellscape:block/yellow_stair_rail"
+  }
+}

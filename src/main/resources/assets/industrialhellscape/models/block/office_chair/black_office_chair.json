@@ -1,0 +1,7 @@
+{
+	"parent": "industrialhellscape:block/office_chair/office_chair",
+	"textures": {
+		"0": "industrialhellscape:block/office_chair/black_office_chair",
+		"particle": "industrialhellscape:block/office_chair/black_office_chair"
+	}
+}

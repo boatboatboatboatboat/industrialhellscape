@@ -1,0 +1,6 @@
+{
+	"parent": "industrialhellscape:block/work_light/work_light_stand",
+	"textures": {
+		"1": "industrialhellscape:block/lit_unlit_textures/work_light_lamp_on"
+	}
+}

@@ -1,0 +1,7 @@
+{
+	"parent": "industrialhellscape:block/railing/yellow_railing",
+	"textures": {
+		"0": "industrialhellscape:block/railing/black_railing",
+		"particle": "industrialhellscape:block/railing/black_railing"
+	}
+}

@@ -1,0 +1,23 @@
+{
+  "variants": {
+    "type=solo,facing=north": {"model": "industrialhellscape:block/desk/desk_solo","y": 0},
+    "type=solo,facing=south": {"model": "industrialhellscape:block/desk/desk_solo","y":180},
+    "type=solo,facing=east": {"model": "industrialhellscape:block/desk/desk_solo","y": 90},
+    "type=solo,facing=west": {"model": "industrialhellscape:block/desk/desk_solo","y": 270},
+
+    "type=positive,facing=north": {"model": "industrialhellscape:block/desk/desk_left","y": 0},
+    "type=positive,facing=south": {"model": "industrialhellscape:block/desk/desk_left","y": 180},
+    "type=positive,facing=east": {"model": "industrialhellscape:block/desk/desk_left","y": 90},
+    "type=positive,facing=west": {"model": "industrialhellscape:block/desk/desk_left","y": 270},
+
+    "type=middle,facing=north": {"model": "industrialhellscape:block/desk/desk_middle","y": 0},
+    "type=middle,facing=south": {"model": "industrialhellscape:block/desk/desk_middle","y": 180},
+    "type=middle,facing=east": {"model": "industrialhellscape:block/desk/desk_middle","y": 90},
+    "type=middle,facing=west": {"model": "industrialhellscape:block/desk/desk_middle","y": 270},
+
+    "type=negative,facing=north": {"model": "industrialhellscape:block/desk/desk_right","y": 0},
+    "type=negative,facing=south": {"model": "industrialhellscape:block/desk/desk_right","y": 180},
+    "type=negative,facing=east": {"model": "industrialhellscape:block/desk/desk_right","y": 90},
+    "type=negative,facing=west": {"model": "industrialhellscape:block/desk/desk_right","y": 270}
+  }
+}

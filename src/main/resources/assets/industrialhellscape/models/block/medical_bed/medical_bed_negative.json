@@ -1,0 +1,111 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"render_type": "minecraft:cutout",
+	"texture_size": [64, 64],
+	"textures": {
+		"0": "industrialhellscape:block/medical_bed",
+		"particle": "industrialhellscape:block/medical_bed"
+	},
+	"elements": [
+		{
+			"name": "bed",
+			"from": [0.5, 4, 0],
+			"to": [15.5, 10, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [15.5, 6, 2]},
+			"faces": {
+				"east": {"uv": [7.25, 9, 3.75, 10.5], "texture": "#0"},
+				"west": {"uv": [3.75, 9, 7.25, 10.5], "texture": "#0"},
+				"up": {"uv": [3.75, 7, 0, 3.5], "rotation": 180, "texture": "#0"},
+				"down": {"uv": [3.75, 7, 0, 10.5], "rotation": 180, "texture": "#0"}
+			}
+		},
+		{
+			"name": "footboard",
+			"from": [0.5, 4, 14],
+			"to": [15.5, 13, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [16, 5, 14]},
+			"faces": {
+				"north": {"uv": [3.75, 0, 7.5, 2.25], "texture": "#0"},
+				"east": {"uv": [7.5, 0, 8, 2.25], "texture": "#0"},
+				"south": {"uv": [3.75, 0, 7.5, 2.25], "texture": "#0"},
+				"west": {"uv": [7.5, 0, 8, 2.25], "texture": "#0"},
+				"up": {"uv": [7.5, 7.5, 3.75, 7], "rotation": 180, "texture": "#0"},
+				"down": {"uv": [7.5, 7, 3.75, 7.5], "rotation": 180, "texture": "#0"}
+			}
+		},
+		{
+			"from": [0.5, 0, 12],
+			"to": [2.5, 4, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [2.5, 0, 14]},
+			"faces": {
+				"north": {"uv": [13, 0, 13.5, 1], "texture": "#0"},
+				"east": {"uv": [12, 0, 12.5, 1], "texture": "#0"},
+				"south": {"uv": [13, 0, 13.5, 1], "texture": "#0"},
+				"west": {"uv": [12, 0, 12.5, 1], "texture": "#0"},
+				"down": {"uv": [13, 0.5, 12.5, 1], "rotation": 180, "texture": "#0"}
+			}
+		},
+		{
+			"from": [13.5, 0, 12],
+			"to": [15.5, 4, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [15.5, 0, 14]},
+			"faces": {
+				"north": {"uv": [13, 0, 13.5, 1], "texture": "#0"},
+				"east": {"uv": [12, 0, 12.5, 1], "texture": "#0"},
+				"south": {"uv": [13, 0, 13.5, 1], "texture": "#0"},
+				"west": {"uv": [12, 0, 12.5, 1], "texture": "#0"},
+				"down": {"uv": [13, 0.5, 12.5, 1], "rotation": 180, "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 45, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, -135, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [30, 45, 0],
+			"translation": [3.75, -2.75, 0],
+			"scale": [0.625, 0.625, 0.625]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5]
+		}
+	},
+	"groups": [
+		{
+			"name": "negative_half",
+			"origin": [0.5, 8, -2],
+			"color": 0,
+			"children": [
+				0,
+				1,
+				{
+					"name": "wheels",
+					"origin": [0.4, 5, 11],
+					"color": 0,
+					"children": [2, 3]
+				}
+			]
+		}
+	]
+}

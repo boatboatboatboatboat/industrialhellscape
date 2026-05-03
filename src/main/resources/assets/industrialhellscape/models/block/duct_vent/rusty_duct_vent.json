@@ -1,0 +1,6 @@
+{
+	"parent": "industrialhellscape:block/duct_vent/duct_vent",
+	"textures": {
+		"0": "industrialhellscape:block/duct_vent/rusty_duct_vent"
+	}
+}
