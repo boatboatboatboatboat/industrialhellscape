@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "industrialhellscape:vertical_vesselplate"
+    }
+  ],
+  "result": {
+    "item": "industrialhellscape:horizontal_vesselplate"
+  }
+}

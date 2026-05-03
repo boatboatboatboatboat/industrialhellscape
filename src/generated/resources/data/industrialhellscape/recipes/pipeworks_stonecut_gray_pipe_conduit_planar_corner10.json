@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "tag": "industrialhellscape:pipeworks_items"
+  },
+  "result": "industrialhellscape:gray_pipe_conduit_planar_corner"
+}

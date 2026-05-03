@@ -1,0 +1,27 @@
+{
+  "values": [
+    "industrialhellscape:riveted_vesselplate",
+    "industrialhellscape:horizontal_vesselplate",
+    "industrialhellscape:vertical_vesselplate",
+    "industrialhellscape:smooth_vesselplate",
+    "industrialhellscape:vesselplate_pillar",
+    "industrialhellscape:horizontal_reinforced_vesselplate",
+    "industrialhellscape:vertical_reinforced_vesselplate",
+    "industrialhellscape:gray_riveted_vesselplate",
+    "industrialhellscape:gray_vertical_reinforced_vesselplate",
+    "industrialhellscape:gray_horizontal_reinforced_vesselplate",
+    "industrialhellscape:smooth_gray_vesselplate",
+    "industrialhellscape:gray_vesselplate_pillar",
+    "industrialhellscape:gray_horizontal_vesselplate",
+    "industrialhellscape:gray_vertical_vesselplate",
+    "industrialhellscape:riveted_vesselplate_stairs",
+    "industrialhellscape:riveted_vesselplate_slab",
+    "industrialhellscape:gray_riveted_vesselplate_stairs",
+    "industrialhellscape:gray_riveted_vesselplate_slab",
+    "industrialhellscape:smooth_vesselplate_stairs",
+    "industrialhellscape:smooth_vesselplate_slab",
+    "industrialhellscape:smooth_gray_vesselplate_stairs",
+    "industrialhellscape:smooth_gray_vesselplate_slab",
+    "industrialhellscape:rusty_vesselplate_pillar"
+  ]
+}

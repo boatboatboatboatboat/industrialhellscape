@@ -1,0 +1,57 @@
+{
+  "variants": {
+    "face=ceiling,facing=east": {
+      "model": "industrialhellscape:block/fuel_drum",
+      "x": 180,
+      "y": 270
+    },
+    "face=ceiling,facing=north": {
+      "model": "industrialhellscape:block/fuel_drum",
+      "x": 180,
+      "y": 180
+    },
+    "face=ceiling,facing=south": {
+      "model": "industrialhellscape:block/fuel_drum",
+      "x": 180
+    },
+    "face=ceiling,facing=west": {
+      "model": "industrialhellscape:block/fuel_drum",
+      "x": 180,
+      "y": 90
+    },
+    "face=floor,facing=east": {
+      "model": "industrialhellscape:block/fuel_drum",
+      "y": 90
+    },
+    "face=floor,facing=north": {
+      "model": "industrialhellscape:block/fuel_drum"
+    },
+    "face=floor,facing=south": {
+      "model": "industrialhellscape:block/fuel_drum",
+      "y": 180
+    },
+    "face=floor,facing=west": {
+      "model": "industrialhellscape:block/fuel_drum",
+      "y": 270
+    },
+    "face=wall,facing=east": {
+      "model": "industrialhellscape:block/fuel_drum",
+      "x": 90,
+      "y": 90
+    },
+    "face=wall,facing=north": {
+      "model": "industrialhellscape:block/fuel_drum",
+      "x": 90
+    },
+    "face=wall,facing=south": {
+      "model": "industrialhellscape:block/fuel_drum",
+      "x": 90,
+      "y": 180
+    },
+    "face=wall,facing=west": {
+      "model": "industrialhellscape:block/fuel_drum",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

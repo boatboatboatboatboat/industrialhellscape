@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "industrialhellscape:ih_recipe_ingots"
+    },
+    "B": {
+      "item": "industrialhellscape:inhell_haven_device"
+    }
+  },
+  "pattern": [
+    "A A",
+    "ABA",
+    "A A"
+  ],
+  "result": {
+    "count": 18,
+    "item": "industrialhellscape:metalworks"
+  },
+  "show_notification": true
+}

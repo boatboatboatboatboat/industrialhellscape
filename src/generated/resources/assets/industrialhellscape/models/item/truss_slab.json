@@ -1,0 +1,4 @@
+{
+  "parent": "industrialhellscape:block/truss_slab",
+  "render_type": "minecraft:cutout"
+}

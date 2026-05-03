@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "industrialhellscape:horizontal_cutout_grate"
+    }
+  ],
+  "result": {
+    "item": "industrialhellscape:vertical_cutout_grate"
+  }
+}
