@@ -78,58 +78,6 @@ public class IndustrialHellscape {
 
             //Locate the block to replace (both the block and the item objects)
             //This will only happen when the registration of the block is removed.
-            removeAndReplace(ModBlockMappings, ModItemMappings,"white_rockrete", ModBlocks.GRAY_ROCKRETE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"black_rockrete", ModBlocks.GRAY_ROCKRETE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"bunker_wall", ModBlocks.GREEN_ROCKRETE_PILLAR.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"light_gray_rockrete", ModBlocks.GREEN_ROCKRETE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"light_gray_rockrete_rebar", ModBlocks.GREEN_ROCKRETE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"light_gray_rockrete_stairs", ModBlocks.GREEN_ROCKRETE_STAIRS.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"light_gray_rockrete_slab", ModBlocks.GREEN_ROCKRETE_SLAB.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"vesselplate_grate_block", ModBlocks.HORIZONTAL_GRATE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"vesselplate_grate", ModBlocks.HORIZONTAL_GRATE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_vesselplate_grate", ModBlocks.GRAY_HORIZONTAL_GRATE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"horizontal_encased_cables", ModBlocks.ENCASED_CABLES.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"vertical_encased_cables", ModBlocks.ENCASED_CABLES.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"smooth_vesselplate", ModBlocks.SMOOTH_VESSELPLATE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"smooth_gray_vesselplate", ModBlocks.SMOOTH_GRAY_VESSELPLATE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_rockrete_rebar", ModBlocks.GRAY_ROCKRETE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"green_rockrete_rebar", ModBlocks.GREEN_ROCKRETE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"blue_rockrete_rebar", ModBlocks.BLUE_ROCKRETE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"yellow_rockrete_rebar", ModBlocks.YELLOW_ROCKRETE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"riveted_vesselplate", ModBlocks.RIVETED_VESSELPLATE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_riveted_vesselplate", ModBlocks.GRAY_RIVETED_VESSELPLATE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"vesselplate", ModBlocks.RIVETED_VESSELPLATE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_vesselplate", ModBlocks.GRAY_RIVETED_VESSELPLATE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"horizontal_riveted_vesselplate", ModBlocks.HORIZONTAL_VESSELPLATE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_horizontal_riveted_vesselplate", ModBlocks.GRAY_VERTICAL_REINFORCED_VESSELPLATE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"vertical_riveted_vesselplate", ModBlocks.HORIZONTAL_VESSELPLATE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_vertical_riveted_vesselplate", ModBlocks.GRAY_VERTICAL_REINFORCED_VESSELPLATE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"work_light_mount", ModBlocks.WORK_LIGHT_STAND.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"yellow_tripod", ModBlocks.WORK_LIGHT_STAND.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_vesselplate_trapdoor", ModBlocks.GRAY_VESSELPLATE_TRAPDOOR.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"vesselplate_trapdoor", ModBlocks.VESSELPLATE_TRAPDOOR.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_vesselplate_door", ModBlocks.GRAY_VESSELPLATE_DOOR.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"vesselplate_door", ModBlocks.VESSELPLATE_DOOR.get());
-
-
-            //recoloring of grays
-            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_riveted_vesselplate_panel", ModBlocks.GRAY_RIVETED_VESSELPLATE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"smooth_gray_vesselplate_tile", ModBlocks.SMOOTH_GRAY_VESSELPLATE.get());
-
-            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_vesselplate_sheeting", ModBlocks.GRAY_HORIZONTAL_VESSELPLATE.get());
-            //removeAndReplace(ModBlockMappings, ModItemMappings,"gray_vesselplate_sheeting_slab", ModBlocks.GRAY_VESSELPLATE_PANEL_SLAB.get());
-            //removeAndReplace(ModBlockMappings, ModItemMappings,"gray_vesselplate_sheeting_stairs", ModBlocks.GRAY_VESSELPLATE_PANEL_STAIRS.get());
-
-            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_directional_riveted_vesselplate", ModBlocks.GRAY_VERTICAL_REINFORCED_VESSELPLATE.get());
-
-            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_grate", ModBlocks.GRAY_HORIZONTAL_GRATE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_seethrough_grate", ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get());
-
-            removeAndReplace(ModBlockMappings, ModItemMappings,"strut", ModBlocks.GRAY_HORIZONTAL_GRATE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_strut", ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"rusty_strut", ModBlocks.GRAY_HORIZONTAL_GRATE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"catwalk_strut", ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get());
-            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_catwalk_strut", ModBlocks.GRAY_HORIZONTAL_GRATE.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"rusty_catwalk_strut", ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get());
         }
 

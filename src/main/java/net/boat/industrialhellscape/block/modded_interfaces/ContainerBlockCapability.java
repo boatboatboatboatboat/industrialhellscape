@@ -28,36 +28,43 @@ public interface ContainerBlockCapability {
         //Handles both the new container entities and previous non-container block entities.
         //Occurs when block is mined. Items should drop.
 
-        BlockEntity be = level.getBlockEntity(pos);
-
-        if (!state.is(newState.getBlock())) {
-            if (be instanceof Container container) { //For container-type block entities (RandomizableContainerBlockEntity)
-                Containers.dropContents(level, pos, container);
-                level.updateNeighbourForOutputSignal(pos, block);
-            } else if(be !=null) { //For more basic block entities
-
-                try {
-                    Method possibleGetInventory = be.getClass().getMethod("getInventory"); //Search for a getInventory method in this block entity
-
-                    //-----From TurtyWurty 1.20.1 Github-----
-
-                    ItemStackHandler inventory = (ItemStackHandler) possibleGetInventory.invoke(be); //Attempt to read and store the block entity's inventory
-
-                    for (int i = 0; i < inventory.getSlots(); i++) {
-                        ItemStack stack = inventory.getStackInSlot(i); //One at a time, read and store each itemStack in each slot
-                        if (!stack.isEmpty()) { //If that stack is NOT EMPTY
-                            var entity = new ItemEntity(level, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, stack); //spawn the current itemstack as an Item Entity inworld at this positon
-                            level.addFreshEntity(entity); //Add a new entity
-                        }
-                    }
-                    //----- End of Obtained Code -----
-
-                } catch(Exception e) { //Should trip if somehow a getInventory method does not exist for the old block entities
-                    System.out.println("This block entity is not an inventory Block Entity");
-                }
-
+        if(state.getBlock() != newState.getBlock()) {
+            if(level.getBlockEntity(pos) instanceof GenericContainerBE skibidi) {
+                skibidi.drops();
+                level.updateNeighbourForOutputSignal(pos, this);
             }
         }
+
+//        BlockEntity be = level.getBlockEntity(pos);
+//
+//        if (!state.is(newState.getBlock())) {
+//            if (be instanceof Container container) { //For container-type block entities (RandomizableContainerBlockEntity)
+//                Containers.dropContents(level, pos, container);
+//                level.updateNeighbourForOutputSignal(pos, block);
+//            } else if(be !=null) { //For more basic block entities
+//
+//                try {
+//                    Method possibleGetInventory = be.getClass().getMethod("getInventory"); //Search for a getInventory method in this block entity
+//
+//                    //-----From TurtyWurty 1.20.1 Github-----
+//
+//                    ItemStackHandler inventory = (ItemStackHandler) possibleGetInventory.invoke(be); //Attempt to read and store the block entity's inventory
+//
+//                    for (int i = 0; i < inventory.getSlots(); i++) {
+//                        ItemStack stack = inventory.getStackInSlot(i); //One at a time, read and store each itemStack in each slot
+//                        if (!stack.isEmpty()) { //If that stack is NOT EMPTY
+//                            var entity = new ItemEntity(level, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, stack); //spawn the current itemstack as an Item Entity inworld at this positon
+//                            level.addFreshEntity(entity); //Add a new entity
+//                        }
+//                    }
+//                    //----- End of Obtained Code -----
+//
+//                } catch(Exception e) { //Should trip if somehow a getInventory method does not exist for the old block entities
+//                    System.out.println("This block entity is not an inventory Block Entity");
+//                }
+//
+//            }
+//        }
     }
     static InteractionResult OpenContainerInventory(Level level, @NotNull BlockPos pos, @NotNull Player player) {
         // When block is interacted (e.g. "used")
