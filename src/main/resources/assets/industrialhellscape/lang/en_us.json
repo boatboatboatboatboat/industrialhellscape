@@ -227,6 +227,7 @@
 
   "tooltip.industrialhellscape.pipeworks": "Use a pickaxe to rotate blocks stone-cut from this. Using the HAVEN tool allows full rotation functionality.",
   "tooltip.industrialhellscape.metalworks": "Use a pickaxe to rotate blocks stone-cut from this. Using the HAVEN tool allows full rotation functionality.",
+  "tooltip.industrialhellscape.shift_down": "Press §eShift§r for more Information",
 
   "gui.industrialhellscape.inventory_menu": "Industrial Hellscape Storage",
   "gui.industrialhellscape.creative_tab": "InHell Facility Solutions",
