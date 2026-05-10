@@ -15,6 +15,12 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
+//INFO:
+//-----
+// SimpleTextureToggleBlock, but with waterlogging capability.
+
+// skipRendering is for transparent blocks such as grates so they don't show their block sides internally.
+
 public class TrussBlock extends SimpleTextureToggleBlock implements SimpleWaterloggedBlock {
 
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;

@@ -19,6 +19,15 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
+//INFO:
+//-----
+//This block supports cardinal directional placement, and an inventory with GUI. The inventory size is determined upon block registration.
+//Block places two blocks total within the world when placed down; First a "Negative" half, then a "Positive" half.
+//The direction these are placed is set by parameter "multiBlockPlacementDirection". The second half of the structure can be placed vertically, horizontally, or forward to the first half.
+//Supports a custom hitbox for custom model, passed during registration.
+
+//useWithoutItem cycles POWERED blockstate for both blocks.
+
 public class InteractableMultiBlock extends Modelled2BMBlock{
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 

@@ -2,6 +2,7 @@ package net.boat.industrialhellscape.item;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.item.modded_items.InHellTool;
+import net.boat.industrialhellscape.sound.ModSounds;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -17,6 +18,9 @@ public class ModItems {
     public static final DeferredItem<Item> JOB_APPLICATION = ITEMS.register("job_application",
             () -> new Item(new Item.Properties()) {
     });
+
+    public static final DeferredItem<Item> DARK_NIGHT_MUSIC_DISC = ITEMS.register("disc_1",
+            () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.SONG_1_KEY).stacksTo(1)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

@@ -2,7 +2,7 @@ package net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks;
 
 import net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBlocks.SimpleFacingBlock;
 import net.boat.industrialhellscape.block.modded_block_state_properties.TwoBlockMultiBlockState;
-import net.boat.industrialhellscape.block.modded_interfaces.MultiBlockPlacementCapability;
+import net.boat.industrialhellscape.block.modded_interfaces.MultiBlockPlacementInterface;
 import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -20,10 +20,11 @@ import net.minecraft.world.level.material.PushReaction;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-//otherBlockPos:
-// Returns the position above the placed block if it is a vertical multiblock
-// Returns the position counterclockwise to the direction of the faced block if it is a horizontal multiblock
-// Returns the position behind the placed block (relative to facing player) if it is a forward horizontal multiblock
+//INFO:
+//-----
+//This block supports cardinal directional placement, and an inventory with GUI. The inventory size is determined upon block registration.
+//Block places two blocks total within the world when placed down; First a "Negative" half, then a "Positive" half.
+//The direction these are placed is set by parameter "multiBlockPlacementDirection". The second half of the structure can be placed vertically, horizontally, or forward to the first half.
 
 public class TwoBlockMultiBlock extends SimpleFacingBlock {
 
@@ -48,20 +49,16 @@ public class TwoBlockMultiBlock extends SimpleFacingBlock {
 
         TwoBlockMultiBlockState half = pState.getValue(HALF_PART); //Which half is being updated?
 
-        BlockPos otherBlockPos = MultiBlockPlacementCapability.posToPlaceOtherHalf(pPos, half, pState.getValue(FACING), multiBlockPlacementDirection); //Which location should the other half be placed based on the existing half?
+        //otherBlockPos:
+        // Returns the position above the placed block if it is a vertical multiblock
+        // Returns the position counterclockwise to the direction of the faced block if it is a horizontal multiblock
+        // Returns the position behind the placed block (relative to facing player) if it is a forward horizontal multiblock
+        BlockPos otherBlockPos = MultiBlockPlacementInterface.posToPlaceOtherHalf(pPos, half, pState.getValue(FACING), multiBlockPlacementDirection); //Which location should the other half be placed based on the existing half?
 
         BlockState neighborState = pLevel.getBlockState(otherBlockPos); //What is the blockstate at the position where the other half should be?
 
-//        if ( (pState.getValue(HALF_PART) == TwoBlockMultiBlockState.POSITIVE) && !neighborState.is(this)) { //If the block at that position is NOT an instance of this block (E.G, it was mined or missing)
-//            var air = Blocks.AIR.defaultBlockState();
-//            pLevel.setBlock(pPos, air, 35); //Replace the block at that position with an air block so that it drops nothing. You will not get double the blocks by mining this multiblock.
-//            pLevel.levelEvent(null, 2001, pPos, Block.getId(air));
-//            return air;
-//        }
-
         if (!neighborState.is(this)) { //If the block at that position is NOT an instance of this block (E.G, it was mined or missing)
             pLevel.destroyBlock(pPos, true);
-            //pLevel.levelEvent(null, 2001, pPos, Block.getId(air));
         }
 
 
@@ -71,7 +68,7 @@ public class TwoBlockMultiBlock extends SimpleFacingBlock {
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         Direction facing = pContext.getHorizontalDirection().getOpposite(); //Which direction is the block placed?
 
-        BlockPos otherBlockPos = MultiBlockPlacementCapability.posToPlaceOtherHalf(pContext.getClickedPos(), TwoBlockMultiBlockState.NEGATIVE, facing, multiBlockPlacementDirection);
+        BlockPos otherBlockPos = MultiBlockPlacementInterface.posToPlaceOtherHalf(pContext.getClickedPos(), TwoBlockMultiBlockState.NEGATIVE, facing, multiBlockPlacementDirection);
 
         Level level = pContext.getLevel();
         if (level.getBlockState(otherBlockPos).canBeReplaced(pContext) && level.getWorldBorder().isWithinBounds(otherBlockPos)) {
@@ -82,15 +79,10 @@ public class TwoBlockMultiBlock extends SimpleFacingBlock {
     }
 
     public void setPlacedBy(@Nonnull Level pLevel, @Nonnull BlockPos pPos, @Nonnull BlockState pState, @Nullable LivingEntity pPlacer, @Nonnull ItemStack pStack) {
-        //super.setPlacedBy(pLevel, pPos, pState, pPlacer, pStack);
-
-
-        BlockPos otherBlockPos = MultiBlockPlacementCapability.posToPlaceOtherHalf(pPos, pState.getValue(HALF_PART), pState.getValue(FACING), multiBlockPlacementDirection);
+        BlockPos otherBlockPos = MultiBlockPlacementInterface.posToPlaceOtherHalf(pPos, pState.getValue(HALF_PART), pState.getValue(FACING), multiBlockPlacementDirection);
 
         pLevel.setBlock(otherBlockPos, pState.setValue(HALF_PART, TwoBlockMultiBlockState.POSITIVE), 3);
         pLevel.setBlock(pPos, pState.setValue(HALF_PART, TwoBlockMultiBlockState.NEGATIVE), 3);
-        //pLevel.blockUpdated(pPos, Blocks.AIR);
-        //pState.updateNeighbourShapes(pLevel, pPos, 3);
 
     }
 

@@ -24,6 +24,14 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
+//INFO:
+//-----
+//Handles block entity behavior for all inheriting block classes.
+
+//getSlotCount() used by StorageBlockInterface to detect desired Block Entity item slot amount to create.
+//getOpenSound() and getClosedSound() used by StorageBlockInterface to detect desired sounds for opening and closing Block Entity menu.
+//If I define these block states in the interfaces, it may crash in 1.21. This is why these methods are in place.
+
 public class BaseStorageBlock extends BaseEntityBlock implements StorageBlockInterface {
     //public static final MapCodec<BaseStorageBlock> CODEC = simpleCodec(BaseStorageBlock::new);
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;

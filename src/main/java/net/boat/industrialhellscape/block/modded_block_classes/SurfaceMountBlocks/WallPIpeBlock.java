@@ -2,7 +2,7 @@ package net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBloc
 
 import net.boat.industrialhellscape.block.modded_block_state_properties.DynamicConnectionState;
 import net.boat.industrialhellscape.block.modded_block_state_properties.SurfacePipeMountState;
-import net.boat.industrialhellscape.block.modded_interfaces.ConnectedModelCapability;
+import net.boat.industrialhellscape.block.modded_interfaces.ConnectedModelInterface;
 import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
 import net.boat.industrialhellscape.block.modded_interfaces.PipeInterface;
 import net.boat.industrialhellscape.util.ModTags;
@@ -30,6 +30,10 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
+
+//INFO:
+//-----
+//Can be placed on any surface (FACING). Additionally, can be rotated orthogonally on that surface (ORIENTATION).
 
 public class WallPIpeBlock extends Block implements PipeInterface, SimpleWaterloggedBlock {
     @Override
@@ -218,18 +222,18 @@ public class WallPIpeBlock extends Block implements PipeInterface, SimpleWaterlo
             if(pState.getValue(ORIENTATION) == SurfacePipeMountState.STRAIGHT)
             // - If it is on the east/west wall, check the positive Z-axis direction for an adjacent block (Z axis is horizontal to these walls)
             // - But if it is on the north/south wall, check the positive X-axis direction instead for an adjacent block (X axis is horizontal to these walls)
-            {return facingEastWest ? ConnectedModelCapability.getStateAtAxisPositive(level, pos, Direction.Axis.Z) : ConnectedModelCapability.getStateAtAxisPositive(level, pos, Direction.Axis.X);}
+            {return facingEastWest ? ConnectedModelInterface.getStateAtAxisPositive(level, pos, Direction.Axis.Z) : ConnectedModelInterface.getStateAtAxisPositive(level, pos, Direction.Axis.X);}
 
             //But if the pipe orientation is Sideways, that means it is aligned vertical to the wall. Check the positive Y direction instead on all walls.
-            else {return ConnectedModelCapability.getStateAtAxisPositive(level, pos, Direction.Axis.Y);}
+            else {return ConnectedModelInterface.getStateAtAxisPositive(level, pos, Direction.Axis.Y);}
 
             //ELSE If the block is attached to the floor or ceiling
         } else if (pState.getValue(FACING) == Direction.UP || pState.getValue(FACING) == Direction.DOWN) {
             //And the pipe orientation is Straight (meaning pipes align towards world X axis), Check the X axis for an adjacent block in positive direction.
-            if(pState.getValue(ORIENTATION) == SurfacePipeMountState.STRAIGHT) {return ConnectedModelCapability.getStateAtAxisPositive(level, pos, Direction.Axis.X);}
+            if(pState.getValue(ORIENTATION) == SurfacePipeMountState.STRAIGHT) {return ConnectedModelInterface.getStateAtAxisPositive(level, pos, Direction.Axis.X);}
 
             // But If the pipe is Sideways, check on the positive Z-axis direction instead.
-            else {return ConnectedModelCapability.getStateAtAxisPositive(level, pos, Direction.Axis.Z);}
+            else {return ConnectedModelInterface.getStateAtAxisPositive(level, pos, Direction.Axis.Z);}
         }
 
         return pState; //Fallback. This should not be possible to reach.
@@ -244,18 +248,18 @@ public class WallPIpeBlock extends Block implements PipeInterface, SimpleWaterlo
             if(pState.getValue(ORIENTATION) == SurfacePipeMountState.STRAIGHT)
             // - If it is on the east/west wall, check the negative Z-axis direction for an adjacent block (Z axis is horizontal to these walls)
             // - But if it is on the north/south wall, check the negative X-axis direction instead for an adjacent block (X axis is horizontal to these walls)
-            {return facingEastWest ? ConnectedModelCapability.getStateAtAxisNegative(level, pos, Direction.Axis.Z) : ConnectedModelCapability.getStateAtAxisNegative(level, pos, Direction.Axis.X);}
+            {return facingEastWest ? ConnectedModelInterface.getStateAtAxisNegative(level, pos, Direction.Axis.Z) : ConnectedModelInterface.getStateAtAxisNegative(level, pos, Direction.Axis.X);}
 
             //But if the pipe orientation is Sideways, that means it is aligned vertical to the wall. Check the negative Y direction instead on all walls.
-            else {return ConnectedModelCapability.getStateAtAxisNegative(level, pos, Direction.Axis.Y);}
+            else {return ConnectedModelInterface.getStateAtAxisNegative(level, pos, Direction.Axis.Y);}
 
             //ELSE If the block is attached to the floor or ceiling
         } else if (pState.getValue(FACING) == Direction.UP || pState.getValue(FACING) == Direction.DOWN) {
             //And the pipe orientation is Straight (meaning pipes align towards world X axis), Check the X axis for an adjacent block in negative direction.
-            if(pState.getValue(ORIENTATION) == SurfacePipeMountState.STRAIGHT) {return ConnectedModelCapability.getStateAtAxisNegative(level, pos, Direction.Axis.X);}
+            if(pState.getValue(ORIENTATION) == SurfacePipeMountState.STRAIGHT) {return ConnectedModelInterface.getStateAtAxisNegative(level, pos, Direction.Axis.X);}
 
             // But If the pipe is Sideways, check on the negative Z-axis direction instead.
-            else {return ConnectedModelCapability.getStateAtAxisNegative(level, pos, Direction.Axis.Z);}
+            else {return ConnectedModelInterface.getStateAtAxisNegative(level, pos, Direction.Axis.Z);}
         }
 
         return pState; //Fallback. This should not be possible to reach.

@@ -28,7 +28,13 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 
+//INFO:
+//-----
 // Modified from the mod Create Deco. Based on Catwalk Railing block class code (CC0 license)
+// 4 boolean block state properties corresponding to cardinal directions and whether or not a model will be placed at that location inside
+// the block boundaries.
+// The block-state .json file is in a multipart format, like sea pickles.
+// Multiple placements inside that block to occupy vacant directions is supported. datagen/ModBlockLootTableProvider has a method to datagen the appropriate loot table.
 
 public class RailingBlock extends Block implements SimpleWaterloggedBlock{
 

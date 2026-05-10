@@ -43,7 +43,7 @@ public class ModBlocks {
     public static final DeferredBlock<Block> PROTOTYPE_MACHINE = registerBlockAndBlockItem("prototype_machine",
             () -> new BaseStorageBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).noLootTable().noOcclusion(),
                     54,
-                    () -> ModSounds.METALPIPEFALLINGSOUNDEFFECT.get(),
+                    () -> ModSounds.SNORE.get(),
                     () -> ModSounds.METALPIPEFALLINGSOUNDEFFECT.get()
             )
     );
@@ -143,49 +143,49 @@ public class ModBlocks {
 
     //GRATE BLOCKS
     public static final DeferredBlock<Block> HORIZONTAL_GRATE = registerBlockAndBlockItem("horizontal_grate",
-            () -> new SimpleTextureToggleBlock(BlockBehaviour
+            () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
             )
     );
     public static final DeferredBlock<Block> VERTICAL_GRATE = registerBlockAndBlockItem("vertical_grate",
-            () -> new SimpleTextureToggleBlock(BlockBehaviour
+            () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
             )
     );
     public static final DeferredBlock<Block> HORIZONTAL_CUTOUT_GRATE = registerBlockAndBlockItem("horizontal_cutout_grate",
-            () -> new SimpleTextureToggleBlock(BlockBehaviour
+            () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.GLASS)
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
             )
     );
     public static final DeferredBlock<Block> VERTICAL_CUTOUT_GRATE = registerBlockAndBlockItem("vertical_cutout_grate",
-            () -> new SimpleTextureToggleBlock(BlockBehaviour
+            () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.GLASS)
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
             )
     );
     public static final DeferredBlock<Block> GRAY_HORIZONTAL_GRATE = registerBlockAndBlockItem("gray_horizontal_grate",
-            () -> new SimpleTextureToggleBlock(BlockBehaviour
+            () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
             )
     );
     public static final DeferredBlock<Block> GRAY_VERTICAL_GRATE = registerBlockAndBlockItem("gray_vertical_grate",
-            () -> new SimpleTextureToggleBlock(BlockBehaviour
+            () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
             )
     );
     public static final DeferredBlock<Block> GRAY_HORIZONTAL_CUTOUT_GRATE = registerBlockAndBlockItem("gray_horizontal_cutout_grate",
-            () -> new SimpleTextureToggleBlock(BlockBehaviour
+            () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.GLASS)
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
             )
     );
     public static final DeferredBlock<Block> GRAY_VERTICAL_CUTOUT_GRATE = registerBlockAndBlockItem("gray_vertical_cutout_grate",
-            () -> new SimpleTextureToggleBlock(BlockBehaviour
+            () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.GLASS)
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
             )

@@ -30,6 +30,17 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 
+//INFO:
+//-----
+// Modified from the mod Create Deco. Based on Catwalk Railing block class code (CC0 license)
+// 2 boolean block state properties corresponding to relative left or right direction based on direction (FACING) player is facing when placing down the first block.
+// The second-nearest cardinal direction to where the player is facing determines whether or not the left or right stair-rail will be placed.
+// For example, if player is facing NORTH, if they are facing slightly to the WEST (left), a left stair-rail will be placed.
+// If player is facing NORTH, and are facing slightly to the EAST (right), a right stair-rail will be placed.
+
+// The block-state .json file is in a multipart format, like sea pickles.
+// Multiple placements inside that block to occupy vacant directions is supported. datagen/ModBlockLootTableProvider has a method to datagen the appropriate loot table.
+
 public class StairRailingBlock extends Block implements SimpleWaterloggedBlock {
 
     //Properties the block possesses
@@ -131,7 +142,7 @@ public class StairRailingBlock extends Block implements SimpleWaterloggedBlock {
         Direction[] allNearestLookingDirections = pContext.getNearestLookingDirections();
 
         //Pick the THIRD indice from the last array. This is MOST LIKELY the player's second-nearest HORIZONTAL facing direction.
-        // The first is most likely UP or DOWN, teh second is most likely the same as nearestHorizontalDirection
+        // The first is most likely UP or DOWN, the second is most likely the same as nearestHorizontalDirection
         Direction secondNearestHorizontalDirection = allNearestLookingDirections[2];
 
         //Ideally these should be false and the nearest looked-direction should be N/S/E/W, ideally

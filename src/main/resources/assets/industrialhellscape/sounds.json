@@ -35,11 +35,16 @@
       "industrialhellscape:toilet_flush"
     ]
   },
-  "vulta_shattered": {
-    "subtitle": "sounds.industrialhellscape.vulta_shattered",
+  "snore": {
+    "subtitle": "sounds.industrialhellscape.snore",
+    "sounds": [
+      "industrialhellscape:snore"
+    ]
+  },
+  "song_1": {
     "sounds": [
       {
-        "name": "industrialhellscape:vulta_shattered",
+        "name": "industrialhellscape:song_1",
         "stream": true
       }
     ]

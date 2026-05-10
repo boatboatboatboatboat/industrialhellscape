@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/door_bottom_left",
-  "render_type": "minecraft:solid",
-  "textures": {
-    "bottom": "industrialhellscape:block/doors/gray_vesselplate_door_bottom",
-    "top": "industrialhellscape:block/doors/gray_vesselplate_door_top"
-  }
-}

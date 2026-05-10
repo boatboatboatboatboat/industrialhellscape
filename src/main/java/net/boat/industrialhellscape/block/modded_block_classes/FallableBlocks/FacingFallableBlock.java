@@ -24,7 +24,7 @@ import java.util.function.Supplier;
 //-----
 // This block has gravity enabled. It will fall like sand if there are no blocks below it.
 // Cardinal directional placement is supported.
-// Custom interaction: Upon landing, a fixed custom sound will be played.
+// Custom interaction: Upon landing, a custom sound (passed during block registration) will be played.
 // For full blocks
 
 public class FacingFallableBlock extends FallingBlock {
@@ -53,7 +53,7 @@ public class FacingFallableBlock extends FallingBlock {
     @Override
     //When the falling block lands on a solid block, it will play a sound
     public void onLand(Level pLevel, @Nonnull BlockPos pPos, @Nonnull BlockState pState, @Nonnull BlockState pReplaceableState, @Nonnull FallingBlockEntity pFallingBlock) {
-        pLevel.playSound(null, pPos, onDropSound.get() /*ModSounds.METALPIPEFALLINGSOUNDEFFECT.get()*/, SoundSource.BLOCKS,
+        pLevel.playSound(null, pPos, onDropSound.get(), SoundSource.BLOCKS,
                 1f, 1f);
     }
 

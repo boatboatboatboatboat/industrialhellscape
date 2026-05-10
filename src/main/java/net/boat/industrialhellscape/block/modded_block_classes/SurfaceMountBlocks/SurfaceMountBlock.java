@@ -1,14 +1,9 @@
 package net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks;
 
 import com.mojang.serialization.MapCodec;
-import net.boat.industrialhellscape.block.modded_interfaces.ToolUseCapability;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
@@ -20,14 +15,15 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 
-//Smoke detector is a block of this block class
+//INFO:
+//-----
+//Block can be placed on any surface. If on floor or ceiling, it will face the direction it is placed down.
+//If on wall, will face the wall it is touching.
 
 public class SurfaceMountBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -78,11 +74,6 @@ public class SurfaceMountBlock extends HorizontalDirectionalBlock implements Sim
 
         return state;
     }
-
-    public @Nonnull InteractionResult use(@Nonnull BlockState pState, @Nonnull Level pLevel, @Nonnull BlockPos pPos, Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
-        return ToolUseCapability.StandCrouchToolInteract(FACING, SURFACE_MOUNT, pPlayer, pState, pLevel, pPos);
-    }
-    //If making vent panel blocks, use a tooltip for them to inform of this feature.
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(FACING, WATERLOGGED, SURFACE_MOUNT); //Block's blockstates; its NSEW orientation, its connection type defined

@@ -2,11 +2,15 @@ package net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks;
 
 import net.boat.industrialhellscape.block.modded_block_state_properties.TwoBlockMultiBlockState;
 import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
+import net.boat.industrialhellscape.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -52,6 +56,11 @@ public class ModdedBedBlock extends Modelled2BMBlock implements EntityBlock, Sim
     }
 
     @Override
+    public boolean isBed(BlockState state, BlockGetter level, BlockPos pos, LivingEntity sleeper) {
+        return true;
+    }
+
+    @Override
     public @Nullable BlockEntity newBlockEntity(@Nonnull BlockPos pos, @Nonnull BlockState state) {
         //Color is arbitrary to fulfill the last parameter
         return new BedBlockEntity(pos, state, DyeColor.BLUE);
@@ -81,7 +90,6 @@ public class ModdedBedBlock extends Modelled2BMBlock implements EntityBlock, Sim
                 if (level.getBlockState(blockpos).is(this)) {
                     level.removeBlock(blockpos, false);
                 }
-
                 Vec3 vec3 = pos.getCenter();
                 level.explode(null, level.damageSources().badRespawnPointExplosion(vec3), null, vec3, 5.0F, true, Level.ExplosionInteraction.BLOCK);
             } else {
@@ -92,6 +100,9 @@ public class ModdedBedBlock extends Modelled2BMBlock implements EntityBlock, Sim
                     }
 
                 });
+            }
+            if(player.isSleeping()) {
+                level.playSound(null, pos, ModSounds.SNORE.get(), SoundSource.BLOCKS, 1f, 1f);
             }
             return InteractionResult.SUCCESS;
         }

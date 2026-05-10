@@ -3,8 +3,8 @@ package net.boat.industrialhellscape.block.modded_block_classes.StorageBlocks;
 import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.TwoBlockMultiBlock;
 import net.boat.industrialhellscape.block.modded_block_entities.StorageBE.StorageBE;
 import net.boat.industrialhellscape.block.modded_block_state_properties.TwoBlockMultiBlockState;
+import net.boat.industrialhellscape.block.modded_interfaces.MultiBlockPlacementInterface;
 import net.boat.industrialhellscape.block.modded_interfaces.StorageBlockInterface;
-import net.boat.industrialhellscape.block.modded_interfaces.MultiBlockPlacementCapability;
 import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -19,6 +19,17 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
+
+//INFO:
+//-----
+//This block supports cardinal directional placement, and an inventory with GUI. The inventory size is determined upon block registration.
+//Block places two blocks total within the world when placed down; First a "Negative" half, then a "Positive" half.
+//The direction these are placed is set by parameter "multiBlockPlacementDirection". The second half of the structure can be placed vertically, horizontally, or forward to the first half.
+//Block has a block entity within.
+
+//getSlotCount() used by StorageBlockInterface to detect desired Block Entity item slot amount to create.
+//getOpenSound() and getClosedSound() used by StorageBlockInterface to detect desired sounds for opening and closing Block Entity menu.
+//If I define these block states in the interfaces, it may crash in 1.21. This is why these methods are in place.
 
 public class TwoBlockStorageMultiBlock extends TwoBlockMultiBlock implements EntityBlock, StorageBlockInterface {
     public final int SLOTS; //Amount of inventory slots. Should be a multiple of 9.
@@ -68,8 +79,8 @@ public class TwoBlockStorageMultiBlock extends TwoBlockMultiBlock implements Ent
     //---------- Block Entity Handling Methods below ----------
 
     public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
-        //See modded interface MultiBlockPlacementCapability for more details
-        //return MultiBlockPlacementCapability.newBlockEntityInNegativeBlock(pos, state);
+        //See modded interface MultiBlockPlacementInterface for more details
+        //return MultiBlockPlacementInterface.newBlockEntityInNegativeBlock(pos, state);
         if(state.getBlock() instanceof TwoBlockStorageMultiBlock) {
             if(state.getValue(HALF_PART) == TwoBlockMultiBlockState.POSITIVE) { //If the block is the POSITIVE block
                 return null; //no new block entities will be generated
@@ -87,7 +98,7 @@ public class TwoBlockStorageMultiBlock extends TwoBlockMultiBlock implements Ent
             return InteractionResult.SUCCESS;
         }
         if(state.getValue(HALF_PART) == TwoBlockMultiBlockState.POSITIVE) {
-            negativeHalfPos = MultiBlockPlacementCapability.posToPlaceOtherHalf(negativeHalfPos, TwoBlockMultiBlockState.POSITIVE, state.getValue(FACING), multiBlockPlacementDirection);
+            negativeHalfPos = MultiBlockPlacementInterface.posToPlaceOtherHalf(negativeHalfPos, TwoBlockMultiBlockState.POSITIVE, state.getValue(FACING), multiBlockPlacementDirection);
         }
         return StorageBlockInterface.OpenContainerInventory(level, negativeHalfPos, player);
     }
@@ -96,7 +107,7 @@ public class TwoBlockStorageMultiBlock extends TwoBlockMultiBlock implements Ent
     public void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) {
         BlockPos negativeHalfPos = pos;
         if(state.getValue(HALF_PART) == TwoBlockMultiBlockState.POSITIVE) {
-            negativeHalfPos = MultiBlockPlacementCapability.posToPlaceOtherHalf(negativeHalfPos, TwoBlockMultiBlockState.POSITIVE, state.getValue(FACING), multiBlockPlacementDirection);
+            negativeHalfPos = MultiBlockPlacementInterface.posToPlaceOtherHalf(negativeHalfPos, TwoBlockMultiBlockState.POSITIVE, state.getValue(FACING), multiBlockPlacementDirection);
         }
         StorageBlockInterface.dropContainerInventory(this, state, level, negativeHalfPos, newState);
         super.onRemove(state, level, pos, newState, isMoving);

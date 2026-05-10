@@ -30,9 +30,12 @@ import java.util.function.Supplier;
 //INFO:
 //-----
 //This block supports cardinal directional placement, and an inventory with GUI. The inventory size is determined upon block registration.
-//It extends the vanilla block class, Horizontal DirectionalBlock, and implements the vanilla interface, EntityBlock
-//
-//-----
+//Supports registering a custom hitbox for the custom model.
+//Block has a block entity within.
+
+//getSlotCount() used by StorageBlockInterface to detect desired Block Entity item slot amount to create.
+//getOpenSound() and getClosedSound() used by StorageBlockInterface to detect desired sounds for opening and closing Block Entity menu.
+//If I define these block states in the interfaces, it may crash in 1.21. This is why these methods are in place.
 
 public class ModelledFacingStorageBlock extends FacingStorageBlock implements EntityBlock, StorageBlockInterface, SimpleWaterloggedBlock {
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;

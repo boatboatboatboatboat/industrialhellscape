@@ -1,22 +1,16 @@
 package net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks;
 
 import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
-import net.boat.industrialhellscape.block.modded_interfaces.ToolUseCapability;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
@@ -27,15 +21,8 @@ import javax.annotation.Nonnull;
 //INFO:
 //-----
 // This block, when placed, will align top/bottom. It is meant for "corner" or "right-angle" shaped blocks whose models will be touching two perpendicular full-block surfaces of adjacent blocks.
-// When placed, depending roughly on direction, it will align to the "wall and ceiling" or "wall and floor" surfaces.
-// When placed while player is crouching, will default to "SIDE" alignment (wall to perpendicular wall).
 // Using an appropriate tool and interacting with the block, it will rotate, cycling through the cardinal directions it is facing.
-// Using an appropriate tool while crouching, it will cycle through the TYPE_CORNER variants
-//      UP - ceiling/wall touching variant
-//      SIDE - wall/wall touching variant
-//      DOWN - floor/wall touching variant
-
-// Tools that can rotate the block are ones tagged by this mod with the item tag IH_COMPATIBLE_TOOLS. Currently consisting of tagged pickaxes, "wrenches", and the mod's HAVEN Tool
+// Using an appropriate tool while crouching, it will cycle through the ATTACH_FACE variants (touching floor, ceiling, or side of a wall)
 
 public class CornerBlock extends Block implements SimpleWaterloggedBlock {
 
@@ -149,10 +136,6 @@ public class CornerBlock extends Block implements SimpleWaterloggedBlock {
                 break; //Bracket faces walls if player clicks the walls. but if they're looking up, assumes player wants an upright bracket
         }
         return state;
-    }
-
-    public @Nonnull InteractionResult use(@Nonnull BlockState pState, @Nonnull Level pLevel, @Nonnull BlockPos pPos, @NotNull Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
-        return ToolUseCapability.StandCrouchToolInteract(FACING, ATTACH_FACE,pPlayer,pState,pLevel,pPos);
     }
 
     public @Nonnull FluidState getFluidState(BlockState pState) {

@@ -183,8 +183,4 @@ public class StorageBE extends RandomizableContainerBlockEntity {
             this.level.playSound(null, d0, d1, d2, soundEvent, SoundSource.BLOCKS, 0.5F, this.level.getRandom().nextFloat() * 0.1F + 0.9F);
         }
     }
-
-//    void updateBlockState(BlockState state, boolean open) {
-//        this.level.setBlock(this.getBlockPos(), (BlockState)state.setValue(BarrelBlock.OPEN, open), 3);
-//    }
 }

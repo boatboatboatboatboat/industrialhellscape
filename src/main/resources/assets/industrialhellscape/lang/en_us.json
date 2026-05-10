@@ -1,6 +1,7 @@
 {
   "item.industrialhellscape.inhell_haven_device": "HAVEN Tool",
   "item.industrialhellscape.job_application": "Job Application",
+  "item.industrialhellscape.disc_1": "Marquee Music Disc",
 
   "block.industrialhellscape.prototype_machine": "Prototype Machine",
 
@@ -188,6 +189,7 @@
 
   "sounds.industrialhellscape.toilet_flush": "Toilet flushes",
   "sounds.industrialhellscape.metalpipefallingsoundeffect": "Metal pipes falling",
+  "sounds.industrialhellscape.snore": "Comical snoring",
   "sounds.industrialhellscape.metal_box_opening": "Metal container opens",
   "sounds.industrialhellscape.metal_box_closing": "Metal container closes",
   "sounds.industrialhellscape.metal_clank": "Metal clanks",
@@ -208,6 +210,7 @@
 
   "gui.industrialhellscape.inventory_menu": "Industrial Hellscape Storage",
   "gui.industrialhellscape.creative_tab": "InHell Facility Solutions",
+  "gui.industrialhellscape.disc1": "14 Minutes Until Launch - Oscar Feltsman",
 
   "hud.industrialhellscape.invalid_placement_surface": "Invalid placement surface.",
   "hud.industrialhellscape.block_not_interactable": "Not an interactable block."

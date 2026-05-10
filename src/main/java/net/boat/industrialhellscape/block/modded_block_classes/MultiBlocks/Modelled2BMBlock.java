@@ -2,7 +2,7 @@ package net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks;
 
 import net.boat.industrialhellscape.block.modded_block_state_properties.TwoBlockMultiBlockState;
 import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
-import net.boat.industrialhellscape.block.modded_interfaces.MultiBlockPlacementCapability;
+import net.boat.industrialhellscape.block.modded_interfaces.MultiBlockPlacementInterface;
 import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -22,6 +22,13 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nonnull;
+
+//INFO:
+//-----
+//This block supports cardinal directional placement, and an inventory with GUI. The inventory size is determined upon block registration.
+//Block places two blocks total within the world when placed down; First a "Negative" half, then a "Positive" half.
+//The direction these are placed is set by parameter "multiBlockPlacementDirection". The second half of the structure can be placed vertically, horizontally, or forward to the first half.
+//Supports a custom hitbox for custom model, passed during registration.
 
 public class Modelled2BMBlock extends TwoBlockMultiBlock implements SimpleWaterloggedBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -90,7 +97,7 @@ public class Modelled2BMBlock extends TwoBlockMultiBlock implements SimpleWaterl
         }
 
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
-        BlockPos otherBlockPos = MultiBlockPlacementCapability.posToPlaceOtherHalf(pContext.getClickedPos(), TwoBlockMultiBlockState.NEGATIVE, facing, multiBlockPlacementDirection);
+        BlockPos otherBlockPos = MultiBlockPlacementInterface.posToPlaceOtherHalf(pContext.getClickedPos(), TwoBlockMultiBlockState.NEGATIVE, facing, multiBlockPlacementDirection);
 
         Level level = pContext.getLevel();
         if (level.getBlockState(otherBlockPos).canBeReplaced(pContext) && level.getWorldBorder().isWithinBounds(otherBlockPos)) {

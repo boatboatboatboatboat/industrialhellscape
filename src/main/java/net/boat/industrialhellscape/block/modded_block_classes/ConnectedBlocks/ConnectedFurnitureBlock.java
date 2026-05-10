@@ -2,7 +2,7 @@ package net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks;
 
 import com.mojang.serialization.MapCodec;
 import net.boat.industrialhellscape.block.modded_block_state_properties.DynamicConnectionState;
-import net.boat.industrialhellscape.block.modded_interfaces.ConnectedModelCapability;
+import net.boat.industrialhellscape.block.modded_interfaces.ConnectedModelInterface;
 import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
 import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
 import net.minecraft.core.BlockPos;
@@ -31,7 +31,7 @@ import javax.annotation.Nonnull;
 //-----
 // This block, when placed, connects with similarly aligned neighbors. Custom models allow the resulting connection to look like a seamless model (E.G. a multi-block table or desk).
 // Waterlogging and cardinal directional placement is supported.
-// The operating methods for block state detection and updating are present in this mod's ConnectedModelCapability interface.
+// The operating methods for block state detection and updating are present in this mod's ConnectedModelInterface interface.
 // Waterlogging is handled by the vanilla SimpleWaterloggedBlock interface.
 // Can connect to other block classes. This ability is determined by the block tag passed as a parameter during block registration (TagKey<Block> inputCompatibleBlockSet)
 
@@ -43,7 +43,7 @@ import javax.annotation.Nonnull;
 
 // Block class is adapted from Hearth and Home mod's Stone Pillar block class code.
 
-public class ConnectedFurnitureBlock extends Block implements SimpleWaterloggedBlock, ConnectedModelCapability {
+public class ConnectedFurnitureBlock extends Block implements SimpleWaterloggedBlock, ConnectedModelInterface {
 
     public static final EnumProperty<DynamicConnectionState> TYPE = EnumProperty.create("type", DynamicConnectionState.class); //"TYPE" is used to store enum value of "solo, left, right, middle" for block connected variants
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING; //"FACING" is used to store DirectionProperty value of "north, south, east, west"
@@ -137,7 +137,7 @@ public class ConnectedFurnitureBlock extends Block implements SimpleWaterloggedB
 
     @Override
     public @Nonnull VoxelShape getShape(@NotNull BlockState pState, @Nonnull  BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull CollisionContext pContext) {
-        //See this mod's ConnectedModelCapability interface to view the following method.
+        //See this mod's ConnectedModelInterface interface to view the following method.
         return makeConnectedHitboxes(
                 pState,
                 LEFT_SHAPE_NORTH,LEFT_SHAPE_SOUTH,LEFT_SHAPE_EAST,LEFT_SHAPE_WEST,
@@ -147,11 +147,11 @@ public class ConnectedFurnitureBlock extends Block implements SimpleWaterloggedB
     }
     @Override
     public @Nullable BlockState getStateForPlacement(@NotNull BlockPlaceContext pContext) {
-        //See this mod's ConnectedModelCapability interface to view the following method.
+        //See this mod's ConnectedModelInterface interface to view the following method.
         return placeTheConnectableBlock(this, pContext, BlockSetFamily, placementDirection);
     }
     public void neighborChanged(@Nonnull BlockState state, @NotNull Level level, @Nonnull BlockPos positionClicked, @Nonnull Block block, @Nonnull BlockPos fromPos, boolean isMoving) {
-        //See this mod's ConnectedModelCapability interface to view the following method.
+        //See this mod's ConnectedModelInterface interface to view the following method.
         whenConnectedNeighborUpdated(state,level,positionClicked,block,fromPos,BlockSetFamily, placementDirection);
     }
     //---------- END OF METHODS HANDLED BY INTERFACE ----------

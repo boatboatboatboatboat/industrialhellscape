@@ -2,7 +2,7 @@ package net.boat.industrialhellscape.block.modded_block_classes.StorageBlocks;
 
 import net.boat.industrialhellscape.block.modded_block_entities.StorageBE.StorageBE;
 import net.boat.industrialhellscape.block.modded_block_state_properties.DynamicConnectionState;
-import net.boat.industrialhellscape.block.modded_interfaces.ConnectedModelCapability;
+import net.boat.industrialhellscape.block.modded_interfaces.ConnectedModelInterface;
 import net.boat.industrialhellscape.block.modded_interfaces.StorageBlockInterface;
 import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
 import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
@@ -38,7 +38,20 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.Nonnull;
 import java.util.function.Supplier;
 
-public class ConnectedStorageBlock extends FacingStorageBlock implements EntityBlock, ConnectedModelCapability, StorageBlockInterface, SimpleWaterloggedBlock {
+//INFO:
+//-----
+//Block changes block state model depending on adjacent blocks (directions to check determined by "placementDirection parameter") to simulate a connected structure (e.g. a long table).
+//Block has a block entity within.
+//"inputCompatibleBlockSet" parameter lets it detect which different blocks are compatible to update model for.
+
+//getSlotCount() used by StorageBlockInterface to detect desired Block Entity item slot amount to create.
+//getOpenSound() and getClosedSound() used by StorageBlockInterface to detect desired sounds for opening and closing Block Entity menu.
+//If I define these block states in the interfaces, it may crash in 1.21. This is why these methods are in place.
+
+//getFacingProperty(), getTypeProperty(), getWaterloggedProperty() used by ConnectedModelInterface to handle, read, and return blockstates.
+//If I define these block states in the interfaces, it may crash in 1.21. This is why these methods are in place.
+
+public class ConnectedStorageBlock extends FacingStorageBlock implements EntityBlock, ConnectedModelInterface, StorageBlockInterface, SimpleWaterloggedBlock {
     private static final EnumProperty<DynamicConnectionState> TYPE = EnumProperty.create("type", DynamicConnectionState.class);
     private static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -176,7 +189,7 @@ public class ConnectedStorageBlock extends FacingStorageBlock implements EntityB
     //---------- HITBOXES, PLACEMENT, AND BLOCK UPDATES HANDLED BY INTERFACE ---------
     @Override
     public @Nonnull VoxelShape getShape(@Nonnull BlockState pState, @Nonnull BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull CollisionContext pContext) {
-        //See this mod's ConnectedModelCapability interface to view the following method.
+        //See this mod's ConnectedModelInterface interface to view the following method.
         return makeConnectedHitboxes(
                 pState,
                 LEFT_SHAPE_NORTH,LEFT_SHAPE_SOUTH,LEFT_SHAPE_EAST,LEFT_SHAPE_WEST,
@@ -186,11 +199,11 @@ public class ConnectedStorageBlock extends FacingStorageBlock implements EntityB
     }
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        //See this mod's ConnectedModelCapability interface to view the following method.
+        //See this mod's ConnectedModelInterface interface to view the following method.
         return placeTheConnectableBlock(this, pContext, BlockSetFamily, placementDirection);
     }
     public void neighborChanged(@Nonnull BlockState state, @Nonnull Level level, @Nonnull BlockPos positionClicked, @Nonnull Block block, @Nonnull BlockPos fromPos, boolean pIsMoving) {
-        //See this mod's ConnectedModelCapability interface to view the following method.
+        //See this mod's ConnectedModelInterface interface to view the following method.
         whenConnectedNeighborUpdated(state,level,positionClicked,block,fromPos,BlockSetFamily, placementDirection);
     }
     //---------- END OF METHODS HANDLED BY INTERFACE ----------

@@ -3,6 +3,8 @@ package net.boat.industrialhellscape.block.modded_block_classes.TextureToggleBlo
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -22,11 +24,7 @@ import javax.annotation.Nullable;
 //INFO:
 //-----
 // This block, when interacted with an eligible tool, will toggle its block-state, which changes the block model.
-// The block models have different texture variations or CTM connected texture modes that can be enabled which are not
-// worth registering dedicated blocks for.
-// Tools that can rotate the block are ones tagged by this mod with the item tag IH_COMPATIBLE_TOOLS. Currently consisting of tagged pickaxes, "wrenches", and the mod's HAVEN Tool
-
-// skipRendering is for transparent blocks such as grates so they don't show their block sides internally.
+// The block models have different texture variations or CTM connected texture modes
 
 public class SimpleTextureToggleBlock extends Block {
 
@@ -56,6 +54,7 @@ public class SimpleTextureToggleBlock extends Block {
         if(stack.is(ModTags.Items.IH_COMPATIBLE_TOOLS)) {
             state = state.cycle(ALT_STATE);
             level.setBlock(pos, state, 2);
+            level.playSound(player, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 0.25f, 1f);
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
 
@@ -66,7 +65,6 @@ public class SimpleTextureToggleBlock extends Block {
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(ALT_STATE);
     }
-
     public boolean skipRendering(@NotNull BlockState pState, BlockState pAdjacentBlockState, @NotNull Direction pSide) {
         return pAdjacentBlockState.is(this) || super.skipRendering(pState, pAdjacentBlockState, pSide);
     }

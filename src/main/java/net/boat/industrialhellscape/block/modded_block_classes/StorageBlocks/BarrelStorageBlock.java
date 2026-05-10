@@ -12,6 +12,15 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
+//INFO:
+//-----
+//Block will be placed facing the player (cardinal direction) if placed on floor or ceiling. If placed on wall, it will face away from wall.
+//Block has a block entity within.
+
+//getSlotCount() used by StorageBlockInterface to detect desired Block Entity item slot amount to create.
+//getOpenSound() and getClosedSound() used by StorageBlockInterface to detect desired sounds for opening and closing Block Entity menu.
+//If I define these block states in the interfaces, it may crash in 1.21. This is why these methods are in place.
+
 public class BarrelStorageBlock extends FacingStorageBlock implements EntityBlock {
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
     public final int SLOTS;

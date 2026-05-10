@@ -29,6 +29,10 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 
+//INFO:
+//-----
+//Block can be placed on walls, ceilings, and floors (FACING). In addition to this, it can be rotated in four directions on that surface (PLANE_DIRECTION)
+
 public class SurfaceMountRotatableBlock extends Block implements SimpleWaterloggedBlock {
 
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
