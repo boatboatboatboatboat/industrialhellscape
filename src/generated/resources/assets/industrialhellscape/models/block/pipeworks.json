@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "industrialhellscape:block/pipeworks/pipeworks_top",
+    "east": "industrialhellscape:block/pipeworks/pipeworks_sides",
+    "north": "industrialhellscape:block/pipeworks/pipeworks_front",
+    "particle": "industrialhellscape:block/pipeworks/pipeworks_top",
+    "south": "industrialhellscape:block/pipeworks/pipeworks_front",
+    "up": "industrialhellscape:block/pipeworks/pipeworks_top",
+    "west": "industrialhellscape:block/pipeworks/pipeworks_sides"
+  }
+}

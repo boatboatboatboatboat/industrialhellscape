@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "industrialhellscape:block/truss/gray_truss",
+    "side": "industrialhellscape:block/truss/gray_reinforced_truss",
+    "top": "industrialhellscape:block/truss/gray_truss"
+  }
+}

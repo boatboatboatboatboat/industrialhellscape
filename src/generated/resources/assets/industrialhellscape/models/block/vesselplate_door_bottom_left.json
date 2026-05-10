@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/door_bottom_left",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "industrialhellscape:block/doors/vesselplate_door_bottom",
+    "top": "industrialhellscape:block/doors/vesselplate_door_top"
+  }
+}

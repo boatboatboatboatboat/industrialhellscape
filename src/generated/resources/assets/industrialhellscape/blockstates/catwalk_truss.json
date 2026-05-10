@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "alt_state=false,waterlogged=false": {
+      "model": "industrialhellscape:block/catwalk_truss"
+    },
+    "alt_state=false,waterlogged=true": {
+      "model": "industrialhellscape:block/catwalk_truss"
+    },
+    "alt_state=true,waterlogged=false": {
+      "model": "industrialhellscape:block/catwalk_truss"
+    },
+    "alt_state=true,waterlogged=true": {
+      "model": "industrialhellscape:block/catwalk_truss"
+    }
+  }
+}

@@ -1,0 +1,4 @@
+{
+  "parent": "industrialhellscape:block/gray_catwalk_truss_slab",
+  "render_type": "minecraft:cutout"
+}

@@ -1,0 +1,49 @@
+{
+  "variants": {
+    "face=ceiling,facing=east": {
+      "model": "industrialhellscape:block/cctv_camera/cctv_camera_ceiling",
+      "y": 90
+    },
+    "face=ceiling,facing=north": {
+      "model": "industrialhellscape:block/cctv_camera/cctv_camera_ceiling"
+    },
+    "face=ceiling,facing=south": {
+      "model": "industrialhellscape:block/cctv_camera/cctv_camera_ceiling",
+      "y": 180
+    },
+    "face=ceiling,facing=west": {
+      "model": "industrialhellscape:block/cctv_camera/cctv_camera_ceiling",
+      "y": 270
+    },
+    "face=floor,facing=east": {
+      "model": "industrialhellscape:block/cctv_camera/cctv_camera_ceiling",
+      "y": 90
+    },
+    "face=floor,facing=north": {
+      "model": "industrialhellscape:block/cctv_camera/cctv_camera_ceiling"
+    },
+    "face=floor,facing=south": {
+      "model": "industrialhellscape:block/cctv_camera/cctv_camera_ceiling",
+      "y": 180
+    },
+    "face=floor,facing=west": {
+      "model": "industrialhellscape:block/cctv_camera/cctv_camera_ceiling",
+      "y": 270
+    },
+    "face=wall,facing=east": {
+      "model": "industrialhellscape:block/cctv_camera/cctv_camera_wall",
+      "y": 90
+    },
+    "face=wall,facing=north": {
+      "model": "industrialhellscape:block/cctv_camera/cctv_camera_wall"
+    },
+    "face=wall,facing=south": {
+      "model": "industrialhellscape:block/cctv_camera/cctv_camera_wall",
+      "y": 180
+    },
+    "face=wall,facing=west": {
+      "model": "industrialhellscape:block/cctv_camera/cctv_camera_wall",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "values": [
+    "industrialhellscape:duct",
+    "industrialhellscape:rusty_duct",
+    "industrialhellscape:duct_vent",
+    "industrialhellscape:rusty_duct_vent",
+    "industrialhellscape:horizontal_grate",
+    "industrialhellscape:vertical_grate",
+    "industrialhellscape:horizontal_cutout_grate",
+    "industrialhellscape:vertical_cutout_grate",
+    "industrialhellscape:gray_horizontal_grate",
+    "industrialhellscape:gray_vertical_grate",
+    "industrialhellscape:gray_horizontal_cutout_grate",
+    "industrialhellscape:gray_vertical_cutout_grate"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "alt_state=false": {
+      "model": "industrialhellscape:block/rough_gray_rockrete"
+    },
+    "alt_state=true": {
+      "model": "industrialhellscape:block/rough_gray_rockrete"
+    }
+  }
+}
