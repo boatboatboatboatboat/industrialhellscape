@@ -1,11 +1,16 @@
 package net.boat.industrialhellscape.block.modded_block_classes.TextureToggleBlocks;
 
+import net.boat.industrialhellscape.block.ModBlocks;
 import net.boat.industrialhellscape.block.modded_interfaces.ToolUseCapability;
+import net.boat.industrialhellscape.item.ModItems;
+import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -49,11 +54,18 @@ public class SimpleTextureToggleBlock extends Block {
         return state;
     }
 
-    public @Nonnull InteractionResult use(@Nonnull BlockState pState, @Nonnull Level pLevel, @Nonnull BlockPos pPos, Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
-        //See modded interface ToolUseCapability for the list of methods used to handle common player/block interactions in this mod
-        return ToolUseCapability.SimpleToolInteract(ALT_STATE, pPlayer, pState, pLevel, pPos);
+    @Override
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if(stack.is(ModTags.Items.IH_COMPATIBLE_TOOLS)) {
+            state = state.cycle(ALT_STATE);
+            level.setBlock(pos, state, 2);
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        }
+
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(ALT_STATE);
     }

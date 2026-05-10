@@ -2,7 +2,8 @@ package net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBloc
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -14,8 +15,9 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
+import java.util.function.Supplier;
 //INFO:
 //-----
 // This block supports rotation of custom models. It also supports directional placement based on player.
@@ -28,18 +30,29 @@ import javax.annotation.Nonnull;
 public class InteractableModelledFacingBlock extends ModelledFacingBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED; //For binary states (on, off, or lit, unlit)
 
-    public InteractableModelledFacingBlock(Properties pProperties, VoxelShape soloShape) {
+    public final Supplier<SoundEvent> ON_SOUND;
+    public final Supplier<SoundEvent> OFF_SOUND;
+
+    public InteractableModelledFacingBlock(Properties pProperties, VoxelShape soloShape, Supplier<SoundEvent> onSound, Supplier<SoundEvent> offSound) {
         super(pProperties, soloShape);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(POWERED, false)
                 .setValue(WATERLOGGED, false));
+        this.ON_SOUND = onSound;
+        this.OFF_SOUND = offSound;
     }
 
-    public @Nonnull InteractionResult use(@Nonnull BlockState pState, Level pLevel, @Nonnull BlockPos pPos, @Nonnull Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
-        pState = pState.cycle(POWERED);
-        pLevel.setBlock(pPos, pState, 2);
-        return InteractionResult.SUCCESS;
+    @Override
+    public @NotNull InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+            boolean wasOn = state.getValue(POWERED);
+            state = state.cycle(POWERED);
+            level.setBlock(pos, state, 2);
+            SoundEvent onOffSound = wasOn ? OFF_SOUND.get() : ON_SOUND.get();
+
+            level.playSound(player, pos, onOffSound, SoundSource.BLOCKS, 1f, 1f);
+            return InteractionResult.sidedSuccess(level.isClientSide);
+
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {

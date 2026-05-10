@@ -1,6 +1,6 @@
 package net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks;
 
-import net.boat.industrialhellscape.block.modded_interfaces.RotationHelper;
+import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -37,19 +37,19 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock{
 
     // INTERACTION SHAPE, black outline in-game is based on this shape.
     private static final VoxelShape SHAPE_NORTH = Block.box(0d, 0d, 14d, 16d, RAILING_HEIGHT, 16d);
-    private static final VoxelShape SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH);
-    private static final VoxelShape SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH);
-    private static final VoxelShape SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH);
+    private static final VoxelShape SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH);
+    private static final VoxelShape SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH);
+    private static final VoxelShape SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH);
 
     // COLLISION SHAPE (FOR PLAYER), arrows will collide with hitbox portion that's within the 16x16x16 block boundary only.
     // Meaning despite the RAILING_COLLISION_HEIGHT being greater than 16 units, arrows can still fly through above the edge of the block.
     // However, player will still be obstructed from jumping over it, just like fences. For now this is intended behavior.
-    // The modded interface RotationHelper is used to rotate the voxelshapes along appropriate cardinal directions.
+    // The modded interface HitboxRotationInterface is used to rotate the voxelshapes along appropriate cardinal directions.
     //There is a gap from y=0 to y=15. This allows you to shoot arrows through the railing blocks since they are pretty thin.
     private static final VoxelShape COLLISON_SHAPE_NORTH = Block.box(0d, 15d, 14d, 16d, RAILING_COLLISION_HEIGHT, 16d);
-    private static final VoxelShape COLLISION_SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, COLLISON_SHAPE_NORTH);
-    private static final VoxelShape COLLISION_SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, COLLISON_SHAPE_NORTH);
-    private static final VoxelShape COLLISION_SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, COLLISON_SHAPE_NORTH);
+    private static final VoxelShape COLLISION_SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, COLLISON_SHAPE_NORTH);
+    private static final VoxelShape COLLISION_SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, COLLISON_SHAPE_NORTH);
+    private static final VoxelShape COLLISION_SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, COLLISON_SHAPE_NORTH);
 
     // Boolean properties to check whether there is an additional fence at that direction (multiple can be placed down in each of the four cardinal directions in one block space)
     // These "superposition" block properties are handled via a block-state .json file handling "multi-block" states.

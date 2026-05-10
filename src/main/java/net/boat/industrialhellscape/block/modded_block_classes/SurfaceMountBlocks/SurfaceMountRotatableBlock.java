@@ -1,13 +1,15 @@
 package net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks;
 
 import net.boat.industrialhellscape.block.modded_block_state_properties.RelativePlanarDirectionState;
-import net.boat.industrialhellscape.block.modded_interfaces.RotationHelper;
+import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -38,9 +40,9 @@ public class SurfaceMountRotatableBlock extends Block implements SimpleWaterlogg
     public static final VoxelShape SHAPE_CEILING = Block.box(0, 10, 0, 16, 16, 16);
 
     public static final VoxelShape SHAPE_NORTH = Block.box(0, 0, 0, 16, 16, 6);
-    public static final VoxelShape SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH);
-    public static final VoxelShape SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH);
-    public static final VoxelShape SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH);
+    public static final VoxelShape SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH);
+    public static final VoxelShape SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH);
+    public static final VoxelShape SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH);
 
     public SurfaceMountRotatableBlock(Properties pProperties) {
         super(pProperties);
@@ -85,26 +87,48 @@ public class SurfaceMountRotatableBlock extends Block implements SimpleWaterlogg
         return state.setValue(PLANE_DIRECTION, RelativePlanarDirectionState.DOWN);
     }
 
-    public @Nonnull InteractionResult use(@Nonnull BlockState pState, @Nonnull Level pLevel, @Nonnull BlockPos pPos, Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
-        boolean playerHasTool = pPlayer.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || pPlayer.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
-        boolean playerIsCrouching = pPlayer.isCrouching();
+    @Override
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        boolean playerHasTool = player.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || player.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
+        boolean playerIsCrouching = player.isCrouching();
 
         if(playerHasTool && playerIsCrouching) {
             //Cycles connection type. Only works with modded tools
-            pState = pState.cycle(FACING);
-            pLevel.setBlock(pPos, pState, 2); //2
-            return InteractionResult.sidedSuccess(pLevel.isClientSide);
+            state = state.cycle(FACING);
+            level.setBlock(pos, state, 2); //2
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
 
 
 
         } else if (playerHasTool) {
             //Cycles from vertical and horizontal pipes when interacting with pipes on walls. Works with modded tools AND pickaxes
-            pState = pState.cycle(PLANE_DIRECTION);
-            pLevel.setBlock(pPos, pState, 3); //3
-            return InteractionResult.sidedSuccess(pLevel.isClientSide);
+            state = state.cycle(PLANE_DIRECTION);
+            level.setBlock(pos, state, 3); //3
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
+
+//    public @Nonnull InteractionResult use(@Nonnull BlockState pState, @Nonnull Level pLevel, @Nonnull BlockPos pPos, Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
+//        boolean playerHasTool = pPlayer.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || pPlayer.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
+//        boolean playerIsCrouching = pPlayer.isCrouching();
+//
+//        if(playerHasTool && playerIsCrouching) {
+//            //Cycles connection type. Only works with modded tools
+//            pState = pState.cycle(FACING);
+//            pLevel.setBlock(pPos, pState, 2); //2
+//            return InteractionResult.sidedSuccess(pLevel.isClientSide);
+//
+//
+//
+//        } else if (playerHasTool) {
+//            //Cycles from vertical and horizontal pipes when interacting with pipes on walls. Works with modded tools AND pickaxes
+//            pState = pState.cycle(PLANE_DIRECTION);
+//            pLevel.setBlock(pPos, pState, 3); //3
+//            return InteractionResult.sidedSuccess(pLevel.isClientSide);
+//        }
+//        return InteractionResult.PASS;
+//    }
 
     public @Nonnull FluidState getFluidState(BlockState pState) {
         return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);

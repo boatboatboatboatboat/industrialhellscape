@@ -1,24 +1,31 @@
 package net.boat.industrialhellscape;
 
 import net.boat.industrialhellscape.block.ModBlocks;
+import net.boat.industrialhellscape.block.modded_block_entities.DebugBE.DebugBERenderer;
+import net.boat.industrialhellscape.block.modded_block_entities.ModBlockEntities;
+import net.boat.industrialhellscape.block.modded_block_entities.ModEntities;
+import net.boat.industrialhellscape.block.modded_block_entities.SittableEntity.SittableEntityRenderer;
 import net.boat.industrialhellscape.item.ModCreativeModeTabs;
 import net.boat.industrialhellscape.item.ModItems;
+import net.boat.industrialhellscape.screen.ModMenuTypes;
+import net.boat.industrialhellscape.screen.custom.DebugBEScreen;
 import net.boat.industrialhellscape.sound.ModSounds;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.level.block.Blocks;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -83,6 +90,11 @@ public class IndustrialHellscape {
         ModBlocks.register(modEventBus);
         ModSounds.register(modEventBus);
 
+        ModEntities.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
+
+        ModMenuTypes.register(modEventBus);
+
         // Register the item to a creative tab
         //modEventBus.addListener(this::addCreative);
 
@@ -125,6 +137,17 @@ public class IndustrialHellscape {
             // Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+            EntityRenderers.register(ModEntities.CHAIR.get(), SittableEntityRenderer::new);
+        }
+
+
+        @SubscribeEvent
+        public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
+            event.registerBlockEntityRenderer(ModBlockEntities.DEBUG_BE.get(), DebugBERenderer::new);
+        }
+        @SubscribeEvent
+        public static void registerScreens(RegisterMenuScreensEvent event) {
+            event.register(ModMenuTypes.DEBUG_BE_MENU.get(), DebugBEScreen::new);
         }
     }
 }

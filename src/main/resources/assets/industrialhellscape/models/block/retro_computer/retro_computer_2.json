@@ -1,10 +1,9 @@
 {
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
-	"texture_size": [48, 48],
 	"textures": {
 		"0": "industrialhellscape:block/retro_computer_2",
-		"1": "industrialhellscape:block/lit_unlit_textures/retro_computer_screen_off",
+		"1": "industrialhellscape:block/lit_unlit_textures/retro_computer_2_screen_off",
 		"particle": "industrialhellscape:block/retro_computer_2"
 	},
 	"elements": [
@@ -38,8 +37,8 @@
 		},
 		{
 			"name": "case",
-			"from": [3.9, 4, 11],
-			"to": [14.1, 7.1, 14],
+			"from": [4, 4, 11],
+			"to": [14, 7, 14],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
 			"faces": {
 				"east": {"uv": [6.33333, 7, 7.33333, 8], "texture": "#0"},
@@ -64,11 +63,11 @@
 		},
 		{
 			"name": "monitor_front",
-			"from": [3.9, 4, 8],
-			"to": [14.1, 12.25, 11],
+			"from": [4, 4, 8],
+			"to": [14, 12, 11],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
 			"faces": {
-				"north": {"uv": [8.33333, 5.33333, 11.66667, 8], "texture": "#0"},
+				"north": {"uv": [0, 0, 10, 8], "texture": "#1"},
 				"east": {"uv": [7.33333, 5.33333, 8.33333, 8], "texture": "#0"},
 				"south": {"uv": [4, 0, 7.33333, 2.66667], "texture": "#0"},
 				"west": {"uv": [11.66667, 5.33333, 12.66667, 8], "texture": "#0"},
@@ -76,22 +75,9 @@
 			}
 		},
 		{
-			"from": [4.9, 5, 7.9],
-			"to": [13.1, 11.2, 7.9],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
-			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "texture": "#1"},
-				"east": {"uv": [0, 0, 0, 2.06667], "texture": "#1"},
-				"south": {"uv": [0, 0, 2.73333, 2.06667], "texture": "#1"},
-				"west": {"uv": [0, 0, 0, 2.06667], "texture": "#1"},
-				"up": {"uv": [0, 0, 2.73333, 0], "rotation": 180, "texture": "#1"},
-				"down": {"uv": [0, 0, 2.73333, 0], "rotation": 180, "texture": "#1"}
-			}
-		},
-		{
-			"from": [4, 5.5, 10.4],
-			"to": [14, 11.5, 13.5],
-			"rotation": {"angle": -22.5, "axis": "x", "origin": [4, 5.5, 10.5]},
+			"from": [5, 5.2, 10.4],
+			"to": [13, 11.2, 13.4],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [5.9, 5.2, 10.5]},
 			"faces": {
 				"east": {"uv": [12.66667, 2.33333, 11.66667, 4.33333], "texture": "#0"},
 				"south": {"uv": [8.33333, 2.33333, 11.66667, 4.33333], "texture": "#0"},
@@ -136,6 +122,7 @@
 		{
 			"name": "group",
 			"origin": [0, 6, 6],
+			"scope": 0,
 			"color": 0,
 			"children": [
 				0,
@@ -145,8 +132,9 @@
 				{
 					"name": "group",
 					"origin": [0, 6, 6],
+					"scope": 0,
 					"color": 0,
-					"children": [4, 5, 6]
+					"children": [4, 5]
 				}
 			]
 		}

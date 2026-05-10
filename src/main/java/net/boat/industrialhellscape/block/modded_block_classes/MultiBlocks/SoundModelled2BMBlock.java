@@ -20,6 +20,12 @@ public class SoundModelled2BMBlock extends Modelled2BMBlock {
         super(pProperties, multiBlockPlacementDirection, hitboxPositiveShape, hitboxNegativeShape);
     }
 
+    @Override
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+        this.playSound(player, level, pos);
+        return InteractionResult.sidedSuccess(level.isClientSide);
+    }
+
     public @Nonnull InteractionResult use(@Nonnull BlockState pState, @Nonnull Level pLevel, @Nonnull BlockPos pPos, Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
 
         this.playSound(pPlayer, pLevel, pPos);

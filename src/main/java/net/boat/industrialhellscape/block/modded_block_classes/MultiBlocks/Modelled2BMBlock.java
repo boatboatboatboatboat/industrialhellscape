@@ -1,8 +1,8 @@
 package net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks;
 
 import net.boat.industrialhellscape.block.modded_block_state_properties.TwoBlockMultiBlockState;
+import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
 import net.boat.industrialhellscape.block.modded_interfaces.MultiBlockPlacementCapability;
-import net.boat.industrialhellscape.block.modded_interfaces.RotationHelper;
 import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -45,14 +45,14 @@ public class Modelled2BMBlock extends TwoBlockMultiBlock implements SimpleWaterl
         this.multiBlockPlacementDirection = multiBlockPlacementDirection;
 
         POSITIVE_SHAPE_NORTH = hitboxPositiveShape;
-        POSITIVE_SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, hitboxPositiveShape);
-        POSITIVE_SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, hitboxPositiveShape);
-        POSITIVE_SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, hitboxPositiveShape);
+        POSITIVE_SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, hitboxPositiveShape);
+        POSITIVE_SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, hitboxPositiveShape);
+        POSITIVE_SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, hitboxPositiveShape);
 
         NEGATIVE_SHAPE_NORTH = hitboxNegativeShape;
-        NEGATIVE_SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, hitboxNegativeShape);
-        NEGATIVE_SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, hitboxNegativeShape);
-        NEGATIVE_SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, hitboxNegativeShape);
+        NEGATIVE_SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, hitboxNegativeShape);
+        NEGATIVE_SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, hitboxNegativeShape);
+        NEGATIVE_SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, hitboxNegativeShape);
 
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(HALF_PART, TwoBlockMultiBlockState.NEGATIVE)

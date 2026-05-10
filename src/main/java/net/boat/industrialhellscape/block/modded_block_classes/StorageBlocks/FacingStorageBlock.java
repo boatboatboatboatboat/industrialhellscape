@@ -1,26 +1,18 @@
-package net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks;
+package net.boat.industrialhellscape.block.modded_block_classes.StorageBlocks;
 
-import net.boat.industrialhellscape.block.modded_block_entities.GenericContainerBE;
-import net.boat.industrialhellscape.block.modded_interfaces.ContainerBlockCapability;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.phys.BlockHitResult;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.function.Supplier;
 
 //INFO:
 //-----
@@ -29,28 +21,46 @@ import org.jetbrains.annotations.Nullable;
 //
 //-----
 
-public class FacingContainerBlock extends HorizontalDirectionalBlock implements EntityBlock {
-    public final int SLOTS; //Amount of inventory slots. Should be a multiple of 9. Passed to Block Entity
-    public final SoundEvent OPEN_SOUND;
-    public final SoundEvent CLOSE_SOUND;
+public class FacingStorageBlock extends BaseStorageBlock implements EntityBlock {
+    public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
+    public final int SLOTS;
+    public final Supplier<SoundEvent> OPEN_SOUND;
+    public final Supplier<SoundEvent> CLOSE_SOUND;
 
     private static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-    public FacingContainerBlock(Properties properties, int SlotAmount, SoundEvent openSound, SoundEvent closeSound) {
+    public FacingStorageBlock(Properties properties, int slotsAmount, Supplier<SoundEvent> openSound, Supplier<SoundEvent> closeSound) {
         // When registering this block, pass in
         // Properties
         // Integer amount of slots the block entity inventory will have (multiple of 9)
         // Sound to play when player opens block
         // Sound to play when player closes block
 
-        super(properties);
-        this.SLOTS = SlotAmount; //The inventory capacity of the block is determined during registration
+        super(properties, slotsAmount, openSound, closeSound);
+        this.SLOTS = slotsAmount;
         this.OPEN_SOUND = openSound;
         this.CLOSE_SOUND = closeSound;
+        this.registerDefaultState(this.stateDefinition.any().setValue(OPEN, false));
 
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
+                .setValue(OPEN, false)
         );
+    }
+
+    @Override
+    public int getSlotCount() {
+        return SLOTS;
+    }
+
+    @Override
+    public Supplier<SoundEvent> getOpenSound() {
+        return OPEN_SOUND;
+    }
+
+    @Override
+    public Supplier<SoundEvent> getCloseSound() {
+        return CLOSE_SOUND;
     }
 
     @Override
@@ -66,30 +76,9 @@ public class FacingContainerBlock extends HorizontalDirectionalBlock implements 
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
+        builder.add(FACING, OPEN);
     }
 
     //---------- Block Entity Handling Methods below ----------
-
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
-        return new GenericContainerBE(pos, state);
-    }
-
-    @NotNull
-    @Override
-    public InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
-        //See modded interface ContainerBlockCapability for details
-        return ContainerBlockCapability.OpenContainerInventory(level,pos,player);
-    }
-
-    @Override
-    public void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) {
-        //See modded interface ContainerBlockCapability for details
-        ContainerBlockCapability.dropSavedContainerInventory(this, state, level, pos, newState);
-        super.onRemove(state, level, pos, newState, isMoving);
-    }
-
     //---------- End of Block Entity Handling Methods ----------
 }

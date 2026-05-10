@@ -38,17 +38,18 @@ public class SittableFacingBlock extends ModelledFacingBlock implements SimpleWa
         );
     }
 
-    public @Nonnull InteractionResult use(@Nonnull BlockState pState, @Nonnull Level pLevel, @Nonnull BlockPos pPos, Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
-        if(!pLevel.isClientSide()) {
+    @Override
+    public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+        if(!level.isClientSide()) {
             Entity entity;
-            List<SittableEntity> entities = pLevel.getEntities(ModEntities.CHAIR.get(), new AABB(pPos), chair -> true);
+            List<SittableEntity> entities = level.getEntities(ModEntities.CHAIR.get(), new AABB(pos), chair -> true);
             if(entities.isEmpty()) {
-                entity = ModEntities.CHAIR.get().spawn((ServerLevel) pLevel, pPos, MobSpawnType.TRIGGERED);
+                entity = ModEntities.CHAIR.get().spawn((ServerLevel) level, pos, MobSpawnType.TRIGGERED);
             } else {
                 entity = entities.get(0);
             }
 
-            pPlayer.startRiding(entity);
+            player.startRiding(entity);
         }
 
         return InteractionResult.SUCCESS;

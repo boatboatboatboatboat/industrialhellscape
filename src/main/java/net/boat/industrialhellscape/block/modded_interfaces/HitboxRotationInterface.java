@@ -11,7 +11,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 //An array is used because the Cartesian rotation operation will be repeated on the same Voxelshapes again and again.
 //-----
 
-public interface RotationHelper {
+public interface HitboxRotationInterface {
 
     static VoxelShape rotateVoxelCardinal(Direction directionRelativeToNorth, VoxelShape northShapeInput) {
         int timesToRotate = switch(directionRelativeToNorth) { //Convert desired direction into number of rotations Counterclockwise (CCW)

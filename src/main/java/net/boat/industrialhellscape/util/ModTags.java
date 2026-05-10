@@ -14,7 +14,7 @@ public class ModTags {
         public static final TagKey<Block> VESSELPLATE_BLOCKS = tag("vesselplate_blocks");
         public static final TagKey<Block> VESSELGLASS_BLOCKS = tag("vesselglass_blocks");
         public static final TagKey<Block> ROCKRETE_BLOCKS = tag("rockrete_blocks");
-        public static final TagKey<Block> STRUT_BLOCKS = tag("strut_blocks");
+        public static final TagKey<Block> TRUSS_BLOCKS = tag("strut_blocks");
         public static final TagKey<Block> HVAC_BLOCKS = tag("hvac_blocks");
 
         public static final TagKey<Block> PIPEWORKS_BLOCKS = tag("pipeworks_blocks");
@@ -62,7 +62,7 @@ public class ModTags {
         public static final TagKey<Item> VESSELPLATE_SMELTABLE_ITEM = tag("vesselplate_smeltable_item");
         public static final TagKey<Item> VESSELGLASS_SMELTABLE_ITEM = tag("vesselglass_smeltable_item");
         public static final TagKey<Item> ROCKRETE_SMELTABLE_ITEM = tag("rockrete_smeltable_item");
-        public static final TagKey<Item> STRUT_SMELTABLE_ITEM = tag("strut_smeltable_item");
+        public static final TagKey<Item> TRUSS_SMELTABLE_ITEM = tag("strut_smeltable_item");
         public static final TagKey<Item> HVAC_SMELTABLE_ITEM = tag("hvac_smeltable_item");
 
         public static final TagKey<Item> PIPEWORKS_ITEMS = tag("pipeworks_items");
@@ -86,7 +86,6 @@ public class ModTags {
 
         //For tool use
         public static final TagKey<Item> IH_COMPATIBLE_TOOLS = tag("ih_compatible_tools");
-        public static final TagKey<Item> IH_COMPATIBLE_MODDED_TOOLS = tag("ih_compatible_modded_tools");
 
         //---------- METHODS ----------
         private static TagKey<Item> tag(String name) {

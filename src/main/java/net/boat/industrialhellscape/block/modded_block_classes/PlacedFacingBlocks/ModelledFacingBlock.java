@@ -1,6 +1,6 @@
 package net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBlocks;
 
-import net.boat.industrialhellscape.block.modded_interfaces.RotationHelper;
+import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -42,9 +42,9 @@ public class ModelledFacingBlock extends SimpleFacingBlock implements SimpleWate
         super(pProperties);
 
         SOLO_SHAPE_NORTH = soloShape;
-        SOLO_SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, soloShape);
-        SOLO_SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, soloShape);
-        SOLO_SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, soloShape);
+        SOLO_SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, soloShape);
+        SOLO_SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, soloShape);
+        SOLO_SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, soloShape);
 
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)

@@ -59,7 +59,7 @@ public interface ToolUseCapability {
     }
 
     static InteractionResult ModdedToolInteract(Property<?> useProperty, Player pPlayer, BlockState pState, Level pLevel, BlockPos pPos) {
-        boolean playerHasTool = pPlayer.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_MODDED_TOOLS) || pPlayer.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_MODDED_TOOLS);
+        boolean playerHasTool = pPlayer.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || pPlayer.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
 
         if (playerHasTool) {
             pState = pState.cycle(useProperty);

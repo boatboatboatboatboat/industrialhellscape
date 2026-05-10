@@ -7,7 +7,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 //INFO:
 //-----
 //This interface stores all custom hitbox geometries in one place to not clutter up the custom classes.
-//Asymmetrical hitboxes are rotated automatically in the block class for each horizontal direction by the RotationHelper interface.
+//Asymmetrical hitboxes are rotated automatically in the block class for each horizontal direction by the HitboxRotationInterface interface.
 //-----
 
 public interface HitboxGeometryCollection {
@@ -46,19 +46,11 @@ public interface HitboxGeometryCollection {
     }
     //---------- END OF Y-SYMMETRIC HITBOXES ----------
 
-    static VoxelShape TOILET_NEGATIVE(){
+    static VoxelShape TOILET(){
         VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape, Shapes.box(0.25, 0.3125, 0.125, 0.75, 0.4375, 0.4375), BooleanOp.OR);
         shape = Shapes.join(shape, Shapes.box(0.1875, 0.375, 0, 0.8125, 0.75, 0.625), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.1875, 0.625, 0.625, 0.8125, 1, 1), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.3125, 0, 0.25, 0.6875, 0.625, 0.875), BooleanOp.OR);
-
-        return shape;
-    }
-
-    static VoxelShape TOILET_POSITIVE(){
-        VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape, Shapes.box(0.1875, 0, 0.625, 0.8125, 0.375, 1), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.1875, 0.375, 0.625, 0.8125, 1.375, 0.9375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.3125, 0, 0.25, 0.6875, 0.375, 0.875), BooleanOp.OR);
 
         return shape;
     }
@@ -321,19 +313,17 @@ public interface HitboxGeometryCollection {
         return shape;
     }
 
-    static VoxelShape URINAL_POSITIVE(){
+    static VoxelShape URINAL(){
         VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape, Shapes.box(0.1875, 0, 0.625, 0.8125, 0.1875, 1), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.6875, 0, 0.625, 0.8125, 1.1875, 0.875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.1875, 0, 0.875, 0.8125, 1.1875, 1), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.1875, 0, 0.625, 0.3125, 1.1875, 0.875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.25, 0, 0.4375, 0.75, 0.125, 0.625), BooleanOp.OR);
 
         return shape;
     }
 
-    static VoxelShape URINAL_NEGATIVE(){
-        VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape, Shapes.box(0.1875, 0, 0.625, 0.8125, 1, 1), BooleanOp.OR);
 
-        return shape;
-    }
 
     static VoxelShape FIRE_EXTINGUISHER(){
         VoxelShape shape = Shapes.empty();

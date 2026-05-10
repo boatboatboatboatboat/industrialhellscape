@@ -1,7 +1,6 @@
 {
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
-	"texture_size": [48, 48],
 	"textures": {
 		"0": "industrialhellscape:block/retro_computer",
 		"1": "industrialhellscape:block/lit_unlit_textures/retro_computer_screen_off",
@@ -42,7 +41,7 @@
 			"to": [14, 14, 14],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
 			"faces": {
-				"north": {"uv": [4.66667, 0, 8, 3], "texture": "#0"},
+				"north": {"uv": [0, 0, 10, 9], "texture": "#1"},
 				"east": {"uv": [0, 6, 2.66667, 9], "texture": "#0"},
 				"south": {"uv": [4.66667, 3, 8, 6], "texture": "#0"},
 				"west": {"uv": [3.33333, 6.66667, 6, 9.66667], "texture": "#0"},
@@ -75,15 +74,6 @@
 				"west": {"uv": [1.33333, 15.66667, 2.33333, 16], "texture": "#0", "cullface": "west"},
 				"up": {"uv": [0, 15, 0.66667, 16], "texture": "#0"},
 				"down": {"uv": [2.33333, 15, 3, 16], "texture": "#0", "cullface": "down"}
-			}
-		},
-		{
-			"name": "screen_display",
-			"from": [5, 7, 5.95],
-			"to": [13, 13, 6.2],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 6.2]},
-			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "texture": "#1"}
 			}
 		}
 	],
@@ -126,10 +116,10 @@
 		{
 			"name": "group",
 			"origin": [0, 6, 6],
+			"scope": 0,
 			"color": 0,
 			"children": [2, 3]
 		},
-		4,
-		5
+		4
 	]
 }

@@ -1,6 +1,6 @@
 package net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks;
 
-import net.boat.industrialhellscape.block.modded_interfaces.RotationHelper;
+import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
 import net.boat.industrialhellscape.block.modded_interfaces.ToolUseCapability;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -63,19 +63,19 @@ public class CornerBlock extends Block implements SimpleWaterloggedBlock {
         super(pProperties);
 
         INNER_CORNER_DOWN_W = downShape; //g
-        INNER_CORNER_DOWN_S = RotationHelper.rotateVoxelYAxisIntTimes(1, INNER_CORNER_DOWN_W);
-        INNER_CORNER_DOWN_E = RotationHelper.rotateVoxelYAxisIntTimes(2, INNER_CORNER_DOWN_W);
-        INNER_CORNER_DOWN_N = RotationHelper.rotateVoxelYAxisIntTimes(3, INNER_CORNER_DOWN_W);
+        INNER_CORNER_DOWN_S = HitboxRotationInterface.rotateVoxelYAxisIntTimes(1, INNER_CORNER_DOWN_W);
+        INNER_CORNER_DOWN_E = HitboxRotationInterface.rotateVoxelYAxisIntTimes(2, INNER_CORNER_DOWN_W);
+        INNER_CORNER_DOWN_N = HitboxRotationInterface.rotateVoxelYAxisIntTimes(3, INNER_CORNER_DOWN_W);
 
-        INNER_CORNER_UP_W = RotationHelper.rotateVoxelXAxisIntTimes(2, downShape);
-        INNER_CORNER_UP_S = RotationHelper.rotateVoxelYAxisIntTimes(1, INNER_CORNER_UP_W);
-        INNER_CORNER_UP_E = RotationHelper.rotateVoxelYAxisIntTimes(2, INNER_CORNER_UP_W);
-        INNER_CORNER_UP_N = RotationHelper.rotateVoxelYAxisIntTimes(3, INNER_CORNER_UP_W);
+        INNER_CORNER_UP_W = HitboxRotationInterface.rotateVoxelXAxisIntTimes(2, downShape);
+        INNER_CORNER_UP_S = HitboxRotationInterface.rotateVoxelYAxisIntTimes(1, INNER_CORNER_UP_W);
+        INNER_CORNER_UP_E = HitboxRotationInterface.rotateVoxelYAxisIntTimes(2, INNER_CORNER_UP_W);
+        INNER_CORNER_UP_N = HitboxRotationInterface.rotateVoxelYAxisIntTimes(3, INNER_CORNER_UP_W);
 
-        INNER_CORNER_SIDE_W = RotationHelper.rotateVoxelXAxisIntTimes(1, downShape);
-        INNER_CORNER_SIDE_S = RotationHelper.rotateVoxelYAxisIntTimes(1, INNER_CORNER_SIDE_W);
-        INNER_CORNER_SIDE_E = RotationHelper.rotateVoxelYAxisIntTimes(2, INNER_CORNER_SIDE_W);
-        INNER_CORNER_SIDE_N = RotationHelper.rotateVoxelYAxisIntTimes(3, INNER_CORNER_SIDE_W);
+        INNER_CORNER_SIDE_W = HitboxRotationInterface.rotateVoxelXAxisIntTimes(1, downShape);
+        INNER_CORNER_SIDE_S = HitboxRotationInterface.rotateVoxelYAxisIntTimes(1, INNER_CORNER_SIDE_W);
+        INNER_CORNER_SIDE_E = HitboxRotationInterface.rotateVoxelYAxisIntTimes(2, INNER_CORNER_SIDE_W);
+        INNER_CORNER_SIDE_N = HitboxRotationInterface.rotateVoxelYAxisIntTimes(3, INNER_CORNER_SIDE_W);
 
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)

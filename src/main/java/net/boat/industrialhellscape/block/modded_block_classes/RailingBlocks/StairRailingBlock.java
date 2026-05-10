@@ -1,6 +1,6 @@
 package net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks;
 
-import net.boat.industrialhellscape.block.modded_interfaces.RotationHelper;
+import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -38,18 +38,18 @@ public class StairRailingBlock extends Block implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     // Hitbox shapes (8 total, 2x4) for left and right variants of the stair rail per cardinal direction (used both for collision and interaction)
-    // Modded interface RotationHelper helps rotate voxels along cardinal directions. See interface for more details
+    // Modded interface HitboxRotationInterface helps rotate voxels along cardinal directions. See interface for more details
     private static final VoxelShape SHAPE_NORTH_LEFT = Block.box(0d, 0d, 0d, 2d, 14, 16d);
     private static final VoxelShape SHAPE_NORTH_RIGHT = Block.box(14d, 0d, 0d, 16d, 14, 16d);
 
-    private static final VoxelShape SHAPE_SOUTH_LEFT = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH_LEFT);
-    private static final VoxelShape SHAPE_SOUTH_RIGHT = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH_RIGHT);
+    private static final VoxelShape SHAPE_SOUTH_LEFT = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH_LEFT);
+    private static final VoxelShape SHAPE_SOUTH_RIGHT = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH_RIGHT);
 
-    private static final VoxelShape SHAPE_EAST_LEFT = RotationHelper.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH_LEFT);
-    private static final VoxelShape SHAPE_EAST_RIGHT = RotationHelper.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH_RIGHT);
+    private static final VoxelShape SHAPE_EAST_LEFT = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH_LEFT);
+    private static final VoxelShape SHAPE_EAST_RIGHT = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH_RIGHT);
 
-    private static final VoxelShape SHAPE_WEST_LEFT = RotationHelper.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH_LEFT);
-    private static final VoxelShape SHAPE_WEST_RIGHT = RotationHelper.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH_RIGHT);
+    private static final VoxelShape SHAPE_WEST_LEFT = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH_LEFT);
+    private static final VoxelShape SHAPE_WEST_RIGHT = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH_RIGHT);
 
     public StairRailingBlock(Properties pProperties) {
         super(pProperties);

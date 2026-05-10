@@ -3,22 +3,15 @@ package net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks;
 import com.mojang.serialization.MapCodec;
 import net.boat.industrialhellscape.block.modded_block_state_properties.DynamicConnectionState;
 import net.boat.industrialhellscape.block.modded_interfaces.ConnectedModelCapability;
-import net.boat.industrialhellscape.block.modded_interfaces.RotationHelper;
-import net.boat.industrialhellscape.block.modded_interfaces.ToolUseCapability;
+import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
 import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-import net.minecraft.world.level.block.RenderShape;
-import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -27,7 +20,6 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
@@ -51,12 +43,12 @@ import javax.annotation.Nonnull;
 
 // Block class is adapted from Hearth and Home mod's Stone Pillar block class code.
 
-public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
+public class ConnectedFurnitureBlock extends Block implements SimpleWaterloggedBlock, ConnectedModelCapability {
 
     public static final EnumProperty<DynamicConnectionState> TYPE = EnumProperty.create("type", DynamicConnectionState.class); //"TYPE" is used to store enum value of "solo, left, right, middle" for block connected variants
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING; //"FACING" is used to store DirectionProperty value of "north, south, east, west" //KJ
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING; //"FACING" is used to store DirectionProperty value of "north, south, east, west"
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    public TagKey<Block> BlockSetFamily; //To determine other blocks aside from its own can this block connect to
+    public final TagKey<Block> BlockSetFamily; //To determine other blocks aside from its own can this block connect to
     private final MultiBlockPlacementDirection placementDirection;
 
     private final VoxelShape SOLO_SHAPE_NORTH;
@@ -93,24 +85,24 @@ public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implemen
 
         //Define the Voxelshape hitboxes for each state
         SOLO_SHAPE_NORTH = soloShape;
-        SOLO_SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, soloShape);
-        SOLO_SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, soloShape);
-        SOLO_SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, soloShape);
+        SOLO_SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, soloShape);
+        SOLO_SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, soloShape);
+        SOLO_SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, soloShape);
 
         LEFT_SHAPE_NORTH = leftShape;
-        LEFT_SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, leftShape);
-        LEFT_SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, leftShape);
-        LEFT_SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, leftShape);
+        LEFT_SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, leftShape);
+        LEFT_SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, leftShape);
+        LEFT_SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, leftShape);
 
         MIDDLE_SHAPE_NORTH = middleShape;
-        MIDDLE_SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, middleShape);
-        MIDDLE_SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, middleShape);
-        MIDDLE_SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, middleShape);
+        MIDDLE_SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, middleShape);
+        MIDDLE_SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, middleShape);
+        MIDDLE_SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, middleShape);
 
         RIGHT_SHAPE_NORTH = rightShape;
-        RIGHT_SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, rightShape);
-        RIGHT_SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, rightShape);
-        RIGHT_SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, rightShape);
+        RIGHT_SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, rightShape);
+        RIGHT_SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, rightShape);
+        RIGHT_SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, rightShape);
 
         //To determine other blocks aside from its own can this block connect to
         this.BlockSetFamily = inputCompatibleBlockSet;
@@ -126,18 +118,27 @@ public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implemen
         );
     }
 
-    //---------- USE INTERACT, HITBOXES, PLACEMENT, AND BLOCK UPDATE METHODS HANDLED BY INTERFACES ---------
-
-    @NotNull
-    public InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
-        return ToolUseCapability.ModdedToolInteract(TYPE,player, state, level, pos);
+    @Override
+    public EnumProperty<DynamicConnectionState> getTypeProperty() {
+        return TYPE;
     }
 
+    @Override
+    public DirectionProperty getFacingProperty() {
+        return FACING;
+    }
 
     @Override
-    public @Nonnull VoxelShape getShape(BlockState pState, @Nonnull  BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull CollisionContext pContext) {
+    public BooleanProperty getWaterloggedProperty() {
+        return WATERLOGGED;
+    }
+
+    //---------- USE INTERACT, HITBOXES, PLACEMENT, AND BLOCK UPDATE METHODS HANDLED BY INTERFACES ---------
+
+    @Override
+    public @Nonnull VoxelShape getShape(@NotNull BlockState pState, @Nonnull  BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull CollisionContext pContext) {
         //See this mod's ConnectedModelCapability interface to view the following method.
-        return ConnectedModelCapability.makeConnectedHitboxes(
+        return makeConnectedHitboxes(
                 pState,
                 LEFT_SHAPE_NORTH,LEFT_SHAPE_SOUTH,LEFT_SHAPE_EAST,LEFT_SHAPE_WEST,
                 MIDDLE_SHAPE_NORTH,MIDDLE_SHAPE_SOUTH,MIDDLE_SHAPE_EAST,MIDDLE_SHAPE_WEST,
@@ -145,13 +146,13 @@ public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implemen
                 SOLO_SHAPE_NORTH,SOLO_SHAPE_SOUTH,SOLO_SHAPE_EAST,SOLO_SHAPE_WEST);
     }
     @Override
-    public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
+    public @Nullable BlockState getStateForPlacement(@NotNull BlockPlaceContext pContext) {
         //See this mod's ConnectedModelCapability interface to view the following method.
-        return ConnectedModelCapability.placeTheConnectableBlock(this, pContext, BlockSetFamily, placementDirection);
+        return placeTheConnectableBlock(this, pContext, BlockSetFamily, placementDirection);
     }
-    public void neighborChanged(@Nonnull BlockState state, Level level, @Nonnull BlockPos positionClicked, @Nonnull Block block, @Nonnull BlockPos fromPos, boolean isMoving) {
+    public void neighborChanged(@Nonnull BlockState state, @NotNull Level level, @Nonnull BlockPos positionClicked, @Nonnull Block block, @Nonnull BlockPos fromPos, boolean isMoving) {
         //See this mod's ConnectedModelCapability interface to view the following method.
-        ConnectedModelCapability.whenConnectedNeighborUpdated(state,level,positionClicked,block,fromPos,BlockSetFamily, placementDirection);
+        whenConnectedNeighborUpdated(state,level,positionClicked,block,fromPos,BlockSetFamily, placementDirection);
     }
     //---------- END OF METHODS HANDLED BY INTERFACE ----------
 
@@ -162,9 +163,18 @@ public class ConnectedFurnitureBlock extends HorizontalDirectionalBlock implemen
     public FluidState getFluidState(BlockState pState) {
         return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
     }
+
+    protected BlockState rotate(BlockState state, Rotation rot) {
+        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+    }
+
+    protected BlockState mirror(BlockState state, Mirror mirror) {
+        return state.rotate(mirror.getRotation(state.getValue(FACING)));
+    }
+
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(FACING, WATERLOGGED, TYPE); //Block's blockstates; its NSEW orientation, its connection type defined
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(FACING, WATERLOGGED, TYPE); //Block's blockstates; its NSEW orientation, its connection type defined
     }
 
     @Override

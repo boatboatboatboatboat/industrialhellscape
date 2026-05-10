@@ -1,16 +1,16 @@
-package net.boat.industrialhellscape.block.modded_block_classes.ContainerBlocks;
+package net.boat.industrialhellscape.block.modded_block_classes.StorageBlocks;
 
+import net.boat.industrialhellscape.block.modded_block_entities.StorageBE.StorageBE;
 import net.boat.industrialhellscape.block.modded_block_state_properties.DynamicConnectionState;
 import net.boat.industrialhellscape.block.modded_interfaces.ConnectedModelCapability;
-import net.boat.industrialhellscape.block.modded_interfaces.ContainerBlockCapability;
-import net.boat.industrialhellscape.block.modded_interfaces.RotationHelper;
+import net.boat.industrialhellscape.block.modded_interfaces.StorageBlockInterface;
+import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
 import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -31,35 +32,20 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
+import java.util.function.Supplier;
 
-//INFO:
-//-----
-// This block, when placed, connects with similarly aligned neighbors. Custom models allow the resulting connection to look like a seamless model (E.G. a multi-block table or desk).
-// This block has block entity capabilities, enabling item storage. The operating methods are present in the FacingContainerBlock class it inherits from.
-// Waterlogging and cardinal directional placement is supported.
-// The operating methods for block state detection and updating are present in this mod's ConnectedModelCapability interface.
-// Waterlogging is handled by the vanilla SimpleWaterloggedBlock interface.
-// Can connect to other block classes. This ability is determined by the block tag passed as a parameter during block registration (TagKey<Block> inputCompatibleBlockSet)
-
-// Block-state notation:
-//     Solo - Unconnected block-state. When placed for the first time by itself with no eligible adjacent connections.
-//     Left - an "end" connection that should be the left-end portion of a connected block group (a multi-block desk/table) relative to the facing player.
-//     Middle - an interior connection that may repeat based on the length of the blocks connected.
-//     Right - an "end" connection that should be the right-end portion of a connected block group (a multi-block desk/table) relative to the facing player.
-
-// Block class is adapted from Hearth and Home mod's Stone Pillar block class code.
-
-public class ConnectedContainerBlock extends FacingContainerBlock implements EntityBlock, SimpleWaterloggedBlock {
-
+public class ConnectedStorageBlock extends FacingStorageBlock implements EntityBlock, ConnectedModelCapability, StorageBlockInterface, SimpleWaterloggedBlock {
     private static final EnumProperty<DynamicConnectionState> TYPE = EnumProperty.create("type", DynamicConnectionState.class);
     private static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public TagKey<Block> BlockSetFamily; //To determine other blocks aside from its own can this block connect to
     private final MultiBlockPlacementDirection placementDirection;
+
+    public final Supplier<SoundEvent> OPEN_SOUND;
+    public final Supplier<SoundEvent> CLOSE_SOUND;
 
     private final VoxelShape SOLO_SHAPE_NORTH;
     private final VoxelShape SOLO_SHAPE_SOUTH;
@@ -81,7 +67,7 @@ public class ConnectedContainerBlock extends FacingContainerBlock implements Ent
     private final VoxelShape RIGHT_SHAPE_EAST;
     private final VoxelShape RIGHT_SHAPE_WEST;
 
-    public ConnectedContainerBlock(Properties properties, int slotAmount, TagKey<Block> inputCompatibleBlockSet, VoxelShape soloShape, VoxelShape leftShape, VoxelShape middleShape, VoxelShape rightShape, SoundEvent openSound, SoundEvent closeSound, MultiBlockPlacementDirection placementDirection) {
+    public ConnectedStorageBlock(Properties properties, int slotAmount, TagKey<Block> inputCompatibleBlockSet, VoxelShape soloShape, VoxelShape leftShape, VoxelShape middleShape, VoxelShape rightShape, MultiBlockPlacementDirection placementDirection, Supplier<SoundEvent> openSound, Supplier<SoundEvent> closeSound) {
         // When registering this block, pass in
         // Properties,
         // Integer slot amount (should be multiple of 9) that its block entity inventory shall possess
@@ -99,24 +85,28 @@ public class ConnectedContainerBlock extends FacingContainerBlock implements Ent
 
         //Define the Voxelshape hitboxes for each state
         SOLO_SHAPE_NORTH = soloShape;
-        SOLO_SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, soloShape);
-        SOLO_SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, soloShape);
-        SOLO_SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, soloShape);
+        SOLO_SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, soloShape);
+        SOLO_SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, soloShape);
+        SOLO_SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, soloShape);
 
         LEFT_SHAPE_NORTH = leftShape;
-        LEFT_SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, leftShape);
-        LEFT_SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, leftShape);
-        LEFT_SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, leftShape);
+        LEFT_SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, leftShape);
+        LEFT_SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, leftShape);
+        LEFT_SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, leftShape);
 
         MIDDLE_SHAPE_NORTH = middleShape;
-        MIDDLE_SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, middleShape);
-        MIDDLE_SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, middleShape);
-        MIDDLE_SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, middleShape);
+        MIDDLE_SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, middleShape);
+        MIDDLE_SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, middleShape);
+        MIDDLE_SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, middleShape);
 
         RIGHT_SHAPE_NORTH = rightShape;
-        RIGHT_SHAPE_SOUTH = RotationHelper.rotateVoxelCardinal(Direction.SOUTH, rightShape);
-        RIGHT_SHAPE_EAST = RotationHelper.rotateVoxelCardinal(Direction.EAST, rightShape);
-        RIGHT_SHAPE_WEST = RotationHelper.rotateVoxelCardinal(Direction.WEST, rightShape);
+        RIGHT_SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, rightShape);
+        RIGHT_SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, rightShape);
+        RIGHT_SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, rightShape);
+
+        //Sounds
+        this.OPEN_SOUND = openSound;
+        this.CLOSE_SOUND = closeSound;
 
         //To determine other blocks aside from its own can this block connect to
         this.BlockSetFamily = inputCompatibleBlockSet;
@@ -132,11 +122,39 @@ public class ConnectedContainerBlock extends FacingContainerBlock implements Ent
         );
     }
 
-    @NotNull
     @Override
-    public InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
+    public Supplier<SoundEvent> getCloseSound() {
+        return CLOSE_SOUND;
+    }
 
-        boolean playerHasTool = player.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_MODDED_TOOLS) || player.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_MODDED_TOOLS);
+    @Override
+    public int getSlotCount() {
+        return SLOTS;
+    }
+
+    @Override
+    public Supplier<SoundEvent> getOpenSound() {
+        return OPEN_SOUND;
+    }
+
+    @Override
+    public DirectionProperty getFacingProperty() {
+        return FACING;
+    }
+
+    @Override
+    public EnumProperty<DynamicConnectionState> getTypeProperty() {
+        return TYPE;
+    }
+
+    @Override
+    public BooleanProperty getWaterloggedProperty() {
+        return WATERLOGGED;
+    }
+
+    @Override
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+        boolean playerHasTool = player.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || player.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
 
         if (playerHasTool) {
             //Cycles the connection state of the block WITHOUT UPDATING NEIGHBORS (This is what flag #2 does)
@@ -145,15 +163,20 @@ public class ConnectedContainerBlock extends FacingContainerBlock implements Ent
             return InteractionResult.sidedSuccess(level.isClientSide);
         } else {
             //If player does not have an eligible tool, just open the inventory
-            return ContainerBlockCapability.OpenContainerInventory(level, pos, player);
+            return StorageBlockInterface.OpenContainerInventory(level, pos, player);
         }
+    }
+
+    @Override
+    public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+        return new StorageBE(blockPos, blockState);
     }
 
     //---------- HITBOXES, PLACEMENT, AND BLOCK UPDATES HANDLED BY INTERFACE ---------
     @Override
     public @Nonnull VoxelShape getShape(@Nonnull BlockState pState, @Nonnull BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull CollisionContext pContext) {
         //See this mod's ConnectedModelCapability interface to view the following method.
-        return ConnectedModelCapability.makeConnectedHitboxes(
+        return makeConnectedHitboxes(
                 pState,
                 LEFT_SHAPE_NORTH,LEFT_SHAPE_SOUTH,LEFT_SHAPE_EAST,LEFT_SHAPE_WEST,
                 MIDDLE_SHAPE_NORTH,MIDDLE_SHAPE_SOUTH,MIDDLE_SHAPE_EAST,MIDDLE_SHAPE_WEST,
@@ -163,11 +186,11 @@ public class ConnectedContainerBlock extends FacingContainerBlock implements Ent
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
         //See this mod's ConnectedModelCapability interface to view the following method.
-        return ConnectedModelCapability.placeTheConnectableBlock(this, pContext, BlockSetFamily, placementDirection);
+        return placeTheConnectableBlock(this, pContext, BlockSetFamily, placementDirection);
     }
     public void neighborChanged(@Nonnull BlockState state, @Nonnull Level level, @Nonnull BlockPos positionClicked, @Nonnull Block block, @Nonnull BlockPos fromPos, boolean pIsMoving) {
         //See this mod's ConnectedModelCapability interface to view the following method.
-        ConnectedModelCapability.whenConnectedNeighborUpdated(state,level,positionClicked,block,fromPos,BlockSetFamily, placementDirection);
+        whenConnectedNeighborUpdated(state,level,positionClicked,block,fromPos,BlockSetFamily, placementDirection);
     }
     //---------- END OF METHODS HANDLED BY INTERFACE ----------
 
@@ -181,6 +204,6 @@ public class ConnectedContainerBlock extends FacingContainerBlock implements Ent
     }
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(FACING, WATERLOGGED, TYPE); //Block's blockstates; its NSEW orientation, its connection type defined
+        pBuilder.add(FACING, WATERLOGGED, TYPE, OPEN); //Block's blockstates; its NSEW orientation, its connection type defined
     }
 }

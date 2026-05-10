@@ -4,6 +4,9 @@ import net.boat.industrialhellscape.block.modded_block_state_properties.TwoBlock
 import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -31,33 +34,38 @@ public class LightMultiBlock extends Modelled2BMBlock{
                 .setValue(WATERLOGGED,false));
     }
 
-    public @Nonnull InteractionResult use(@Nonnull BlockState pState, @NotNull Level pLevel, @Nonnull BlockPos pPos, @Nonnull Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
+    @Override
+    public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+        boolean wasOn = state.getValue(POWERED);
+        SoundEvent onOffSound = wasOn ? SoundEvents.STONE_BUTTON_CLICK_OFF : SoundEvents.STONE_BUTTON_CLICK_ON;
 
-        if(pState.getValue(HALF_PART).equals(TwoBlockMultiBlockState.NEGATIVE)) {
+        level.playSound(player, pos, onOffSound, SoundSource.BLOCKS, 1f, 2f);
+
+        if(state.getValue(HALF_PART).equals(TwoBlockMultiBlockState.NEGATIVE)) {
             //If the interacted block is the bottom block. Light it up. Then light the block above it.
-            BlockPos abovePos = pPos.above();
-            boolean otherBlockIsThisBlock = pLevel.getBlockState(abovePos).is(this);
+            BlockPos abovePos = pos.above();
+            boolean otherBlockIsThisBlock = level.getBlockState(abovePos).is(this);
 
             //For this block
-            pState = pState.cycle(POWERED);
-            pLevel.setBlock(pPos, pState, 2); //Light the negative Block (bottom block)
+            state = state.cycle(POWERED);
+            level.setBlock(pos, state, 2); //Light the negative Block (bottom block)
 
             //For above block
-            if(otherBlockIsThisBlock) pLevel.setBlock(abovePos, pLevel.getBlockState(abovePos).cycle(POWERED), 2); //Light the positive Block (top block)
+            if(otherBlockIsThisBlock) level.setBlock(abovePos, level.getBlockState(abovePos).cycle(POWERED), 2); //Light the positive Block (top block)
 
             return InteractionResult.SUCCESS;
 
-        } else if(pState.getValue(HALF_PART).equals(TwoBlockMultiBlockState.POSITIVE)) {
+        } else if(state.getValue(HALF_PART).equals(TwoBlockMultiBlockState.POSITIVE)) {
             //If the interacted block is the top block. Light it up. Then light the block below it.
-            BlockPos belowPos = pPos.below();
-            boolean otherBlockIsThisBlock = pLevel.getBlockState(belowPos).is(this);
+            BlockPos belowPos = pos.below();
+            boolean otherBlockIsThisBlock = level.getBlockState(belowPos).is(this);
 
             //For this block
-            pState = pState.cycle(POWERED);
-            pLevel.setBlock(pPos, pState, 2); //Light the positive Block (top block)
+            state = state.cycle(POWERED);
+            level.setBlock(pos, state, 2); //Light the positive Block (top block)
 
             //for below block
-            if(otherBlockIsThisBlock) pLevel.setBlock(belowPos, pLevel.getBlockState(belowPos).cycle(POWERED), 2); //Light the negative Block (bottom block)
+            if(otherBlockIsThisBlock) level.setBlock(belowPos, level.getBlockState(belowPos).cycle(POWERED), 2); //Light the negative Block (bottom block)
 
             return InteractionResult.SUCCESS;
         } else {

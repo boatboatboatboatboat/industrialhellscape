@@ -58,42 +58,43 @@ public class ModdedBedBlock extends Modelled2BMBlock implements EntityBlock, Sim
     }
 
     @Override
-    public @Nullable BlockEntity newBlockEntity(@Nonnull BlockPos pPos, @Nonnull BlockState pState) {
+    public @Nullable BlockEntity newBlockEntity(@Nonnull BlockPos pos, @Nonnull BlockState state) {
         //Color is arbitrary to fulfill the last parameter
-        return new BedBlockEntity(pPos, pState, DyeColor.BLUE);
+        return new BedBlockEntity(pos, state, DyeColor.BLUE);
     }
 
-    public @Nonnull InteractionResult use(@Nonnull BlockState pState, Level pLevel, @Nonnull BlockPos pPos, @Nonnull Player pPlayer, @Nonnull InteractionHand pHand, @Nonnull BlockHitResult pHit) {
+    @Override
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         //Code taken from vanilla BedBlock code with minor modifications
-        if (pLevel.isClientSide) {
+        if (level.isClientSide) {
             return InteractionResult.CONSUME;
         } else {
             //If the block interacted with is not the POSITIVE block
-            //Redefine pPos as that of the POSITIVE block by finding the pos behind the current block
+            //Redefine pos as that of the POSITIVE block by finding the pos behind the current block
             //If the block at that position is an instance of the same block
             //CONSUME
-            if (pState.getValue(HALF_PART) != TwoBlockMultiBlockState.POSITIVE) {
-                pPos = pPos.relative(pState.getValue(FACING));
-                pState = pLevel.getBlockState(pPos);
-                if (!pState.is(this)) {
+            if (state.getValue(HALF_PART) != TwoBlockMultiBlockState.POSITIVE) {
+                pos = pos.relative(state.getValue(FACING));
+                state = level.getBlockState(pos);
+                if (!state.is(this)) {
                     return InteractionResult.CONSUME;
                 }
             }
             //Explodes if you are disallowed to set spawn in certain dimensions
-            if (!canSetSpawn(pLevel)) {
-                pLevel.removeBlock(pPos, false);
-                BlockPos blockpos = pPos.relative(pState.getValue(FACING).getOpposite());
-                if (pLevel.getBlockState(blockpos).is(this)) {
-                    pLevel.removeBlock(blockpos, false);
+            if (!canSetSpawn(level)) {
+                level.removeBlock(pos, false);
+                BlockPos blockpos = pos.relative(state.getValue(FACING).getOpposite());
+                if (level.getBlockState(blockpos).is(this)) {
+                    level.removeBlock(blockpos, false);
                 }
 
-                Vec3 vec3 = pPos.getCenter();
-                pLevel.explode(null, pLevel.damageSources().badRespawnPointExplosion(vec3), null, vec3, 5.0F, true, Level.ExplosionInteraction.BLOCK);
+                Vec3 vec3 = pos.getCenter();
+                level.explode(null, level.damageSources().badRespawnPointExplosion(vec3), null, vec3, 5.0F, true, Level.ExplosionInteraction.BLOCK);
             } else {
                 //Forbids sleeping unless nighttime or thunderstorm, I think
-                pPlayer.startSleepInBed(pPos).ifLeft((p_49477_) -> {
+                player.startSleepInBed(pos).ifLeft((p_49477_) -> {
                     if (p_49477_.getMessage() != null) {
-                        pPlayer.displayClientMessage(p_49477_.getMessage(), true);
+                        player.displayClientMessage(p_49477_.getMessage(), true);
                     }
 
                 });
@@ -102,15 +103,15 @@ public class ModdedBedBlock extends Modelled2BMBlock implements EntityBlock, Sim
         }
     }
 
-    public static boolean canSetSpawn(Level pLevel) {
-        return pLevel.dimensionType().bedWorks();
+    public static boolean canSetSpawn(Level level) {
+        return level.dimensionType().bedWorks();
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(FACING, HALF_PART, OCCUPIED, WATERLOGGED);
     }
 
-    public boolean isPathfindable(@Nonnull BlockState pState, @Nonnull BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull PathComputationType pType) {
+    public boolean isPathfindable(@Nonnull BlockState state, @Nonnull BlockGetter level, @Nonnull BlockPos pos, @Nonnull PathComputationType pType) {
         return false;
     }
 }

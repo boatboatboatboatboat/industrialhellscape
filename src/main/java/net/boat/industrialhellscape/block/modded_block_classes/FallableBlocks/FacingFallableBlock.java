@@ -4,6 +4,7 @@ import com.mojang.serialization.MapCodec;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -17,6 +18,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
+import java.util.function.Supplier;
 
 //INFO:
 //-----
@@ -27,11 +29,13 @@ import javax.annotation.Nonnull;
 
 public class FacingFallableBlock extends FallingBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public Supplier<SoundEvent> onDropSound;
 
-    public FacingFallableBlock(Properties pProperties) {
+    public FacingFallableBlock(Properties pProperties, Supplier<SoundEvent> onDropSound) {
         super(pProperties);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)); //Default state if placed with no player present
+        this.onDropSound = onDropSound;
     }
 
     @Override
@@ -49,7 +53,7 @@ public class FacingFallableBlock extends FallingBlock {
     @Override
     //When the falling block lands on a solid block, it will play a sound
     public void onLand(Level pLevel, @Nonnull BlockPos pPos, @Nonnull BlockState pState, @Nonnull BlockState pReplaceableState, @Nonnull FallingBlockEntity pFallingBlock) {
-        pLevel.playSound(null, pPos, ModSounds.METALPIPEFALLINGSOUNDEFFECT.get(), SoundSource.BLOCKS,
+        pLevel.playSound(null, pPos, onDropSound.get() /*ModSounds.METALPIPEFALLINGSOUNDEFFECT.get()*/, SoundSource.BLOCKS,
                 1f, 1f);
     }
 

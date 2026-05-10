@@ -5,18 +5,21 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 
+
 public class SittableEntityRenderer extends EntityRenderer<SittableEntity> {
-    public SittableEntityRenderer(EntityRendererProvider.Context pContext) {
-        super(pContext);
+    public SittableEntityRenderer(EntityRendererProvider.Context context) {
+        super(context);
     }
 
     @Override
-    public ResourceLocation getTextureLocation(SittableEntity pEntity) {
+    public ResourceLocation getTextureLocation(SittableEntity chairEntity) {
         return null;
     }
 
     @Override
-    public boolean shouldRender(SittableEntity pLivingEntity, Frustum pCamera, double pCamX, double pCamY, double pCamZ) {
+    public boolean shouldRender(SittableEntity livingEntity, Frustum camera, double camX, double camY, double camZ) {
         return true;
     }
 }
+
+

@@ -30,7 +30,6 @@ public class TwoBlockMultiBlock extends SimpleFacingBlock {
     public MultiBlockPlacementDirection multiBlockPlacementDirection;
     //Not a block-state property. Used for trinary logic during block registration to choose how the multiblock is built when placed down
     //VERTICAL, HORIZONTAL, or FORWARD
-
     public static final EnumProperty<TwoBlockMultiBlockState> HALF_PART = EnumProperty.create("half", TwoBlockMultiBlockState.class);
     //Values of "POSITIVE" and "NEGATIVE". In this context, it refers either to TOP vs BOTTOM block, or LEFT vs RIGHT block.
 
