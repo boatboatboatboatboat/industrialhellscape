@@ -266,6 +266,18 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModTags.Blocks.GRAY_PIPE_CONDUIT
                 );
 
+        this.tag(ModTags.Blocks.STORAGE_BLOCKS)
+                .add(
+                        ModBlocks.OFFICE_DESK_DRAWER.get(),
+                        ModBlocks.DESK_DRAWER.get(),
+                        ModBlocks.METAL_DESK_DRAWER.get(),
+                        ModBlocks.METAL_DESK_DRAWER_2.get(),
+                        ModBlocks.LOCKER_BOX.get(),
+                        ModBlocks.LARGE_LOCKER.get(),
+                        ModBlocks.FUEL_DRUM.get()
+
+                );
+
         this.tag(BlockTags.NEEDS_STONE_TOOL) //When specific tool tiers are required
                 .addTags(
                         ModTags.Blocks.VESSELPLATE_BLOCKS,
@@ -307,9 +319,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModTags.Blocks.TRUSS_BLOCKS
                 );
 
-//        this.tag(ModTags.Blocks.MOD_CREATE_SIMPLE_MOUNTED_STORAGE)
-//                .addTags(
-//                        ModTags.Blocks.STORAGE_BLOCKS
-//                );
+        this.tag(ModTags.Blocks.MOD_CREATE_SIMPLE_MOUNTED_STORAGE)
+                .addTags(
+                        ModTags.Blocks.STORAGE_BLOCKS
+                );
     }
 }

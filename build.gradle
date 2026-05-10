@@ -120,6 +120,9 @@ configurations {
 
 dependencies {
     implementation("curse.maven:ctm-267602:5587515")
+    implementation("curse.maven:jei-238222:5623550")
+    implementation("curse.maven:jade-324717:7545219")
+    implementation("curse.maven:worldedit-225608:5830452")
 
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
