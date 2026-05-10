@@ -23,7 +23,7 @@ public class SoundModelledFacingBlock extends ModelledFacingBlock {
     }
 
     @Override
-    public @NotNull InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+    public @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
         level.playSound(player, pos, INTERACT_SOUND.get(), SoundSource.BLOCKS, 1f, 1f);
         return InteractionResult.sidedSuccess(level.isClientSide);
 

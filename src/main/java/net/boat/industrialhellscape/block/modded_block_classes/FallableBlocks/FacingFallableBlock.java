@@ -1,7 +1,6 @@
 package net.boat.industrialhellscape.block.modded_block_classes.FallableBlocks;
 
 import com.mojang.serialization.MapCodec;
-import net.boat.industrialhellscape.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
@@ -15,6 +14,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
@@ -39,7 +39,7 @@ public class FacingFallableBlock extends FallingBlock {
     }
 
     @Override
-    protected MapCodec<? extends FallingBlock> codec() {
+    protected @NotNull MapCodec<? extends FallingBlock> codec() {
         return null;
     }
 

@@ -4,12 +4,9 @@ import net.boat.industrialhellscape.block.modded_block_state_properties.TwoBlock
 import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -25,6 +22,7 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
@@ -47,14 +45,10 @@ public class ModdedBedBlock extends Modelled2BMBlock implements EntityBlock, Sim
     }
 
     @Override
-    public Direction getBedDirection(BlockState state, LevelReader level, BlockPos pos) {
+    public @NotNull Direction getBedDirection(@NotNull BlockState state, LevelReader level, @NotNull BlockPos pos) {
         //Ensures player faces the correct direction when sleeping
         BlockState blockstate = level.getBlockState(pos);
         return blockstate.getBlock() instanceof ModdedBedBlock ? blockstate.getValue(FACING) : Direction.NORTH;
-    }
-
-    public boolean isBed(BlockState state, BlockGetter level, BlockPos pos, @Nullable Entity sleeper) {
-        return true;
     }
 
     @Override
@@ -64,7 +58,7 @@ public class ModdedBedBlock extends Modelled2BMBlock implements EntityBlock, Sim
     }
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+    protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
         //Code taken from vanilla BedBlock code with minor modifications
         if (level.isClientSide) {
             return InteractionResult.CONSUME;
@@ -107,11 +101,11 @@ public class ModdedBedBlock extends Modelled2BMBlock implements EntityBlock, Sim
         return level.dimensionType().bedWorks();
     }
 
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(FACING, HALF_PART, OCCUPIED, WATERLOGGED);
+    protected boolean isPathfindable(@NotNull BlockState state, @NotNull PathComputationType pathComputationType) {
+        return false;
     }
 
-    public boolean isPathfindable(@Nonnull BlockState state, @Nonnull BlockGetter level, @Nonnull BlockPos pos, @Nonnull PathComputationType pType) {
-        return false;
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
+        pBuilder.add(FACING, HALF_PART, OCCUPIED, WATERLOGGED);
     }
 }

@@ -23,7 +23,19 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(ModTags.Blocks.HVAC_BLOCKS)
                 .add(
                         ModBlocks.DUCT.get(),
-                        ModBlocks.RUSTY_DUCT.get()
+                        ModBlocks.RUSTY_DUCT.get(),
+                        ModBlocks.DUCT_VENT.get(),
+                        ModBlocks.RUSTY_DUCT_VENT.get(),
+
+                        ModBlocks.HORIZONTAL_GRATE.get(),
+                        ModBlocks.VERTICAL_GRATE.get(),
+                        ModBlocks.HORIZONTAL_CUTOUT_GRATE.get(),
+                        ModBlocks.VERTICAL_CUTOUT_GRATE.get(),
+
+                        ModBlocks.GRAY_HORIZONTAL_GRATE.get(),
+                        ModBlocks.GRAY_VERTICAL_GRATE.get(),
+                        ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get(),
+                        ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get()
                 );
         this.tag(ModTags.Blocks.METALWORKS_BLOCKS)
                 .add(
@@ -37,16 +49,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.BLACK_RAILING.get(),
                         ModBlocks.RUSTY_STAIR_RAILING.get(),
                         ModBlocks.RUSTY_RAILING.get(),
-
-                        ModBlocks.HORIZONTAL_GRATE.get(),
-                        ModBlocks.VERTICAL_GRATE.get(),
-                        ModBlocks.HORIZONTAL_CUTOUT_GRATE.get(),
-                        ModBlocks.VERTICAL_CUTOUT_GRATE.get(),
-
-                        ModBlocks.GRAY_HORIZONTAL_GRATE.get(),
-                        ModBlocks.GRAY_VERTICAL_GRATE.get(),
-                        ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get(),
-                        ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get(),
 
                         ModBlocks.GRAY_BOLTED_BRACKET.get(),
                         ModBlocks.SMALL_GRAY_BOLTED_BRACKET.get(),

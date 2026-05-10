@@ -32,6 +32,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
@@ -153,7 +154,7 @@ public class ConnectedStorageBlock extends FacingStorageBlock implements EntityB
     }
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+    protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
         boolean playerHasTool = player.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || player.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
 
         if (playerHasTool) {
@@ -168,7 +169,7 @@ public class ConnectedStorageBlock extends FacingStorageBlock implements EntityB
     }
 
     @Override
-    public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+    public @Nullable BlockEntity newBlockEntity(@NotNull BlockPos blockPos, @NotNull BlockState blockState) {
         return new StorageBE(blockPos, blockState);
     }
 
@@ -195,7 +196,7 @@ public class ConnectedStorageBlock extends FacingStorageBlock implements EntityB
     //---------- END OF METHODS HANDLED BY INTERFACE ----------
 
     @Override
-    public @Nonnull RenderShape getRenderShape(@Nonnull BlockState pState) {
+    public @Nonnull @NotNull RenderShape getRenderShape(@Nonnull BlockState pState) {
         return RenderShape.MODEL;
     }
 

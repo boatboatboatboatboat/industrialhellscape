@@ -40,7 +40,7 @@ public class RandomTickSoundBlock extends ModelledSurfaceMountBlock{
     }
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+    protected @NotNull InteractionResult useWithoutItem(BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
         boolean wasOn = state.getValue(POWERED);
         SoundEvent onOffSound = wasOn ? SoundEvents.STONE_BUTTON_CLICK_OFF : SoundEvents.STONE_BUTTON_CLICK_ON;
         level.playSound(player, pos, onOffSound, SoundSource.BLOCKS, 1f, 2f);

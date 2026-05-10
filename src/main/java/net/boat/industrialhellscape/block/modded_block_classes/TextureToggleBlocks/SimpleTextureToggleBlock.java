@@ -1,13 +1,9 @@
 package net.boat.industrialhellscape.block.modded_block_classes.TextureToggleBlocks;
 
-import net.boat.industrialhellscape.block.ModBlocks;
-import net.boat.industrialhellscape.block.modded_interfaces.ToolUseCapability;
-import net.boat.industrialhellscape.item.ModItems;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -18,6 +14,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -55,7 +52,7 @@ public class SimpleTextureToggleBlock extends Block {
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    protected @NotNull ItemInteractionResult useItemOn(ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
         if(stack.is(ModTags.Items.IH_COMPATIBLE_TOOLS)) {
             state = state.cycle(ALT_STATE);
             level.setBlock(pos, state, 2);
@@ -70,7 +67,7 @@ public class SimpleTextureToggleBlock extends Block {
         pBuilder.add(ALT_STATE);
     }
 
-    public boolean skipRendering(BlockState pState, BlockState pAdjacentBlockState, Direction pSide) {
-        return pAdjacentBlockState.is(this) ? true : super.skipRendering(pState, pAdjacentBlockState, pSide);
+    public boolean skipRendering(@NotNull BlockState pState, BlockState pAdjacentBlockState, @NotNull Direction pSide) {
+        return pAdjacentBlockState.is(this) || super.skipRendering(pState, pAdjacentBlockState, pSide);
     }
 }

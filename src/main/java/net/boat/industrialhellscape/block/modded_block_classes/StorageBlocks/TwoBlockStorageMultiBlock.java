@@ -12,11 +12,9 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 
@@ -65,10 +63,6 @@ public class TwoBlockStorageMultiBlock extends TwoBlockMultiBlock implements Ent
         return OPEN_SOUND;
     }
 
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(HALF_PART, FACING);
-    }
-
     // PLACEMENT BEHAVIOR ALREADY HANDLED BY SUPERCLASS, "TwoBlockMultiBlock"
 
     //---------- Block Entity Handling Methods below ----------
@@ -87,7 +81,7 @@ public class TwoBlockStorageMultiBlock extends TwoBlockMultiBlock implements Ent
     }
 
     @Override
-    public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+    public @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
         BlockPos negativeHalfPos = pos;
         if (level.isClientSide) {
             return InteractionResult.SUCCESS;

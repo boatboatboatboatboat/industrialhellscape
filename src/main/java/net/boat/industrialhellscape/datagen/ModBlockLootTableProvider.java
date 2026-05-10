@@ -68,6 +68,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         //DUCT BLOCKS
         dropSelf(ModBlocks.DUCT.get());
         dropSelf(ModBlocks.RUSTY_DUCT.get());
+        dropSelf(ModBlocks.DUCT_VENT.get());
+        dropSelf(ModBlocks.RUSTY_DUCT_VENT.get());
         
         //GRATE BLOCKS
         this.dropSelf(ModBlocks.HORIZONTAL_GRATE.get());

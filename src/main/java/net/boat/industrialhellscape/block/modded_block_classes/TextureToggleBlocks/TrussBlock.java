@@ -1,6 +1,5 @@
 package net.boat.industrialhellscape.block.modded_block_classes.TextureToggleBlocks;
 
-import net.boat.industrialhellscape.block.modded_block_state_properties.DynamicConnectionState;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -12,6 +11,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
@@ -49,7 +49,7 @@ public class TrussBlock extends SimpleTextureToggleBlock implements SimpleWaterl
         pBuilder.add(ALT_STATE, WATERLOGGED);
     }
 
-    public boolean skipRendering(BlockState pState, BlockState pAdjacentBlockState, Direction pSide) {
-        return pAdjacentBlockState.is(this) ? false : super.skipRendering(pState, pAdjacentBlockState, pSide);
+    public boolean skipRendering(@NotNull BlockState pState, BlockState pAdjacentBlockState, @NotNull Direction pSide) {
+        return !pAdjacentBlockState.is(this) && super.skipRendering(pState, pAdjacentBlockState, pSide);
     }
 }

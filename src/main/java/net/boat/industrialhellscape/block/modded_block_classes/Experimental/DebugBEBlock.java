@@ -4,8 +4,6 @@ import com.mojang.serialization.MapCodec;
 import net.boat.industrialhellscape.block.modded_block_entities.DebugBE.DebugBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -23,9 +21,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.function.Supplier;
 
 public class DebugBEBlock extends BaseEntityBlock {
     public static final VoxelShape SHAPE = Block.box(1, 1, 1, 15, 15, 15);
@@ -37,46 +34,46 @@ public class DebugBEBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    protected @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return SHAPE;
     }
 
     @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
+    protected @NotNull MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;
     }
 
     /* Block Entiy */
 
     @Override
-    protected RenderShape getRenderShape(BlockState state) {
+    protected @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
         return RenderShape.MODEL;
     }
 
     @Override
-    public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+    public @Nullable BlockEntity newBlockEntity(@NotNull BlockPos blockPos, @NotNull BlockState blockState) {
         return new DebugBE(blockPos, blockState);
     }
 
     @Override
-    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
+    protected void onRemove(BlockState state, @NotNull Level level, @NotNull BlockPos pos, BlockState newState, boolean movedByPiston) {
         if(state.getBlock() != newState.getBlock()) {
             if(level.getBlockEntity(pos) instanceof DebugBE storageBE)
                 storageBE.drops();
-                level.updateNeighbourForOutputSignal(pos, this);
+            level.updateNeighbourForOutputSignal(pos, this);
         }
         super.onRemove(state, level, pos, newState, movedByPiston);
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    protected @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
         if (level.getBlockEntity(pos) instanceof DebugBE debugBE) {
             //If inventory slot 0 is empty and item stack in hand is not empty,
             //Copy hand item stack into slot 0
             //Remove (-1) item stack from player's hand.
             //Play a sound
             if(player.isCrouching() && !level.isClientSide()) {
-                ((ServerPlayer) player).openMenu(new SimpleMenuProvider(debugBE, Component.literal("Prototype")), pos);
+                player.openMenu(new SimpleMenuProvider(debugBE, Component.literal("Prototype")), pos);
                 return ItemInteractionResult.SUCCESS;
             }
 

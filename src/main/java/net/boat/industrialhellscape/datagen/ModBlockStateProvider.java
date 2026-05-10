@@ -45,6 +45,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //Duct Blocks
         genFolderedSBI(ModBlocks.DUCT.get(), "duct");
         genFolderedSBI(ModBlocks.RUSTY_DUCT.get(), "duct");
+        genAttachedSI(ModBlocks.DUCT_VENT.get(), "duct_vent");
+        genAttachedSI(ModBlocks.RUSTY_DUCT_VENT.get(), "duct_vent");
 
         //Railing Blocks
         genI(ModBlocks.YELLOW_RAILING.get(),"railing");

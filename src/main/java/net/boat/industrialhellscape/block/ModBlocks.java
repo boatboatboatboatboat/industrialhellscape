@@ -17,16 +17,22 @@ import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacement
 import net.boat.industrialhellscape.item.ModItems;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.util.ModTags;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 public class ModBlocks {
@@ -54,14 +60,35 @@ public class ModBlocks {
     );
 
     //BASE BLOCKS
-    public static final DeferredBlock<Block> METALWORKS = registerBlockAndBlockItem("metalworks",
-            () -> new FacingFallableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK), () -> SoundEvents.ANVIL_PLACE));
     public static final DeferredBlock<Block> IHEA_FURNITURE_KIT = registerBlockAndBlockItem("ihea_furniture_kit",
             () -> new SimpleFacingBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.OAK_PLANKS)));
+    public static final DeferredBlock<Block> METALWORKS = registerBlockAndBlockItem("metalworks",
+            () -> new FacingFallableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK), () -> SoundEvents.ANVIL_PLACE){
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    if (Screen.hasShiftDown()) {
+                        tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.blockworks"));
+                    } else {
+                        tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.shift_down"));
+                    }
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
     public static final DeferredBlock<Block> PIPEWORKS = registerBlockAndBlockItem("pipeworks",
-            () -> new FacingFallableBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.IRON_BLOCK), () -> ModSounds.METALPIPEFALLINGSOUNDEFFECT.get()));
+            () -> new FacingFallableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK), () -> ModSounds.METALPIPEFALLINGSOUNDEFFECT.get()) {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    if (Screen.hasShiftDown()) {
+                        tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.blockworks"));
+                    } else {
+
+                        tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.shift_down"));
+                    }
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+
+            });
 
 
     public static final DeferredBlock<Block> SAFETY_FURNISHINGS = registerBlockAndBlockItem("safety_furnishings",
@@ -83,10 +110,36 @@ public class ModBlocks {
 
     //DUCT BLOCKS
     public static final DeferredBlock<Block> DUCT = registerBlockAndBlockItem("duct",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK))
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_stonecut"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
+    );
 
     public static final DeferredBlock<Block> RUSTY_DUCT = registerBlockAndBlockItem("rusty_duct",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
+
+    //DUCT VENT BLOCKS
+    public static final DeferredBlock<Block> DUCT_VENT = registerBlockAndBlockItem("duct_vent",
+            () -> new ModelledSurfaceMountBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.PANEL_FLOOR(),
+                    false
+            )
+    );
+    public static final DeferredBlock<Block> RUSTY_DUCT_VENT = registerBlockAndBlockItem("rusty_duct_vent",
+            () -> new ModelledSurfaceMountBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.PANEL_FLOOR(),
+                    false
+            )
+    );
 
     //GRATE BLOCKS
     public static final DeferredBlock<Block> HORIZONTAL_GRATE = registerBlockAndBlockItem("horizontal_grate",
@@ -313,8 +366,14 @@ public class ModBlocks {
             () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion()
-                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
-            )
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS))
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_stonecut"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
     );
     public static final DeferredBlock<Block> CATWALK_TRUSS = registerBlockAndBlockItem("catwalk_truss",
             () -> new TrussBlock(BlockBehaviour
@@ -729,9 +788,9 @@ public class ModBlocks {
             )
     );
     public static final DeferredBlock<Block> VITALS_MONITOR = registerBlockAndBlockItem("vitals_monitor",
-            () -> new LightMultiBlock(BlockBehaviour
+            () -> new InteractableMultiBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .lightLevel(state -> state.getValue(LightMultiBlock.POWERED) ? 15 : 0),
+                    .lightLevel(state -> state.getValue(InteractableMultiBlock.POWERED) ? 15 : 0),
                     MultiBlockPlacementDirection.VERTICAL,
                     HitboxGeometryCollection.VITALS_MONITOR_TOP(),
                     HitboxGeometryCollection.VITALS_MONITOR_BASE()
@@ -808,9 +867,9 @@ public class ModBlocks {
             )
     );
     public static final DeferredBlock<Block> WORK_LIGHT_STAND = registerBlockAndBlockItem("work_light_stand",
-            () -> new LightMultiBlock(BlockBehaviour
+            () -> new InteractableMultiBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .lightLevel(state -> state.getValue(LightMultiBlock.POWERED) ? 15 : 0),
+                    .lightLevel(state -> state.getValue(InteractableMultiBlock.POWERED) ? 15 : 0),
                     MultiBlockPlacementDirection.VERTICAL,
                     HitboxGeometryCollection.WORK_LIGHT_MOUNT_SHAPE(),
                     HitboxGeometryCollection.THIN_VERTICAL_ROD_SHAPE()

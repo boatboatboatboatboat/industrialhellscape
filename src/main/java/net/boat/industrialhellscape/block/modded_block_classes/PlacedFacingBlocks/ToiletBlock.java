@@ -41,7 +41,7 @@ public class ToiletBlock extends InteractableModelledFacingBlock {
     }
 
     @Override
-    public @NotNull InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+    public @NotNull InteractionResult useWithoutItem(BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
         boolean wasOn = state.getValue(POWERED);
 
         if(!level.isClientSide() && !player.isSecondaryUseActive()) {

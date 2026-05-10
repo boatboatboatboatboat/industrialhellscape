@@ -39,6 +39,8 @@ public class ModCreativeModeTabs {
                         //DUCT BLOCKS
                         output.accept(ModBlocks.DUCT.get());
                         output.accept(ModBlocks.RUSTY_DUCT.get());
+                        output.accept(ModBlocks.DUCT_VENT.get());
+                        output.accept(ModBlocks.RUSTY_DUCT_VENT.get());
 
                         //GRATE BLOCKS
                         output.accept(ModBlocks.HORIZONTAL_GRATE.get());

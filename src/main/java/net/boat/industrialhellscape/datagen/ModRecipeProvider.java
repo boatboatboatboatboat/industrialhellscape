@@ -27,8 +27,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     }
     //  Increasing from the default of 1 requires disabling Vesselplate, Rockrete, Pipeworks, and/or Vesselglass recycling
     private static final int vesselplatePerIronIngot = 1;
-    private static final int strutPerIronIngot = 1;
-    private static final int hvacPerIronIngot = 1;
+    private static final int trussPerIngot = 3;
+    private static final int hvacPerIronIngot = 3;
     private static final int rockretePerStone = 1;
     private static final int vesselglassPerCraft = 4;
 
@@ -49,8 +49,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     private static final List<ItemLike> HVAC_STONECUT_OUTPUT = List.of(
             ModBlocks.DUCT.get().asItem(),
             ModBlocks.RUSTY_DUCT.get().asItem(),
-//            ModBlocks.DUCT_VENT.get().asItem(),
-//            ModBlocks.RUSTY_DUCT_VENT.get().asItem(),
+            ModBlocks.DUCT_VENT.get().asItem(),
+            ModBlocks.RUSTY_DUCT_VENT.get().asItem(),
 
             ModBlocks.HORIZONTAL_GRATE.get().asItem(),
             ModBlocks.HORIZONTAL_CUTOUT_GRATE.get().asItem(),
@@ -261,6 +261,30 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         
         //Create Rockrete Base Block from 1 stone
         HavenSingleIngredientRecipe(ModBlocks.GRAY_ROCKRETE.get(), rockretePerStone, Ingredient.of(ModTags.Items.IH_RECIPE_STONELIKES), "rockrete_from_stone", recipeOutput);
+
+        //Create Grate recipe
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.DUCT.get(), hvacPerIronIngot *4)
+                .pattern(" A ")
+                .pattern("ABA")
+                .pattern(" A ")
+
+                .define('A', ModTags.Items.IH_RECIPE_INGOTS)
+                .define('B', ModItems.INHELL_HAVEN_DEVICE.get())
+
+                .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                .save(recipeOutput);
+
+        //Create Truss recipe
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.TRUSS.get(), trussPerIngot *4)
+                .pattern("A A")
+                .pattern(" B ")
+                .pattern("A A")
+
+                .define('A', ModTags.Items.IH_RECIPE_INGOTS)
+                .define('B', ModItems.INHELL_HAVEN_DEVICE.get())
+
+                .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                .save(recipeOutput);
 
         //Create Metalworks recipe
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.METALWORKS.get(),metalworksPerIngot*6)

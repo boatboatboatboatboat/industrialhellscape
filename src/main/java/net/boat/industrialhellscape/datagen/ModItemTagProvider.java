@@ -49,7 +49,19 @@ public class ModItemTagProvider extends ItemTagsProvider {
         this.tag(ModTags.Items.HVAC_SMELTABLE_ITEM)
                 .add(
                         ModBlocks.DUCT.get().asItem(),
-                        ModBlocks.RUSTY_DUCT.get().asItem()
+                        ModBlocks.RUSTY_DUCT.get().asItem(),
+                        ModBlocks.DUCT_VENT.get().asItem(),
+                        ModBlocks.RUSTY_DUCT_VENT.get().asItem(),
+
+                        ModBlocks.HORIZONTAL_GRATE.get().asItem(),
+                        ModBlocks.VERTICAL_GRATE.get().asItem(),
+                        ModBlocks.HORIZONTAL_CUTOUT_GRATE.get().asItem(),
+                        ModBlocks.VERTICAL_CUTOUT_GRATE.get().asItem(),
+
+                        ModBlocks.GRAY_HORIZONTAL_GRATE.get().asItem(),
+                        ModBlocks.GRAY_VERTICAL_GRATE.get().asItem(),
+                        ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get().asItem(),
+                        ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get().asItem()
                 );
         this.tag(ModTags.Items.METALWORKS_ITEMS)
                 .add(
@@ -63,16 +75,6 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.BLACK_RAILING.get().asItem(),
                         ModBlocks.RUSTY_STAIR_RAILING.get().asItem(),
                         ModBlocks.RUSTY_RAILING.get().asItem(),
-
-                        ModBlocks.HORIZONTAL_GRATE.get().asItem(),
-                        ModBlocks.VERTICAL_GRATE.get().asItem(),
-                        ModBlocks.HORIZONTAL_CUTOUT_GRATE.get().asItem(),
-                        ModBlocks.VERTICAL_CUTOUT_GRATE.get().asItem(),
-
-                        ModBlocks.GRAY_HORIZONTAL_GRATE.get().asItem(),
-                        ModBlocks.GRAY_VERTICAL_GRATE.get().asItem(),
-                        ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get().asItem(),
-                        ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get().asItem(),
 
                         ModBlocks.RUSTY_BOLTED_BRACKET.get().asItem(),
                         ModBlocks.BLACK_BOLTED_BRACKET.get().asItem(),

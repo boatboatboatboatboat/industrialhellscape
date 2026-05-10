@@ -190,10 +190,6 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock{
         return occupied;
     }
 
-    public boolean isPathfindable(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull PathComputationType pType) {
-        return true;
-    }
-
     @Override
     public @Nonnull FluidState getFluidState(BlockState state) {
         return state.getValue(BlockStateProperties.WATERLOGGED) ? Fluids.WATER.getSource(false) : Fluids.EMPTY.defaultFluidState();
@@ -243,6 +239,10 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock{
             }
         }
         return state;
+    }
+
+    protected boolean isPathfindable(@NotNull BlockState state, @NotNull PathComputationType pathComputationType) {
+        return false;
     }
 
     @Override

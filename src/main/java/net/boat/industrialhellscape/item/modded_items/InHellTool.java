@@ -76,12 +76,6 @@ public class InHellTool extends Item {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     };
 
-    //    public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
-//        tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.haventool")
-//        //.append(Component.translatable("tooltip.industrialhellscape.haventool"))
-//        );
-//    }
-
     //Item remains in crafting grid when used to craft something, from the two methods below.
     public @NotNull ItemStack getCraftingRemainingItem(@Nonnull ItemStack stack) {
         return new ItemStack(this);

@@ -7,7 +7,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -20,12 +19,10 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
-
-public class LightMultiBlock extends Modelled2BMBlock{
+public class InteractableMultiBlock extends Modelled2BMBlock{
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
-    public LightMultiBlock(Properties pProperties, MultiBlockPlacementDirection multiBlockPlacementDirection, VoxelShape hitboxPositiveShape, VoxelShape hitboxNegativeShape) {
+    public InteractableMultiBlock(Properties pProperties, MultiBlockPlacementDirection multiBlockPlacementDirection, VoxelShape hitboxPositiveShape, VoxelShape hitboxNegativeShape) {
         super(pProperties, multiBlockPlacementDirection, hitboxPositiveShape, hitboxNegativeShape);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(POWERED, false)
@@ -35,7 +32,7 @@ public class LightMultiBlock extends Modelled2BMBlock{
     }
 
     @Override
-    public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+    public @NotNull InteractionResult useWithoutItem(BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
         boolean wasOn = state.getValue(POWERED);
         SoundEvent onOffSound = wasOn ? SoundEvents.STONE_BUTTON_CLICK_OFF : SoundEvents.STONE_BUTTON_CLICK_ON;
 

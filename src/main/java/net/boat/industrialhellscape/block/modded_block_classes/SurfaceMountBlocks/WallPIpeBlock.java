@@ -4,13 +4,11 @@ import net.boat.industrialhellscape.block.modded_block_state_properties.DynamicC
 import net.boat.industrialhellscape.block.modded_block_state_properties.SurfacePipeMountState;
 import net.boat.industrialhellscape.block.modded_interfaces.ConnectedModelCapability;
 import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
-import net.boat.industrialhellscape.block.modded_interfaces.PillarInterface;
 import net.boat.industrialhellscape.block.modded_interfaces.PipeInterface;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -28,6 +26,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
@@ -141,7 +140,7 @@ public class WallPIpeBlock extends Block implements PipeInterface, SimpleWaterlo
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    protected @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
         boolean playerHasTool = player.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || player.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
         boolean playerIsCrouching = player.isCrouching();
 
@@ -166,7 +165,7 @@ public class WallPIpeBlock extends Block implements PipeInterface, SimpleWaterlo
         return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
     }
 
-    public BlockState rotate(BlockState pState, Rotation pRot) {
+    public @NotNull BlockState rotate(BlockState pState, @NotNull Rotation pRot) {
 
         if (pState.getValue(FACING).getAxis() == Direction.Axis.Y) { //Block is placed up or down
             SurfacePipeMountState originallyFacing = pState.getValue(ORIENTATION);
@@ -198,7 +197,7 @@ public class WallPIpeBlock extends Block implements PipeInterface, SimpleWaterlo
         }
     }
 
-    public BlockState mirror(BlockState pState, Mirror pMirror) {
+    public @NotNull BlockState mirror(BlockState pState, Mirror pMirror) {
         return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
     }
 

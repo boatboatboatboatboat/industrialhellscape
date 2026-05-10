@@ -1,8 +1,15 @@
+For .kra and .png image files present in this mod's code: All rights reserved by default.
+I may give permission to use these assets, if you contact me and are willing to give credit.
+
+All other content in this mod's code falls under purview of MIT license.
+
+---
+
 MIT License
 
-Copyright (c) 2023 NeoForged project
+Copyright (c) 2026 yellowuboat
 
-This license applies to the template files as supplied by github.com/NeoForged/MDK
+This license applies to non-image files at https://github.com/boatboatboatboatboat/industrialhellscape
 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

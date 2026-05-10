@@ -160,15 +160,15 @@ public class ConnectedFurnitureBlock extends Block implements SimpleWaterloggedB
     public @Nonnull RenderShape getRenderShape(@Nonnull BlockState state) {
         return RenderShape.MODEL;
     }
-    public FluidState getFluidState(BlockState pState) {
+    public @NotNull FluidState getFluidState(BlockState pState) {
         return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
     }
 
-    protected BlockState rotate(BlockState state, Rotation rot) {
+    protected @NotNull BlockState rotate(BlockState state, Rotation rot) {
         return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
-    protected BlockState mirror(BlockState state, Mirror mirror) {
+    protected @NotNull BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 
@@ -178,7 +178,7 @@ public class ConnectedFurnitureBlock extends Block implements SimpleWaterloggedB
     }
 
     @Override
-    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+    protected @NotNull MapCodec<? extends HorizontalDirectionalBlock> codec() {
         return null;
     }
 }

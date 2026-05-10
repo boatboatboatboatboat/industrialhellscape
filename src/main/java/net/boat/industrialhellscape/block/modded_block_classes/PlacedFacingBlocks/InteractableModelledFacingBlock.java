@@ -44,7 +44,7 @@ public class InteractableModelledFacingBlock extends ModelledFacingBlock impleme
     }
 
     @Override
-    public @NotNull InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+    public @NotNull InteractionResult useWithoutItem(BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
             boolean wasOn = state.getValue(POWERED);
             state = state.cycle(POWERED);
             level.setBlock(pos, state, 2);
