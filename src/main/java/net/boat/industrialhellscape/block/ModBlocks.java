@@ -145,49 +145,57 @@ public class ModBlocks {
     public static final DeferredBlock<Block> HORIZONTAL_GRATE = registerBlockAndBlockItem("horizontal_grate",
             () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
+                    false
             )
     );
     public static final DeferredBlock<Block> VERTICAL_GRATE = registerBlockAndBlockItem("vertical_grate",
             () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
+                    false
             )
     );
     public static final DeferredBlock<Block> HORIZONTAL_CUTOUT_GRATE = registerBlockAndBlockItem("horizontal_cutout_grate",
             () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.GLASS)
-                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
+                    false
             )
     );
     public static final DeferredBlock<Block> VERTICAL_CUTOUT_GRATE = registerBlockAndBlockItem("vertical_cutout_grate",
             () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.GLASS)
-                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
+                    false
             )
     );
     public static final DeferredBlock<Block> GRAY_HORIZONTAL_GRATE = registerBlockAndBlockItem("gray_horizontal_grate",
             () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
+                    false
             )
     );
     public static final DeferredBlock<Block> GRAY_VERTICAL_GRATE = registerBlockAndBlockItem("gray_vertical_grate",
             () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
+                    false
             )
     );
     public static final DeferredBlock<Block> GRAY_HORIZONTAL_CUTOUT_GRATE = registerBlockAndBlockItem("gray_horizontal_cutout_grate",
             () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.GLASS)
-                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
+                    false
             )
     );
     public static final DeferredBlock<Block> GRAY_VERTICAL_CUTOUT_GRATE = registerBlockAndBlockItem("gray_vertical_cutout_grate",
             () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.GLASS)
-                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
+                    false
             )
     );
 
@@ -366,7 +374,8 @@ public class ModBlocks {
             () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion()
-                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS))
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
+                    true)
             {
                 @Override
                 public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
@@ -379,7 +388,8 @@ public class ModBlocks {
             () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion()
-                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
+                    true
             )
     );
     public static final DeferredBlock<Block> CATWALK_TRUSS_STAIRS = registerBlockAndBlockItem("catwalk_truss_stairs",
@@ -411,14 +421,16 @@ public class ModBlocks {
             () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion()
-                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
+                    true
             )
     );
     public static final DeferredBlock<Block> GRAY_CATWALK_TRUSS = registerBlockAndBlockItem("gray_catwalk_truss",
             () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion()
-                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
+                    true
             )
     );
     public static final DeferredBlock<Block> GRAY_CATWALK_TRUSS_STAIRS = registerBlockAndBlockItem("gray_catwalk_truss_stairs",

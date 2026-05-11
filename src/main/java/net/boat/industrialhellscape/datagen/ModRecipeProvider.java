@@ -391,8 +391,21 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ItemTags.WOOL)
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("industrialhellscape", "body_pillow"));
-        
         //---------- END OF RECIPES FOR JOKE CONTENT ----------
+
+        //---------- MUSIC DISC RECIPES ----------
+        //Create Marquee Disc
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.MARQUEE_DISC.get(),1)
+                .pattern("AAA")
+                .pattern("ABA")
+                .pattern("AAA")
+
+                .define('A', Items.END_STONE)
+                .define('B', ModItems.INHELL_HAVEN_DEVICE.get())
+
+                .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                .save(recipeOutput);
+        //---------- END OF MUSIC DISC RECIPES ----------
         
         //---------- RECYCLING RECIPES ----------
         stonecutToAmount(

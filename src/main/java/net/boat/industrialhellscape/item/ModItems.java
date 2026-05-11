@@ -19,7 +19,7 @@ public class ModItems {
             () -> new Item(new Item.Properties()) {
     });
 
-    public static final DeferredItem<Item> DARK_NIGHT_MUSIC_DISC = ITEMS.register("disc_1",
+    public static final DeferredItem<Item> MARQUEE_DISC = ITEMS.register("disc_1",
             () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.SONG_1_KEY).stacksTo(1)));
 
     public static void register(IEventBus eventBus) {

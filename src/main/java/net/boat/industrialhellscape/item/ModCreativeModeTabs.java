@@ -23,7 +23,7 @@ public class ModCreativeModeTabs {
 
                         //ITEMS
                         output.accept(ModItems.INHELL_HAVEN_DEVICE.get());
-                        output.accept(ModItems.DARK_NIGHT_MUSIC_DISC.get());
+                        //output.accept(ModItems.MARQUEE_DISC.get());
 
                         //BASE BLOCKS
                         output.accept(ModBlocks.METALWORKS.get());

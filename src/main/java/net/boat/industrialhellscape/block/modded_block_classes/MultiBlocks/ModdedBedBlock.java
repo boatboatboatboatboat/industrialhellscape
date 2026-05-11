@@ -31,7 +31,7 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 
-public class ModdedBedBlock extends Modelled2BMBlock implements EntityBlock, SimpleWaterloggedBlock {
+public class ModdedBedBlock extends Modelled2BMBlock implements SimpleWaterloggedBlock {
 
     public static final BooleanProperty OCCUPIED = BlockStateProperties.OCCUPIED;
 
@@ -56,20 +56,23 @@ public class ModdedBedBlock extends Modelled2BMBlock implements EntityBlock, Sim
     }
 
     @Override
-    public boolean isBed(BlockState state, BlockGetter level, BlockPos pos, LivingEntity sleeper) {
+    public boolean isBed(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull LivingEntity sleeper) {
         return true;
     }
 
-    @Override
-    public @Nullable BlockEntity newBlockEntity(@Nonnull BlockPos pos, @Nonnull BlockState state) {
-        //Color is arbitrary to fulfill the last parameter
-        return new BedBlockEntity(pos, state, DyeColor.BLUE);
-    }
+//    @Override
+//    public @Nullable BlockEntity newBlockEntity(@Nonnull BlockPos pos, @Nonnull BlockState state) {
+//        //Color is arbitrary to fulfill the last parameter
+//        return new BedBlockEntity(pos, state, DyeColor.BLUE);
+//    }
 
     @Override
     protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
         //Code taken from vanilla BedBlock code with minor modifications
         if (level.isClientSide) {
+
+            //level.addParticle(ParticleTypes.HEART, pos.getX()+0.5, pos.getY(), pos.getZ()+0.5, 0, 1, 0);
+
             return InteractionResult.CONSUME;
         } else {
             //If the block interacted with is not the POSITIVE block

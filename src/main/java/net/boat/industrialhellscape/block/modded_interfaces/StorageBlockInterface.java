@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 public interface StorageBlockInterface {
 
     //--------- NECESSARY FIELDS FOR BLOCK ENTITY ----------
-    //Blocks that have a Storage Block Entity MUST possess these methods and supply a value.
+    //Blocks that have a Storage Block Entity and implements this interface MUST possess these methods and supply a value.
     //The block entity assumes blocks passed to it possess this interface, and will use these methods to read off values.
     int getSlotCount();
     Supplier<SoundEvent> getOpenSound();

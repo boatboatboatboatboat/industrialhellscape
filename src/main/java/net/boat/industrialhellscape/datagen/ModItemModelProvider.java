@@ -7,7 +7,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -25,7 +24,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         //Make door item models
         basicItem(ModBlocks.VESSELPLATE_DOOR.get().asItem());
         basicItem(ModBlocks.GRAY_VESSELPLATE_DOOR.get().asItem());
-        basicFolderedItem(ModItems.DARK_NIGHT_MUSIC_DISC.get().asItem(), "disc");
+        basicFolderedItem(ModItems.MARQUEE_DISC.get().asItem(), "disc");
     }
 
     public ItemModelBuilder basicFolderedItem(Item item, String subFolder) {

@@ -24,12 +24,14 @@ import javax.annotation.Nonnull;
 public class TrussBlock extends SimpleTextureToggleBlock implements SimpleWaterloggedBlock {
 
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    public final boolean seeInteriorSides;
 
-    public TrussBlock(Properties pProperties) {
+    public TrussBlock(Properties pProperties, boolean seeInteriorSides) {
         super(pProperties);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(ALT_STATE, Boolean.FALSE)
                 .setValue(WATERLOGGED, Boolean.FALSE));
+        this.seeInteriorSides = seeInteriorSides;
     }
 
     public BlockState getStateForPlacement(@Nonnull BlockPlaceContext pContext) {
@@ -56,6 +58,11 @@ public class TrussBlock extends SimpleTextureToggleBlock implements SimpleWaterl
     }
 
     public boolean skipRendering(@NotNull BlockState pState, BlockState pAdjacentBlockState, @NotNull Direction pSide) {
-        return !pAdjacentBlockState.is(this) && super.skipRendering(pState, pAdjacentBlockState, pSide);
+        //Needed to see interior sides of truss structures.
+        if(seeInteriorSides) {
+            return !pAdjacentBlockState.is(this) && super.skipRendering(pState, pAdjacentBlockState, pSide);
+        } else {
+            return pAdjacentBlockState.is(this) && super.skipRendering(pState, pAdjacentBlockState, pSide);
+        }
     }
 }
