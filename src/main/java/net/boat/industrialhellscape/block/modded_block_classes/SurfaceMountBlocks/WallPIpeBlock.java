@@ -8,6 +8,8 @@ import net.boat.industrialhellscape.block.modded_interfaces.PipeInterface;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -145,11 +147,12 @@ public class WallPIpeBlock extends Block implements PipeInterface, SimpleWaterlo
 
     @Override
     protected @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
-        boolean playerHasTool = player.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || player.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
+        boolean playerHasTool = stack.is(ModTags.Items.IH_COMPATIBLE_TOOLS);
         boolean playerIsCrouching = player.isCrouching();
 
         if(playerHasTool && playerIsCrouching) {
             //Cycles connection type. Only works with modded tools
+            level.playSound(player, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 0.25f, 1f);
             state = state.cycle(TYPE);
             level.setBlock(pos, state, 2); //2
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
@@ -158,6 +161,7 @@ public class WallPIpeBlock extends Block implements PipeInterface, SimpleWaterlo
 
         } else if (playerHasTool) {
             //Cycles from vertical and horizontal pipes when interacting with pipes on walls. Works with modded tools AND pickaxes
+            level.playSound(player, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 0.25f, 1f);
             state = state.cycle(ORIENTATION);
             level.setBlock(pos, state, 3); //3
             return ItemInteractionResult.sidedSuccess(level.isClientSide);

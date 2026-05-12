@@ -79,8 +79,10 @@ public interface HitboxGeometryCollection {
 
     static VoxelShape RETRO_COMPUTER_2(){ //FIXED
         VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0.1875, 0, 0.0625, 0.9375, 0.125, 0.375), BooleanOp.OR);
         shape = Shapes.join(shape, Shapes.box(0.1875, 0, 0.4375, 0.9375, 0.25, 0.9375), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.24375, 0.25, 0.5, 0.88125, 0.765625, 0.875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.25, 0.25, 0.6875, 0.875, 0.4375, 0.875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.25, 0.25, 0.5, 0.875, 0.75, 0.6875), BooleanOp.OR);
 
         return shape;
     }

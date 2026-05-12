@@ -4,6 +4,8 @@ package net.boat.industrialhellscape.block.modded_logic_enums;
 //-----
 // This enum is NOT used for block state properties. It is used as a parameter during block registration to
 // decide how the two blocks of a TwoBlockMultiBlock are constructed upon world placement.
+// During block registration in ModBlocks for a two-block multiblock, you will type in the direction you
+// want the two block halves to construct themselves in-world.
 
 // Key:
 // VERTICAL - Bottom ("negative") and Top ("positive") halves are stacked on top of each other

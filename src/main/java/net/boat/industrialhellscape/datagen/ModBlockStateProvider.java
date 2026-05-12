@@ -5,7 +5,6 @@ import net.boat.industrialhellscape.block.ModBlocks;
 import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.TwoBlockMultiBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.SurfaceMountBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.TextureToggleBlocks.SimpleTextureToggleBlock;
-import net.boat.industrialhellscape.block.modded_block_state_properties.SurfacePipeMountState;
 import net.boat.industrialhellscape.block.modded_block_state_properties.TwoBlockMultiBlockState;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -64,10 +63,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genSimpleTextureToggleSBI(ModBlocks.HORIZONTAL_CUTOUT_GRATE.get(),"grate","","","cutout");
         genSimpleTextureToggleSBI(ModBlocks.VERTICAL_CUTOUT_GRATE.get(),"grate","","","cutout");
 
-        genSimpleTextureToggleSBI(ModBlocks.GRAY_HORIZONTAL_GRATE.get(),"grate","","", "solid");
-        genSimpleTextureToggleSBI(ModBlocks.GRAY_VERTICAL_GRATE.get(),"grate","","", "solid");
-        genSimpleTextureToggleSBI(ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get(),"grate","","","cutout");
-        genSimpleTextureToggleSBI(ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get(),"grate","","", "solid");
+//        genSimpleTextureToggleSBI(ModBlocks.GRAY_HORIZONTAL_GRATE.get(),"grate","","", "solid");
+//        genSimpleTextureToggleSBI(ModBlocks.GRAY_VERTICAL_GRATE.get(),"grate","","", "solid");
+//        genSimpleTextureToggleSBI(ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get(),"grate","","","cutout");
+//        genSimpleTextureToggleSBI(ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get(),"grate","","", "solid");
 
         //Vesselplate Blocks
         genSimpleTextureToggleSBI(ModBlocks.RIVETED_VESSELPLATE.get(),"vesselplate",  "", "","solid");
@@ -122,26 +121,36 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genSimpleTextureToggleSBI(ModBlocks.ROUGH_GRAY_ROCKRETE.get(),"","","","solid");
         genStairsWithRenderTypeSBI(ModBlocks.GRAY_ROCKRETE_STAIRS.get(),"","gray_rockrete","gray_rockrete","gray_rockrete","solid");
         genSimpleSlabsSBI(ModBlocks.GRAY_ROCKRETE_SLAB.get(), ModBlocks.GRAY_ROCKRETE.get());
+        genStairsWithRenderTypeSBI(ModBlocks.ROUGH_GRAY_ROCKRETE_STAIRS.get(),"","rough_gray_rockrete","rough_gray_rockrete","rough_gray_rockrete","solid");
+        genSimpleSlabsSBI(ModBlocks.ROUGH_GRAY_ROCKRETE_SLAB.get(), ModBlocks.ROUGH_GRAY_ROCKRETE.get());
 
         genSimpleTextureToggleSBI(ModBlocks.GREEN_ROCKRETE.get(),"","rockrete","rockrete_rebar","solid");
         genSimpleTextureToggleSBI(ModBlocks.ROUGH_GREEN_ROCKRETE.get(),"","","","solid");
         genStairsWithRenderTypeSBI(ModBlocks.GREEN_ROCKRETE_STAIRS.get(),"","green_rockrete","green_rockrete","green_rockrete","solid");
         genSimpleSlabsSBI(ModBlocks.GREEN_ROCKRETE_SLAB.get(), ModBlocks.GREEN_ROCKRETE.get());
+        genStairsWithRenderTypeSBI(ModBlocks.ROUGH_GREEN_ROCKRETE_STAIRS.get(),"","rough_green_rockrete","rough_green_rockrete","rough_green_rockrete","solid");
+        genSimpleSlabsSBI(ModBlocks.ROUGH_GREEN_ROCKRETE_SLAB.get(), ModBlocks.ROUGH_GREEN_ROCKRETE.get());
 
         genSimpleTextureToggleSBI(ModBlocks.YELLOW_ROCKRETE.get(),"","rockrete","rockrete_rebar","solid");
         genSimpleTextureToggleSBI(ModBlocks.ROUGH_YELLOW_ROCKRETE.get(),"","","","solid");
         genStairsWithRenderTypeSBI(ModBlocks.YELLOW_ROCKRETE_STAIRS.get(),"","yellow_rockrete","yellow_rockrete","yellow_rockrete","solid");
         genSimpleSlabsSBI(ModBlocks.YELLOW_ROCKRETE_SLAB.get(), ModBlocks.YELLOW_ROCKRETE.get());
+        genStairsWithRenderTypeSBI(ModBlocks.ROUGH_YELLOW_ROCKRETE_STAIRS.get(),"","rough_yellow_rockrete","rough_yellow_rockrete","rough_yellow_rockrete","solid");
+        genSimpleSlabsSBI(ModBlocks.ROUGH_YELLOW_ROCKRETE_SLAB.get(), ModBlocks.ROUGH_YELLOW_ROCKRETE.get());
 
         genSimpleTextureToggleSBI(ModBlocks.BLUE_ROCKRETE.get(),"","rockrete","rockrete_rebar","solid");
         genSimpleTextureToggleSBI(ModBlocks.ROUGH_BLUE_ROCKRETE.get(),"","","","solid");
         genStairsWithRenderTypeSBI(ModBlocks.BLUE_ROCKRETE_STAIRS.get(),"","blue_rockrete","blue_rockrete","blue_rockrete","solid");
         genSimpleSlabsSBI(ModBlocks.BLUE_ROCKRETE_SLAB.get(), ModBlocks.BLUE_ROCKRETE.get());
+        genStairsWithRenderTypeSBI(ModBlocks.ROUGH_BLUE_ROCKRETE_STAIRS.get(),"","rough_blue_rockrete","rough_blue_rockrete","rough_blue_rockrete","solid");
+        genSimpleSlabsSBI(ModBlocks.ROUGH_BLUE_ROCKRETE_SLAB.get(), ModBlocks.ROUGH_BLUE_ROCKRETE.get());
 
         genSimpleTextureToggleSBI(ModBlocks.RED_ROCKRETE.get(),"","rockrete","rockrete_rebar","solid");
         genSimpleTextureToggleSBI(ModBlocks.ROUGH_RED_ROCKRETE.get(),"","","","solid");
         genStairsWithRenderTypeSBI(ModBlocks.RED_ROCKRETE_STAIRS.get(),"","red_rockrete","red_rockrete","red_rockrete","solid");
         genSimpleSlabsSBI(ModBlocks.RED_ROCKRETE_SLAB.get(), ModBlocks.RED_ROCKRETE.get());
+        genStairsWithRenderTypeSBI(ModBlocks.ROUGH_RED_ROCKRETE_STAIRS.get(),"","rough_red_rockrete","rough_red_rockrete","rough_red_rockrete","solid");
+        genSimpleSlabsSBI(ModBlocks.ROUGH_RED_ROCKRETE_SLAB.get(), ModBlocks.ROUGH_RED_ROCKRETE.get());
 
         genFolderedSBI(ModBlocks.GRIMY_RESTROOM_TILE.get(), "");
 
@@ -154,10 +163,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genCornerShapedBlocksSI(ModBlocks.SMALL_RUSTY_BOLTED_BRACKET.get(),"bolted_bracket");
 
         //Doors and Trapdoors
-        genDoorSBI(ModBlocks.VESSELPLATE_DOOR.get() , "cutout");
-        genTrapdoorSBI(ModBlocks.VESSELPLATE_TRAPDOOR.get(),"solid");
-        genDoorSBI(ModBlocks.GRAY_VESSELPLATE_DOOR.get() , "solid");
-        genTrapdoorSBI(ModBlocks.GRAY_VESSELPLATE_TRAPDOOR.get(),"solid");
+        genDoorSBI(ModBlocks.ARMORED_DOOR.get() , "cutout");
+        //genTrapdoorSBI(ModBlocks.VESSELPLATE_TRAPDOOR.get(),"solid");
+        genDoorSBI(ModBlocks.STAMPED_METAL_DOOR.get() , "solid");
+        genDoorSBI(ModBlocks.BULKHEAD_DOOR.get() , "cutout");
+        genTrapdoorSBI(ModBlocks.VENT_TRAPDOOR.get(),"solid");
 
         //FURNITURE BLOCKS WITH EXISTING BLOCK MODELS
         GenFacingModelledSI(ModBlocks.SINK.get(),"");
@@ -438,7 +448,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     private void genTrapdoorSBI(Block block, String renderType) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String existingModelPath = "block/"+stringName;
-        trapdoorBlockWithRenderType(((TrapDoorBlock) block), modLoc("block/doors/" + stringName), true, renderType);
+        trapdoorBlockWithRenderType(((TrapDoorBlock) block), modLoc("block/door/" + stringName), true, renderType);
 
         simpleBlockItem(block, models().getExistingFile(modLoc(existingModelPath+"_bottom")));
     }
@@ -446,7 +456,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     private void genDoorSBI(Block block, String renderType) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String existingModelPath = "block/"+stringName;
-        doorBlockWithRenderType(((DoorBlock) block), modLoc("block/doors/"+stringName+"_bottom"), modLoc("block/doors/"+stringName+"_top"), renderType);
+        doorBlockWithRenderType(((DoorBlock) block), modLoc("block/door/"+stringName+"_bottom"), modLoc("block/door/"+stringName+"_top"), renderType);
     }
 
     private void genCornerShapedBlocksSI(Block block, String folderName) {

@@ -2,8 +2,9 @@ package net.boat.industrialhellscape.block.modded_block_state_properties;
 
 //INFO:
 //-----
-//This enum is used for the multi-part properties of stair-railing blocks, dictating
-//Whether the left stair rail, right, or both, are present when the block is placed down in a given location.
+//For pipe blocks attached to a block surface. They can be rotated 90 degrees.
+//Since they are coaxially symmetrical, the block states properties can be simplified to this enum of two values,
+//Instead of having to use four enum values of HORIZONTAL_FACING.
 //-----
 
 import net.minecraft.util.StringRepresentable;

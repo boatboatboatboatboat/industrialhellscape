@@ -21,17 +21,17 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        //Make door item models
-        basicItem(ModBlocks.VESSELPLATE_DOOR.get().asItem());
-        basicItem(ModBlocks.GRAY_VESSELPLATE_DOOR.get().asItem());
+        //Make item models from existing .png files
+        basicFolderedItem(ModBlocks.ARMORED_DOOR.get().asItem(), "door");
+        basicFolderedItem(ModBlocks.STAMPED_METAL_DOOR.get().asItem(), "door");
+        basicFolderedItem(ModBlocks.BULKHEAD_DOOR.get().asItem(), "door");
         basicFolderedItem(ModItems.MARQUEE_DISC.get().asItem(), "disc");
     }
 
     public ItemModelBuilder basicFolderedItem(Item item, String subFolder) {
-        return this.basicFolderedItem(Objects.requireNonNull(BuiltInRegistries.ITEM.getKey(item)), subFolder);
+        return this.folderedItemFinder(Objects.requireNonNull(BuiltInRegistries.ITEM.getKey(item)), subFolder);
     }
-
-    public ItemModelBuilder basicFolderedItem(ResourceLocation item, String subFolder) {
+    public ItemModelBuilder folderedItemFinder(ResourceLocation item, String subFolder) {
         return this.getBuilder(item.toString())
                 .parent(new ModelFile.UncheckedModelFile("item/generated"))
                 .texture("layer0", ResourceLocation.fromNamespaceAndPath(item.getNamespace(), "item/" + subFolder + "/" + item.getPath()));

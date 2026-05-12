@@ -1,16 +1,26 @@
 package net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks;
 
 import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
+import net.boat.industrialhellscape.item.ModItems;
+import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
@@ -136,6 +146,30 @@ public class CornerBlock extends Block implements SimpleWaterloggedBlock {
                 break; //Bracket faces walls if player clicks the walls. but if they're looking up, assumes player wants an upright bracket
         }
         return state;
+    }
+
+    @Override
+    protected @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
+        boolean playerHasTool = stack.is(ModTags.Items.IH_COMPATIBLE_TOOLS);
+        boolean playerIsCrouching = player.isCrouching();
+
+        if(playerHasTool && playerIsCrouching) {
+            //Cycles connection type. Only works with modded tools
+            level.playSound(player, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 0.25f, 1f);
+            state = state.cycle(FACING);
+            level.setBlock(pos, state, 2); //2
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+
+
+
+        } else if (playerHasTool) {
+            //Cycles from vertical and horizontal pipes when interacting with pipes on walls. Works with modded tools AND pickaxes
+            level.playSound(player, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 0.25f, 1f);
+            state = state.cycle(ATTACH_FACE);
+            level.setBlock(pos, state, 3); //3
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        }
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     public @Nonnull FluidState getFluidState(BlockState pState) {

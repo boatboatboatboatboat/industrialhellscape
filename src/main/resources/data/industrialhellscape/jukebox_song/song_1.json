@@ -1,8 +1,8 @@
 {
   "comparator_output": 1,
   "description": {
-    "translate": "gui.industrialhellscape.disc1"
+    "translate": "tooltip.industrialhellscape.disc_1"
   },
-  "length_in_seconds": 124.0,
+  "length_in_seconds": 121.0,
   "sound_event": "industrialhellscape:song_1"
 }

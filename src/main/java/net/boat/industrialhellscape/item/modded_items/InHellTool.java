@@ -22,6 +22,8 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nonnull;
 import java.util.List;
 
+//Stonecutter implementation on a handheld item - Sourced from Minecraft Mod "Yuushya Townscape" (MIT licensed)
+
 public class InHellTool extends Item {
     public InHellTool(Properties pProperties) {
         super(pProperties);
@@ -37,10 +39,13 @@ public class InHellTool extends Item {
         return InteractionResultHolder.consume(player.getItemInHand(usedHand));
     }
 
+    public MenuProvider getMenuProvider(Level level, BlockPos pos, ItemStack itemStack){
+        return new SimpleMenuProvider((i, inventory, pPlayer) -> getStonecutterMenu(i,inventory,level,pos,itemStack) , getDescription());
+    }
+
     public static StonecutterMenu getStonecutterMenu(int i, Inventory inventory, Level level, BlockPos pos, ItemStack itemStack){
         return new StonecutterMenu(i, inventory, ContainerLevelAccess.create(level, pos)){
             {
-                //What kind of item stack will show up in slot index 0? (parameter input should be ItemStack.Empty)
                 this.getSlot(0).set(itemStack);
             }
 
@@ -51,10 +56,6 @@ public class InHellTool extends Item {
             }
 
         };
-    }
-
-    public MenuProvider getMenuProvider(Level level, BlockPos pos, ItemStack itemStack){
-        return new SimpleMenuProvider((i, inventory, pPlayer) -> getStonecutterMenu(i,inventory,level,pos,itemStack) , getDescription());
     }
 
     @Override
@@ -68,8 +69,10 @@ public class InHellTool extends Item {
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         if (Screen.hasShiftDown()) {
+            //Expand tooltip if shift-key is down while hovering over item in a GUI.
             tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.haventool"));
         } else {
+            //Minimize tooltip by default.
             tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.shift_down"));
         }
 

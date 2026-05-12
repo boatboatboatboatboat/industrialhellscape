@@ -56,12 +56,12 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.HORIZONTAL_GRATE.get().asItem(),
                         ModBlocks.VERTICAL_GRATE.get().asItem(),
                         ModBlocks.HORIZONTAL_CUTOUT_GRATE.get().asItem(),
-                        ModBlocks.VERTICAL_CUTOUT_GRATE.get().asItem(),
+                        ModBlocks.VERTICAL_CUTOUT_GRATE.get().asItem()
 
-                        ModBlocks.GRAY_HORIZONTAL_GRATE.get().asItem(),
-                        ModBlocks.GRAY_VERTICAL_GRATE.get().asItem(),
-                        ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get().asItem(),
-                        ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get().asItem()
+//                        ModBlocks.GRAY_HORIZONTAL_GRATE.get().asItem(),
+//                        ModBlocks.GRAY_VERTICAL_GRATE.get().asItem(),
+//                        ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get().asItem(),
+//                        ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get().asItem()
                 );
         this.tag(ModTags.Items.METALWORKS_ITEMS)
                 .add(
@@ -155,13 +155,14 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 );
         this.tag(ModTags.Items.DOOR_ITEMS)
                 .add(
-                        ModBlocks.VESSELPLATE_DOOR.get().asItem(),
-                        ModBlocks.GRAY_VESSELPLATE_DOOR.get().asItem()
+                        ModBlocks.ARMORED_DOOR.get().asItem(),
+                        ModBlocks.STAMPED_METAL_DOOR.get().asItem(),
+                        ModBlocks.BULKHEAD_DOOR.get().asItem()
                 );
         this.tag(ModTags.Items.TRAPDOOR_ITEMS)
                 .add(
-                        ModBlocks.VESSELPLATE_TRAPDOOR.get().asItem(),
-                        ModBlocks.GRAY_VESSELPLATE_TRAPDOOR.get().asItem()
+                        //ModBlocks.VESSELPLATE_TRAPDOOR.get().asItem(),
+                        ModBlocks.VENT_TRAPDOOR.get().asItem()
                 );
         this.tag(ModTags.Items.PIPEWORKS_ITEMS)
                 .add(
@@ -237,15 +238,15 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
         this.tag(ModTags.Items.AMENITY_FURNITURE_CATEGORY)
                 .add(
-//                        ModBlocks.DESK.get().asItem(),
-//                        ModBlocks.DESK_DRAWER.get().asItem(),
+                        ModBlocks.DESK.get().asItem(),
+                        ModBlocks.DESK_DRAWER.get().asItem(),
 
-//                        ModBlocks.METAL_DESK.get().asItem(),
-//                        ModBlocks.METAL_DESK_DRAWER.get().asItem(),
-//                        ModBlocks.METAL_DESK_DRAWER_2.get().asItem(),
+                        ModBlocks.METAL_DESK.get().asItem(),
+                        ModBlocks.METAL_DESK_DRAWER.get().asItem(),
+                        ModBlocks.METAL_DESK_DRAWER_2.get().asItem(),
 
-//                        ModBlocks.OFFICE_DESK_DRAWER.get().asItem(),
-//                        ModBlocks.OFFICE_DESK.get().asItem(),
+                        ModBlocks.OFFICE_DESK_DRAWER.get().asItem(),
+                        ModBlocks.OFFICE_DESK.get().asItem(),
 
                         ModBlocks.OFFICE_CHAIR.get().asItem(),
                         ModBlocks.BLACK_OFFICE_CHAIR.get().asItem(),

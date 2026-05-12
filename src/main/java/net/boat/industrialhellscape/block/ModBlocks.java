@@ -170,34 +170,34 @@ public class ModBlocks {
                     false
             )
     );
-    public static final DeferredBlock<Block> GRAY_HORIZONTAL_GRATE = registerBlockAndBlockItem("gray_horizontal_grate",
-            () -> new TrussBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
-                    false
-            )
-    );
-    public static final DeferredBlock<Block> GRAY_VERTICAL_GRATE = registerBlockAndBlockItem("gray_vertical_grate",
-            () -> new TrussBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
-                    false
-            )
-    );
-    public static final DeferredBlock<Block> GRAY_HORIZONTAL_CUTOUT_GRATE = registerBlockAndBlockItem("gray_horizontal_cutout_grate",
-            () -> new TrussBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.GLASS)
-                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
-                    false
-            )
-    );
-    public static final DeferredBlock<Block> GRAY_VERTICAL_CUTOUT_GRATE = registerBlockAndBlockItem("gray_vertical_cutout_grate",
-            () -> new TrussBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.GLASS)
-                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
-                    false
-            )
-    );
+//    public static final DeferredBlock<Block> GRAY_HORIZONTAL_GRATE = registerBlockAndBlockItem("gray_horizontal_grate",
+//            () -> new TrussBlock(BlockBehaviour
+//                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+//                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
+//                    false
+//            )
+//    );
+//    public static final DeferredBlock<Block> GRAY_VERTICAL_GRATE = registerBlockAndBlockItem("gray_vertical_grate",
+//            () -> new TrussBlock(BlockBehaviour
+//                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+//                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
+//                    false
+//            )
+//    );
+//    public static final DeferredBlock<Block> GRAY_HORIZONTAL_CUTOUT_GRATE = registerBlockAndBlockItem("gray_horizontal_cutout_grate",
+//            () -> new TrussBlock(BlockBehaviour
+//                    .Properties.ofFullCopy(Blocks.GLASS)
+//                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
+//                    false
+//            )
+//    );
+//    public static final DeferredBlock<Block> GRAY_VERTICAL_CUTOUT_GRATE = registerBlockAndBlockItem("gray_vertical_cutout_grate",
+//            () -> new TrussBlock(BlockBehaviour
+//                    .Properties.ofFullCopy(Blocks.GLASS)
+//                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
+//                    false
+//            )
+//    );
 
     //RAILINGS
     public static final DeferredBlock<Block> YELLOW_RAILING = registerBlockAndBlockItem("yellow_railing",
@@ -502,6 +502,15 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
+    public static final DeferredBlock<Block> ROUGH_GRAY_ROCKRETE_STAIRS = registerBlockAndBlockItem("rough_gray_rockrete_stairs",
+            () -> new StairBlock(ModBlocks.ROUGH_GRAY_ROCKRETE.get().defaultBlockState(),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.STONE))
+    );
+    public static final DeferredBlock<Block> ROUGH_GRAY_ROCKRETE_SLAB = registerBlockAndBlockItem("rough_gray_rockrete_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE)
+            )
+    );
     //GREEN ROCKRETE
     public static final DeferredBlock<Block> GREEN_ROCKRETE = registerBlockAndBlockItem("green_rockrete",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
@@ -518,6 +527,15 @@ public class ModBlocks {
                     BlockBehaviour.Properties.ofFullCopy(Blocks.STONE))
     );
     public static final DeferredBlock<Block> GREEN_ROCKRETE_SLAB = registerBlockAndBlockItem("green_rockrete_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE)
+            )
+    );
+    public static final DeferredBlock<Block> ROUGH_GREEN_ROCKRETE_STAIRS = registerBlockAndBlockItem("rough_green_rockrete_stairs",
+            () -> new StairBlock(ModBlocks.ROUGH_GREEN_ROCKRETE.get().defaultBlockState(),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.STONE))
+    );
+    public static final DeferredBlock<Block> ROUGH_GREEN_ROCKRETE_SLAB = registerBlockAndBlockItem("rough_green_rockrete_slab",
             () -> new SlabBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
             )
@@ -547,6 +565,15 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
+    public static final DeferredBlock<Block> ROUGH_YELLOW_ROCKRETE_STAIRS = registerBlockAndBlockItem("rough_yellow_rockrete_stairs",
+            () -> new StairBlock(ModBlocks.ROUGH_GRAY_ROCKRETE.get().defaultBlockState(),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.STONE))
+    );
+    public static final DeferredBlock<Block> ROUGH_YELLOW_ROCKRETE_SLAB = registerBlockAndBlockItem("rough_yellow_rockrete_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE)
+            )
+    );
     public static final DeferredBlock<Block> YELLOW_ROCKRETE_PILLAR = registerBlockAndBlockItem("yellow_rockrete_pillar",
             () -> new AxialPillarBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
@@ -572,6 +599,15 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
+    public static final DeferredBlock<Block> ROUGH_BLUE_ROCKRETE_STAIRS = registerBlockAndBlockItem("rough_blue_rockrete_stairs",
+            () -> new StairBlock(ModBlocks.ROUGH_GRAY_ROCKRETE.get().defaultBlockState(),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.STONE))
+    );
+    public static final DeferredBlock<Block> ROUGH_BLUE_ROCKRETE_SLAB = registerBlockAndBlockItem("rough_blue_rockrete_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE)
+            )
+    );
     public static final DeferredBlock<Block> BLUE_ROCKRETE_PILLAR = registerBlockAndBlockItem("blue_rockrete_pillar",
             () -> new AxialPillarBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
@@ -593,6 +629,15 @@ public class ModBlocks {
                     BlockBehaviour.Properties.ofFullCopy(Blocks.STONE))
     );
     public static final DeferredBlock<Block> RED_ROCKRETE_SLAB = registerBlockAndBlockItem("red_rockrete_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE)
+            )
+    );
+    public static final DeferredBlock<Block> ROUGH_RED_ROCKRETE_STAIRS = registerBlockAndBlockItem("rough_red_rockrete_stairs",
+            () -> new StairBlock(ModBlocks.ROUGH_GRAY_ROCKRETE.get().defaultBlockState(),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.STONE))
+    );
+    public static final DeferredBlock<Block> ROUGH_RED_ROCKRETE_SLAB = registerBlockAndBlockItem("rough_red_rockrete_slab",
             () -> new SlabBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
             )
@@ -733,13 +778,15 @@ public class ModBlocks {
     );
 
     //DOORS, TRAPDOORS, ETC:
-    public static final DeferredBlock<Block> VESSELPLATE_DOOR = registerBlockAndBlockItem("vesselplate_door",
+    public static final DeferredBlock<Block> ARMORED_DOOR = registerBlockAndBlockItem("armored_door",
             () -> new DoorBlock(BlockSetType.STONE, BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.METAL).noOcclusion()));
-    public static final DeferredBlock<Block> VESSELPLATE_TRAPDOOR = registerBlockAndBlockItem("vesselplate_trapdoor",
-            () -> new TrapDoorBlock(BlockSetType.STONE, BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.METAL).noOcclusion()));
-    public static final DeferredBlock<Block> GRAY_VESSELPLATE_DOOR = registerBlockAndBlockItem("gray_vesselplate_door",
+//    public static final DeferredBlock<Block> VESSELPLATE_TRAPDOOR = registerBlockAndBlockItem("vesselplate_trapdoor",
+//            () -> new TrapDoorBlock(BlockSetType.STONE, BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.METAL).noOcclusion()));
+    public static final DeferredBlock<Block> STAMPED_METAL_DOOR = registerBlockAndBlockItem("stamped_metal_door",
             () -> new DoorBlock(BlockSetType.STONE, BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.METAL).noOcclusion()));
-    public static final DeferredBlock<Block> GRAY_VESSELPLATE_TRAPDOOR = registerBlockAndBlockItem("gray_vesselplate_trapdoor",
+    public static final DeferredBlock<Block> BULKHEAD_DOOR = registerBlockAndBlockItem("bulkhead_door",
+            () -> new DoorBlock(BlockSetType.STONE, BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.METAL).noOcclusion()));
+    public static final DeferredBlock<Block> VENT_TRAPDOOR = registerBlockAndBlockItem("vent_trapdoor",
             () -> new TrapDoorBlock(BlockSetType.STONE, BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.METAL).noOcclusion()));
     
 //    //FURNITURE

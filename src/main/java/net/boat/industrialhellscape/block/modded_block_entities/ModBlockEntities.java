@@ -16,15 +16,19 @@ public class ModBlockEntities {
             DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, IndustrialHellscape.MOD_ID);
 
     public static final Supplier<BlockEntityType<DebugBE>> DEBUG_BE = BLOCK_ENTITIES.register("debug_be", () -> BlockEntityType.Builder.of(
-            DebugBE::new
+            DebugBE::new,
 
-            //ModBlocks.PROTOTYPE_MACHINE.get()
+            ModBlocks.PROTOTYPE_MACHINE.get()
 
     ).build(null));
 
     public static final Supplier<BlockEntityType<StorageBE>> STORAGE_BE = BLOCK_ENTITIES.register("storage_be", () -> BlockEntityType.Builder.of(
             StorageBE::new,
 
+            ModBlocks.PROTOTYPE_MACHINE.get(),
+
+            ModBlocks.RED_WALL_MEDKIT.get(),
+            ModBlocks.WHITE_WALL_MEDKIT.get(),
             ModBlocks.OFFICE_DESK_DRAWER.get(),
             ModBlocks.DESK_DRAWER.get(),
             ModBlocks.METAL_DESK_DRAWER.get(),

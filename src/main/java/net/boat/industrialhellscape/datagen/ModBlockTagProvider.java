@@ -30,12 +30,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.HORIZONTAL_GRATE.get(),
                         ModBlocks.VERTICAL_GRATE.get(),
                         ModBlocks.HORIZONTAL_CUTOUT_GRATE.get(),
-                        ModBlocks.VERTICAL_CUTOUT_GRATE.get(),
+                        ModBlocks.VERTICAL_CUTOUT_GRATE.get()
 
-                        ModBlocks.GRAY_HORIZONTAL_GRATE.get(),
-                        ModBlocks.GRAY_VERTICAL_GRATE.get(),
-                        ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get(),
-                        ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get()
+//                        ModBlocks.GRAY_HORIZONTAL_GRATE.get(),
+//                        ModBlocks.GRAY_VERTICAL_GRATE.get(),
+//                        ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get(),
+//                        ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get()
                 );
         this.tag(ModTags.Blocks.METALWORKS_BLOCKS)
                 .add(
@@ -112,41 +112,56 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.ROUGH_GRAY_ROCKRETE.get(),
                         ModBlocks.GRAY_ROCKRETE_PILLAR.get(),
                         ModBlocks.GRAY_ROCKRETE_SLAB.get(),
+                        ModBlocks.GRAY_ROCKRETE_PILLAR.get(),
+                        ModBlocks.GRAY_ROCKRETE_SLAB.get(),
                         ModBlocks.GRAY_ROCKRETE_STAIRS.get(),
+                        ModBlocks.ROUGH_GRAY_ROCKRETE_SLAB.get(),
+                        ModBlocks.ROUGH_GRAY_ROCKRETE_STAIRS.get(),
 
                         ModBlocks.RED_ROCKRETE.get(),
                         ModBlocks.ROUGH_RED_ROCKRETE.get(),
                         ModBlocks.RED_ROCKRETE_PILLAR.get(),
                         ModBlocks.RED_ROCKRETE_SLAB.get(),
                         ModBlocks.RED_ROCKRETE_STAIRS.get(),
+                        ModBlocks.ROUGH_RED_ROCKRETE_SLAB.get(),
+                        ModBlocks.ROUGH_RED_ROCKRETE_STAIRS.get(),
 
                         ModBlocks.BLUE_ROCKRETE.get(),
                         ModBlocks.ROUGH_BLUE_ROCKRETE.get(),
                         ModBlocks.BLUE_ROCKRETE_PILLAR.get(),
                         ModBlocks.BLUE_ROCKRETE_SLAB.get(),
                         ModBlocks.BLUE_ROCKRETE_STAIRS.get(),
+                        ModBlocks.ROUGH_BLUE_ROCKRETE_SLAB.get(),
+                        ModBlocks.ROUGH_BLUE_ROCKRETE_STAIRS.get(),
 
                         ModBlocks.GREEN_ROCKRETE.get(),
                         ModBlocks.ROUGH_GREEN_ROCKRETE.get(),
                         ModBlocks.GREEN_ROCKRETE_PILLAR.get(),
                         ModBlocks.GREEN_ROCKRETE_SLAB.get(),
                         ModBlocks.GREEN_ROCKRETE_STAIRS.get(),
+                        ModBlocks.ROUGH_GREEN_ROCKRETE_SLAB.get(),
+                        ModBlocks.ROUGH_GREEN_ROCKRETE_STAIRS.get(),
 
                         ModBlocks.YELLOW_ROCKRETE.get(),
                         ModBlocks.ROUGH_YELLOW_ROCKRETE.get(),
                         ModBlocks.YELLOW_ROCKRETE_PILLAR.get(),
                         ModBlocks.YELLOW_ROCKRETE_SLAB.get(),
-                        ModBlocks.YELLOW_ROCKRETE_STAIRS.get()
+                        ModBlocks.YELLOW_ROCKRETE_STAIRS.get(),
+                        ModBlocks.ROUGH_YELLOW_ROCKRETE_SLAB.get(),
+                        ModBlocks.ROUGH_YELLOW_ROCKRETE_STAIRS.get(),
+
+                        ModBlocks.GRIMY_RESTROOM_TILE.get()
                 );
         this.tag(ModTags.Blocks.DOOR_BLOCKS) //FOR CORRECT MINING TOOLS AND TOOL TIER
                 .add(
-                        ModBlocks.VESSELPLATE_DOOR.get(),
-                        ModBlocks.GRAY_VESSELPLATE_DOOR.get()
+                        ModBlocks.ARMORED_DOOR.get(),
+                        ModBlocks.STAMPED_METAL_DOOR.get(),
+                        ModBlocks.BULKHEAD_DOOR.get()
                 );
         this.tag(ModTags.Blocks.TRAPDOOR_BLOCKS) //FOR CORRECT MINING TOOLS AND TOOL TIER
                 .add(
-                        ModBlocks.VESSELPLATE_TRAPDOOR.get(),
-                        ModBlocks.GRAY_VESSELPLATE_TRAPDOOR.get()
+                        //ModBlocks.VESSELPLATE_TRAPDOOR.get(),
+                        ModBlocks.VENT_TRAPDOOR.get()
                 );
         this.tag(ModTags.Blocks.ALL_FURNITURE_BLOCKS)
                 .addTags(

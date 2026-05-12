@@ -24,9 +24,9 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public interface ConnectedModelInterface {
 
-    //--------- NECESSARY FIELDS FOR BLOCK ENTITY ----------
-    //Blocks that have a Storage Block Entity MUST possess these methods and supply a value.
-    //The block entity assumes blocks passed to it possess this interface, and will use these methods to read off values.
+    //--------- NECESSARY FIELDS ----------
+    //Blocks that have connected model functionality MUST possess these three methods and supply their block state properties.
+    //The other methods below will read these properties and return an appropriate value for use in the block class.
     EnumProperty<DynamicConnectionState> getTypeProperty();
     DirectionProperty getFacingProperty();
     BooleanProperty getWaterloggedProperty();
@@ -142,11 +142,6 @@ public interface ConnectedModelInterface {
 
         return level.getBlockState(rightNeighborsPos);
     }
-
-    //----------
-
-    //The following methods check the neighbors of the block placed and figures out how the placed block should connect to neighboring blocks, and returns the appropriate block state property.
-    //They are very similar. This is why I put them in one place. I may figure out a way to make them all use one method in the future.
 
     default DynamicConnectionState getTypeAndFamily(BlockState state, BlockState leftState, BlockState rightState, TagKey<Block> ofBlockSetFamilyTag) {
         // Requires an additional tag parameter to connect with other similar blocks

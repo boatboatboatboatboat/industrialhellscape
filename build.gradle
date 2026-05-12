@@ -123,6 +123,8 @@ dependencies {
     implementation("curse.maven:jei-238222:5623550")
     implementation("curse.maven:jade-324717:7545219")
     implementation("curse.maven:worldedit-225608:5830452")
+    implementation("curse.maven:abyssal-decor-964853:7859163")
+    implementation("curse.maven:etched-491890:7088631")
 
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
@@ -182,7 +184,7 @@ publishing {
     }
     repositories {
         maven {
-            url "file://${project.projectDir}/repo"
+            url = "file://${project.projectDir}/repo"
         }
     }
 }

@@ -45,8 +45,8 @@ public class ModCreativeModeTabs {
                         //GRATE BLOCKS
                         output.accept(ModBlocks.HORIZONTAL_GRATE.get());
                         output.accept(ModBlocks.HORIZONTAL_CUTOUT_GRATE.get());
-                        output.accept(ModBlocks.GRAY_HORIZONTAL_GRATE.get());
-                        output.accept(ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get());
+//                        output.accept(ModBlocks.GRAY_HORIZONTAL_GRATE.get());
+//                        output.accept(ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get());
 
                         //RAILING BLOCKS
                         output.accept(ModBlocks.YELLOW_RAILING.get());
@@ -104,30 +104,40 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.ROUGH_GRAY_ROCKRETE.get());
                         output.accept(ModBlocks.GRAY_ROCKRETE_STAIRS.get());
                         output.accept(ModBlocks.GRAY_ROCKRETE_SLAB.get());
+                        output.accept(ModBlocks.ROUGH_GRAY_ROCKRETE_STAIRS.get());
+                        output.accept(ModBlocks.ROUGH_GRAY_ROCKRETE_SLAB.get());
                         output.accept(ModBlocks.GRAY_ROCKRETE_PILLAR.get());
 
                         output.accept(ModBlocks.GREEN_ROCKRETE.get());
                         output.accept(ModBlocks.ROUGH_GREEN_ROCKRETE.get());
                         output.accept(ModBlocks.GREEN_ROCKRETE_STAIRS.get());
                         output.accept(ModBlocks.GREEN_ROCKRETE_SLAB.get());
+                        output.accept(ModBlocks.ROUGH_GREEN_ROCKRETE_STAIRS.get());
+                        output.accept(ModBlocks.ROUGH_GREEN_ROCKRETE_SLAB.get());
                         output.accept(ModBlocks.GREEN_ROCKRETE_PILLAR.get());
 
                         output.accept(ModBlocks.YELLOW_ROCKRETE.get());
                         output.accept(ModBlocks.ROUGH_YELLOW_ROCKRETE.get());
                         output.accept(ModBlocks.YELLOW_ROCKRETE_STAIRS.get());
                         output.accept(ModBlocks.YELLOW_ROCKRETE_SLAB.get());
+                        output.accept(ModBlocks.ROUGH_YELLOW_ROCKRETE_STAIRS.get());
+                        output.accept(ModBlocks.ROUGH_YELLOW_ROCKRETE_SLAB.get());
                         output.accept(ModBlocks.YELLOW_ROCKRETE_PILLAR.get());
 
                         output.accept(ModBlocks.BLUE_ROCKRETE.get());
                         output.accept(ModBlocks.ROUGH_BLUE_ROCKRETE.get());
                         output.accept(ModBlocks.BLUE_ROCKRETE_STAIRS.get());
                         output.accept(ModBlocks.BLUE_ROCKRETE_SLAB.get());
+                        output.accept(ModBlocks.ROUGH_BLUE_ROCKRETE_STAIRS.get());
+                        output.accept(ModBlocks.ROUGH_BLUE_ROCKRETE_SLAB.get());
                         output.accept(ModBlocks.BLUE_ROCKRETE_PILLAR.get());
 
                         output.accept(ModBlocks.RED_ROCKRETE.get());
                         output.accept(ModBlocks.ROUGH_RED_ROCKRETE.get());
                         output.accept(ModBlocks.RED_ROCKRETE_STAIRS.get());
                         output.accept(ModBlocks.RED_ROCKRETE_SLAB.get());
+                        output.accept(ModBlocks.ROUGH_RED_ROCKRETE_STAIRS.get());
+                        output.accept(ModBlocks.ROUGH_RED_ROCKRETE_SLAB.get());
                         output.accept(ModBlocks.RED_ROCKRETE_PILLAR.get());
 
                         output.accept(ModBlocks.GRIMY_RESTROOM_TILE.get());
@@ -141,10 +151,11 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.SMALL_RUSTY_BOLTED_BRACKET.get());
 
                         //DOOR, TRAPDOORS
-                        output.accept(ModBlocks.VESSELPLATE_TRAPDOOR.get());
-                        output.accept(ModBlocks.GRAY_VESSELPLATE_TRAPDOOR.get());
-                        output.accept(ModBlocks.VESSELPLATE_DOOR.get());
-                        output.accept(ModBlocks.GRAY_VESSELPLATE_DOOR.get());
+                        //output.accept(ModBlocks.VESSELPLATE_TRAPDOOR.get());
+                        output.accept(ModBlocks.VENT_TRAPDOOR.get());
+                        output.accept(ModBlocks.ARMORED_DOOR.get());
+                        output.accept(ModBlocks.STAMPED_METAL_DOOR.get());
+                        output.accept(ModBlocks.BULKHEAD_DOOR.get());
 
                         //PIPEWORKS BLOCKS
                         output.accept(ModBlocks.PIPEWORKS.get());
@@ -173,24 +184,24 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.IV_DRIPSTAND.get());
                         output.accept(ModBlocks.VITALS_MONITOR.get());
                         output.accept(ModBlocks.MEDICAL_BED.get());
-//
+
                         output.accept(ModBlocks.TOILET.get());
                         output.accept(ModBlocks.SINK.get());
                         output.accept(ModBlocks.URINAL.get());
-//
+
                         output.accept(ModBlocks.RETRO_COMPUTER.get());
                         output.accept(ModBlocks.RETRO_COMPUTER_2.get());
                         output.accept(ModBlocks.MONITOR_AND_KEYBOARD.get());
                         output.accept(ModBlocks.DESKTOP_TOWER.get());
                         output.accept(ModBlocks.CASSETTE_PLAYER.get());
-//
+
                         output.accept(ModBlocks.WORK_LIGHT_STAND.get());
                         output.accept(ModBlocks.FLOOR_WORK_LIGHT.get());
                         output.accept(ModBlocks.LOCKER_BOX.get());
                         output.accept(ModBlocks.LARGE_LOCKER.get());
                         output.accept(ModBlocks.FUEL_DRUM.get());
                         output.accept(ModBlocks.CCTV_CAMERA.get());
-//
+
                         output.accept(ModBlocks.DESK.get());
                         output.accept(ModBlocks.DESK_DRAWER.get());
                         output.accept(ModBlocks.METAL_DESK.get());

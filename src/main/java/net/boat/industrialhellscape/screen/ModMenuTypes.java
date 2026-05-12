@@ -16,8 +16,6 @@ public class ModMenuTypes {
 
     public static final DeferredHolder<MenuType<?>, MenuType<DebugBEMenu>> DEBUG_BE_MENU =
             registerMenuType("debug_be_menu", DebugBEMenu::new);
-//    public static final DeferredHolder<MenuType<?>, MenuType<StorageBEMenu>> STORAGE_BE_MENU =
-//            registerMenuType("storage_be_menu", StorageBEMenu::new);
 
     private static <T extends AbstractContainerMenu>DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(String name,
                                                                                                               IContainerFactory<T> factory) {

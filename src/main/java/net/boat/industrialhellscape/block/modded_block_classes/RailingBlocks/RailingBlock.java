@@ -4,9 +4,12 @@ import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterf
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -76,28 +79,29 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock{
         );
     }
 
-    public @NotNull InteractionResult use(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
-
-        boolean playerHasTool = pPlayer.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || pPlayer.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
+    @Override
+    protected @NotNull ItemInteractionResult useItemOn(ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
+        boolean playerHasTool = stack.is(ModTags.Items.IH_COMPATIBLE_TOOLS);
 
         //Rotates the current railings counterclockwise.
         if(playerHasTool) {
-            boolean north = pState.getValue(NORTH_FENCE);
-            boolean south = pState.getValue(SOUTH_FENCE);
-            boolean east = pState.getValue(EAST_FENCE);
-            boolean west = pState.getValue(WEST_FENCE);
+            boolean north = state.getValue(NORTH_FENCE);
+            boolean south = state.getValue(SOUTH_FENCE);
+            boolean east = state.getValue(EAST_FENCE);
+            boolean west = state.getValue(WEST_FENCE);
 
-            pState = pState.setValue(NORTH_FENCE, east);
-            pState = pState.setValue(EAST_FENCE, south);
-            pState = pState.setValue(SOUTH_FENCE, west);
-            pState = pState.setValue(WEST_FENCE, north);
+            state = state.setValue(NORTH_FENCE, east);
+            state = state.setValue(EAST_FENCE, south);
+            state = state.setValue(SOUTH_FENCE, west);
+            state = state.setValue(WEST_FENCE, north);
 
-            pLevel.setBlock(pPos, pState, 3);
+            level.setBlock(pos, state, 3);
 
-            return InteractionResult.SUCCESS;
+            level.playSound(player, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 0.25f, 1f);
+            return ItemInteractionResult.SUCCESS;
         } else {
             //No interaction if no eligible tool is equipped.
-            return InteractionResult.PASS;
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
     }
 
