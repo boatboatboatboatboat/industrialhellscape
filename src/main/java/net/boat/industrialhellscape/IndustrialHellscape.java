@@ -3,8 +3,8 @@ package net.boat.industrialhellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
 import net.boat.industrialhellscape.block.modded_block_entities.DebugBE.DebugBERenderer;
 import net.boat.industrialhellscape.block.modded_block_entities.ModBlockEntities;
-import net.boat.industrialhellscape.block.modded_block_entities.ModEntities;
-import net.boat.industrialhellscape.block.modded_block_entities.SittableEntity.SittableEntityRenderer;
+import net.boat.industrialhellscape.entity.ModEntities;
+import net.boat.industrialhellscape.entity.SittableEntity.SittableEntityRenderer;
 import net.boat.industrialhellscape.item.ModCreativeModeTabs;
 import net.boat.industrialhellscape.item.ModItems;
 import net.boat.industrialhellscape.screen.ModMenuTypes;
@@ -108,7 +108,7 @@ public class IndustrialHellscape {
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-    @EventBusSubscriber(modid = IndustrialHellscape.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    @EventBusSubscriber(modid = IndustrialHellscape.MOD_ID, value = Dist.CLIENT)
     static class ClientModEvents {
         @SubscribeEvent
         static void onClientSetup(FMLClientSetupEvent event) {

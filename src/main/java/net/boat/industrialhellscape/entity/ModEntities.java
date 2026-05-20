@@ -1,7 +1,7 @@
-package net.boat.industrialhellscape.block.modded_block_entities;
+package net.boat.industrialhellscape.entity;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
-import net.boat.industrialhellscape.block.modded_block_entities.SittableEntity.SittableEntity;
+import net.boat.industrialhellscape.entity.SittableEntity.SittableEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;

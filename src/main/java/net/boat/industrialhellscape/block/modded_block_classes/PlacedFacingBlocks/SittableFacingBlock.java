@@ -1,7 +1,7 @@
 package net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBlocks;
 
-import net.boat.industrialhellscape.block.modded_block_entities.ModEntities;
-import net.boat.industrialhellscape.block.modded_block_entities.SittableEntity.SittableEntity;
+import net.boat.industrialhellscape.entity.ModEntities;
+import net.boat.industrialhellscape.entity.SittableEntity.SittableEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;

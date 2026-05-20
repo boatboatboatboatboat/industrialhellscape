@@ -42,7 +42,6 @@ public class FacingStorageBlock extends BaseStorageBlock implements EntityBlock 
         this.SLOTS = slotsAmount;
         this.OPEN_SOUND = openSound;
         this.CLOSE_SOUND = closeSound;
-        this.registerDefaultState(this.stateDefinition.any().setValue(OPEN, false));
 
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)

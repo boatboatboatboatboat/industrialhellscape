@@ -4,6 +4,7 @@ import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
@@ -201,6 +202,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.LARGE_LOCKER.get());
                         output.accept(ModBlocks.FUEL_DRUM.get());
                         output.accept(ModBlocks.CCTV_CAMERA.get());
+                        output.accept(ModBlocks.CAGE_LAMP.get());
 
                         output.accept(ModBlocks.DESK.get());
                         output.accept(ModBlocks.DESK_DRAWER.get());
@@ -214,6 +216,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.FOLDING_CHAIR.get());
                     }))
 
+                    //.withSearchBar()
                     .build());
 
     public static void register(IEventBus eventBus) {

@@ -221,7 +221,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.LARGE_LOCKER.get().asItem(),
             ModBlocks.WORK_LIGHT_STAND.get().asItem(),
             ModBlocks.FLOOR_WORK_LIGHT.get().asItem(),
-            ModBlocks.FUEL_DRUM.get().asItem()
+            ModBlocks.FUEL_DRUM.get().asItem(),
+            ModBlocks.CAGE_LAMP.get()
     );
     private static final List<ItemLike> TECHNOLOGY_FURNITURE = List.of(
             ModBlocks.RETRO_COMPUTER.get().asItem(),
@@ -265,9 +266,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(recipeOutput);
 
         //Create 1x Vesselplate from 1x iron ingots
-        HavenSingleIngredientRecipe(ModBlocks.RIVETED_VESSELPLATE.get(), vesselplatePerIronIngot, Ingredient.of(Items.IRON_INGOT), "vesselplate_from_iron_ingot", recipeOutput);
+        HavenSingleIngredientRecipe(ModBlocks.HORIZONTAL_VESSELPLATE.get(), vesselplatePerIronIngot, Ingredient.of(Items.IRON_INGOT), "vesselplate_from_iron_ingot", recipeOutput);
         //Create 9x Vesselplate from 1x iron block
-        HavenSingleIngredientRecipe(ModBlocks.RIVETED_VESSELPLATE.get(), vesselplatePerIronIngot*9, Ingredient.of(Items.IRON_BLOCK), "vesselplate_from_iron_block", recipeOutput);
+        HavenSingleIngredientRecipe(ModBlocks.HORIZONTAL_VESSELPLATE.get(), vesselplatePerIronIngot*9, Ingredient.of(Items.IRON_BLOCK), "vesselplate_from_iron_block", recipeOutput);
         //Create Rockrete Base Block from 1 stone
         HavenSingleIngredientRecipe(ModBlocks.GRAY_ROCKRETE.get(), rockretePerStone, Ingredient.of(ModTags.Items.IH_RECIPE_STONELIKES), "rockrete_from_stone", recipeOutput);
 
@@ -459,15 +460,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         //---------- BULK RECIPE GENERATION ----------
         //Building Blocks - Parameters: (List of possible output items, String for generated recipe name, Tag of possible input items, recipeOutput)
-        stonecutManyOutputsPlusSlabs(HVAC_STONECUT_OUTPUT, "hvac", ModTags.Items.HVAC_SMELTABLE_ITEM, recipeOutput);
-        stonecutManyOutputsPlusSlabs(TRUSS_STONECUT_OUTPUT, "strut", ModTags.Items.TRUSS_SMELTABLE_ITEM, recipeOutput);
-        stonecutManyOutputsPlusSlabs(VESSELPLATE_STONECUT_OUTPUT, "vesselplate", ModTags.Items.VESSELPLATE_SMELTABLE_ITEM, recipeOutput);
-        stonecutManyOutputsPlusSlabs(VESSELGLASS_STONECUT_OUTPUT, "vesselglass", ModTags.Items.VESSELGLASS_SMELTABLE_ITEM, recipeOutput);
-        stonecutManyOutputsPlusSlabs(ROCKRETE_STONECUT_OUTPUT, "rockrete", ModTags.Items.ROCKRETE_SMELTABLE_ITEM, recipeOutput);
-        stonecutManyOutputsPlusSlabs(PIPEWORKS_STONECUT_OUTPUT, "pipeworks", ModTags.Items.PIPEWORKS_ITEMS, recipeOutput);
-        stonecutManyOutputsPlusSlabs(METALWORKS_STONECUT_OUTPUT, "metalworks", ModTags.Items.METALWORKS_ITEMS, recipeOutput);
-        stonecutManyOutputs(DOORS_STONECUT_OUTPUT, "doors", ModTags.Items.DOOR_ITEMS, recipeOutput);
-        stonecutManyOutputs(TRAPDOORS_STONECUT_OUTPUT, "trapdoors", ModTags.Items.TRAPDOOR_ITEMS, recipeOutput);
+        stonecutTagToOutputListPlusSlabs(HVAC_STONECUT_OUTPUT, "hvac", ModTags.Items.HVAC_SMELTABLE_ITEM, recipeOutput);
+        stonecutTagToOutputListPlusSlabs(TRUSS_STONECUT_OUTPUT, "strut", ModTags.Items.TRUSS_SMELTABLE_ITEM, recipeOutput);
+        stonecutTagToOutputListPlusSlabs(VESSELPLATE_STONECUT_OUTPUT, "vesselplate", ModTags.Items.VESSELPLATE_SMELTABLE_ITEM, recipeOutput);
+        stonecutTagToOutputListPlusSlabs(VESSELGLASS_STONECUT_OUTPUT, "vesselglass", ModTags.Items.VESSELGLASS_SMELTABLE_ITEM, recipeOutput);
+        stonecutTagToOutputListPlusSlabs(ROCKRETE_STONECUT_OUTPUT, "rockrete", ModTags.Items.ROCKRETE_SMELTABLE_ITEM, recipeOutput);
+        stonecutTagToOutputListPlusSlabs(PIPEWORKS_STONECUT_OUTPUT, "pipeworks", ModTags.Items.PIPEWORKS_ITEMS, recipeOutput);
+        stonecutTagToOutputListPlusSlabs(METALWORKS_STONECUT_OUTPUT, "metalworks", ModTags.Items.METALWORKS_ITEMS, recipeOutput);
+        stonecutInputTagToOutputList(DOORS_STONECUT_OUTPUT, "doors", ModTags.Items.DOOR_ITEMS, recipeOutput);
+        stonecutInputTagToOutputList(TRAPDOORS_STONECUT_OUTPUT, "trapdoors", ModTags.Items.TRAPDOOR_ITEMS, recipeOutput);
 
         //Furniture - Parameters: (Tag of stonecut outputs, String for generated recipe name, Block as the single ingredient, pWriter)
         stonecutInputItemOutputList(FURNITURE_CATEGORIES, "furniture_categories", ModBlocks.IHEA_FURNITURE_KIT.get(), recipeOutput);
@@ -476,13 +477,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         stonecutInputItemOutputList(INDUSTRIAL_FURNITURE, "industrial_furniture", ModBlocks.INDUSTRIAL_FURNISHINGS.get(), recipeOutput);
         stonecutInputItemOutputList(TECHNOLOGY_FURNITURE, "technology_furniture", ModBlocks.TECHNOLOGY_FURNISHINGS.get(), recipeOutput);
         stonecutInputItemOutputList(AMENITY_FURNITURE, "amenity_furniture", ModBlocks.AMENITY_FURNISHINGS.get(), recipeOutput);
+        //---------- END OF BULK RECIPE GENERATION ----------
     }
 
     //---------- RECIPE GENERATION METHODS ----------
-    public static SingleItemRecipeBuilder stonecutToAmount(Ingredient ingredient, RecipeCategory category, ItemLike result, int amount) {
-        return new SingleItemRecipeBuilder(category, StonecutterRecipe::new, ingredient, result, amount);
-    }
-
     protected static void stonecutInputItemOutputList(List<ItemLike> stonecutOutputList, String inputTagName, Block inputItem, RecipeOutput recipeOutput) {
         Ingredient ingredient = Ingredient.of(inputItem);
 
@@ -496,7 +494,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         }
     }
 
-    protected static void stonecutManyOutputsPlusSlabs(List<ItemLike> stonecutOutputList, String inputTagName, TagKey<Item> inputTag, RecipeOutput recipeOutput) {
+    protected static void stonecutTagToOutputListPlusSlabs(List<ItemLike> stonecutOutputList, String inputTagName, TagKey<Item> inputTag, RecipeOutput recipeOutput) {
         Ingredient ingredient = Ingredient.of(inputTag);
 
         for (ItemLike itemInIndice : stonecutOutputList) {
@@ -519,7 +517,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             }
         }
     }
-    protected static void stonecutManyOutputs(List<ItemLike> stonecutOutputList, String inputTagName, TagKey<Item> inputTag, RecipeOutput recipeOutput) {
+    protected static void stonecutInputTagToOutputList(List<ItemLike> stonecutOutputList, String inputTagName, TagKey<Item> inputTag, RecipeOutput recipeOutput) {
         Ingredient ingredient = Ingredient.of(inputTag);
 
         for (ItemLike itemLike : stonecutOutputList) {
@@ -553,16 +551,20 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, outputBlock, 1)
                 .requires(inputBlock)
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("industrialhellscape", "reversible_" + outputBlockName));
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("industrialhellscape", inputBlockName + "_to_" + outputBlockName));
         //Output to Input
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, inputBlock, 1)
                 .requires(outputBlock)
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("industrialhellscape", "reversible_" + inputBlockName));
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("industrialhellscape", outputBlockName + "_to_" + inputBlockName));
     }
 
-    protected static void smeltAndBlast(RecipeOutput recipeOutput, TagKey<Item> pIngredients, RecipeCategory pCategory, ItemLike pResult, int pCookingTIme, int pBlastingTime, String pGroup) {
-        oreSmelting(recipeOutput, pIngredients, pCategory, pResult, 0, pCookingTIme, pGroup);
+    public static SingleItemRecipeBuilder stonecutToAmount(Ingredient ingredient, RecipeCategory category, ItemLike result, int amount) {
+        return new SingleItemRecipeBuilder(category, StonecutterRecipe::new, ingredient, result, amount);
+    }
+
+    protected static void smeltAndBlast(RecipeOutput recipeOutput, TagKey<Item> pIngredients, RecipeCategory pCategory, ItemLike pResult, int pSmeltingTime, int pBlastingTime, String pGroup) {
+        oreSmelting(recipeOutput, pIngredients, pCategory, pResult, 0, pSmeltingTime, pGroup);
         oreBlasting(recipeOutput, pIngredients, pCategory, pResult, 0, pBlastingTime, pGroup);
     }
 

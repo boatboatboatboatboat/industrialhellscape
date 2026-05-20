@@ -28,13 +28,13 @@ public class RandomTickSoundBlock extends ModelledSurfaceMountBlock{
 
     public final Supplier<SoundEvent> OUTPUT_SOUND;
 
-    public RandomTickSoundBlock(Properties pProperties, VoxelShape floorHitBox, boolean ceilingSurfaceMountOnly, Supplier<SoundEvent> outputSound) {
-        super(pProperties, floorHitBox, ceilingSurfaceMountOnly);
+    public RandomTickSoundBlock(Properties pProperties, VoxelShape floorHitBox, Supplier<SoundEvent> outputSound) {
+        super(pProperties, floorHitBox);
 
         this.OUTPUT_SOUND = outputSound;
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
-                .setValue(SURFACE_MOUNT, AttachFace.WALL)
+                .setValue(ATTACH_FACE, AttachFace.WALL)
                 .setValue(POWERED, false) //Does not beep by default
                 .setValue(WATERLOGGED, false));
     }
@@ -71,6 +71,6 @@ public class RandomTickSoundBlock extends ModelledSurfaceMountBlock{
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(FACING, WATERLOGGED, POWERED, SURFACE_MOUNT);
+        pBuilder.add(FACING, WATERLOGGED, POWERED, ATTACH_FACE);
     }
 }

@@ -1,4 +1,4 @@
-package net.boat.industrialhellscape.block.modded_block_entities.SittableEntity;
+package net.boat.industrialhellscape.entity.SittableEntity;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.SynchedEntityData;

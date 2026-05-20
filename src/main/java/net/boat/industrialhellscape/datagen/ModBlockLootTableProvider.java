@@ -28,14 +28,18 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
+
+        //DEBUG BLOCK
+        this.dropSelf(ModBlocks.PROTOTYPE_MACHINE.get());
+
         //JOKE BLOCK
         this.add(ModBlocks.BODY_PILLOW.get(),
                 block -> createMultiBlockDrops(ModBlocks.BODY_PILLOW.get()));
 
         //BASE BUILDING BLOCKS
-        dropSelf(ModBlocks.METALWORKS.get());
-        dropSelf(ModBlocks.PIPEWORKS.get());
-        dropSelf(ModBlocks.IHEA_FURNITURE_KIT.get());
+        this.dropSelf(ModBlocks.METALWORKS.get());
+        this.dropSelf(ModBlocks.PIPEWORKS.get());
+        this.dropSelf(ModBlocks.IHEA_FURNITURE_KIT.get());
         this.dropSelf(ModBlocks.AMENITY_FURNISHINGS.get());
         this.dropSelf(ModBlocks.INDUSTRIAL_FURNISHINGS.get());
         this.dropSelf(ModBlocks.TECHNOLOGY_FURNISHINGS.get());
@@ -230,6 +234,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.FLOOR_WORK_LIGHT.get());
         this.dropSelf(ModBlocks.FUEL_DRUM.get());
         this.dropSelf(ModBlocks.CCTV_CAMERA.get());
+        this.dropSelf(ModBlocks.CAGE_LAMP.get());
 
         this.dropSelf(ModBlocks.CASSETTE_PLAYER.get());
         this.dropSelf(ModBlocks.RETRO_COMPUTER.get());

@@ -1,7 +1,6 @@
 package net.boat.industrialhellscape.block.modded_interfaces;
 
 import net.boat.industrialhellscape.block.modded_block_state_properties.DynamicConnectionState;
-import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 

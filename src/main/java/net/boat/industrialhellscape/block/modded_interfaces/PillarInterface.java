@@ -1,16 +1,9 @@
 package net.boat.industrialhellscape.block.modded_interfaces;
 
 import net.boat.industrialhellscape.block.modded_block_state_properties.DynamicConnectionState;
-import net.boat.industrialhellscape.block.modded_block_state_properties.SurfacePipeMountState;
 import net.minecraft.core.Direction;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-
-import java.util.function.Supplier;
 
 public interface PillarInterface {
 

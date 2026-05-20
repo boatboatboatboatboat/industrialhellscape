@@ -133,6 +133,7 @@
   "block.industrialhellscape.fuel_drum": "Fuel Drum",
   "block.industrialhellscape.cctv_camera": "CCTV Camera",
   "block.industrialhellscape.wall_speaker": "Wall Speaker",
+  "block.industrialhellscape.cage_lamp": "Cage Lamp",
 
 
   "block.industrialhellscape.desk": "Classic Desk",
@@ -197,10 +198,13 @@
   "sounds.industrialhellscape.toilet_flush": "Toilet flushes",
   "sounds.industrialhellscape.metalpipefallingsoundeffect": "Metal pipes falling",
   "sounds.industrialhellscape.snore": "Comical snoring",
+  "sounds.industrialhellscape.computer_on": "Computer boots up",
   "sounds.industrialhellscape.metal_box_opening": "Metal container opens",
   "sounds.industrialhellscape.metal_box_closing": "Metal container closes",
   "sounds.industrialhellscape.metal_clank": "Metal clanks",
   "sounds.industrialhellscape.smoke_alarm":"Smoke Alarm chirps",
+  "sounds.industrialhellscape.switch_on":"Switch On",
+  "sounds.industrialhellscape.switch_off":"Switch Off",
 
   "block.industrialhellscape.armored_door": "Armored Door",
   "block.industrialhellscape.bulkhead_door": "Bulkhead Door",
@@ -216,7 +220,7 @@
   "tooltip.industrialhellscape.disc_1": "14 Minutes Until Launch - Oscar Borisovich Feltsman",
 
   "gui.industrialhellscape.inventory_menu": "Industrial Hellscape Storage",
-  "gui.industrialhellscape.creative_tab": "InHell Facility Solutions",
+  "gui.industrialhellscape.creative_tab": "Industrial Hellscape",
 
   "hud.industrialhellscape.invalid_placement_surface": "Invalid placement surface.",
   "hud.industrialhellscape.block_not_interactable": "Not an interactable block."

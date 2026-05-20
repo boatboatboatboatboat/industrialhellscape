@@ -67,7 +67,7 @@ public class InHellTool extends Item {
 
     //Item has tooltip text capability.
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+    public void appendHoverText(@NotNull ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         if (Screen.hasShiftDown()) {
             //Expand tooltip if shift-key is down while hovering over item in a GUI.
             tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.haventool"));

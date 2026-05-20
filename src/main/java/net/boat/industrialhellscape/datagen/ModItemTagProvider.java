@@ -225,7 +225,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.LARGE_LOCKER.get().asItem(),
                         ModBlocks.WORK_LIGHT_STAND.get().asItem(),
                         ModBlocks.FLOOR_WORK_LIGHT.get().asItem(),
-                        ModBlocks.CCTV_CAMERA.get().asItem()
+                        ModBlocks.CCTV_CAMERA.get().asItem(),
+                        ModBlocks.CAGE_LAMP.get().asItem()
                 );
         this.tag(ModTags.Items.TECHNOLOGY_FURNITURE_CATEGORY)
                 .add(

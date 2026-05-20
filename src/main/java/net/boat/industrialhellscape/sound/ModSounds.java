@@ -23,9 +23,13 @@ public class ModSounds {
     public static final Supplier<SoundEvent> TOILET_FLUSH = registerSoundEvents("toilet_flush");
     public static final Supplier<SoundEvent> METALPIPEFALLINGSOUNDEFFECT = registerSoundEvents("metalpipefallingsoundeffect");
     public static final Supplier<SoundEvent> SNORE = registerSoundEvents("snore");
+    public static final Supplier<SoundEvent> COMPUTER_ON = registerSoundEvents("computer_on");
 
     public static final Supplier<SoundEvent> METAL_BOX_OPEN = registerSoundEvents("metal_box_opening");
     public static final Supplier<SoundEvent> METAL_BOX_CLOSE = registerSoundEvents("metal_box_closing");
+
+    public static final Supplier<SoundEvent> SWITCH_ON = registerSoundEvents("switch_on");
+    public static final Supplier<SoundEvent> SWITCH_OFF = registerSoundEvents("switch_off");
 
     public static final DeferredSoundType HOLLOW_METAL_BLOCK_SOUNDS = new DeferredSoundType(2f,1.5f,
             ModSounds.METAL_CLANK, //Break

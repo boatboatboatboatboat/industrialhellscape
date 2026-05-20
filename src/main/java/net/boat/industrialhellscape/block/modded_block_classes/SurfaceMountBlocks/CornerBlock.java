@@ -1,7 +1,6 @@
 package net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks;
 
 import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
-import net.boat.industrialhellscape.item.ModItems;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -24,9 +23,9 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 //INFO:
 //-----
@@ -34,7 +33,18 @@ import javax.annotation.Nonnull;
 // Using an appropriate tool and interacting with the block, it will rotate, cycling through the cardinal directions it is facing.
 // Using an appropriate tool while crouching, it will cycle through the ATTACH_FACE variants (touching floor, ceiling, or side of a wall)
 
-public class CornerBlock extends Block implements SimpleWaterloggedBlock {
+//Corner blocks have unique geometric issues that make them distinct from other blocks that can be placed on floors, ceilings, or walls.
+
+//Textured (Blockbench) models for normal blocks are saved in the default orientation of "on the floor, facing North"
+//Most block classes accept a Voxelshape hitbox assuming this default orientation too.
+
+//Textured (Blockbench) models for corner blocks are saved in the default orientation of "on the floor, facing West"
+//VoxelShapes for corner blocks therefore default to this too, "INNER_CORNER_DOWN_W = downShape;" see below.
+
+//This is because Minecraft cannot rotate models in the Z axis when generating block states. This makes my life harder.
+//Having the 3D model of the block aligned this way allows combinations of X and Y axis rotations to achieve all possible block states orientations.
+
+public class CornerBlock extends ModelledSurfaceMountBlock implements SimpleWaterloggedBlock {
 
     public static DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING; //"FACING" is used to store DirectionProperty value of "north, south, east, west" //KJ
     public static final EnumProperty<AttachFace> ATTACH_FACE = BlockStateProperties.ATTACH_FACE;
@@ -57,7 +67,7 @@ public class CornerBlock extends Block implements SimpleWaterloggedBlock {
     private final VoxelShape INNER_CORNER_SIDE_S;
 
     public CornerBlock(Properties pProperties, VoxelShape downShape) {
-        super(pProperties);
+        super(pProperties, downShape);
 
         INNER_CORNER_DOWN_W = downShape; //g
         INNER_CORNER_DOWN_S = HitboxRotationInterface.rotateVoxelYAxisIntTimes(1, INNER_CORNER_DOWN_W);
@@ -113,38 +123,29 @@ public class CornerBlock extends Block implements SimpleWaterloggedBlock {
         }
     }
 
-    @Override
-    public @Nonnull RenderShape getRenderShape( @Nonnull BlockState pState) {
-        return RenderShape.MODEL;
-    }
-
-    //Placement Faces the player
-    @Override
-    public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        Direction directionFacing = pContext.getHorizontalDirection().getOpposite(); //Gets the cardinal direction when player places new block
-        Direction directionClicked = pContext.getClickedFace();
+    @Nullable
+    public BlockState getStateForPlacement(BlockPlaceContext pContext) {
+        Player player = pContext.getPlayer();
+        boolean playerExists = player != null;
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
-        Direction playerFacing = pContext.getNearestLookingDirection();
+        Direction facing = pContext.getHorizontalDirection().getOpposite();
+        Direction clickedFaceDirection = pContext.getClickedFace();
 
-        //This section defines the facing direction property of the block
-        BlockState state = this.defaultBlockState().setValue(FACING, directionFacing);
+        BlockState state; //Start with default blockstate
 
-        //This section determines waterlogging
-        state =  state.setValue(WATERLOGGED,fluidstate.getType() == Fluids.WATER);
-
-        //This section defines the orientation "type" of the block (whether the block is on its side, or up or down).
-        switch(directionClicked) { //Which block face in the world is the player clicking on to place this block?
-            case UP: state = state.setValue(ATTACH_FACE, AttachFace.FLOOR); break; //Bracket faces down if player clicks the floor
-            case DOWN: state = state.setValue(ATTACH_FACE, AttachFace.CEILING); break; //Bracket faces up if player clicks the ceiling
-            default:
-                if (playerFacing == Direction.UP) {
-                    state = state.setValue(ATTACH_FACE, AttachFace.CEILING); break;
-                } else {
-                    state = state.setValue(ATTACH_FACE, AttachFace.WALL);
-                }
-
-                break; //Bracket faces walls if player clicks the walls. but if they're looking up, assumes player wants an upright bracket
+        if (clickedFaceDirection.getAxis() == Direction.Axis.Y) { //On Floor or Ceiling
+            state = this.defaultBlockState()
+                    .setValue(ATTACH_FACE, clickedFaceDirection == Direction.UP ? AttachFace.FLOOR : AttachFace.CEILING).setValue(FACING, facing);
+        } else if (playerExists && player.isShiftKeyDown()) { //On wall, but player is crouching.
+            state = this.defaultBlockState()
+                    .setValue(ATTACH_FACE, AttachFace.CEILING).setValue(FACING, facing);
+        } else { //On walls
+            state = this.defaultBlockState()
+                    .setValue(ATTACH_FACE, AttachFace.WALL).setValue(FACING, facing);
         }
+
+        state = state.setValue(WATERLOGGED,fluidstate.getType() == Fluids.WATER);
+
         return state;
     }
 
@@ -170,15 +171,6 @@ public class CornerBlock extends Block implements SimpleWaterloggedBlock {
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-    }
-
-    public @Nonnull FluidState getFluidState(BlockState pState) {
-        return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
-    }
-
-    @Override
-    public @NotNull BlockState rotate(BlockState pState, Rotation pRot) {
-        return pState.setValue(FACING, pRot.rotate(pState.getValue(FACING)));
     }
 
     @Override

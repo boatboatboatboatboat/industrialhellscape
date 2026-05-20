@@ -202,7 +202,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.WORK_LIGHT_STAND.get(),
                         ModBlocks.FLOOR_WORK_LIGHT.get(),
                         ModBlocks.FUEL_DRUM.get(),
-                        ModBlocks.CCTV_CAMERA.get()
+                        ModBlocks.CCTV_CAMERA.get(),
+                        ModBlocks.CAGE_LAMP.get()
                 );
 
         this.tag(ModTags.Blocks.TECHNOLOGY_FURNITURE_CATEGORY)

@@ -1,6 +1,0 @@
-{
-	"parent": "industrialhellscape:block/modern_computer/monitor_and_keyboard",
-	"textures": {
-		"1": "industrialhellscape:block/lit_unlit_textures/monitor_screen_on"
-	}
-}

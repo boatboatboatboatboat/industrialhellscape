@@ -3,6 +3,7 @@ package net.boat.industrialhellscape.block;
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks.AxialPillarBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks.ConnectedFurnitureBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.Experimental.Bomb;
 import net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBlocks.*;
 import net.boat.industrialhellscape.block.modded_block_classes.StorageBlocks.*;
 import net.boat.industrialhellscape.block.modded_block_classes.FallableBlocks.FacingFallableBlock;
@@ -27,6 +28,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -40,13 +42,16 @@ public class ModBlocks {
             DeferredRegister.createBlocks(IndustrialHellscape.MOD_ID);
 
     //DEBUG BLOCKS
+//    public static final DeferredBlock<Block> PROTOTYPE_MACHINE = registerBlockAndBlockItem("prototype_machine",
+//            () -> new BaseStorageBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).noLootTable().noOcclusion(),
+//                    54,
+//                    () -> ModSounds.SNORE.get(),
+//                    () -> ModSounds.METALPIPEFALLINGSOUNDEFFECT.get()
+//            )
+//    );
     public static final DeferredBlock<Block> PROTOTYPE_MACHINE = registerBlockAndBlockItem("prototype_machine",
-            () -> new BaseStorageBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).noLootTable().noOcclusion(),
-                    54,
-                    () -> ModSounds.SNORE.get(),
-                    () -> ModSounds.METALPIPEFALLINGSOUNDEFFECT.get()
-            )
-    );
+            () -> new Bomb(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.OAK_PLANKS)));
 
     //JOKE BLOCKS
     public static final DeferredBlock<Block> BODY_PILLOW = registerBlockAndBlockItem("body_pillow",
@@ -128,32 +133,28 @@ public class ModBlocks {
             () -> new ModelledSurfaceMountBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
-                    HitboxGeometryCollection.PANEL_FLOOR(),
-                    false
+                    HitboxGeometryCollection.PANEL_FLOOR()
             )
     );
     public static final DeferredBlock<Block> RUSTY_DUCT_VENT = registerBlockAndBlockItem("rusty_duct_vent",
             () -> new ModelledSurfaceMountBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
-                    HitboxGeometryCollection.PANEL_FLOOR(),
-                    false
+                    HitboxGeometryCollection.PANEL_FLOOR()
             )
     );
 
     //GRATE BLOCKS
     public static final DeferredBlock<Block> HORIZONTAL_GRATE = registerBlockAndBlockItem("horizontal_grate",
-            () -> new TrussBlock(BlockBehaviour
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
-                    false
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
             )
     );
     public static final DeferredBlock<Block> VERTICAL_GRATE = registerBlockAndBlockItem("vertical_grate",
-            () -> new TrussBlock(BlockBehaviour
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
-                    false
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
             )
     );
     public static final DeferredBlock<Block> HORIZONTAL_CUTOUT_GRATE = registerBlockAndBlockItem("horizontal_cutout_grate",
@@ -823,7 +824,6 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
                     HitboxGeometryCollection.SMOKE_DETECTOR_FLOOR(),
-                    false,
                     () -> ModSounds.SMOKE_ALARM.get()
             )
     );
@@ -921,8 +921,7 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion()
                     .lightLevel(state -> state.getValue(ModelledSurfaceMountBlock.WATERLOGGED) ? 0 : 3),
-                    HitboxGeometryCollection.DECAL_FLOOR(),
-                    true
+                    HitboxGeometryCollection.DECAL_FLOOR()
             )
     );
     public static final DeferredBlock<Block> WORK_LIGHT_STAND = registerBlockAndBlockItem("work_light_stand",
@@ -944,14 +943,24 @@ public class ModBlocks {
                     () -> SoundEvents.STONE_BUTTON_CLICK_OFF
             )
     );
+    public static final DeferredBlock<Block> CAGE_LAMP = registerBlockAndBlockItem("cage_lamp",
+            () -> new LightBulbBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0),
+                    HitboxGeometryCollection.CAGE_LAMP(),
+                    () -> ModSounds.SWITCH_ON.get(),
+                    () -> ModSounds.SWITCH_OFF.get()
+            )
+    );
 
     public static final DeferredBlock<Block> RETRO_COMPUTER = registerBlockAndBlockItem("retro_computer",
             () -> new InteractableModelledFacingBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
                     .lightLevel(state -> state.getValue(InteractableModelledFacingBlock.POWERED) ? 7 : 0),
                     HitboxGeometryCollection.RETRO_COMPUTER(),
-                    () -> SoundEvents.STONE_BUTTON_CLICK_ON,
-                    () -> SoundEvents.STONE_BUTTON_CLICK_OFF
+                    () -> ModSounds.COMPUTER_ON.get(),
+                    () -> ModSounds.SWITCH_OFF.get()
             )
     );
     public static final DeferredBlock<Block> RETRO_COMPUTER_2 = registerBlockAndBlockItem("retro_computer_2",
@@ -959,8 +968,8 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
                     .lightLevel(state -> state.getValue(InteractableModelledFacingBlock.POWERED) ? 7 : 0),
                     HitboxGeometryCollection.RETRO_COMPUTER_2(),
-                    () -> SoundEvents.STONE_BUTTON_CLICK_ON,
-                    () -> SoundEvents.STONE_BUTTON_CLICK_OFF
+                    () -> ModSounds.COMPUTER_ON.get(),
+                    () ->  ModSounds.SWITCH_OFF.get()
             )
     );
     public static final DeferredBlock<Block> MONITOR_AND_KEYBOARD = registerBlockAndBlockItem("monitor_and_keyboard",
