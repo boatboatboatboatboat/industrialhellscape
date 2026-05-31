@@ -5,6 +5,7 @@ import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacement
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -71,7 +72,7 @@ public class ModdedBedBlock extends Modelled2BMBlock implements SimpleWaterlogge
         //Code taken from vanilla BedBlock code with minor modifications
         if (level.isClientSide) {
 
-            //level.addParticle(ParticleTypes.HEART, pos.getX()+0.5, pos.getY(), pos.getZ()+0.5, 0, 1, 0);
+            level.addParticle(ParticleTypes.HEART, pos.getX(), pos.getY()+0.5, pos.getZ(), 0, 2, 0);
 
             return InteractionResult.CONSUME;
         } else {

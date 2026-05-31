@@ -1,11 +1,9 @@
 package net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks;
 
 import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
-import net.boat.industrialhellscape.util.ModTags;
+import net.boat.industrialhellscape.block.modded_interfaces.ToolUseInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -44,7 +42,7 @@ import javax.annotation.Nullable;
 //This is because Minecraft cannot rotate models in the Z axis when generating block states. This makes my life harder.
 //Having the 3D model of the block aligned this way allows combinations of X and Y axis rotations to achieve all possible block states orientations.
 
-public class CornerBlock extends ModelledSurfaceMountBlock implements SimpleWaterloggedBlock {
+public class CornerBlock extends ModelledSurfaceMountBlock implements SimpleWaterloggedBlock, ToolUseInterface {
 
     public static DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING; //"FACING" is used to store DirectionProperty value of "north, south, east, west" //KJ
     public static final EnumProperty<AttachFace> ATTACH_FACE = BlockStateProperties.ATTACH_FACE;
@@ -151,26 +149,7 @@ public class CornerBlock extends ModelledSurfaceMountBlock implements SimpleWate
 
     @Override
     protected @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
-        boolean playerHasTool = stack.is(ModTags.Items.IH_COMPATIBLE_TOOLS);
-        boolean playerIsCrouching = player.isCrouching();
-
-        if(playerHasTool && playerIsCrouching) {
-            //Cycles connection type. Only works with modded tools
-            level.playSound(player, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 0.25f, 1f);
-            state = state.cycle(FACING);
-            level.setBlock(pos, state, 2); //2
-            return ItemInteractionResult.sidedSuccess(level.isClientSide);
-
-
-
-        } else if (playerHasTool) {
-            //Cycles from vertical and horizontal pipes when interacting with pipes on walls. Works with modded tools AND pickaxes
-            level.playSound(player, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 0.25f, 1f);
-            state = state.cycle(ATTACH_FACE);
-            level.setBlock(pos, state, 3); //3
-            return ItemInteractionResult.sidedSuccess(level.isClientSide);
-        }
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        return crouchToolUse(stack, state, level, pos, player, ATTACH_FACE, 3, FACING, 3);
     }
 
     @Override

@@ -59,6 +59,12 @@
       "industrialhellscape:switch_off"
     ]
   },
+  "horsepill": {
+    "subtitle": "sounds.industrialhellscape.horsepill",
+    "sounds": [
+      "industrialhellscape:horsepill"
+    ]
+  },
   "song_1": {
     "sounds": [
       {

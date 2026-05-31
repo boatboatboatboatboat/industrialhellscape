@@ -1,0 +1,6 @@
+{
+  "parent": "industrialhellscape:block/retro_computer/retro_computer",
+  "textures": {
+    "1": "industrialhellscape:block/lit_unlit_textures/retro_computer_screen_on"
+  }
+}

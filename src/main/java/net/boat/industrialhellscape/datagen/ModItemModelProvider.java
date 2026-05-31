@@ -22,12 +22,17 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         //Make item models from existing .png files
+        //  Item
+        basicItem(ModItems.JOB_APPLICATION.get());
+        //basicItem(ModItems.HORSEPILL.get());
+
+        //  Blocks
         basicFolderedItem(ModBlocks.ARMORED_DOOR.get().asItem(), "door");
         basicFolderedItem(ModBlocks.STAMPED_METAL_DOOR.get().asItem(), "door");
         basicFolderedItem(ModBlocks.BULKHEAD_DOOR.get().asItem(), "door");
         basicFolderedItem(ModItems.MARQUEE_DISC.get().asItem(), "disc");
-    }
 
+    }
     public ItemModelBuilder basicFolderedItem(Item item, String subFolder) {
         return this.folderedItemFinder(Objects.requireNonNull(BuiltInRegistries.ITEM.getKey(item)), subFolder);
     }

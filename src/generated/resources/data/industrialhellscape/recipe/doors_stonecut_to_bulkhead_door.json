@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "tag": "industrialhellscape:door_items"
+  },
+  "result": {
+    "count": 1,
+    "id": "industrialhellscape:bulkhead_door"
+  }
+}

@@ -26,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
 //The direction these are placed is set by parameter "multiBlockPlacementDirection". The second half of the structure can be placed vertically, horizontally, or forward to the first half.
 //Supports a custom hitbox for custom model, passed during registration.
 
-//useWithoutItem cycles POWERED blockstate for both blocks.
+//useWithoutItem cycles POWERED blockstate for both blocks. Whether a blockstate gives off light is coded in ModBlocks.
 
 public class InteractableMultiBlock extends Modelled2BMBlock{
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
@@ -45,7 +45,7 @@ public class InteractableMultiBlock extends Modelled2BMBlock{
         boolean wasOn = state.getValue(POWERED);
         SoundEvent onOffSound = wasOn ? SoundEvents.STONE_BUTTON_CLICK_OFF : SoundEvents.STONE_BUTTON_CLICK_ON;
 
-        level.playSound(player, pos, onOffSound, SoundSource.BLOCKS, 1f, 2f);
+        level.playSound(player, pos, onOffSound, SoundSource.BLOCKS, 1f, 1f);
 
         if(state.getValue(HALF_PART).equals(TwoBlockMultiBlockState.NEGATIVE)) {
             //If the interacted block is the bottom block. Light it up. Then light the block above it.

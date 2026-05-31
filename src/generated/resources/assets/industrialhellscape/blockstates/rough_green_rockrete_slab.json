@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "industrialhellscape:block/rough_green_rockrete_slab"
+    },
+    "type=double": {
+      "model": "industrialhellscape:block/rough_green_rockrete"
+    },
+    "type=top": {
+      "model": "industrialhellscape:block/rough_green_rockrete_slab_top"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "industrialhellscape:technology_furnishings"
+  },
+  "result": {
+    "count": 1,
+    "id": "industrialhellscape:monitor_and_keyboard"
+  }
+}

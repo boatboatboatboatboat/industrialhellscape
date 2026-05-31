@@ -32,8 +32,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 public class Bomb extends SimpleFacingBlock {
-    private static final ExplosionDamageCalculator USED_PORTAL_DAMAGE_CALCULATOR;
-
     public Bomb(Properties pProperties) {
         super(pProperties);
     }
@@ -47,37 +45,40 @@ public class Bomb extends SimpleFacingBlock {
     @Override
     protected @NotNull ItemInteractionResult useItemOn(ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
         if(stack.is(ModTags.Items.IH_COMPATIBLE_TOOLS)) {
-            int chargeDistance = 10;
+            int chargeDistance = 5;
+            int overPenetration = 3;
+
+            Explosion corn = new Explosion(level, null, 1, 1, 1, 1, true, Explosion.BlockInteraction.DESTROY);
+
+            float blockBlastResistance;
+            BlockState loopingState;
+            BlockPos loopingPos = pos;
+
             Direction chargeDirection = state.getValue(FACING);
 
+            //Initial Blast
             Vec3 vec3 = pos.getCenter();
-            level.explode(null, level.damageSources().explosion(null), null, vec3, 3, true, Level.ExplosionInteraction.BLOCK);
+            level.explode(null, level.damageSources().explosion(null), null, vec3, 5, true, Level.ExplosionInteraction.BLOCK);
 
+            //Directional Blasts
             for(int i = 0; i < chargeDistance; i++) {
-                pos = pos.relative(chargeDirection);
-                Vec3 vec3loop = pos.getCenter();
-                level.explode(null, level.damageSources().explosion(null), USED_PORTAL_DAMAGE_CALCULATOR, vec3loop, 1, true, Level.ExplosionInteraction.TNT);
+
+                loopingPos = loopingPos.relative(chargeDirection);
+                Vec3 vec3loop = loopingPos.getCenter();
+                blockBlastResistance = state.getExplosionResistance(level, loopingPos, corn);
+
+                //Destroy block if under certain blast resistance
+                if(blockBlastResistance <= 6 + overPenetration) {
+                    loopingState = level.getBlockState(loopingPos);
+                    level.getBlockState(loopingPos).getBlock().destroy(level, loopingPos, loopingState);
+                }
+                level.explode(null, level.damageSources().explosion(null), null, vec3loop, 1, true, Level.ExplosionInteraction.TNT);
             }
+
             level.playSound(player, pos, SoundEvents.DONKEY_DEATH, SoundSource.BLOCKS, 0.25f, 1f);
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
 
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-    }
-
-    static {
-        USED_PORTAL_DAMAGE_CALCULATOR = new ExplosionDamageCalculator() {
-            public boolean shouldBlockExplode(Explosion p_353087_, BlockGetter p_353096_, BlockPos pos, BlockState state, float p_353094_) {
-                return state.is(Blocks.DIRT) ? false : super.shouldBlockExplode(p_353087_, p_353096_, pos, state, p_353094_);
-            }
-
-            public float getKnockbackMultiplier(Entity entity) {
-                return 100.0F;
-            }
-
-            public Optional<Float> getBlockExplosionResistance(Explosion p_353090_, BlockGetter p_353088_, BlockPos p_353091_, BlockState p_353093_, FluidState p_353095_) {
-                return p_353093_.is(Blocks.DIRT) ? Optional.empty() : super.getBlockExplosionResistance(p_353090_, p_353088_, p_353091_, p_353093_, p_353095_);
-            }
-        };
     }
 }

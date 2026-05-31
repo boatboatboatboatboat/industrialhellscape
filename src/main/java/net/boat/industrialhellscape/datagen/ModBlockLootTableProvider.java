@@ -66,10 +66,10 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 block -> createRailingDrops(ModBlocks.RUSTY_RAILING.get()));
 
         //DUCT BLOCKS
-        dropSelf(ModBlocks.DUCT.get());
-        dropSelf(ModBlocks.RUSTY_DUCT.get());
-        dropSelf(ModBlocks.DUCT_VENT.get());
-        dropSelf(ModBlocks.RUSTY_DUCT_VENT.get());
+        this.dropSelf(ModBlocks.DUCT.get());
+        this.dropSelf(ModBlocks.RUSTY_DUCT.get());
+        this.dropSelf(ModBlocks.DUCT_VENT.get());
+        this.dropSelf(ModBlocks.RUSTY_DUCT_VENT.get());
         
         //GRATE BLOCKS
         this.dropSelf(ModBlocks.HORIZONTAL_GRATE.get());
@@ -82,32 +82,32 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 //        this.dropSelf(ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get());
 
         //VESSELPLATE BLOCKS
-        dropSelf(ModBlocks.HORIZONTAL_VESSELPLATE.get());
-        dropSelf(ModBlocks.VERTICAL_VESSELPLATE.get());
-        dropSelf(ModBlocks.HORIZONTAL_REINFORCED_VESSELPLATE.get());
-        dropSelf(ModBlocks.VERTICAL_REINFORCED_VESSELPLATE.get());
-        dropSelf(ModBlocks.RIVETED_VESSELPLATE.get());
-        dropSelf(ModBlocks.SMOOTH_VESSELPLATE.get());
-        dropSelf(ModBlocks.VESSELPLATE_PILLAR.get());
-        dropSelf(ModBlocks.SMOOTH_VESSELPLATE_STAIRS.get());
-        add(ModBlocks.SMOOTH_VESSELPLATE_SLAB.get(),
+        this.dropSelf(ModBlocks.HORIZONTAL_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.VERTICAL_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.HORIZONTAL_REINFORCED_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.VERTICAL_REINFORCED_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.RIVETED_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.VESSELPLATE_PILLAR.get());
+        this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE_STAIRS.get());
+        this.add(ModBlocks.SMOOTH_VESSELPLATE_SLAB.get(),
                 block -> createSlabItemTable(ModBlocks.SMOOTH_VESSELPLATE_SLAB.get()));
-        dropSelf(ModBlocks.RIVETED_VESSELPLATE_STAIRS.get());
-        add(ModBlocks.RIVETED_VESSELPLATE_SLAB.get(),
+        this.dropSelf(ModBlocks.RIVETED_VESSELPLATE_STAIRS.get());
+        this.add(ModBlocks.RIVETED_VESSELPLATE_SLAB.get(),
                 block -> createSlabItemTable(ModBlocks.RIVETED_VESSELPLATE_SLAB.get()));
 
-        dropSelf(ModBlocks.GRAY_HORIZONTAL_VESSELPLATE.get());
-        dropSelf(ModBlocks.GRAY_VERTICAL_VESSELPLATE.get());
-        dropSelf(ModBlocks.GRAY_HORIZONTAL_REINFORCED_VESSELPLATE.get());
-        dropSelf(ModBlocks.GRAY_VERTICAL_REINFORCED_VESSELPLATE.get());
-        dropSelf(ModBlocks.GRAY_RIVETED_VESSELPLATE.get());
-        dropSelf(ModBlocks.SMOOTH_GRAY_VESSELPLATE.get());
-        dropSelf(ModBlocks.GRAY_VESSELPLATE_PILLAR.get());
-        dropSelf(ModBlocks.SMOOTH_GRAY_VESSELPLATE_STAIRS.get());
-        add(ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get(),
+        this.dropSelf(ModBlocks.GRAY_HORIZONTAL_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.GRAY_VERTICAL_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.GRAY_HORIZONTAL_REINFORCED_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.GRAY_VERTICAL_REINFORCED_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.GRAY_RIVETED_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.SMOOTH_GRAY_VESSELPLATE.get());
+        this.dropSelf(ModBlocks.GRAY_VESSELPLATE_PILLAR.get());
+        this.dropSelf(ModBlocks.SMOOTH_GRAY_VESSELPLATE_STAIRS.get());
+        this.add(ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get(),
                 block -> createSlabItemTable(ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get()));
-        dropSelf(ModBlocks.GRAY_RIVETED_VESSELPLATE_STAIRS.get());
-        add(ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get(),
+        this.dropSelf(ModBlocks.GRAY_RIVETED_VESSELPLATE_STAIRS.get());
+        this.add(ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get(),
                 block -> createSlabItemTable(ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get()));
 
         //TRUSS BLOCKS
@@ -234,7 +234,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.FLOOR_WORK_LIGHT.get());
         this.dropSelf(ModBlocks.FUEL_DRUM.get());
         this.dropSelf(ModBlocks.CCTV_CAMERA.get());
-        this.dropSelf(ModBlocks.CAGE_LAMP.get());
+        //this.dropSelf(ModBlocks.CAGE_LAMP.get());
 
         this.dropSelf(ModBlocks.CASSETTE_PLAYER.get());
         this.dropSelf(ModBlocks.RETRO_COMPUTER.get());

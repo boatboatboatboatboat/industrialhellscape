@@ -1,0 +1,7 @@
+{
+  "message_id": "horsepilldeathmessage",
+  "scaling": "never",
+  "exhaustion": 20,
+  "effects": "hurt",
+  "death_message_type": "default"
+}

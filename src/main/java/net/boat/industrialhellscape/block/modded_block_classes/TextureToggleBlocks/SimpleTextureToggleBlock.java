@@ -1,10 +1,8 @@
 package net.boat.industrialhellscape.block.modded_block_classes.TextureToggleBlocks;
 
-import net.boat.industrialhellscape.util.ModTags;
+import net.boat.industrialhellscape.block.modded_interfaces.ToolUseInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -26,10 +24,8 @@ import javax.annotation.Nullable;
 // This block, when interacted with an eligible tool, will toggle its block-state, which changes the block model.
 // The block models have different texture variations or CTM connected texture modes
 
-public class SimpleTextureToggleBlock extends Block {
-
+public class SimpleTextureToggleBlock extends Block implements ToolUseInterface {
     public static final BooleanProperty ALT_STATE = BooleanProperty.create("alt_state");
-
     public SimpleTextureToggleBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.stateDefinition.any().setValue(ALT_STATE, false));
@@ -50,15 +46,8 @@ public class SimpleTextureToggleBlock extends Block {
     }
 
     @Override
-    protected @NotNull ItemInteractionResult useItemOn(ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
-        if(stack.is(ModTags.Items.IH_COMPATIBLE_TOOLS)) {
-            state = state.cycle(ALT_STATE);
-            level.setBlock(pos, state, 2);
-            level.playSound(player, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 0.25f, 1f);
-            return ItemInteractionResult.sidedSuccess(level.isClientSide);
-        }
-
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+    protected @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
+        return simpleToolUse(stack, state, level, pos, player, ALT_STATE, 2);
     }
 
     @Override

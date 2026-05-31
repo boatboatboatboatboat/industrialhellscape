@@ -9,10 +9,13 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -225,8 +228,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.LARGE_LOCKER.get().asItem(),
                         ModBlocks.WORK_LIGHT_STAND.get().asItem(),
                         ModBlocks.FLOOR_WORK_LIGHT.get().asItem(),
-                        ModBlocks.CCTV_CAMERA.get().asItem(),
-                        ModBlocks.CAGE_LAMP.get().asItem()
+                        ModBlocks.CCTV_CAMERA.get().asItem()
+                        //ModBlocks.CAGE_LAMP.get().asItem()
                 );
         this.tag(ModTags.Items.TECHNOLOGY_FURNITURE_CATEGORY)
                 .add(
@@ -255,13 +258,11 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 );
         //---------- END OF RECIPE DATAGEN INPUT TAGS ----------
 
-        //---------- FURNITURE TAGS ----------
-
-        //FURNITURE CATEGORIES BELOW
-
-        //---------- END OF FURNITURE TAGS ----------
-
         //---------- MISC TAGS ----------
+
+//        this.tag(ItemTags.HORSE_FOOD)
+//                .add(ModItems.HORSEPILL.get().asItem()
+//                );
 
         this.tag(ModTags.Items.IH_RECIPE_STONELIKES)
                 .add(
@@ -287,8 +288,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModItems.INHELL_HAVEN_DEVICE.get()
                 )
                 .addTags(
-                        PICKAXES,
-                        WRENCHES
+                        PICKAXES
                 );
     }
 

@@ -12,6 +12,7 @@ import net.boat.industrialhellscape.screen.custom.DebugBEScreen;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
@@ -50,6 +51,24 @@ public class IndustrialHellscape {
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
+
+//    public class EventHandler {
+//        @SubscribeEvent
+//        public void onHorseInteract(PlayerInteractEvent.EntityInteractSpecific event) {
+//            Entity horse = event.getTarget(); //horse is target
+//
+//            if(!horse.level().isClientSide() && horse instanceof Cow && event.getItemStack().is(ModItems.HORSEPILL.get())) {
+//                for(int i = 0; i < 5; ++i) {
+//                    double d0 = horse.getRandom().nextGaussian() * 0.02;
+//                    double d1 = horse.getRandom().nextGaussian() * 0.02;
+//                    double d2 = horse.getRandom().nextGaussian() * 0.02;
+//                    horse.level().addParticle(ParticleTypes.HAPPY_VILLAGER, horse.getRandomX((double)1.0F), horse.getRandomY() + (double)1.0F, horse.getRandomZ((double)1.0F), d0, d1, d2);
+//                }
+//            }
+//        }
+//
+//    }
+
     public IndustrialHellscape(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -76,21 +95,12 @@ public class IndustrialHellscape {
 
         ModMenuTypes.register(modEventBus);
 
-        // Register our mod's ModConfigSpec so that FML can create and load the config file for us
-//        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        modContainer.registerConfig(ModConfig.Type.COMMON, CommonModConfig.SPEC);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
         // Some common setup code
         LOGGER.info("HELLO FROM COMMON SETUP");
-
-//        if (Config.LOG_DIRT_BLOCK.getAsBoolean()) {
-//            LOGGER.info("DIRT BLOCK >> {}", BuiltInRegistries.BLOCK.getKey(Blocks.DIRT));
-//        }
-
-//        LOGGER.info("{}{}", Config.MAGIC_NUMBER_INTRODUCTION.get(), Config.MAGIC_NUMBER.getAsInt());
-
-//        Config.ITEM_STRINGS.get().forEach((item) -> LOGGER.info("ITEM >> {}", item));
     }
 
     // Add the example block item to the building blocks tab

@@ -14,6 +14,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
+import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -152,16 +153,31 @@ public class StorageBE extends RandomizableContainerBlockEntity {
         return SLOTS;
     }
 
-    @Override
+//    @Override
+//    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+//        super.saveAdditional(tag, registries);
+//        tag.put("inventory", inventory.serializeNBT(registries));
+//    }
+//
+//    @Override
+//    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+//        super.loadAdditional(tag, registries);
+//        inventory.deserializeNBT(registries, tag.getCompound("inventory"));
+//    }
+
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
-        tag.put("inventory", inventory.serializeNBT(registries));
+        if (!this.trySaveLootTable(tag)) {
+            ContainerHelper.saveAllItems(tag, this.items, registries);
+        }
     }
 
-    @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
-        inventory.deserializeNBT(registries, tag.getCompound("inventory"));
+        this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+        if (!this.tryLoadLootTable(tag)) {
+            ContainerHelper.loadAllItems(tag, this.items, registries);
+        }
     }
 
     @Override

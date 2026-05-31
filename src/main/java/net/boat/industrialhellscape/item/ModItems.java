@@ -1,7 +1,9 @@
 package net.boat.industrialhellscape.item;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
-import net.boat.industrialhellscape.item.modded_items.InHellTool;
+import net.boat.industrialhellscape.item.modded_items.HorsePillItem;
+import net.boat.industrialhellscape.item.modded_items.JobApplicationItem;
+import net.boat.industrialhellscape.item.modded_items.InHellToolItem;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
@@ -12,12 +14,17 @@ public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(IndustrialHellscape.MOD_ID);
 
     public static final DeferredItem<Item> INHELL_HAVEN_DEVICE = ITEMS.register("inhell_haven_device",
-            () -> new InHellTool(new Item.Properties())
+            () -> new InHellToolItem(new Item.Properties())
     );
 
     public static final DeferredItem<Item> JOB_APPLICATION = ITEMS.register("job_application",
-            () -> new Item(new Item.Properties()) {
-    });
+            () -> new JobApplicationItem(new Item.Properties())
+    );
+
+//    public static final DeferredItem<Item> HORSEPILL = ITEMS.register("horsepill",
+//            () -> new HorsePillItem(new Item.Properties())
+//    );
+
 
     public static final DeferredItem<Item> MARQUEE_DISC = ITEMS.register("disc_1",
             () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.SONG_1_KEY).stacksTo(1)));

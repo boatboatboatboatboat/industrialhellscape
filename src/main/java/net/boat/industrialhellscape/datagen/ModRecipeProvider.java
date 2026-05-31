@@ -11,6 +11,7 @@ import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
@@ -85,16 +86,19 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     private static final List<ItemLike> VESSELPLATE_STONECUT_OUTPUT = List.of(
             ModBlocks.RIVETED_VESSELPLATE.get().asItem(),
             ModBlocks.HORIZONTAL_VESSELPLATE.get().asItem(),
-
             ModBlocks.VESSELPLATE_PILLAR.get().asItem(),
             ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
             ModBlocks.HORIZONTAL_REINFORCED_VESSELPLATE.get().asItem(),
 
             ModBlocks.GRAY_RIVETED_VESSELPLATE.get().asItem(),
-
             ModBlocks.SMOOTH_GRAY_VESSELPLATE.get().asItem(),
             ModBlocks.GRAY_VESSELPLATE_PILLAR.get().asItem(),
             ModBlocks.GRAY_HORIZONTAL_VESSELPLATE.get().asItem(),
+
+            ModBlocks.SMOOTH_VESSELPLATE_SLAB.get().asItem(),
+            ModBlocks.SMOOTH_VESSELPLATE_STAIRS.get().asItem(),
+            ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get().asItem(),
+            ModBlocks.SMOOTH_GRAY_VESSELPLATE_STAIRS.get().asItem(),
 
             ModBlocks.RIVETED_VESSELPLATE_STAIRS.get().asItem(),
             ModBlocks.RIVETED_VESSELPLATE_SLAB.get().asItem(),
@@ -221,8 +225,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.LARGE_LOCKER.get().asItem(),
             ModBlocks.WORK_LIGHT_STAND.get().asItem(),
             ModBlocks.FLOOR_WORK_LIGHT.get().asItem(),
-            ModBlocks.FUEL_DRUM.get().asItem(),
-            ModBlocks.CAGE_LAMP.get()
+            ModBlocks.FUEL_DRUM.get().asItem()
+            //ModBlocks.CAGE_LAMP.get()
     );
     private static final List<ItemLike> TECHNOLOGY_FURNITURE = List.of(
             ModBlocks.RETRO_COMPUTER.get().asItem(),
@@ -430,9 +434,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         stonecutToAmount(
                 Ingredient.of(ModTags.Items.ALL_FURNITURE_ITEMS), //Recipe Input Item
                 RecipeCategory.BUILDING_BLOCKS, //Category
-                ModBlocks.IHEA_FURNITURE_KIT.get(),1)  //Outputs into the category blocks (safety, hygiene, industrial)
+                ModBlocks.IHEA_FURNITURE_KIT.get(), //Output block
+                1)  //1 amount output
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("industrialhellscape", "furniture_to_kit"));
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, "furniture_to_kit"));
 
         if(doVesselplateCookRecycle) {
             smeltAndBlast(recipeOutput, ModTags.Items.VESSELPLATE_SMELTABLE_ITEM, RecipeCategory.MISC, Items.IRON_INGOT, 200, 100, "vesselplate");
@@ -506,7 +511,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             //Create stonecutter recipe producing twice the amount of output
             //Else, function normally
 
-            if (itemInIndice instanceof SlabBlock) { //Whether it is a slab block, or inherits from the SlabBlock class (currently, no block classes inherit from SlabBlocks)
+            if ( (itemInIndice instanceof BlockItem blockItem) && (blockItem.getBlock() instanceof SlabBlock) ) {
                 stonecutToAmount(ingredient, RecipeCategory.MISC, itemInIndice, 2) //Any block from the inputTag can produce two slabs from the stonecutOutputList
                         .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                         .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, inputTagName + "_stonecut_to_" + id));
@@ -559,7 +564,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("industrialhellscape", outputBlockName + "_to_" + inputBlockName));
     }
 
-    public static SingleItemRecipeBuilder stonecutToAmount(Ingredient ingredient, RecipeCategory category, ItemLike result, int amount) {
+    protected static SingleItemRecipeBuilder stonecutToAmount(Ingredient ingredient, RecipeCategory category, ItemLike result, int amount) {
         return new SingleItemRecipeBuilder(category, StonecutterRecipe::new, ingredient, result, amount);
     }
 

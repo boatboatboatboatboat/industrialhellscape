@@ -67,7 +67,16 @@ public class ModBlocks {
     //BASE BLOCKS
     public static final DeferredBlock<Block> IHEA_FURNITURE_KIT = registerBlockAndBlockItem("ihea_furniture_kit",
             () -> new SimpleFacingBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.OAK_PLANKS)));
+                    .Properties.ofFullCopy(Blocks.OAK_PLANKS))
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.ihea_furniture_kit"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
+
+    );
     public static final DeferredBlock<Block> METALWORKS = registerBlockAndBlockItem("metalworks",
             () -> new FacingFallableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK), () -> SoundEvents.ANVIL_PLACE){
                 @Override
@@ -156,6 +165,13 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
             )
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_craft_vertical"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
     );
     public static final DeferredBlock<Block> HORIZONTAL_CUTOUT_GRATE = registerBlockAndBlockItem("horizontal_cutout_grate",
             () -> new TrussBlock(BlockBehaviour
@@ -170,6 +186,13 @@ public class ModBlocks {
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
                     false
             )
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_craft_vertical"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
     );
 //    public static final DeferredBlock<Block> GRAY_HORIZONTAL_GRATE = registerBlockAndBlockItem("gray_horizontal_grate",
 //            () -> new TrussBlock(BlockBehaviour
@@ -270,6 +293,13 @@ public class ModBlocks {
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
             )
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_craft_vertical"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
     );
     public static final DeferredBlock<Block> HORIZONTAL_REINFORCED_VESSELPLATE = registerBlockAndBlockItem("horizontal_reinforced_vesselplate",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
@@ -280,6 +310,13 @@ public class ModBlocks {
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
             )
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_craft_vertical"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
     );
     public static final DeferredBlock<Block> RIVETED_VESSELPLATE_STAIRS = registerBlockAndBlockItem("riveted_vesselplate_stairs",
             () -> new StairBlock(ModBlocks.RIVETED_VESSELPLATE.get().defaultBlockState(), //USING A SIMPLETEXTURETOGGLEBLOCK WILL CAUSE TOOLS TO CHANGE THE STAIR BLOCK TO THAT BLOCK
@@ -330,6 +367,13 @@ public class ModBlocks {
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
             )
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_craft_vertical"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
     );
     public static final DeferredBlock<Block> GRAY_HORIZONTAL_REINFORCED_VESSELPLATE = registerBlockAndBlockItem("gray_horizontal_reinforced_vesselplate",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
@@ -340,6 +384,13 @@ public class ModBlocks {
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
             )
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_craft_vertical"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
     );
     public static final DeferredBlock<Block> GRAY_RIVETED_VESSELPLATE_STAIRS = registerBlockAndBlockItem("gray_riveted_vesselplate_stairs",
             () -> new StairBlock(ModBlocks.GRAY_RIVETED_VESSELPLATE.get().defaultBlockState(),
@@ -943,16 +994,16 @@ public class ModBlocks {
                     () -> SoundEvents.STONE_BUTTON_CLICK_OFF
             )
     );
-    public static final DeferredBlock<Block> CAGE_LAMP = registerBlockAndBlockItem("cage_lamp",
-            () -> new LightBulbBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .noOcclusion()
-                    .lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0),
-                    HitboxGeometryCollection.CAGE_LAMP(),
-                    () -> ModSounds.SWITCH_ON.get(),
-                    () -> ModSounds.SWITCH_OFF.get()
-            )
-    );
+//    public static final DeferredBlock<Block> CAGE_LAMP = registerBlockAndBlockItem("cage_lamp",
+//            () -> new LightBulbBlock(BlockBehaviour
+//                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+//                    .noOcclusion()
+//                    .lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0),
+//                    HitboxGeometryCollection.CAGE_LAMP(),
+//                    () -> ModSounds.SWITCH_ON.get(),
+//                    () -> ModSounds.SWITCH_OFF.get()
+//            )
+//    );
 
     public static final DeferredBlock<Block> RETRO_COMPUTER = registerBlockAndBlockItem("retro_computer",
             () -> new InteractableModelledFacingBlock(BlockBehaviour
@@ -1121,7 +1172,6 @@ public class ModBlocks {
                     HitboxGeometryCollection.FOLDING_CHAIR()
             )
     );
-
 
     //Registration Methods
     private static <T extends Block> DeferredBlock<T> registerBlockAndBlockItem(String name, Supplier<T> block) {

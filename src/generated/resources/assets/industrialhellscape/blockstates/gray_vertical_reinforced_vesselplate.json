@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "alt_state=false": {
+      "model": "industrialhellscape:block/gray_vertical_reinforced_vesselplate"
+    },
+    "alt_state=true": {
+      "model": "industrialhellscape:block/gray_vertical_reinforced_vesselplate"
+    }
+  }
+}

@@ -202,7 +202,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.LARGE_LOCKER.get());
                         output.accept(ModBlocks.FUEL_DRUM.get());
                         output.accept(ModBlocks.CCTV_CAMERA.get());
-                        output.accept(ModBlocks.CAGE_LAMP.get());
+                        //output.accept(ModBlocks.CAGE_LAMP.get());
 
                         output.accept(ModBlocks.DESK.get());
                         output.accept(ModBlocks.DESK_DRAWER.get());

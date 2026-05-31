@@ -191,7 +191,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genHorizontalSBI(ModBlocks.LOCKER_BOX.get(), build6FaceTexturesBlockModel("locker_box","locker","locker_box_front","locker_box_side","locker_box_side","locker_box_side","locker_box_top","locker_box_bottom"));
 
         GenFacingModelledSI(ModBlocks.URINAL.get(), "urinal");
-        genSurfaceLightSI(ModBlocks.CAGE_LAMP.get(), "lighting");
+        //genSurfaceLightSI(ModBlocks.CAGE_LAMP.get(), "lighting");
     }
 
     private void blockWithItem(DeferredBlock<?> deferredBlock) {
@@ -296,25 +296,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
         String pathToTexture = "block/" + (textureSubFolder+(textureSubFolder.isEmpty() ? "":"/"));
         String texturePath =  pathToTexture + stringName;
 
-
-        String altStringName = stringName;
-        String altModelPath = "block/"+altStringName;
-        String altTexturePath = pathToTexture + stringName;
-
        //GENERATE BASE MODEL
         models().withExistingParent(stringName, mcLoc("block/cube_all"))
                 .texture("all", modLoc(texturePath)).renderType(renderType);
 
-        //GENERATE ALT MODEL (ALT TEXTURE STATE)
-        models().withExistingParent(altStringName, mcLoc("block/cube_all"))
-                .texture("all", modLoc(altTexturePath)).renderType(renderType); //Generate model of alt-texture block in generated models/block folder
-
         getVariantBuilder(block)
                 .forAllStates(state -> {
-                    boolean altTexture = state.getValue(SimpleTextureToggleBlock.ALT_STATE);
-
-                    ResourceLocation model = modLoc(altTexture ? altModelPath : baseModelPath);
-
+                    ResourceLocation model = modLoc(baseModelPath);
                     return ConfiguredModel.builder()
                             .modelFile(models().getBuilder(model.toString()))
                             .build();

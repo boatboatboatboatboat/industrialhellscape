@@ -5,6 +5,7 @@ import net.boat.industrialhellscape.block.modded_block_state_properties.SurfaceP
 import net.boat.industrialhellscape.block.modded_interfaces.ConnectedModelInterface;
 import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
 import net.boat.industrialhellscape.block.modded_interfaces.PipeInterface;
+import net.boat.industrialhellscape.block.modded_interfaces.ToolUseInterface;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -37,7 +38,7 @@ import javax.annotation.Nonnull;
 //-----
 //Can be placed on any surface (FACING). Additionally, can be rotated orthogonally on that surface (ORIENTATION).
 
-public class WallPIpeBlock extends Block implements PipeInterface, SimpleWaterloggedBlock {
+public class WallPIpeBlock extends Block implements PipeInterface, SimpleWaterloggedBlock, ToolUseInterface {
     @Override
     public EnumProperty getOrientationProperty() {
         return ORIENTATION;
@@ -96,6 +97,7 @@ public class WallPIpeBlock extends Block implements PipeInterface, SimpleWaterlo
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
         BlockPos pos = pContext.getClickedPos();
         Level level = pContext.getLevel();
+        Player player = pContext.getPlayer();
 
         //This section determines surface alignment based on where you click to place.
         state = state.setValue(FACING, directionClicked);
@@ -110,6 +112,12 @@ public class WallPIpeBlock extends Block implements PipeInterface, SimpleWaterlo
             if(cardinalDirection == Direction.Axis.X) { //Is player facing X axis? Align pipe STRAIGHT
                 state = state.setValue(ORIENTATION, SurfacePipeMountState.STRAIGHT);
             } else { //Player must have been facing Z axis, align pipe SIDEWAYS
+                state = state.setValue(ORIENTATION, SurfacePipeMountState.SIDEWAYS);
+            }
+        } else if(player != null) {
+            if(player.isCrouching()) {
+                state = state.setValue(ORIENTATION, SurfacePipeMountState.STRAIGHT);
+            } else {
                 state = state.setValue(ORIENTATION, SurfacePipeMountState.SIDEWAYS);
             }
         }
@@ -147,26 +155,7 @@ public class WallPIpeBlock extends Block implements PipeInterface, SimpleWaterlo
 
     @Override
     protected @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
-        boolean playerHasTool = stack.is(ModTags.Items.IH_COMPATIBLE_TOOLS);
-        boolean playerIsCrouching = player.isCrouching();
-
-        if(playerHasTool && playerIsCrouching) {
-            //Cycles connection type. Only works with modded tools
-            level.playSound(player, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 0.25f, 1f);
-            state = state.cycle(TYPE);
-            level.setBlock(pos, state, 2); //2
-            return ItemInteractionResult.sidedSuccess(level.isClientSide);
-
-
-
-        } else if (playerHasTool) {
-            //Cycles from vertical and horizontal pipes when interacting with pipes on walls. Works with modded tools AND pickaxes
-            level.playSound(player, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 0.25f, 1f);
-            state = state.cycle(ORIENTATION);
-            level.setBlock(pos, state, 3); //3
-            return ItemInteractionResult.sidedSuccess(level.isClientSide);
-        }
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        return crouchToolUse(stack, state, level, pos, player, TYPE, 2, ORIENTATION, 3);
     }
 
     public @Nonnull FluidState getFluidState(BlockState pState) {
