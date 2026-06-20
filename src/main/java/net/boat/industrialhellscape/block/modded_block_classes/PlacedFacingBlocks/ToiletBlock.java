@@ -56,6 +56,7 @@ public class ToiletBlock extends InteractableModelledFacingBlock {
             player.startRiding(entity);
 
         } else if (player.isSecondaryUseActive()){
+            //Opens or closes lid, triggering sound
             state = state.cycle(POWERED);
             level.setBlock(pos, state, 2);
             SoundEvent onOffSound = wasOn ? OFF_SOUND.get() : ON_SOUND.get();

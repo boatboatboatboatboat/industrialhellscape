@@ -40,12 +40,20 @@ public class ModTags {
         public static final TagKey<Block> COPPER_PIPE_CONDUIT = tag("copper_pipe_conduit");
         public static final TagKey<Block> BRASS_PIPE_CONDUIT = tag("brass_pipe_conduit");
         public static final TagKey<Block> GRAY_PIPE_CONDUIT = tag("gray_pipe_conduit");
-        public static final TagKey<Block> WHITE_PIPE_CONDUIT = tag("white_pipe_conduit");
 
-        //Inter-Mod Compat
+        //INTER-MOD COMPAT
         public static final TagKey<Block> MOD_CREATE_FAN_TRANSPARENT = moddedTag("create","fan_transparent");
         public static final TagKey<Block> MOD_CREATE_SIMPLE_MOUNTED_STORAGE = moddedTag("create","simple_mounted_storage");
         public static final TagKey<Block> MOD_CREATE_SEATS = moddedTag("create","seats");
+
+        public static final TagKey<Block> MOD_SABLE_MASS_SUPER_HEAVY = moddedTag("sable","super_heavy");
+        public static final TagKey<Block> MOD_SABLE_MASS_HEAVY = moddedTag("sable","heavy");
+        public static final TagKey<Block> MOD_SABLE_MASS_NORMAL = moddedTag("sable","normal");
+        public static final TagKey<Block> MOD_SABLE_MASS_LIGHT = moddedTag("sable","light");
+        public static final TagKey<Block> MOD_SABLE_MASS_SUPER_LIGHT = moddedTag("sable","super_light");
+
+        public static final TagKey<Block> MOD_SABLE_VOLUME_HALF = moddedTag("sable","half_volume");
+        public static final TagKey<Block> MOD_SABLE_VOLUME_QUARTER = moddedTag("sable","quarter_volume");
 
         //---------- METHODS ----------
         private static TagKey<Block> tag(String name) {

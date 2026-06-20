@@ -3,7 +3,6 @@ package net.boat.industrialhellscape.block;
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks.AxialPillarBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks.ConnectedFurnitureBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.Experimental.Bomb;
 import net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBlocks.*;
 import net.boat.industrialhellscape.block.modded_block_classes.StorageBlocks.*;
 import net.boat.industrialhellscape.block.modded_block_classes.FallableBlocks.FacingFallableBlock;
@@ -20,6 +19,7 @@ import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -28,7 +28,6 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -41,16 +40,16 @@ public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(IndustrialHellscape.MOD_ID);
 
-    //DEBUG BLOCKS
-//    public static final DeferredBlock<Block> PROTOTYPE_MACHINE = registerBlockAndBlockItem("prototype_machine",
-//            () -> new BaseStorageBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).noLootTable().noOcclusion(),
-//                    54,
-//                    () -> ModSounds.SNORE.get(),
-//                    () -> ModSounds.METALPIPEFALLINGSOUNDEFFECT.get()
-//            )
-//    );
+    //Test for in-world replacement of deprecated blocks (must be done seperately for block items)
+    static {
+        BLOCKS.addAlias(
+                ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, "rusty_vesselplate"),
+                ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, "vesselplate")
+        );
+    }
+
     public static final DeferredBlock<Block> PROTOTYPE_MACHINE = registerBlockAndBlockItem("prototype_machine",
-            () -> new Bomb(BlockBehaviour
+            () -> new Block(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.OAK_PLANKS)));
 
     //JOKE BLOCKS
@@ -107,19 +106,55 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> SAFETY_FURNISHINGS = registerBlockAndBlockItem("safety_furnishings",
             () -> new SimpleFacingBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE)));
+                    .Properties.ofFullCopy(Blocks.STONE))
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.ihea_furniture_kit"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
+    );
     public static final DeferredBlock<Block> HYGIENE_FURNISHINGS = registerBlockAndBlockItem("hygiene_furnishings",
             () -> new SimpleFacingBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE)));
+                    .Properties.ofFullCopy(Blocks.STONE))
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.ihea_furniture_kit"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
     public static final DeferredBlock<Block> INDUSTRIAL_FURNISHINGS = registerBlockAndBlockItem("industrial_furnishings",
             () -> new SimpleFacingBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE)));
+                    .Properties.ofFullCopy(Blocks.STONE))
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.ihea_furniture_kit"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
     public static final DeferredBlock<Block> TECHNOLOGY_FURNISHINGS = registerBlockAndBlockItem("technology_furnishings",
             () -> new SimpleFacingBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE)));
+                    .Properties.ofFullCopy(Blocks.STONE))
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.ihea_furniture_kit"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
     public static final DeferredBlock<Block> AMENITY_FURNISHINGS = registerBlockAndBlockItem("amenity_furnishings",
             () -> new SimpleFacingBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE)));
+                    .Properties.ofFullCopy(Blocks.STONE))
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.ihea_furniture_kit"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
 
 
     //DUCT BLOCKS

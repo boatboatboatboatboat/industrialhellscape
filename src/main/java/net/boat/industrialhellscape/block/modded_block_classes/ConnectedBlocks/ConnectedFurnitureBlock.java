@@ -42,7 +42,7 @@ import javax.annotation.Nonnull;
 // Waterlogging and cardinal directional placement is supported.
 // The operating methods for block state detection and updating are present in this mod's ConnectedModelInterface interface.
 // Waterlogging is handled by the vanilla SimpleWaterloggedBlock interface.
-// Can connect to other block classes. This ability is determined by the block tag passed as a parameter during block registration (TagKey<Block> inputCompatibleBlockSet)
+// Can connect to other block. This ability is determined by the block tag passed as a parameter during block registration (TagKey<Block> inputCompatibleBlockSet)
 
 // Block-state notation:
 //     Solo - Unconnected block-state. When placed for the first time by itself with no eligible adjacent connections.

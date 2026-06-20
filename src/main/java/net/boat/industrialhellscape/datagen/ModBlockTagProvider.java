@@ -31,11 +31,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.VERTICAL_GRATE.get(),
                         ModBlocks.HORIZONTAL_CUTOUT_GRATE.get(),
                         ModBlocks.VERTICAL_CUTOUT_GRATE.get()
-
-//                        ModBlocks.GRAY_HORIZONTAL_GRATE.get(),
-//                        ModBlocks.GRAY_VERTICAL_GRATE.get(),
-//                        ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get(),
-//                        ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get()
                 );
         this.tag(ModTags.Blocks.METALWORKS_BLOCKS)
                 .add(
@@ -330,6 +325,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .addTags(
                         ModTags.Blocks.ALL_FURNITURE_BLOCKS //All furniture can be mined with axe or pickaxe.
                 );
+
+        //INTER-MOD COMPAT
         this.tag(ModTags.Blocks.MOD_CREATE_FAN_TRANSPARENT)
                 .addTags(
                         ModTags.Blocks.TRUSS_BLOCKS
@@ -338,6 +335,42 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(ModTags.Blocks.MOD_CREATE_SIMPLE_MOUNTED_STORAGE)
                 .addTags(
                         ModTags.Blocks.STORAGE_BLOCKS
+                );
+
+        this.tag(ModTags.Blocks.MOD_SABLE_MASS_SUPER_LIGHT)
+                .add(ModBlocks.BODY_PILLOW.get()
+                );
+        this.tag(ModTags.Blocks.MOD_SABLE_MASS_LIGHT)
+                .addTags(
+                        ModTags.Blocks.METALWORKS_BLOCKS,
+                        ModTags.Blocks.PIPEWORKS_BLOCKS,
+
+                        ModTags.Blocks.HVAC_BLOCKS,
+                        ModTags.Blocks.TRUSS_BLOCKS,
+
+                        ModTags.Blocks.ALL_FURNITURE_BLOCKS
+                );
+        this.tag(ModTags.Blocks.MOD_SABLE_MASS_NORMAL)
+                .addTags(
+                        ModTags.Blocks.VESSELPLATE_BLOCKS,
+                        ModTags.Blocks.VESSELGLASS_BLOCKS
+                );
+        this.tag(ModTags.Blocks.MOD_SABLE_MASS_HEAVY)
+                .addTags(
+                        ModTags.Blocks.ROCKRETE_BLOCKS
+                        );
+
+        this.tag(ModTags.Blocks.MOD_SABLE_VOLUME_HALF)
+                .addTags(
+                        ModTags.Blocks.ALL_FURNITURE_BLOCKS
+                );
+        this.tag(ModTags.Blocks.MOD_SABLE_VOLUME_QUARTER)
+                .addTags(
+                        ModTags.Blocks.METALWORKS_BLOCKS,
+                        ModTags.Blocks.PIPEWORKS_BLOCKS,
+                        ModTags.Blocks.DOOR_BLOCKS,
+                        ModTags.Blocks.TRAPDOOR_BLOCKS,
+                        ModTags.Blocks.TRUSS_BLOCKS
                 );
     }
 }

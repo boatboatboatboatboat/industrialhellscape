@@ -229,7 +229,7 @@
   "death.attack.horsepilldeathmessage": "%1$s has been horsed.",
 
   "gui.industrialhellscape.inventory_menu": "Industrial Hellscape Storage",
-  "gui.industrialhellscape.creative_tab": "Industrial Hellscape",
+  "gui.industrialhellscape.creative_tab": "InHell",
 
   "hud.industrialhellscape.invalid_placement_surface": "Invalid placement surface.",
   "hud.industrialhellscape.block_not_interactable": "Not an interactable block."

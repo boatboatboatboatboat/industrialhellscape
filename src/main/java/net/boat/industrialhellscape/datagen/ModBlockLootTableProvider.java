@@ -74,12 +74,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         //GRATE BLOCKS
         this.dropSelf(ModBlocks.HORIZONTAL_GRATE.get());
         this.dropSelf(ModBlocks.HORIZONTAL_CUTOUT_GRATE.get());
-//        this.dropSelf(ModBlocks.GRAY_HORIZONTAL_GRATE.get());
-//        this.dropSelf(ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get());
         this.dropSelf(ModBlocks.VERTICAL_GRATE.get());
         this.dropSelf(ModBlocks.VERTICAL_CUTOUT_GRATE.get());
-//        this.dropSelf(ModBlocks.GRAY_VERTICAL_GRATE.get());
-//        this.dropSelf(ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get());
 
         //VESSELPLATE BLOCKS
         this.dropSelf(ModBlocks.HORIZONTAL_VESSELPLATE.get());

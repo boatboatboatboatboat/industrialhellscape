@@ -16,9 +16,11 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 @EventBusSubscriber(modid = IndustrialHellscape.MOD_ID, value = Dist.CLIENT)
 public class IndustrialHellscapeClient {
     public IndustrialHellscapeClient(ModContainer container) {
+
         // Allows NeoForge to create a config screen for this mod's configs.
         // The config screen is accessed by going to the Mods screen > clicking on your mod > clicking on config.
         // Do not forget to add translations for your config options to the en_us.json file.
+        //This is currently the only reason there is a client-side main class for this mod.
         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
     }
 

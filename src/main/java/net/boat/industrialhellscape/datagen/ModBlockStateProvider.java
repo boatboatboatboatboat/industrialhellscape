@@ -34,12 +34,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genHorizontalSBI(ModBlocks.PIPEWORKS.get(), build3FaceTexturesBlockModel("pipeworks", "pipeworks", "pipeworks_front", "pipeworks_sides", "pipeworks_top"));
         genHorizontalSBI(ModBlocks.IHEA_FURNITURE_KIT.get(), build6FaceTexturesBlockModel("ihea_furniture_kit", "furniture_category_block", "ihea_furniture_kit_front", "ihea_furniture_kit_back", "ihea_furniture_kit_right", "ihea_furniture_kit_left", "ihea_furniture_kit_top", "ihea_furniture_kit_bottom"));
 
+        //Furnishing Category Blocks
         genHorizontalSBI(ModBlocks.SAFETY_FURNISHINGS.get(), build3FaceTexturesBlockModel("safety_furnishings", "furniture_category_block", "safety_furnishings_north", "safety_furnishings_west", "safety_furnishings_up"));
         genHorizontalSBI(ModBlocks.HYGIENE_FURNISHINGS.get(), build3FaceTexturesBlockModel("hygiene_furnishings","furniture_category_block", "hygiene_furnishings_north", "hygiene_furnishings_west", "hygiene_furnishings_up"));
         genHorizontalSBI(ModBlocks.INDUSTRIAL_FURNISHINGS.get(), build3FaceTexturesBlockModel("industrial_furnishings","furniture_category_block", "industrial_furnishings_north", "industrial_furnishings_west", "industrial_furnishings_up"));
         genHorizontalSBI(ModBlocks.TECHNOLOGY_FURNISHINGS.get(), build3FaceTexturesBlockModel("technology_furnishings","furniture_category_block", "technology_furnishings_north", "technology_furnishings_west", "technology_furnishings_up"));
         genHorizontalSBI(ModBlocks.AMENITY_FURNISHINGS.get(), build3FaceTexturesBlockModel("amenity_furnishings","furniture_category_block", "amenity_furnishings_north", "amenity_furnishings_west", "amenity_furnishings_up"));
-
 
         //Duct Blocks
         genFolderedSBI(ModBlocks.DUCT.get(), "duct");
@@ -62,11 +62,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genSimpleTextureToggleSBI(ModBlocks.VERTICAL_GRATE.get(),"grate", "solid");
         genSimpleTextureToggleSBI(ModBlocks.HORIZONTAL_CUTOUT_GRATE.get(),"grate","cutout");
         genSimpleTextureToggleSBI(ModBlocks.VERTICAL_CUTOUT_GRATE.get(),"grate","cutout");
-
-//        genSimpleTextureToggleSBI(ModBlocks.GRAY_HORIZONTAL_GRATE.get(),"grate","","", "solid");
-//        genSimpleTextureToggleSBI(ModBlocks.GRAY_VERTICAL_GRATE.get(),"grate","","", "solid");
-//        genSimpleTextureToggleSBI(ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get(),"grate","","","cutout");
-//        genSimpleTextureToggleSBI(ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get(),"grate","","", "solid");
 
         //Vesselplate Blocks
         genSimpleTextureToggleSBI(ModBlocks.RIVETED_VESSELPLATE.get(),"vesselplate",  "solid");
@@ -164,9 +159,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         //Doors and Trapdoors
         genDoorSBI(ModBlocks.ARMORED_DOOR.get() , "cutout");
-        //genTrapdoorSBI(ModBlocks.VESSELPLATE_TRAPDOOR.get(),"solid");
         genDoorSBI(ModBlocks.STAMPED_METAL_DOOR.get() , "solid");
         genDoorSBI(ModBlocks.BULKHEAD_DOOR.get() , "cutout");
+
         genTrapdoorSBI(ModBlocks.VENT_TRAPDOOR.get(),"solid");
 
         //FURNITURE BLOCKS WITH EXISTING BLOCK MODELS
@@ -311,8 +306,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //GENERATE ITEM MODEL
         simpleBlockItem(block, models().getExistingFile(modLoc(baseModelPath)));
     }
-
-
 
     private void genCustomTextureToggleSBI(Block block, String textureSubFolder, String nameStringToReplace, String nameStringReplacement, String renderType) {
 
@@ -710,7 +703,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 }, BlockStateProperties.WATERLOGGED);
 
     }
-
 
     private void genWAllVsCeilingSI(Block block, String folderName, String ceilingModelKey, String wallModelKey) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();

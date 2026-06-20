@@ -72,7 +72,7 @@ public class ModdedBedBlock extends Modelled2BMBlock implements SimpleWaterlogge
         //Code taken from vanilla BedBlock code with minor modifications
         if (level.isClientSide) {
 
-            level.addParticle(ParticleTypes.HEART, pos.getX(), pos.getY()+0.5, pos.getZ(), 0, 2, 0);
+//            level.addParticle(ParticleTypes.HEART, pos.getX(), pos.getY()+0.5, pos.getZ(), 0, 2, 0);
 
             return InteractionResult.CONSUME;
         } else {
