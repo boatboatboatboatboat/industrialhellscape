@@ -34,7 +34,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         //JOKE BLOCK
         this.add(ModBlocks.BODY_PILLOW.get(),
-                block -> createMultiBlockDrops(ModBlocks.BODY_PILLOW.get()));
+                createMultiBlockDrops(ModBlocks.BODY_PILLOW.get()));
 
         //BASE BUILDING BLOCKS
         this.dropSelf(ModBlocks.METALWORKS.get());
@@ -49,21 +49,23 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         //RAILING BLOCKS
         this.add(ModBlocks.YELLOW_STAIR_RAILING.get(),
-                block -> createStairRailingDrops(ModBlocks.YELLOW_STAIR_RAILING.get()));
+                createStairRailingDrops(ModBlocks.YELLOW_STAIR_RAILING.get()));
         this.add(ModBlocks.YELLOW_RAILING.get(),
-                block -> createRailingDrops(ModBlocks.YELLOW_RAILING.get()));
+                createRailingDrops(ModBlocks.YELLOW_RAILING.get()));
         this.add(ModBlocks.GRAY_STAIR_RAILING.get(),
-                block -> createStairRailingDrops(ModBlocks.GRAY_STAIR_RAILING.get()));
+                createStairRailingDrops(ModBlocks.GRAY_STAIR_RAILING.get()));
         this.add(ModBlocks.GRAY_RAILING.get(),
-                block -> createRailingDrops(ModBlocks.GRAY_RAILING.get()));
+                createRailingDrops(ModBlocks.GRAY_RAILING.get()));
         this.add(ModBlocks.BLACK_STAIR_RAILING.get(),
-                block -> createStairRailingDrops(ModBlocks.BLACK_STAIR_RAILING.get()));
+                createStairRailingDrops(ModBlocks.BLACK_STAIR_RAILING.get()));
         this.add(ModBlocks.BLACK_RAILING.get(),
-                block -> createRailingDrops(ModBlocks.BLACK_RAILING.get()));
+                createRailingDrops(ModBlocks.BLACK_RAILING.get()));
         this.add(ModBlocks.RUSTY_STAIR_RAILING.get(),
-                block -> createStairRailingDrops(ModBlocks.RUSTY_STAIR_RAILING.get()));
+                createStairRailingDrops(ModBlocks.RUSTY_STAIR_RAILING.get()));
         this.add(ModBlocks.RUSTY_RAILING.get(),
-                block -> createRailingDrops(ModBlocks.RUSTY_RAILING.get()));
+                createRailingDrops(ModBlocks.RUSTY_RAILING.get()));
+        this.add(ModBlocks.GRAY_ROCKRETE_PARAPET.get(),
+                createRailingDrops(ModBlocks.GRAY_ROCKRETE_PARAPET.get()));
 
         //DUCT BLOCKS
         this.dropSelf(ModBlocks.DUCT.get());
@@ -87,10 +89,10 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.VESSELPLATE_PILLAR.get());
         this.dropSelf(ModBlocks.SMOOTH_VESSELPLATE_STAIRS.get());
         this.add(ModBlocks.SMOOTH_VESSELPLATE_SLAB.get(),
-                block -> createSlabItemTable(ModBlocks.SMOOTH_VESSELPLATE_SLAB.get()));
+                createSlabItemTable(ModBlocks.SMOOTH_VESSELPLATE_SLAB.get()));
         this.dropSelf(ModBlocks.RIVETED_VESSELPLATE_STAIRS.get());
         this.add(ModBlocks.RIVETED_VESSELPLATE_SLAB.get(),
-                block -> createSlabItemTable(ModBlocks.RIVETED_VESSELPLATE_SLAB.get()));
+                createSlabItemTable(ModBlocks.RIVETED_VESSELPLATE_SLAB.get()));
 
         this.dropSelf(ModBlocks.GRAY_HORIZONTAL_VESSELPLATE.get());
         this.dropSelf(ModBlocks.GRAY_VERTICAL_VESSELPLATE.get());
@@ -101,17 +103,17 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.GRAY_VESSELPLATE_PILLAR.get());
         this.dropSelf(ModBlocks.SMOOTH_GRAY_VESSELPLATE_STAIRS.get());
         this.add(ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get(),
-                block -> createSlabItemTable(ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get()));
+                createSlabItemTable(ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get()));
         this.dropSelf(ModBlocks.GRAY_RIVETED_VESSELPLATE_STAIRS.get());
         this.add(ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get(),
-                block -> createSlabItemTable(ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get()));
+                createSlabItemTable(ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get()));
 
         //TRUSS BLOCKS
         this.dropSelf(ModBlocks.TRUSS.get());
         this.dropSelf(ModBlocks.CATWALK_TRUSS.get());
         this.dropSelf(ModBlocks.CATWALK_TRUSS_STAIRS.get());
-        this.add(ModBlocks.CATWALK_TRUSS_SLAB.get(), block -> createSlabItemTable(ModBlocks.CATWALK_TRUSS_SLAB.get()));
-        this.add(ModBlocks.TRUSS_SLAB.get(), block -> createSlabItemTable(ModBlocks.TRUSS_SLAB.get()));
+        this.add(ModBlocks.CATWALK_TRUSS_SLAB.get(), createSlabItemTable(ModBlocks.CATWALK_TRUSS_SLAB.get()));
+        this.add(ModBlocks.TRUSS_SLAB.get(), createSlabItemTable(ModBlocks.TRUSS_SLAB.get()));
         this.dropSelf(ModBlocks.TRUSS_STAIRS.get());
         
         //VESSELGLASS BLOCKS
@@ -123,60 +125,60 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.GRAY_TRUSS.get());
         this.dropSelf(ModBlocks.GRAY_CATWALK_TRUSS.get());
         this.dropSelf(ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.get());
-        this.add(ModBlocks.GRAY_CATWALK_TRUSS_SLAB.get(), block -> createSlabItemTable(ModBlocks.GRAY_CATWALK_TRUSS_SLAB.get()));
-        this.add(ModBlocks.GRAY_TRUSS_SLAB.get(), block -> createSlabItemTable(ModBlocks.GRAY_TRUSS_SLAB.get()));
+        this.add(ModBlocks.GRAY_CATWALK_TRUSS_SLAB.get(), createSlabItemTable(ModBlocks.GRAY_CATWALK_TRUSS_SLAB.get()));
+        this.add(ModBlocks.GRAY_TRUSS_SLAB.get(), createSlabItemTable(ModBlocks.GRAY_TRUSS_SLAB.get()));
         this.dropSelf(ModBlocks.GRAY_TRUSS_STAIRS.get());
 
         //ROCKRETE BLOCKS
         this.dropSelf(ModBlocks.GRAY_ROCKRETE.get());
         this.dropSelf(ModBlocks.ROUGH_GRAY_ROCKRETE.get());
         this.dropSelf(ModBlocks.GRAY_ROCKRETE_PILLAR.get());
-        this.add(ModBlocks.GRAY_ROCKRETE_SLAB.get(), block -> createSlabItemTable(ModBlocks.GRAY_ROCKRETE_SLAB.get()));
+        this.add(ModBlocks.GRAY_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.GRAY_ROCKRETE_SLAB.get()));
         this.dropSelf(ModBlocks.GRAY_ROCKRETE_STAIRS.get());
-        this.add(ModBlocks.ROUGH_GRAY_ROCKRETE_SLAB.get(), block -> createSlabItemTable(ModBlocks.ROUGH_GRAY_ROCKRETE_SLAB.get()));
+        this.add(ModBlocks.ROUGH_GRAY_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.ROUGH_GRAY_ROCKRETE_SLAB.get()));
         this.dropSelf(ModBlocks.ROUGH_GRAY_ROCKRETE_STAIRS.get());
 
         this.dropSelf(ModBlocks.GREEN_ROCKRETE.get());
         this.dropSelf(ModBlocks.ROUGH_GREEN_ROCKRETE.get());
         this.dropSelf(ModBlocks.GREEN_ROCKRETE_PILLAR.get());
-        this.add(ModBlocks.GREEN_ROCKRETE_SLAB.get(), block -> createSlabItemTable(ModBlocks.GREEN_ROCKRETE_SLAB.get()));
+        this.add(ModBlocks.GREEN_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.GREEN_ROCKRETE_SLAB.get()));
         this.dropSelf(ModBlocks.GREEN_ROCKRETE_STAIRS.get());
-        this.add(ModBlocks.ROUGH_GREEN_ROCKRETE_SLAB.get(), block -> createSlabItemTable(ModBlocks.ROUGH_GREEN_ROCKRETE_SLAB.get()));
+        this.add(ModBlocks.ROUGH_GREEN_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.ROUGH_GREEN_ROCKRETE_SLAB.get()));
         this.dropSelf(ModBlocks.ROUGH_GREEN_ROCKRETE_STAIRS.get());
 
         this.dropSelf(ModBlocks.YELLOW_ROCKRETE.get());
         this.dropSelf(ModBlocks.ROUGH_YELLOW_ROCKRETE.get());
         this.dropSelf(ModBlocks.YELLOW_ROCKRETE_PILLAR.get());
-        this.add(ModBlocks.YELLOW_ROCKRETE_SLAB.get(), block -> createSlabItemTable(ModBlocks.YELLOW_ROCKRETE_SLAB.get()));
+        this.add(ModBlocks.YELLOW_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.YELLOW_ROCKRETE_SLAB.get()));
         this.dropSelf(ModBlocks.YELLOW_ROCKRETE_STAIRS.get());
-        this.add(ModBlocks.ROUGH_YELLOW_ROCKRETE_SLAB.get(), block -> createSlabItemTable(ModBlocks.ROUGH_YELLOW_ROCKRETE_SLAB.get()));
+        this.add(ModBlocks.ROUGH_YELLOW_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.ROUGH_YELLOW_ROCKRETE_SLAB.get()));
         this.dropSelf(ModBlocks.ROUGH_YELLOW_ROCKRETE_STAIRS.get());
 
         this.dropSelf(ModBlocks.BLUE_ROCKRETE.get());
         this.dropSelf(ModBlocks.ROUGH_BLUE_ROCKRETE.get());
         this.dropSelf(ModBlocks.BLUE_ROCKRETE_PILLAR.get());
-        this.add(ModBlocks.BLUE_ROCKRETE_SLAB.get(), block -> createSlabItemTable(ModBlocks.BLUE_ROCKRETE_SLAB.get()));
+        this.add(ModBlocks.BLUE_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.BLUE_ROCKRETE_SLAB.get()));
         this.dropSelf(ModBlocks.BLUE_ROCKRETE_STAIRS.get());
-        this.add(ModBlocks.ROUGH_BLUE_ROCKRETE_SLAB.get(), block -> createSlabItemTable(ModBlocks.ROUGH_BLUE_ROCKRETE_SLAB.get()));
+        this.add(ModBlocks.ROUGH_BLUE_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.ROUGH_BLUE_ROCKRETE_SLAB.get()));
         this.dropSelf(ModBlocks.ROUGH_BLUE_ROCKRETE_STAIRS.get());
 
         this.dropSelf(ModBlocks.RED_ROCKRETE.get());
         this.dropSelf(ModBlocks.ROUGH_RED_ROCKRETE.get());
         this.dropSelf(ModBlocks.RED_ROCKRETE_PILLAR.get());
-        this.add(ModBlocks.RED_ROCKRETE_SLAB.get(), block -> createSlabItemTable(ModBlocks.RED_ROCKRETE_SLAB.get()));
+        this.add(ModBlocks.RED_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.RED_ROCKRETE_SLAB.get()));
         this.dropSelf(ModBlocks.RED_ROCKRETE_STAIRS.get());
-        this.add(ModBlocks.ROUGH_RED_ROCKRETE_SLAB.get(), block -> createSlabItemTable(ModBlocks.ROUGH_RED_ROCKRETE_SLAB.get()));
+        this.add(ModBlocks.ROUGH_RED_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.ROUGH_RED_ROCKRETE_SLAB.get()));
         this.dropSelf(ModBlocks.ROUGH_RED_ROCKRETE_STAIRS.get());
 
         this.dropSelf(ModBlocks.GRIMY_RESTROOM_TILE.get());
 
         //DOORS, TRAPDOORS
         this.add(ModBlocks.ARMORED_DOOR.get(),
-                block -> createDoorTable(ModBlocks.ARMORED_DOOR.get()));
+                createDoorTable(ModBlocks.ARMORED_DOOR.get()));
         this.add(ModBlocks.STAMPED_METAL_DOOR.get(),
-                block -> createDoorTable(ModBlocks.STAMPED_METAL_DOOR.get()));
+                createDoorTable(ModBlocks.STAMPED_METAL_DOOR.get()));
         this.add(ModBlocks.BULKHEAD_DOOR.get(),
-                block -> createDoorTable(ModBlocks.BULKHEAD_DOOR.get()));
+                createDoorTable(ModBlocks.BULKHEAD_DOOR.get()));
         //this.dropSelf(ModBlocks.VESSELPLATE_TRAPDOOR.get());
         this.dropSelf(ModBlocks.VENT_TRAPDOOR.get());
 
@@ -212,9 +214,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.FIRE_EXTINGUISHER.get());
         this.dropSelf(ModBlocks.SMOKE_ALARM.get());
         this.add(ModBlocks.OPERATING_TABLE.get(),
-                block -> createMultiBlockDrops(ModBlocks.OPERATING_TABLE.get()));
+                createMultiBlockDrops(ModBlocks.OPERATING_TABLE.get()));
         this.add(ModBlocks.MEDICAL_BED.get(),
-                block -> createMultiBlockDrops(ModBlocks.MEDICAL_BED.get()));
+                createMultiBlockDrops(ModBlocks.MEDICAL_BED.get()));
         this.dropSelf(ModBlocks.IV_DRIPSTAND.get());
         this.dropSelf(ModBlocks.VITALS_MONITOR.get());
 
@@ -224,9 +226,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         this.dropSelf(ModBlocks.LOCKER_BOX.get());
         this.add(ModBlocks.LARGE_LOCKER.get(),
-                block -> createMultiBlockDrops(ModBlocks.LARGE_LOCKER.get()));
+                createMultiBlockDrops(ModBlocks.LARGE_LOCKER.get()));
         this.add(ModBlocks.WORK_LIGHT_STAND.get(),
-                block -> createMultiBlockDrops(ModBlocks.WORK_LIGHT_STAND.get()));
+                createMultiBlockDrops(ModBlocks.WORK_LIGHT_STAND.get()));
         this.dropSelf(ModBlocks.FLOOR_WORK_LIGHT.get());
         this.dropSelf(ModBlocks.FUEL_DRUM.get());
         this.dropSelf(ModBlocks.CCTV_CAMERA.get());

@@ -1,0 +1,52 @@
+{
+  "multipart": [
+    {
+      "when": { "north": true },
+      "apply": { "model": "industrialhellscape:block/gray_rockrete_parapet/gray_rockrete_parapet_wall", "y": 0 }
+    },
+    {
+      "when": { "north": true },
+      "apply": { "model": "industrialhellscape:block/gray_rockrete_parapet/gray_rockrete_parapet_corner", "y": 0 }
+    },
+    {
+      "when": { "north": true },
+      "apply": { "model": "industrialhellscape:block/gray_rockrete_parapet/gray_rockrete_parapet_corner", "y": 90 }
+    },
+    {
+      "when": { "east": true },
+      "apply": { "model": "industrialhellscape:block/gray_rockrete_parapet/gray_rockrete_parapet_wall", "y": 90 }
+    },
+    {
+      "when": { "east": true },
+      "apply": { "model": "industrialhellscape:block/gray_rockrete_parapet/gray_rockrete_parapet_corner", "y": 90 }
+    },
+    {
+      "when": { "east": true },
+      "apply": { "model": "industrialhellscape:block/gray_rockrete_parapet/gray_rockrete_parapet_corner", "y": 180 }
+    },
+    {
+      "when": { "south": true },
+      "apply": { "model": "industrialhellscape:block/gray_rockrete_parapet/gray_rockrete_parapet_wall", "y": 180 }
+    },
+    {
+      "when": { "south": true },
+      "apply": { "model": "industrialhellscape:block/gray_rockrete_parapet/gray_rockrete_parapet_corner", "y": 180 }
+    },
+    {
+      "when": { "south": true },
+      "apply": { "model": "industrialhellscape:block/gray_rockrete_parapet/gray_rockrete_parapet_corner", "y": 270 }
+    },
+    {
+      "when": { "west": true },
+      "apply": { "model": "industrialhellscape:block/gray_rockrete_parapet/gray_rockrete_parapet_wall", "y": 270 }
+    },
+    {
+      "when": { "west": true },
+      "apply": { "model": "industrialhellscape:block/gray_rockrete_parapet/gray_rockrete_parapet_corner", "y": 270 }
+    },
+    {
+      "when": { "west": true },
+      "apply": { "model": "industrialhellscape:block/gray_rockrete_parapet/gray_rockrete_parapet_corner", "y": 0 }
+    }
+  ]
+}

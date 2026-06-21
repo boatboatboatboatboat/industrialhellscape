@@ -1,4 +1,4 @@
-package net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks;
+package net.boat.industrialhellscape.block.modded_block_classes.Experimental;
 
 import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
 import net.boat.industrialhellscape.util.ModTags;
@@ -39,7 +39,7 @@ import javax.annotation.Nonnull;
 // The block-state .json file is in a multipart format, like sea pickles.
 // Multiple placements inside that block to occupy vacant directions is supported. datagen/ModBlockLootTableProvider has a method to datagen the appropriate loot table.
 
-public class ParapetBlock extends Block implements SimpleWaterloggedBlock{
+public class RailingBlock extends Block implements SimpleWaterloggedBlock{
 
     private static final double RAILING_HEIGHT = 16; //16 units is a full block height
     private static final double RAILING_COLLISION_HEIGHT = 24; //Vanilla wall value
@@ -68,7 +68,7 @@ public class ParapetBlock extends Block implements SimpleWaterloggedBlock{
     public static final BooleanProperty WEST_FENCE  = BlockStateProperties.WEST;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    public ParapetBlock(Properties pProperties) {
+    public RailingBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.defaultBlockState()
                 .setValue(NORTH_FENCE, false)
@@ -108,7 +108,7 @@ public class ParapetBlock extends Block implements SimpleWaterloggedBlock{
     public boolean canBeReplaced(BlockState pState, @Nonnull BlockPlaceContext pUseContext) {
         //Is this block a RailingBlock? Allow additional block placement into the occupied space only if you have another block like this in your hand.
         //Like for sea-pickles or candles.
-        return pState.getBlock() instanceof ParapetBlock ? pUseContext.getItemInHand().is(this.asItem()) : super.canBeReplaced(pState, pUseContext);
+        return pState.getBlock() instanceof RailingBlock ? pUseContext.getItemInHand().is(this.asItem()) : super.canBeReplaced(pState, pUseContext);
     }
 
     @Nullable
@@ -119,7 +119,7 @@ public class ParapetBlock extends Block implements SimpleWaterloggedBlock{
         Direction facing = pContext.getHorizontalDirection().getOpposite();
         FluidState fluid = level.getFluidState(position);
         Block clickedBlock = level.getBlockState(position).getBlock();
-        boolean isRailingBlock = clickedBlock instanceof ParapetBlock;
+        boolean isRailingBlock = clickedBlock instanceof RailingBlock;
 
         if(isRailingBlock) { //If there is a RailingBlock at the location of placement
             BlockState state = level.getBlockState(position); //Get the current block-state of the RailingBlock (which should already be there)

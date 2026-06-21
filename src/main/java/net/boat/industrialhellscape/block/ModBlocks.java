@@ -4,10 +4,10 @@ import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks.AxialPillarBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks.ConnectedFurnitureBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBlocks.*;
+import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.RailingBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.StorageBlocks.*;
 import net.boat.industrialhellscape.block.modded_block_classes.FallableBlocks.FacingFallableBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.*;
-import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.RailingBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.StairRailingBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.*;
 import net.boat.industrialhellscape.block.modded_block_classes.TextureToggleBlocks.SimpleTextureToggleBlock;
@@ -262,7 +262,8 @@ public class ModBlocks {
     public static final DeferredBlock<Block> YELLOW_RAILING = registerBlockAndBlockItem("yellow_railing",
             () -> new RailingBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .noOcclusion()
+                    .noOcclusion(),
+                    2
             )
     );
     public static final DeferredBlock<Block> YELLOW_STAIR_RAILING = registerBlockAndBlockItem("yellow_stair_railing",
@@ -274,7 +275,8 @@ public class ModBlocks {
     public static final DeferredBlock<Block> GRAY_RAILING = registerBlockAndBlockItem("gray_railing",
             () -> new RailingBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .noOcclusion()
+                    .noOcclusion(),
+                    2
             )
     );
     public static final DeferredBlock<Block> GRAY_STAIR_RAILING = registerBlockAndBlockItem("gray_stair_railing",
@@ -286,7 +288,8 @@ public class ModBlocks {
     public static final DeferredBlock<Block> BLACK_RAILING = registerBlockAndBlockItem("black_railing",
             () -> new RailingBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .noOcclusion()
+                    .noOcclusion(),
+                    2
             )
     );
     public static final DeferredBlock<Block> BLACK_STAIR_RAILING = registerBlockAndBlockItem("black_stair_railing",
@@ -298,13 +301,21 @@ public class ModBlocks {
     public static final DeferredBlock<Block> RUSTY_RAILING = registerBlockAndBlockItem("rusty_railing",
             () -> new RailingBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .noOcclusion()
+                    .noOcclusion(),
+                    2
             )
     );
     public static final DeferredBlock<Block> RUSTY_STAIR_RAILING = registerBlockAndBlockItem("rusty_stair_railing",
             () -> new StairRailingBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion()
+            )
+    );
+    public static final DeferredBlock<Block> GRAY_ROCKRETE_PARAPET = registerBlockAndBlockItem("gray_rockrete_parapet",
+            () -> new RailingBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    4
             )
     );
 

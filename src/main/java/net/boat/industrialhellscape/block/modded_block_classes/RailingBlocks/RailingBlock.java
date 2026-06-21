@@ -4,6 +4,7 @@ import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterf
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -42,23 +43,24 @@ import javax.annotation.Nonnull;
 public class RailingBlock extends Block implements SimpleWaterloggedBlock{
 
     private static final double RAILING_HEIGHT = 16; //16 units is a full block height
+    private double RAILING_THICKNESS;
     private static final double RAILING_COLLISION_HEIGHT = 24; //Vanilla wall value
 
     // INTERACTION SHAPE, black outline in-game is based on this shape.
-    private static final VoxelShape SHAPE_NORTH = Block.box(0d, 0d, 14d, 16d, RAILING_HEIGHT, 16d);
-    private static final VoxelShape SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH);
-    private static final VoxelShape SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH);
-    private static final VoxelShape SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH);
+    private final VoxelShape SHAPE_NORTH;//
+    private final VoxelShape SHAPE_SOUTH;// = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH);
+    private final VoxelShape SHAPE_EAST;// = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH);
+    private final VoxelShape SHAPE_WEST;// = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH);
 
     // COLLISION SHAPE (FOR PLAYER), arrows will collide with hitbox portion that's within the 16x16x16 block boundary only.
     // Meaning despite the RAILING_COLLISION_HEIGHT being greater than 16 units, arrows can still fly through above the edge of the block.
     // However, player will still be obstructed from jumping over it, just like fences. For now this is intended behavior.
     // The modded interface HitboxRotationInterface is used to rotate the voxelshapes along appropriate cardinal directions.
     //There is a gap from y=0 to y=15. This allows you to shoot arrows through the railing blocks since they are pretty thin.
-    private static final VoxelShape COLLISON_SHAPE_NORTH = Block.box(0d, 15d, 14d, 16d, RAILING_COLLISION_HEIGHT, 16d);
-    private static final VoxelShape COLLISION_SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, COLLISON_SHAPE_NORTH);
-    private static final VoxelShape COLLISION_SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, COLLISON_SHAPE_NORTH);
-    private static final VoxelShape COLLISION_SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, COLLISON_SHAPE_NORTH);
+    private final VoxelShape COLLISON_SHAPE_NORTH;// = Block.box(0d, 15d, 16d-RAILING_THICKNESS, 16d, RAILING_COLLISION_HEIGHT, 16d);
+    private final VoxelShape COLLISION_SHAPE_SOUTH;// = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, COLLISON_SHAPE_NORTH);
+    private final VoxelShape COLLISION_SHAPE_EAST;// = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, COLLISON_SHAPE_NORTH);
+    private final VoxelShape COLLISION_SHAPE_WEST;// = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, COLLISON_SHAPE_NORTH);
 
     // Boolean properties to check whether there is an additional fence at that direction (multiple can be placed down in each of the four cardinal directions in one block space)
     // These "superposition" block properties are handled via a block-state .json file handling "multi-block" states.
@@ -68,7 +70,7 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock{
     public static final BooleanProperty WEST_FENCE  = BlockStateProperties.WEST;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    public RailingBlock (Properties pProperties) {
+    public RailingBlock(Properties pProperties, double railingThickness) {
         super(pProperties);
         this.registerDefaultState(this.defaultBlockState()
                 .setValue(NORTH_FENCE, false)
@@ -77,6 +79,17 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock{
                 .setValue(WEST_FENCE,  false)
                 .setValue(BlockStateProperties.WATERLOGGED, false)
         );
+        this.RAILING_THICKNESS = railingThickness;
+
+        this.SHAPE_NORTH = Block.box(0d, 0d, 16d-RAILING_THICKNESS, 16d, RAILING_HEIGHT, 16d);
+        this.SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH);
+        this.SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH);
+        this.SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH);
+
+        this.COLLISON_SHAPE_NORTH = Block.box(0d, 15d, 16d-RAILING_THICKNESS, 16d, RAILING_COLLISION_HEIGHT, 16d);
+        this.COLLISION_SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, COLLISON_SHAPE_NORTH);
+        this.COLLISION_SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, COLLISON_SHAPE_NORTH);
+        this.COLLISION_SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, COLLISON_SHAPE_NORTH);
     }
 
     @Override
@@ -106,23 +119,60 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock{
     }
 
     public boolean canBeReplaced(BlockState pState, @Nonnull BlockPlaceContext pUseContext) {
-        //Is this block a RailingBlock? Allow additional block placement into the occupied space only if you have another block like this in your hand.
-        //Like for sea-pickles or candles.
-        return pState.getBlock() instanceof RailingBlock ? pUseContext.getItemInHand().is(this.asItem()) : super.canBeReplaced(pState, pUseContext);
+        Player player = pUseContext.getPlayer();
+        Level level = pUseContext.getLevel();
+        BlockPos position = pUseContext.getClickedPos();
+        Direction facing = pUseContext.getHorizontalDirection().getOpposite();
+        BlockState state = level.getBlockState(position); //Get the current block-state of the RailingBlock (which should already be there)
+
+        //You may place another block inside this block if
+        //The selected block is an instance of this class AND
+        //The item in hand is this AND
+        //A player exists that is placing the block AND
+        //Player is NOT facing an existing railing
+        return pState.getBlock() instanceof RailingBlock && pUseContext.getItemInHand().is(this.asItem()) && (player != null) && !playerFacesExistingRailing(facing, player, state);
+    }
+
+    public static boolean playerFacesExistingRailing(Direction facing, Player player, BlockState state) {
+        switch(facing) {
+            case NORTH -> {
+                if (state.getValue(NORTH_FENCE)) {
+                    return state.getValue(NORTH_FENCE);
+                }
+            }
+            case SOUTH -> {
+                if (state.getValue(SOUTH_FENCE)) {
+                    return state.getValue(SOUTH_FENCE);
+                }
+            }
+            case WEST -> {
+                if (state.getValue(WEST_FENCE)) {
+                    return state.getValue(WEST_FENCE);
+                }
+            }
+            case EAST -> {
+                if (state.getValue(EAST_FENCE)) {
+                    return state.getValue(EAST_FENCE);
+                }
+            }
+        }
+        return false;
     }
 
     @Nullable
     @Override
     public BlockState getStateForPlacement (BlockPlaceContext pContext) {
+
+        Player player = pContext.getPlayer();
         Level level = pContext.getLevel();
         BlockPos position = pContext.getClickedPos();
         Direction facing = pContext.getHorizontalDirection().getOpposite();
         FluidState fluid = level.getFluidState(position);
         Block clickedBlock = level.getBlockState(position).getBlock();
+        BlockState state = level.getBlockState(position); //Get the current block-state of the RailingBlock (which should already be there)
         boolean isRailingBlock = clickedBlock instanceof RailingBlock;
 
-        if(isRailingBlock) { //If there is a RailingBlock at the location of placement
-            BlockState state = level.getBlockState(position); //Get the current block-state of the RailingBlock (which should already be there)
+        if(isRailingBlock) { //If there is a RailingBlock at the location of placement - THIS OVERRIDES BLOCK PLACEMENT ON TOP OF FORMER BLOCK PLS PLS PLS FIX
             switch(facing) { //Assign true to the property corresponding with the direction player is facing to place a new railing in that direction next to existing ones
                 case NORTH -> state = state.setValue(NORTH_FENCE, true);
                 case SOUTH -> state = state.setValue(SOUTH_FENCE, true);
