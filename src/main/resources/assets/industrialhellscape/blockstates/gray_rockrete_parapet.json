@@ -47,6 +47,22 @@
     {
       "when": { "west": true },
       "apply": { "model": "industrialhellscape:block/gray_rockrete_parapet/gray_rockrete_parapet_corner", "y": 0 }
+    },
+    {
+      "when": { "north_west": true },
+      "apply": { "model": "industrialhellscape:block/gray_rockrete_parapet/gray_rockrete_parapet_outer_corner", "y": 0 }
+    },
+    {
+      "when": { "north_east": true },
+      "apply": { "model": "industrialhellscape:block/gray_rockrete_parapet/gray_rockrete_parapet_outer_corner", "y": 90 }
+    },
+    {
+      "when": { "south_east": true },
+      "apply": { "model": "industrialhellscape:block/gray_rockrete_parapet/gray_rockrete_parapet_outer_corner", "y": 180 }
+    },
+    {
+      "when": { "south_west": true },
+      "apply": { "model": "industrialhellscape:block/gray_rockrete_parapet/gray_rockrete_parapet_outer_corner", "y": 270 }
     }
   ]
 }

@@ -94,13 +94,13 @@ public class IndustrialHellscape {
         }
 
 
-        @SubscribeEvent
-        public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
-            event.registerBlockEntityRenderer(ModBlockEntities.DEBUG_BE.get(), DebugBERenderer::new);
-        }
-        @SubscribeEvent
-        public static void registerScreens(RegisterMenuScreensEvent event) {
-            event.register(ModMenuTypes.DEBUG_BE_MENU.get(), DebugBEScreen::new);
-        }
+//        @SubscribeEvent
+//        public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
+//            event.registerBlockEntityRenderer(ModBlockEntities.DEBUG_BE.get(), DebugBERenderer::new);
+//        }
+//        @SubscribeEvent
+//        public static void registerScreens(RegisterMenuScreensEvent event) {
+//            event.register(ModMenuTypes.DEBUG_BE_MENU.get(), DebugBEScreen::new);
+//        }
     }
 }

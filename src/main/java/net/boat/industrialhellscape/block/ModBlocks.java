@@ -4,6 +4,7 @@ import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks.AxialPillarBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks.ConnectedFurnitureBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBlocks.*;
+import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.ParapetBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.RailingBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.StorageBlocks.*;
 import net.boat.industrialhellscape.block.modded_block_classes.FallableBlocks.FacingFallableBlock;
@@ -263,7 +264,8 @@ public class ModBlocks {
             () -> new RailingBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
-                    2
+                    2,
+                    15
             )
     );
     public static final DeferredBlock<Block> YELLOW_STAIR_RAILING = registerBlockAndBlockItem("yellow_stair_railing",
@@ -276,7 +278,8 @@ public class ModBlocks {
             () -> new RailingBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
-                    2
+                    2,
+                    15
             )
     );
     public static final DeferredBlock<Block> GRAY_STAIR_RAILING = registerBlockAndBlockItem("gray_stair_railing",
@@ -289,7 +292,8 @@ public class ModBlocks {
             () -> new RailingBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
-                    2
+                    2,
+                    15
             )
     );
     public static final DeferredBlock<Block> BLACK_STAIR_RAILING = registerBlockAndBlockItem("black_stair_railing",
@@ -302,7 +306,8 @@ public class ModBlocks {
             () -> new RailingBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
-                    2
+                    2,
+                    15
             )
     );
     public static final DeferredBlock<Block> RUSTY_STAIR_RAILING = registerBlockAndBlockItem("rusty_stair_railing",
@@ -312,10 +317,43 @@ public class ModBlocks {
             )
     );
     public static final DeferredBlock<Block> GRAY_ROCKRETE_PARAPET = registerBlockAndBlockItem("gray_rockrete_parapet",
-            () -> new RailingBlock(BlockBehaviour
+            () -> new ParapetBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
-                    4
+                    4,
+                    0
+            )
+    );
+    public static final DeferredBlock<Block> RED_ROCKRETE_PARAPET = registerBlockAndBlockItem("red_rockrete_parapet",
+            () -> new ParapetBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    4,
+                    0
+            )
+    );
+    public static final DeferredBlock<Block> YELLOW_ROCKRETE_PARAPET = registerBlockAndBlockItem("yellow_rockrete_parapet",
+            () -> new ParapetBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    4,
+                    0
+            )
+    );
+    public static final DeferredBlock<Block> BLUE_ROCKRETE_PARAPET = registerBlockAndBlockItem("blue_rockrete_parapet",
+            () -> new ParapetBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    4,
+                    0
+            )
+    );
+    public static final DeferredBlock<Block> GREEN_ROCKRETE_PARAPET = registerBlockAndBlockItem("green_rockrete_parapet",
+            () -> new ParapetBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    4,
+                    0
             )
     );
 

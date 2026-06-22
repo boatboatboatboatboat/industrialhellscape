@@ -112,6 +112,11 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.GRAY_ROCKRETE_STAIRS.get(),
                         ModBlocks.ROUGH_GRAY_ROCKRETE_SLAB.get(),
                         ModBlocks.ROUGH_GRAY_ROCKRETE_STAIRS.get(),
+                        ModBlocks.GRAY_ROCKRETE_PARAPET.get(),
+                        ModBlocks.RED_ROCKRETE_PARAPET.get(),
+                        ModBlocks.YELLOW_ROCKRETE_PARAPET.get(),
+                        ModBlocks.BLUE_ROCKRETE_PARAPET.get(),
+                        ModBlocks.GREEN_ROCKRETE_PARAPET.get(),
 
                         ModBlocks.RED_ROCKRETE.get(),
                         ModBlocks.ROUGH_RED_ROCKRETE.get(),

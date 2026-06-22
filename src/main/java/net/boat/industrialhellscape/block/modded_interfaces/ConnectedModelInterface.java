@@ -60,6 +60,7 @@ public interface ConnectedModelInterface {
             }
         }
         if (level.isClientSide) return;
+
         Direction directionClicked = state.getValue(getFacingProperty()).getOpposite();
 
         BlockState getPositiveState = placementDirection == MultiBlockPlacementDirection.HORIZONTAL ? getStateAtRelativeLeft(level, positionClicked, directionClicked) : getStateRelativeTop(level, positionClicked);

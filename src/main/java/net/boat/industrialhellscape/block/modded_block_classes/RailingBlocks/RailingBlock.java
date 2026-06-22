@@ -1,16 +1,9 @@
 package net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks;
 
 import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
-import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -22,7 +15,6 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -43,8 +35,10 @@ import javax.annotation.Nonnull;
 public class RailingBlock extends Block implements SimpleWaterloggedBlock{
 
     private static final double RAILING_HEIGHT = 16; //16 units is a full block height
-    private double RAILING_THICKNESS;
     private static final double RAILING_COLLISION_HEIGHT = 24; //Vanilla wall value
+
+    private double RAILING_THICKNESS;
+    private double RAILING_COLLISION_SHAPE_BASE;
 
     // INTERACTION SHAPE, black outline in-game is based on this shape.
     private final VoxelShape SHAPE_NORTH;//
@@ -70,7 +64,7 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock{
     public static final BooleanProperty WEST_FENCE  = BlockStateProperties.WEST;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    public RailingBlock(Properties pProperties, double railingThickness) {
+    public RailingBlock(Properties pProperties, double railingThickness, double railingCollisionShapeBase) {
         super(pProperties);
         this.registerDefaultState(this.defaultBlockState()
                 .setValue(NORTH_FENCE, false)
@@ -80,49 +74,27 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock{
                 .setValue(BlockStateProperties.WATERLOGGED, false)
         );
         this.RAILING_THICKNESS = railingThickness;
+        this.RAILING_COLLISION_SHAPE_BASE = railingCollisionShapeBase;
 
-        this.SHAPE_NORTH = Block.box(0d, 0d, 16d-RAILING_THICKNESS, 16d, RAILING_HEIGHT, 16d);
+        this.SHAPE_NORTH = Block.box(0d, 0d, 0, 16d, RAILING_HEIGHT, RAILING_THICKNESS);
         this.SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH);
         this.SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH);
         this.SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH);
 
-        this.COLLISON_SHAPE_NORTH = Block.box(0d, 15d, 16d-RAILING_THICKNESS, 16d, RAILING_COLLISION_HEIGHT, 16d);
+        this.COLLISON_SHAPE_NORTH = Block.box(0d, RAILING_COLLISION_SHAPE_BASE, 0, 16d, RAILING_COLLISION_HEIGHT, RAILING_THICKNESS);
         this.COLLISION_SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, COLLISON_SHAPE_NORTH);
         this.COLLISION_SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, COLLISON_SHAPE_NORTH);
         this.COLLISION_SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, COLLISON_SHAPE_NORTH);
     }
 
-    @Override
-    protected @NotNull ItemInteractionResult useItemOn(ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
-        boolean playerHasTool = stack.is(ModTags.Items.IH_COMPATIBLE_TOOLS);
-
-        //Rotates the current railings counterclockwise.
-        if(playerHasTool) {
-            boolean north = state.getValue(NORTH_FENCE);
-            boolean south = state.getValue(SOUTH_FENCE);
-            boolean east = state.getValue(EAST_FENCE);
-            boolean west = state.getValue(WEST_FENCE);
-
-            state = state.setValue(NORTH_FENCE, east);
-            state = state.setValue(EAST_FENCE, south);
-            state = state.setValue(SOUTH_FENCE, west);
-            state = state.setValue(WEST_FENCE, north);
-
-            level.setBlock(pos, state, 3);
-
-            level.playSound(player, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 0.25f, 1f);
-            return ItemInteractionResult.SUCCESS;
-        } else {
-            //No interaction if no eligible tool is equipped.
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-        }
-    }
-
     public boolean canBeReplaced(BlockState pState, @Nonnull BlockPlaceContext pUseContext) {
+        //Fixed to allow RailingBlocks to be placed on top of existing blocks if appropriate conditions met.
+
         Player player = pUseContext.getPlayer();
         Level level = pUseContext.getLevel();
         BlockPos position = pUseContext.getClickedPos();
-        Direction facing = pUseContext.getHorizontalDirection().getOpposite();
+        Direction facing = pUseContext.getHorizontalDirection(); //.getOpposite(); //Makes more sense to not get direction opposite of player facing for these types of blocks.
+
         BlockState state = level.getBlockState(position); //Get the current block-state of the RailingBlock (which should already be there)
 
         //You may place another block inside this block if
@@ -130,10 +102,10 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock{
         //The item in hand is this AND
         //A player exists that is placing the block AND
         //Player is NOT facing an existing railing
-        return pState.getBlock() instanceof RailingBlock && pUseContext.getItemInHand().is(this.asItem()) && (player != null) && !playerFacesExistingRailing(facing, player, state);
+        return pState.getBlock() instanceof RailingBlock && pUseContext.getItemInHand().is(this.asItem()) && (player != null) && !playerFacesExistingRailing(facing, state);
     }
 
-    public static boolean playerFacesExistingRailing(Direction facing, Player player, BlockState state) {
+    public static boolean playerFacesExistingRailing(Direction facing, BlockState state) {
         switch(facing) {
             case NORTH -> {
                 if (state.getValue(NORTH_FENCE)) {
@@ -166,7 +138,7 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock{
         Player player = pContext.getPlayer();
         Level level = pContext.getLevel();
         BlockPos position = pContext.getClickedPos();
-        Direction facing = pContext.getHorizontalDirection().getOpposite();
+        Direction facing = pContext.getHorizontalDirection(); //.getOpposite(); //Makes more sense to not get direction opposite of player facing for these types of blocks.
         FluidState fluid = level.getFluidState(position);
         Block clickedBlock = level.getBlockState(position).getBlock();
         BlockState state = level.getBlockState(position); //Get the current block-state of the RailingBlock (which should already be there)

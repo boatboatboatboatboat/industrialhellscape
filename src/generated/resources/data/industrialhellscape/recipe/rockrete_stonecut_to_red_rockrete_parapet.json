@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "tag": "industrialhellscape:rockrete_smeltable_item"
+  },
+  "result": {
+    "count": 4,
+    "id": "industrialhellscape:red_rockrete_parapet"
+  }
+}

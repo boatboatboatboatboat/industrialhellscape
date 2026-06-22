@@ -1,5 +1,6 @@
 {
   "industrialhellscape.configuration.tagged_pickaxe_compat": "Pickaxe Item-Tag compatible",
+  "industrialhellscape.configuration.crouch_to_change_states": "Crouching toggles CTM texture block-states for certain blocks",
 
   "item.industrialhellscape.inhell_haven_device": "HAVEN Tool",
   "item.industrialhellscape.job_application": "Job Application",
@@ -66,6 +67,11 @@
   "block.industrialhellscape.rough_gray_rockrete_stairs": "Gray Rockrete Stairs",
   "block.industrialhellscape.rough_gray_rockrete_slab": "Gray Rockrete Slab",
   "block.industrialhellscape.gray_rockrete_pillar": "Gray Rockrete Pillar",
+  "block.industrialhellscape.gray_rockrete_parapet": "Gray Rockrete Parapet",
+  "block.industrialhellscape.red_rockrete_parapet": "Red Rockrete Parapet",
+  "block.industrialhellscape.yellow_rockrete_parapet": "Yellow Rockrete Parapet",
+  "block.industrialhellscape.blue_rockrete_parapet": "Blue Rockrete Parapet",
+  "block.industrialhellscape.green_rockrete_parapet": "Green Rockrete Parapet",
 
   "block.industrialhellscape.green_rockrete": "Green Rockrete",
   "block.industrialhellscape.rough_green_rockrete": "Rough Green Rockrete",
@@ -74,6 +80,7 @@
   "block.industrialhellscape.rough_green_rockrete_stairs": "Rough Green Rockrete Stairs",
   "block.industrialhellscape.rough_green_rockrete_slab": "Rough Green Rockrete Slab",
   "block.industrialhellscape.green_rockrete_pillar": "Green Rockrete Pillar",
+  "block.industrialhellscape.green_rockrete_parapet": "Green Rockrete Parapet",
 
   "block.industrialhellscape.yellow_rockrete": "Yellow Rockrete",
   "block.industrialhellscape.rough_yellow_rockrete": "Rough Yellow Rockrete",
@@ -82,6 +89,7 @@
   "block.industrialhellscape.rough_yellow_rockrete_stairs": "Rough Yellow Rockrete Stairs",
   "block.industrialhellscape.rough_yellow_rockrete_slab": "Rough Yellow Rockrete Slab",
   "block.industrialhellscape.yellow_rockrete_pillar": "Yellow Rockrete Pillar",
+  "block.industrialhellscape.yellow_rockrete_parapet": "Yellow Rockrete Parapet",
 
   "block.industrialhellscape.blue_rockrete": "Blue Rockrete",
   "block.industrialhellscape.rough_blue_rockrete": "Rough Blue Rockrete",
@@ -90,6 +98,7 @@
   "block.industrialhellscape.rough_blue_rockrete_stairs": "Rough Blue Rockrete Stairs",
   "block.industrialhellscape.rough_blue_rockrete_slab": "Rough Blue Rockrete Slab",
   "block.industrialhellscape.blue_rockrete_pillar": "Blue Rockrete Pillar",
+  "block.industrialhellscape.blue_rockrete_parapet": "Blue Rockrete Parapet",
 
   "block.industrialhellscape.red_rockrete": "Red Rockrete",
   "block.industrialhellscape.rough_red_rockrete": "Rough Red Rockrete",
@@ -98,6 +107,7 @@
   "block.industrialhellscape.rough_red_rockrete_stairs": "Rough Red Rockrete Stairs",
   "block.industrialhellscape.rough_red_rockrete_slab": "Rough Red Rockrete Slab",
   "block.industrialhellscape.red_rockrete_pillar": "Red Rockrete Pillar",
+  "block.industrialhellscape.red_rockrete_parapet": "Red Rockrete Parapet",
 
   "block.industrialhellscape.gray_bolted_bracket": "Gray Bolted Bracket",
   "block.industrialhellscape.black_bolted_bracket": "Black Bolted Bracket",

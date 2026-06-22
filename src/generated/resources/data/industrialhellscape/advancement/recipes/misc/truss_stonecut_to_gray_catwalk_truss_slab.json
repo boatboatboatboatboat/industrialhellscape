@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "industrialhellscape:strut_stonecut_to_truss"
+        "recipe": "industrialhellscape:truss_stonecut_to_gray_catwalk_truss_slab"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "industrialhellscape:strut_stonecut_to_truss"
+      "industrialhellscape:truss_stonecut_to_gray_catwalk_truss_slab"
     ]
   }
 }

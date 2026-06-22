@@ -2,9 +2,9 @@
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"1": "industrialhellscape:block/rockrete_parapets/gray_rockrete_parapet",
+		"1": "industrialhellscape:block/rockrete_parapets/red_rockrete_parapet",
 		"2": "industrialhellscape:block/rockrete_parapets/rockrete_parapet",
-		"particle": "industrialhellscape:block/rockrete_parapets/gray_rockrete_parapet"
+		"particle": "industrialhellscape:block/rockrete_parapets/red_rockrete_parapet"
 	},
 	"elements": [
 		{

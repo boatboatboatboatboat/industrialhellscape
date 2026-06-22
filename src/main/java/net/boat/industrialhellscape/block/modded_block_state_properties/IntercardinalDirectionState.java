@@ -11,7 +11,8 @@ public enum IntercardinalDirectionState implements StringRepresentable {
     NE("north_east"), //Only these four states are allowed to be called from the enum DynamicConnectionState
     NW("north_west"),
     SE("south_east"),
-    SW("south_west");
+    SW("south_west"),
+    NONE("none");
 
     private final String name;
     private IntercardinalDirectionState(String type) {this.name = type;}

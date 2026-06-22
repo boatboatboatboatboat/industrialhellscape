@@ -1,5 +1,6 @@
 package net.boat.industrialhellscape.block.modded_block_classes.TextureToggleBlocks;
 
+import net.boat.industrialhellscape.CommonModConfig;
 import net.boat.industrialhellscape.block.modded_interfaces.ToolUseInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -37,7 +38,7 @@ public class SimpleTextureToggleBlock extends Block implements ToolUseInterface 
         BlockState state = this.defaultBlockState();
 
         if(player != null) {
-            if(player.isCrouching()) {
+            if(player.isCrouching() && CommonModConfig.crouchToChangeBlockStatesEnabled()) {
                 state = state.setValue(ALT_STATE,true);
             }
         }

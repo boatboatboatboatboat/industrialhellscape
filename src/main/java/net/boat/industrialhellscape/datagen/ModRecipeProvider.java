@@ -2,6 +2,7 @@ package net.boat.industrialhellscape.datagen;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
+import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.RailingBlock;
 import net.boat.industrialhellscape.item.ModItems;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.HolderLookup;
@@ -114,6 +115,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.ROUGH_GRAY_ROCKRETE_SLAB.get().asItem(),
             ModBlocks.ROUGH_GRAY_ROCKRETE_STAIRS.get().asItem(),
             ModBlocks.GRAY_ROCKRETE_PILLAR.get().asItem(),
+            ModBlocks.GRAY_ROCKRETE_PARAPET.get().asItem(),
 
             ModBlocks.GREEN_ROCKRETE.get().asItem(),
             ModBlocks.ROUGH_GREEN_ROCKRETE.get().asItem(),
@@ -122,6 +124,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.ROUGH_GREEN_ROCKRETE_SLAB.get().asItem(),
             ModBlocks.ROUGH_GREEN_ROCKRETE_STAIRS.get().asItem(),
             ModBlocks.GREEN_ROCKRETE_PILLAR.get().asItem(),
+            ModBlocks.GREEN_ROCKRETE_PARAPET.get().asItem(),
 
             ModBlocks.YELLOW_ROCKRETE.get().asItem(),
             ModBlocks.ROUGH_YELLOW_ROCKRETE.get().asItem(),
@@ -130,6 +133,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.ROUGH_YELLOW_ROCKRETE_SLAB.get().asItem(),
             ModBlocks.ROUGH_YELLOW_ROCKRETE_STAIRS.get().asItem(),
             ModBlocks.YELLOW_ROCKRETE_PILLAR.get().asItem(),
+            ModBlocks.YELLOW_ROCKRETE_PARAPET.get().asItem(),
 
             ModBlocks.BLUE_ROCKRETE.get().asItem(),
             ModBlocks.ROUGH_BLUE_ROCKRETE.get().asItem(),
@@ -138,6 +142,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.ROUGH_BLUE_ROCKRETE_SLAB.get().asItem(),
             ModBlocks.ROUGH_BLUE_ROCKRETE_STAIRS.get().asItem(),
             ModBlocks.BLUE_ROCKRETE_PILLAR.get().asItem(),
+            ModBlocks.BLUE_ROCKRETE_PARAPET.get().asItem(),
 
             ModBlocks.RED_ROCKRETE.get().asItem(),
             ModBlocks.ROUGH_RED_ROCKRETE.get().asItem(),
@@ -146,6 +151,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.ROUGH_RED_ROCKRETE_SLAB.get().asItem(),
             ModBlocks.ROUGH_RED_ROCKRETE_STAIRS.get().asItem(),
             ModBlocks.RED_ROCKRETE_PILLAR.get().asItem(),
+            ModBlocks.RED_ROCKRETE_PARAPET.get().asItem(),
+
             ModBlocks.GRIMY_RESTROOM_TILE.get().asItem()
     );
     private static final List<ItemLike> VESSELGLASS_STONECUT_OUTPUT = List.of(
@@ -466,10 +473,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         //---------- BULK RECIPE GENERATION ----------
         //Building Blocks - Parameters: (List of possible output items, String for generated recipe name, Tag of possible input items, recipeOutput)
         stonecutTagToOutputListPlusSlabs(HVAC_STONECUT_OUTPUT, "hvac", ModTags.Items.HVAC_SMELTABLE_ITEM, recipeOutput);
-        stonecutTagToOutputListPlusSlabs(TRUSS_STONECUT_OUTPUT, "strut", ModTags.Items.TRUSS_SMELTABLE_ITEM, recipeOutput);
+        stonecutTagToOutputListPlusSlabs(TRUSS_STONECUT_OUTPUT, "truss", ModTags.Items.TRUSS_SMELTABLE_ITEM, recipeOutput);
         stonecutTagToOutputListPlusSlabs(VESSELPLATE_STONECUT_OUTPUT, "vesselplate", ModTags.Items.VESSELPLATE_SMELTABLE_ITEM, recipeOutput);
         stonecutTagToOutputListPlusSlabs(VESSELGLASS_STONECUT_OUTPUT, "vesselglass", ModTags.Items.VESSELGLASS_SMELTABLE_ITEM, recipeOutput);
-        stonecutTagToOutputListPlusSlabs(ROCKRETE_STONECUT_OUTPUT, "rockrete", ModTags.Items.ROCKRETE_SMELTABLE_ITEM, recipeOutput);
+        stonecutTagToOutputListRockrete(ROCKRETE_STONECUT_OUTPUT, "rockrete", ModTags.Items.ROCKRETE_SMELTABLE_ITEM, recipeOutput); //SPECIAL METHOD FOR ROCKRETE ITEMS
         stonecutTagToOutputListPlusSlabs(PIPEWORKS_STONECUT_OUTPUT, "pipeworks", ModTags.Items.PIPEWORKS_ITEMS, recipeOutput);
         stonecutTagToOutputListPlusSlabs(METALWORKS_STONECUT_OUTPUT, "metalworks", ModTags.Items.METALWORKS_ITEMS, recipeOutput);
         stonecutInputTagToOutputList(DOORS_STONECUT_OUTPUT, "doors", ModTags.Items.DOOR_ITEMS, recipeOutput);
@@ -522,6 +529,35 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             }
         }
     }
+
+    protected static void stonecutTagToOutputListRockrete(List<ItemLike> stonecutOutputList, String inputTagName, TagKey<Item> inputTag, RecipeOutput recipeOutput) {
+        Ingredient ingredient = Ingredient.of(inputTag);
+
+        for (ItemLike itemInIndice : stonecutOutputList) {
+
+            Item itemName = itemInIndice.asItem();
+            String id = BuiltInRegistries.ITEM.getKey(itemName).getPath();
+
+            //If the ItemLike output is a slab,
+            //Create stonecutter recipe producing twice the amount of output
+            //Else, function normally
+
+            if ( (itemInIndice instanceof BlockItem blockItem) && (blockItem.getBlock() instanceof SlabBlock) ) {
+                stonecutToAmount(ingredient, RecipeCategory.MISC, itemInIndice, 2) //Any block from the inputTag can produce two slabs from the stonecutOutputList
+                        .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                        .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, inputTagName + "_stonecut_to_" + id));
+            } else if ( (itemInIndice instanceof BlockItem blockItem) && (blockItem.getBlock() instanceof RailingBlock) ) {
+                stonecutToAmount(ingredient, RecipeCategory.MISC, itemInIndice, 4) //Any block from the inputTag can produce four slabs parapets the stonecutOutputList
+                        .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                        .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, inputTagName + "_stonecut_to_" + id));
+            } else {
+                stonecutToAmount(ingredient, RecipeCategory.MISC, itemInIndice, 1)
+                        .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
+                        .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, inputTagName + "_stonecut_to_" + id));
+            }
+        }
+    }
+
     protected static void stonecutInputTagToOutputList(List<ItemLike> stonecutOutputList, String inputTagName, TagKey<Item> inputTag, RecipeOutput recipeOutput) {
         Ingredient ingredient = Ingredient.of(inputTag);
 
