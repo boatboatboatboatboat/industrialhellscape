@@ -1,14 +1,11 @@
 package net.boat.industrialhellscape;
 
 import net.boat.industrialhellscape.block.ModBlocks;
-import net.boat.industrialhellscape.block.modded_block_entities.DebugBE.DebugBERenderer;
 import net.boat.industrialhellscape.block.modded_block_entities.ModBlockEntities;
 import net.boat.industrialhellscape.entity.ModEntities;
 import net.boat.industrialhellscape.entity.SittableEntity.SittableEntityRenderer;
 import net.boat.industrialhellscape.item.ModCreativeModeTabs;
 import net.boat.industrialhellscape.item.ModItems;
-import net.boat.industrialhellscape.screen.ModMenuTypes;
-import net.boat.industrialhellscape.screen.custom.DebugBEScreen;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.neoforged.fml.config.ModConfig;
@@ -57,7 +54,6 @@ public class IndustrialHellscape {
         ModEntities.register(modEventBus); //Sittable Entity (in-world)
         ModBlockEntities.register(modEventBus); //Block Entities handling GUIs and inventory
 
-        ModMenuTypes.register(modEventBus);
 
         //Registers config options for this mod. The config screen registration is handled in IndustrialHellscapeClient
         modContainer.registerConfig(ModConfig.Type.COMMON, CommonModConfig.SPEC);

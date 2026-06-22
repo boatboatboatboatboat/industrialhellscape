@@ -74,6 +74,11 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 createRailingDrops(ModBlocks.BLUE_ROCKRETE_PARAPET.get()));
         this.add(ModBlocks.GREEN_ROCKRETE_PARAPET.get(),
                 createRailingDrops(ModBlocks.GREEN_ROCKRETE_PARAPET.get()));
+        this.dropSelf(ModBlocks.GRAY_ROCKRETE_WALL.get());
+        this.dropSelf(ModBlocks.RED_ROCKRETE_WALL.get());
+        this.dropSelf(ModBlocks.YELLOW_ROCKRETE_WALL.get());
+        this.dropSelf(ModBlocks.BLUE_ROCKRETE_WALL.get());
+        this.dropSelf(ModBlocks.GREEN_ROCKRETE_WALL.get());
 
         //DUCT BLOCKS
         this.dropSelf(ModBlocks.DUCT.get());

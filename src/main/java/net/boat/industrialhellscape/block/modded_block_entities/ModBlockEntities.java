@@ -2,7 +2,6 @@ package net.boat.industrialhellscape.block.modded_block_entities;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
-import net.boat.industrialhellscape.block.modded_block_entities.DebugBE.DebugBE;
 import net.boat.industrialhellscape.block.modded_block_entities.StorageBE.StorageBE;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -14,13 +13,6 @@ import java.util.function.Supplier;
 public class ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, IndustrialHellscape.MOD_ID);
-
-    public static final Supplier<BlockEntityType<DebugBE>> DEBUG_BE = BLOCK_ENTITIES.register("debug_be", () -> BlockEntityType.Builder.of(
-            DebugBE::new,
-
-            ModBlocks.PROTOTYPE_MACHINE.get()
-
-    ).build(null));
 
     public static final Supplier<BlockEntityType<StorageBE>> STORAGE_BE = BLOCK_ENTITIES.register("storage_be", () -> BlockEntityType.Builder.of(
             StorageBE::new,

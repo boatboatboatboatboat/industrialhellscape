@@ -78,6 +78,7 @@ public class SurfaceMountRotatableBlock extends Block implements SimpleWaterlogg
 
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
+        Direction facing = pContext.getHorizontalDirection();
         BlockState state = this.defaultBlockState();
         Direction directionClicked = pContext.getClickedFace().getOpposite(); //Are you clicking the floor, ceiling, north wall, south wall, east wall, west wall?
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
@@ -88,9 +89,17 @@ public class SurfaceMountRotatableBlock extends Block implements SimpleWaterlogg
         //This section determines waterlogging.
         state =  state.setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
 
-        //This section determines block rotation on the surface
-        //Currently defaults to facing down/south on the plane
-        return state.setValue(PLANE_DIRECTION, RelativePlanarDirectionState.DOWN);
+        if(directionClicked == Direction.UP || directionClicked == Direction.DOWN) {
+            switch (facing) {
+                case NORTH -> state = state.setValue(PLANE_DIRECTION, RelativePlanarDirectionState.UP);
+                case SOUTH -> state = state.setValue(PLANE_DIRECTION, RelativePlanarDirectionState.DOWN);
+                case WEST -> state = state.setValue(PLANE_DIRECTION, RelativePlanarDirectionState.LEFT);
+                case EAST -> state = state.setValue(PLANE_DIRECTION, RelativePlanarDirectionState.RIGHT);
+            }
+            return state;
+        }
+        //default case
+        return state.setValue(PLANE_DIRECTION, RelativePlanarDirectionState.UP);
     }
 
     @Override

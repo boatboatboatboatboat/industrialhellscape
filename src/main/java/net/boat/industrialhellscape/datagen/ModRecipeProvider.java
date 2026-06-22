@@ -2,6 +2,7 @@ package net.boat.industrialhellscape.datagen;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
+import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.ParapetBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.RailingBlock;
 import net.boat.industrialhellscape.item.ModItems;
 import net.boat.industrialhellscape.util.ModTags;
@@ -152,6 +153,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.ROUGH_RED_ROCKRETE_STAIRS.get().asItem(),
             ModBlocks.RED_ROCKRETE_PILLAR.get().asItem(),
             ModBlocks.RED_ROCKRETE_PARAPET.get().asItem(),
+
+            ModBlocks.GRAY_ROCKRETE_WALL.get().asItem(),
+            ModBlocks.RED_ROCKRETE_WALL.get().asItem(),
+            ModBlocks.YELLOW_ROCKRETE_WALL.get().asItem(),
+            ModBlocks.BLUE_ROCKRETE_WALL.get().asItem(),
+            ModBlocks.GREEN_ROCKRETE_WALL.get().asItem(),
+
 
             ModBlocks.GRIMY_RESTROOM_TILE.get().asItem()
     );
@@ -382,6 +390,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         
         //---------- REVERSIBLE BLOCK CRAFTING ----------
         //Create Horizontal Vesselplate
+
         reversibleBlockCrafting(ModBlocks.HORIZONTAL_VESSELPLATE.get(), ModBlocks.VERTICAL_VESSELPLATE.get(), recipeOutput);
 
         //Create Horizontal Reinforced Vesselplate
@@ -546,7 +555,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 stonecutToAmount(ingredient, RecipeCategory.MISC, itemInIndice, 2) //Any block from the inputTag can produce two slabs from the stonecutOutputList
                         .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                         .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, inputTagName + "_stonecut_to_" + id));
-            } else if ( (itemInIndice instanceof BlockItem blockItem) && (blockItem.getBlock() instanceof RailingBlock) ) {
+
+            } else if ( (itemInIndice instanceof BlockItem blockItem) && (blockItem.getBlock() instanceof ParapetBlock) ) {
                 stonecutToAmount(ingredient, RecipeCategory.MISC, itemInIndice, 4) //Any block from the inputTag can produce four slabs parapets the stonecutOutputList
                         .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                         .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, inputTagName + "_stonecut_to_" + id));

@@ -150,6 +150,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.ROUGH_YELLOW_ROCKRETE_SLAB.get(),
                         ModBlocks.ROUGH_YELLOW_ROCKRETE_STAIRS.get(),
 
+                        ModBlocks.GRAY_ROCKRETE_WALL.get(),
+
                         ModBlocks.GRIMY_RESTROOM_TILE.get()
                 );
         this.tag(ModTags.Blocks.DOOR_BLOCKS) //FOR CORRECT MINING TOOLS AND TOOL TIER
@@ -292,6 +294,15 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.LARGE_LOCKER.get(),
                         ModBlocks.FUEL_DRUM.get()
 
+                );
+
+        this.tag(BlockTags.WALLS)
+                .add(
+                        ModBlocks.GRAY_ROCKRETE_WALL.get(),
+                        ModBlocks.RED_ROCKRETE_WALL.get(),
+                        ModBlocks.YELLOW_ROCKRETE_WALL.get(),
+                        ModBlocks.BLUE_ROCKRETE_WALL.get(),
+                        ModBlocks.GRAY_ROCKRETE_WALL.get()
                 );
 
         this.tag(BlockTags.NEEDS_STONE_TOOL) //When specific tool tiers are required

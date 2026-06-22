@@ -149,6 +149,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         genFolderedSBI(ModBlocks.GRIMY_RESTROOM_TILE.get(), "");
 
+        wallBlock(ModBlocks.GRAY_ROCKRETE_WALL.get(), blockTexture(ModBlocks.ROUGH_GRAY_ROCKRETE.get()));
+        wallBlock(ModBlocks.RED_ROCKRETE_WALL.get(), blockTexture(ModBlocks.ROUGH_RED_ROCKRETE.get()));
+        wallBlock(ModBlocks.YELLOW_ROCKRETE_WALL.get(), blockTexture(ModBlocks.ROUGH_YELLOW_ROCKRETE.get()));
+        wallBlock(ModBlocks.BLUE_ROCKRETE_WALL.get(), blockTexture(ModBlocks.ROUGH_BLUE_ROCKRETE.get()));
+        wallBlock(ModBlocks.GREEN_ROCKRETE_WALL.get(), blockTexture(ModBlocks.ROUGH_GREEN_ROCKRETE.get()));
+
         //BRACKETS
         genCornerShapedBlocksSI(ModBlocks.RUSTY_BOLTED_BRACKET.get(),"bolted_bracket");
         genCornerShapedBlocksSI(ModBlocks.BLACK_BOLTED_BRACKET.get(),"bolted_bracket");

@@ -1,14 +1,22 @@
 package net.boat.industrialhellscape.item;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
-import net.boat.industrialhellscape.item.modded_items.HorsePillItem;
+import net.boat.industrialhellscape.item.modded_items.GasStationPillItem;
 import net.boat.industrialhellscape.item.modded_items.JobApplicationItem;
 import net.boat.industrialhellscape.item.modded_items.InHellToolItem;
 import net.boat.industrialhellscape.sound.ModSounds;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.TooltipFlag;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(IndustrialHellscape.MOD_ID);
@@ -21,10 +29,18 @@ public class ModItems {
             () -> new JobApplicationItem(new Item.Properties())
     );
 
-//    public static final DeferredItem<Item> HORSEPILL = ITEMS.register("horsepill",
-//            () -> new HorsePillItem(new Item.Properties())
-//    );
+    public static final DeferredItem<Item> GAS_STATION_PILL = ITEMS.register("gas_station_pill",
+            () -> new GasStationPillItem(new Item.Properties().rarity(Rarity.UNCOMMON).food((new FoodProperties.Builder()).nutrition(0).saturationModifier(0.0F).alwaysEdible().build()))
 
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.horsepill"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
+
+    );
 
     public static final DeferredItem<Item> MARQUEE_DISC = ITEMS.register("disc_1",
             () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.SONG_1_KEY).stacksTo(1)));

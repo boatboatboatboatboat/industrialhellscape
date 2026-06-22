@@ -5,7 +5,7 @@
   "item.industrialhellscape.inhell_haven_device": "HAVEN Tool",
   "item.industrialhellscape.job_application": "Job Application",
   "item.industrialhellscape.disc_1": "Marquee Music Disc",
-  "item.industrialhellscape.horsepill": "Horsepill",
+  "item.industrialhellscape.gas_station_pill": "Gas Station Pill",
 
   "block.industrialhellscape.prototype_machine": "Prototype Machine",
 
@@ -68,10 +68,6 @@
   "block.industrialhellscape.rough_gray_rockrete_slab": "Gray Rockrete Slab",
   "block.industrialhellscape.gray_rockrete_pillar": "Gray Rockrete Pillar",
   "block.industrialhellscape.gray_rockrete_parapet": "Gray Rockrete Parapet",
-  "block.industrialhellscape.red_rockrete_parapet": "Red Rockrete Parapet",
-  "block.industrialhellscape.yellow_rockrete_parapet": "Yellow Rockrete Parapet",
-  "block.industrialhellscape.blue_rockrete_parapet": "Blue Rockrete Parapet",
-  "block.industrialhellscape.green_rockrete_parapet": "Green Rockrete Parapet",
 
   "block.industrialhellscape.green_rockrete": "Green Rockrete",
   "block.industrialhellscape.rough_green_rockrete": "Rough Green Rockrete",
@@ -109,6 +105,12 @@
   "block.industrialhellscape.red_rockrete_pillar": "Red Rockrete Pillar",
   "block.industrialhellscape.red_rockrete_parapet": "Red Rockrete Parapet",
 
+  "block.industrialhellscape.gray_rockrete_wall": "Gray Rockrete Wall",
+  "block.industrialhellscape.red_rockrete_wall": "Gray Rockrete Wall",
+  "block.industrialhellscape.yellow_rockrete_wall": "Yellow Rockrete Wall",
+  "block.industrialhellscape.blue_rockrete_wall": "Blue Rockrete Wall",
+  "block.industrialhellscape.green_rockrete_wall": "Green Rockrete Wall",
+
   "block.industrialhellscape.gray_bolted_bracket": "Gray Bolted Bracket",
   "block.industrialhellscape.black_bolted_bracket": "Black Bolted Bracket",
   "block.industrialhellscape.rusty_bolted_bracket": "Rusty Bolted Bracket",
@@ -119,7 +121,7 @@
 
   "block.industrialhellscape.hazard_stripe_yellow": "Hazard Stripe Yellow",
   "block.industrialhellscape.hazard_stripe_red": "Hazard Stripe Red",
-  "block.industrialhellscape.grimy_restroom_tile": "Grimy Restroom Tile",
+  "block.industrialhellscape.grimy_restroom_tile": "Grimy Tiles",
 
   "block.industrialhellscape.ihea_furniture_kit": "IHEA Furniture Kit",
   "block.industrialhellscape.safety_furnishings": "Safety Furnishings",
@@ -234,7 +236,7 @@
   "tooltip.industrialhellscape.shift_down": "Press §eShift§r for more Information",
   "tooltip.industrialhellscape.disc_1": "14 Minutes Until Launch - Oscar Borisovich Feltsman",
   "tooltip.industrialhellscape.job_application": "Sneak Interact to convert Nitwit villagers into employable villagers.",
-  "tooltip.industrialhellscape.horsepill": "§4<UNIDENTIFIED CHEMICAL COMPOSITION>",
+  "tooltip.industrialhellscape.horsepill": "§6 Enhances your body with \"equine characteristics!\"",
 
   "death.attack.horsepilldeathmessage": "%1$s has been horsed.",
 

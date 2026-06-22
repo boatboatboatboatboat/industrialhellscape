@@ -6,7 +6,10 @@
     "textures": [
       "industrialhellscape:ctm/ctm2x2_rough_blue_rockrete"
       ],
-      "connect_inside": true
+    "extra": {
+      "connect_to": [
+        { "block": "industrialhellscape:rough_gray_rockrete" }
+      ]
     }
   }
 }
