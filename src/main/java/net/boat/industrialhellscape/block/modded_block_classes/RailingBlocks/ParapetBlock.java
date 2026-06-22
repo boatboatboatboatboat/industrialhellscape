@@ -4,7 +4,6 @@ import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterf
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -24,7 +23,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
-
 //INFO:
 //-----
 // Modified from the mod Create Deco. Based on Catwalk Railing block class code (CC0 license)
