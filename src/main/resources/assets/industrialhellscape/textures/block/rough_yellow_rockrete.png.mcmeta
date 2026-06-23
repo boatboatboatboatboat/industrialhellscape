@@ -8,7 +8,8 @@
       ],
     "extra": {
       "connect_to": [
-        { "block": "industrialhellscape:rough_gray_rockrete" }
+        { "block": "industrialhellscape:rough_yellow_rockrete" },
+        { "block": "industrialhellscape:rough_yellow_rockrete_stairs" }
       ]
     }
   }

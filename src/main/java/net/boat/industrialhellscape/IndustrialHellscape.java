@@ -49,11 +49,15 @@ public class IndustrialHellscape {
         ModCreativeModeTabs.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+
         ModSounds.register(modEventBus);
 
         ModEntities.register(modEventBus); //Sittable Entity (in-world)
         ModBlockEntities.register(modEventBus); //Block Entities handling GUIs and inventory
 
+        //Deprecated Content Safe Removal/Replacement for in-game
+        ModBlocks.removeAndReplaceBlocks();
+        ModItems.removeAndReplaceItems();
 
         //Registers config options for this mod. The config screen registration is handled in IndustrialHellscapeClient
         modContainer.registerConfig(ModConfig.Type.COMMON, CommonModConfig.SPEC);

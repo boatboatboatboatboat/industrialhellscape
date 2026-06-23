@@ -6,6 +6,7 @@ import net.boat.industrialhellscape.item.modded_items.JobApplicationItem;
 import net.boat.industrialhellscape.item.modded_items.InHellToolItem;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -20,6 +21,20 @@ import java.util.List;
 
 public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(IndustrialHellscape.MOD_ID);
+
+    public static void removeAndReplaceItems() {
+    }
+
+    protected static ResourceLocation itemID(String blockID) {
+        return ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, blockID);
+    }
+
+    protected static void specificItemReplacement(String oldID, String newID) {
+        ITEMS.addAlias(
+                itemID(oldID),
+                itemID(newID)
+        );
+    }
 
     public static final DeferredItem<Item> INHELL_HAVEN_DEVICE = ITEMS.register("inhell_haven_device",
             () -> new InHellToolItem(new Item.Properties())

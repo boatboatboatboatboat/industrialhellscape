@@ -17,8 +17,6 @@ public class ModBlockEntities {
     public static final Supplier<BlockEntityType<StorageBE>> STORAGE_BE = BLOCK_ENTITIES.register("storage_be", () -> BlockEntityType.Builder.of(
             StorageBE::new,
 
-            ModBlocks.PROTOTYPE_MACHINE.get(),
-
             ModBlocks.RED_WALL_MEDKIT.get(),
             ModBlocks.WHITE_WALL_MEDKIT.get(),
             ModBlocks.OFFICE_DESK_DRAWER.get(),

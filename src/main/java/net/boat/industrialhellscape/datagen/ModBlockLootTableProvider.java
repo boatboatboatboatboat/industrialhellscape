@@ -30,7 +30,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     protected void generate() {
 
         //DEBUG BLOCK
-        this.dropSelf(ModBlocks.PROTOTYPE_MACHINE.get());
+        //this.dropSelf(ModBlocks.PROTOTYPE_MACHINE.get());
 
         //JOKE BLOCK
         this.add(ModBlocks.BODY_PILLOW.get(),

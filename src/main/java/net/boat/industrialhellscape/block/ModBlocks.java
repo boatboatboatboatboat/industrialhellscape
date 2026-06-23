@@ -37,21 +37,50 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.function.Supplier;
 
+import static net.boat.industrialhellscape.item.ModItems.ITEMS;
+
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(IndustrialHellscape.MOD_ID);
 
-    //Test for in-world replacement of deprecated blocks (must be done seperately for block items)
-    static {
+    public static void removeAndReplaceBlocks() { //Addresses both Block and respective Block Items
+        specificBlockReplacement("gray_rockrete", "smooth_gray_rockrete");
+        specificBlockReplacement("red_rockrete", "smooth_red_rockrete");
+        specificBlockReplacement("yellow_rockrete", "smooth_yellow_rockrete");
+        specificBlockReplacement("blue_rockrete", "smooth_blue_rockrete");
+        specificBlockReplacement("green_rockrete", "smooth_green_rockrete");
+
+        specificBlockReplacement("gray_rockrete_slab", "smooth_gray_rockrete_slab");
+        specificBlockReplacement("red_rockrete_slab", "smooth_red_rockrete_slab");
+        specificBlockReplacement("yellow_rockrete_slab", "smooth_yellow_rockrete_slab");
+        specificBlockReplacement("blue_rockrete_slab", "smooth_blue_rockrete_slab");
+        specificBlockReplacement("green_rockrete_slab", "smooth_green_rockrete_slab");
+
+        specificBlockReplacement("gray_rockrete_stairs", "smooth_gray_rockrete_stairs");
+        specificBlockReplacement("red_rockrete_stairs", "smooth_red_rockrete_stairs");
+        specificBlockReplacement("yellow_rockrete_stairs", "smooth_yellow_rockrete_stairs");
+        specificBlockReplacement("blue_rockrete_stairs", "smooth_blue_rockrete_stairs");
+        specificBlockReplacement("green_rockrete_stairs", "smooth_green_rockrete_stairs");
+    }
+
+    protected static ResourceLocation blockID(String blockID) {
+        return ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, blockID);
+    }
+
+    protected static void specificBlockReplacement(String oldID, String newID) {
         BLOCKS.addAlias(
-                ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, "rusty_vesselplate"),
-                ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, "vesselplate")
+                blockID(oldID),
+                blockID(newID)
+        );
+        ITEMS.addAlias(
+                blockID(oldID),
+                blockID(newID)
         );
     }
 
-    public static final DeferredBlock<Block> PROTOTYPE_MACHINE = registerBlockAndBlockItem("prototype_machine",
-            () -> new Block(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.OAK_PLANKS)));
+//    public static final DeferredBlock<Block> PROTOTYPE_MACHINE = registerBlockAndBlockItem("prototype_machine",
+//            () -> new Block(BlockBehaviour
+//                    .Properties.ofFullCopy(Blocks.OAK_PLANKS)));
 
     //JOKE BLOCKS
     public static final DeferredBlock<Block> BODY_PILLOW = registerBlockAndBlockItem("body_pillow",
@@ -1280,7 +1309,7 @@ public class ModBlocks {
     }
 
     private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
-        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+        ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
     public static void register(IEventBus eventBus) {
