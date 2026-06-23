@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "render_type": "minecraft:solid",
+  "textures": {
+    "bottom": "industrialhellscape:block/rough_blue_rockrete",
+    "side": "industrialhellscape:block/rough_blue_rockrete",
+    "top": "industrialhellscape:block/rough_blue_rockrete"
+  }
+}

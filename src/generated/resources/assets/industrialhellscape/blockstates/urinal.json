@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "industrialhellscape:block/urinal/urinal",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "industrialhellscape:block/urinal/urinal"
+    },
+    "facing=south": {
+      "model": "industrialhellscape:block/urinal/urinal",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "industrialhellscape:block/urinal/urinal",
+      "y": 270
+    }
+  }
+}

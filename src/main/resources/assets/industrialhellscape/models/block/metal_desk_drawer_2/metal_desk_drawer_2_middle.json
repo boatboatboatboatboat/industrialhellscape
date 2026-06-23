@@ -1,0 +1,56 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"texture_size": [64, 64],
+	"textures": {
+		"0": "industrialhellscape:block/uv_metal_desk",
+		"particle": "industrialhellscape:block/uv_metal_desk"
+	},
+	"elements": [
+		{
+			"name": "tabletop",
+			"from": [0, 13, 0],
+			"to": [16, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [0, 13.5, 4, 14.25], "texture": "#0", "cullface": "north"},
+				"south": {"uv": [4, 13.5, 0, 14.25], "texture": "#0", "cullface": "south"},
+				"up": {"uv": [12, 4, 8, 0], "rotation": 180, "texture": "#0", "cullface": "up"},
+				"down": {"uv": [4, 0, 0, 4], "rotation": 180, "texture": "#0"}
+			}
+		},
+		{
+			"name": "middle_skirt",
+			"from": [0, 5, 1],
+			"to": [16, 13, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [12, 11.75, 16, 13.75], "texture": "#0"},
+				"east": {"uv": [4, 11.75, 7.75, 13.75], "texture": "#0", "cullface": "east"},
+				"south": {"uv": [6.5, 4, 10.5, 6], "texture": "#0", "cullface": "south"},
+				"west": {"uv": [7.75, 11.75, 4, 13.75], "texture": "#0", "cullface": "west"},
+				"down": {"uv": [8, 8, 4, 11.75], "rotation": 180, "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "modern_table",
+			"origin": [8, 8, 8],
+			"scope": 0,
+			"color": 0,
+			"children": [
+				{
+					"name": "legs",
+					"origin": [8, 8, 8],
+					"scope": 0,
+					"color": 0,
+					"children": []
+				},
+				0,
+				1
+			]
+		}
+	]
+}

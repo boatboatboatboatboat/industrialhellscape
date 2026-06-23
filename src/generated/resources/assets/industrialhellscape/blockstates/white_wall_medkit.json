@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,open=false": {
+      "model": "industrialhellscape:block/medkit_containers/white_wall_medkit",
+      "y": 90
+    },
+    "facing=east,open=true": {
+      "model": "industrialhellscape:block/medkit_containers/white_wall_medkit",
+      "y": 90
+    },
+    "facing=north,open=false": {
+      "model": "industrialhellscape:block/medkit_containers/white_wall_medkit"
+    },
+    "facing=north,open=true": {
+      "model": "industrialhellscape:block/medkit_containers/white_wall_medkit"
+    },
+    "facing=south,open=false": {
+      "model": "industrialhellscape:block/medkit_containers/white_wall_medkit",
+      "y": 180
+    },
+    "facing=south,open=true": {
+      "model": "industrialhellscape:block/medkit_containers/white_wall_medkit",
+      "y": 180
+    },
+    "facing=west,open=false": {
+      "model": "industrialhellscape:block/medkit_containers/white_wall_medkit",
+      "y": 270
+    },
+    "facing=west,open=true": {
+      "model": "industrialhellscape:block/medkit_containers/white_wall_medkit",
+      "y": 270
+    }
+  }
+}

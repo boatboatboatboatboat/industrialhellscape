@@ -1,0 +1,6 @@
+{
+	"parent": "industrialhellscape:item/gray_rockrete_parapet",
+	"textures": {
+		"1": "industrialhellscape:block/rockrete_parapets/red_rockrete_parapet"
+	}
+}

@@ -1,0 +1,106 @@
+package net.boat.industrialhellscape.util;
+
+import net.boat.industrialhellscape.IndustrialHellscape;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+
+public class ModTags {
+    public static class Blocks {
+        //MAIN BLOCK CATEGORIES
+        public static final TagKey<Block> VESSELPLATE_BLOCKS = tag("vesselplate_blocks");
+        public static final TagKey<Block> VESSELGLASS_BLOCKS = tag("vesselglass_blocks");
+        public static final TagKey<Block> ROCKRETE_BLOCKS = tag("rockrete_blocks");
+        public static final TagKey<Block> TRUSS_BLOCKS = tag("strut_blocks");
+        public static final TagKey<Block> HVAC_BLOCKS = tag("hvac_blocks");
+
+        public static final TagKey<Block> PIPEWORKS_BLOCKS = tag("pipeworks_blocks");
+        public static final TagKey<Block> METALWORKS_BLOCKS = tag("metalworks_blocks");
+        public static final TagKey<Block> DOOR_BLOCKS = tag("door_blocks");
+        public static final TagKey<Block> TRAPDOOR_BLOCKS = tag("trapdoor_blocks");
+
+        public static final TagKey<Block> STORAGE_BLOCKS = tag("storage_blocks");
+
+        //FURNITURE CATEGORIES
+        public static final TagKey<Block> SAFETY_FURNITURE_CATEGORY = tag("safety_furniture_category");
+        public static final TagKey<Block> HYGIENE_FURNITURE_CATEGORY= tag("hygiene_furniture_category");
+        public static final TagKey<Block> INDUSTRIAL_FURNITURE_CATEGORY = tag("industrial_furniture_category");
+        public static final TagKey<Block> TECHNOLOGY_FURNITURE_CATEGORY= tag("technology_furniture_category");
+        public static final TagKey<Block> AMENITY_FURNITURE_CATEGORY = tag("amenity_furniture_category");
+        public static final TagKey<Block> ALL_FURNITURE_BLOCKS = tag("all_furniture_blocks");
+
+        //CONNECTED BLOCKSET FAMILIES
+        public static final TagKey<Block> CLASSIC_DESK = tag("classic_desk");
+        public static final TagKey<Block> METAL_DESK = tag("metal_desk");
+        public static final TagKey<Block> OFFICE_DESK = tag("office_desk");
+
+        public static final TagKey<Block> COPPER_PIPE_CONDUIT = tag("copper_pipe_conduit");
+        public static final TagKey<Block> BRASS_PIPE_CONDUIT = tag("brass_pipe_conduit");
+        public static final TagKey<Block> GRAY_PIPE_CONDUIT = tag("gray_pipe_conduit");
+
+        //INTER-MOD COMPAT
+        public static final TagKey<Block> MOD_CREATE_FAN_TRANSPARENT = moddedTag("create","fan_transparent");
+        public static final TagKey<Block> MOD_CREATE_SIMPLE_MOUNTED_STORAGE = moddedTag("create","simple_mounted_storage");
+        public static final TagKey<Block> MOD_CREATE_SEATS = moddedTag("create","seats");
+
+        public static final TagKey<Block> MOD_SABLE_MASS_SUPER_HEAVY = moddedTag("sable","super_heavy");
+        public static final TagKey<Block> MOD_SABLE_MASS_HEAVY = moddedTag("sable","heavy");
+        public static final TagKey<Block> MOD_SABLE_MASS_NORMAL = moddedTag("sable","normal");
+        public static final TagKey<Block> MOD_SABLE_MASS_LIGHT = moddedTag("sable","light");
+        public static final TagKey<Block> MOD_SABLE_MASS_SUPER_LIGHT = moddedTag("sable","super_light");
+
+        public static final TagKey<Block> MOD_SABLE_VOLUME_HALF = moddedTag("sable","half_volume");
+        public static final TagKey<Block> MOD_SABLE_VOLUME_QUARTER = moddedTag("sable","quarter_volume");
+
+        //---------- METHODS ----------
+        private static TagKey<Block> tag(String name) {
+            return BlockTags.create(ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, name));
+        }
+        private static TagKey<Block> moddedTag(String modNameSpace, String name) {
+            return BlockTags.create(ResourceLocation.fromNamespaceAndPath(modNameSpace, name));
+        }
+    }
+
+    public static class Items {
+        //For ungenerated recipes dictating recycling back into vanilla materials (Slabs are NOT smeltable. NOT INCLUDED HERE)
+
+        public static final TagKey<Item> VESSELPLATE_SMELTABLE_ITEM = tag("vesselplate_smeltable_item");
+        public static final TagKey<Item> VESSELGLASS_SMELTABLE_ITEM = tag("vesselglass_smeltable_item");
+        public static final TagKey<Item> ROCKRETE_SMELTABLE_ITEM = tag("rockrete_smeltable_item");
+        public static final TagKey<Item> TRUSS_SMELTABLE_ITEM = tag("strut_smeltable_item");
+        public static final TagKey<Item> HVAC_SMELTABLE_ITEM = tag("hvac_smeltable_item");
+
+        public static final TagKey<Item> PIPEWORKS_ITEMS = tag("pipeworks_items");
+        public static final TagKey<Item> METALWORKS_ITEMS = tag("metalworks_items");
+
+        public static final TagKey<Item> DOOR_ITEMS = tag("door_items");
+        public static final TagKey<Item> TRAPDOOR_ITEMS = tag("trapdoor_items");
+
+        //Furniture Categories and Subcategories
+        public static final TagKey<Item> FURNITURE_CATEGORIES = tag("furniture_categories");
+        public static final TagKey<Item> SAFETY_FURNITURE_CATEGORY = tag("safety_furniture_category");
+        public static final TagKey<Item> HYGIENE_FURNITURE_CATEGORY= tag("hygiene_furniture_category");
+        public static final TagKey<Item> INDUSTRIAL_FURNITURE_CATEGORY = tag("industrial_furniture_category");
+        public static final TagKey<Item> TECHNOLOGY_FURNITURE_CATEGORY= tag("technology_furniture_category");
+        public static final TagKey<Item> AMENITY_FURNITURE_CATEGORY = tag("amenity_furniture_category");
+        public static final TagKey<Item> ALL_FURNITURE_ITEMS = tag("all_furniture_items");
+
+        //For crafting convenience
+        public static final TagKey<Item> IH_RECIPE_STONELIKES = tag("ih_recipe_stonelikes");
+        public static final TagKey<Item> IH_RECIPE_INGOTS = tag("ih_recipe_ingots");
+
+        //For tool use
+        public static final TagKey<Item> IH_COMPATIBLE_TOOLS = tag("ih_compatible_tools");
+
+        //---------- METHODS ----------
+        private static TagKey<Item> tag(String name) {
+            return ItemTags.create(ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, name));
+        }
+        private static TagKey<Item> moddedTag(String modNameSpace, String name) {
+            return ItemTags.create(ResourceLocation.fromNamespaceAndPath(modNameSpace, name));
+        }
+    }
+}

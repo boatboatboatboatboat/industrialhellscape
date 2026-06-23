@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "industrialhellscape:block/ihea_furniture_kit",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "industrialhellscape:block/ihea_furniture_kit"
+    },
+    "facing=south": {
+      "model": "industrialhellscape:block/ihea_furniture_kit",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "industrialhellscape:block/ihea_furniture_kit",
+      "y": 270
+    }
+  }
+}

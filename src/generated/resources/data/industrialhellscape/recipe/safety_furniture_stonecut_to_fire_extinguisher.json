@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "industrialhellscape:safety_furnishings"
+  },
+  "result": {
+    "count": 1,
+    "id": "industrialhellscape:fire_extinguisher"
+  }
+}

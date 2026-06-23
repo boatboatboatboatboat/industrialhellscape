@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "alt_state=false,waterlogged=false": {
+      "model": "industrialhellscape:block/gray_truss"
+    },
+    "alt_state=false,waterlogged=true": {
+      "model": "industrialhellscape:block/gray_truss"
+    },
+    "alt_state=true,waterlogged=false": {
+      "model": "industrialhellscape:block/gray_truss"
+    },
+    "alt_state=true,waterlogged=true": {
+      "model": "industrialhellscape:block/gray_truss"
+    }
+  }
+}

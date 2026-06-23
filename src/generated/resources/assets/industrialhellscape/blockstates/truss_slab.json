@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "type=bottom,waterlogged=false": {
+      "model": "industrialhellscape:block/truss_slab"
+    },
+    "type=bottom,waterlogged=true": {
+      "model": "industrialhellscape:block/truss_slab"
+    },
+    "type=double,waterlogged=false": {
+      "model": "industrialhellscape:block/truss"
+    },
+    "type=double,waterlogged=true": {
+      "model": "industrialhellscape:block/truss"
+    },
+    "type=top,waterlogged=false": {
+      "model": "industrialhellscape:block/truss_slab_top"
+    },
+    "type=top,waterlogged=true": {
+      "model": "industrialhellscape:block/truss_slab_top"
+    }
+  }
+}

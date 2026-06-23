@@ -1,0 +1,56 @@
+{
+	"format_version": "1.9.0",
+	"cgreenit": "Made with Blockbench",
+	"textures": {
+		"0": "industrialhellscape:block/rockrete_parapets/green_rockrete_parapet",
+		"1": "industrialhellscape:block/rockrete_parapets/rockrete_parapet",
+		"particle": "industrialhellscape:block/rockrete_parapets/green_rockrete_parapet"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [4, 12, 4],
+			"faces": {
+				"north": {"uv": [0, 0, 4, 12], "texture": "#0"},
+				"east": {"uv": [8, 0, 4, 12], "texture": "#0"},
+				"south": {"uv": [4, 0, 0, 12], "texture": "#0"},
+				"west": {"uv": [8, 0, 4, 12], "texture": "#0"},
+				"up": {"uv": [16, 4, 12, 0], "texture": "#0"},
+				"down": {"uv": [16, 0, 12, 4], "texture": "#0"}
+			}
+		},
+		{
+			"from": [1, 12, 1],
+			"to": [3, 14, 3],
+			"faces": {
+				"north": {"uv": [14, 0, 16, 2], "texture": "#1"},
+				"east": {"uv": [14, 0, 16, 2], "texture": "#1"},
+				"south": {"uv": [14, 0, 16, 2], "texture": "#1"},
+				"west": {"uv": [14, 0, 16, 2], "texture": "#1"},
+				"up": {"uv": [0, 0, 0, 0], "texture": "#1"},
+				"down": {"uv": [0, 0, 0, 0], "texture": "#1"}
+			}
+		},
+		{
+			"from": [0, 14, 0],
+			"to": [4, 16, 4],
+			"faces": {
+				"north": {"uv": [8, 4, 12, 6], "texture": "#1"},
+				"east": {"uv": [8, 4, 12, 6], "texture": "#1"},
+				"south": {"uv": [8, 4, 12, 6], "texture": "#1"},
+				"west": {"uv": [8, 4, 12, 6], "texture": "#1"},
+				"up": {"uv": [12, 4, 8, 0], "texture": "#1"},
+				"down": {"uv": [12, 6, 8, 10], "texture": "#1"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "corner",
+			"origin": [0, 0, 0],
+			"scope": 0,
+			"color": 0,
+			"children": [0, 1, 2]
+		}
+	]
+}

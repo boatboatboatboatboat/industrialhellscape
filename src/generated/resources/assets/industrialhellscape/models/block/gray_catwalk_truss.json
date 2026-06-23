@@ -1,0 +1,9 @@
+{
+  "parent": "industrialhellscape:block/anticull_template",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "industrialhellscape:block/truss/gray_truss",
+    "side": "industrialhellscape:block/truss/gray_truss",
+    "top": "industrialhellscape:block/truss/gray_floorgrate_catwalk"
+  }
+}
