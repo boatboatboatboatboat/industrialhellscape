@@ -43,7 +43,7 @@ public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(IndustrialHellscape.MOD_ID);
 
-    public static void removeAndReplaceBlocks() { //Addresses both Block and respective Block Items
+    public static void removeAndReplaceBlocks() { //Replaces both Block and Block Item with replacements.
         specificBlockReplacement("gray_rockrete", "smooth_gray_rockrete");
         specificBlockReplacement("red_rockrete", "smooth_red_rockrete");
         specificBlockReplacement("yellow_rockrete", "smooth_yellow_rockrete");

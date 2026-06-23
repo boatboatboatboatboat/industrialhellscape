@@ -22,7 +22,7 @@ import java.util.List;
 public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(IndustrialHellscape.MOD_ID);
 
-    public static void removeAndReplaceItems() {
+    public static void removeAndReplaceItems() { //Replaces Item with replacement in-game. Don't need to put blocks here.
     }
 
     protected static ResourceLocation itemID(String blockID) {
