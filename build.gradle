@@ -18,7 +18,10 @@ version = mod_version
 group = mod_group_id
 
 repositories {
-    mavenLocal()
+    maven { url = "https://cursemaven.com" }
+    maven { url = "https://maven.createmod.net" } // Create, Ponder, Flywheel
+    maven { url = "https://maven.ithundxr.dev/mirror" } // Registrate
+    maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" } // ForgeConfigAPIPort
 }
 
 base {
@@ -116,6 +119,11 @@ obfuscation {
 }
 
 dependencies {
+    modCompileOnly("org.jetbrains:annotations:26.1.0")
+
+    modImplementation("curse.maven:jei-238222:6600311")
+    modImplementation("curse.maven:ctm-267602:5983309")
+    modImplementation("curse.maven:jade-324717:6855440")
     // If you wish to declare dependencies against mods, make sure to use the 'mod*' configurations so that they're remapped.
 	// See https://github.com/neoforged/ModDevGradle/blob/main/LEGACY.md#remapping-mod-dependencies for more information.
 	

@@ -1,0 +1,6 @@
+{
+	"parent": "industrialhellscape:block/copper_pipe_conduit/copper_pipe_conduit_planar_corner",
+	"textures": {
+		"0": "industrialhellscape:block/gray_pipe_conduit"
+	}
+}

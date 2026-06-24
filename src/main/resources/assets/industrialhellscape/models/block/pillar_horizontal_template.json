@@ -1,0 +1,9 @@
+{
+  "parent": "industrialhellscape:block/pillar_horizontal_base_template",
+  "textures": {
+    "particle": "#end",
+    "end": "#end",
+    "side": "#side",
+    "opposite_side": "#opposite_side"
+  }
+}

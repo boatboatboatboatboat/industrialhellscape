@@ -1,0 +1,76 @@
+{
+  "metal_box_opening": {
+    "subtitle": "sounds.industrialhellscape.metal_box_opening",
+    "sounds": [
+      "industrialhellscape:metal_box_opening"
+    ]
+  },
+  "smoke_alarm": {
+    "subtitle": "sounds.industrialhellscape.smoke_alarm",
+    "sounds": [
+      "industrialhellscape:smoke_alarm"
+    ]
+  },
+  "metal_box_closing": {
+    "subtitle": "sounds.industrialhellscape.metal_box_closing",
+    "sounds": [
+      "industrialhellscape:metal_box_closing"
+    ]
+  },
+  "metalpipefallingsoundeffect": {
+    "subtitle": "sounds.industrialhellscape.metalpipefallingsoundeffect",
+    "sounds": [
+      "industrialhellscape:metalpipefallingsoundeffect"
+    ]
+  },
+  "metal_clank": {
+    "subtitle": "sounds.industrialhellscape.metal_clank",
+    "sounds": [
+      "industrialhellscape:metal_clank"
+    ]
+  },
+  "toilet_flush": {
+    "subtitle": "sounds.industrialhellscape.toilet_flush",
+    "sounds": [
+      "industrialhellscape:toilet_flush"
+    ]
+  },
+  "snore": {
+    "subtitle": "sounds.industrialhellscape.snore",
+    "sounds": [
+      "industrialhellscape:snore"
+    ]
+  },
+  "computer_on": {
+    "subtitle": "sounds.industrialhellscape.computer_on",
+    "sounds": [
+      "industrialhellscape:computer_on"
+    ]
+  },
+  "switch_on": {
+    "subtitle": "sounds.industrialhellscape.switch_on",
+    "sounds": [
+      "industrialhellscape:switch_on"
+    ]
+  },
+  "switch_off": {
+    "subtitle": "sounds.industrialhellscape.switch_off",
+    "sounds": [
+      "industrialhellscape:switch_off"
+    ]
+  },
+  "horsepill": {
+    "subtitle": "sounds.industrialhellscape.horsepill",
+    "sounds": [
+      "industrialhellscape:horsepill"
+    ]
+  },
+  "song_1": {
+    "sounds": [
+      {
+        "name": "industrialhellscape:song_1",
+        "stream": true
+      }
+    ]
+  }
+}

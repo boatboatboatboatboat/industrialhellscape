@@ -1,0 +1,42 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"1": "industrialhellscape:block/rockrete_parapets/gray_rockrete_parapet",
+		"2": "industrialhellscape:block/rockrete_parapets/rockrete_parapet",
+		"particle": "industrialhellscape:block/rockrete_parapets/gray_rockrete_parapet"
+	},
+	"elements": [
+		{
+			"from": [4, 0, 0],
+			"to": [12, 12, 4],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, -4]},
+			"faces": {
+				"north": {"uv": [4, 0, 12, 12], "texture": "#1"},
+				"south": {"uv": [12, 0, 4, 12], "texture": "#1"},
+				"up": {"uv": [8, 16, 0, 12], "texture": "#1"},
+				"down": {"uv": [8, 12, 0, 16], "texture": "#1"}
+			}
+		},
+		{
+			"from": [4, 14, 0],
+			"to": [12, 16, 4],
+			"rotation": {"angle": 0, "axis": "y", "origin": [16, 0, 4]},
+			"faces": {
+				"north": {"uv": [0, 4, 8, 6], "texture": "#2"},
+				"south": {"uv": [0, 4, 8, 6], "texture": "#2"},
+				"up": {"uv": [8, 4, 0, 0], "rotation": 180, "texture": "#2"},
+				"down": {"uv": [8, 6, 0, 10], "rotation": 180, "texture": "#2"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "wall",
+			"origin": [12, 0, 0],
+			"scope": 0,
+			"color": 0,
+			"children": [0, 1]
+		}
+	]
+}
