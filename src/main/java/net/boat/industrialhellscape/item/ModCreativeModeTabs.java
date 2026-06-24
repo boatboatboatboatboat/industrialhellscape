@@ -50,7 +50,7 @@ public class ModCreativeModeTabs {
                 //ModBlocks.PROTOTYPE_MACHINE.get().asItem(),
                 ModBlocks.BODY_PILLOW.get().asItem(),
 
-                //Vesselplate Vertical Variants (Hidden to prevent JEI clutter)
+                //Vesselplate Vertical Variants (Hidden to prevent JEI clutter).
                 ModBlocks.VERTICAL_VESSELPLATE.get().asItem(),
                 ModBlocks.VERTICAL_REINFORCED_VESSELPLATE.get().asItem(),
                 ModBlocks.GRAY_VERTICAL_VESSELPLATE.get().asItem(),
