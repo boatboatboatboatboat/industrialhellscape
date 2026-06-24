@@ -5,7 +5,7 @@ import net.boat.industrialhellscape.block.modded_block_entities.StorageBE.Storag
 import net.boat.industrialhellscape.block.modded_interfaces.StorageBlockInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.Containers;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -21,8 +21,6 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.function.Supplier;
 
 //INFO:
 //-----
@@ -71,7 +69,8 @@ public class BaseStorageBlock extends BaseEntityBlock implements StorageBlockInt
         return RenderShape.MODEL;
     }
 
-    protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
+    @Override
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         return StorageBlockInterface.OpenContainerInventory(level, pos, player);
     }
 

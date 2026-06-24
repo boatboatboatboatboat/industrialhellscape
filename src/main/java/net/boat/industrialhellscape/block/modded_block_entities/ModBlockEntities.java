@@ -14,7 +14,24 @@ public class ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, IndustrialHellscape.MOD_ID);
 
+    //original name: "storage_be"
     public static final Supplier<BlockEntityType<StorageBE>> STORAGE_BE = BLOCK_ENTITIES.register("storage_be", () -> BlockEntityType.Builder.of(
+            StorageBE::new,
+
+            ModBlocks.RED_WALL_MEDKIT.get(),
+            ModBlocks.WHITE_WALL_MEDKIT.get(),
+            ModBlocks.OFFICE_DESK_DRAWER.get(),
+            ModBlocks.DESK_DRAWER.get(),
+            ModBlocks.METAL_DESK_DRAWER.get(),
+            ModBlocks.METAL_DESK_DRAWER_2.get(),
+
+            ModBlocks.LOCKER_BOX.get(),
+            ModBlocks.LARGE_LOCKER.get(),
+            ModBlocks.FUEL_DRUM.get()
+
+    ).build(null));
+
+    public static final Supplier<BlockEntityType<StorageBE>> OLD_STORAGE_BE = BLOCK_ENTITIES.register("container_block_entity", () -> BlockEntityType.Builder.of(
             StorageBE::new,
 
             ModBlocks.RED_WALL_MEDKIT.get(),

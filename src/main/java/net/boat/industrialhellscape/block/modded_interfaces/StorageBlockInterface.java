@@ -17,7 +17,6 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Method;
-import java.util.function.Supplier;
 
 public interface StorageBlockInterface {
 

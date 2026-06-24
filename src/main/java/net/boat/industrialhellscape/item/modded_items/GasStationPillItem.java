@@ -22,6 +22,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Properties;
+
 public class GasStationPillItem extends Item {
     public GasStationPillItem(Properties pProperties) {
         super(pProperties);
@@ -83,7 +85,7 @@ public class GasStationPillItem extends Item {
     }
 
     //If player eats pill
-    public @NotNull ItemStack finishUsingItem(@NotNull ItemStack itemstack, @NotNull Level world, @NotNull LivingEntity entity) {
+    public @NotNull ItemStack finishUsingItem(@NotNull ItemStack itemstack, @NotNull Level level, @NotNull LivingEntity entity) {
         if (entity instanceof Player) {
             if(!entity.level().isClientSide) {
                 addParticlesAroundSelf(entity, ParticleTypes.HAPPY_VILLAGER);
@@ -91,7 +93,7 @@ public class GasStationPillItem extends Item {
             entity.playSound(ModSounds.HORSEPILL.get());
             //entity.hurt(entity.level().damageSources().source(ModDamageTypes.HORSEPILL_DAMAGE), 512F);
             //MCreator
-            entity.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation("industrialhellscape:horsepill_damage")))), 512);
+            entity.hurt(new DamageSource(level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation("industrialhellscape:horsepill_damage")))), 512);
 
             if(entity.level() instanceof ServerLevel serverLevel && !entity.isAlive()) {
                 Component name = entity.getName();
@@ -99,6 +101,6 @@ public class GasStationPillItem extends Item {
             }
         }
 
-        return super.finishUsingItem(itemstack, world, entity);
+        return super.finishUsingItem(itemstack, level, entity);
     }
 }

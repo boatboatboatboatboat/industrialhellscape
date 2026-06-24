@@ -216,7 +216,14 @@ public class IndustrialHellscape
             removeAndReplace(ModBlockMappings, ModItemMappings,"rusty_riveted_vesselplate_stairs", ModBlocks.SMOOTH_VESSELPLATE_STAIRS.get());
             removeAndReplace(ModBlockMappings, ModItemMappings,"rusty_riveted_vesselplate_slab", ModBlocks.SMOOTH_VESSELPLATE_SLAB.get());
 
-            removeAndReplaceItemOnly(ModBlockMappings, ModItemMappings,"retro_cassette", ModBlocks.SMOOTH_GRAY_ROCKRETE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"grate", ModBlocks.HORIZONTAL_GRATE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_grate", ModBlocks.HORIZONTAL_GRATE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"see-through_grate", ModBlocks.HORIZONTAL_CUTOUT_GRATE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"gray_see-through_grate", ModBlocks.HORIZONTAL_CUTOUT_GRATE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"rusty_grate", ModBlocks.HORIZONTAL_GRATE.get());
+            removeAndReplace(ModBlockMappings, ModItemMappings,"rusty_see-through_grate", ModBlocks.HORIZONTAL_CUTOUT_GRATE.get());
+
+            removeAndReplaceItemOnly(ModBlockMappings, ModItemMappings,"retro_cassette", ModItems.MARQUEE_DISC.get());
         }
 
         private static void removeAndReplace( List<MissingMappingsEvent.Mapping<Block>> ModBlockMappings, List<MissingMappingsEvent.Mapping<Item>> ModItemMappings,String removedRegistryName, Block blockReplacement) {
@@ -227,7 +234,7 @@ public class IndustrialHellscape
                     .filter(ModItemMapping -> ModItemMapping.getKey().getPath().equals(removedRegistryName)) //To remove
                     .forEach(ModItemMapping -> ModItemMapping.remap( blockReplacement.asItem() ));
         }
-        private static void removeAndReplaceItemOnly( List<MissingMappingsEvent.Mapping<Block>> ModBlockMappings, List<MissingMappingsEvent.Mapping<Item>> ModItemMappings,String removedRegistryName, Block blockReplacement) {
+        private static void removeAndReplaceItemOnly( List<MissingMappingsEvent.Mapping<Block>> ModBlockMappings, List<MissingMappingsEvent.Mapping<Item>> ModItemMappings,String removedRegistryName, Item blockReplacement) {
             ModItemMappings.stream() //For corresponding block items anywhere
                     .filter(ModItemMapping -> ModItemMapping.getKey().getPath().equals(removedRegistryName)) //To remove
                     .forEach(ModItemMapping -> ModItemMapping.remap( blockReplacement.asItem() ));

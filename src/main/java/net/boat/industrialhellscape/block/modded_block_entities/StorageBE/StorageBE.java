@@ -31,6 +31,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+//Original Name: StorageBE
 public class StorageBE extends RandomizableContainerBlockEntity {
     private final int SLOTS;
     public final SoundEvent OPEN_SOUND;
@@ -78,14 +79,14 @@ public class StorageBE extends RandomizableContainerBlockEntity {
 
     }
 
-    public void drops() {
-        SimpleContainer inv = new SimpleContainer(inventory.getSlots());
-        for(int i = 0; i < inventory.getSlots(); i++) {
-            inv.setItem(i, inventory.getStackInSlot(i));
-        }
-
-        Containers.dropContents(this.level, this.worldPosition, inv);
-    }
+//    public void drops() {
+//        SimpleContainer inv = new SimpleContainer(inventory.getSlots());
+//        for(int i = 0; i < inventory.getSlots(); i++) {
+//            inv.setItem(i, inventory.getStackInSlot(i));
+//        }
+//
+//        Containers.dropContents(this.level, this.worldPosition, inv);
+//    }
 
     @Override
     public @Nullable AbstractContainerMenu createMenu(int id, Inventory inventory) {
@@ -117,7 +118,6 @@ public class StorageBE extends RandomizableContainerBlockEntity {
         if (!this.remove && !player.isSpectator()) {
             this.openersCounter.incrementOpeners(player, this.getLevel(), this.getBlockPos(), this.getBlockState());
         }
-
     }
 
     public void stopOpen(Player player) {
@@ -163,21 +163,6 @@ public class StorageBE extends RandomizableContainerBlockEntity {
 //        inventory.deserializeNBT(registries, tag.getCompound("inventory"));
 //    }
 
-//    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-//        super.saveAdditional(tag, registries);
-//        if (!this.trySaveLootTable(tag)) {
-//            ContainerHelper.saveAllItems(tag, this.items, registries);
-//        }
-//    }
-
-//    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-//        super.loadAdditional(tag, registries);
-//        this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-//        if (!this.tryLoadLootTable(tag)) {
-//            ContainerHelper.loadAllItems(tag, this.items);
-//        }
-//    }
-
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag) {
         super.saveAdditional(tag);
@@ -204,10 +189,10 @@ public class StorageBE extends RandomizableContainerBlockEntity {
     }
 
 //    @Override
-//    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
-//        return saveWithoutMetadata(registries);
+//    public CompoundTag getUpdateTag() {
+//        return saveWithoutMetadata();
 //    }
-//
+
     private void playSound(BlockState state, SoundEvent soundEvent) {
         double d0 = this.worldPosition.getX() + 0.5D;
         double d1 = this.worldPosition.getY() + 0.5D;
