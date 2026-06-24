@@ -35,8 +35,8 @@ import java.util.function.Supplier;
 
 public class StorageBE extends RandomizableContainerBlockEntity {
     private final int SLOTS;
-    public final Supplier<SoundEvent> OPEN_SOUND;
-    public final Supplier<SoundEvent> CLOSE_SOUND;
+    public final SoundEvent OPEN_SOUND;
+    public final SoundEvent CLOSE_SOUND;
     private NonNullList<ItemStack> items;
     private final ContainerOpenersCounter openersCounter;
 
@@ -50,18 +50,18 @@ public class StorageBE extends RandomizableContainerBlockEntity {
 
         } else { // Else, fall-back to a non-null slot amount, and default barrel sound effects.
             this.SLOTS = 9; //Placeholder
-            this.OPEN_SOUND = () -> SoundEvents.BARREL_OPEN;
-            this.CLOSE_SOUND = () -> SoundEvents.BARREL_CLOSE;
+            this.OPEN_SOUND = SoundEvents.BARREL_OPEN;
+            this.CLOSE_SOUND = SoundEvents.BARREL_CLOSE;
         }
         this.items = NonNullList.withSize(SLOTS, ItemStack.EMPTY);
 
         this.openersCounter = new ContainerOpenersCounter() {
             protected void onOpen(Level level, BlockPos pos, BlockState state) {
-                StorageBE.this.playSound(state, OPEN_SOUND.get());
+                StorageBE.this.playSound(state, OPEN_SOUND);
                 //StorageBE.this.updateBlockState(state, true);
             }
             protected void onClose(Level level, BlockPos pos, BlockState state) {
-                StorageBE.this.playSound(state, CLOSE_SOUND.get());
+                StorageBE.this.playSound(state, CLOSE_SOUND);
                 //StorageBE.this.updateBlockState(state, false);
             }
 

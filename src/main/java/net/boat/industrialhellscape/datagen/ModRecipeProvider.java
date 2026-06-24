@@ -627,7 +627,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     protected static void oreBlasting(RecipeOutput recipeOutput, TagKey<Item> pIngredients, RecipeCategory pCategory, ItemLike pResult,
                                       float pExperience, int pCookingTime, String pGroup) {
         oreCooking(recipeOutput, RecipeSerializer.BLASTING_RECIPE, BlastingRecipe::new, pIngredients, pCategory, pResult,
-                pExperience, pCookingTime, pGroup, "_from_blasting"+pGroup);
+                pExperience, pCookingTime, pGroup, "_from_blasting_"+pGroup);
     }
 
     protected static <T extends AbstractCookingRecipe> void oreCooking(RecipeOutput recipeOutput, RecipeSerializer<T> pCookingSerializer, AbstractCookingRecipe.Factory<T> factory,

@@ -106,7 +106,7 @@ public class ModBlocks {
 
     );
     public static final DeferredBlock<Block> METALWORKS = registerBlockAndBlockItem("metalworks",
-            () -> new FacingFallableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK), () -> SoundEvents.ANVIL_PLACE){
+            () -> new FacingFallableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK), SoundEvents.ANVIL_PLACE){
                 @Override
                 public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
                     if (Screen.hasShiftDown()) {
@@ -118,7 +118,7 @@ public class ModBlocks {
                 }
             });
     public static final DeferredBlock<Block> PIPEWORKS = registerBlockAndBlockItem("pipeworks",
-            () -> new FacingFallableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK), () -> ModSounds.METALPIPEFALLINGSOUNDEFFECT.get()) {
+            () -> new FacingFallableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK), ModSounds.METALPIPEFALLINGSOUNDEFFECT.get()) {
                 @Override
                 public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
                     if (Screen.hasShiftDown()) {
@@ -969,8 +969,8 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
                     .noOcclusion(),
                     9,
-                    ()-> ModSounds.METAL_BOX_OPEN.get(),
-                    ()-> ModSounds.METAL_BOX_CLOSE.get(),
+                    ModSounds.METAL_BOX_OPEN.get(),
+                    ModSounds.METAL_BOX_CLOSE.get(),
                     HitboxGeometryCollection.RED_MEDKIT_NORTH()
             )
     );
@@ -980,8 +980,8 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
                     .noOcclusion(),
                     9,
-                    ()-> ModSounds.METAL_BOX_OPEN.get(),
-                    ()-> ModSounds.METAL_BOX_CLOSE.get(),
+                    ModSounds.METAL_BOX_OPEN.get(),
+                    ModSounds.METAL_BOX_CLOSE.get(),
                     HitboxGeometryCollection.WHITE_MEDKIT_NORTH()
             )
     );
@@ -997,7 +997,7 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
                     HitboxGeometryCollection.SMOKE_DETECTOR_FLOOR(),
-                    () -> ModSounds.SMOKE_ALARM.get()
+                    ModSounds.SMOKE_ALARM
             )
     );
     public static final DeferredBlock<Block> OPERATING_TABLE = registerBlockAndBlockItem("operating_table",
@@ -1044,7 +1044,7 @@ public class ModBlocks {
                     .noOcclusion(),
                     HitboxGeometryCollection.TOILET(),
                     () -> SoundEvents.WOODEN_TRAPDOOR_CLOSE,
-                    () -> ModSounds.TOILET_FLUSH.get()
+                    ModSounds.TOILET_FLUSH
                     )
     );
 //
@@ -1059,7 +1059,7 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
                     .noOcclusion(),
                     HitboxGeometryCollection.URINAL(),
-                    ()-> ModSounds.TOILET_FLUSH.get()
+                    ModSounds.TOILET_FLUSH
             )
     );
 //
@@ -1069,24 +1069,24 @@ public class ModBlocks {
                     .noOcclusion()
                     , MultiBlockPlacementDirection.VERTICAL
                     , 54
-                    , () -> ModSounds.METAL_BOX_OPEN.get()
-                    , () -> ModSounds.METAL_BOX_CLOSE.get()
+                    , ModSounds.METAL_BOX_OPEN.get()
+                    , ModSounds.METAL_BOX_CLOSE.get()
             )
     );
     public static final DeferredBlock<Block> LOCKER_BOX = registerBlockAndBlockItem("locker_box",
             () -> new FacingStorageBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK),
                     27,
-                    () -> ModSounds.METAL_BOX_OPEN.get(),
-                    () -> ModSounds.METAL_BOX_CLOSE.get()
+                    ModSounds.METAL_BOX_OPEN.get(),
+                    ModSounds.METAL_BOX_CLOSE.get()
             )
     );
     public static final DeferredBlock<Block> FUEL_DRUM = registerBlockAndBlockItem("fuel_drum",
             () -> new BarrelStorageBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK),
                     27,
-                    () -> ModSounds.METAL_BOX_OPEN.get(),
-                    () -> ModSounds.METAL_BOX_CLOSE.get()
+                    ModSounds.METAL_BOX_OPEN.get(),
+                    ModSounds.METAL_BOX_CLOSE.get()
             )
     );
     public static final DeferredBlock<Block> CCTV_CAMERA = registerBlockAndBlockItem("cctv_camera",
@@ -1132,8 +1132,8 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
                     .lightLevel(state -> state.getValue(InteractableModelledFacingBlock.POWERED) ? 7 : 0),
                     HitboxGeometryCollection.RETRO_COMPUTER(),
-                    () -> ModSounds.COMPUTER_ON.get(),
-                    () -> ModSounds.SWITCH_OFF.get()
+                    ModSounds.COMPUTER_ON,
+                    ModSounds.SWITCH_OFF
             )
     );
     public static final DeferredBlock<Block> RETRO_COMPUTER_2 = registerBlockAndBlockItem("retro_computer_2",
@@ -1141,8 +1141,8 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
                     .lightLevel(state -> state.getValue(InteractableModelledFacingBlock.POWERED) ? 7 : 0),
                     HitboxGeometryCollection.RETRO_COMPUTER_2(),
-                    () -> ModSounds.COMPUTER_ON.get(),
-                    () ->  ModSounds.SWITCH_OFF.get()
+                    ModSounds.COMPUTER_ON,
+                    ModSounds.SWITCH_OFF
             )
     );
     public static final DeferredBlock<Block> MONITOR_AND_KEYBOARD = registerBlockAndBlockItem("monitor_and_keyboard",
@@ -1194,8 +1194,8 @@ public class ModBlocks {
                     HitboxGeometryCollection.DESK_DRAWER_MIDDLE_SHAPE(),
                     HitboxGeometryCollection.DESK_DRAWER_RIGHT_SHAPE(),
                     MultiBlockPlacementDirection.HORIZONTAL,
-                    () -> ModSounds.METAL_BOX_OPEN.get(),
-                    () -> ModSounds.METAL_BOX_CLOSE.get()
+                    ModSounds.METAL_BOX_OPEN.get(),
+                    ModSounds.METAL_BOX_CLOSE.get()
             )
     );
     public static final DeferredBlock<Block> METAL_DESK = registerBlockAndBlockItem("metal_desk",
@@ -1221,8 +1221,8 @@ public class ModBlocks {
                     HitboxGeometryCollection.METAL_DESK_DRAWER_MIDDLE_SHAPE(),
                     HitboxGeometryCollection.METAL_DESK_DRAWER_RIGHT_SHAPE(),
                     MultiBlockPlacementDirection.HORIZONTAL,
-                    () -> ModSounds.METAL_BOX_OPEN.get(),
-                    () -> ModSounds.METAL_BOX_CLOSE.get()
+                    ModSounds.METAL_BOX_OPEN.get(),
+                    ModSounds.METAL_BOX_CLOSE.get()
             )
 
     );
@@ -1237,8 +1237,8 @@ public class ModBlocks {
                     HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
                     HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
                     MultiBlockPlacementDirection.HORIZONTAL,
-                    () -> ModSounds.METAL_BOX_OPEN.get(),
-                    () -> ModSounds.METAL_BOX_CLOSE.get()
+                    ModSounds.METAL_BOX_OPEN.get(),
+                    ModSounds.METAL_BOX_CLOSE.get()
             )
 
     );
@@ -1268,8 +1268,8 @@ public class ModBlocks {
                     HitboxGeometryCollection.METAL_DESK_DRAWER_2_MIDDLE_SHAPE(),
                     HitboxGeometryCollection.METAL_DESK_DRAWER_2_RIGHT_SHAPE(),
                     MultiBlockPlacementDirection.HORIZONTAL,
-                    () -> ModSounds.METAL_BOX_OPEN.get(),
-                    () -> ModSounds.METAL_BOX_CLOSE.get()
+                    ModSounds.METAL_BOX_OPEN.get(),
+                    ModSounds.METAL_BOX_CLOSE.get()
             )
     );
     public static final DeferredBlock<Block> OFFICE_CHAIR = registerBlockAndBlockItem("office_chair",
@@ -1303,8 +1303,7 @@ public class ModBlocks {
     }
 
     private static <T extends Block> DeferredBlock<T> registerBlockOnly(String name, Supplier<T> block) {
-        DeferredBlock<T> toReturn = BLOCKS.register(name, block);
-        return toReturn;
+        return BLOCKS.register(name, block);
     }
 
     private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {

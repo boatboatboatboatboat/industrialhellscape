@@ -33,14 +33,14 @@ import java.util.function.Supplier;
 
 public class TwoBlockStorageMultiBlock extends TwoBlockMultiBlock implements EntityBlock, StorageBlockInterface {
     public final int SLOTS; //Amount of inventory slots. Should be a multiple of 9.
-    public final Supplier<SoundEvent> OPEN_SOUND;
-    public final Supplier<SoundEvent> CLOSE_SOUND;
+    public final SoundEvent OPEN_SOUND;
+    public final SoundEvent CLOSE_SOUND;
 
     public MultiBlockPlacementDirection multiBlockPlacementDirection;
     //public static final EnumProperty<TwoBlockMultiBlockState> HALF_PART = EnumProperty.create("half", TwoBlockMultiBlockState.class);
     //Values of "POSITIVE" and "NEGATIVE". In this context, it refers either to TOP vs BOTTOM block, or LEFT vs RIGHT block.
 
-    public TwoBlockStorageMultiBlock(Properties pProperties, MultiBlockPlacementDirection multiBlockPlacementDirection, int slotsAmount, Supplier<SoundEvent> openSound, Supplier<SoundEvent> closeSound) {
+    public TwoBlockStorageMultiBlock(Properties pProperties, MultiBlockPlacementDirection multiBlockPlacementDirection, int slotsAmount, SoundEvent openSound, SoundEvent closeSound) {
         // When registering this block, pass in:
         // Properties,
         // Which direction the block will place its other half (horizontally, vertically, longitudinally)
@@ -65,12 +65,12 @@ public class TwoBlockStorageMultiBlock extends TwoBlockMultiBlock implements Ent
     }
 
     @Override
-    public Supplier<SoundEvent> getCloseSound() {
+    public SoundEvent getCloseSound() {
         return CLOSE_SOUND;
     }
 
     @Override
-    public Supplier<SoundEvent> getOpenSound() {
+    public SoundEvent getOpenSound() {
         return OPEN_SOUND;
     }
 

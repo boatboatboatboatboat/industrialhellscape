@@ -20,8 +20,8 @@ public interface StorageBlockInterface {
     //Blocks that have a Storage Block Entity and implements this interface MUST possess these methods and supply a value.
     //The block entity assumes blocks passed to it possess this interface, and will use these methods to read off values.
     int getSlotCount();
-    Supplier<SoundEvent> getOpenSound();
-    Supplier<SoundEvent> getCloseSound();
+    SoundEvent getOpenSound();
+    SoundEvent getCloseSound();
     //---------- END OF NECESSARY FIELDS FOR BLOCK ENTITY ----------
 
     static void dropContainerInventory(Block block, BlockState state, Level level, BlockPos pos, BlockState newState) {

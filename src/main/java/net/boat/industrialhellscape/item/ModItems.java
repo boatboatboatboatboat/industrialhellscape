@@ -5,6 +5,7 @@ import net.boat.industrialhellscape.item.modded_items.GasStationPillItem;
 import net.boat.industrialhellscape.item.modded_items.JobApplicationItem;
 import net.boat.industrialhellscape.item.modded_items.InHellToolItem;
 import net.boat.industrialhellscape.sound.ModSounds;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.food.FoodProperties;
@@ -38,14 +39,38 @@ public class ModItems {
 
     public static final DeferredItem<Item> INHELL_HAVEN_DEVICE = ITEMS.register("inhell_haven_device",
             () -> new InHellToolItem(new Item.Properties())
+            {
+                //Item has tooltip text capability.
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    if (Screen.hasShiftDown()) {
+                        //Expand tooltip if shift-key is down while hovering over item in a GUI.
+                        tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.haventool"));
+                    } else {
+                        //Minimize tooltip by default.
+                        tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.shift_down"));
+                    }
+
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
     );
 
     public static final DeferredItem<Item> JOB_APPLICATION = ITEMS.register("job_application",
             () -> new JobApplicationItem(new Item.Properties())
+            {
+                //Item has tooltip text capability.
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.job_application"));
+
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
     );
 
     public static final DeferredItem<Item> GAS_STATION_PILL = ITEMS.register("gas_station_pill",
-            () -> new GasStationPillItem(new Item.Properties().rarity(Rarity.UNCOMMON).food((new FoodProperties.Builder()).nutrition(0).saturationModifier(0.0F).alwaysEdible().build()))
+            () -> new GasStationPillItem(new Item.Properties().rarity(Rarity.RARE).food((new FoodProperties.Builder()).nutrition(0).saturationModifier(0.0F).alwaysEdible().build()))
 
             {
                 @Override

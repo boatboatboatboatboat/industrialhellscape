@@ -26,12 +26,12 @@ import java.util.function.Supplier;
 public class FacingStorageBlock extends BaseStorageBlock implements EntityBlock {
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
     public final int SLOTS;
-    public final Supplier<SoundEvent> OPEN_SOUND;
-    public final Supplier<SoundEvent> CLOSE_SOUND;
+    public final SoundEvent OPEN_SOUND;
+    public final SoundEvent CLOSE_SOUND;
 
     private static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-    public FacingStorageBlock(Properties properties, int slotsAmount, Supplier<SoundEvent> openSound, Supplier<SoundEvent> closeSound) {
+    public FacingStorageBlock(Properties properties, int slotsAmount, SoundEvent openSound, SoundEvent closeSound) {
         // When registering this block, pass in
         // Properties
         // Integer amount of slots the block entity inventory will have (multiple of 9)
@@ -55,12 +55,12 @@ public class FacingStorageBlock extends BaseStorageBlock implements EntityBlock 
     }
 
     @Override
-    public Supplier<SoundEvent> getOpenSound() {
+    public SoundEvent getOpenSound() {
         return OPEN_SOUND;
     }
 
     @Override
-    public Supplier<SoundEvent> getCloseSound() {
+    public SoundEvent getCloseSound() {
         return CLOSE_SOUND;
     }
 

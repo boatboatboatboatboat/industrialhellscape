@@ -29,9 +29,9 @@ import java.util.function.Supplier;
 
 public class FacingFallableBlock extends FallingBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public Supplier<SoundEvent> onDropSound;
+    public SoundEvent onDropSound;
 
-    public FacingFallableBlock(Properties pProperties, Supplier<SoundEvent> onDropSound) {
+    public FacingFallableBlock(Properties pProperties, SoundEvent onDropSound) {
         super(pProperties);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)); //Default state if placed with no player present
@@ -53,7 +53,7 @@ public class FacingFallableBlock extends FallingBlock {
     @Override
     //When the falling block lands on a solid block, it will play a sound
     public void onLand(Level pLevel, @Nonnull BlockPos pPos, @Nonnull BlockState pState, @Nonnull BlockState pReplaceableState, @Nonnull FallingBlockEntity pFallingBlock) {
-        pLevel.playSound(null, pPos, onDropSound.get(), SoundSource.BLOCKS,
+        pLevel.playSound(null, pPos, onDropSound, SoundSource.BLOCKS,
                 1f, 1f);
     }
 

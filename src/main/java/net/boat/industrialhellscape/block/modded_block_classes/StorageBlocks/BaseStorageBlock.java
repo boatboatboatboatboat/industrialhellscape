@@ -37,14 +37,14 @@ public class BaseStorageBlock extends BaseEntityBlock implements StorageBlockInt
     //public static final MapCodec<BaseStorageBlock> CODEC = simpleCodec(BaseStorageBlock::new);
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
     public final int SLOTS;
-    public final Supplier<SoundEvent> OPEN_SOUND;
-    public final Supplier<SoundEvent> CLOSE_SOUND;
+    public final SoundEvent OPEN_SOUND;
+    public final SoundEvent CLOSE_SOUND;
 
     public @NotNull MapCodec<BaseStorageBlock> codec() {
         return null;
     }
 
-    public BaseStorageBlock(Properties properties, int slotsAmount, Supplier<SoundEvent> openSound, Supplier<SoundEvent> closeSound) {
+    public BaseStorageBlock(Properties properties, int slotsAmount, SoundEvent openSound, SoundEvent closeSound) {
         super(properties);
         this.SLOTS = slotsAmount;
         this.OPEN_SOUND = openSound;
@@ -58,12 +58,12 @@ public class BaseStorageBlock extends BaseEntityBlock implements StorageBlockInt
     }
 
     @Override
-    public Supplier<SoundEvent> getOpenSound() {
+    public SoundEvent getOpenSound() {
         return OPEN_SOUND;
     }
 
     @Override
-    public Supplier<SoundEvent> getCloseSound() {
+    public SoundEvent getCloseSound() {
         return CLOSE_SOUND;
     }
 

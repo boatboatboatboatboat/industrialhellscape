@@ -39,8 +39,8 @@ import java.util.function.Supplier;
 public class ModelledFacingStorageBlock extends FacingStorageBlock implements EntityBlock, StorageBlockInterface, SimpleWaterloggedBlock {
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
     public final int SLOTS;
-    public final Supplier<SoundEvent> OPEN_SOUND;
-    public final Supplier<SoundEvent> CLOSE_SOUND;
+    public final SoundEvent OPEN_SOUND;
+    public final SoundEvent CLOSE_SOUND;
     public final VoxelShape SHAPE;
 
     private static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -51,7 +51,7 @@ public class ModelledFacingStorageBlock extends FacingStorageBlock implements En
     private final VoxelShape SOLO_SHAPE_EAST;
     private final VoxelShape SOLO_SHAPE_WEST;
 
-    public ModelledFacingStorageBlock(Properties properties, int slotsAmount, Supplier<SoundEvent> openSound, Supplier<SoundEvent> closeSound, VoxelShape hitbox) {
+    public ModelledFacingStorageBlock(Properties properties, int slotsAmount, SoundEvent openSound, SoundEvent closeSound, VoxelShape hitbox) {
         // When registering this block, pass in
         // Properties
         // Integer amount of slots the block entity inventory will have (multiple of 9)
@@ -83,12 +83,12 @@ public class ModelledFacingStorageBlock extends FacingStorageBlock implements En
     }
 
     @Override
-    public Supplier<SoundEvent> getOpenSound() {
+    public SoundEvent getOpenSound() {
         return OPEN_SOUND;
     }
 
     @Override
-    public Supplier<SoundEvent> getCloseSound() {
+    public SoundEvent getCloseSound() {
         return CLOSE_SOUND;
     }
 

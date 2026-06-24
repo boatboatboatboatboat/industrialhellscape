@@ -40,6 +40,7 @@ public class ModCreativeModeTabs {
                 //ITEMS
                 ModItems.MARQUEE_DISC.asItem(),
                 ModItems.JOB_APPLICATION.asItem(),
+                ModItems.GAS_STATION_PILL.get(),
 
                 //BLOCK ITEMS
                 //Secret / Dev Blocks

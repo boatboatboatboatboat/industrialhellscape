@@ -35,7 +35,7 @@ public class JobApplicationItem extends Item {
             boolean hasThisJob = villager.getVillagerData().getProfession() == VillagerProfession.NITWIT;
             VillagerProfession jobToAcquire = VillagerProfession.NONE;
 
-            if (villager.isAlive() && hasThisJob )  {
+            if (villager.isAlive() && hasThisJob && !villager.hasCustomName())  {
                 if (!player.level().isClientSide) { //IF ON SERVER
 
                     //Effects
@@ -79,12 +79,4 @@ public class JobApplicationItem extends Item {
             }
         }
     }
-
-    //Item has tooltip text capability.
-    @Override
-    public void appendHoverText(@NotNull ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.job_application"));
-
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-    };
 }

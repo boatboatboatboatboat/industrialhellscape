@@ -58,8 +58,8 @@ public class ConnectedStorageBlock extends FacingStorageBlock implements EntityB
     public TagKey<Block> BlockSetFamily; //To determine other blocks aside from its own can this block connect to
     private final MultiBlockPlacementDirection placementDirection;
 
-    public final Supplier<SoundEvent> OPEN_SOUND;
-    public final Supplier<SoundEvent> CLOSE_SOUND;
+    public final SoundEvent OPEN_SOUND;
+    public final SoundEvent CLOSE_SOUND;
 
     private final VoxelShape SOLO_SHAPE_NORTH;
     private final VoxelShape SOLO_SHAPE_SOUTH;
@@ -81,7 +81,7 @@ public class ConnectedStorageBlock extends FacingStorageBlock implements EntityB
     private final VoxelShape RIGHT_SHAPE_EAST;
     private final VoxelShape RIGHT_SHAPE_WEST;
 
-    public ConnectedStorageBlock(Properties properties, int slotAmount, TagKey<Block> inputCompatibleBlockSet, VoxelShape soloShape, VoxelShape leftShape, VoxelShape middleShape, VoxelShape rightShape, MultiBlockPlacementDirection placementDirection, Supplier<SoundEvent> openSound, Supplier<SoundEvent> closeSound) {
+    public ConnectedStorageBlock(Properties properties, int slotAmount, TagKey<Block> inputCompatibleBlockSet, VoxelShape soloShape, VoxelShape leftShape, VoxelShape middleShape, VoxelShape rightShape, MultiBlockPlacementDirection placementDirection, SoundEvent openSound, SoundEvent closeSound) {
         // When registering this block, pass in
         // Properties,
         // Integer slot amount (should be multiple of 9) that its block entity inventory shall possess
@@ -137,7 +137,7 @@ public class ConnectedStorageBlock extends FacingStorageBlock implements EntityB
     }
 
     @Override
-    public Supplier<SoundEvent> getCloseSound() {
+    public SoundEvent getCloseSound() {
         return CLOSE_SOUND;
     }
 
@@ -147,7 +147,7 @@ public class ConnectedStorageBlock extends FacingStorageBlock implements EntityB
     }
 
     @Override
-    public Supplier<SoundEvent> getOpenSound() {
+    public SoundEvent getOpenSound() {
         return OPEN_SOUND;
     }
 

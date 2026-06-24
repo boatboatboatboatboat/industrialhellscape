@@ -1,7 +1,7 @@
 package net.boat.industrialhellscape;
 
 import net.neoforged.neoforge.common.ModConfigSpec;
-//test
+
 public class CommonModConfig {
     private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
