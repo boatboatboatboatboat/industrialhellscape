@@ -5,6 +5,7 @@
   "item.industrialhellscape.inhell_haven_device": "HAVEN Tool",
   "item.industrialhellscape.job_application": "Job Application",
   "item.industrialhellscape.disc_1": "Marquee Music Disc",
+  "item.industrialhellscape.disc_1.desc": "14 Minutes Until Launch - Oscar Borisovich Feltsman",
   "item.industrialhellscape.gas_station_pill": "Gas Station Pill",
 
   "block.industrialhellscape.prototype_machine": "Prototype Machine",
@@ -234,7 +235,6 @@
   "tooltip.industrialhellscape.advise_craft_vertical": "Vertical pattern variant. Crafted from base variant.",
   "tooltip.industrialhellscape.blockworks": "Use a pickaxe to rotate blocks stone-cut from this. Crouching with HAVEN tool allows full rotation functionality.",
   "tooltip.industrialhellscape.shift_down": "Press §eShift§r for more Information",
-  "tooltip.industrialhellscape.disc_1": "14 Minutes Until Launch - Oscar Borisovich Feltsman",
   "tooltip.industrialhellscape.job_application": "Sneak Interact to convert Nitwit villagers into employable villagers.",
   "tooltip.industrialhellscape.horsepill": "§6 Enhances your body with \"equine characteristics!\"",
 

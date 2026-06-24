@@ -27,6 +27,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         //  Item
         basicItem(ModItems.JOB_APPLICATION.get());
         basicItem(ModItems.GAS_STATION_PILL.get());
+        basicFolderedItem(ModItems.MARQUEE_DISC.get(),"disc");
         
         wallItem(ModBlocks.GRAY_ROCKRETE_WALL, ModBlocks.ROUGH_GRAY_ROCKRETE);
         wallItem(ModBlocks.RED_ROCKRETE_WALL, ModBlocks.ROUGH_RED_ROCKRETE);

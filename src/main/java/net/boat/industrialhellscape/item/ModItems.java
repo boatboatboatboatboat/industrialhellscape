@@ -3,13 +3,11 @@ import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.item.modded_items.GasStationPillItem;
 import net.boat.industrialhellscape.item.modded_items.InHellToolItem;
 import net.boat.industrialhellscape.item.modded_items.JobApplicationItem;
+import net.boat.industrialhellscape.sound.ModSounds;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -39,6 +37,19 @@ public class ModItems {
             }
     );
 
+    public static final RegistryObject<Item> MARQUEE_DISC = ITEMS.register("disc_1",
+            () -> new RecordItem(1, ModSounds.SONG_1, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON), 2360)
+//            {
+//                @Override
+//                public void appendHoverText(@NotNull ItemStack stack, Level level, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+//                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.disc_1"));
+//                    super.appendHoverText(stack, level, tooltipComponents, tooltipFlag);
+//                }
+//            }
+    );
+
+
+
     public static final RegistryObject<Item> INHELL_HAVEN_DEVICE = ITEMS.register("inhell_haven_device",
             () -> new InHellToolItem(new Item.Properties())
             {
@@ -57,7 +68,7 @@ public class ModItems {
     );
 
     public static final RegistryObject<Item> GAS_STATION_PILL = ITEMS.register("gas_station_pill",
-            () -> new GasStationPillItem(new Item.Properties().rarity(Rarity.UNCOMMON).food((new FoodProperties.Builder()).nutrition(0).saturationMod(0.0F).alwaysEat().build()))
+            () -> new GasStationPillItem(new Item.Properties().rarity(Rarity.RARE).food((new FoodProperties.Builder()).nutrition(0).saturationMod(0.0F).alwaysEat().build()))
 
             {
                 @Override

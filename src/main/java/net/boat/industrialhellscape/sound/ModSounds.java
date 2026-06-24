@@ -10,6 +10,7 @@ import net.minecraftforge.common.util.ForgeSoundType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
 
@@ -25,6 +26,7 @@ public class ModSounds {
     public static final Supplier<SoundEvent> SNORE = registerSoundEvents("snore");
     public static final Supplier<SoundEvent> COMPUTER_ON = registerSoundEvents("computer_on");
     public static final Supplier<SoundEvent> HORSEPILL = registerSoundEvents("horsepill");
+    public static final Supplier<SoundEvent> SONG_1 = registerSoundEvents("song_1");
 
     public static final Supplier<SoundEvent> METAL_BOX_OPEN = registerSoundEvents("metal_box_opening");
     public static final Supplier<SoundEvent> METAL_BOX_CLOSE = registerSoundEvents("metal_box_closing");

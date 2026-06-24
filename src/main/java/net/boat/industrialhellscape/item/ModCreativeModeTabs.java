@@ -41,9 +41,9 @@ public class ModCreativeModeTabs {
     static boolean isHiddenItem(Item item) {
         Item[] itemContentToHide = new Item[]{
                 //ITEMS
-                //ModItems.MARQUEE_DISC.asItem(),
+                ModItems.MARQUEE_DISC.get(),
                 ModItems.JOB_APPLICATION.get(),
-                //ModItems.GAS_STATION_PILL.get(),
+                ModItems.GAS_STATION_PILL.get(),
 
                 //BLOCK ITEMS
                 //Secret / Dev Blocks

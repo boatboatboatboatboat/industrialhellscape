@@ -9,6 +9,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -278,6 +279,10 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(
                         Items.COPPER_INGOT,
                         Items.IRON_INGOT
+                );
+        this.tag(ItemTags.MUSIC_DISCS)
+                .add(
+                  ModItems.MARQUEE_DISC.get()
                 );
 
         this.tag(ModTags.Items.IH_COMPATIBLE_TOOLS)
