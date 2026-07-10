@@ -5,8 +5,7 @@
     "layer": "CUTOUT",
     "textures": [
       "industrialhellscape:ctm/ctm2x2_gray_floorgrate"
-      ],
-      "connect_inside": true
+      ]
     }
   }
 }

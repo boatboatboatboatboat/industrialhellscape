@@ -24,13 +24,18 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(
                         ModBlocks.DUCT.get(),
                         ModBlocks.RUSTY_DUCT.get(),
-                        ModBlocks.DUCT_VENT.get(),
-                        ModBlocks.RUSTY_DUCT_VENT.get(),
+//                        ModBlocks.DUCT_VENT.get(),
+//                        ModBlocks.RUSTY_DUCT_VENT.get(),
 
-                        ModBlocks.HORIZONTAL_GRATE.get(),
-                        ModBlocks.VERTICAL_GRATE.get(),
-                        ModBlocks.HORIZONTAL_CUTOUT_GRATE.get(),
-                        ModBlocks.VERTICAL_CUTOUT_GRATE.get()
+                        ModBlocks.HORIZONTAL_VENT.get(),
+                        ModBlocks.VERTICAL_VENT.get(),
+                        ModBlocks.HORIZONTAL_CUTOUT_VENT.get(),
+                        ModBlocks.VERTICAL_CUTOUT_VENT.get(),
+
+                        ModBlocks.RUSTY_HORIZONTAL_VENT.get(),
+                        ModBlocks.RUSTY_VERTICAL_VENT.get(),
+                        ModBlocks.RUSTY_HORIZONTAL_CUTOUT_VENT.get(),
+                        ModBlocks.RUSTY_VERTICAL_CUTOUT_VENT.get()
                 );
         this.tag(ModTags.Blocks.METALWORKS_BLOCKS)
                 .add(
@@ -77,29 +82,49 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get(),
                         ModBlocks.GRAY_RIVETED_VESSELPLATE_STAIRS.get(),
                         ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get(),
-                        ModBlocks.SMOOTH_GRAY_VESSELPLATE_STAIRS.get()
+                        ModBlocks.SMOOTH_GRAY_VESSELPLATE_STAIRS.get(),
+
+                        ModBlocks.RUSTY_HORIZONTAL_VESSELPLATE.get(),
+                        ModBlocks.RUSTY_VERTICAL_VESSELPLATE.get(),
+                        ModBlocks.RUSTY_HORIZONTAL_REINFORCED_VESSELPLATE.get(),
+                        ModBlocks.RUSTY_VERTICAL_REINFORCED_VESSELPLATE.get(),
+                        ModBlocks.RUSTY_VESSELPLATE_PILLAR.get(),
+
+                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE.get(),
+                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE_SLAB.get(),
+                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE_STAIRS.get(),
+
+                        ModBlocks.RUSTY_RIVETED_VESSELPLATE.get(),
+                        ModBlocks.RUSTY_RIVETED_VESSELPLATE_SLAB.get(),
+                        ModBlocks.RUSTY_RIVETED_VESSELPLATE_STAIRS.get()
                 );
         this.tag(ModTags.Blocks.TRUSS_BLOCKS)
                 .add(
                         ModBlocks.TRUSS.get(),
+                        ModBlocks.TRUSS_STAIRS.get(),
+                        ModBlocks.TRUSS_SLAB.get(),
                         ModBlocks.CATWALK_TRUSS.get(),
                         ModBlocks.CATWALK_TRUSS_STAIRS.get(),
                         ModBlocks.CATWALK_TRUSS_SLAB.get(),
-                        ModBlocks.TRUSS_STAIRS.get(),
-                        ModBlocks.TRUSS_SLAB.get(),
                         ModBlocks.GRAY_TRUSS.get(),
                         ModBlocks.GRAY_CATWALK_TRUSS.get(),
                         ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.get(),
                         ModBlocks.GRAY_CATWALK_TRUSS_SLAB.get(),
                         ModBlocks.GRAY_TRUSS_STAIRS.get(),
-                        ModBlocks.GRAY_TRUSS_SLAB.get()
+                        ModBlocks.GRAY_TRUSS_SLAB.get(),
+
+                        ModBlocks.RUSTY_TRUSS.get(),
+                        ModBlocks.RUSTY_TRUSS_STAIRS.get(),
+                        ModBlocks.RUSTY_TRUSS_SLAB.get()
                 );
         this.tag(ModTags.Blocks.VESSELGLASS_BLOCKS)
                 .add(
                         ModBlocks.VESSELGLASS.get(),
                         ModBlocks.REINFORCED_VESSELGLASS.get(),
                         ModBlocks.GRAY_VESSELGLASS.get(),
-                        ModBlocks.GRAY_REINFORCED_VESSELGLASS.get()
+                        ModBlocks.GRAY_REINFORCED_VESSELGLASS.get(),
+                        ModBlocks.RUSTY_VESSELGLASS.get(),
+                        ModBlocks.RUSTY_REINFORCED_VESSELGLASS.get()
                 );
         this.tag(ModTags.Blocks.ROCKRETE_BLOCKS)
                 .add(
@@ -163,7 +188,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(ModTags.Blocks.TRAPDOOR_BLOCKS) //FOR CORRECT MINING TOOLS AND TOOL TIER
                 .add(
                         //ModBlocks.VESSELPLATE_TRAPDOOR.get(),
-                        ModBlocks.VENT_TRAPDOOR.get()
+                        ModBlocks.VENT_TRAPDOOR.get(),
+                        ModBlocks.RUSTY_VENT_TRAPDOOR.get()
                 );
         this.tag(ModTags.Blocks.ALL_FURNITURE_BLOCKS)
                 .addTags(

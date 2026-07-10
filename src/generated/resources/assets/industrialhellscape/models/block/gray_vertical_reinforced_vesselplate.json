@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "render_type": "minecraft:solid",
-  "textures": {
-    "all": "industrialhellscape:block/vesselplate/gray_vertical_reinforced_vesselplate"
-  }
-}

@@ -28,10 +28,9 @@ public class GasStationPillItem extends Item {
         //Villager becomes horse when crouch-interacted with
         if (target instanceof Villager villager) {
             if (villager.isAlive() && !villager.hasCustomName() )  {
-                int villagerInventorySlots = villager.getInventory().getContainerSize();
 
                 if (!player.level().isClientSide) { //SERVER SIDE
-                    villager.makeSound(ModSounds.HORSEPILL.get());
+                    int villagerInventorySlots = villager.getInventory().getContainerSize();
 
                     //Drop standard inventory
                     for(int i=1; i<villagerInventorySlots; i++) {
@@ -49,6 +48,7 @@ public class GasStationPillItem extends Item {
                     }
 
                     //turn villager into horse
+                    villager.makeSound(ModSounds.HORSEPILL.get());
                     villager.convertTo(EntityType.HORSE, false);
 
                     //Game Event
@@ -86,11 +86,11 @@ public class GasStationPillItem extends Item {
             }
             entity.makeSound(ModSounds.HORSEPILL.get());
             entity.hurt(entity.level().damageSources().source(ModDamageTypes.HORSEPILL_DAMAGE), 512F);
-
-            if(entity.level() instanceof ServerLevel serverLevel && !entity.isAlive()) {
-                Component name = entity.getName();
-                EntityType.HORSE.spawn(serverLevel, entity.blockPosition(), MobSpawnType.MOB_SUMMONED).setCustomName(name);
-            }
+//
+//            if(entity.level() instanceof ServerLevel serverLevel && !entity.isAlive()) {
+//                Component name = entity.getName();
+//                EntityType.HORSE.spawn(serverLevel, entity.blockPosition(), MobSpawnType.MOB_SUMMONED).setCustomName(name);
+//            }
         }
 
         return super.finishUsingItem(itemstack, world, entity);

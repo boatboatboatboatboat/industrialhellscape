@@ -60,6 +60,21 @@ public class ModBlocks {
         specificBlockReplacement("yellow_rockrete_stairs", "smooth_yellow_rockrete_stairs");
         specificBlockReplacement("blue_rockrete_stairs", "smooth_blue_rockrete_stairs");
         specificBlockReplacement("green_rockrete_stairs", "smooth_green_rockrete_stairs");
+
+
+        specificBlockReplacement("horizontal_grate", "horizontal_vent");
+        specificBlockReplacement("vertical_grate", "vertical_vent");
+        specificBlockReplacement("horizontal_cutout_grate", "horizontal_cutout_vent");
+        specificBlockReplacement("vertical_cutout_grate", "vertical_cutout_vent");
+
+        specificBlockReplacement("gray_horizontal_grate", "horizontal_vent");
+        specificBlockReplacement("gray_vertical_grate", "vertical_vent");
+        specificBlockReplacement("gray_horizontal_cutout_grate", "cutout_horizontal_vent");
+        specificBlockReplacement("gray_vertical_cutout_grate", "cutout_vertical_vent");
+
+
+        specificBlockReplacement("duct_vent", "vent_trapdoor");
+        specificBlockReplacement("rusty_duct_vent", "rusty_vent_trapdoor");
     }
 
     protected static ResourceLocation blockID(String blockID) {
@@ -186,7 +201,7 @@ public class ModBlocks {
             });
 
 
-    //DUCT BLOCKS
+//    //DUCT BLOCKS
     public static final DeferredBlock<Block> DUCT = registerBlockAndBlockItem("duct",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK))
             {
@@ -202,29 +217,91 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
 
     //DUCT VENT BLOCKS
-    public static final DeferredBlock<Block> DUCT_VENT = registerBlockAndBlockItem("duct_vent",
-            () -> new ModelledSurfaceMountBlock(BlockBehaviour
+//    public static final DeferredBlock<Block> DUCT_VENT = registerBlockAndBlockItem("duct_vent",
+//            () -> new ModelledSurfaceMountBlock(BlockBehaviour
+//                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+//                    .noOcclusion(),
+//                    HitboxGeometryCollection.PANEL_FLOOR()
+//            )
+//    );
+//    public static final DeferredBlock<Block> RUSTY_DUCT_VENT = registerBlockAndBlockItem("rusty_duct_vent",
+//            () -> new ModelledSurfaceMountBlock(BlockBehaviour
+//                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+//                    .noOcclusion(),
+//                    HitboxGeometryCollection.PANEL_FLOOR()
+//            )
+//    );
+
+    //VENT BLOCKS
+    public static final DeferredBlock<Block> HORIZONTAL_VENT = registerBlockAndBlockItem("horizontal_vent",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .noOcclusion(),
-                    HitboxGeometryCollection.PANEL_FLOOR()
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
             )
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_craft_horizontal"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
     );
-    public static final DeferredBlock<Block> RUSTY_DUCT_VENT = registerBlockAndBlockItem("rusty_duct_vent",
-            () -> new ModelledSurfaceMountBlock(BlockBehaviour
+    public static final DeferredBlock<Block> VERTICAL_VENT = registerBlockAndBlockItem("vertical_vent",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .noOcclusion(),
-                    HitboxGeometryCollection.PANEL_FLOOR()
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
             )
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_craft_vertical"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
+    );
+    public static final DeferredBlock<Block> HORIZONTAL_CUTOUT_VENT = registerBlockAndBlockItem("horizontal_cutout_vent",
+            () -> new TrussBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.GLASS)
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
+                    false
+            )
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_craft_horizontal"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
+    );
+    public static final DeferredBlock<Block> VERTICAL_CUTOUT_VENT = registerBlockAndBlockItem("vertical_cutout_vent",
+            () -> new TrussBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.GLASS)
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
+                    false
+            )
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_craft_vertical"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
     );
 
-    //GRATE BLOCKS
-    public static final DeferredBlock<Block> HORIZONTAL_GRATE = registerBlockAndBlockItem("horizontal_grate",
+    public static final DeferredBlock<Block> RUSTY_HORIZONTAL_VENT = registerBlockAndBlockItem("rusty_horizontal_vent",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
             )
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_craft_horizontal"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
     );
-    public static final DeferredBlock<Block> VERTICAL_GRATE = registerBlockAndBlockItem("vertical_grate",
+    public static final DeferredBlock<Block> RUSTY_VERTICAL_VENT = registerBlockAndBlockItem("rusty_vertical_vent",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
@@ -237,14 +314,21 @@ public class ModBlocks {
                 }
             }
     );
-    public static final DeferredBlock<Block> HORIZONTAL_CUTOUT_GRATE = registerBlockAndBlockItem("horizontal_cutout_grate",
+    public static final DeferredBlock<Block> RUSTY_HORIZONTAL_CUTOUT_VENT = registerBlockAndBlockItem("rusty_horizontal_cutout_vent",
             () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.GLASS)
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
                     false
             )
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_craft_horizontal"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
     );
-    public static final DeferredBlock<Block> VERTICAL_CUTOUT_GRATE = registerBlockAndBlockItem("vertical_cutout_grate",
+    public static final DeferredBlock<Block> RUSTY_VERTICAL_CUTOUT_VENT = registerBlockAndBlockItem("rusty_vertical_cutout_vent",
             () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.GLASS)
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
@@ -258,34 +342,6 @@ public class ModBlocks {
                 }
             }
     );
-//    public static final DeferredBlock<Block> GRAY_HORIZONTAL_GRATE = registerBlockAndBlockItem("gray_horizontal_grate",
-//            () -> new TrussBlock(BlockBehaviour
-//                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-//                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
-//                    false
-//            )
-//    );
-//    public static final DeferredBlock<Block> GRAY_VERTICAL_GRATE = registerBlockAndBlockItem("gray_vertical_grate",
-//            () -> new TrussBlock(BlockBehaviour
-//                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-//                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
-//                    false
-//            )
-//    );
-//    public static final DeferredBlock<Block> GRAY_HORIZONTAL_CUTOUT_GRATE = registerBlockAndBlockItem("gray_horizontal_cutout_grate",
-//            () -> new TrussBlock(BlockBehaviour
-//                    .Properties.ofFullCopy(Blocks.GLASS)
-//                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
-//                    false
-//            )
-//    );
-//    public static final DeferredBlock<Block> GRAY_VERTICAL_CUTOUT_GRATE = registerBlockAndBlockItem("gray_vertical_cutout_grate",
-//            () -> new TrussBlock(BlockBehaviour
-//                    .Properties.ofFullCopy(Blocks.GLASS)
-//                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
-//                    false
-//            )
-//    );
 
     //RAILINGS
     public static final DeferredBlock<Block> YELLOW_RAILING = registerBlockAndBlockItem("yellow_railing",
@@ -410,6 +466,13 @@ public class ModBlocks {
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
             )
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_craft_horizontal"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
     );
     public static final DeferredBlock<Block> VERTICAL_VESSELPLATE = registerBlockAndBlockItem("vertical_vesselplate",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
@@ -427,6 +490,13 @@ public class ModBlocks {
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
             )
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_craft_horizontal"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
     );
     public static final DeferredBlock<Block> VERTICAL_REINFORCED_VESSELPLATE = registerBlockAndBlockItem("vertical_reinforced_vesselplate",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
@@ -484,6 +554,13 @@ public class ModBlocks {
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
             )
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_craft_horizontal"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
     );
     public static final DeferredBlock<Block> GRAY_VERTICAL_VESSELPLATE = registerBlockAndBlockItem("gray_vertical_vesselplate",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
@@ -501,6 +578,13 @@ public class ModBlocks {
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
             )
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_craft_horizontal"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
     );
     public static final DeferredBlock<Block> GRAY_VERTICAL_REINFORCED_VESSELPLATE = registerBlockAndBlockItem("gray_vertical_reinforced_vesselplate",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
@@ -542,6 +626,92 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
             )
     );
+
+    public static final DeferredBlock<Block> RUSTY_HORIZONTAL_VESSELPLATE = registerBlockAndBlockItem("rusty_horizontal_vesselplate",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+            )
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_craft_horizontal"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
+    );
+    public static final DeferredBlock<Block> RUSTY_VERTICAL_VESSELPLATE = registerBlockAndBlockItem("rusty_vertical_vesselplate",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+            )
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_craft_vertical"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
+    );
+    public static final DeferredBlock<Block> RUSTY_HORIZONTAL_REINFORCED_VESSELPLATE = registerBlockAndBlockItem("rusty_horizontal_reinforced_vesselplate",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+            )
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_craft_horizontal"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
+    );
+    public static final DeferredBlock<Block> RUSTY_VERTICAL_REINFORCED_VESSELPLATE = registerBlockAndBlockItem("rusty_vertical_reinforced_vesselplate",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+            )
+            {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_craft_vertical"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
+    );
+    public static final DeferredBlock<Block> SMOOTH_RUSTY_VESSELPLATE = registerBlockAndBlockItem("smooth_rusty_vesselplate",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+            )
+    );
+    public static final DeferredBlock<Block> SMOOTH_RUSTY_VESSELPLATE_STAIRS = registerBlockAndBlockItem("smooth_rusty_vesselplate_stairs",
+            () -> new StairBlock(ModBlocks.SMOOTH_VESSELPLATE.get().defaultBlockState(),
+                    BlockBehaviour
+                            .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+            )
+    );
+    public static final DeferredBlock<Block> SMOOTH_RUSTY_VESSELPLATE_SLAB = registerBlockAndBlockItem("smooth_rusty_vesselplate_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+            )
+    );
+    public static final DeferredBlock<Block> RUSTY_RIVETED_VESSELPLATE = registerBlockAndBlockItem("rusty_riveted_vesselplate",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+            )
+    );
+    public static final DeferredBlock<Block> RUSTY_RIVETED_VESSELPLATE_STAIRS = registerBlockAndBlockItem("rusty_riveted_vesselplate_stairs",
+            () -> new StairBlock(ModBlocks.SMOOTH_VESSELPLATE.get().defaultBlockState(),
+                    BlockBehaviour
+                            .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+            )
+    );
+    public static final DeferredBlock<Block> RUSTY_RIVETED_VESSELPLATE_SLAB = registerBlockAndBlockItem("rusty_riveted_vesselplate_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+            )
+    );
+    public static final DeferredBlock<Block> RUSTY_VESSELPLATE_PILLAR = registerBlockAndBlockItem("rusty_vesselplate_pillar",
+            () -> new AxialPillarBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+            )
+    );
     
     //TRUSS BLOCKS
     public static final DeferredBlock<Block> TRUSS = registerBlockAndBlockItem("truss",
@@ -558,6 +728,20 @@ public class ModBlocks {
                 }
             }
     );
+    public static final DeferredBlock<Block> TRUSS_STAIRS = registerBlockAndBlockItem("truss_stairs",
+            () -> new StairBlock( ModBlocks.TRUSS.get().defaultBlockState(),
+                    BlockBehaviour
+                            .Properties.ofFullCopy(Blocks.STONE)
+                            .noOcclusion()
+                            .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS))
+    );
+    public static final DeferredBlock<Block> TRUSS_SLAB = registerBlockAndBlockItem("truss_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS))
+    );
+
     public static final DeferredBlock<Block> CATWALK_TRUSS = registerBlockAndBlockItem("catwalk_truss",
             () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
@@ -572,19 +756,6 @@ public class ModBlocks {
     );
 
     public static final DeferredBlock<Block> CATWALK_TRUSS_SLAB = registerBlockAndBlockItem("catwalk_truss_slab",
-            () -> new SlabBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .noOcclusion()
-                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS))
-    );
-    public static final DeferredBlock<Block> TRUSS_STAIRS = registerBlockAndBlockItem("truss_stairs",
-            () -> new StairBlock( ModBlocks.TRUSS.get().defaultBlockState(),
-                    BlockBehaviour
-                            .Properties.ofFullCopy(Blocks.STONE)
-                            .noOcclusion()
-                            .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS))
-    );
-    public static final DeferredBlock<Block> TRUSS_SLAB = registerBlockAndBlockItem("truss_slab",
             () -> new SlabBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion()
@@ -625,6 +796,47 @@ public class ModBlocks {
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS))
     );
 
+    public static final DeferredBlock<Block> RUSTY_TRUSS = registerBlockAndBlockItem("rusty_truss",
+            () -> new TrussBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
+                    true)
+    );
+    public static final DeferredBlock<Block> RUSTY_TRUSS_STAIRS = registerBlockAndBlockItem("rusty_truss_stairs",
+            () -> new StairBlock( ModBlocks.TRUSS.get().defaultBlockState(),
+                    BlockBehaviour
+                            .Properties.ofFullCopy(Blocks.STONE)
+                            .noOcclusion()
+                            .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS))
+    );
+    public static final DeferredBlock<Block> RUSTY_TRUSS_SLAB = registerBlockAndBlockItem("rusty_truss_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS))
+    );
+    public static final DeferredBlock<Block> RUSTY_CATWALK_TRUSS = registerBlockAndBlockItem("rusty_catwalk_truss",
+            () -> new TrussBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
+                    true)
+    );
+    public static final DeferredBlock<Block> RUSTY_CATWALK_TRUSS_STAIRS = registerBlockAndBlockItem("rusty_catwalk_truss_stairs",
+            () -> new StairBlock( ModBlocks.TRUSS.get().defaultBlockState(),
+                    BlockBehaviour
+                            .Properties.ofFullCopy(Blocks.STONE)
+                            .noOcclusion()
+                            .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS))
+    );
+    public static final DeferredBlock<Block> RUSTY_CATWALK_TRUSS_SLAB = registerBlockAndBlockItem("rusty_catwalk_truss_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS))
+    );
+
     //VESSELGLASS BLOCKS
     public static final DeferredBlock<Block> REINFORCED_VESSELGLASS = registerBlockAndBlockItem("reinforced_vesselglass",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
@@ -644,6 +856,17 @@ public class ModBlocks {
             )
     );
     public static final DeferredBlock<Block> GRAY_VESSELGLASS = registerBlockAndBlockItem("gray_vesselglass",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.GLASS)
+            )
+    );
+    public static final DeferredBlock<Block> RUSTY_REINFORCED_VESSELGLASS = registerBlockAndBlockItem("rusty_reinforced_vesselglass",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
+                    .Properties
+                    .ofFullCopy(Blocks.GLASS)
+            )
+    );
+    public static final DeferredBlock<Block> RUSTY_VESSELGLASS = registerBlockAndBlockItem("rusty_vesselglass",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.GLASS)
             )
@@ -954,13 +1177,13 @@ public class ModBlocks {
     //DOORS, TRAPDOORS, ETC:
     public static final DeferredBlock<Block> ARMORED_DOOR = registerBlockAndBlockItem("armored_door",
             () -> new DoorBlock(BlockSetType.STONE, BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.METAL).noOcclusion()));
-//    public static final DeferredBlock<Block> VESSELPLATE_TRAPDOOR = registerBlockAndBlockItem("vesselplate_trapdoor",
-//            () -> new TrapDoorBlock(BlockSetType.STONE, BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.METAL).noOcclusion()));
     public static final DeferredBlock<Block> STAMPED_METAL_DOOR = registerBlockAndBlockItem("stamped_metal_door",
             () -> new DoorBlock(BlockSetType.STONE, BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.METAL).noOcclusion()));
     public static final DeferredBlock<Block> BULKHEAD_DOOR = registerBlockAndBlockItem("bulkhead_door",
             () -> new DoorBlock(BlockSetType.STONE, BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.METAL).noOcclusion()));
     public static final DeferredBlock<Block> VENT_TRAPDOOR = registerBlockAndBlockItem("vent_trapdoor",
+            () -> new TrapDoorBlock(BlockSetType.STONE, BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.METAL).noOcclusion()));
+    public static final DeferredBlock<Block> RUSTY_VENT_TRAPDOOR = registerBlockAndBlockItem("rusty_vent_trapdoor",
             () -> new TrapDoorBlock(BlockSetType.STONE, BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.METAL).noOcclusion()));
     
 //    //FURNITURE

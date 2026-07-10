@@ -1,9 +1,13 @@
 package net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks;
 
 import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
+import net.boat.industrialhellscape.block.modded_interfaces.ToolUseInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -15,6 +19,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -32,10 +37,10 @@ import javax.annotation.Nonnull;
 // The block-state .json file is in a multipart format, like sea pickles.
 // Multiple placements inside that block to occupy vacant directions is supported. datagen/ModBlockLootTableProvider has a method to datagen the appropriate loot table.
 
-public class RailingBlock extends Block implements SimpleWaterloggedBlock{
+public class RailingBlock extends Block implements SimpleWaterloggedBlock, ToolUseInterface {
 
     private static final double RAILING_HEIGHT = 16; //16 units is a full block height
-    private static final double RAILING_COLLISION_HEIGHT = 24; //Vanilla wall value
+    private static final double RAILING_COLLISION_HEIGHT = 16; //Vanilla wall value is 24. This is 16 to prevent mob pathfinding issues.
 
     private double RAILING_THICKNESS;
     private double RAILING_COLLISION_SHAPE_BASE;
@@ -189,6 +194,11 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock{
         if (pState.getValue(EAST_FENCE))  shape = Shapes.join(shape, COLLISION_SHAPE_EAST,  BooleanOp.OR);
         if (pState.getValue(WEST_FENCE))  shape = Shapes.join(shape, COLLISION_SHAPE_WEST,  BooleanOp.OR);
         return shape;
+    }
+
+    @Override
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        return RailingRotationToolUse(stack, state, level, pos, player, 3);
     }
 
     @Override

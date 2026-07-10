@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "industrialhellscape:block/smooth_red_rockrete",
-    "side": "industrialhellscape:block/smooth_red_rockrete",
-    "top": "industrialhellscape:block/smooth_red_rockrete"
-  }
-}

@@ -84,7 +84,6 @@ public class TwoBlockMultiBlock extends SimpleFacingBlock {
 
         pLevel.setBlock(otherBlockPos, pState.setValue(HALF_PART, TwoBlockMultiBlockState.POSITIVE), 3);
         pLevel.setBlock(pPos, pState.setValue(HALF_PART, TwoBlockMultiBlockState.NEGATIVE), 3);
-
     }
 
     public PushReaction getPistonPushReaction(@NotNull BlockState pState) {

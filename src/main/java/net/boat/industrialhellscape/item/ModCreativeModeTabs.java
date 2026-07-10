@@ -7,7 +7,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -38,8 +37,8 @@ public class ModCreativeModeTabs {
     static boolean isHiddenItem(Item item) {
         Item[] itemContentToHide = new Item[]{
                 //ITEMS
+                //Secret / Dev Items
                 ModItems.MARQUEE_DISC.asItem(),
-                ModItems.JOB_APPLICATION.asItem(),
                 ModItems.GAS_STATION_PILL.get(),
 
                 //BLOCK ITEMS
@@ -52,10 +51,14 @@ public class ModCreativeModeTabs {
                 ModBlocks.VERTICAL_REINFORCED_VESSELPLATE.get().asItem(),
                 ModBlocks.GRAY_VERTICAL_VESSELPLATE.get().asItem(),
                 ModBlocks.GRAY_VERTICAL_REINFORCED_VESSELPLATE.get().asItem(),
+                ModBlocks.RUSTY_VERTICAL_VESSELPLATE.get().asItem(),
+                ModBlocks.RUSTY_VERTICAL_REINFORCED_VESSELPLATE.get().asItem(),
 
                 //Grate Vertical Variants (Hidden to prevent JEI clutter)
-                ModBlocks.VERTICAL_GRATE.get().asItem(),
-                ModBlocks.VERTICAL_CUTOUT_GRATE.get().asItem()
+                ModBlocks.VERTICAL_VENT.get().asItem(),
+                ModBlocks.VERTICAL_CUTOUT_VENT.get().asItem(),
+                ModBlocks.RUSTY_VERTICAL_VENT.get().asItem(),
+                ModBlocks.RUSTY_VERTICAL_CUTOUT_VENT.get().asItem()
         };
 
         //https://stackoverflow.com/questions/1128723/how-do-i-determine-whether-an-array-contains-a-particular-value-in-java

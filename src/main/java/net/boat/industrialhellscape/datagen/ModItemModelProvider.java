@@ -26,6 +26,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         //Make item models from existing .png files
         //  Item
         basicItem(ModItems.JOB_APPLICATION.get());
+        basicItem(ModItems.TERMINATION_LETTER.get());
+
         basicItem(ModItems.GAS_STATION_PILL.get());
         wallItem(ModBlocks.GRAY_ROCKRETE_WALL, ModBlocks.ROUGH_GRAY_ROCKRETE);
         wallItem(ModBlocks.RED_ROCKRETE_WALL, ModBlocks.ROUGH_RED_ROCKRETE);

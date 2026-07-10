@@ -57,14 +57,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     private static final List<ItemLike> HVAC_STONECUT_OUTPUT = List.of(
             ModBlocks.DUCT.get().asItem(),
             ModBlocks.RUSTY_DUCT.get().asItem(),
-            ModBlocks.DUCT_VENT.get().asItem(),
-            ModBlocks.RUSTY_DUCT_VENT.get().asItem(),
-
-            ModBlocks.HORIZONTAL_GRATE.get().asItem(),
-            ModBlocks.HORIZONTAL_CUTOUT_GRATE.get().asItem()
-
-//            ModBlocks.GRAY_HORIZONTAL_GRATE.get().asItem(),
-//            ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get().asItem()
+            ModBlocks.HORIZONTAL_VENT.get().asItem(),
+            ModBlocks.HORIZONTAL_CUTOUT_VENT.get().asItem(),
+            ModBlocks.RUSTY_HORIZONTAL_VENT.get().asItem(),
+            ModBlocks.RUSTY_HORIZONTAL_CUTOUT_VENT.get().asItem()
     );
     private static final List<ItemLike> TRUSS_STONECUT_OUTPUT = List.of(
             ModBlocks.TRUSS.get().asItem(),
@@ -81,7 +77,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
             ModBlocks.GRAY_CATWALK_TRUSS.get().asItem(),
             ModBlocks.GRAY_CATWALK_TRUSS_SLAB.get().asItem(),
-            ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.get().asItem()
+            ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.get().asItem(),
+
+            ModBlocks.RUSTY_TRUSS.get().asItem(),
+            ModBlocks.RUSTY_TRUSS_STAIRS.get().asItem(),
+            ModBlocks.RUSTY_TRUSS_SLAB.get().asItem(),
+
+            ModBlocks.RUSTY_CATWALK_TRUSS.get().asItem(),
+            ModBlocks.RUSTY_CATWALK_TRUSS_STAIRS.get().asItem(),
+            ModBlocks.RUSTY_CATWALK_TRUSS_SLAB.get().asItem()
     );
 
     private static final List<ItemLike> VESSELPLATE_STONECUT_OUTPUT = List.of(
@@ -104,7 +108,20 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.RIVETED_VESSELPLATE_STAIRS.get().asItem(),
             ModBlocks.RIVETED_VESSELPLATE_SLAB.get().asItem(),
             ModBlocks.GRAY_RIVETED_VESSELPLATE_STAIRS.get().asItem(),
-            ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get().asItem()
+            ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get().asItem(),
+
+            ModBlocks.RUSTY_HORIZONTAL_VESSELPLATE.get().asItem(),
+            ModBlocks.RUSTY_VERTICAL_VESSELPLATE.get().asItem(),
+            ModBlocks.RUSTY_HORIZONTAL_REINFORCED_VESSELPLATE.get().asItem(),
+            ModBlocks.RUSTY_VERTICAL_REINFORCED_VESSELPLATE.get().asItem(),
+            ModBlocks.RUSTY_VESSELPLATE_PILLAR.get().asItem(),
+
+            ModBlocks.SMOOTH_RUSTY_VESSELPLATE.get().asItem(),
+            ModBlocks.SMOOTH_RUSTY_VESSELPLATE_SLAB.get().asItem(),
+            ModBlocks.SMOOTH_RUSTY_VESSELPLATE_STAIRS.get().asItem(),
+
+            ModBlocks.RUSTY_RIVETED_VESSELPLATE.get().asItem(),
+            ModBlocks.RUSTY_RIVETED_VESSELPLATE_SLAB.get().asItem()
     );
     private static final List<ItemLike> ROCKRETE_STONECUT_OUTPUT = List.of(
 
@@ -166,7 +183,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.VESSELGLASS.get().asItem(),
             ModBlocks.REINFORCED_VESSELGLASS.get().asItem(),
             ModBlocks.GRAY_REINFORCED_VESSELGLASS.get().asItem(),
-            ModBlocks.GRAY_VESSELGLASS.get().asItem()
+            ModBlocks.GRAY_VESSELGLASS.get().asItem(),
+            ModBlocks.RUSTY_REINFORCED_VESSELGLASS.get().asItem(),
+            ModBlocks.RUSTY_VESSELGLASS.get().asItem()
     );
 
     private static final List<ItemLike> PIPEWORKS_STONECUT_OUTPUT = List.of(
@@ -209,7 +228,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     );
     private static final List<ItemLike> TRAPDOORS_STONECUT_OUTPUT = List.of(
             //ModBlocks.VESSELPLATE_TRAPDOOR.get().asItem(),
-            ModBlocks.VENT_TRAPDOOR.get().asItem()
+            ModBlocks.VENT_TRAPDOOR.get().asItem(),
+            ModBlocks.RUSTY_VENT_TRAPDOOR.get().asItem()
     );
     private static final List<ItemLike> FURNITURE_CATEGORIES = List.of(
             ModBlocks.SAFETY_FURNISHINGS.get().asItem(),
@@ -389,38 +409,47 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         
         //---------- REVERSIBLE BLOCK CRAFTING ----------
         //Create Horizontal Vesselplate
-
         reversibleBlockCrafting(ModBlocks.HORIZONTAL_VESSELPLATE.get(), ModBlocks.VERTICAL_VESSELPLATE.get(), recipeOutput);
 
         //Create Horizontal Reinforced Vesselplate
         reversibleBlockCrafting(ModBlocks.HORIZONTAL_REINFORCED_VESSELPLATE.get(), ModBlocks.VERTICAL_REINFORCED_VESSELPLATE.get(), recipeOutput);
 
-        //Create Horizontal Grate
-        reversibleBlockCrafting(ModBlocks.HORIZONTAL_GRATE.get(), ModBlocks.VERTICAL_GRATE.get(), recipeOutput);
+        //Create Horizontal Vent
+        reversibleBlockCrafting(ModBlocks.HORIZONTAL_VENT.get(), ModBlocks.VERTICAL_VENT.get(), recipeOutput);
 
-        //Create Horizontal Cutout Grate
-        reversibleBlockCrafting(ModBlocks.HORIZONTAL_CUTOUT_GRATE.get(), ModBlocks.VERTICAL_CUTOUT_GRATE.get(), recipeOutput);
+        //Create Horizontal Cutout Vent
+        reversibleBlockCrafting(ModBlocks.HORIZONTAL_CUTOUT_VENT.get(), ModBlocks.VERTICAL_CUTOUT_VENT.get(), recipeOutput);
+
+        //Create Rusty Horizontal Vent
+        reversibleBlockCrafting(ModBlocks.RUSTY_HORIZONTAL_VENT.get(), ModBlocks.RUSTY_VERTICAL_VENT.get(), recipeOutput);
+
+        //Create Rusty Horizontal Cutout Vent
+        reversibleBlockCrafting(ModBlocks.RUSTY_HORIZONTAL_CUTOUT_VENT.get(), ModBlocks.RUSTY_VERTICAL_CUTOUT_VENT.get(), recipeOutput);
 
         //Create GRAY Horizontal Riveted Vesselplate
         reversibleBlockCrafting(ModBlocks.GRAY_HORIZONTAL_REINFORCED_VESSELPLATE.get(), ModBlocks.GRAY_VERTICAL_REINFORCED_VESSELPLATE.get(), recipeOutput);
 
-//        //Create GRAY Horizontal Grate
-//        reversibleBlockCrafting(ModBlocks.GRAY_HORIZONTAL_GRATE.get(), ModBlocks.GRAY_VERTICAL_GRATE.get(), recipeOutput);
-//
-//        //Create GRAY Horizontal Cutout Grate
-//        reversibleBlockCrafting(ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get(), ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get(), recipeOutput);
-
         //Create GRAY Horizontal Vesselplate
         reversibleBlockCrafting(ModBlocks.GRAY_HORIZONTAL_VESSELPLATE.get(), ModBlocks.GRAY_VERTICAL_VESSELPLATE.get(), recipeOutput);
+
+        //Create Rusty Horizontal Vesselplate
+        reversibleBlockCrafting(ModBlocks.RUSTY_HORIZONTAL_VESSELPLATE.get(), ModBlocks.RUSTY_VERTICAL_VESSELPLATE.get(), recipeOutput);
+
+        //Create Rusty Horizontal Reinforced Vesselplate
+        reversibleBlockCrafting(ModBlocks.RUSTY_HORIZONTAL_REINFORCED_VESSELPLATE.get(), ModBlocks.RUSTY_VERTICAL_REINFORCED_VESSELPLATE.get(), recipeOutput);
         //---------- END OF REVERSIBLE BLOCK CRAFTING ----------
         
         //---------- RECIPES FOR JOKE CONTENT ----------
-        //Create Job Application
+        //Create Job Application and Termination Letter
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.JOB_APPLICATION.get(), 1)
                 .requires(ModItems.INHELL_HAVEN_DEVICE.get())
                 .requires(Items.PAPER)
+                .requires(Items.BLACK_DYE)
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("industrialhellscape", "job_application"));
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, "job_application"));
+
+        reversibleBlockCrafting(ModItems.TERMINATION_LETTER.get(), ModItems.JOB_APPLICATION.get(), recipeOutput);
+
         //Create Body Pillow
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.BODY_PILLOW.get(), 1)
                 .requires(ModItems.INHELL_HAVEN_DEVICE.get())
@@ -428,7 +457,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ItemTags.WOOL)
                 .requires(ItemTags.WOOL)
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("industrialhellscape", "body_pillow"));
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, "body_pillow"));
         //---------- END OF RECIPES FOR JOKE CONTENT ----------
 
         //---------- MUSIC DISC RECIPES ----------
@@ -484,7 +513,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         stonecutTagToOutputListPlusSlabs(TRUSS_STONECUT_OUTPUT, "truss", ModTags.Items.TRUSS_SMELTABLE_ITEM, recipeOutput);
         stonecutTagToOutputListPlusSlabs(VESSELPLATE_STONECUT_OUTPUT, "vesselplate", ModTags.Items.VESSELPLATE_SMELTABLE_ITEM, recipeOutput);
         stonecutTagToOutputListPlusSlabs(VESSELGLASS_STONECUT_OUTPUT, "vesselglass", ModTags.Items.VESSELGLASS_SMELTABLE_ITEM, recipeOutput);
-        stonecutTagToOutputListRockrete(ROCKRETE_STONECUT_OUTPUT, "rockrete", ModTags.Items.ROCKRETE_SMELTABLE_ITEM, recipeOutput); //SPECIAL METHOD FOR ROCKRETE ITEMS
+        stonecutTagToOutputListPlusSlabs(ROCKRETE_STONECUT_OUTPUT, "rockrete", ModTags.Items.ROCKRETE_SMELTABLE_ITEM, recipeOutput); //SPECIAL METHOD FOR ROCKRETE ITEMS
         stonecutTagToOutputListPlusSlabs(PIPEWORKS_STONECUT_OUTPUT, "pipeworks", ModTags.Items.PIPEWORKS_ITEMS, recipeOutput);
         stonecutTagToOutputListPlusSlabs(METALWORKS_STONECUT_OUTPUT, "metalworks", ModTags.Items.METALWORKS_ITEMS, recipeOutput);
         stonecutInputTagToOutputList(DOORS_STONECUT_OUTPUT, "doors", ModTags.Items.DOOR_ITEMS, recipeOutput);
@@ -515,30 +544,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     }
 
     protected static void stonecutTagToOutputListPlusSlabs(List<ItemLike> stonecutOutputList, String inputTagName, TagKey<Item> inputTag, RecipeOutput recipeOutput) {
-        Ingredient ingredient = Ingredient.of(inputTag);
-
-        for (ItemLike itemInIndice : stonecutOutputList) {
-
-            Item itemName = itemInIndice.asItem();
-            String id = BuiltInRegistries.ITEM.getKey(itemName).getPath();
-
-            //If the ItemLike output is a slab,
-            //Create stonecutter recipe producing twice the amount of output
-            //Else, function normally
-
-            if ( (itemInIndice instanceof BlockItem blockItem) && (blockItem.getBlock() instanceof SlabBlock) ) {
-                stonecutToAmount(ingredient, RecipeCategory.MISC, itemInIndice, 2) //Any block from the inputTag can produce two slabs from the stonecutOutputList
-                        .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                        .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, inputTagName + "_stonecut_to_" + id));
-            } else {
-                stonecutToAmount(ingredient, RecipeCategory.MISC, itemInIndice, 1)
-                        .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
-                        .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, inputTagName + "_stonecut_to_" + id));
-            }
-        }
-    }
-
-    protected static void stonecutTagToOutputListRockrete(List<ItemLike> stonecutOutputList, String inputTagName, TagKey<Item> inputTag, RecipeOutput recipeOutput) {
         Ingredient ingredient = Ingredient.of(inputTag);
 
         for (ItemLike itemInIndice : stonecutOutputList) {
@@ -590,23 +595,32 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("industrialhellscape", recipeName));
     }
 
-    protected static void reversibleBlockCrafting(Block outputBlock, Block inputBlock, RecipeOutput recipeOutput) {
+    protected static void reversibleBlockCrafting(ItemLike outputItemLike, ItemLike inputItemLike, RecipeOutput recipeOutput) {
         //Shapeless recipe requiring one input Block that crafts into one output Block
         //An inverse recipe is also made vice versa
 
-        String inputBlockName = BuiltInRegistries.BLOCK.getKey(inputBlock).getPath();
-        String outputBlockName = BuiltInRegistries.BLOCK.getKey(outputBlock).getPath();
+        String inputBlockName = ItemLikeToBlockOrItemPath(inputItemLike);
+        String outputBlockName = ItemLikeToBlockOrItemPath(outputItemLike);
 
         //Input to Output
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, outputBlock, 1)
-                .requires(inputBlock)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, outputItemLike, 1)
+                .requires(inputItemLike)
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("industrialhellscape", inputBlockName + "_to_" + outputBlockName));
         //Output to Input
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, inputBlock, 1)
-                .requires(outputBlock)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, inputItemLike, 1)
+                .requires(outputItemLike)
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("industrialhellscape", outputBlockName + "_to_" + inputBlockName));
+    }
+
+    protected static String ItemLikeToBlockOrItemPath(ItemLike itemLikeToReturnString) {
+        //returns string of ItemLike ID. The procedure to do this is different if it's a Block or Item
+        if(itemLikeToReturnString instanceof Block block) {
+            return BuiltInRegistries.BLOCK.getKey(block).getPath();
+        } else {
+            return BuiltInRegistries.ITEM.getKey(itemLikeToReturnString.asItem()).getPath();
+        }
     }
 
     protected static SingleItemRecipeBuilder stonecutToAmount(Ingredient ingredient, RecipeCategory category, ItemLike result, int amount) {

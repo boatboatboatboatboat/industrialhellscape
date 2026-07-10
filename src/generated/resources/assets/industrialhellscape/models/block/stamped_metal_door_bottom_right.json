@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/door_bottom_right",
-  "render_type": "minecraft:solid",
-  "textures": {
-    "bottom": "industrialhellscape:block/door/stamped_metal_door_bottom",
-    "top": "industrialhellscape:block/door/stamped_metal_door_top"
-  }
-}

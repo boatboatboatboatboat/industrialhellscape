@@ -23,21 +23,17 @@ public class ModItemTagProvider extends ItemTagsProvider {
         super(output, lookupProvider, blockTags, IndustrialHellscape.MOD_ID, existingFileHelper);
     }
     public static final TagKey<Item> PICKAXES = TagKey.create(BuiltInRegistries.ITEM.key(), ResourceLocation.fromNamespaceAndPath("minecraft", "pickaxes"));
-    public static final TagKey<Item> WRENCHES = TagKey.create(BuiltInRegistries.ITEM.key(), ResourceLocation.fromNamespaceAndPath("forge", "wrenches"));
-    public static final TagKey<Item> WRENCH = TagKey.create(BuiltInRegistries.ITEM.key(), ResourceLocation.fromNamespaceAndPath("forge", "tools/wrench"));
-    public static final TagKey<Item> TOOLS = TagKey.create(BuiltInRegistries.ITEM.key(), ResourceLocation.fromNamespaceAndPath("forge", "tools"));
+
+    public static final TagKey<Item> TOOLS = TagKey.create(BuiltInRegistries.ITEM.key(), ResourceLocation.fromNamespaceAndPath("c", "tools"));
+    public static final TagKey<Item> WRENCH = TagKey.create(BuiltInRegistries.ITEM.key(), ResourceLocation.fromNamespaceAndPath("c", "wrench"));
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         //---------- EXTERNAL TAG REGISTRATION ----------
-        tag(WRENCHES); //Forge
-        tag(WRENCH); //Forge
-        tag(TOOLS); //Common modloader tag
+        tag(TOOLS); //Common
+        tag(WRENCH); //Common
 
         this.tag(WRENCH)
-                .add(ModItems.INHELL_HAVEN_DEVICE.get()
-                );
-        this.tag(WRENCHES)
                 .add(ModItems.INHELL_HAVEN_DEVICE.get()
                 );
         this.tag(TOOLS)
@@ -50,18 +46,18 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(
                         ModBlocks.DUCT.get().asItem(),
                         ModBlocks.RUSTY_DUCT.get().asItem(),
-                        ModBlocks.DUCT_VENT.get().asItem(),
-                        ModBlocks.RUSTY_DUCT_VENT.get().asItem(),
+//                        ModBlocks.DUCT_VENT.get().asItem(),
+//                        ModBlocks.RUSTY_DUCT_VENT.get().asItem(),
 
-                        ModBlocks.HORIZONTAL_GRATE.get().asItem(),
-                        ModBlocks.VERTICAL_GRATE.get().asItem(),
-                        ModBlocks.HORIZONTAL_CUTOUT_GRATE.get().asItem(),
-                        ModBlocks.VERTICAL_CUTOUT_GRATE.get().asItem()
+                        ModBlocks.HORIZONTAL_VENT.get().asItem(),
+                        ModBlocks.VERTICAL_VENT.get().asItem(),
+                        ModBlocks.HORIZONTAL_CUTOUT_VENT.get().asItem(),
+                        ModBlocks.VERTICAL_CUTOUT_VENT.get().asItem(),
 
-//                        ModBlocks.GRAY_HORIZONTAL_GRATE.get().asItem(),
-//                        ModBlocks.GRAY_VERTICAL_GRATE.get().asItem(),
-//                        ModBlocks.GRAY_HORIZONTAL_CUTOUT_GRATE.get().asItem(),
-//                        ModBlocks.GRAY_VERTICAL_CUTOUT_GRATE.get().asItem()
+                        ModBlocks.RUSTY_HORIZONTAL_VENT.get().asItem(),
+                        ModBlocks.RUSTY_VERTICAL_VENT.get().asItem(),
+                        ModBlocks.RUSTY_HORIZONTAL_CUTOUT_VENT.get().asItem(),
+                        ModBlocks.RUSTY_VERTICAL_CUTOUT_VENT.get().asItem()
                 );
         this.tag(ModTags.Items.METALWORKS_ITEMS)
                 .add(
@@ -103,33 +99,49 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.GRAY_VERTICAL_REINFORCED_VESSELPLATE.get().asItem(),
                         ModBlocks.SMOOTH_GRAY_VESSELPLATE.get().asItem(),
                         ModBlocks.GRAY_RIVETED_VESSELPLATE.get().asItem(),
-                        ModBlocks.GRAY_VESSELPLATE_PILLAR.get().asItem()
-//                        ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get().asItem(),
-//                        ModBlocks.GRAY_RIVETED_VESSELPLATE_STAIRS.get().asItem(),
-//                        ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get().asItem(),
-//                        ModBlocks.SMOOTH_GRAY_VESSELPLATE_STAIRS.get().asItem()
+                        ModBlocks.GRAY_VESSELPLATE_PILLAR.get().asItem(),
+
+                        ModBlocks.RUSTY_HORIZONTAL_VESSELPLATE.get().asItem(),
+                        ModBlocks.RUSTY_VERTICAL_VESSELPLATE.get().asItem(),
+                        ModBlocks.RUSTY_HORIZONTAL_REINFORCED_VESSELPLATE.get().asItem(),
+                        ModBlocks.RUSTY_VERTICAL_REINFORCED_VESSELPLATE.get().asItem(),
+                        ModBlocks.RUSTY_VESSELPLATE_PILLAR.get().asItem(),
+
+                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE.get().asItem(),
+                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE_SLAB.get().asItem(),
+                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE_STAIRS.get().asItem(),
+                        ModBlocks.RUSTY_RIVETED_VESSELPLATE.get().asItem(),
+                        ModBlocks.RUSTY_RIVETED_VESSELPLATE_SLAB.get().asItem(),
+                        ModBlocks.RUSTY_RIVETED_VESSELPLATE_STAIRS.get().asItem()
                 );
         this.tag(ModTags.Items.TRUSS_SMELTABLE_ITEM)
                 .add(
                         ModBlocks.TRUSS.get().asItem(),
+                        ModBlocks.TRUSS_STAIRS.get().asItem(),
+                        ModBlocks.TRUSS_SLAB.get().asItem(),
+
                         ModBlocks.CATWALK_TRUSS.get().asItem(),
                         ModBlocks.CATWALK_TRUSS_STAIRS.get().asItem(),
                         ModBlocks.CATWALK_TRUSS_SLAB.get().asItem(),
-                        ModBlocks.TRUSS_STAIRS.get().asItem(),
-                        ModBlocks.TRUSS_SLAB.get().asItem(),
                         ModBlocks.GRAY_TRUSS.get().asItem(),
                         ModBlocks.GRAY_CATWALK_TRUSS.get().asItem(),
                         ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.get().asItem(),
                         ModBlocks.GRAY_CATWALK_TRUSS_SLAB.get().asItem(),
                         ModBlocks.GRAY_TRUSS_STAIRS.get().asItem(),
-                        ModBlocks.GRAY_TRUSS_SLAB.get().asItem()
+                        ModBlocks.GRAY_TRUSS_SLAB.get().asItem(),
+
+                        ModBlocks.RUSTY_TRUSS.get().asItem(),
+                        ModBlocks.RUSTY_TRUSS_STAIRS.get().asItem(),
+                        ModBlocks.RUSTY_TRUSS_SLAB.get().asItem()
                 );
         this.tag(ModTags.Items.VESSELGLASS_SMELTABLE_ITEM)
                 .add(
                         ModBlocks.VESSELGLASS.get().asItem(),
                         ModBlocks.REINFORCED_VESSELGLASS.get().asItem(),
                         ModBlocks.GRAY_VESSELGLASS.get().asItem(),
-                        ModBlocks.GRAY_REINFORCED_VESSELGLASS.get().asItem()
+                        ModBlocks.GRAY_REINFORCED_VESSELGLASS.get().asItem(),
+                        ModBlocks.RUSTY_VESSELGLASS.get().asItem(),
+                        ModBlocks.RUSTY_REINFORCED_VESSELGLASS.get().asItem()
                 );
         this.tag(ModTags.Items.ROCKRETE_SMELTABLE_ITEM)
                 .add(
@@ -162,7 +174,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
         this.tag(ModTags.Items.TRAPDOOR_ITEMS)
                 .add(
                         //ModBlocks.VESSELPLATE_TRAPDOOR.get().asItem(),
-                        ModBlocks.VENT_TRAPDOOR.get().asItem()
+                        ModBlocks.VENT_TRAPDOOR.get().asItem(),
+                        ModBlocks.RUSTY_VENT_TRAPDOOR.get().asItem()
                 );
         this.tag(ModTags.Items.PIPEWORKS_ITEMS)
                 .add(

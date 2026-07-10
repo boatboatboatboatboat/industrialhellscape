@@ -2,12 +2,14 @@ package net.boat.industrialhellscape.item;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.item.modded_items.GasStationPillItem;
-import net.boat.industrialhellscape.item.modded_items.JobApplicationItem;
+import net.boat.industrialhellscape.item.modded_items.JobPaperworkItem;
 import net.boat.industrialhellscape.item.modded_items.InHellToolItem;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -57,12 +59,37 @@ public class ModItems {
     );
 
     public static final DeferredItem<Item> JOB_APPLICATION = ITEMS.register("job_application",
-            () -> new JobApplicationItem(new Item.Properties())
+            () -> new JobPaperworkItem(new Item.Properties(), (Villager villager) -> villager.getVillagerData().getProfession() == VillagerProfession.NITWIT)
             {
                 //Item has tooltip text capability.
                 @Override
                 public void appendHoverText(@NotNull ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.job_application"));
+                    if (Screen.hasShiftDown()) {
+                        //Expand tooltip if shift-key is down while hovering over item in a GUI.
+                        tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.job_application"));
+                    } else {
+                        //Minimize tooltip by default.
+                        tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.shift_down"));
+                    }
+
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
+    );
+
+    public static final DeferredItem<Item> TERMINATION_LETTER = ITEMS.register("termination_letter",
+            () -> new JobPaperworkItem(new Item.Properties(), (Villager villager) -> (villager.getVillagerData().getProfession() != VillagerProfession.NITWIT) && (villager.getVillagerData().getProfession() != VillagerProfession.NONE))
+            {
+                //Item has tooltip text capability.
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    if (Screen.hasShiftDown()) {
+                        //Expand tooltip if shift-key is down while hovering over item in a GUI.
+                        tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.termination_letter"));
+                    } else {
+                        //Minimize tooltip by default.
+                        tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.shift_down"));
+                    }
 
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }

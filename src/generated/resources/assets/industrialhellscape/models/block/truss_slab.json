@@ -1,9 +1,0 @@
-{
-  "parent": "industrialhellscape:block/anticull_slab",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "bottom": "industrialhellscape:block/truss/truss",
-    "side": "industrialhellscape:block/truss/truss",
-    "top": "industrialhellscape:block/truss/truss"
-  }
-}

@@ -65,20 +65,6 @@ public class InHellToolItem extends Item {
         return true;
     }
 
-    //Item has tooltip text capability.
-    @Override
-    public void appendHoverText(@NotNull ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        if (Screen.hasShiftDown()) {
-            //Expand tooltip if shift-key is down while hovering over item in a GUI.
-            tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.haventool"));
-        } else {
-            //Minimize tooltip by default.
-            tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.shift_down"));
-        }
-
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-    };
-
     //Item remains in crafting grid when used to craft something, from the two methods below.
     public @NotNull ItemStack getCraftingRemainingItem(@Nonnull ItemStack stack) {
         return new ItemStack(this);

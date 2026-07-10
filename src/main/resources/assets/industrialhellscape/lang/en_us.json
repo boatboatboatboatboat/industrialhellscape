@@ -4,6 +4,7 @@
 
   "item.industrialhellscape.inhell_haven_device": "HAVEN Tool",
   "item.industrialhellscape.job_application": "Job Application",
+  "item.industrialhellscape.termination_letter": "Termination Letter",
   "item.industrialhellscape.disc_1": "Marquee Music Disc",
   "item.industrialhellscape.gas_station_pill": "Gas Station Pill",
 
@@ -37,10 +38,27 @@
   "block.industrialhellscape.smooth_gray_vesselplate_slab": "Smooth Gray Vesselplate Slab",
   "block.industrialhellscape.gray_vesselplate_pillar": "Gray Vesselplate Pillar",
 
+  "block.industrialhellscape.rusty_horizontal_vesselplate": "Rusty Vesselplate",
+  "block.industrialhellscape.rusty_vertical_vesselplate": "Rusty Vesselplate",
+  "block.industrialhellscape.rusty_vertical_reinforced_vesselplate": "Rusty Reinforced Vesselplate",
+  "block.industrialhellscape.rusty_horizontal_reinforced_vesselplate": "Rusty Reinforced Vesselplate",
+  "block.industrialhellscape.rusty_vesselplate_pillar": "Rusty Vesselplate Pillar",
+
+  "block.industrialhellscape.smooth_rusty_vesselplate": "Smooth Rusty Vesselplate",
+  "block.industrialhellscape.smooth_rusty_vesselplate_stairs": "Smooth Rusty Vesselplate Stairs",
+  "block.industrialhellscape.smooth_rusty_vesselplate_slab": "Smooth Rusty Vesselplate Slab",
+
+  "block.industrialhellscape.rusty_riveted_vesselplate": "Rusty Riveted Vesselplate",
+  "block.industrialhellscape.rusty_riveted_vesselplate_stairs": "Rusty Riveted Vesselplate Stairs",
+  "block.industrialhellscape.rusty_riveted_vesselplate_slab": "Rusty Riveted Vesselplate Slab",
+
   "block.industrialhellscape.vesselglass": "Vesselglass",
   "block.industrialhellscape.reinforced_vesselglass": "Reinforced Vesselglass",
   "block.industrialhellscape.gray_vesselglass": "Gray Vesselglass",
   "block.industrialhellscape.gray_reinforced_vesselglass": "Gray Reinforced Vesselglass",
+  "block.industrialhellscape.rusty_vesselglass": "Rusty Vesselglass",
+  "block.industrialhellscape.rusty_reinforced_vesselglass": "Rusty Reinforced Vesselglass",
+
 
   "block.industrialhellscape.pipeworks": "Pipeworks",
   "block.industrialhellscape.metalworks": "Metalworks",
@@ -195,20 +213,25 @@
   "block.industrialhellscape.gray_catwalk_truss_stairs": "Gray Catwalk Truss Stairs",
   "block.industrialhellscape.gray_catwalk_truss_slab": "Gray Catwalk Truss Slab",
 
+  "block.industrialhellscape.rusty_truss": "Rusty Truss",
+  "block.industrialhellscape.rusty_truss_stairs": "Rusty Truss Stairs",
+  "block.industrialhellscape.rusty_truss_slab": "Rusty Truss Slab",
+  "block.industrialhellscape.rusty_catwalk_truss": "Rusty Catwalk Truss",
+  "block.industrialhellscape.rusty_catwalk_truss_stairs": "Rusty Catwalk Truss Stairs",
+  "block.industrialhellscape.rusty_catwalk_truss_slab": "Rusty Catwalk Truss Slab",
+
   "block.industrialhellscape.duct": "Duct",
   "block.industrialhellscape.duct_vent": "Duct Vent",
-  "block.industrialhellscape.rusty_duct": "Rusty Duct",
-  "block.industrialhellscape.rusty_duct_vent": "Rusty Duct Vent",
 
-  "block.industrialhellscape.gray_horizontal_grate": "Gray Grate",
-  "block.industrialhellscape.gray_vertical_grate": "Gray Grate",
-  "block.industrialhellscape.gray_horizontal_cutout_grate": "Gray Cutout Grate",
-  "block.industrialhellscape.gray_vertical_cutout_grate": "Gray Cutout Grate",
+  "block.industrialhellscape.horizontal_vent": "Vent",
+  "block.industrialhellscape.vertical_vent": "Vent",
+  "block.industrialhellscape.horizontal_cutout_vent": "Cutout Vent",
+  "block.industrialhellscape.vertical_cutout_vent": "Cutout Vent",
 
-  "block.industrialhellscape.horizontal_grate": "Grate",
-  "block.industrialhellscape.vertical_grate": "Grate",
-  "block.industrialhellscape.horizontal_cutout_grate": "Cutout Grate",
-  "block.industrialhellscape.vertical_cutout_grate": "Cutout Grate",
+  "block.industrialhellscape.rusty_horizontal_vent": "Rusty Vent",
+  "block.industrialhellscape.rusty_vertical_vent": "Rusty Vent",
+  "block.industrialhellscape.rusty_horizontal_cutout_vent": "Rusty Cutout Vent",
+  "block.industrialhellscape.rusty_vertical_cutout_vent": "Rusty Cutout Vent",
 
   "sounds.industrialhellscape.toilet_flush": "Toilet flushes",
   "sounds.industrialhellscape.metalpipefallingsoundeffect": "Metal pipes falling",
@@ -227,15 +250,18 @@
   "block.industrialhellscape.vesselplate_trapdoor": "Vesselplate Trapdoor",
   "block.industrialhellscape.stamped_metal_door": "Stamped Metal Door",
   "block.industrialhellscape.vent_trapdoor": "Vent Trapdoor",
+  "block.industrialhellscape.rusty_vent_trapdoor": "Rusty Vent Trapdoor",
 
   "tooltip.industrialhellscape.haventool": "Right-click and/or sneak-right-click to rotate some I.H. blocks, or change texture behavior. It also stone-cuts.",
   "tooltip.industrialhellscape.ihea_furniture_kit": "Use in a stonecutter to craft themed decor blocks.",
   "tooltip.industrialhellscape.advise_stonecut": "Stonecut for variants or use HAVEN Tool.",
-  "tooltip.industrialhellscape.advise_craft_vertical": "Vertical pattern variant. Crafted from base variant.",
+  "tooltip.industrialhellscape.advise_craft_vertical": "Vertical variant. Crafted from base variant.",
+  "tooltip.industrialhellscape.advise_craft_horizontal": "Horizontal variant.",
   "tooltip.industrialhellscape.blockworks": "Use a pickaxe to rotate blocks stone-cut from this. Crouching with HAVEN tool allows full rotation functionality.",
   "tooltip.industrialhellscape.shift_down": "Press §eShift§r for more Information",
   "tooltip.industrialhellscape.disc_1": "14 Minutes Until Launch - Oscar Borisovich Feltsman",
-  "tooltip.industrialhellscape.job_application": "Sneak Interact to convert Nitwit villagers into employable villagers.",
+  "tooltip.industrialhellscape.job_application": "Sneak Interact to convert Nitwit villagers into employable villagers. Nametagged villagers unaffected.",
+  "tooltip.industrialhellscape.termination_letter": "Sneak Interact to convert Employed villagers into unemployed villagers. Nametagged villagers unaffected.",
   "tooltip.industrialhellscape.horsepill": "§6 Enhances your body with \"equine characteristics!\"",
 
   "death.attack.horsepilldeathmessage": "%1$s has been horsed.",

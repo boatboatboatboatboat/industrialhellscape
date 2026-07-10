@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "industrialhellscape:block/vesselplate/smooth_vesselplate",
-    "side": "industrialhellscape:block/vesselplate/smooth_vesselplate",
-    "top": "industrialhellscape:block/vesselplate/smooth_vesselplate"
-  }
-}

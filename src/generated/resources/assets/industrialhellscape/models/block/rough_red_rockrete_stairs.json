@@ -1,9 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "render_type": "minecraft:solid",
-  "textures": {
-    "bottom": "industrialhellscape:block/rough_red_rockrete",
-    "side": "industrialhellscape:block/rough_red_rockrete",
-    "top": "industrialhellscape:block/rough_red_rockrete"
-  }
-}

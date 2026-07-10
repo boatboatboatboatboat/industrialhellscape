@@ -15,7 +15,7 @@
 				"north": {"uv": [0, 6.75, 4, 7.5], "texture": "#0", "cullface": "north"},
 				"east": {"uv": [0, 6.75, 4, 7.5], "texture": "#0", "cullface": "east"},
 				"south": {"uv": [0, 6.75, 4, 7.5], "texture": "#0", "cullface": "south"},
-				"west": {"uv": [0, 6.75, 4, 7.5], "texture": "#0", "cullface": "west"},
+				"west": {"uv": [4, 6.75, 0, 7.5], "texture": "#0", "cullface": "west"},
 				"up": {"uv": [0, 0, 4, 4], "texture": "#0", "cullface": "up"},
 				"down": {"uv": [0, 0, 4, 4], "texture": "#0"}
 			}
@@ -47,8 +47,8 @@
 			"faces": {
 				"north": {"uv": [2, 13, 6, 15.75], "texture": "#0"},
 				"east": {"uv": [0.5, 12.75, 0.75, 15.5], "texture": "#0"},
-				"south": {"uv": [4, 4, 0, 6.75], "texture": "#0"},
-				"west": {"uv": [0.75, 12.75, 1, 15.5], "texture": "#0"},
+				"south": {"uv": [0, 4, 4, 6.75], "texture": "#0"},
+				"west": {"uv": [0.5, 12.75, 0.75, 15.5], "texture": "#0"},
 				"down": {"uv": [1.5, 12, 1.75, 16], "rotation": 90, "texture": "#0"}
 			}
 		},
@@ -140,11 +140,13 @@
 		{
 			"name": "modern_table",
 			"origin": [8, 8, 8],
+			"scope": 0,
 			"color": 0,
 			"children": [
 				{
 					"name": "legs",
 					"origin": [8, 8, 8],
+					"scope": 0,
 					"color": 0,
 					"children": []
 				},

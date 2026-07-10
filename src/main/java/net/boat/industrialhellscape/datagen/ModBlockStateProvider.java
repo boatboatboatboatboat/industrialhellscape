@@ -16,7 +16,6 @@ import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import net.neoforged.neoforge.registries.DeferredBlock;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
@@ -44,8 +43,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //Duct Blocks
         genFolderedSBI(ModBlocks.DUCT.get(), "duct");
         genFolderedSBI(ModBlocks.RUSTY_DUCT.get(), "duct");
-        genAttachedSI(ModBlocks.DUCT_VENT.get(), "duct_vent");
-        genAttachedSI(ModBlocks.RUSTY_DUCT_VENT.get(), "duct_vent");
 
         //Railing Blocks
         genI(ModBlocks.YELLOW_RAILING.get(),"railing");
@@ -57,11 +54,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genI(ModBlocks.RUSTY_RAILING.get(),"railing");
         genCustomI(ModBlocks.RUSTY_STAIR_RAILING.get(),"railing","rusty_stair_rail_left");
 
-        //Grate Blocks
-        genSimpleTextureToggleSBI(ModBlocks.HORIZONTAL_GRATE.get(),"grate", "solid");
-        genSimpleTextureToggleSBI(ModBlocks.VERTICAL_GRATE.get(),"grate", "solid");
-        genSimpleTextureToggleSBI(ModBlocks.HORIZONTAL_CUTOUT_GRATE.get(),"grate","cutout");
-        genSimpleTextureToggleSBI(ModBlocks.VERTICAL_CUTOUT_GRATE.get(),"grate","cutout");
+        //vent Blocks
+        genSimpleTextureToggleSBI(ModBlocks.HORIZONTAL_VENT.get(),"vent", "solid");
+        genSimpleTextureToggleSBI(ModBlocks.VERTICAL_VENT.get(),"vent", "solid");
+        genSimpleTextureToggleSBI(ModBlocks.HORIZONTAL_CUTOUT_VENT.get(),"vent","cutout");
+        genSimpleTextureToggleSBI(ModBlocks.VERTICAL_CUTOUT_VENT.get(),"vent","cutout");
+
+        genSimpleTextureToggleSBI(ModBlocks.RUSTY_HORIZONTAL_VENT.get(),"vent", "solid");
+        genSimpleTextureToggleSBI(ModBlocks.RUSTY_VERTICAL_VENT.get(),"vent", "solid");
+        genSimpleTextureToggleSBI(ModBlocks.RUSTY_HORIZONTAL_CUTOUT_VENT.get(),"vent","cutout");
+        genSimpleTextureToggleSBI(ModBlocks.RUSTY_VERTICAL_CUTOUT_VENT.get(),"vent","cutout");
 
         //Vesselplate Blocks
         genSimpleTextureToggleSBI(ModBlocks.RIVETED_VESSELPLATE.get(),"vesselplate",  "solid");
@@ -88,6 +90,19 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genSlabsWithCustomDoubleSBI(ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get(), ModBlocks.GRAY_RIVETED_VESSELPLATE.get(),"vesselplate","gray_riveted_vesselplate_double_slab","gray_riveted_vesselplate","gray_riveted_vesselplate","","");
         genSlabsWithCustomDoubleSBI(ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get(), ModBlocks.SMOOTH_GRAY_VESSELPLATE.get(),"vesselplate","smooth_gray_vesselplate_double_slab","smooth_gray_vesselplate", "smooth_gray_vesselplate","","");
 
+        genSimpleTextureToggleSBI(ModBlocks.RUSTY_HORIZONTAL_VESSELPLATE.get(),"vesselplate", "solid");
+        genSimpleTextureToggleSBI(ModBlocks.RUSTY_VERTICAL_VESSELPLATE.get(),"vesselplate",  "solid");
+        genSimpleTextureToggleSBI(ModBlocks.RUSTY_HORIZONTAL_REINFORCED_VESSELPLATE.get(),"vesselplate", "solid");
+        genSimpleTextureToggleSBI(ModBlocks.RUSTY_VERTICAL_REINFORCED_VESSELPLATE.get(),"vesselplate",  "solid");
+
+        genSimpleTextureToggleSBI(ModBlocks.SMOOTH_RUSTY_VESSELPLATE.get(),"vesselplate","solid");
+        genStairsWithRenderTypeSBI(ModBlocks.SMOOTH_RUSTY_VESSELPLATE_STAIRS.get(),"vesselplate","smooth_rusty_vesselplate","smooth_rusty_vesselplate","smooth_rusty_vesselplate","solid");
+        genSlabsWithCustomDoubleSBI(ModBlocks.SMOOTH_RUSTY_VESSELPLATE_SLAB.get(), ModBlocks.SMOOTH_RUSTY_VESSELPLATE.get(),"vesselplate","smooth_rusty_vesselplate_double_slab","smooth_rusty_vesselplate", "smooth_rusty_vesselplate","","");
+
+        genSimpleTextureToggleSBI(ModBlocks.RUSTY_RIVETED_VESSELPLATE.get(),"vesselplate","solid");
+        genStairsWithRenderTypeSBI(ModBlocks.RUSTY_RIVETED_VESSELPLATE_STAIRS.get(),"vesselplate","rusty_riveted_vesselplate","rusty_riveted_vesselplate","rusty_riveted_vesselplate","solid");
+        genSlabsWithCustomDoubleSBI(ModBlocks.RUSTY_RIVETED_VESSELPLATE_SLAB.get(), ModBlocks.RUSTY_RIVETED_VESSELPLATE.get(),"vesselplate","rusty_riveted_vesselplate_double_slab","rusty_riveted_vesselplate", "rusty_riveted_vesselplate","","");
+
         //Truss Blocks
         genTextureToggleAntiCullSBI(ModBlocks.TRUSS.get(),"truss", "truss","truss", "cutout");
         genStairsWithRenderTypeSBI(ModBlocks.TRUSS_STAIRS.get(),"truss","reinforced_truss","truss","truss","cutout");
@@ -105,11 +120,21 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genStairsWithRenderTypeSBI(ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.get(),"truss","gray_reinforced_truss","gray_truss","gray_floorgrate_catwalk","cutout");
         genAntiCullSlabBlockSBI(ModBlocks.GRAY_CATWALK_TRUSS_SLAB.get(), "truss", "gray_truss", "gray_floorgrate_catwalk","gray_truss", "cutout");
 
+        genTextureToggleAntiCullSBI(ModBlocks.RUSTY_TRUSS.get(),"truss", "rusty_truss","rusty_truss", "cutout");
+        genStairsWithRenderTypeSBI(ModBlocks.RUSTY_TRUSS_STAIRS.get(),"truss","rusty_reinforced_truss","rusty_truss","rusty_truss","cutout");
+        genAntiCullSlabBlockSBI(ModBlocks.RUSTY_TRUSS_SLAB.get(), "truss", "rusty_truss", "rusty_truss","rusty_truss","cutout");
+
+        genTextureToggleAntiCullSBI(ModBlocks.RUSTY_CATWALK_TRUSS.get(),"truss", "rusty_truss","rusty_floorgrate_catwalk", "cutout");
+        genStairsWithRenderTypeSBI(ModBlocks.RUSTY_CATWALK_TRUSS_STAIRS.get(),"truss","rusty_reinforced_truss","rusty_truss","rusty_floorgrate_catwalk","cutout");
+        genAntiCullSlabBlockSBI(ModBlocks.RUSTY_CATWALK_TRUSS_SLAB.get(), "truss", "rusty_truss", "rusty_floorgrate_catwalk","rusty_truss","cutout");
+
         //Vesselglass Blocks
         genSimpleTextureToggleSBI(ModBlocks.VESSELGLASS.get(),"vesselglass","translucent");
         genSimpleTextureToggleSBI(ModBlocks.REINFORCED_VESSELGLASS.get(),"vesselglass", "translucent");
         genSimpleTextureToggleSBI(ModBlocks.GRAY_VESSELGLASS.get(),"vesselglass",  "translucent");
         genSimpleTextureToggleSBI(ModBlocks.GRAY_REINFORCED_VESSELGLASS.get(),"vesselglass","translucent");
+        genSimpleTextureToggleSBI(ModBlocks.RUSTY_VESSELGLASS.get(),"vesselglass",  "translucent");
+        genSimpleTextureToggleSBI(ModBlocks.RUSTY_REINFORCED_VESSELGLASS.get(),"vesselglass","translucent");
 
         //Rockrete Blocks
         genFolderedSBI(ModBlocks.SMOOTH_GRAY_ROCKRETE.get(), "");
@@ -170,6 +195,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genDoorSBI(ModBlocks.BULKHEAD_DOOR.get() , "cutout");
 
         genTrapdoorSBI(ModBlocks.VENT_TRAPDOOR.get(),"solid");
+        genTrapdoorSBI(ModBlocks.RUSTY_VENT_TRAPDOOR.get(),"solid");
 
         //FURNITURE BLOCKS WITH EXISTING BLOCK MODELS
         GenFacingModelledSI(ModBlocks.SINK.get(),"");
@@ -194,10 +220,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         GenFacingModelledSI(ModBlocks.URINAL.get(), "urinal");
         //genSurfaceLightSI(ModBlocks.CAGE_LAMP.get(), "lighting");
-    }
-
-    private void blockWithItem(DeferredBlock<?> deferredBlock) {
-        simpleBlockWithItem(deferredBlock.get(), cubeAll(deferredBlock.get()));
     }
 
     //---------- CUSTOM BLOCK MODEL GENERATORS ----------
@@ -249,7 +271,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     //---------- END OF CUSTOM BLOCK MODEL GENERATOR METHODS ----------
 
-    //---------- SBI METHODS ----------
+    //---------- SBI METHODS (STATE, BLOCK MODEL, and/or ITEM MODEL) ----------
     private void genI(Block block, String folderName) {
         //Only generate the item model for this block. Block states and block models are already written.
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
@@ -279,6 +301,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String existingModelPath = "block/"+stringName;
+        //expects an existing or generated model path with same name is block. If custom mod model (non generated) is used, error thrown
         simpleBlockItem(block, models().getExistingFile(modLoc(existingModelPath)));
     }
 
@@ -641,7 +664,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //GENERATE ITEM MODEL
         simpleBlockItem(block, models().getExistingFile(modLoc(unpoweredModelPath)));
     }
-
 
     private void genAttachedSI(Block block, String folderName) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
