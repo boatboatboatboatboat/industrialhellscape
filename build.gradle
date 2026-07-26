@@ -125,7 +125,7 @@ dependencies {
     implementation("curse.maven:worldedit-225608:5830452")
     implementation("curse.maven:abyssal-decor-964853:7859163")
     implementation("curse.maven:etched-491890:7088631")
-    implementation("curse.maven:pneumaticcraft-repressurized-281849:8062194")
+//    implementation("curse.maven:pneumaticcraft-repressurized-281849:8062194")
     implementation("curse.maven:patchouli-306770:7730942")
 
 

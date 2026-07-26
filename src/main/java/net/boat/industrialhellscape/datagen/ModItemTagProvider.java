@@ -145,24 +145,31 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 );
         this.tag(ModTags.Items.ROCKRETE_SMELTABLE_ITEM)
                 .add(
-                        ModBlocks.SMOOTH_GRAY_ROCKRETE.get().asItem(),
                         ModBlocks.ROUGH_GRAY_ROCKRETE.get().asItem(),
+                        ModBlocks.ROUGH_RED_ROCKRETE.get().asItem(),
+                        ModBlocks.ROUGH_BLUE_ROCKRETE.get().asItem(),
+                        ModBlocks.ROUGH_GREEN_ROCKRETE.get().asItem(),
+                        ModBlocks.ROUGH_YELLOW_ROCKRETE.get().asItem(),
+
+                        ModBlocks.WEATHERED_GRAY_ROCKRETE.get().asItem(),
+//                        ModBlocks.WEATHERED_RED_ROCKRETE.get().asItem(),
+//                        ModBlocks.WEATHERED_BLUE_ROCKRETE.get().asItem(),
+//                        ModBlocks.WEATHERED_GREEN_ROCKRETE.get().asItem(),
+//                        ModBlocks.WEATHERED_YELLOW_ROCKRETE.get().asItem(),
+
+                        ModBlocks.GRAY_ROCKRETE.get().asItem(),
                         ModBlocks.GRAY_ROCKRETE_PILLAR.get().asItem(),
 
-                        ModBlocks.SMOOTH_RED_ROCKRETE.get().asItem(),
-                        ModBlocks.ROUGH_RED_ROCKRETE.get().asItem(),
+                        ModBlocks.RED_ROCKRETE.get().asItem(),
                         ModBlocks.RED_ROCKRETE_PILLAR.get().asItem(),
 
-                        ModBlocks.SMOOTH_BLUE_ROCKRETE.get().asItem(),
-                        ModBlocks.ROUGH_BLUE_ROCKRETE.get().asItem(),
+                        ModBlocks.BLUE_ROCKRETE.get().asItem(),
                         ModBlocks.BLUE_ROCKRETE_PILLAR.get().asItem(),
 
-                        ModBlocks.SMOOTH_GREEN_ROCKRETE.get().asItem(),
-                        ModBlocks.ROUGH_GREEN_ROCKRETE.get().asItem(),
+                        ModBlocks.GREEN_ROCKRETE.get().asItem(),
                         ModBlocks.GREEN_ROCKRETE_PILLAR.get().asItem(),
 
-                        ModBlocks.SMOOTH_YELLOW_ROCKRETE.get().asItem(),
-                        ModBlocks.ROUGH_YELLOW_ROCKRETE.get().asItem(),
+                        ModBlocks.YELLOW_ROCKRETE.get().asItem(),
                         ModBlocks.YELLOW_ROCKRETE_PILLAR.get().asItem()
                 );
         this.tag(ModTags.Items.DOOR_ITEMS)

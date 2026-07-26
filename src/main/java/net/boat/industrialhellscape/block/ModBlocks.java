@@ -43,23 +43,23 @@ public class ModBlocks {
             DeferredRegister.createBlocks(IndustrialHellscape.MOD_ID);
 
     public static void removeAndReplaceBlocks() { //Replaces both Block and Block Item with replacements.
-        specificBlockReplacement("gray_rockrete", "smooth_gray_rockrete");
-        specificBlockReplacement("red_rockrete", "smooth_red_rockrete");
-        specificBlockReplacement("yellow_rockrete", "smooth_yellow_rockrete");
-        specificBlockReplacement("blue_rockrete", "smooth_blue_rockrete");
-        specificBlockReplacement("green_rockrete", "smooth_green_rockrete");
+        specificBlockReplacement("smooth_gray_rockrete", "gray_rockrete");
+        specificBlockReplacement("smooth_red_rockrete", "red_rockrete");
+        specificBlockReplacement("smooth_yellow_rockrete", "yellow_rockrete");
+        specificBlockReplacement("smooth_blue_rockrete", "blue_rockrete");
+        specificBlockReplacement("smooth_green_rockrete", "green_rockrete");
 
-        specificBlockReplacement("gray_rockrete_slab", "smooth_gray_rockrete_slab");
-        specificBlockReplacement("red_rockrete_slab", "smooth_red_rockrete_slab");
-        specificBlockReplacement("yellow_rockrete_slab", "smooth_yellow_rockrete_slab");
-        specificBlockReplacement("blue_rockrete_slab", "smooth_blue_rockrete_slab");
-        specificBlockReplacement("green_rockrete_slab", "smooth_green_rockrete_slab");
+        specificBlockReplacement("smooth_gray_rockrete_slab", "gray_rockrete_slab");
+        specificBlockReplacement("smooth_red_rockrete_slab", "red_rockrete_slab");
+        specificBlockReplacement("smooth_yellow_rockrete_slab", "yellow_rockrete_slab");
+        specificBlockReplacement("smooth_blue_rockrete_slab", "blue_rockrete_slab");
+        specificBlockReplacement("smooth_green_rockrete_slab", "green_rockrete_slab");
 
-        specificBlockReplacement("gray_rockrete_stairs", "smooth_gray_rockrete_stairs");
-        specificBlockReplacement("red_rockrete_stairs", "smooth_red_rockrete_stairs");
-        specificBlockReplacement("yellow_rockrete_stairs", "smooth_yellow_rockrete_stairs");
-        specificBlockReplacement("blue_rockrete_stairs", "smooth_blue_rockrete_stairs");
-        specificBlockReplacement("green_rockrete_stairs", "smooth_green_rockrete_stairs");
+        specificBlockReplacement("smooth_gray_rockrete_stairs", "gray_rockrete_stairs");
+        specificBlockReplacement("smooth_red_rockrete_stairs", "red_rockrete_stairs");
+        specificBlockReplacement("smooth_yellow_rockrete_stairs", "yellow_rockrete_stairs");
+        specificBlockReplacement("smooth_blue_rockrete_stairs", "blue_rockrete_stairs");
+        specificBlockReplacement("smooth_green_rockrete_stairs", "green_rockrete_stairs");
 
 
         specificBlockReplacement("horizontal_grate", "horizontal_vent");
@@ -875,27 +875,44 @@ public class ModBlocks {
     
     //ROCKRETE BLOCKS
     //GRAY ROCKRETE
-    public static final DeferredBlock<Block> SMOOTH_GRAY_ROCKRETE = registerBlockAndBlockItem("smooth_gray_rockrete",
+    public static final DeferredBlock<Block> GRAY_ROCKRETE = registerBlockAndBlockItem("gray_rockrete",
             () -> new Block(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
-    public static final DeferredBlock<Block> ROUGH_GRAY_ROCKRETE = registerBlockAndBlockItem("rough_gray_rockrete",
-            () -> new SimpleTextureToggleBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE)
-            )
-    );
-    public static final DeferredBlock<Block> SMOOTH_GRAY_ROCKRETE_STAIRS = registerBlockAndBlockItem("smooth_gray_rockrete_stairs",
-            () -> new StairBlock(ModBlocks.SMOOTH_GRAY_ROCKRETE.get().defaultBlockState(),
+    public static final DeferredBlock<Block> GRAY_ROCKRETE_STAIRS = registerBlockAndBlockItem("gray_rockrete_stairs",
+            () -> new StairBlock(ModBlocks.GRAY_ROCKRETE.get().defaultBlockState(),
                     BlockBehaviour.Properties.ofFullCopy(Blocks.STONE))
     );
-    public static final DeferredBlock<Block> SMOOTH_GRAY_ROCKRETE_SLAB = registerBlockAndBlockItem("smooth_gray_rockrete_slab",
+    public static final DeferredBlock<Block> GRAY_ROCKRETE_SLAB = registerBlockAndBlockItem("gray_rockrete_slab",
             () -> new SlabBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
+
+    public static final DeferredBlock<Block> WEATHERED_GRAY_ROCKRETE = registerBlockAndBlockItem("weathered_gray_rockrete",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE)
+            )
+    );
+    public static final DeferredBlock<Block> WEATHERED_GRAY_ROCKRETE_STAIRS = registerBlockAndBlockItem("weathered_gray_rockrete_stairs",
+            () -> new StairBlock(ModBlocks.WEATHERED_GRAY_ROCKRETE.get().defaultBlockState(),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.STONE))
+    );
+    public static final DeferredBlock<Block> WEATHERED_GRAY_ROCKRETE_SLAB = registerBlockAndBlockItem("weathered_gray_rockrete_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE)
+            )
+    );
+
     public static final DeferredBlock<Block> GRAY_ROCKRETE_PILLAR = registerBlockAndBlockItem("gray_rockrete_pillar",
             () -> new AxialPillarBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE)
+            )
+    );
+
+    public static final DeferredBlock<Block> ROUGH_GRAY_ROCKRETE = registerBlockAndBlockItem("rough_gray_rockrete",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
@@ -909,7 +926,7 @@ public class ModBlocks {
             )
     );
     //GREEN ROCKRETE
-    public static final DeferredBlock<Block> SMOOTH_GREEN_ROCKRETE = registerBlockAndBlockItem("smooth_green_rockrete",
+    public static final DeferredBlock<Block> GREEN_ROCKRETE = registerBlockAndBlockItem("green_rockrete",
             () -> new Block(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
             )
@@ -919,11 +936,11 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
-    public static final DeferredBlock<Block> SMOOTH_GREEN_ROCKRETE_STAIRS = registerBlockAndBlockItem("smooth_green_rockrete_stairs",
-            () -> new StairBlock(ModBlocks.SMOOTH_GREEN_ROCKRETE.get().defaultBlockState(),
+    public static final DeferredBlock<Block> GREEN_ROCKRETE_STAIRS = registerBlockAndBlockItem("green_rockrete_stairs",
+            () -> new StairBlock(ModBlocks.GREEN_ROCKRETE.get().defaultBlockState(),
                     BlockBehaviour.Properties.ofFullCopy(Blocks.STONE))
     );
-    public static final DeferredBlock<Block> SMOOTH_GREEN_ROCKRETE_SLAB = registerBlockAndBlockItem("smooth_green_rockrete_slab",
+    public static final DeferredBlock<Block> GREEN_ROCKRETE_SLAB = registerBlockAndBlockItem("green_rockrete_slab",
             () -> new SlabBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
             )
@@ -943,7 +960,7 @@ public class ModBlocks {
             )
     );
     //YELLOW ROCKRETE
-    public static final DeferredBlock<Block> SMOOTH_YELLOW_ROCKRETE = registerBlockAndBlockItem("smooth_yellow_rockrete",
+    public static final DeferredBlock<Block> YELLOW_ROCKRETE = registerBlockAndBlockItem("yellow_rockrete",
             () -> new Block(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
             )
@@ -953,11 +970,11 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
-    public static final DeferredBlock<Block> SMOOTH_YELLOW_ROCKRETE_STAIRS = registerBlockAndBlockItem("smooth_yellow_rockrete_stairs",
-            () -> new StairBlock(ModBlocks.SMOOTH_YELLOW_ROCKRETE.get().defaultBlockState(),
+    public static final DeferredBlock<Block> YELLOW_ROCKRETE_STAIRS = registerBlockAndBlockItem("yellow_rockrete_stairs",
+            () -> new StairBlock(ModBlocks.YELLOW_ROCKRETE.get().defaultBlockState(),
                     BlockBehaviour.Properties.ofFullCopy(Blocks.STONE))
     );
-    public static final DeferredBlock<Block> SMOOTH_YELLOW_ROCKRETE_SLAB = registerBlockAndBlockItem("smooth_yellow_rockrete_slab",
+    public static final DeferredBlock<Block> YELLOW_ROCKRETE_SLAB = registerBlockAndBlockItem("yellow_rockrete_slab",
             () -> new SlabBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
             )
@@ -977,7 +994,7 @@ public class ModBlocks {
             )
     );
     //BLUE ROCKRETE
-    public static final DeferredBlock<Block> SMOOTH_BLUE_ROCKRETE = registerBlockAndBlockItem("smooth_blue_rockrete",
+    public static final DeferredBlock<Block> BLUE_ROCKRETE = registerBlockAndBlockItem("blue_rockrete",
             () -> new Block(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
             )
@@ -987,11 +1004,11 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
-    public static final DeferredBlock<Block> SMOOTH_BLUE_ROCKRETE_STAIRS = registerBlockAndBlockItem("smooth_blue_rockrete_stairs",
-            () -> new StairBlock(ModBlocks.SMOOTH_BLUE_ROCKRETE.get().defaultBlockState(),
+    public static final DeferredBlock<Block> BLUE_ROCKRETE_STAIRS = registerBlockAndBlockItem("blue_rockrete_stairs",
+            () -> new StairBlock(ModBlocks.BLUE_ROCKRETE.get().defaultBlockState(),
                     BlockBehaviour.Properties.ofFullCopy(Blocks.STONE))
     );
-    public static final DeferredBlock<Block> SMOOTH_BLUE_ROCKRETE_SLAB = registerBlockAndBlockItem("smooth_blue_rockrete_slab",
+    public static final DeferredBlock<Block> BLUE_ROCKRETE_SLAB = registerBlockAndBlockItem("blue_rockrete_slab",
             () -> new SlabBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
             )
@@ -1011,7 +1028,7 @@ public class ModBlocks {
             )
     );
     //RED ROCKRETE
-    public static final DeferredBlock<Block> SMOOTH_RED_ROCKRETE = registerBlockAndBlockItem("smooth_red_rockrete",
+    public static final DeferredBlock<Block> RED_ROCKRETE = registerBlockAndBlockItem("red_rockrete",
             () -> new Block(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
             )
@@ -1021,11 +1038,11 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
-    public static final DeferredBlock<Block> SMOOTH_RED_ROCKRETE_STAIRS = registerBlockAndBlockItem("smooth_red_rockrete_stairs",
-            () -> new StairBlock(ModBlocks.SMOOTH_RED_ROCKRETE.get().defaultBlockState(),
+    public static final DeferredBlock<Block> RED_ROCKRETE_STAIRS = registerBlockAndBlockItem("red_rockrete_stairs",
+            () -> new StairBlock(ModBlocks.RED_ROCKRETE.get().defaultBlockState(),
                     BlockBehaviour.Properties.ofFullCopy(Blocks.STONE))
     );
-    public static final DeferredBlock<Block> SMOOTH_RED_ROCKRETE_SLAB = registerBlockAndBlockItem("smooth_red_rockrete_slab",
+    public static final DeferredBlock<Block> RED_ROCKRETE_SLAB = registerBlockAndBlockItem("red_rockrete_slab",
             () -> new SlabBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
             )
@@ -1050,7 +1067,7 @@ public class ModBlocks {
             )
     );
 
-    //PIPE BLOCKS
+    //PIPE BLOCKS //disable occlusion or else block behind it will not render (invisible)
     public static final DeferredBlock<Block> COPPER_PIPE_CONDUIT = registerBlockAndBlockItem("copper_pipe_conduit",
             () -> new WallPIpeBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)

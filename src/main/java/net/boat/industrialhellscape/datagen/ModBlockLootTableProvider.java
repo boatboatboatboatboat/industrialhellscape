@@ -174,45 +174,64 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.RUSTY_VESSELGLASS.get());
 
         //ROCKRETE BLOCKS
-        this.dropSelf(ModBlocks.SMOOTH_GRAY_ROCKRETE.get());
+
         this.dropSelf(ModBlocks.ROUGH_GRAY_ROCKRETE.get());
-        this.dropSelf(ModBlocks.GRAY_ROCKRETE_PILLAR.get());
-        this.add(ModBlocks.SMOOTH_GRAY_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.SMOOTH_GRAY_ROCKRETE_SLAB.get()));
-        this.dropSelf(ModBlocks.SMOOTH_GRAY_ROCKRETE_STAIRS.get());
         this.add(ModBlocks.ROUGH_GRAY_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.ROUGH_GRAY_ROCKRETE_SLAB.get()));
         this.dropSelf(ModBlocks.ROUGH_GRAY_ROCKRETE_STAIRS.get());
-
-        this.dropSelf(ModBlocks.SMOOTH_GREEN_ROCKRETE.get());
         this.dropSelf(ModBlocks.ROUGH_GREEN_ROCKRETE.get());
-        this.dropSelf(ModBlocks.GREEN_ROCKRETE_PILLAR.get());
-        this.add(ModBlocks.SMOOTH_GREEN_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.SMOOTH_GREEN_ROCKRETE_SLAB.get()));
-        this.dropSelf(ModBlocks.SMOOTH_GREEN_ROCKRETE_STAIRS.get());
         this.add(ModBlocks.ROUGH_GREEN_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.ROUGH_GREEN_ROCKRETE_SLAB.get()));
         this.dropSelf(ModBlocks.ROUGH_GREEN_ROCKRETE_STAIRS.get());
-
-        this.dropSelf(ModBlocks.SMOOTH_YELLOW_ROCKRETE.get());
         this.dropSelf(ModBlocks.ROUGH_YELLOW_ROCKRETE.get());
-        this.dropSelf(ModBlocks.YELLOW_ROCKRETE_PILLAR.get());
-        this.add(ModBlocks.SMOOTH_YELLOW_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.SMOOTH_YELLOW_ROCKRETE_SLAB.get()));
-        this.dropSelf(ModBlocks.SMOOTH_YELLOW_ROCKRETE_STAIRS.get());
         this.add(ModBlocks.ROUGH_YELLOW_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.ROUGH_YELLOW_ROCKRETE_SLAB.get()));
         this.dropSelf(ModBlocks.ROUGH_YELLOW_ROCKRETE_STAIRS.get());
-
-        this.dropSelf(ModBlocks.SMOOTH_BLUE_ROCKRETE.get());
         this.dropSelf(ModBlocks.ROUGH_BLUE_ROCKRETE.get());
-        this.dropSelf(ModBlocks.BLUE_ROCKRETE_PILLAR.get());
-        this.add(ModBlocks.SMOOTH_BLUE_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.SMOOTH_BLUE_ROCKRETE_SLAB.get()));
-        this.dropSelf(ModBlocks.SMOOTH_BLUE_ROCKRETE_STAIRS.get());
         this.add(ModBlocks.ROUGH_BLUE_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.ROUGH_BLUE_ROCKRETE_SLAB.get()));
         this.dropSelf(ModBlocks.ROUGH_BLUE_ROCKRETE_STAIRS.get());
-
-        this.dropSelf(ModBlocks.SMOOTH_RED_ROCKRETE.get());
         this.dropSelf(ModBlocks.ROUGH_RED_ROCKRETE.get());
-        this.dropSelf(ModBlocks.RED_ROCKRETE_PILLAR.get());
-        this.add(ModBlocks.SMOOTH_RED_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.SMOOTH_RED_ROCKRETE_SLAB.get()));
-        this.dropSelf(ModBlocks.SMOOTH_RED_ROCKRETE_STAIRS.get());
         this.add(ModBlocks.ROUGH_RED_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.ROUGH_RED_ROCKRETE_SLAB.get()));
         this.dropSelf(ModBlocks.ROUGH_RED_ROCKRETE_STAIRS.get());
+
+        this.dropSelf(ModBlocks.WEATHERED_GRAY_ROCKRETE.get());
+        this.add(ModBlocks.WEATHERED_GRAY_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.WEATHERED_GRAY_ROCKRETE_SLAB.get()));
+        this.dropSelf(ModBlocks.WEATHERED_GRAY_ROCKRETE_STAIRS.get());
+//        this.dropSelf(ModBlocks.WEATHERED_GREEN_ROCKRETE.get());
+//        this.add(ModBlocks.WEATHERED_GREEN_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.WEATHERED_GREEN_ROCKRETE_SLAB.get()));
+//        this.dropSelf(ModBlocks.WEATHERED_GREEN_ROCKRETE_STAIRS.get());
+//        this.dropSelf(ModBlocks.WEATHERED_YELLOW_ROCKRETE.get());
+//        this.add(ModBlocks.WEATHERED_YELLOW_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.WEATHERED_YELLOW_ROCKRETE_SLAB.get()));
+//        this.dropSelf(ModBlocks.WEATHERED_YELLOW_ROCKRETE_STAIRS.get());
+//        this.dropSelf(ModBlocks.WEATHERED_BLUE_ROCKRETE.get());
+//        this.add(ModBlocks.WEATHERED_BLUE_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.WEATHERED_BLUE_ROCKRETE_SLAB.get()));
+//        this.dropSelf(ModBlocks.WEATHERED_BLUE_ROCKRETE_STAIRS.get());
+//        this.dropSelf(ModBlocks.WEATHERED_RED_ROCKRETE.get());
+//        this.add(ModBlocks.WEATHERED_RED_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.WEATHERED_RED_ROCKRETE_SLAB.get()));
+//        this.dropSelf(ModBlocks.WEATHERED_RED_ROCKRETE_STAIRS.get());
+
+        this.dropSelf(ModBlocks.GRAY_ROCKRETE.get());
+        this.dropSelf(ModBlocks.GRAY_ROCKRETE_PILLAR.get());
+        this.add(ModBlocks.GRAY_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.GRAY_ROCKRETE_SLAB.get()));
+        this.dropSelf(ModBlocks.GRAY_ROCKRETE_STAIRS.get());
+
+        this.dropSelf(ModBlocks.GREEN_ROCKRETE.get());
+        this.dropSelf(ModBlocks.GREEN_ROCKRETE_PILLAR.get());
+        this.add(ModBlocks.GREEN_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.GREEN_ROCKRETE_SLAB.get()));
+        this.dropSelf(ModBlocks.GREEN_ROCKRETE_STAIRS.get());
+
+        this.dropSelf(ModBlocks.YELLOW_ROCKRETE.get());
+        this.dropSelf(ModBlocks.YELLOW_ROCKRETE_PILLAR.get());
+        this.add(ModBlocks.YELLOW_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.YELLOW_ROCKRETE_SLAB.get()));
+        this.dropSelf(ModBlocks.YELLOW_ROCKRETE_STAIRS.get());
+
+
+        this.dropSelf(ModBlocks.BLUE_ROCKRETE.get());
+        this.dropSelf(ModBlocks.BLUE_ROCKRETE_PILLAR.get());
+        this.add(ModBlocks.BLUE_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.BLUE_ROCKRETE_SLAB.get()));
+        this.dropSelf(ModBlocks.BLUE_ROCKRETE_STAIRS.get());
+
+        this.dropSelf(ModBlocks.RED_ROCKRETE.get());
+        this.dropSelf(ModBlocks.RED_ROCKRETE_PILLAR.get());
+        this.add(ModBlocks.RED_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.RED_ROCKRETE_SLAB.get()));
+        this.dropSelf(ModBlocks.RED_ROCKRETE_STAIRS.get());
 
         this.dropSelf(ModBlocks.GRIMY_RESTROOM_TILE.get());
 

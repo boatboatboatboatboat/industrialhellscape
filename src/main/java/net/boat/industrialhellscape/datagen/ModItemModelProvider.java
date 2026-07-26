@@ -29,11 +29,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.TERMINATION_LETTER.get());
 
         basicItem(ModItems.GAS_STATION_PILL.get());
-        wallItem(ModBlocks.GRAY_ROCKRETE_WALL, ModBlocks.ROUGH_GRAY_ROCKRETE);
-        wallItem(ModBlocks.RED_ROCKRETE_WALL, ModBlocks.ROUGH_RED_ROCKRETE);
-        wallItem(ModBlocks.YELLOW_ROCKRETE_WALL, ModBlocks.ROUGH_YELLOW_ROCKRETE);
-        wallItem(ModBlocks.BLUE_ROCKRETE_WALL, ModBlocks.ROUGH_BLUE_ROCKRETE);
-        wallItem(ModBlocks.GREEN_ROCKRETE_WALL, ModBlocks.ROUGH_GREEN_ROCKRETE);
+        wallItem(ModBlocks.GRAY_ROCKRETE_WALL, ModBlocks.ROUGH_GRAY_ROCKRETE.get(), "rough_rockrete");
+        wallItem(ModBlocks.RED_ROCKRETE_WALL, ModBlocks.ROUGH_RED_ROCKRETE.get(), "rough_rockrete");
+        wallItem(ModBlocks.YELLOW_ROCKRETE_WALL, ModBlocks.ROUGH_YELLOW_ROCKRETE.get(), "rough_rockrete");
+        wallItem(ModBlocks.BLUE_ROCKRETE_WALL, ModBlocks.ROUGH_BLUE_ROCKRETE.get(), "rough_rockrete");
+        wallItem(ModBlocks.GREEN_ROCKRETE_WALL, ModBlocks.ROUGH_GREEN_ROCKRETE.get(), "rough_rockrete");
 
         //  Blocks
         basicFolderedItem(ModBlocks.ARMORED_DOOR.get().asItem(), "door");
@@ -51,9 +51,15 @@ public class ModItemModelProvider extends ItemModelProvider {
                 .texture("layer0", ResourceLocation.fromNamespaceAndPath(item.getNamespace(), "item/" + subFolder + "/" + item.getPath()));
     }
 
-    public void wallItem(DeferredBlock<?> block, DeferredBlock<Block> baseBlock) {
+    public void wallItem(DeferredBlock<?> block, Block baseBlock, String textureSubFolder) {
+
+        String baseStringName = BuiltInRegistries.BLOCK.getKey(baseBlock).getPath();
+        String baseModelPath = "block/"+baseStringName;
+        String pathToBaseTexture = "block/" + (textureSubFolder+(textureSubFolder.isEmpty() ? "":"/"));
+        String baseTexturePath =  pathToBaseTexture + baseStringName;
+
         this.withExistingParent(block.getId().getPath(), mcLoc("block/wall_inventory"))
                 .texture("wall",  ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID,
-                        "block/" + baseBlock.getId().getPath()));
+                        baseTexturePath));
     }
 }

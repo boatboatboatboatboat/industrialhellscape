@@ -16,6 +16,7 @@ import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredBlock;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
@@ -137,49 +138,72 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genSimpleTextureToggleSBI(ModBlocks.RUSTY_REINFORCED_VESSELGLASS.get(),"vesselglass","translucent");
 
         //Rockrete Blocks
-        genFolderedSBI(ModBlocks.SMOOTH_GRAY_ROCKRETE.get(), "");
-        //genCustomTextureToggleSBI(ModBlocks.SMOOTH_GRAY_ROCKRETE.get(),"","rockrete","rockrete_rebar","solid");
-        genSimpleTextureToggleSBI(ModBlocks.ROUGH_GRAY_ROCKRETE.get(),"","solid");
-        genStairsWithRenderTypeSBI(ModBlocks.SMOOTH_GRAY_ROCKRETE_STAIRS.get(),"","smooth_gray_rockrete","smooth_gray_rockrete","smooth_gray_rockrete","solid");
-        genSimpleSlabsSBI(ModBlocks.SMOOTH_GRAY_ROCKRETE_SLAB.get(), ModBlocks.SMOOTH_GRAY_ROCKRETE.get());
-        genStairsWithRenderTypeSBI(ModBlocks.ROUGH_GRAY_ROCKRETE_STAIRS.get(),"","rough_gray_rockrete","rough_gray_rockrete","rough_gray_rockrete","solid");
-        genSimpleSlabsSBI(ModBlocks.ROUGH_GRAY_ROCKRETE_SLAB.get(), ModBlocks.ROUGH_GRAY_ROCKRETE.get());
+        genSimpleTextureToggleSBI(ModBlocks.ROUGH_GRAY_ROCKRETE.get(),"rough_rockrete","solid");
+        genStairsWithRenderTypeSBI(ModBlocks.ROUGH_GRAY_ROCKRETE_STAIRS.get(),"rough_rockrete","rough_gray_rockrete","rough_gray_rockrete","rough_gray_rockrete","solid");
+        genSimpleSlabsSBI(ModBlocks.ROUGH_GRAY_ROCKRETE_SLAB.get(), ModBlocks.ROUGH_GRAY_ROCKRETE.get(),"rough_rockrete");
+        genSimpleTextureToggleSBI(ModBlocks.ROUGH_GREEN_ROCKRETE.get(),"rough_rockrete","solid");
+        genStairsWithRenderTypeSBI(ModBlocks.ROUGH_GREEN_ROCKRETE_STAIRS.get(),"rough_rockrete","rough_green_rockrete","rough_green_rockrete","rough_green_rockrete","solid");
+        genSimpleSlabsSBI(ModBlocks.ROUGH_GREEN_ROCKRETE_SLAB.get(), ModBlocks.ROUGH_GREEN_ROCKRETE.get(),"rough_rockrete");
+        genSimpleTextureToggleSBI(ModBlocks.ROUGH_YELLOW_ROCKRETE.get(),"rough_rockrete","solid");
+        genStairsWithRenderTypeSBI(ModBlocks.ROUGH_YELLOW_ROCKRETE_STAIRS.get(),"rough_rockrete","rough_yellow_rockrete","rough_yellow_rockrete","rough_yellow_rockrete","solid");
+        genSimpleSlabsSBI(ModBlocks.ROUGH_YELLOW_ROCKRETE_SLAB.get(),ModBlocks.ROUGH_YELLOW_ROCKRETE.get(), "rough_rockrete");
+        genSimpleTextureToggleSBI(ModBlocks.ROUGH_BLUE_ROCKRETE.get(),"rough_rockrete","solid");
+        genStairsWithRenderTypeSBI(ModBlocks.ROUGH_BLUE_ROCKRETE_STAIRS.get(),"rough_rockrete","rough_blue_rockrete","rough_blue_rockrete","rough_blue_rockrete","solid");
+        genSimpleSlabsSBI(ModBlocks.ROUGH_BLUE_ROCKRETE_SLAB.get(), ModBlocks.ROUGH_BLUE_ROCKRETE.get(),"rough_rockrete");
+        genSimpleTextureToggleSBI(ModBlocks.ROUGH_RED_ROCKRETE.get(),"rough_rockrete","solid");
+        genStairsWithRenderTypeSBI(ModBlocks.ROUGH_RED_ROCKRETE_STAIRS.get(),"rough_rockrete","rough_red_rockrete","rough_red_rockrete","rough_red_rockrete","solid");
+        genSimpleSlabsSBI(ModBlocks.ROUGH_RED_ROCKRETE_SLAB.get(), ModBlocks.ROUGH_RED_ROCKRETE.get(),"rough_rockrete");
 
-        genFolderedSBI(ModBlocks.SMOOTH_GREEN_ROCKRETE.get(),"");
-        genSimpleTextureToggleSBI(ModBlocks.ROUGH_GREEN_ROCKRETE.get(),"","solid");
-        genStairsWithRenderTypeSBI(ModBlocks.SMOOTH_GREEN_ROCKRETE_STAIRS.get(),"","smooth_green_rockrete","smooth_green_rockrete","smooth_green_rockrete","solid");
-        genSimpleSlabsSBI(ModBlocks.SMOOTH_GREEN_ROCKRETE_SLAB.get(), ModBlocks.SMOOTH_GREEN_ROCKRETE.get());
-        genStairsWithRenderTypeSBI(ModBlocks.ROUGH_GREEN_ROCKRETE_STAIRS.get(),"","rough_green_rockrete","rough_green_rockrete","rough_green_rockrete","solid");
-        genSimpleSlabsSBI(ModBlocks.ROUGH_GREEN_ROCKRETE_SLAB.get(), ModBlocks.ROUGH_GREEN_ROCKRETE.get());
+        genSimpleTextureToggleSBI(ModBlocks.WEATHERED_GRAY_ROCKRETE.get(),"weathered_rockrete","solid");
+        genStairsWithRenderTypeSBI(ModBlocks.WEATHERED_GRAY_ROCKRETE_STAIRS.get(),"weathered_rockrete","weathered_gray_rockrete","weathered_gray_rockrete","weathered_gray_rockrete","solid");
+        genSimpleSlabsSBI(ModBlocks.WEATHERED_GRAY_ROCKRETE_SLAB.get(), ModBlocks.WEATHERED_GRAY_ROCKRETE.get(),"weathered_rockrete");
+//        genSimpleTextureToggleSBI(ModBlocks.WEATHERED_GREEN_ROCKRETE.get(),"weathered_rockrete","solid");
+//        genStairsWithRenderTypeSBI(ModBlocks.WEATHERED_GREEN_ROCKRETE_STAIRS.get(),"weathered_rockrete","weathered_green_rockrete","weathered_green_rockrete","weathered_green_rockrete","solid");
+//        genSimpleSlabsSBI(ModBlocks.WEATHERED_GREEN_ROCKRETE_SLAB.get(), ModBlocks.WEATHERED_GREEN_ROCKRETE.get(),"weathered_rockrete");
+//        genSimpleTextureToggleSBI(ModBlocks.WEATHERED_YELLOW_ROCKRETE.get(),"weathered_rockrete","solid");
+//        genStairsWithRenderTypeSBI(ModBlocks.WEATHERED_YELLOW_ROCKRETE_STAIRS.get(),"weathered_rockrete","weathered_yellow_rockrete","weathered_yellow_rockrete","weathered_yellow_rockrete","solid");
+//        genSimpleSlabsSBI(ModBlocks.WEATHERED_YELLOW_ROCKRETE_SLAB.get(),ModBlocks.WEATHERED_YELLOW_ROCKRETE.get(), "weathered_rockrete");
+//        genSimpleTextureToggleSBI(ModBlocks.WEATHERED_BLUE_ROCKRETE.get(),"weathered_rockrete","solid");
+//        genStairsWithRenderTypeSBI(ModBlocks.WEATHERED_BLUE_ROCKRETE_STAIRS.get(),"weathered_rockrete","weathered_blue_rockrete","weathered_blue_rockrete","weathered_blue_rockrete","solid");
+//        genSimpleSlabsSBI(ModBlocks.WEATHERED_BLUE_ROCKRETE_SLAB.get(), ModBlocks.WEATHERED_BLUE_ROCKRETE.get(),"weathered_rockrete");
+//        genSimpleTextureToggleSBI(ModBlocks.WEATHERED_RED_ROCKRETE.get(),"weathered_rockrete","solid");
+//        genStairsWithRenderTypeSBI(ModBlocks.WEATHERED_RED_ROCKRETE_STAIRS.get(),"weathered_rockrete","weathered_red_rockrete","weathered_red_rockrete","weathered_red_rockrete","solid");
+//        genSimpleSlabsSBI(ModBlocks.WEATHERED_RED_ROCKRETE_SLAB.get(), ModBlocks.WEATHERED_RED_ROCKRETE.get(),"weathered_rockrete");
 
-        genFolderedSBI(ModBlocks.SMOOTH_YELLOW_ROCKRETE.get(),"");
-        genSimpleTextureToggleSBI(ModBlocks.ROUGH_YELLOW_ROCKRETE.get(),"","solid");
-        genStairsWithRenderTypeSBI(ModBlocks.SMOOTH_YELLOW_ROCKRETE_STAIRS.get(),"","smooth_yellow_rockrete","smooth_yellow_rockrete","smooth_yellow_rockrete","solid");
-        genSimpleSlabsSBI(ModBlocks.SMOOTH_YELLOW_ROCKRETE_SLAB.get(), ModBlocks.SMOOTH_YELLOW_ROCKRETE.get());
-        genStairsWithRenderTypeSBI(ModBlocks.ROUGH_YELLOW_ROCKRETE_STAIRS.get(),"","rough_yellow_rockrete","rough_yellow_rockrete","rough_yellow_rockrete","solid");
-        genSimpleSlabsSBI(ModBlocks.ROUGH_YELLOW_ROCKRETE_SLAB.get(), ModBlocks.ROUGH_YELLOW_ROCKRETE.get());
+        genFolderedSBI(ModBlocks.GRAY_ROCKRETE.get(), "rockrete");
+        //genCustomTextureToggleSBI(ModBlocks.GRAY_ROCKRETE.get(),"","rockrete","rockrete_rebar","solid");
 
-        genFolderedSBI(ModBlocks.SMOOTH_BLUE_ROCKRETE.get(),"");
-        genSimpleTextureToggleSBI(ModBlocks.ROUGH_BLUE_ROCKRETE.get(),"","solid");
-        genStairsWithRenderTypeSBI(ModBlocks.SMOOTH_BLUE_ROCKRETE_STAIRS.get(),"","smooth_blue_rockrete","smooth_blue_rockrete","smooth_blue_rockrete","solid");
-        genSimpleSlabsSBI(ModBlocks.SMOOTH_BLUE_ROCKRETE_SLAB.get(), ModBlocks.SMOOTH_BLUE_ROCKRETE.get());
-        genStairsWithRenderTypeSBI(ModBlocks.ROUGH_BLUE_ROCKRETE_STAIRS.get(),"","rough_blue_rockrete","rough_blue_rockrete","rough_blue_rockrete","solid");
-        genSimpleSlabsSBI(ModBlocks.ROUGH_BLUE_ROCKRETE_SLAB.get(), ModBlocks.ROUGH_BLUE_ROCKRETE.get());
+        genStairsWithRenderTypeSBI(ModBlocks.GRAY_ROCKRETE_STAIRS.get(),"rockrete","gray_rockrete","gray_rockrete","gray_rockrete","solid");
+        genSimpleSlabsSBI(ModBlocks.GRAY_ROCKRETE_SLAB.get(), ModBlocks.GRAY_ROCKRETE.get(), "rockrete");
 
-        genFolderedSBI(ModBlocks.SMOOTH_RED_ROCKRETE.get(),"");
-        genSimpleTextureToggleSBI(ModBlocks.ROUGH_RED_ROCKRETE.get(),"","solid");
-        genStairsWithRenderTypeSBI(ModBlocks.SMOOTH_RED_ROCKRETE_STAIRS.get(),"","smooth_red_rockrete","smooth_red_rockrete","smooth_red_rockrete","solid");
-        genSimpleSlabsSBI(ModBlocks.SMOOTH_RED_ROCKRETE_SLAB.get(), ModBlocks.SMOOTH_RED_ROCKRETE.get());
-        genStairsWithRenderTypeSBI(ModBlocks.ROUGH_RED_ROCKRETE_STAIRS.get(),"","rough_red_rockrete","rough_red_rockrete","rough_red_rockrete","solid");
-        genSimpleSlabsSBI(ModBlocks.ROUGH_RED_ROCKRETE_SLAB.get(), ModBlocks.ROUGH_RED_ROCKRETE.get());
+        genFolderedSBI(ModBlocks.GREEN_ROCKRETE.get(),"rockrete");
+        genStairsWithRenderTypeSBI(ModBlocks.GREEN_ROCKRETE_STAIRS.get(),"rockrete","green_rockrete","green_rockrete","green_rockrete","solid");
+        genSimpleSlabsSBI(ModBlocks.GREEN_ROCKRETE_SLAB.get(), ModBlocks.GREEN_ROCKRETE.get(), "rockrete");
+
+
+        genFolderedSBI(ModBlocks.YELLOW_ROCKRETE.get(),"rockrete");
+        genStairsWithRenderTypeSBI(ModBlocks.YELLOW_ROCKRETE_STAIRS.get(),"rockrete","yellow_rockrete","yellow_rockrete","yellow_rockrete","solid");
+        genSimpleSlabsSBI(ModBlocks.YELLOW_ROCKRETE_SLAB.get(),ModBlocks.YELLOW_ROCKRETE.get(), "rockrete");
+
+
+        genFolderedSBI(ModBlocks.BLUE_ROCKRETE.get(),"rockrete");
+
+        genStairsWithRenderTypeSBI(ModBlocks.BLUE_ROCKRETE_STAIRS.get(),"rockrete","blue_rockrete","blue_rockrete","blue_rockrete","solid");
+        genSimpleSlabsSBI(ModBlocks.BLUE_ROCKRETE_SLAB.get(), ModBlocks.BLUE_ROCKRETE.get(),"rockrete");
+
+
+        genFolderedSBI(ModBlocks.RED_ROCKRETE.get(),"rockrete");
+
+        genStairsWithRenderTypeSBI(ModBlocks.RED_ROCKRETE_STAIRS.get(),"rockrete","red_rockrete","red_rockrete","red_rockrete","solid");
+        genSimpleSlabsSBI(ModBlocks.RED_ROCKRETE_SLAB.get(), ModBlocks.RED_ROCKRETE.get(), "rockrete");
 
         genFolderedSBI(ModBlocks.GRIMY_RESTROOM_TILE.get(), "");
 
-        wallBlock(ModBlocks.GRAY_ROCKRETE_WALL.get(), blockTexture(ModBlocks.ROUGH_GRAY_ROCKRETE.get()));
-        wallBlock(ModBlocks.RED_ROCKRETE_WALL.get(), blockTexture(ModBlocks.ROUGH_RED_ROCKRETE.get()));
-        wallBlock(ModBlocks.YELLOW_ROCKRETE_WALL.get(), blockTexture(ModBlocks.ROUGH_YELLOW_ROCKRETE.get()));
-        wallBlock(ModBlocks.BLUE_ROCKRETE_WALL.get(), blockTexture(ModBlocks.ROUGH_BLUE_ROCKRETE.get()));
-        wallBlock(ModBlocks.GREEN_ROCKRETE_WALL.get(), blockTexture(ModBlocks.ROUGH_GREEN_ROCKRETE.get()));
+        genSimpleWallsSB(ModBlocks.GRAY_ROCKRETE_WALL.get(), ModBlocks.ROUGH_GRAY_ROCKRETE.get(), "rough_rockrete");
+        genSimpleWallsSB(ModBlocks.RED_ROCKRETE_WALL.get(), ModBlocks.ROUGH_RED_ROCKRETE.get(), "rough_rockrete");
+        genSimpleWallsSB(ModBlocks.YELLOW_ROCKRETE_WALL.get(), ModBlocks.ROUGH_YELLOW_ROCKRETE.get(), "rough_rockrete");
+        genSimpleWallsSB(ModBlocks.BLUE_ROCKRETE_WALL.get(), ModBlocks.ROUGH_BLUE_ROCKRETE.get(), "rough_rockrete");
+        genSimpleWallsSB(ModBlocks.GREEN_ROCKRETE_WALL.get(), ModBlocks.ROUGH_GREEN_ROCKRETE.get(), "rough_rockrete");
 
         //BRACKETS
         genCornerShapedBlocksSI(ModBlocks.RUSTY_BOLTED_BRACKET.get(),"bolted_bracket");
@@ -373,15 +397,30 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, models().getExistingFile(modLoc(baseModelPath)));
     }
 
-    private void genSimpleSlabsSBI(Block block, Block parentBlock) {
-        //For Rockrete slabs which have a homogenous texture and solid model
+    private void genSimpleSlabsSBI(Block block, Block baseBlock, String textureSubfolder) {
+        //For Rockrete slabs which have a homogenous texture and solid full-block model already data-generated
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-
-        slabBlock(((SlabBlock) block), blockTexture(parentBlock), blockTexture(parentBlock));
-
         String existingModelPath = "block/"+stringName;
+        String baseStringName = BuiltInRegistries.BLOCK.getKey(baseBlock).getPath();
+        String blockPath = "block/" + textureSubfolder+(textureSubfolder.isEmpty() ? "":"/");
+        ResourceLocation slabTexturePath = ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID,blockPath+baseStringName);
+        ResourceLocation generatedBaseBlock = ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID,"block/" +baseStringName);
+
+        slabBlock(((SlabBlock) block), generatedBaseBlock, slabTexturePath);
+
         simpleBlockItem(block, models().getExistingFile(modLoc(existingModelPath)));
+
     }
+
+    private void genSimpleWallsSB(Block block, Block baseBlock, String textureSubfolder) {
+        //For Rockrete slabs which have a homogenous texture and solid model
+        String baseStringName = BuiltInRegistries.BLOCK.getKey(baseBlock).getPath();
+        String blockPath = "block/" + textureSubfolder+(textureSubfolder.isEmpty() ? "":"/");
+        ResourceLocation slabTexturePath = ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID,blockPath+baseStringName);
+
+        wallBlock(((WallBlock) block), slabTexturePath);
+    }
+
     private void genSlabsWithCustomDoubleSBI(Block block, Block parentBlock, String folderName, String doubleSlabName, String sideTexture, String endTexture, String nameStringToReplace, String nameStringReplacement ) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String parentStringName = BuiltInRegistries.BLOCK.getKey(parentBlock).getPath();

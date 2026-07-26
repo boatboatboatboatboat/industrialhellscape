@@ -39,7 +39,7 @@ import javax.annotation.Nonnull;
 public class ParapetBlock extends RailingBlock implements SimpleWaterloggedBlock{
 
     private static final double RAILING_HEIGHT = 16; //16 units is a full block height
-    private static final double RAILING_COLLISION_HEIGHT = 24; //Vanilla wall value
+    private static final double RAILING_COLLISION_HEIGHT = 16; //Vanilla wall value
 
     private double RAILING_THICKNESS;
     private double RAILING_COLLISION_SHAPE_BASE; //For normal Railing classes, this is 15 to allow projectiles to be shot through their hollow structure.
