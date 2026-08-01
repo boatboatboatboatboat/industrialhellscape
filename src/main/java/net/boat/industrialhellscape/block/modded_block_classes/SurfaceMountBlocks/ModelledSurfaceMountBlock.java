@@ -13,7 +13,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.AttachFace;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -30,20 +29,20 @@ import javax.annotation.Nullable;
 public class ModelledSurfaceMountBlock extends SurfaceMountBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    private final VoxelShape SHAPE_NORTH;
-    private final VoxelShape SHAPE_SOUTH;
-    private final VoxelShape SHAPE_EAST;
-    private final VoxelShape SHAPE_WEST;
+    protected final VoxelShape SHAPE_NORTH;
+    protected final VoxelShape SHAPE_SOUTH;
+    protected final VoxelShape SHAPE_EAST;
+    protected final VoxelShape SHAPE_WEST;
 
-    private final VoxelShape SHAPE_FLOOR_NORTH;
-    private final VoxelShape SHAPE_FLOOR_SOUTH;
-    private final VoxelShape SHAPE_FLOOR_EAST;
-    private final VoxelShape SHAPE_FLOOR_WEST;
+    protected final VoxelShape SHAPE_FLOOR_NORTH;
+    protected final VoxelShape SHAPE_FLOOR_SOUTH;
+    protected final VoxelShape SHAPE_FLOOR_EAST;
+    protected final VoxelShape SHAPE_FLOOR_WEST;
 
-    private final VoxelShape SHAPE_CEILING_NORTH;
-    private final VoxelShape SHAPE_CEILING_SOUTH;
-    private final VoxelShape SHAPE_CEILING_EAST;
-    private final VoxelShape SHAPE_CEILING_WEST;
+    protected final VoxelShape SHAPE_CEILING_NORTH;
+    protected final VoxelShape SHAPE_CEILING_SOUTH;
+    protected final VoxelShape SHAPE_CEILING_EAST;
+    protected final VoxelShape SHAPE_CEILING_WEST;
 
 
 

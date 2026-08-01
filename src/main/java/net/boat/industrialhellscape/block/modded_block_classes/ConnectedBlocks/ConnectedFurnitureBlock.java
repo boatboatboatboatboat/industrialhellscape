@@ -127,21 +127,6 @@ public class ConnectedFurnitureBlock extends Block implements SimpleWaterloggedB
         );
     }
 
-    @Override
-    public EnumProperty<DynamicConnectionState> getTypeProperty() {
-        return TYPE;
-    }
-
-    @Override
-    public DirectionProperty getFacingProperty() {
-        return FACING;
-    }
-
-    @Override
-    public BooleanProperty getWaterloggedProperty() {
-        return WATERLOGGED;
-    }
-
     //---------- USE INTERACT, HITBOXES, PLACEMENT, AND BLOCK UPDATE METHODS HANDLED BY INTERFACES ---------
 
     @Override
@@ -152,20 +137,21 @@ public class ConnectedFurnitureBlock extends Block implements SimpleWaterloggedB
                 LEFT_SHAPE_NORTH,LEFT_SHAPE_SOUTH,LEFT_SHAPE_EAST,LEFT_SHAPE_WEST,
                 MIDDLE_SHAPE_NORTH,MIDDLE_SHAPE_SOUTH,MIDDLE_SHAPE_EAST,MIDDLE_SHAPE_WEST,
                 RIGHT_SHAPE_NORTH,RIGHT_SHAPE_SOUTH,RIGHT_SHAPE_EAST,RIGHT_SHAPE_WEST,
-                SOLO_SHAPE_NORTH,SOLO_SHAPE_SOUTH,SOLO_SHAPE_EAST,SOLO_SHAPE_WEST);
+                SOLO_SHAPE_NORTH,SOLO_SHAPE_SOUTH,SOLO_SHAPE_EAST,SOLO_SHAPE_WEST,
+                FACING, TYPE);
     }
     @Override
     public @Nullable BlockState getStateForPlacement(@NotNull BlockPlaceContext pContext) {
         //See this mod's ConnectedModelInterface interface to view the following method.
-        return placeTheConnectableBlock(this, pContext, BlockSetFamily, placementDirection);
+        return placeConnectableBlock(this, pContext, BlockSetFamily, placementDirection, FACING, TYPE, WATERLOGGED);
     }
     public void neighborChanged(@Nonnull BlockState state, @NotNull Level level, @Nonnull BlockPos positionClicked, @Nonnull Block block, @Nonnull BlockPos fromPos, boolean isMoving) {
         //See this mod's ConnectedModelInterface interface to view the following method.
-        whenConnectedNeighborUpdated(state,level,positionClicked,block,fromPos,BlockSetFamily, placementDirection);
+        whenConnectedNeighborUpdated(state,level,positionClicked,fromPos,BlockSetFamily, placementDirection, FACING, TYPE, WATERLOGGED);
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    protected ItemInteractionResult useItemOn(ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
         if(stack.is(ModItems.INHELL_HAVEN_DEVICE.get())) {
             state = state.cycle(TYPE);
             level.setBlock(pos, state, 2);

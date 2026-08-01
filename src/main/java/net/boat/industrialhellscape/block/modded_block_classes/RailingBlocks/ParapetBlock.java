@@ -1,5 +1,6 @@
 package net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks;
 
+import net.boat.industrialhellscape.block.modded_block_state_properties.DynamicConnectionState;
 import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -13,6 +14,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
@@ -37,9 +39,6 @@ import javax.annotation.Nonnull;
 // Multiple placements inside that block to occupy vacant directions is supported. datagen/ModBlockLootTableProvider has a method to datagen the appropriate loot table.
 
 public class ParapetBlock extends RailingBlock implements SimpleWaterloggedBlock{
-
-    private static final double RAILING_HEIGHT = 16; //16 units is a full block height
-    private static final double RAILING_COLLISION_HEIGHT = 16; //Vanilla wall value
 
     private double RAILING_THICKNESS;
     private double RAILING_COLLISION_SHAPE_BASE; //For normal Railing classes, this is 15 to allow projectiles to be shot through their hollow structure.
@@ -73,6 +72,7 @@ public class ParapetBlock extends RailingBlock implements SimpleWaterloggedBlock
 //    public static final BooleanProperty EAST_FENCE  = BlockStateProperties.EAST;
 //    public static final BooleanProperty WEST_FENCE  = BlockStateProperties.WEST;
 //    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+
     public static final BooleanProperty NORTH_WEST_FENCE = BooleanProperty.create("north_west");
     public static final BooleanProperty NORTH_EAST_FENCE = BooleanProperty.create("north_east");
     public static final BooleanProperty SOUTH_WEST_FENCE = BooleanProperty.create("south_west");

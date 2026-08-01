@@ -500,10 +500,23 @@ public interface HitboxGeometryCollection {
         return shape;
     }
 
+    static VoxelShape OBLONG_CAGE_LAMP(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0.25, 0, 0.125, 0.75, 0.1875, 0.875), BooleanOp.OR);
+
+        return shape;
+    }
     static VoxelShape CAGE_LAMP(){
         VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape, Shapes.box(0.25, 0, 0.125, 0.75, 0.0625, 0.875), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.3125, 0.0625, 0.1875, 0.6875, 0.25, 0.8125), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.3125, 0, 0.3125, 0.6875, 0.4375, 0.6875), BooleanOp.OR);
+
+        return shape;
+    }
+
+    static VoxelShape INDUSTRIAL_LAMP(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0.25, 0, 0.25, 0.75, 0.125, 0.75), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.3125, 0.125, 0.3125, 0.6875, 0.5, 0.6875), BooleanOp.OR);
 
         return shape;
     }

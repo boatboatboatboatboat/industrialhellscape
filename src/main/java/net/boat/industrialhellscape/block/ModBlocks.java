@@ -3,13 +3,15 @@ package net.boat.industrialhellscape.block;
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks.AxialPillarBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks.ConnectedFurnitureBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.FallableBlocks.FacingFallableBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.InteractableMultiBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.ModdedBedBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.Modelled2BMBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBlocks.*;
 import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.ParapetBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.RailingBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.StorageBlocks.*;
-import net.boat.industrialhellscape.block.modded_block_classes.FallableBlocks.FacingFallableBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.*;
 import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.StairRailingBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.StorageBlocks.*;
 import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.*;
 import net.boat.industrialhellscape.block.modded_block_classes.TextureToggleBlocks.SimpleTextureToggleBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.TextureToggleBlocks.TrussBlock;
@@ -28,6 +30,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -60,6 +63,10 @@ public class ModBlocks {
         specificBlockReplacement("smooth_yellow_rockrete_stairs", "yellow_rockrete_stairs");
         specificBlockReplacement("smooth_blue_rockrete_stairs", "blue_rockrete_stairs");
         specificBlockReplacement("smooth_green_rockrete_stairs", "green_rockrete_stairs");
+
+        specificBlockReplacement("weathered_gray_rockrete", "rough_gray_rockrete");
+        specificBlockReplacement("weathered_gray_rockrete_slab", "rough_gray_rockrete_slab");
+        specificBlockReplacement("weathered_gray_rockrete_stairs", "rough_gray_rockrete_stairs");
 
 
         specificBlockReplacement("horizontal_grate", "horizontal_vent");
@@ -890,21 +897,6 @@ public class ModBlocks {
             )
     );
 
-    public static final DeferredBlock<Block> WEATHERED_GRAY_ROCKRETE = registerBlockAndBlockItem("weathered_gray_rockrete",
-            () -> new SimpleTextureToggleBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE)
-            )
-    );
-    public static final DeferredBlock<Block> WEATHERED_GRAY_ROCKRETE_STAIRS = registerBlockAndBlockItem("weathered_gray_rockrete_stairs",
-            () -> new StairBlock(ModBlocks.WEATHERED_GRAY_ROCKRETE.get().defaultBlockState(),
-                    BlockBehaviour.Properties.ofFullCopy(Blocks.STONE))
-    );
-    public static final DeferredBlock<Block> WEATHERED_GRAY_ROCKRETE_SLAB = registerBlockAndBlockItem("weathered_gray_rockrete_slab",
-            () -> new SlabBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE)
-            )
-    );
-
     public static final DeferredBlock<Block> GRAY_ROCKRETE_PILLAR = registerBlockAndBlockItem("gray_rockrete_pillar",
             () -> new AxialPillarBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
@@ -1283,8 +1275,8 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
                     .noOcclusion(),
                     HitboxGeometryCollection.TOILET(),
-                    () -> SoundEvents.WOODEN_TRAPDOOR_CLOSE,
-                    ModSounds.TOILET_FLUSH
+                    SoundEvents.WOODEN_TRAPDOOR_CLOSE,
+                    ModSounds.TOILET_FLUSH.get()
                     )
     );
 //
@@ -1352,28 +1344,38 @@ public class ModBlocks {
                     .noOcclusion()
                     .lightLevel(state -> state.getValue(InteractableModelledFacingBlock.POWERED) ? 15 : 0),
                     HitboxGeometryCollection.FLOOR_WORK_LIGHT_SHAPE(),
-                    () -> SoundEvents.STONE_BUTTON_CLICK_ON,
-                    () -> SoundEvents.STONE_BUTTON_CLICK_OFF
+                    SoundEvents.STONE_BUTTON_CLICK_ON,
+                    SoundEvents.STONE_BUTTON_CLICK_OFF
             )
     );
-//    public static final DeferredBlock<Block> CAGE_LAMP = registerBlockAndBlockItem("cage_lamp",
-//            () -> new LightBulbBlock(BlockBehaviour
-//                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-//                    .noOcclusion()
-//                    .lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0),
-//                    HitboxGeometryCollection.CAGE_LAMP(),
-//                    () -> ModSounds.SWITCH_ON.get(),
-//                    () -> ModSounds.SWITCH_OFF.get()
-//            )
-//    );
+    public static final DeferredBlock<Block> OBLONG_CAGE_LAMP = registerBlockAndBlockItem("oblong_cage_lamp",
+            () -> new LightBulbBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0),
+                    HitboxGeometryCollection.OBLONG_CAGE_LAMP(),
+                    ModSounds.SWITCH_ON.get(),
+                    ModSounds.SWITCH_OFF.get()
+            )
+    );
+    public static final DeferredBlock<Block> INDUSTRIAL_LAMP = registerBlockAndBlockItem("industrial_lamp",
+            () -> new LightBulbBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0),
+                    HitboxGeometryCollection.INDUSTRIAL_LAMP(),
+                    ModSounds.SWITCH_ON.get(),
+                    ModSounds.SWITCH_OFF.get()
+            )
+    );
 
     public static final DeferredBlock<Block> RETRO_COMPUTER = registerBlockAndBlockItem("retro_computer",
             () -> new InteractableModelledFacingBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
                     .lightLevel(state -> state.getValue(InteractableModelledFacingBlock.POWERED) ? 7 : 0),
                     HitboxGeometryCollection.RETRO_COMPUTER(),
-                    ModSounds.COMPUTER_ON,
-                    ModSounds.SWITCH_OFF
+                    ModSounds.COMPUTER_ON.get(),
+                    ModSounds.SWITCH_OFF.get()
             )
     );
     public static final DeferredBlock<Block> RETRO_COMPUTER_2 = registerBlockAndBlockItem("retro_computer_2",
@@ -1381,8 +1383,8 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
                     .lightLevel(state -> state.getValue(InteractableModelledFacingBlock.POWERED) ? 7 : 0),
                     HitboxGeometryCollection.RETRO_COMPUTER_2(),
-                    ModSounds.COMPUTER_ON,
-                    ModSounds.SWITCH_OFF
+                    ModSounds.COMPUTER_ON.get(),
+                    ModSounds.SWITCH_OFF.get()
             )
     );
     public static final DeferredBlock<Block> MONITOR_AND_KEYBOARD = registerBlockAndBlockItem("monitor_and_keyboard",
@@ -1390,8 +1392,8 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
                     .lightLevel(state -> state.getValue(InteractableModelledFacingBlock.POWERED) ? 7 : 0),
                     HitboxGeometryCollection.MONITOR_AND_KEYBOARD(),
-                    () -> SoundEvents.STONE_BUTTON_CLICK_ON,
-                    () -> SoundEvents.STONE_BUTTON_CLICK_OFF
+                    SoundEvents.STONE_BUTTON_CLICK_ON,
+                    SoundEvents.STONE_BUTTON_CLICK_OFF
             )
     );
     public static final DeferredBlock<Block> DESKTOP_TOWER = registerBlockAndBlockItem("desktop_tower",
@@ -1406,8 +1408,8 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
                     .noOcclusion(),
                     HitboxGeometryCollection.CASSETTE_PLAYER(),
-                    () -> SoundEvents.STONE_BUTTON_CLICK_ON,
-                    () -> SoundEvents.STONE_BUTTON_CLICK_OFF
+                    SoundEvents.STONE_BUTTON_CLICK_ON,
+                    SoundEvents.STONE_BUTTON_CLICK_OFF
             )
     );
 //

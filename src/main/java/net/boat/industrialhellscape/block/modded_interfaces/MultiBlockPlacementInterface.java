@@ -15,4 +15,5 @@ public interface MultiBlockPlacementInterface {
             default -> pPos.relative(pPart == TwoBlockMultiBlockState.POSITIVE ? placementDirection.getOpposite() : placementDirection);
         };
     }
+
 }

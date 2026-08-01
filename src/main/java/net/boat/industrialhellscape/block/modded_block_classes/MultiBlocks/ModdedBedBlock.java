@@ -61,12 +61,6 @@ public class ModdedBedBlock extends Modelled2BMBlock implements SimpleWaterlogge
         return true;
     }
 
-//    @Override
-//    public @Nullable BlockEntity newBlockEntity(@Nonnull BlockPos pos, @Nonnull BlockState state) {
-//        //Color is arbitrary to fulfill the last parameter
-//        return new BedBlockEntity(pos, state, DyeColor.BLUE);
-//    }
-
     @Override
     protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
         //Code taken from vanilla BedBlock code with minor modifications

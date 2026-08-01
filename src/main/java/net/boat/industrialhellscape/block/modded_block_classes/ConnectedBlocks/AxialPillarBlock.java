@@ -2,7 +2,6 @@ package net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks;
 
 import net.boat.industrialhellscape.block.modded_block_state_properties.DynamicConnectionState;
 import net.boat.industrialhellscape.block.modded_interfaces.ConnectedModelInterface;
-import net.boat.industrialhellscape.block.modded_interfaces.PillarInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -31,7 +30,7 @@ import javax.annotation.Nonnull;
 
 // Block class is adapted from Hearth and Home mod's Stone Pillar block class code.
 
-public class AxialPillarBlock extends RotatedPillarBlock implements PillarInterface {
+public class AxialPillarBlock extends RotatedPillarBlock implements ConnectedModelInterface {
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS; //"AXIS" is used to store the block state direction
     public static final EnumProperty<DynamicConnectionState> TYPE = EnumProperty.create("type", DynamicConnectionState.class); //Custom enum. "TYPE" is used to store enum value of "solo, pos, neg, middle"
 
@@ -49,7 +48,7 @@ public class AxialPillarBlock extends RotatedPillarBlock implements PillarInterf
         Direction.Axis axis = context.getClickedFace().getAxis(); //Turns the direction clicked into the axis the direction is aligned to (East/West = X axis, etc.)
 
         BlockState state = this.defaultBlockState().setValue(AXIS, axis); //Sets X/Y/Z direction block shall align to when placed
-        state = state.setValue(TYPE, getPillarType(state, ConnectedModelInterface.getStateAtAxisPositive(level, pos, axis), ConnectedModelInterface.getStateAtAxisNegative(level, pos, axis)));
+        state = state.setValue(TYPE, getPillarType(state, ConnectedModelInterface.getStateAtAxisPositive(level, pos, axis), ConnectedModelInterface.getStateAtAxisNegative(level, pos, axis), AXIS));
             //Determines and sets block type based on neighbor connection (top, middle, bottom, solo unconnected)
             //See the interface ConnectedModelInterface for details on how neighboring blocks are read using interface methods
             //getStateAxisPositive() and getStateAxisNegative()
@@ -61,7 +60,7 @@ public class AxialPillarBlock extends RotatedPillarBlock implements PillarInterf
         if (level.isClientSide) return;
 
         Direction.Axis axis = state.getValue(AXIS);
-        DynamicConnectionState type = getPillarType(state, ConnectedModelInterface.getStateAtAxisPositive(level, pos, axis), ConnectedModelInterface.getStateAtAxisNegative(level, pos, axis));
+        DynamicConnectionState type = getPillarType(state, ConnectedModelInterface.getStateAtAxisPositive(level, pos, axis), ConnectedModelInterface.getStateAtAxisNegative(level, pos, axis), AXIS);
             //See the interface ConnectedModelInterface for details on how neighboring blocks are read using
             //getStateAxisPositive() and getStateAxisNegative()
         if (state.getValue(TYPE) == type) return;
@@ -73,10 +72,5 @@ public class AxialPillarBlock extends RotatedPillarBlock implements PillarInterf
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(TYPE, AXIS);
-    }
-
-    @Override
-    public EnumProperty<Direction.Axis> getAxisProperty() {
-        return AXIS;
     }
 }

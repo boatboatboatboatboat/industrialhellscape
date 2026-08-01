@@ -15,8 +15,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.function.Supplier;
-
 // Code obtained from Create Deco mod (CC0 1.0 license)
 
 public class LightBulbBlock extends ModelledSurfaceMountBlock {
@@ -24,10 +22,10 @@ public class LightBulbBlock extends ModelledSurfaceMountBlock {
 //    public static final BooleanProperty LIT = BlockStateProperties.LIT;
 //    public static final BooleanProperty INVERTED = BlockStateProperties.INVERTED;
 
-    public final Supplier<SoundEvent> ON_SOUND;
-    public final Supplier<SoundEvent> OFF_SOUND;
+    public final SoundEvent ON_SOUND;
+    public final SoundEvent OFF_SOUND;
 
-    public LightBulbBlock(Properties pProperties, VoxelShape floorHitBox, Supplier<SoundEvent> onSound, Supplier<SoundEvent> offSound) {
+    public LightBulbBlock(Properties pProperties, VoxelShape floorHitBox, SoundEvent onSound, SoundEvent offSound) {
         super(pProperties, floorHitBox);
 
         this.ON_SOUND = onSound;
@@ -53,7 +51,7 @@ public class LightBulbBlock extends ModelledSurfaceMountBlock {
     @Override
     protected InteractionResult useWithoutItem (BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player entity, @NotNull BlockHitResult hitResult) {
         boolean wasOn = state.getValue(BlockStateProperties.LIT);
-        SoundEvent onOffSound = wasOn ? OFF_SOUND.get() : ON_SOUND.get();
+        SoundEvent onOffSound = wasOn ? OFF_SOUND : ON_SOUND;
 
         BlockState next = this.toggle(state.cycle(BlockStateProperties.INVERTED), level, pos);
         if (level.isClientSide) {
@@ -65,7 +63,7 @@ public class LightBulbBlock extends ModelledSurfaceMountBlock {
         }
     }
 
-    private BlockState toggle (BlockState state, Level level, BlockPos pos) {
+    protected BlockState toggle (BlockState state, Level level, BlockPos pos) {
         BlockState next = state.setValue(BlockStateProperties.LIT, shouldBeLit(state, level, pos));
         level.setBlock(pos, next, 3);
         return next;

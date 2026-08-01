@@ -16,8 +16,6 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.function.Supplier;
 //INFO:
 //-----
 // This block supports rotation of custom models. It also supports directional placement based on player.
@@ -30,10 +28,10 @@ import java.util.function.Supplier;
 public class InteractableModelledFacingBlock extends ModelledFacingBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED; //For binary states (on, off, or lit, unlit)
 
-    public final Supplier<SoundEvent> ON_SOUND;
-    public final Supplier<SoundEvent> OFF_SOUND;
+    public final SoundEvent ON_SOUND;
+    public final SoundEvent OFF_SOUND;
 
-    public InteractableModelledFacingBlock(Properties pProperties, VoxelShape soloShape, Supplier<SoundEvent> onSound, Supplier<SoundEvent> offSound) {
+    public InteractableModelledFacingBlock(Properties pProperties, VoxelShape soloShape, SoundEvent onSound, SoundEvent offSound) {
         super(pProperties, soloShape);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
@@ -48,7 +46,7 @@ public class InteractableModelledFacingBlock extends ModelledFacingBlock impleme
             boolean wasOn = state.getValue(POWERED);
             state = state.cycle(POWERED);
             level.setBlock(pos, state, 2);
-            SoundEvent onOffSound = wasOn ? OFF_SOUND.get() : ON_SOUND.get();
+            SoundEvent onOffSound = wasOn ? OFF_SOUND : ON_SOUND;
 
             level.playSound(player, pos, onOffSound, SoundSource.BLOCKS, 1f, 1f);
             return InteractionResult.sidedSuccess(level.isClientSide);

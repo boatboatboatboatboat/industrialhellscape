@@ -29,6 +29,7 @@ import net.minecraft.world.level.block.entity.ContainerOpenersCounter;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.ItemStackHandler;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
@@ -56,19 +57,19 @@ public class StorageBE extends RandomizableContainerBlockEntity {
         this.items = NonNullList.withSize(SLOTS, ItemStack.EMPTY);
 
         this.openersCounter = new ContainerOpenersCounter() {
-            protected void onOpen(Level level, BlockPos pos, BlockState state) {
+            protected void onOpen(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state) {
                 StorageBE.this.playSound(state, OPEN_SOUND);
                 //StorageBE.this.updateBlockState(state, true);
             }
-            protected void onClose(Level level, BlockPos pos, BlockState state) {
+            protected void onClose(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state) {
                 StorageBE.this.playSound(state, CLOSE_SOUND);
                 //StorageBE.this.updateBlockState(state, false);
             }
 
-            protected void openerCountChanged(Level level, BlockPos pos, BlockState state, int p_155069_, int p_155070_) {
+            protected void openerCountChanged(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, int p_155069_, int p_155070_) {
             }
 
-            protected boolean isOwnContainer(Player player) {
+            protected boolean isOwnContainer(@NotNull Player player) {
                 if (player.containerMenu instanceof ChestMenu) {
                     Container container = ((ChestMenu)player.containerMenu).getContainer();
                     return container == StorageBE.this;
@@ -90,7 +91,7 @@ public class StorageBE extends RandomizableContainerBlockEntity {
     }
 
     @Override
-    public @Nullable AbstractContainerMenu createMenu(int id, Inventory inventory) {
+    public @Nullable AbstractContainerMenu createMenu(int id, @NotNull Inventory inventory) {
         //Conditional GUI appearance based on inventory slot capacity chosen by registered block
         return switch (SLOTS) {
             case (18) -> new ChestMenu(MenuType.GENERIC_9x2, id, inventory, this, 2);
@@ -102,7 +103,7 @@ public class StorageBE extends RandomizableContainerBlockEntity {
 
     public final ItemStackHandler inventory = new ItemStackHandler(1) {
         @Override
-        protected int getStackLimit(int slot, ItemStack stack) {
+        protected int getStackLimit(int slot, @NotNull ItemStack stack) {
             return 1;
         }
         @Override
@@ -115,14 +116,14 @@ public class StorageBE extends RandomizableContainerBlockEntity {
         }
     };
 
-    public void startOpen(Player player) {
+    public void startOpen(@NotNull Player player) {
         if (!this.remove && !player.isSpectator()) {
             this.openersCounter.incrementOpeners(player, this.getLevel(), this.getBlockPos(), this.getBlockState());
         }
 
     }
 
-    public void stopOpen(Player player) {
+    public void stopOpen(@NotNull Player player) {
         if (!this.remove && !player.isSpectator()) {
             this.openersCounter.decrementOpeners(player, this.getLevel(), this.getBlockPos(), this.getBlockState());
         }
@@ -130,21 +131,21 @@ public class StorageBE extends RandomizableContainerBlockEntity {
     }
 
     @Override
-    protected Component getDefaultName() {
+    protected @NotNull Component getDefaultName() {
         return Component.translatable("gui.industrialhellscape.inventory_menu");
     }
     @Override
-    public Component getDisplayName() {
+    public @NotNull Component getDisplayName() {
         return Component.translatable("gui.industrialhellscape.inventory_menu");
     }
 
     @Override
-    protected NonNullList<ItemStack> getItems() {
+    protected @NotNull NonNullList<ItemStack> getItems() {
         return this.items;
     }
 
     @Override
-    protected void setItems(NonNullList<ItemStack> nonNullList) {
+    protected void setItems(@NotNull NonNullList<ItemStack> nonNullList) {
         this.items = nonNullList;
     }
 
@@ -165,14 +166,14 @@ public class StorageBE extends RandomizableContainerBlockEntity {
 //        inventory.deserializeNBT(registries, tag.getCompound("inventory"));
 //    }
 
-    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+    protected void saveAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
         super.saveAdditional(tag, registries);
         if (!this.trySaveLootTable(tag)) {
             ContainerHelper.saveAllItems(tag, this.items, registries);
         }
     }
 
-    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+    protected void loadAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
         super.loadAdditional(tag, registries);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         if (!this.tryLoadLootTable(tag)) {
@@ -186,7 +187,7 @@ public class StorageBE extends RandomizableContainerBlockEntity {
     }
 
     @Override
-    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+    public @NotNull CompoundTag getUpdateTag(HolderLookup.@NotNull Provider registries) {
         return saveWithoutMetadata(registries);
     }
 

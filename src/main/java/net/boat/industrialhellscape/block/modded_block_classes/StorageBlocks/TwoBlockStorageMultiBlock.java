@@ -18,8 +18,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.function.Supplier;
-
 //INFO:
 //-----
 //This block supports cardinal directional placement, and an inventory with GUI. The inventory size is determined upon block registration.

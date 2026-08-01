@@ -5,8 +5,6 @@ import net.boat.industrialhellscape.ModDamageTypes;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.*;
@@ -16,8 +14,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
 
 public class GasStationPillItem extends Item {
     public GasStationPillItem(Properties pProperties) {

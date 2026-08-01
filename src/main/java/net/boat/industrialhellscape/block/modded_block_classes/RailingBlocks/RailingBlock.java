@@ -39,8 +39,9 @@ import javax.annotation.Nonnull;
 
 public class RailingBlock extends Block implements SimpleWaterloggedBlock, ToolUseInterface {
 
-    private static final double RAILING_HEIGHT = 16; //16 units is a full block height
-    private static final double RAILING_COLLISION_HEIGHT = 16; //Vanilla wall value is 24. This is 16 to prevent mob pathfinding issues.
+    //protected; this is constant and same for all subclasses
+    protected static final double RAILING_HEIGHT = 16; //16 units is a full block height
+    protected static final double RAILING_COLLISION_HEIGHT = 16; //Vanilla wall value is 24. This is 16 to prevent mob pathfinding issues.
 
     private double RAILING_THICKNESS;
     private double RAILING_COLLISION_SHAPE_BASE;

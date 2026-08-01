@@ -200,7 +200,13 @@
   "block.industrialhellscape.fuel_drum": "Fuel Drum",
   "block.industrialhellscape.cctv_camera": "CCTV Camera",
   "block.industrialhellscape.wall_speaker": "Wall Speaker",
+
   "block.industrialhellscape.cage_lamp": "Cage Lamp",
+  "block.industrialhellscape.red_cage_lamp": "Red Cage Lamp",
+  "block.industrialhellscape.oblong_cage_lamp": "Oblong Cage Lamp",
+  "block.industrialhellscape.red_oblong_cage_lamp": "Red Oblong Cage Lamp",
+  "block.industrialhellscape.industrial_lamp": "Industrial Lamp",
+  "block.industrialhellscape.red_industrial_lamp": "Red Industrial Lamp",
 
 
   "block.industrialhellscape.desk": "Classic Desk",

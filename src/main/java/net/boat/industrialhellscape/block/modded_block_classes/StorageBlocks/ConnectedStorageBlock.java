@@ -36,7 +36,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
-import java.util.function.Supplier;
 
 //INFO:
 //-----
@@ -152,21 +151,6 @@ public class ConnectedStorageBlock extends FacingStorageBlock implements EntityB
     }
 
     @Override
-    public DirectionProperty getFacingProperty() {
-        return FACING;
-    }
-
-    @Override
-    public EnumProperty<DynamicConnectionState> getTypeProperty() {
-        return TYPE;
-    }
-
-    @Override
-    public BooleanProperty getWaterloggedProperty() {
-        return WATERLOGGED;
-    }
-
-    @Override
     protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
         boolean playerHasTool = player.getMainHandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS) || player.getOffhandItem().is(ModTags.Items.IH_COMPATIBLE_TOOLS);
 
@@ -195,16 +179,17 @@ public class ConnectedStorageBlock extends FacingStorageBlock implements EntityB
                 LEFT_SHAPE_NORTH,LEFT_SHAPE_SOUTH,LEFT_SHAPE_EAST,LEFT_SHAPE_WEST,
                 MIDDLE_SHAPE_NORTH,MIDDLE_SHAPE_SOUTH,MIDDLE_SHAPE_EAST,MIDDLE_SHAPE_WEST,
                 RIGHT_SHAPE_NORTH,RIGHT_SHAPE_SOUTH,RIGHT_SHAPE_EAST,RIGHT_SHAPE_WEST,
-                SOLO_SHAPE_NORTH,SOLO_SHAPE_SOUTH,SOLO_SHAPE_EAST,SOLO_SHAPE_WEST);
+                SOLO_SHAPE_NORTH,SOLO_SHAPE_SOUTH,SOLO_SHAPE_EAST,SOLO_SHAPE_WEST,
+                FACING, TYPE);
     }
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
         //See this mod's ConnectedModelInterface interface to view the following method.
-        return placeTheConnectableBlock(this, pContext, BlockSetFamily, placementDirection);
+        return placeConnectableBlock(this, pContext, BlockSetFamily, placementDirection, FACING, TYPE, WATERLOGGED);
     }
     public void neighborChanged(@Nonnull BlockState state, @Nonnull Level level, @Nonnull BlockPos positionClicked, @Nonnull Block block, @Nonnull BlockPos fromPos, boolean pIsMoving) {
         //See this mod's ConnectedModelInterface interface to view the following method.
-        whenConnectedNeighborUpdated(state,level,positionClicked,block,fromPos,BlockSetFamily, placementDirection);
+        whenConnectedNeighborUpdated(state,level,positionClicked,fromPos,BlockSetFamily, placementDirection, FACING, TYPE, WATERLOGGED);
     }
     //---------- END OF METHODS HANDLED BY INTERFACE ----------
 

@@ -191,9 +191,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.add(ModBlocks.ROUGH_RED_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.ROUGH_RED_ROCKRETE_SLAB.get()));
         this.dropSelf(ModBlocks.ROUGH_RED_ROCKRETE_STAIRS.get());
 
-        this.dropSelf(ModBlocks.WEATHERED_GRAY_ROCKRETE.get());
-        this.add(ModBlocks.WEATHERED_GRAY_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.WEATHERED_GRAY_ROCKRETE_SLAB.get()));
-        this.dropSelf(ModBlocks.WEATHERED_GRAY_ROCKRETE_STAIRS.get());
+//        this.dropSelf(ModBlocks.WEATHERED_GRAY_ROCKRETE.get());
+//        this.add(ModBlocks.WEATHERED_GRAY_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.WEATHERED_GRAY_ROCKRETE_SLAB.get()));
+//        this.dropSelf(ModBlocks.WEATHERED_GRAY_ROCKRETE_STAIRS.get());
 //        this.dropSelf(ModBlocks.WEATHERED_GREEN_ROCKRETE.get());
 //        this.add(ModBlocks.WEATHERED_GREEN_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.WEATHERED_GREEN_ROCKRETE_SLAB.get()));
 //        this.dropSelf(ModBlocks.WEATHERED_GREEN_ROCKRETE_STAIRS.get());
@@ -296,7 +296,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.FLOOR_WORK_LIGHT.get());
         this.dropSelf(ModBlocks.FUEL_DRUM.get());
         this.dropSelf(ModBlocks.CCTV_CAMERA.get());
-        //this.dropSelf(ModBlocks.CAGE_LAMP.get());
+        this.dropSelf(ModBlocks.INDUSTRIAL_LAMP.get());
+        this.dropSelf(ModBlocks.OBLONG_CAGE_LAMP.get());
 
         this.dropSelf(ModBlocks.CASSETTE_PLAYER.get());
         this.dropSelf(ModBlocks.RETRO_COMPUTER.get());

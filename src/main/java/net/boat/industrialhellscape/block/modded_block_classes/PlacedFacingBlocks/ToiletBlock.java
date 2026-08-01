@@ -21,16 +21,15 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-import java.util.function.Supplier;
 
 public class ToiletBlock extends InteractableModelledFacingBlock {
 
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED; //For binary states (on, off, or lit, unlit)
 
-    public final Supplier<SoundEvent> ON_SOUND;
-    public final Supplier<SoundEvent> OFF_SOUND;
+    public final SoundEvent ON_SOUND;
+    public final SoundEvent OFF_SOUND;
 
-    public ToiletBlock(Properties pProperties, VoxelShape soloShape, Supplier<SoundEvent> onSound, Supplier<SoundEvent> offSound) {
+    public ToiletBlock(Properties pProperties, VoxelShape soloShape, SoundEvent onSound, SoundEvent offSound) {
         super(pProperties, soloShape, onSound, offSound);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
@@ -59,7 +58,7 @@ public class ToiletBlock extends InteractableModelledFacingBlock {
             //Opens or closes lid, triggering sound
             state = state.cycle(POWERED);
             level.setBlock(pos, state, 2);
-            SoundEvent onOffSound = wasOn ? OFF_SOUND.get() : ON_SOUND.get();
+            SoundEvent onOffSound = wasOn ? OFF_SOUND : ON_SOUND;
             level.playSound(player, pos, onOffSound, SoundSource.BLOCKS, 1f, 1f);
             return InteractionResult.sidedSuccess(level.isClientSide);
         }

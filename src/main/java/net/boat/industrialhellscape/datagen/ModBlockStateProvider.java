@@ -11,12 +11,15 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.block.state.properties.AttachFace;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.SlabType;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import net.neoforged.neoforge.registries.DeferredBlock;
+
+import static net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.ModelToggleLightBulbBlock.ALT_STATE;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
@@ -154,9 +157,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genStairsWithRenderTypeSBI(ModBlocks.ROUGH_RED_ROCKRETE_STAIRS.get(),"rough_rockrete","rough_red_rockrete","rough_red_rockrete","rough_red_rockrete","solid");
         genSimpleSlabsSBI(ModBlocks.ROUGH_RED_ROCKRETE_SLAB.get(), ModBlocks.ROUGH_RED_ROCKRETE.get(),"rough_rockrete");
 
-        genSimpleTextureToggleSBI(ModBlocks.WEATHERED_GRAY_ROCKRETE.get(),"weathered_rockrete","solid");
-        genStairsWithRenderTypeSBI(ModBlocks.WEATHERED_GRAY_ROCKRETE_STAIRS.get(),"weathered_rockrete","weathered_gray_rockrete","weathered_gray_rockrete","weathered_gray_rockrete","solid");
-        genSimpleSlabsSBI(ModBlocks.WEATHERED_GRAY_ROCKRETE_SLAB.get(), ModBlocks.WEATHERED_GRAY_ROCKRETE.get(),"weathered_rockrete");
+//        genSimpleTextureToggleSBI(ModBlocks.WEATHERED_GRAY_ROCKRETE.get(),"weathered_rockrete","solid");
+//        genStairsWithRenderTypeSBI(ModBlocks.WEATHERED_GRAY_ROCKRETE_STAIRS.get(),"weathered_rockrete","weathered_gray_rockrete","weathered_gray_rockrete","weathered_gray_rockrete","solid");
+//        genSimpleSlabsSBI(ModBlocks.WEATHERED_GRAY_ROCKRETE_SLAB.get(), ModBlocks.WEATHERED_GRAY_ROCKRETE.get(),"weathered_rockrete");
 //        genSimpleTextureToggleSBI(ModBlocks.WEATHERED_GREEN_ROCKRETE.get(),"weathered_rockrete","solid");
 //        genStairsWithRenderTypeSBI(ModBlocks.WEATHERED_GREEN_ROCKRETE_STAIRS.get(),"weathered_rockrete","weathered_green_rockrete","weathered_green_rockrete","weathered_green_rockrete","solid");
 //        genSimpleSlabsSBI(ModBlocks.WEATHERED_GREEN_ROCKRETE_SLAB.get(), ModBlocks.WEATHERED_GREEN_ROCKRETE.get(),"weathered_rockrete");
@@ -243,7 +246,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genHorizontalSBI(ModBlocks.LOCKER_BOX.get(), build6FaceTexturesBlockModel("locker_box","locker","locker_box_front","locker_box_side","locker_box_side","locker_box_side","locker_box_top","locker_box_bottom"));
 
         GenFacingModelledSI(ModBlocks.URINAL.get(), "urinal");
-        //genSurfaceLightSI(ModBlocks.CAGE_LAMP.get(), "lighting");
+        genSurfaceLightSI(ModBlocks.OBLONG_CAGE_LAMP.get(), "lighting");
+        genSurfaceLightSI(ModBlocks.INDUSTRIAL_LAMP.get(), "lighting");
     }
 
     //---------- CUSTOM BLOCK MODEL GENERATORS ----------
@@ -610,6 +614,54 @@ public class ModBlockStateProvider extends BlockStateProvider {
                             .rotationX(face == AttachFace.FLOOR ? 0 : (face == AttachFace.WALL ? 90 : 180) )
                             .rotationY(yRot)
                             .build();
+                }, BlockStateProperties.WATERLOGGED);
+
+        //GENERATE ITEM MODEL
+        simpleBlockItem(block, models().getExistingFile(modLoc(unpoweredModelPath)));
+    }
+
+    //change or remove
+    private void genModelToggleSBI(Block block, String folderName) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        String onModelStringName = stringName + "_on";
+        String unpoweredModelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
+        String poweredModelPath = "block/"+stringName+"_on"; //generated/resources
+        String poweredTexturePath = "block/lit_unlit_textures/"+stringName+"_on";
+
+        //On Model
+        ModelFile generatedOnModel = models()
+                .withExistingParent(onModelStringName, modLoc(unpoweredModelPath))
+                .texture("1", poweredTexturePath);
+
+        getVariantBuilder(block)
+                .forAllStatesExcept(state -> {
+                    AttachFace face = state.getValue(BlockStateProperties.ATTACH_FACE);
+                    Direction facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+                    Boolean lit = state.getValue(BlockStateProperties.LIT);
+                    Boolean altState = state.getValue(ALT_STATE);
+                    String modelToUse = lit? poweredModelPath : unpoweredModelPath;
+
+                    int yRot = switch (facing) {
+                        case SOUTH -> 180;
+                        case WEST  -> 270;
+                        case EAST  -> 90;
+                        default -> 0; //NORTH
+                    };
+
+                    if(altState) {
+                        return ConfiguredModel.builder()
+                                .modelFile(models().getExistingFile(modLoc(modelToUse)))
+                                .rotationY(yRot+90)
+                                .rotationX(face == AttachFace.FLOOR ? 0 : (face == AttachFace.WALL ? 90 : 180) )
+
+                                .build();
+                    } else {
+                        return ConfiguredModel.builder()
+                                .modelFile(models().getExistingFile(modLoc(modelToUse)))
+                                .rotationX(face == AttachFace.FLOOR ? 0 : (face == AttachFace.WALL ? 90 : 180) )
+                                .rotationY(yRot)
+                                .build();
+                    }
                 }, BlockStateProperties.WATERLOGGED);
 
         //GENERATE ITEM MODEL

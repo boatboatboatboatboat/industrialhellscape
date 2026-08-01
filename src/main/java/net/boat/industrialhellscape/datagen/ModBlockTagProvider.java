@@ -144,9 +144,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.ROUGH_YELLOW_ROCKRETE_SLAB.get(),
                         ModBlocks.ROUGH_YELLOW_ROCKRETE_STAIRS.get(),
 
-                        ModBlocks.WEATHERED_GRAY_ROCKRETE.get(),
-                        ModBlocks.WEATHERED_GRAY_ROCKRETE_SLAB.get(),
-                        ModBlocks.WEATHERED_GRAY_ROCKRETE_STAIRS.get(),
+//                        ModBlocks.WEATHERED_GRAY_ROCKRETE.get(),
+//                        ModBlocks.WEATHERED_GRAY_ROCKRETE_SLAB.get(),
+//                        ModBlocks.WEATHERED_GRAY_ROCKRETE_STAIRS.get(),
 //                        ModBlocks.WEATHERED_RED_ROCKRETE.get(),
 //                        ModBlocks.WEATHERED_RED_ROCKRETE_SLAB.get(),
 //                        ModBlocks.WEATHERED_RED_ROCKRETE_STAIRS.get(),
@@ -252,8 +252,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.WORK_LIGHT_STAND.get(),
                         ModBlocks.FLOOR_WORK_LIGHT.get(),
                         ModBlocks.FUEL_DRUM.get(),
-                        ModBlocks.CCTV_CAMERA.get()
-                        //ModBlocks.CAGE_LAMP.get()
+                        ModBlocks.CCTV_CAMERA.get(),
+                        ModBlocks.INDUSTRIAL_LAMP.get(),
+                        ModBlocks.OBLONG_CAGE_LAMP.get()
                 );
 
         this.tag(ModTags.Blocks.TECHNOLOGY_FURNITURE_CATEGORY)

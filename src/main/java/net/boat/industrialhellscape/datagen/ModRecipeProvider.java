@@ -141,9 +141,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.ROUGH_RED_ROCKRETE_SLAB.get().asItem(),
             ModBlocks.ROUGH_RED_ROCKRETE_STAIRS.get().asItem(),
 
-            ModBlocks.WEATHERED_GRAY_ROCKRETE.get().asItem(),
-            ModBlocks.WEATHERED_GRAY_ROCKRETE_SLAB.get().asItem(),
-            ModBlocks.WEATHERED_GRAY_ROCKRETE_STAIRS.get().asItem(),
+//            ModBlocks.WEATHERED_GRAY_ROCKRETE.get().asItem(),
+//            ModBlocks.WEATHERED_GRAY_ROCKRETE_SLAB.get().asItem(),
+//            ModBlocks.WEATHERED_GRAY_ROCKRETE_STAIRS.get().asItem(),
 //            ModBlocks.WEATHERED_GREEN_ROCKRETE.get().asItem(),
 //            ModBlocks.WEATHERED_GREEN_ROCKRETE_SLAB.get().asItem(),
 //            ModBlocks.WEATHERED_GREEN_ROCKRETE_STAIRS.get().asItem(),
@@ -279,8 +279,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.LARGE_LOCKER.get().asItem(),
             ModBlocks.WORK_LIGHT_STAND.get().asItem(),
             ModBlocks.FLOOR_WORK_LIGHT.get().asItem(),
-            ModBlocks.FUEL_DRUM.get().asItem()
-            //ModBlocks.CAGE_LAMP.get()
+            ModBlocks.FUEL_DRUM.get().asItem(),
+            ModBlocks.INDUSTRIAL_LAMP.get(),
+            ModBlocks.OBLONG_CAGE_LAMP.get()
     );
     private static final List<ItemLike> TECHNOLOGY_FURNITURE = List.of(
             ModBlocks.RETRO_COMPUTER.get().asItem(),
@@ -470,12 +471,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         reversibleBlockCrafting(ModItems.TERMINATION_LETTER.get(), ModItems.JOB_APPLICATION.get(), recipeOutput);
 
-        //Create Body Pillow
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.BODY_PILLOW.get(), 1)
+//        //Create Body Pillow from existing body pillow obtained from Wandering Trader
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.BODY_PILLOW.get(), 2)
                 .requires(ModItems.INHELL_HAVEN_DEVICE.get())
                 .requires(ItemTags.WOOL)
                 .requires(ItemTags.WOOL)
                 .requires(ItemTags.WOOL)
+                .requires(ModBlocks.BODY_PILLOW.get().asItem())
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, "body_pillow"));
         //---------- END OF RECIPES FOR JOKE CONTENT ----------

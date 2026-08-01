@@ -151,7 +151,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.ROUGH_GREEN_ROCKRETE.get().asItem(),
                         ModBlocks.ROUGH_YELLOW_ROCKRETE.get().asItem(),
 
-                        ModBlocks.WEATHERED_GRAY_ROCKRETE.get().asItem(),
+//                        ModBlocks.WEATHERED_GRAY_ROCKRETE.get().asItem(),
 //                        ModBlocks.WEATHERED_RED_ROCKRETE.get().asItem(),
 //                        ModBlocks.WEATHERED_BLUE_ROCKRETE.get().asItem(),
 //                        ModBlocks.WEATHERED_GREEN_ROCKRETE.get().asItem(),
@@ -245,8 +245,9 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.LARGE_LOCKER.get().asItem(),
                         ModBlocks.WORK_LIGHT_STAND.get().asItem(),
                         ModBlocks.FLOOR_WORK_LIGHT.get().asItem(),
-                        ModBlocks.CCTV_CAMERA.get().asItem()
-                        //ModBlocks.CAGE_LAMP.get().asItem()
+                        ModBlocks.CCTV_CAMERA.get().asItem(),
+                        ModBlocks.INDUSTRIAL_LAMP.get().asItem(),
+                        ModBlocks.OBLONG_CAGE_LAMP.get().asItem()
                 );
         this.tag(ModTags.Items.TECHNOLOGY_FURNITURE_CATEGORY)
                 .add(

@@ -1,0 +1,6 @@
+{
+	"parent": "industrialhellscape:block/lighting/oblong_cage_lamp",
+	"textures": {
+		"1": "industrialhellscape:block/lit_unlit_textures/oblong_cage_lamp_on"
+	}
+}

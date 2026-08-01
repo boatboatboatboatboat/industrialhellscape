@@ -12,8 +12,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.function.Supplier;
-
 public interface StorageBlockInterface {
 
     //--------- NECESSARY FIELDS FOR BLOCK ENTITY ----------
