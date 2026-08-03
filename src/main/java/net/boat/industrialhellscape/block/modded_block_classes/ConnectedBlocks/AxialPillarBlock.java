@@ -50,7 +50,7 @@ public class AxialPillarBlock extends RotatedPillarBlock implements ConnectedMod
         Direction.Axis axis = context.getClickedFace().getAxis(); //Turns the direction clicked into the axis the direction is aligned to (East/West = X axis, etc.)
 
         BlockState state = this.defaultBlockState().setValue(AXIS, axis); //Sets X/Y/Z direction block shall align to when placed
-        state = state.setValue(TYPE, getPillarType(state, ConnectedModelInterface.getStateAtAxisPositive(level, pos, axis), ConnectedModelInterface.getStateAtAxisNegative(level, pos, axis), AXIS));
+        state = state.setValue(TYPE, getPillarType(this, state, ConnectedModelInterface.getStateAtAxisPositive(level, pos, axis), ConnectedModelInterface.getStateAtAxisNegative(level, pos, axis), AXIS));
             //Determines and sets block type based on neighbor connection (top, middle, bottom, solo unconnected)
             //See the interface ConnectedModelInterface for details on how neighboring blocks are read using interface methods
             //getStateAxisPositive() and getStateAxisNegative()
@@ -62,7 +62,7 @@ public class AxialPillarBlock extends RotatedPillarBlock implements ConnectedMod
         if (level.isClientSide) return;
 
         Direction.Axis axis = state.getValue(AXIS);
-        DynamicConnectionState type = getPillarType(state, ConnectedModelInterface.getStateAtAxisPositive(level, pos, axis), ConnectedModelInterface.getStateAtAxisNegative(level, pos, axis), AXIS);
+        DynamicConnectionState type = getPillarType(this, state, ConnectedModelInterface.getStateAtAxisPositive(level, pos, axis), ConnectedModelInterface.getStateAtAxisNegative(level, pos, axis), AXIS);
             //See the interface ConnectedModelInterface for details on how neighboring blocks are read using
             //getStateAxisPositive() and getStateAxisNegative()
         if (state.getValue(TYPE) == type) return;

@@ -28,9 +28,9 @@ public interface ConnectedModelInterface {
     //---------- METHODS FOR CONNECTED FURNITURE BLOCKS ----------
 
         //Shared methods for (currently) two block classes that implement connective model capability
-    default BlockState placeConnectableBlock(Block block, BlockPlaceContext pContext, TagKey<Block> BlockSetFamily, ConnectingBlockPlacementDirection placementDirection, DirectionProperty facingProperty, EnumProperty<DynamicConnectionState> typeProperty, BooleanProperty waterLoggedProperty) {
+    default BlockState placeConnectableBlock(Block thisBlock, BlockPlaceContext pContext, TagKey<Block> BlockSetFamily, ConnectingBlockPlacementDirection placementDirection, DirectionProperty facingProperty, EnumProperty<DynamicConnectionState> typeProperty, BooleanProperty waterLoggedProperty) {
         Level level = pContext.getLevel();
-        BlockState state = block.defaultBlockState();
+        BlockState state = thisBlock.defaultBlockState();
         BlockPos positionClicked = pContext.getClickedPos(); //Get the position when player places new block
         FluidState fluidstate = level.getFluidState(pContext.getClickedPos());
 
@@ -42,15 +42,15 @@ public interface ConnectedModelInterface {
         BlockState getNegativeState = placementDirection == ConnectingBlockPlacementDirection.HORIZONTAL ? getStateAtRelativeRight(level, positionClicked, directionClicked) : getStateRelativeBottom(level, positionClicked);
 
         state = state.setValue(facingProperty, facing); //For example, if the player looks north and places the block, the "front" of it will face south towards the player, hence .getOpposite()
-        state = state.setValue(typeProperty, getTypeAndFamily(state, getPositiveState, getNegativeState, BlockSetFamily, facingProperty)); //Second, defines connection type of the block
+        state = state.setValue(typeProperty, getTypeAndFamily(thisBlock, state, getPositiveState, getNegativeState, BlockSetFamily, facingProperty)); //Second, defines connection type of the block
         state =  state.setValue(waterLoggedProperty, fluidstate.getType() == Fluids.WATER);
         return state;
     }
 
-    default BlockState placeStackingRailing(Block block, BlockPlaceContext pContext, ConnectingBlockPlacementDirection placementDirection, BooleanProperty booleanFacingProperty, EnumProperty<DynamicConnectionState> typeProperty, BooleanProperty waterLoggedProperty) {
+    default BlockState placeStackingRailing(Block thisBlock, BlockPlaceContext pContext, ConnectingBlockPlacementDirection placementDirection, BooleanProperty booleanFacingProperty, EnumProperty<DynamicConnectionState> typeProperty, BooleanProperty waterLoggedProperty) {
         //Seperate method because railings use boolean properties to determine direction placed instead of DirectionProperty
         Level level = pContext.getLevel();
-        BlockState state = block.defaultBlockState();
+        BlockState state = thisBlock.defaultBlockState();
         BlockPos positionClicked = pContext.getClickedPos(); //Get the position when player places new block
         FluidState fluidstate = level.getFluidState(pContext.getClickedPos());
 
@@ -60,12 +60,12 @@ public interface ConnectedModelInterface {
         BlockState getPositiveState = getStateRelativeTop(level, positionClicked);
         BlockState getNegativeState = getStateRelativeBottom(level, positionClicked);
 
-        state = state.setValue(typeProperty, getStackingRailType(state, getPositiveState, getNegativeState, booleanFacingProperty)); //Second, defines connection type of the block
+        state = state.setValue(typeProperty, getStackingRailType(thisBlock, state, getPositiveState, getNegativeState, booleanFacingProperty)); //Second, defines connection type of the block
         state =  state.setValue(waterLoggedProperty, fluidstate.getType() == Fluids.WATER);
         return state;
     }
 
-    default void whenConnectedNeighborUpdated(BlockState state, Level level, BlockPos positionClicked, BlockPos fromPos, TagKey<Block> BlockSetFamily, ConnectingBlockPlacementDirection placementDirection,
+    default void whenConnectedNeighborUpdated(Block thisBlock, BlockState state, Level level, BlockPos positionClicked, BlockPos fromPos, TagKey<Block> BlockSetFamily, ConnectingBlockPlacementDirection placementDirection,
                                               DirectionProperty facingProperty, EnumProperty<DynamicConnectionState> typeProperty, BooleanProperty waterLoggedProperty) {
         if (!level.isClientSide) {
             if (state.getValue(waterLoggedProperty)) {
@@ -79,7 +79,7 @@ public interface ConnectedModelInterface {
         BlockState getPositiveState = placementDirection == ConnectingBlockPlacementDirection.HORIZONTAL ? getStateAtRelativeLeft(level, positionClicked, directionClicked) : getStateRelativeTop(level, positionClicked);
         BlockState getNegativeState = placementDirection == ConnectingBlockPlacementDirection.HORIZONTAL ? getStateAtRelativeRight(level, positionClicked, directionClicked) : getStateRelativeBottom(level, positionClicked);
 
-        DynamicConnectionState type = getTypeAndFamily(state, getPositiveState, getNegativeState, BlockSetFamily, facingProperty);
+        DynamicConnectionState type = getTypeAndFamily(thisBlock, state, getPositiveState, getNegativeState, BlockSetFamily, facingProperty);
         if (state.getValue(typeProperty) == type) return;
 
         state = state.setValue(typeProperty, type);
@@ -163,10 +163,10 @@ public interface ConnectedModelInterface {
     Certain blocks can connect to completely different blocks (desks and drawers). Both blocks must be part of a
     block tag, passed to the appropriate method to check for eligibility.
      */
-    default DynamicConnectionState getStackingRailType(BlockState state, BlockState aboveState, BlockState belowState, BooleanProperty booleanFacingProperty) {
-        boolean neighborBelowIsSameBlock = (aboveState.is(state.getBlock()))
+    default DynamicConnectionState getStackingRailType(Block thisBlock, BlockState state, BlockState aboveState, BlockState belowState, BooleanProperty booleanFacingProperty) {
+        boolean neighborBelowIsSameBlock = (aboveState.is(thisBlock))
                 && state.getValue(booleanFacingProperty) == aboveState.getValue(booleanFacingProperty); //Is the left blockstate the same as the current one, AND current orientation matches left blocks' orientation?
-        boolean neighborAboveIsSameBlock = (belowState.is(state.getBlock()))
+        boolean neighborAboveIsSameBlock = (belowState.is(thisBlock))
                 && state.getValue(booleanFacingProperty) == belowState.getValue(booleanFacingProperty); //Is the left blockstate the same as the current one, AND current orientation matches left blocks' orientation?
 
         if (neighborBelowIsSameBlock && !neighborAboveIsSameBlock) return DynamicConnectionState.NEGATIVE;
@@ -175,11 +175,11 @@ public interface ConnectedModelInterface {
         return DynamicConnectionState.SOLO;
     }
 
-    default DynamicConnectionState getTypeAndFamily(BlockState state, BlockState leftState, BlockState rightState, TagKey<Block> ofBlockSetFamilyTag, DirectionProperty facingProperty) {
+    default DynamicConnectionState getTypeAndFamily(Block thisBlock, BlockState state, BlockState leftState, BlockState rightState, TagKey<Block> ofBlockSetFamilyTag, DirectionProperty facingProperty) {
         // Requires an additional tag parameter to connect with other similar blocks
-        boolean left_neighbor_is_same_block = (leftState.is(state.getBlock()) || leftState.is(ofBlockSetFamilyTag) )
+        boolean left_neighbor_is_same_block = (leftState.is(thisBlock) || leftState.is(ofBlockSetFamilyTag) )
                 && state.getValue(facingProperty) == leftState.getValue(facingProperty); //Is the left blockstate the same as the current one, AND current orientation matches left blocks' orientation?
-        boolean right_neighbor_is_same_block = (rightState.is(state.getBlock())|| rightState.is(ofBlockSetFamilyTag) )
+        boolean right_neighbor_is_same_block = (rightState.is(thisBlock)|| rightState.is(ofBlockSetFamilyTag) )
                 && state.getValue(facingProperty) == rightState.getValue(facingProperty); //Is the left blockstate the same as the current one, AND current orientation matches left blocks' orientation?
 
         if (left_neighbor_is_same_block && !right_neighbor_is_same_block) return DynamicConnectionState.NEGATIVE;
@@ -188,10 +188,10 @@ public interface ConnectedModelInterface {
         return DynamicConnectionState.SOLO;
     }
 
-    default DynamicConnectionState getPillarType(BlockState state, BlockState aboveState, BlockState belowState, EnumProperty<Direction.Axis> axisEnumProperty) {
-        boolean blockstate_above_is_same = aboveState.is(state.getBlock()) //Is the blockstate in positive axis direction the same as the current one, AND current orientation matches that blocks' orientation?
+    default DynamicConnectionState getPillarType(Block thisBlock, BlockState state, BlockState aboveState, BlockState belowState, EnumProperty<Direction.Axis> axisEnumProperty) {
+        boolean blockstate_above_is_same = aboveState.is(thisBlock) //Is the blockstate in positive axis direction the same as the current one, AND current orientation matches that blocks' orientation?
                 && state.getValue(axisEnumProperty) == aboveState.getValue(axisEnumProperty);
-        boolean blockstate_below_is_same = belowState.is(state.getBlock()) //Is the blockstate in negative axis direction the same as the current one, AND current orientation matches that blocks' orientation?
+        boolean blockstate_below_is_same = belowState.is(thisBlock) //Is the blockstate in negative axis direction the same as the current one, AND current orientation matches that blocks' orientation?
                 && state.getValue(axisEnumProperty) == belowState.getValue(axisEnumProperty);
 
         // Where "above" and "below" refer to in the positive and negative axial direction respectively, like Y direction (height).
@@ -201,12 +201,12 @@ public interface ConnectedModelInterface {
         return DynamicConnectionState.SOLO;
     }
 
-    default DynamicConnectionState getPipeType(BlockState state, BlockState forward, BlockState backward, EnumProperty<SurfacePipeMountState> orientationProperty, EnumProperty<Direction> surfaceDirectionProperty) {
+    default DynamicConnectionState getPipeType(Block thisBlock, BlockState state, BlockState forward, BlockState backward, EnumProperty<SurfacePipeMountState> orientationProperty, EnumProperty<Direction> surfaceDirectionProperty) {
         // Checks for axis compatibility like in getPillarType() above, but also has to check that neighbor blocks are attached to the same wall before
         // allowing connection
-        boolean blockstate_forward_is_same = forward.is(state.getBlock())
+        boolean blockstate_forward_is_same = forward.is(thisBlock)
                 && state.getValue(orientationProperty) == forward.getValue(orientationProperty) && state.getValue(surfaceDirectionProperty) == forward.getValue(surfaceDirectionProperty);
-        boolean blockstate_backward_is_same = backward.is(state.getBlock())
+        boolean blockstate_backward_is_same = backward.is(thisBlock)
                 && state.getValue(orientationProperty) == backward.getValue(orientationProperty) && state.getValue(surfaceDirectionProperty) == backward.getValue(surfaceDirectionProperty);
 
         if (blockstate_forward_is_same && !blockstate_backward_is_same) return DynamicConnectionState.NEGATIVE;

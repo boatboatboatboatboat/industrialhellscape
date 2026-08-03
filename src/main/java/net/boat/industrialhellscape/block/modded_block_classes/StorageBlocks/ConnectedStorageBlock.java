@@ -189,7 +189,7 @@ public class ConnectedStorageBlock extends FacingStorageBlock implements EntityB
     }
     public void neighborChanged(@Nonnull BlockState state, @Nonnull Level level, @Nonnull BlockPos positionClicked, @Nonnull Block block, @Nonnull BlockPos fromPos, boolean pIsMoving) {
         //See this mod's ConnectedModelInterface interface to view the following method.
-        whenConnectedNeighborUpdated(state,level,positionClicked,fromPos,BlockSetFamily, placementDirection, FACING, TYPE, WATERLOGGED);
+        whenConnectedNeighborUpdated(this, state,level,positionClicked,fromPos,BlockSetFamily, placementDirection, FACING, TYPE, WATERLOGGED);
     }
     //---------- END OF METHODS HANDLED BY INTERFACE ----------
 

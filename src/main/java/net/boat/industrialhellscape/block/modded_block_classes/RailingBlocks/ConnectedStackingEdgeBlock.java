@@ -63,10 +63,10 @@ public class ConnectedStackingEdgeBlock extends RailingBlock implements SimpleWa
 
         if(isRailingBlock) { //If there is a RailingBlock at the location of placement - THIS OVERRIDES BLOCK PLACEMENT ON TOP OF FORMER BLOCK PLS PLS PLS FIX
             switch(facing) { //Assign true to the property corresponding with the direction player is facing to place a new railing in that direction next to existing ones
-                case NORTH -> state = state.setValue(NORTH_FENCE, true).setValue(TYPE, getStackingRailType(state, getPositiveState, getNegativeState, NORTH_FENCE));
-                case SOUTH -> state = state.setValue(SOUTH_FENCE, true).setValue(TYPE, getStackingRailType(state, getPositiveState, getNegativeState, SOUTH_FENCE));
-                case EAST -> state = state.setValue(EAST_FENCE, true).setValue(TYPE, getStackingRailType(state, getPositiveState, getNegativeState, EAST_FENCE));
-                case WEST -> state = state.setValue(WEST_FENCE, true).setValue(TYPE, getStackingRailType(state, getPositiveState, getNegativeState, WEST_FENCE));
+                case NORTH -> state = state.setValue(NORTH_FENCE, true).setValue(TYPE, getStackingRailType(this, state, getPositiveState, getNegativeState, NORTH_FENCE));
+                case SOUTH -> state = state.setValue(SOUTH_FENCE, true).setValue(TYPE, getStackingRailType(this, state, getPositiveState, getNegativeState, SOUTH_FENCE));
+                case EAST -> state = state.setValue(EAST_FENCE, true).setValue(TYPE, getStackingRailType(this, state, getPositiveState, getNegativeState, EAST_FENCE));
+                case WEST -> state = state.setValue(WEST_FENCE, true).setValue(TYPE, getStackingRailType(this, state, getPositiveState, getNegativeState, WEST_FENCE));
             }
 
             state.setValue(WATERLOGGED, fluid.getType() == Fluids.WATER);

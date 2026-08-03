@@ -1,6 +1,6 @@
 {
   "industrialhellscape.configuration.tagged_pickaxe_compat": "Pickaxe Item-Tag compatible",
-  "industrialhellscape.configuration.crouch_to_change_states": "Crouching toggles CTM texture block-states for certain blocks",
+  "industrialhellscape.configuration.crouch_to_change_states": "Crouching toggles block-state changes for certain blocks",
 
   "item.industrialhellscape.inhell_haven_device": "HAVEN Tool",
   "item.industrialhellscape.job_application": "Job Application",

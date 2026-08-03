@@ -112,6 +112,7 @@ public class WallPIpeBlock extends Block implements SimpleWaterloggedBlock, Tool
         // For surface-mounted blocks, this uses two custom methods with conditions to determine where the neighboring blocks are based on orientation and surface attachment.
         state = state.setValue(TYPE,
                 getPipeType(
+                        this,
                         state,
                         getSurfacePositivePositionState(state, pos, level),
                         getSurfaceNegativePositionState(state, pos, level),
@@ -132,6 +133,7 @@ public class WallPIpeBlock extends Block implements SimpleWaterloggedBlock, Tool
         if (level.isClientSide) return;
 
         DynamicConnectionState type = getPipeType(
+                this,
                 state,
                 getSurfacePositivePositionState(state, pos, level),
                 getSurfaceNegativePositionState(state, pos, level),

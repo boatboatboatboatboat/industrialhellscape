@@ -149,7 +149,7 @@ public class ConnectedFurnitureBlock extends Block implements SimpleWaterloggedB
     }
     public void neighborChanged(@Nonnull BlockState state, @NotNull Level level, @Nonnull BlockPos positionClicked, @Nonnull Block block, @Nonnull BlockPos fromPos, boolean isMoving) {
         //See this mod's ConnectedModelInterface interface to view the following method.
-        whenConnectedNeighborUpdated(state,level,positionClicked,fromPos,BlockSetFamily, placementDirection, FACING, TYPE, WATERLOGGED);
+        whenConnectedNeighborUpdated(this, state,level,positionClicked,fromPos,BlockSetFamily, placementDirection, FACING, TYPE, WATERLOGGED);
     }
 
     @Override
