@@ -27,15 +27,15 @@ public class ModItemModelProvider extends ItemModelProvider {
         //  Item
         basicItem(ModItems.JOB_APPLICATION.get());
         basicItem(ModItems.TERMINATION_LETTER.get());
-
         basicItem(ModItems.GAS_STATION_PILL.get());
+
+        //  Blocks
         wallItem(ModBlocks.GRAY_ROCKRETE_WALL, ModBlocks.ROUGH_GRAY_ROCKRETE.get(), "rough_rockrete");
         wallItem(ModBlocks.RED_ROCKRETE_WALL, ModBlocks.ROUGH_RED_ROCKRETE.get(), "rough_rockrete");
         wallItem(ModBlocks.YELLOW_ROCKRETE_WALL, ModBlocks.ROUGH_YELLOW_ROCKRETE.get(), "rough_rockrete");
         wallItem(ModBlocks.BLUE_ROCKRETE_WALL, ModBlocks.ROUGH_BLUE_ROCKRETE.get(), "rough_rockrete");
         wallItem(ModBlocks.GREEN_ROCKRETE_WALL, ModBlocks.ROUGH_GREEN_ROCKRETE.get(), "rough_rockrete");
 
-        //  Blocks
         basicFolderedItem(ModBlocks.ARMORED_DOOR.get().asItem(), "door");
         basicFolderedItem(ModBlocks.STAMPED_METAL_DOOR.get().asItem(), "door");
         basicFolderedItem(ModBlocks.BULKHEAD_DOOR.get().asItem(), "door");
@@ -54,7 +54,6 @@ public class ModItemModelProvider extends ItemModelProvider {
     public void wallItem(DeferredBlock<?> block, Block baseBlock, String textureSubFolder) {
 
         String baseStringName = BuiltInRegistries.BLOCK.getKey(baseBlock).getPath();
-        String baseModelPath = "block/"+baseStringName;
         String pathToBaseTexture = "block/" + (textureSubFolder+(textureSubFolder.isEmpty() ? "":"/"));
         String baseTexturePath =  pathToBaseTexture + baseStringName;
 

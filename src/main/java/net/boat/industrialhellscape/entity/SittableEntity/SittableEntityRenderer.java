@@ -4,6 +4,7 @@ import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 
 public class SittableEntityRenderer extends EntityRenderer<SittableEntity> {
@@ -12,12 +13,12 @@ public class SittableEntityRenderer extends EntityRenderer<SittableEntity> {
     }
 
     @Override
-    public ResourceLocation getTextureLocation(SittableEntity chairEntity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull SittableEntity chairEntity) {
         return null;
     }
 
     @Override
-    public boolean shouldRender(SittableEntity livingEntity, Frustum camera, double camX, double camY, double camZ) {
+    public boolean shouldRender(@NotNull SittableEntity livingEntity, @NotNull Frustum camera, double camX, double camY, double camZ) {
         return true;
     }
 }

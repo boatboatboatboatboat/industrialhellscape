@@ -20,6 +20,7 @@ public class IndustrialHellscapeClient {
         // Allows NeoForge to create a config screen for this mod's configs.
         // The config screen is accessed by going to the Mods screen > clicking on your mod > clicking on config.
         // Do not forget to add translations for your config options to the en_us.json file.
+
         //This is currently the only reason there is a client-side main class for this mod.
         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
     }
@@ -27,7 +28,6 @@ public class IndustrialHellscapeClient {
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
         // Some client setup code
-        IndustrialHellscape.LOGGER.info("HELLO FROM CLIENT SETUP");
-
+        // IndustrialHellscape.LOGGER.info("HELLO FROM CLIENT SETUP");
     }
 }

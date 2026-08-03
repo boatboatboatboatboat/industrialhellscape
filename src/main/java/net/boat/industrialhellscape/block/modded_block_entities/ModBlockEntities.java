@@ -16,7 +16,10 @@ public class ModBlockEntities {
 
     public static final Supplier<BlockEntityType<StorageBE>> STORAGE_BE = BLOCK_ENTITIES.register("storage_be", () -> BlockEntityType.Builder.of(
             StorageBE::new,
-
+            /*
+            It is REQUIRED to associate new inventory blocks to this block entity.
+            A crash will happen otherwise. This was not an issue in 1.20.1
+             */
             ModBlocks.RED_WALL_MEDKIT.get(),
             ModBlocks.WHITE_WALL_MEDKIT.get(),
             ModBlocks.OFFICE_DESK_DRAWER.get(),

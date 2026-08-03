@@ -32,8 +32,6 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.function.Supplier;
-
 public class StorageBE extends RandomizableContainerBlockEntity {
     private final int SLOTS;
     public final SoundEvent OPEN_SOUND;
@@ -44,7 +42,7 @@ public class StorageBE extends RandomizableContainerBlockEntity {
     public StorageBE(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.STORAGE_BE.get(), pos, blockState);
         Block block = blockState.getBlock();
-        if (block instanceof StorageBlockInterface storageBlock) { //If block is a Facing Container Block. assign its slots and sound effects
+        if (block instanceof StorageBlockInterface storageBlock) { //If block uses StorageBlockInterface. assign its slots and sound effects with its interface methods.
             this.SLOTS = storageBlock.getSlotCount();
             this.OPEN_SOUND = storageBlock.getOpenSound();
             this.CLOSE_SOUND = storageBlock.getCloseSound();
@@ -58,12 +56,14 @@ public class StorageBE extends RandomizableContainerBlockEntity {
 
         this.openersCounter = new ContainerOpenersCounter() {
             protected void onOpen(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state) {
-                StorageBE.this.playSound(state, OPEN_SOUND);
+                StorageBE.this.playSound(OPEN_SOUND);
                 //StorageBE.this.updateBlockState(state, true);
+                // In the future, use the interface to update a block's state for special effects like lids opening
             }
             protected void onClose(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state) {
-                StorageBE.this.playSound(state, CLOSE_SOUND);
+                StorageBE.this.playSound(CLOSE_SOUND);
                 //StorageBE.this.updateBlockState(state, false);
+                // In the future, use the interface to update a block's state for special effects like lids opening
             }
 
             protected void openerCountChanged(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, int p_155069_, int p_155070_) {
@@ -154,6 +154,7 @@ public class StorageBE extends RandomizableContainerBlockEntity {
         return SLOTS;
     }
 
+    //1.20.1
 //    @Override
 //    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
 //        super.saveAdditional(tag, registries);
@@ -191,7 +192,7 @@ public class StorageBE extends RandomizableContainerBlockEntity {
         return saveWithoutMetadata(registries);
     }
 
-    private void playSound(BlockState state, SoundEvent soundEvent) {
+    private void playSound(SoundEvent soundEvent) {
         double d0 = this.worldPosition.getX() + 0.5D;
         double d1 = this.worldPosition.getY() + 0.5D;
         double d2 = this.worldPosition.getZ() + 0.5D;

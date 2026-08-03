@@ -4,13 +4,9 @@ import net.boat.industrialhellscape.block.modded_block_state_properties.DynamicC
 import net.boat.industrialhellscape.block.modded_block_state_properties.SurfacePipeMountState;
 import net.boat.industrialhellscape.block.modded_interfaces.ConnectedModelInterface;
 import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
-import net.boat.industrialhellscape.block.modded_interfaces.PipeInterface;
 import net.boat.industrialhellscape.block.modded_interfaces.ToolUseInterface;
-import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -38,17 +34,7 @@ import javax.annotation.Nonnull;
 //-----
 //Can be placed on any surface (FACING). Additionally, can be rotated orthogonally on that surface (ORIENTATION).
 
-public class WallPIpeBlock extends Block implements PipeInterface, SimpleWaterloggedBlock, ToolUseInterface {
-    @Override
-    public EnumProperty getOrientationProperty() {
-        return ORIENTATION;
-    }
-
-    @Override
-    public EnumProperty getSurfaceDirectionProperty() {
-        return FACING;
-    }
-
+public class WallPIpeBlock extends Block implements SimpleWaterloggedBlock, ToolUseInterface, ConnectedModelInterface {
     public static final EnumProperty<Direction> FACING = BlockStateProperties.FACING;
     public static final EnumProperty<SurfacePipeMountState> ORIENTATION = EnumProperty.create("axis", SurfacePipeMountState.class);
     public static final EnumProperty<DynamicConnectionState> TYPE = EnumProperty.create("type", DynamicConnectionState.class); //"TYPE" is used to store enum value of "solo, pos, neg, middle"
@@ -128,7 +114,9 @@ public class WallPIpeBlock extends Block implements PipeInterface, SimpleWaterlo
                 getPipeType(
                         state,
                         getSurfacePositivePositionState(state, pos, level),
-                        getSurfaceNegativePositionState(state, pos, level))
+                        getSurfaceNegativePositionState(state, pos, level),
+                        ORIENTATION,
+                        FACING)
         );
         return state;
 
@@ -146,7 +134,9 @@ public class WallPIpeBlock extends Block implements PipeInterface, SimpleWaterlo
         DynamicConnectionState type = getPipeType(
                 state,
                 getSurfacePositivePositionState(state, pos, level),
-                getSurfaceNegativePositionState(state, pos, level)
+                getSurfaceNegativePositionState(state, pos, level),
+                ORIENTATION,
+                FACING
         );
 
         state = state.setValue(TYPE, type);

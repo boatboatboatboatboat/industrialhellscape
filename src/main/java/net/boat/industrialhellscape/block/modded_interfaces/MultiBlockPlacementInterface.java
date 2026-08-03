@@ -1,7 +1,5 @@
 package net.boat.industrialhellscape.block.modded_interfaces;
 
-import net.boat.industrialhellscape.block.modded_block_state_properties.TwoBlockMultiBlockState;
-import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
@@ -15,15 +13,6 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public interface MultiBlockPlacementInterface {
-    static BlockPos posToPlaceOtherHalf(BlockPos pPos, TwoBlockMultiBlockState pPart, Direction placementDirection, MultiBlockPlacementDirection multiBlockPlacementDirection) {
-        //Used for multiple block methods in multiblock class.
-        //returns the direction where the other half is to be placed.
-        return switch (multiBlockPlacementDirection) {
-            case VERTICAL -> pPos.relative(pPart == TwoBlockMultiBlockState.POSITIVE ? Direction.DOWN : Direction.UP);
-            case HORIZONTAL -> pPos.relative(pPart == TwoBlockMultiBlockState.POSITIVE ? placementDirection.getCounterClockWise() : placementDirection.getClockWise());
-            default -> pPos.relative(pPart == TwoBlockMultiBlockState.POSITIVE ? placementDirection.getOpposite() : placementDirection);
-        };
-    }
     static BlockPos vectorToBlockPos(BlockPos originPos, int[][] multiBlockMatrix, int rowIndice, BlockState pState) {
         int[] currentVector = multiBlockMatrix[rowIndice];
         Direction placementDirection = pState.getValue(BlockStateProperties.HORIZONTAL_FACING); //may be opposite (standard convention)
@@ -42,6 +31,7 @@ public interface MultiBlockPlacementInterface {
         int[] currentVector = multiBlockMatrix[intBlockState];
 
         return switch(placementDirection) {
+            //vectorToOriginBlockPos is the same as vectorToBlockPos, except it returns negative values
             case WEST -> pos.relative(Direction.NORTH, -currentVector[0]).relative(Direction.UP, -currentVector[1]).relative(Direction.EAST, -currentVector[2]);
             case SOUTH -> pos.relative(Direction.WEST, -currentVector[0]).relative(Direction.UP, -currentVector[1]).relative(Direction.NORTH, -currentVector[2]);
             case EAST -> pos.relative(Direction.SOUTH, -currentVector[0]).relative(Direction.UP, -currentVector[1]).relative(Direction.WEST, -currentVector[2]);
@@ -88,15 +78,14 @@ public interface MultiBlockPlacementInterface {
 
     static BlockState placeOriginBlock(Level pLevel, BlockPos pPos, BlockState pState, DirectionProperty directionProperty, Direction facing, int[][] multiBlockMatrix) {
         pState = pState.setValue(directionProperty, facing);
-        for (int i = 0; i < multiBlockMatrix.length; i++) {
 
+        for (int i = 0; i < multiBlockMatrix.length; i++) {
             BlockPos blockPosToCheck = vectorToBlockPos(pPos, multiBlockMatrix, i, pState);
 
             //True if potential block pos is air and within world boundaries
             boolean blockCanBePlacedHere = pLevel.getBlockState(blockPosToCheck).isAir() && pLevel.getWorldBorder().isWithinBounds(blockPosToCheck);
-
             if (!blockCanBePlacedHere) {
-                //if block cannot be replaced here, don't place it.
+                //if a position for a future multiblock part placement is invalid, stop entirely.
                 return null;
             }
         }

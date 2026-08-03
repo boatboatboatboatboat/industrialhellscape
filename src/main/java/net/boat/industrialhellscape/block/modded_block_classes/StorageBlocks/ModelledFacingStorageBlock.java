@@ -1,7 +1,7 @@
 package net.boat.industrialhellscape.block.modded_block_classes.StorageBlocks;
 
-import net.boat.industrialhellscape.block.modded_interfaces.StorageBlockInterface;
 import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
+import net.boat.industrialhellscape.block.modded_interfaces.StorageBlockInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
@@ -24,17 +24,16 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
-import java.util.function.Supplier;
+/*
+INFO:
+-----
+This block supports cardinal directional placement, and an inventory with GUI. The inventory size is determined upon block registration.
+Supports registering a custom hitbox for the custom model.
+Block has a block entity within.
 
-//INFO:
-//-----
-//This block supports cardinal directional placement, and an inventory with GUI. The inventory size is determined upon block registration.
-//Supports registering a custom hitbox for the custom model.
-//Block has a block entity within.
-
-//getSlotCount() used by StorageBlockInterface to detect desired Block Entity item slot amount to create.
-//getOpenSound() and getClosedSound() used by StorageBlockInterface to detect desired sounds for opening and closing Block Entity menu.
-//If I define these block states in the interfaces, it may crash in 1.21. This is why these methods are in place.
+getSlotCount() used by StorageBlockInterface to detect desired Block Entity item slot amount to create.
+getOpenSound() and getClosedSound() used by StorageBlockInterface to detect desired sounds for opening and closing Block Entity menu.
+*/
 
 public class ModelledFacingStorageBlock extends FacingStorageBlock implements EntityBlock, StorageBlockInterface, SimpleWaterloggedBlock {
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;

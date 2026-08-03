@@ -5,7 +5,7 @@ import net.boat.industrialhellscape.block.modded_block_state_properties.DynamicC
 import net.boat.industrialhellscape.block.modded_interfaces.ConnectedModelInterface;
 import net.boat.industrialhellscape.block.modded_interfaces.StorageBlockInterface;
 import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
-import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
+import net.boat.industrialhellscape.block.modded_logic_enums.ConnectingBlockPlacementDirection;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -37,25 +37,25 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 
-//INFO:
-//-----
-//Block changes block state model depending on adjacent blocks (directions to check determined by "placementDirection parameter") to simulate a connected structure (e.g. a long table).
-//Block has a block entity within.
-//"inputCompatibleBlockSet" parameter lets it detect which different blocks are compatible to update model for.
+/*
+INFO:
+-----
+Block changes block state model depending on adjacent blocks (directions to check determined by "placementDirection parameter") to simulate a connected structure (e.g. a long table).
+Block has a block entity within.
+"inputCompatibleBlockSet" parameter lets it detect which different blocks are compatible to update model for.
 
-//getSlotCount() used by StorageBlockInterface to detect desired Block Entity item slot amount to create.
-//getOpenSound() and getClosedSound() used by StorageBlockInterface to detect desired sounds for opening and closing Block Entity menu.
-//If I define these block states in the interfaces, it may crash in 1.21. This is why these methods are in place.
+getSlotCount() used by StorageBlockInterface to detect desired Block Entity item slot amount to create.
+getOpenSound() and getClosedSound() used by StorageBlockInterface to detect desired sounds for opening and closing Block Entity menu.
 
-//getFacingProperty(), getTypeProperty(), getWaterloggedProperty() used by ConnectedModelInterface to handle, read, and return blockstates.
-//If I define these block states in the interfaces, it may crash in 1.21. This is why these methods are in place.
+Keywords: desk, drawer
+*/
 
 public class ConnectedStorageBlock extends FacingStorageBlock implements EntityBlock, ConnectedModelInterface, StorageBlockInterface, SimpleWaterloggedBlock {
     private static final EnumProperty<DynamicConnectionState> TYPE = EnumProperty.create("type", DynamicConnectionState.class);
     private static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public TagKey<Block> BlockSetFamily; //To determine other blocks aside from its own can this block connect to
-    private final MultiBlockPlacementDirection placementDirection;
+    private final ConnectingBlockPlacementDirection placementDirection;
 
     public final SoundEvent OPEN_SOUND;
     public final SoundEvent CLOSE_SOUND;
@@ -80,7 +80,7 @@ public class ConnectedStorageBlock extends FacingStorageBlock implements EntityB
     private final VoxelShape RIGHT_SHAPE_EAST;
     private final VoxelShape RIGHT_SHAPE_WEST;
 
-    public ConnectedStorageBlock(Properties properties, int slotAmount, TagKey<Block> inputCompatibleBlockSet, VoxelShape soloShape, VoxelShape leftShape, VoxelShape middleShape, VoxelShape rightShape, MultiBlockPlacementDirection placementDirection, SoundEvent openSound, SoundEvent closeSound) {
+    public ConnectedStorageBlock(Properties properties, int slotAmount, TagKey<Block> inputCompatibleBlockSet, VoxelShape soloShape, VoxelShape leftShape, VoxelShape middleShape, VoxelShape rightShape, ConnectingBlockPlacementDirection placementDirection, SoundEvent openSound, SoundEvent closeSound) {
         // When registering this block, pass in
         // Properties,
         // Integer slot amount (should be multiple of 9) that its block entity inventory shall possess
@@ -89,9 +89,9 @@ public class ConnectedStorageBlock extends FacingStorageBlock implements EntityB
         // Left connection state hitbox VoxelShape
         // Middle connection state hitbox VoxelShape
         // Right connection state hitbox VoxelShape
+        // Enum Value: Whether blocks should be placed horizontally, vertically, or longitudinally to check for connections
         // Sound to play when player opens block
         // Sound to play when player closes block
-        // Whether or not blocks should be placed horizontally, vertically, or longitudinally to check for connections
 
         super(properties, slotAmount, openSound, closeSound);
 

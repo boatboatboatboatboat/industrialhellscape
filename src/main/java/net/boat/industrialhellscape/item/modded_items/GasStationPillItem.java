@@ -5,12 +5,15 @@ import net.boat.industrialhellscape.ModDamageTypes;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import org.jetbrains.annotations.NotNull;
@@ -70,7 +73,7 @@ public class GasStationPillItem extends Item {
             double d0 = entity.getRandom().nextGaussian() * 0.02;
             double d1 = entity.getRandom().nextGaussian() * 0.02;
             double d2 = entity.getRandom().nextGaussian() * 0.02;
-            entity.level().addParticle(particleType, entity.getRandomX((double)1.0F), entity.getRandomY() + (double)1.0F, entity.getRandomZ((double)1.0F), d0, d1, d2);
+            entity.level().addParticle(particleType, entity.getRandomX(1.0F), entity.getRandomY() + 1.0, entity.getRandomZ(1.0F), d0, d1, d2);
         }
     }
 
@@ -82,11 +85,11 @@ public class GasStationPillItem extends Item {
             }
             entity.makeSound(ModSounds.HORSEPILL.get());
             entity.hurt(entity.level().damageSources().source(ModDamageTypes.HORSEPILL_DAMAGE), 512F);
-//
-//            if(entity.level() instanceof ServerLevel serverLevel && !entity.isAlive()) {
-//                Component name = entity.getName();
-//                EntityType.HORSE.spawn(serverLevel, entity.blockPosition(), MobSpawnType.MOB_SUMMONED).setCustomName(name);
-//            }
+
+            if(entity.level() instanceof ServerLevel serverLevel && !entity.isAlive()) {
+                Component name = entity.getName();
+                EntityType.HORSE.spawn(serverLevel, entity.blockPosition(), MobSpawnType.MOB_SUMMONED).setCustomName(name);
+            }
         }
 
         return super.finishUsingItem(itemstack, world, entity);

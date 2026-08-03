@@ -5,6 +5,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public class SittableEntity extends Entity {
     public SittableEntity(EntityType<?> entityType, Level level) {
@@ -12,22 +13,22 @@ public class SittableEntity extends Entity {
     }
 
     @Override
-    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+    protected void defineSynchedData(SynchedEntityData.@NotNull Builder builder) {
 
     }
 
     @Override
-    protected void readAdditionalSaveData(CompoundTag compoundTag) {
+    protected void readAdditionalSaveData(@NotNull CompoundTag compoundTag) {
 
     }
 
     @Override
-    protected void addAdditionalSaveData(CompoundTag compoundTag) {
+    protected void addAdditionalSaveData(@NotNull CompoundTag compoundTag) {
 
     }
 
     @Override
-    protected void removePassenger(Entity passenger) {
+    protected void removePassenger(@NotNull Entity passenger) {
         super.removePassenger(passenger);
         this.kill();
     }

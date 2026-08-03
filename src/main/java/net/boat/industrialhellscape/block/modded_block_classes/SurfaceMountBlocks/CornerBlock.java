@@ -25,22 +25,26 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-//INFO:
-//-----
-// This block, when placed, will align top/bottom. It is meant for "corner" or "right-angle" shaped blocks whose models will be touching two perpendicular full-block surfaces of adjacent blocks.
-// Using an appropriate tool and interacting with the block, it will rotate, cycling through the cardinal directions it is facing.
-// Using an appropriate tool while crouching, it will cycle through the ATTACH_FACE variants (touching floor, ceiling, or side of a wall)
+/*
+INFO:
+-----
+ This block, when placed, will align top/bottom. It is meant for "corner" or "right-angle" shaped blocks whose models will be touching two perpendicular full-block surfaces of adjacent blocks.
+ Using an appropriate tool and interacting with the block, it will rotate, cycling through the cardinal directions it is facing.
+ Using an appropriate tool while crouching, it will cycle through the ATTACH_FACE variants (touching floor, ceiling, or side of a wall)
 
-//Corner blocks have unique geometric issues that make them distinct from other blocks that can be placed on floors, ceilings, or walls.
+Corner blocks have unique geometric issues that make them distinct from other blocks that can be placed on floors, ceilings, or walls.
 
-//Textured (Blockbench) models for normal blocks are saved in the default orientation of "on the floor, facing North"
-//Most block classes accept a Voxelshape hitbox assuming this default orientation too.
+Textured (Blockbench) models for normal blocks are saved in the default orientation of "on the floor, facing North"
+Most block classes accept a Voxelshape hitbox assuming this default orientation too.
 
-//Textured (Blockbench) models for corner blocks are saved in the default orientation of "on the floor, facing West"
-//VoxelShapes for corner blocks therefore default to this too, "INNER_CORNER_DOWN_W = downShape;" see below.
+Textured (Blockbench) models for corner blocks are saved in the default orientation of "on the floor, facing West"
+VoxelShapes for corner blocks therefore default to this too, "INNER_CORNER_DOWN_W = downShape;" see below.
 
-//This is because Minecraft cannot rotate models in the Z axis when generating block states. This makes my life harder.
-//Having the 3D model of the block aligned this way allows combinations of X and Y axis rotations to achieve all possible block states orientations.
+This is because Minecraft cannot rotate models in the Z axis when generating block states. This makes my life harder.
+Having the 3D model of the block aligned this way allows combinations of X and Y axis rotations to achieve all possible block states orientations.
+
+Keywords: bracket, Pipe Conduit Inner Corner, Pipe Conduit Outer Corner, pipe_conduit_inner_corner, pipe_conduit_outer_corner
+*/
 
 public class CornerBlock extends ModelledSurfaceMountBlock implements SimpleWaterloggedBlock, ToolUseInterface {
 

@@ -39,26 +39,27 @@ public class ModCreativeModeTabs {
                 //ITEMS
                 //Secret / Dev Items
                 ModItems.MARQUEE_DISC.asItem(),
-                ModItems.GAS_STATION_PILL.get(),
+                ModItems.GAS_STATION_PILL.asItem(),
 
                 //BLOCK ITEMS
                 //Secret / Dev Blocks
-                //ModBlocks.PROTOTYPE_MACHINE.get().asItem(),
-                ModBlocks.BODY_PILLOW.get().asItem(),
+                //ModBlocks.PROTOTYPE_MACHINE.asItem(),
+                ModBlocks.BODY_PILLOW.asItem(),
+                ModBlocks.DEBUG_BLOCK.asItem(),
 
                 //Vesselplate Vertical Variants (Hidden to prevent JEI clutter)
-                ModBlocks.VERTICAL_VESSELPLATE.get().asItem(),
-                ModBlocks.VERTICAL_REINFORCED_VESSELPLATE.get().asItem(),
-                ModBlocks.GRAY_VERTICAL_VESSELPLATE.get().asItem(),
-                ModBlocks.GRAY_VERTICAL_REINFORCED_VESSELPLATE.get().asItem(),
-                ModBlocks.RUSTY_VERTICAL_VESSELPLATE.get().asItem(),
-                ModBlocks.RUSTY_VERTICAL_REINFORCED_VESSELPLATE.get().asItem(),
+                ModBlocks.VERTICAL_VESSELPLATE.asItem(),
+                ModBlocks.VERTICAL_REINFORCED_VESSELPLATE.asItem(),
+                ModBlocks.GRAY_VERTICAL_VESSELPLATE.asItem(),
+                ModBlocks.GRAY_VERTICAL_REINFORCED_VESSELPLATE.asItem(),
+                ModBlocks.RUSTY_VERTICAL_VESSELPLATE.asItem(),
+                ModBlocks.RUSTY_VERTICAL_REINFORCED_VESSELPLATE.asItem(),
 
                 //Grate Vertical Variants (Hidden to prevent JEI clutter)
-                ModBlocks.VERTICAL_VENT.get().asItem(),
-                ModBlocks.VERTICAL_CUTOUT_VENT.get().asItem(),
-                ModBlocks.RUSTY_VERTICAL_VENT.get().asItem(),
-                ModBlocks.RUSTY_VERTICAL_CUTOUT_VENT.get().asItem()
+                ModBlocks.VERTICAL_VENT.asItem(),
+                ModBlocks.VERTICAL_CUTOUT_VENT.asItem(),
+                ModBlocks.RUSTY_VERTICAL_VENT.asItem(),
+                ModBlocks.RUSTY_VERTICAL_CUTOUT_VENT.asItem()
         };
 
         //https://stackoverflow.com/questions/1128723/how-do-i-determine-whether-an-array-contains-a-particular-value-in-java

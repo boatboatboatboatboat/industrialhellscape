@@ -75,6 +75,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 createRailingDrops(ModBlocks.BLUE_ROCKRETE_PARAPET.get()));
         this.add(ModBlocks.GREEN_ROCKRETE_PARAPET.get(),
                 createRailingDrops(ModBlocks.GREEN_ROCKRETE_PARAPET.get()));
+
+        //WALL BLOCKS
         this.dropSelf(ModBlocks.GRAY_ROCKRETE_WALL.get());
         this.dropSelf(ModBlocks.RED_ROCKRETE_WALL.get());
         this.dropSelf(ModBlocks.YELLOW_ROCKRETE_WALL.get());
@@ -84,8 +86,6 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         //DUCT BLOCKS
         this.dropSelf(ModBlocks.DUCT.get());
         this.dropSelf(ModBlocks.RUSTY_DUCT.get());
-//        this.dropSelf(ModBlocks.DUCT_VENT.get());
-//        this.dropSelf(ModBlocks.RUSTY_DUCT_VENT.get());
         
         //VENT BLOCKS
         this.dropSelf(ModBlocks.HORIZONTAL_VENT.get());
@@ -175,7 +175,6 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.RUSTY_VESSELGLASS.get());
 
         //ROCKRETE BLOCKS
-
         this.dropSelf(ModBlocks.ROUGH_GRAY_ROCKRETE.get());
         this.add(ModBlocks.ROUGH_GRAY_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.ROUGH_GRAY_ROCKRETE_SLAB.get()));
         this.dropSelf(ModBlocks.ROUGH_GRAY_ROCKRETE_STAIRS.get());
@@ -191,22 +190,6 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.ROUGH_RED_ROCKRETE.get());
         this.add(ModBlocks.ROUGH_RED_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.ROUGH_RED_ROCKRETE_SLAB.get()));
         this.dropSelf(ModBlocks.ROUGH_RED_ROCKRETE_STAIRS.get());
-
-//        this.dropSelf(ModBlocks.WEATHERED_GRAY_ROCKRETE.get());
-//        this.add(ModBlocks.WEATHERED_GRAY_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.WEATHERED_GRAY_ROCKRETE_SLAB.get()));
-//        this.dropSelf(ModBlocks.WEATHERED_GRAY_ROCKRETE_STAIRS.get());
-//        this.dropSelf(ModBlocks.WEATHERED_GREEN_ROCKRETE.get());
-//        this.add(ModBlocks.WEATHERED_GREEN_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.WEATHERED_GREEN_ROCKRETE_SLAB.get()));
-//        this.dropSelf(ModBlocks.WEATHERED_GREEN_ROCKRETE_STAIRS.get());
-//        this.dropSelf(ModBlocks.WEATHERED_YELLOW_ROCKRETE.get());
-//        this.add(ModBlocks.WEATHERED_YELLOW_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.WEATHERED_YELLOW_ROCKRETE_SLAB.get()));
-//        this.dropSelf(ModBlocks.WEATHERED_YELLOW_ROCKRETE_STAIRS.get());
-//        this.dropSelf(ModBlocks.WEATHERED_BLUE_ROCKRETE.get());
-//        this.add(ModBlocks.WEATHERED_BLUE_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.WEATHERED_BLUE_ROCKRETE_SLAB.get()));
-//        this.dropSelf(ModBlocks.WEATHERED_BLUE_ROCKRETE_STAIRS.get());
-//        this.dropSelf(ModBlocks.WEATHERED_RED_ROCKRETE.get());
-//        this.add(ModBlocks.WEATHERED_RED_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.WEATHERED_RED_ROCKRETE_SLAB.get()));
-//        this.dropSelf(ModBlocks.WEATHERED_RED_ROCKRETE_STAIRS.get());
 
         this.dropSelf(ModBlocks.GRAY_ROCKRETE.get());
         this.dropSelf(ModBlocks.GRAY_ROCKRETE_PILLAR.get());
@@ -243,7 +226,6 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 createDoorTable(ModBlocks.STAMPED_METAL_DOOR.get()));
         this.add(ModBlocks.BULKHEAD_DOOR.get(),
                 createDoorTable(ModBlocks.BULKHEAD_DOOR.get()));
-        //this.dropSelf(ModBlocks.VESSELPLATE_TRAPDOOR.get());
         this.dropSelf(ModBlocks.VENT_TRAPDOOR.get());
         this.dropSelf(ModBlocks.RUSTY_VENT_TRAPDOOR.get());
 
@@ -389,12 +371,11 @@ protected LootTable.Builder createStairRailingDrops(Block pBlock) {
 }
 
     protected LootTable.Builder createIntegerMultiBlockDrops(Block pBlock) {
-        return LootTable.lootTable()
-
-                .withPool(LootPool.lootPool()
+        //Only the first block of the multiblock (PART #0) has a loot table to drop the block itself
+        return LootTable.lootTable().withPool(LootPool.lootPool()
                         .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
                                 .setProperties(StatePropertiesPredicate.Builder.properties()
-                                        .hasProperty(IntegerMultiBlock.PART, 0))) //when true
+                                        .hasProperty(IntegerMultiBlock.PART, 0))) //PART #0
                         .add(this.applyExplosionDecay(pBlock, LootItem.lootTableItem(pBlock)
                                         .apply(List.of(1), (p_249985_) -> SetItemCountFunction.setCount(ConstantValue.exactly((float) p_249985_))))
                                 .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))))

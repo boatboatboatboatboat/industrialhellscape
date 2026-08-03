@@ -3,7 +3,7 @@ package net.boat.industrialhellscape.block;
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks.AxialPillarBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks.ConnectedFurnitureBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.FallableBlocks.FacingFallableBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBlocks.FacingFallableBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.*;
 import net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBlocks.*;
 import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.ParapetBlock;
@@ -18,7 +18,7 @@ import net.boat.industrialhellscape.block.modded_block_classes.TextureToggleBloc
 import net.boat.industrialhellscape.block.modded_block_classes.TextureToggleBlocks.TrussBlock;
 import net.boat.industrialhellscape.block.modded_interfaces.HitboxGeometryCollection;
 import net.boat.industrialhellscape.block.modded_interfaces.MultiBlockPlacementArrayCollection;
-import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
+import net.boat.industrialhellscape.block.modded_logic_enums.ConnectingBlockPlacementDirection;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.client.gui.screens.Screen;
@@ -48,7 +48,7 @@ public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(IndustrialHellscape.MOD_ID);
 
-    public static void removeAndReplaceBlocks() { //Replaces both Block and Block Item with replacements.
+    public static void removeAndReplaceBlocks() { //Replaces both Block and Block Item with replacements. This is called in the IndustrialHellscape main class
         specificBlockReplacement("smooth_gray_rockrete", "gray_rockrete");
         specificBlockReplacement("smooth_red_rockrete", "red_rockrete");
         specificBlockReplacement("smooth_yellow_rockrete", "yellow_rockrete");
@@ -71,7 +71,6 @@ public class ModBlocks {
         specificBlockReplacement("weathered_gray_rockrete_slab", "rough_gray_rockrete_slab");
         specificBlockReplacement("weathered_gray_rockrete_stairs", "rough_gray_rockrete_stairs");
 
-
         specificBlockReplacement("horizontal_grate", "horizontal_vent");
         specificBlockReplacement("vertical_grate", "vertical_vent");
         specificBlockReplacement("horizontal_cutout_grate", "horizontal_cutout_vent");
@@ -81,7 +80,6 @@ public class ModBlocks {
         specificBlockReplacement("gray_vertical_grate", "vertical_vent");
         specificBlockReplacement("gray_horizontal_cutout_grate", "cutout_horizontal_vent");
         specificBlockReplacement("gray_vertical_cutout_grate", "cutout_vertical_vent");
-
 
         specificBlockReplacement("duct_vent", "vent_trapdoor");
         specificBlockReplacement("rusty_duct_vent", "rusty_vent_trapdoor");
@@ -108,7 +106,7 @@ public class ModBlocks {
 
     //JOKE BLOCKS
     public static final DeferredBlock<Block> BODY_PILLOW = registerBlockAndBlockItem("body_pillow",
-            () -> new ModdedBedIntegerMultiBlock(BlockBehaviour
+            () -> new ModdedBedBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.WHITE_WOOL)
                     .sound(SoundType.SLIME_BLOCK)
                     .noOcclusion(),
@@ -1234,11 +1232,11 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
                     HitboxGeometryCollection.SMOKE_DETECTOR_FLOOR(),
-                    ModSounds.SMOKE_ALARM
+                    ModSounds.SMOKE_ALARM.get()
             )
     );
     public static final DeferredBlock<Block> OPERATING_TABLE = registerBlockAndBlockItem("operating_table",
-            () -> new ModelledIntegerMultiBlock(BlockBehaviour
+            () -> new ModelledTwoBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .sound(SoundType.METAL)
                     .noOcclusion(),
@@ -1248,7 +1246,7 @@ public class ModBlocks {
             )
     );
     public static final DeferredBlock<Block> MEDICAL_BED = registerBlockAndBlockItem("medical_bed",
-            () -> new ModdedBedIntegerMultiBlock(BlockBehaviour
+            () -> new ModdedBedBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .sound(SoundType.METAL)
                     .noOcclusion(),
@@ -1260,7 +1258,7 @@ public class ModBlocks {
             )
     );
     public static final DeferredBlock<Block> VITALS_MONITOR = registerBlockAndBlockItem("vitals_monitor",
-            () -> new LightStandIntegerMultiBlock(BlockBehaviour
+            () -> new LightStandTwoBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0),
                     2,
@@ -1269,7 +1267,7 @@ public class ModBlocks {
             )
     );
     public static final DeferredBlock<Block> IV_DRIPSTAND = registerBlockAndBlockItem("iv_dripstand",
-            () -> new ModelledIntegerMultiBlock(BlockBehaviour
+            () -> new ModelledTwoBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.OAK_PLANKS)
                     .noOcclusion(),
                     2,
@@ -1305,7 +1303,7 @@ public class ModBlocks {
     );
 //
     public static final DeferredBlock<Block> LARGE_LOCKER = registerBlockAndBlockItem("large_locker",
-            () -> new TwoBlockStorageIntegerMultiBlock(BlockBehaviour
+            () -> new StorageTwoBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     , 2
                     , MultiBlockPlacementArrayCollection.VERTICAL_PLACEMENT
@@ -1340,7 +1338,7 @@ public class ModBlocks {
     );
 
     public static final DeferredBlock<Block> WORK_LIGHT_STAND = registerBlockAndBlockItem("work_light_stand",
-            () -> new LightStandIntegerMultiBlock(BlockBehaviour
+            () -> new LightStandTwoBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0),
                     2,
@@ -1433,7 +1431,7 @@ public class ModBlocks {
                     HitboxGeometryCollection.DESK_LEFT_SHAPE(),
                     HitboxGeometryCollection.DESK_MIDDLE_SHAPE(),
                     HitboxGeometryCollection.DESK_RIGHT_SHAPE(),
-                    MultiBlockPlacementDirection.HORIZONTAL)
+                    ConnectingBlockPlacementDirection.HORIZONTAL)
 
     );
     public static final DeferredBlock<Block> DESK_DRAWER = registerBlockAndBlockItem("desk_drawer",
@@ -1446,7 +1444,7 @@ public class ModBlocks {
                     HitboxGeometryCollection.DESK_DRAWER_LEFT_SHAPE(),
                     HitboxGeometryCollection.DESK_DRAWER_MIDDLE_SHAPE(),
                     HitboxGeometryCollection.DESK_DRAWER_RIGHT_SHAPE(),
-                    MultiBlockPlacementDirection.HORIZONTAL,
+                    ConnectingBlockPlacementDirection.HORIZONTAL,
                     ModSounds.METAL_BOX_OPEN.get(),
                     ModSounds.METAL_BOX_CLOSE.get()
             )
@@ -1460,7 +1458,7 @@ public class ModBlocks {
                     HitboxGeometryCollection.METAL_DESK_LEFT_SHAPE(),
                     HitboxGeometryCollection.METAL_DESK_MIDDLE_SHAPE(),
                     HitboxGeometryCollection.METAL_DESK_RIGHT_SHAPE(),
-                    MultiBlockPlacementDirection.HORIZONTAL
+                    ConnectingBlockPlacementDirection.HORIZONTAL
             )
     );
     public static final DeferredBlock<Block> METAL_DESK_DRAWER = registerBlockAndBlockItem("metal_desk_drawer",
@@ -1473,7 +1471,7 @@ public class ModBlocks {
                     HitboxGeometryCollection.METAL_DESK_DRAWER_LEFT_SHAPE(),
                     HitboxGeometryCollection.METAL_DESK_DRAWER_MIDDLE_SHAPE(),
                     HitboxGeometryCollection.METAL_DESK_DRAWER_RIGHT_SHAPE(),
-                    MultiBlockPlacementDirection.HORIZONTAL,
+                    ConnectingBlockPlacementDirection.HORIZONTAL,
                     ModSounds.METAL_BOX_OPEN.get(),
                     ModSounds.METAL_BOX_CLOSE.get()
             )
@@ -1489,7 +1487,7 @@ public class ModBlocks {
                     HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
                     HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
                     HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
-                    MultiBlockPlacementDirection.HORIZONTAL,
+                    ConnectingBlockPlacementDirection.HORIZONTAL,
                     ModSounds.METAL_BOX_OPEN.get(),
                     ModSounds.METAL_BOX_CLOSE.get()
             )
@@ -1505,7 +1503,7 @@ public class ModBlocks {
                     HitboxGeometryCollection.OFFICE_DESK_MIDDLE_SHAPE(),
                     HitboxGeometryCollection.OFFICE_DESK_RIGHT_SHAPE(),
 
-                    MultiBlockPlacementDirection.HORIZONTAL
+                    ConnectingBlockPlacementDirection.HORIZONTAL
             )
 
     );
@@ -1520,7 +1518,7 @@ public class ModBlocks {
                     HitboxGeometryCollection.METAL_DESK_DRAWER_2_LEFT_SHAPE(),
                     HitboxGeometryCollection.METAL_DESK_DRAWER_2_MIDDLE_SHAPE(),
                     HitboxGeometryCollection.METAL_DESK_DRAWER_2_RIGHT_SHAPE(),
-                    MultiBlockPlacementDirection.HORIZONTAL,
+                    ConnectingBlockPlacementDirection.HORIZONTAL,
                     ModSounds.METAL_BOX_OPEN.get(),
                     ModSounds.METAL_BOX_CLOSE.get()
             )

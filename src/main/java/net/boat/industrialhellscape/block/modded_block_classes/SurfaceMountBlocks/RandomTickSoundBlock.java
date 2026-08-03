@@ -20,15 +20,20 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.function.Supplier;
+/*
+    INFO
+    -----
+    This block can be placed on any surface, facing towards player and away from surface.
+    It will output a sound based on randomTicks only when turned on by player interaction.
+ */
 
 public class RandomTickSoundBlock extends ModelledSurfaceMountBlock{
 
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
-    public final Supplier<SoundEvent> OUTPUT_SOUND;
+    public final SoundEvent OUTPUT_SOUND;
 
-    public RandomTickSoundBlock(Properties pProperties, VoxelShape floorHitBox, Supplier<SoundEvent> outputSound) {
+    public RandomTickSoundBlock(Properties pProperties, VoxelShape floorHitBox, SoundEvent outputSound) {
         super(pProperties, floorHitBox);
 
         this.OUTPUT_SOUND = outputSound;
@@ -56,16 +61,15 @@ public class RandomTickSoundBlock extends ModelledSurfaceMountBlock{
     }
 
     public void randomTick(@NotNull BlockState pState, ServerLevel pLevel, @NotNull BlockPos pPos, @NotNull RandomSource pRandom) {
-        //If chunk is loaded, random tick the RandomTickSoundBlock if it is NOT powered
-        if (!pLevel.isAreaLoaded(pPos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
+        //If chunk is loaded, random tick the RandomTickSoundBlock if it is powered
+        if (!pLevel.isAreaLoaded(pPos, 1)) return;
         if (pState.getValue(POWERED)) { //If powered (true)
-            playSound(pLevel, pPos, OUTPUT_SOUND.get());
+            playSound(pLevel, pPos, OUTPUT_SOUND);
         }
 
     }
 
     private static void playSound(Level pLevel, BlockPos pPos, SoundEvent outputSound) {
-        //Plays stonecutter sound when interaction successful and this method is called
         pLevel.playSeededSound(null, pPos.getX(), pPos.getY(), pPos.getZ(),
                 outputSound, SoundSource.BLOCKS, 1f, 1f, 0);
     }

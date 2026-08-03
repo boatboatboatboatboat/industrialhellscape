@@ -16,15 +16,14 @@ public interface StorageBlockInterface {
 
     //--------- NECESSARY FIELDS FOR BLOCK ENTITY ----------
     //Blocks that have a Storage Block Entity and implements this interface MUST possess these methods and supply a value.
-    //The block entity assumes blocks passed to it possess this interface, and will use these methods to read off values.
+    //The block entity anticipates blocks passed to it possess this interface, and will use these methods to read off values.
     int getSlotCount();
     SoundEvent getOpenSound();
     SoundEvent getCloseSound();
     //---------- END OF NECESSARY FIELDS FOR BLOCK ENTITY ----------
 
     static void dropContainerInventory(Block block, BlockState state, Level level, BlockPos pos, BlockState newState) {
-        //Occurs when block is mined. Items should drop.
-        if(newState.getBlock() != state.getBlock() ) {
+        if(newState.getBlock() != block ) {
             Containers.dropContentsOnDestroy(state, newState, level, pos);
         }
     }
@@ -36,7 +35,6 @@ public interface StorageBlockInterface {
             if (blockentity instanceof StorageBE) {
                 player.openMenu((StorageBE)blockentity);
             }
-
             return InteractionResult.CONSUME;
         }
     }

@@ -16,19 +16,21 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
-//INFO:
-//-----
-// This block, when placed, aligns with the axis of placement (x, y, z). Subsequent blocks placed adjacent in the same alignment will cause block state updates to allow directional connected textures without CTM.
-// This is necessary because CTM does not support directional texture connection.
-// The operating methods for block state detection and updating are present in this mod's ConnectedModelInterface interface.
+/*
+INFO:
+-----
+ This block, when placed, aligns with the axis of placement (x, y, z). Subsequent blocks placed adjacent in the same alignment will cause block state updates to allow directional connected textures without CTM.
+ This is necessary because CTM does not support directional texture connection.
+ The operating methods for block state detection and updating are present in this mod's ConnectedModelInterface interface.
 
-// Block-state notation:
-//     Solo - Unconnected block-state. When placed for the first time by itself with no eligible adjacent connections.
-//     Pos - an "end" connection facing the positive axis (East, Up, South).
-//     Middle - an interior connection that may repeat based on the length of the pillar.
-//     Neg - "an end" connection facing the negative axis direction (West, Down, North).
+ Block-state notation:
+     SOLO - Unconnected block-state. When placed for the first time by itself with no eligible adjacent connections.
+     POSITIVE - an "end" connection facing the positive axis (East, Up, South).
+     MIDDLE - an interior connection that may repeat based on the length of the pillar.
+     NEGATIVE - "an end" connection facing the negative axis direction (West, Down, North).
 
-// Block class is adapted from Hearth and Home mod's Stone Pillar block class code.
+ Block class is adapted from Hearth and Home mod's Stone Pillar block class code.
+ */
 
 public class AxialPillarBlock extends RotatedPillarBlock implements ConnectedModelInterface {
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS; //"AXIS" is used to store the block state direction

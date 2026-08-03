@@ -46,8 +46,6 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(
                         ModBlocks.DUCT.get().asItem(),
                         ModBlocks.RUSTY_DUCT.get().asItem(),
-//                        ModBlocks.DUCT_VENT.get().asItem(),
-//                        ModBlocks.RUSTY_DUCT_VENT.get().asItem(),
 
                         ModBlocks.HORIZONTAL_VENT.get().asItem(),
                         ModBlocks.VERTICAL_VENT.get().asItem(),
@@ -88,10 +86,6 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
                         ModBlocks.RIVETED_VESSELPLATE.get().asItem(),
                         ModBlocks.VESSELPLATE_PILLAR.get().asItem(),
-//                        ModBlocks.RIVETED_VESSELPLATE_SLAB.get().asItem(),
-//                        ModBlocks.RIVETED_VESSELPLATE_STAIRS.get().asItem(),
-//                        ModBlocks.SMOOTH_VESSELPLATE_SLAB.get().asItem(),
-//                        ModBlocks.SMOOTH_VESSELPLATE_STAIRS.get().asItem(),
 
                         ModBlocks.GRAY_HORIZONTAL_VESSELPLATE.get().asItem(),
                         ModBlocks.GRAY_VERTICAL_VESSELPLATE.get().asItem(),
@@ -151,12 +145,6 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.ROUGH_GREEN_ROCKRETE.get().asItem(),
                         ModBlocks.ROUGH_YELLOW_ROCKRETE.get().asItem(),
 
-//                        ModBlocks.WEATHERED_GRAY_ROCKRETE.get().asItem(),
-//                        ModBlocks.WEATHERED_RED_ROCKRETE.get().asItem(),
-//                        ModBlocks.WEATHERED_BLUE_ROCKRETE.get().asItem(),
-//                        ModBlocks.WEATHERED_GREEN_ROCKRETE.get().asItem(),
-//                        ModBlocks.WEATHERED_YELLOW_ROCKRETE.get().asItem(),
-
                         ModBlocks.GRAY_ROCKRETE.get().asItem(),
                         ModBlocks.GRAY_ROCKRETE_PILLAR.get().asItem(),
 
@@ -180,7 +168,6 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 );
         this.tag(ModTags.Items.TRAPDOOR_ITEMS)
                 .add(
-                        //ModBlocks.VESSELPLATE_TRAPDOOR.get().asItem(),
                         ModBlocks.VENT_TRAPDOOR.get().asItem(),
                         ModBlocks.RUSTY_VENT_TRAPDOOR.get().asItem()
                 );
@@ -277,11 +264,6 @@ public class ModItemTagProvider extends ItemTagsProvider {
         //---------- END OF RECIPE DATAGEN INPUT TAGS ----------
 
         //---------- MISC TAGS ----------
-
-//        this.tag(ItemTags.HORSE_FOOD)
-//                .add(ModItems.HORSEPILL.get().asItem()
-//                );
-
         this.tag(ModTags.Items.IH_RECIPE_STONELIKES)
                 .add(
                         Items.COBBLESTONE,

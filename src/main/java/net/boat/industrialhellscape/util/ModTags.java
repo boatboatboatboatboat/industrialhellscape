@@ -65,8 +65,10 @@ public class ModTags {
     }
 
     public static class Items {
-        //For ungenerated recipes dictating recycling back into vanilla materials (Slabs are NOT smeltable. NOT INCLUDED HERE)
-
+        /*
+        "smeltable" item tags are a legacy naming scheme. Blocks of this tag are full-blocks. Block items
+         of this tag will stonecut into slabs and stairs, which cannot be reverted similar to vanilla blocks.
+         */
         public static final TagKey<Item> VESSELPLATE_SMELTABLE_ITEM = tag("vesselplate_smeltable_item");
         public static final TagKey<Item> VESSELGLASS_SMELTABLE_ITEM = tag("vesselglass_smeltable_item");
         public static final TagKey<Item> ROCKRETE_SMELTABLE_ITEM = tag("rockrete_smeltable_item");

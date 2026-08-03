@@ -24,8 +24,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(
                         ModBlocks.DUCT.get(),
                         ModBlocks.RUSTY_DUCT.get(),
-//                        ModBlocks.DUCT_VENT.get(),
-//                        ModBlocks.RUSTY_DUCT_VENT.get(),
 
                         ModBlocks.HORIZONTAL_VENT.get(),
                         ModBlocks.VERTICAL_VENT.get(),
@@ -144,22 +142,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.ROUGH_YELLOW_ROCKRETE_SLAB.get(),
                         ModBlocks.ROUGH_YELLOW_ROCKRETE_STAIRS.get(),
 
-//                        ModBlocks.WEATHERED_GRAY_ROCKRETE.get(),
-//                        ModBlocks.WEATHERED_GRAY_ROCKRETE_SLAB.get(),
-//                        ModBlocks.WEATHERED_GRAY_ROCKRETE_STAIRS.get(),
-//                        ModBlocks.WEATHERED_RED_ROCKRETE.get(),
-//                        ModBlocks.WEATHERED_RED_ROCKRETE_SLAB.get(),
-//                        ModBlocks.WEATHERED_RED_ROCKRETE_STAIRS.get(),
-//                        ModBlocks.WEATHERED_BLUE_ROCKRETE.get(),
-//                        ModBlocks.WEATHERED_BLUE_ROCKRETE_SLAB.get(),
-//                        ModBlocks.WEATHERED_BLUE_ROCKRETE_STAIRS.get(),
-//                        ModBlocks.WEATHERED_GREEN_ROCKRETE.get(),
-//                        ModBlocks.WEATHERED_GREEN_ROCKRETE_SLAB.get(),
-//                        ModBlocks.WEATHERED_GREEN_ROCKRETE_STAIRS.get(),
-//                        ModBlocks.WEATHERED_YELLOW_ROCKRETE.get(),
-//                        ModBlocks.WEATHERED_YELLOW_ROCKRETE_SLAB.get(),
-//                        ModBlocks.WEATHERED_YELLOW_ROCKRETE_STAIRS.get(),
-
                         ModBlocks.GRAY_ROCKRETE_WALL.get(),
                         ModBlocks.RED_ROCKRETE_WALL.get(),
                         ModBlocks.YELLOW_ROCKRETE_WALL.get(),
@@ -209,7 +191,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 );
         this.tag(ModTags.Blocks.TRAPDOOR_BLOCKS) //FOR CORRECT MINING TOOLS AND TOOL TIER
                 .add(
-                        //ModBlocks.VESSELPLATE_TRAPDOOR.get(),
                         ModBlocks.VENT_TRAPDOOR.get(),
                         ModBlocks.RUSTY_VENT_TRAPDOOR.get()
                 );
@@ -388,14 +369,14 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModTags.Blocks.DOOR_BLOCKS,
                         ModTags.Blocks.TRAPDOOR_BLOCKS,
 
-                        ModTags.Blocks.ALL_FURNITURE_BLOCKS //All furniture can be mined with axe or pickaxe.
+                        ModTags.Blocks.ALL_FURNITURE_BLOCKS //All furniture can be mined with pickaxe.
                 )
                 .add(
                         ModBlocks.DEBUG_BLOCK.get()
                 );
         this.tag(BlockTags.MINEABLE_WITH_AXE)
                 .addTags(
-                        ModTags.Blocks.ALL_FURNITURE_BLOCKS //All furniture can be mined with axe or pickaxe.
+                        ModTags.Blocks.ALL_FURNITURE_BLOCKS //All furniture can be mined with axe.
                 );
 
         //INTER-MOD COMPAT

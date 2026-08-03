@@ -21,10 +21,12 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-//INFO:
-//-----
-//This block can be placed on all surfaces. If ceilingSurfaceMountOnly is set to true in block registration,
-//There will not be a dedicated floor-touching block model for that block state (currently applicable for ceiling/wall hanging blocks like CCTV camera)
+/*
+INFO:
+-----
+This block can be placed on all surfaces. It can be waterlogged.
+
+*/
 
 public class ModelledSurfaceMountBlock extends SurfaceMountBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -84,8 +86,6 @@ public class ModelledSurfaceMountBlock extends SurfaceMountBlock implements Simp
 
         BlockPos blockPos = pContext.getClickedPos();
         BlockState state; //Start with default blockstate
-
-        BlockPos neighborPos = blockPos.relative(pContext.getHorizontalDirection());
 
         if (clickedFaceDirection.getAxis() == Direction.Axis.Y) { //On Floor or Ceiling
             state = this.defaultBlockState()

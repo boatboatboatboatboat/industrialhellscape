@@ -18,10 +18,6 @@ import org.jetbrains.annotations.NotNull;
 // Code obtained from Create Deco mod (CC0 1.0 license)
 
 public class LightBulbBlock extends ModelledSurfaceMountBlock {
-
-//    public static final BooleanProperty LIT = BlockStateProperties.LIT;
-//    public static final BooleanProperty INVERTED = BlockStateProperties.INVERTED;
-
     public final SoundEvent ON_SOUND;
     public final SoundEvent OFF_SOUND;
 
@@ -49,7 +45,7 @@ public class LightBulbBlock extends ModelledSurfaceMountBlock {
     }
 
     @Override
-    protected InteractionResult useWithoutItem (BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player entity, @NotNull BlockHitResult hitResult) {
+    protected @NotNull InteractionResult useWithoutItem (BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player entity, @NotNull BlockHitResult hitResult) {
         boolean wasOn = state.getValue(BlockStateProperties.LIT);
         SoundEvent onOffSound = wasOn ? OFF_SOUND : ON_SOUND;
 
@@ -58,7 +54,7 @@ public class LightBulbBlock extends ModelledSurfaceMountBlock {
             return InteractionResult.SUCCESS;
         } else {
             float pitch = next.getValue(BlockStateProperties.INVERTED) ? 0.6f : 0.5f;
-            level.playSound((Player)null, pos, onOffSound, SoundSource.BLOCKS, 0.3f, pitch);
+            level.playSound(null, pos, onOffSound, SoundSource.BLOCKS, 0.3f, pitch);
             return InteractionResult.CONSUME;
         }
     }

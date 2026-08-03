@@ -9,8 +9,6 @@ import net.boat.industrialhellscape.item.ModItems;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.neoforged.fml.config.ModConfig;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -60,26 +58,19 @@ public class IndustrialHellscape {
         ModItems.removeAndReplaceItems();
 
         //Registers config options for this mod. The config screen registration is handled in IndustrialHellscapeClient
-        modContainer.registerConfig(ModConfig.Type.COMMON, CommonModConfig.SPEC);
+        modContainer.registerConfig(ModConfig.Type.COMMON, ModCommonConfig.SPEC);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
         // Some common setup code
-        LOGGER.info("HELLO FROM COMMON SETUP");
+        // LOGGER.info("HELLO FROM COMMON SETUP");
     }
-
-//    // Add the example block item to the building blocks tab
-//    private void addCreative(BuildCreativeModeTabContentsEvent event) {
-//        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-//            event.accept(ModItems.INHELL_HAVEN_DEVICE);
-//        }
-//    }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         // Do something when the server starts
-        LOGGER.info("HELLO from server starting");
+        //LOGGER.info("HELLO from server starting");
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent

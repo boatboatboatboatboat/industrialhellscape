@@ -5,7 +5,7 @@ import net.boat.industrialhellscape.block.modded_block_state_properties.DynamicC
 import net.boat.industrialhellscape.block.modded_interfaces.ConnectedModelInterface;
 import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
 import net.boat.industrialhellscape.block.modded_interfaces.ToolUseInterface;
-import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
+import net.boat.industrialhellscape.block.modded_logic_enums.ConnectingBlockPlacementDirection;
 import net.boat.industrialhellscape.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -36,21 +36,23 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 
-//INFO:
-//-----
-// This block, when placed, connects with similarly aligned neighbors. Custom models allow the resulting connection to look like a seamless model (E.G. a multi-block table or desk).
-// Waterlogging and cardinal directional placement is supported.
-// The operating methods for block state detection and updating are present in this mod's ConnectedModelInterface interface.
-// Waterlogging is handled by the vanilla SimpleWaterloggedBlock interface.
-// Can connect to other block. This ability is determined by the block tag passed as a parameter during block registration (TagKey<Block> inputCompatibleBlockSet)
+/*
+INFO:
+-----
+ This block, when placed, connects with similarly aligned neighbors. Custom models allow the resulting connection to look like a seamless model (E.G. a multi-block table or desk).
+ Waterlogging and cardinal directional placement is supported.
+ The operating methods for block state detection and updating are present in this mod's ConnectedModelInterface interface.
+ Waterlogging is handled by the vanilla SimpleWaterloggedBlock interface.
+ Can connect to other block. This ability is determined by the block tag passed as a parameter during block registration (TagKey<Block> inputCompatibleBlockSet)
 
-// Block-state notation:
-//     Solo - Unconnected block-state. When placed for the first time by itself with no eligible adjacent connections.
-//     Left - an "end" connection that should be the left-end portion of a connected block group (a multi-block desk/table) relative to the facing player.
-//     Middle - an interior connection that may repeat based on the length of the blocks connected.
-//     Right - an "end" connection that should be the right-end portion of a connected block group (a multi-block desk/table) relative to the facing player.
+ Block-state notation:
+     SOLO - Unconnected block-state. When placed for the first time by itself with no eligible adjacent connections.
+     POSITIVE - an "end" connection that should be the left/top/rear portion of a connected block group (a multi-block desk/table) relative to the facing player.
+     MIDDLE - an interior connection that may repeat based on the length of the blocks connected.
+     NEGATIVE - an "end" connection that should be the right/bottom/front portion of a connected block group (a multi-block desk/table) relative to the facing player.
 
-// Block class is adapted from Hearth and Home mod's Stone Pillar block class code.
+ Block class is adapted from Hearth and Home mod's Stone Pillar block class code.
+*/
 
 public class ConnectedFurnitureBlock extends Block implements SimpleWaterloggedBlock, ConnectedModelInterface, ToolUseInterface {
 
@@ -58,7 +60,7 @@ public class ConnectedFurnitureBlock extends Block implements SimpleWaterloggedB
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING; //"FACING" is used to store DirectionProperty value of "north, south, east, west"
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public final TagKey<Block> BlockSetFamily; //To determine other blocks aside from its own can this block connect to
-    private final MultiBlockPlacementDirection placementDirection;
+    private final ConnectingBlockPlacementDirection placementDirection;
 
     private final VoxelShape SOLO_SHAPE_NORTH;
     private final VoxelShape SOLO_SHAPE_SOUTH;
@@ -80,7 +82,7 @@ public class ConnectedFurnitureBlock extends Block implements SimpleWaterloggedB
     private final VoxelShape RIGHT_SHAPE_EAST;
     private final VoxelShape RIGHT_SHAPE_WEST;
 
-    public ConnectedFurnitureBlock(Properties pProperties, TagKey<Block> inputCompatibleBlockSet, VoxelShape soloShape, VoxelShape leftShape, VoxelShape middleShape, VoxelShape rightShape, MultiBlockPlacementDirection placementDirection) {
+    public ConnectedFurnitureBlock(Properties pProperties, TagKey<Block> inputCompatibleBlockSet, VoxelShape soloShape, VoxelShape leftShape, VoxelShape middleShape, VoxelShape rightShape, ConnectingBlockPlacementDirection placementDirection) {
         //When registering this block, pass in:
         // Properties,
         // Block Tag for related blocks that this block can physically connect to

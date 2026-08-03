@@ -10,7 +10,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BarrelBlock;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
@@ -23,15 +22,14 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.function.Supplier;
+/*
+INFO:
+-----
+Handles block entity behavior for all inheriting block classes.
 
-//INFO:
-//-----
-//Handles block entity behavior for all inheriting block classes.
-
-//getSlotCount() used by StorageBlockInterface to detect desired Block Entity item slot amount to create.
-//getOpenSound() and getClosedSound() used by StorageBlockInterface to detect desired sounds for opening and closing Block Entity menu.
-//If I define these block states in the interfaces, it may crash in 1.21. This is why these methods are in place.
+getSlotCount() used by StorageBlockInterface to detect desired Block Entity item slot amount to create.
+getOpenSound() and getClosedSound() used by StorageBlockInterface to detect desired sounds for opening and closing Block Entity menu.
+*/
 
 public class BaseStorageBlock extends BaseEntityBlock implements StorageBlockInterface {
     //public static final MapCodec<BaseStorageBlock> CODEC = simpleCodec(BaseStorageBlock::new);

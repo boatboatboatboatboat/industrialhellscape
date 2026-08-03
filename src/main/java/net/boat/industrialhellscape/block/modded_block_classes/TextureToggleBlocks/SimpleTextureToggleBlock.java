@@ -1,6 +1,6 @@
 package net.boat.industrialhellscape.block.modded_block_classes.TextureToggleBlocks;
 
-import net.boat.industrialhellscape.CommonModConfig;
+import net.boat.industrialhellscape.ModCommonConfig;
 import net.boat.industrialhellscape.block.modded_interfaces.ToolUseInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -20,10 +20,15 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-//INFO:
-//-----
-// This block, when interacted with an eligible tool, will toggle its block-state, which changes the block model.
-// The block models have different texture variations or CTM connected texture modes
+/*
+INFO:
+-----
+ This block, when interacted with an eligible tool, will toggle its block-state.
+ Used with ConnectedTexturesMod to separate texture connections for the same block.
+ Allows tiling of the same block without them connecting into one big seamless texture.
+
+ Keywords: Rough Rockrete, rough_rockrete, vesselplate
+*/
 
 public class SimpleTextureToggleBlock extends Block implements ToolUseInterface {
     public static final BooleanProperty ALT_STATE = BooleanProperty.create("alt_state");
@@ -38,7 +43,7 @@ public class SimpleTextureToggleBlock extends Block implements ToolUseInterface 
         BlockState state = this.defaultBlockState();
 
         if(player != null) {
-            if(player.isCrouching() && CommonModConfig.crouchToChangeBlockStatesEnabled()) {
+            if(player.isCrouching() && ModCommonConfig.crouchToChangeBlockStatesEnabled()) {
                 state = state.setValue(ALT_STATE,true);
             }
         }
