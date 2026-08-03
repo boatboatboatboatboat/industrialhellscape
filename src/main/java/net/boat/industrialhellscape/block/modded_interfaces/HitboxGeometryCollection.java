@@ -6,7 +6,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 //INFO:
 //-----
-//This interface stores all custom hitbox geometries in one place to not clutter up the custom classes.
+//This interface stores all custom hitbox geometries in one place to not clutter up the custom classes. (pasted from BlockBench with the VoxelShape export add-on)
 //Asymmetrical hitboxes are rotated automatically in the block class for each horizontal direction by the HitboxRotationInterface interface.
 //-----
 
@@ -281,12 +281,17 @@ public interface HitboxGeometryCollection {
 
         return shape;
     }
+
+    static VoxelShape[] WORK_LIGHT_STAND_ARRAY = {HitboxGeometryCollection.THIN_VERTICAL_ROD_SHAPE(), HitboxGeometryCollection.WORK_LIGHT_MOUNT_SHAPE()};
+
+
     static VoxelShape FLOOR_WORK_LIGHT_SHAPE(){
         VoxelShape shape = Shapes.empty();
         shape = Shapes.join(shape, Shapes.box(0.25, 0, 0.3125, 0.75, 0.625, 0.75), BooleanOp.OR);
 
         return shape;
     }
+
     //METAL DESK DRAWER 2 (Same as Metal Desk Drawer 1)
     static  VoxelShape METAL_DESK_DRAWER_2_SOLO_SHAPE(){
         return METAL_DESK_DRAWER_SOLO_SHAPE();
@@ -436,7 +441,7 @@ public interface HitboxGeometryCollection {
 
         return shape;
     }
-    static VoxelShape OPERATING_TABLE_NEGATIVE(){
+    static VoxelShape OPERATING_TABLE_POSITIVE(){
         VoxelShape shape = Shapes.empty();
 
         shape = Shapes.join(shape, Shapes.box(0.15625, 0.0625, 0, 0.84375, 0.25, 0.75), BooleanOp.OR);
@@ -445,7 +450,7 @@ public interface HitboxGeometryCollection {
 
         return shape;
     }
-    static VoxelShape OPERATING_TABLE_POSITIVE(){
+    static VoxelShape OPERATING_TABLE_NEGATIVE(){
         VoxelShape shape = Shapes.empty();
         shape = Shapes.join(shape, Shapes.box(0.15625, 0.0625, 0.25, 0.84375, 0.25, 1), BooleanOp.OR);
         shape = Shapes.join(shape, Shapes.box(0.25, 0.25, 0.6875, 0.75, 0.6875, 1), BooleanOp.OR);
@@ -453,18 +458,18 @@ public interface HitboxGeometryCollection {
 
         return shape;
     }
+    static VoxelShape MEDICAL_BED_POSITIVE(){
+        VoxelShape shape = Shapes.empty();
+
+        shape = Shapes.join(shape, Shapes.box(0.03125, 0.25, 0, 0.96875, 0.9375, 0.125), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.03125, 0.25, 0.125, 0.96875, 0.625, 1), BooleanOp.OR);
+
+        return shape;
+    }
     static VoxelShape MEDICAL_BED_NEGATIVE(){
         VoxelShape shape = Shapes.empty();
         shape = Shapes.join(shape, Shapes.box(0.03125, 0.25, 0, 0.96875, 0.625, 0.875), BooleanOp.OR);
         shape = Shapes.join(shape, Shapes.box(0.03125, 0.25, 0.875, 0.96875, 0.8125, 1), BooleanOp.OR);
-
-        return shape;
-    }
-    static VoxelShape MEDICAL_BED_POSITIVE(){
-        VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape, Shapes.box(0.03125, 0.25, 0, 0.96875, 0.9375, 0.125), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.03125, 0.25, 0.125, 0.96875, 0.625, 1), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.125, 0.625, 0.125, 0.875, 0.8125, 0.5), BooleanOp.OR);
 
         return shape;
     }

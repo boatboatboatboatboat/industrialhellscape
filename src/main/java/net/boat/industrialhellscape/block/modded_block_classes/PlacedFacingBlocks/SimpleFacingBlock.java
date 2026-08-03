@@ -8,7 +8,6 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -19,8 +18,6 @@ import org.jetbrains.annotations.Nullable;
 // For full blocks
 
 public class SimpleFacingBlock extends HorizontalDirectionalBlock{
-
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     public SimpleFacingBlock(Properties pProperties) {
         super(pProperties);
@@ -41,7 +38,7 @@ public class SimpleFacingBlock extends HorizontalDirectionalBlock{
         //In-world, this side faces away from the player when placed, which is not intuitive.
         //getOpposite() is used to rectify in-world placement while keeping any auto-generated asymmetric textured full-block models consistent.
 
-        BlockState state = this.defaultBlockState().setValue(FACING, directionClicked); //First, defines facing direction of the block
+        BlockState state = this.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, directionClicked); //First, defines facing direction of the block
         return state;
     }
     @Override

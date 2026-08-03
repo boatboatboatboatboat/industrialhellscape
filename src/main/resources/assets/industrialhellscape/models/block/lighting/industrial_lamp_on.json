@@ -1,6 +1,0 @@
-{
-	"parent": "industrialhellscape:block/lighting/industrial_lamp",
-	"textures": {
-		"1": "industrialhellscape:block/lit_unlit_textures/industrial_lamp_on"
-	}
-}

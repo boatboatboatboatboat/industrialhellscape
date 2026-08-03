@@ -29,8 +29,8 @@ public class TrussBlock extends SimpleTextureToggleBlock implements SimpleWaterl
     public TrussBlock(Properties pProperties, boolean seeInteriorSides) {
         super(pProperties);
         this.registerDefaultState(this.getStateDefinition().any()
-                .setValue(ALT_STATE, Boolean.FALSE)
-                .setValue(WATERLOGGED, Boolean.FALSE));
+                .setValue(ALT_STATE, false)
+                .setValue(WATERLOGGED, false));
         this.seeInteriorSides = seeInteriorSides;
     }
 

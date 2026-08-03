@@ -4,18 +4,20 @@ import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks.AxialPillarBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks.ConnectedFurnitureBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.FallableBlocks.FacingFallableBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.InteractableMultiBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.ModdedBedBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.Modelled2BMBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.*;
 import net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBlocks.*;
 import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.ParapetBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.RailingBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.StairRailingBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.StorageBlocks.*;
+import net.boat.industrialhellscape.block.modded_block_classes.StorageBlocks.BarrelStorageBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.StorageBlocks.ConnectedStorageBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.StorageBlocks.FacingStorageBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.StorageBlocks.ModelledFacingStorageBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.*;
 import net.boat.industrialhellscape.block.modded_block_classes.TextureToggleBlocks.SimpleTextureToggleBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.TextureToggleBlocks.TrussBlock;
 import net.boat.industrialhellscape.block.modded_interfaces.HitboxGeometryCollection;
+import net.boat.industrialhellscape.block.modded_interfaces.MultiBlockPlacementArrayCollection;
 import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.util.ModTags;
@@ -31,6 +33,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -99,18 +102,20 @@ public class ModBlocks {
         );
     }
 
-//    public static final DeferredBlock<Block> PROTOTYPE_MACHINE = registerBlockAndBlockItem("prototype_machine",
-//            () -> new Block(BlockBehaviour
-//                    .Properties.ofFullCopy(Blocks.OAK_PLANKS)));
+    public static final DeferredBlock<Block> DEBUG_BLOCK = registerBlockAndBlockItem("debug_block",
+            () -> new IntegerMultiBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.OAK_PLANKS), 4, MultiBlockPlacementArrayCollection.SIDEWAYS_PLACEMENT));
 
     //JOKE BLOCKS
     public static final DeferredBlock<Block> BODY_PILLOW = registerBlockAndBlockItem("body_pillow",
-            () -> new ModdedBedBlock(BlockBehaviour
+            () -> new ModdedBedIntegerMultiBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.WHITE_WOOL)
                     .sound(SoundType.SLIME_BLOCK)
                     .noOcclusion(),
-                    HitboxGeometryCollection.PILLOW_POSITIVE(),
-                    HitboxGeometryCollection.PILLOW_NEGATIVE()
+                    2,
+                    MultiBlockPlacementArrayCollection.SLEEPABLE_BED_PLACEMENT,
+                    new VoxelShape[]{HitboxGeometryCollection.PILLOW_NEGATIVE(), HitboxGeometryCollection.PILLOW_POSITIVE()},
+                    true
             )
     );
 
@@ -1233,40 +1238,44 @@ public class ModBlocks {
             )
     );
     public static final DeferredBlock<Block> OPERATING_TABLE = registerBlockAndBlockItem("operating_table",
-            () -> new Modelled2BMBlock(BlockBehaviour
+            () -> new ModelledIntegerMultiBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .sound(SoundType.METAL)
                     .noOcclusion(),
-                    MultiBlockPlacementDirection.FORWARD,
-                    HitboxGeometryCollection.OPERATING_TABLE_POSITIVE(),
-                    HitboxGeometryCollection.OPERATING_TABLE_NEGATIVE()
+                    2,
+                    MultiBlockPlacementArrayCollection.FRONTAL_PLACEMENT,
+                    new VoxelShape[]{HitboxGeometryCollection.OPERATING_TABLE_NEGATIVE(), HitboxGeometryCollection.OPERATING_TABLE_POSITIVE()}
             )
     );
     public static final DeferredBlock<Block> MEDICAL_BED = registerBlockAndBlockItem("medical_bed",
-            () -> new ModdedBedBlock(BlockBehaviour
+            () -> new ModdedBedIntegerMultiBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .sound(SoundType.METAL)
                     .noOcclusion(),
-                    HitboxGeometryCollection.MEDICAL_BED_POSITIVE(),
-                    HitboxGeometryCollection.MEDICAL_BED_NEGATIVE()
+                    2,
+                    MultiBlockPlacementArrayCollection.SLEEPABLE_BED_PLACEMENT,
+                    new VoxelShape[] {HitboxGeometryCollection.MEDICAL_BED_NEGATIVE(),
+                    HitboxGeometryCollection.MEDICAL_BED_POSITIVE()},
+                    false
             )
     );
     public static final DeferredBlock<Block> VITALS_MONITOR = registerBlockAndBlockItem("vitals_monitor",
-            () -> new InteractableMultiBlock(BlockBehaviour
+            () -> new LightStandIntegerMultiBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .lightLevel(state -> state.getValue(InteractableMultiBlock.POWERED) ? 15 : 0),
-                    MultiBlockPlacementDirection.VERTICAL,
-                    HitboxGeometryCollection.VITALS_MONITOR_TOP(),
-                    HitboxGeometryCollection.VITALS_MONITOR_BASE()
+                    .lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0),
+                    2,
+                    MultiBlockPlacementArrayCollection.VERTICAL_PLACEMENT,
+                    new VoxelShape[]{HitboxGeometryCollection.VITALS_MONITOR_BASE(),HitboxGeometryCollection.VITALS_MONITOR_TOP()}
             )
     );
     public static final DeferredBlock<Block> IV_DRIPSTAND = registerBlockAndBlockItem("iv_dripstand",
-            () -> new Modelled2BMBlock(BlockBehaviour
+            () -> new ModelledIntegerMultiBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.OAK_PLANKS)
                     .noOcclusion(),
-                    MultiBlockPlacementDirection.VERTICAL,
-                    HitboxGeometryCollection.THIN_VERTICAL_ROD_SHAPE(),
-                    HitboxGeometryCollection.THIN_VERTICAL_ROD_SHAPE()
+                    2,
+                    MultiBlockPlacementArrayCollection.VERTICAL_PLACEMENT,
+                    new VoxelShape[]{HitboxGeometryCollection.THIN_VERTICAL_ROD_SHAPE(),
+                    HitboxGeometryCollection.THIN_VERTICAL_ROD_SHAPE()}
             )
     );
 //
@@ -1296,10 +1305,10 @@ public class ModBlocks {
     );
 //
     public static final DeferredBlock<Block> LARGE_LOCKER = registerBlockAndBlockItem("large_locker",
-            () -> new TwoBlockStorageMultiBlock(BlockBehaviour
+            () -> new TwoBlockStorageIntegerMultiBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .noOcclusion()
-                    , MultiBlockPlacementDirection.VERTICAL
+                    , 2
+                    , MultiBlockPlacementArrayCollection.VERTICAL_PLACEMENT
                     , 54
                     , ModSounds.METAL_BOX_OPEN.get()
                     , ModSounds.METAL_BOX_CLOSE.get()
@@ -1329,15 +1338,17 @@ public class ModBlocks {
                     HitboxGeometryCollection.DECAL_FLOOR()
             )
     );
+
     public static final DeferredBlock<Block> WORK_LIGHT_STAND = registerBlockAndBlockItem("work_light_stand",
-            () -> new InteractableMultiBlock(BlockBehaviour
+            () -> new LightStandIntegerMultiBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .lightLevel(state -> state.getValue(InteractableMultiBlock.POWERED) ? 15 : 0),
-                    MultiBlockPlacementDirection.VERTICAL,
-                    HitboxGeometryCollection.WORK_LIGHT_MOUNT_SHAPE(),
-                    HitboxGeometryCollection.THIN_VERTICAL_ROD_SHAPE()
+                    .lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0),
+                    2,
+                    MultiBlockPlacementArrayCollection.VERTICAL_PLACEMENT,
+                    new VoxelShape[]{HitboxGeometryCollection.THIN_VERTICAL_ROD_SHAPE(),HitboxGeometryCollection.WORK_LIGHT_MOUNT_SHAPE()}
             )
     );
+
     public static final DeferredBlock<Block> FLOOR_WORK_LIGHT = registerBlockAndBlockItem("floor_work_light",
             () -> new InteractableModelledFacingBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
@@ -1358,16 +1369,16 @@ public class ModBlocks {
                     ModSounds.SWITCH_OFF.get()
             )
     );
-    public static final DeferredBlock<Block> INDUSTRIAL_LAMP = registerBlockAndBlockItem("industrial_lamp",
-            () -> new LightBulbBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .noOcclusion()
-                    .lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0),
-                    HitboxGeometryCollection.INDUSTRIAL_LAMP(),
-                    ModSounds.SWITCH_ON.get(),
-                    ModSounds.SWITCH_OFF.get()
-            )
-    );
+//    public static final DeferredBlock<Block> INDUSTRIAL_LAMP = registerBlockAndBlockItem("industrial_lamp",
+//            () -> new LightBulbBlock(BlockBehaviour
+//                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+//                    .noOcclusion()
+//                    .lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0),
+//                    HitboxGeometryCollection.INDUSTRIAL_LAMP(),
+//                    ModSounds.SWITCH_ON.get(),
+//                    ModSounds.SWITCH_OFF.get()
+//            )
+//    );
 
     public static final DeferredBlock<Block> RETRO_COMPUTER = registerBlockAndBlockItem("retro_computer",
             () -> new InteractableModelledFacingBlock(BlockBehaviour

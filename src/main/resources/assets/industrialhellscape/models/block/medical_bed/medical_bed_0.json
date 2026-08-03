@@ -95,6 +95,7 @@
 		{
 			"name": "negative_half",
 			"origin": [0.5, 8, -2],
+			"scope": 0,
 			"color": 0,
 			"children": [
 				0,
@@ -102,6 +103,7 @@
 				{
 					"name": "wheels",
 					"origin": [0.4, 5, 11],
+					"scope": 0,
 					"color": 0,
 					"children": [2, 3]
 				}

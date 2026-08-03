@@ -13,12 +13,10 @@ import net.minecraft.world.level.block.FallingBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
-import java.util.function.Supplier;
 
 //INFO:
 //-----
@@ -28,13 +26,12 @@ import java.util.function.Supplier;
 // For full blocks
 
 public class FacingFallableBlock extends FallingBlock {
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public SoundEvent onDropSound;
 
     public FacingFallableBlock(Properties pProperties, SoundEvent onDropSound) {
         super(pProperties);
         this.registerDefaultState(this.stateDefinition.any()
-                .setValue(FACING, Direction.NORTH)); //Default state if placed with no player present
+                .setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)); //Default state if placed with no player present
         this.onDropSound = onDropSound;
     }
 
@@ -46,7 +43,7 @@ public class FacingFallableBlock extends FallingBlock {
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
         Direction directionClicked = pContext.getHorizontalDirection().getOpposite(); //Gets the cardinal direction when player places new block
-        BlockState state = this.defaultBlockState().setValue(FACING, directionClicked); //First, defines facing direction of the block
+        BlockState state = this.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, directionClicked); //First, defines facing direction of the block
         return state;
     }
 
@@ -59,6 +56,6 @@ public class FacingFallableBlock extends FallingBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(FACING); //Block's blockstates; its NSEW orientation
+        pBuilder.add(BlockStateProperties.HORIZONTAL_FACING); //Block's blockstates; its NSEW orientation
     }
 }

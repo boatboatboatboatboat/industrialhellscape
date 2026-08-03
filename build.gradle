@@ -126,17 +126,17 @@ dependencies {
     implementation("curse.maven:jade-324717:7545219")
     implementation("curse.maven:worldedit-225608:5830452")
     implementation("curse.maven:abyssal-decor-964853:7859163")
-    implementation("curse.maven:etched-491890:7088631")
-    implementation("curse.maven:pneumaticcraft-repressurized-281849:8519226")
-    implementation("curse.maven:patchouli-306770:7730942")
-    implementation("curse.maven:create-deco-509285:7943181")
+//    implementation("curse.maven:etched-491890:7088631")
+//    implementation("curse.maven:pneumaticcraft-repressurized-281849:8519226")
+//    implementation("curse.maven:patchouli-306770:7730942")
+//    implementation("curse.maven:create-deco-509285:7943181")
     implementation("curse.maven:architects-palette-433862:6861008")
 
-    implementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
-    implementation("net.createmod.ponder:ponder-neoforge:${ponder_version}+mc${minecraft_version}")
-    compileOnly("dev.engine-room.flywheel:flywheel-neoforge-api-${minecraft_version}:${flywheel_version}")
-    runtimeOnly("dev.engine-room.flywheel:flywheel-neoforge-${minecraft_version}:${flywheel_version}")
-    implementation("com.tterrag.registrate:Registrate:${registrate_version}")
+//    implementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
+//    implementation("net.createmod.ponder:ponder-neoforge:${ponder_version}+mc${minecraft_version}")
+//    compileOnly("dev.engine-room.flywheel:flywheel-neoforge-api-${minecraft_version}:${flywheel_version}")
+//    runtimeOnly("dev.engine-room.flywheel:flywheel-neoforge-${minecraft_version}:${flywheel_version}")
+//    implementation("com.tterrag.registrate:Registrate:${registrate_version}")
 
 
     // Example optional mod dependency with JEI

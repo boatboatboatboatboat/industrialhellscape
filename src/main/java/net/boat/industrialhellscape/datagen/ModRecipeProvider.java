@@ -280,7 +280,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.WORK_LIGHT_STAND.get().asItem(),
             ModBlocks.FLOOR_WORK_LIGHT.get().asItem(),
             ModBlocks.FUEL_DRUM.get().asItem(),
-            ModBlocks.INDUSTRIAL_LAMP.get(),
+//            ModBlocks.INDUSTRIAL_LAMP.get(),
             ModBlocks.OBLONG_CAGE_LAMP.get()
     );
     private static final List<ItemLike> TECHNOLOGY_FURNITURE = List.of(
@@ -465,7 +465,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.JOB_APPLICATION.get(), 1)
                 .requires(ModItems.INHELL_HAVEN_DEVICE.get())
                 .requires(Items.PAPER)
-                .requires(Items.BLACK_DYE)
+                .requires(Items.RED_DYE)
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, "job_application"));
 

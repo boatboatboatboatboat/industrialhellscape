@@ -1,10 +1,9 @@
 package net.boat.industrialhellscape.datagen;
 
 import net.boat.industrialhellscape.block.ModBlocks;
-import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.TwoBlockMultiBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.IntegerMultiBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.RailingBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.StairRailingBlock;
-import net.boat.industrialhellscape.block.modded_block_state_properties.TwoBlockMultiBlockState;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
@@ -31,10 +30,12 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         //DEBUG BLOCK
         //this.dropSelf(ModBlocks.PROTOTYPE_MACHINE.get());
+        this.add(ModBlocks.DEBUG_BLOCK.get(),
+                createIntegerMultiBlockDrops(ModBlocks.DEBUG_BLOCK.get()));
 
         //JOKE BLOCK
         this.add(ModBlocks.BODY_PILLOW.get(),
-                createMultiBlockDrops(ModBlocks.BODY_PILLOW.get()));
+                createIntegerMultiBlockDrops(ModBlocks.BODY_PILLOW.get()));
 
         //BASE BUILDING BLOCKS
         this.dropSelf(ModBlocks.METALWORKS.get());
@@ -278,11 +279,13 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.FIRE_EXTINGUISHER.get());
         this.dropSelf(ModBlocks.SMOKE_ALARM.get());
         this.add(ModBlocks.OPERATING_TABLE.get(),
-                createMultiBlockDrops(ModBlocks.OPERATING_TABLE.get()));
+                createIntegerMultiBlockDrops(ModBlocks.OPERATING_TABLE.get()));
         this.add(ModBlocks.MEDICAL_BED.get(),
-                createMultiBlockDrops(ModBlocks.MEDICAL_BED.get()));
-        this.dropSelf(ModBlocks.IV_DRIPSTAND.get());
-        this.dropSelf(ModBlocks.VITALS_MONITOR.get());
+                createIntegerMultiBlockDrops(ModBlocks.MEDICAL_BED.get()));
+        this.add(ModBlocks.IV_DRIPSTAND.get(),
+                createIntegerMultiBlockDrops(ModBlocks.IV_DRIPSTAND.get()));
+        this.add(ModBlocks.VITALS_MONITOR.get(),
+                createIntegerMultiBlockDrops(ModBlocks.VITALS_MONITOR.get()));
 
         this.dropSelf(ModBlocks.TOILET.get());
         this.dropSelf(ModBlocks.SINK.get());
@@ -290,13 +293,13 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         this.dropSelf(ModBlocks.LOCKER_BOX.get());
         this.add(ModBlocks.LARGE_LOCKER.get(),
-                createMultiBlockDrops(ModBlocks.LARGE_LOCKER.get()));
+                createIntegerMultiBlockDrops(ModBlocks.LARGE_LOCKER.get()));
         this.add(ModBlocks.WORK_LIGHT_STAND.get(),
-                createMultiBlockDrops(ModBlocks.WORK_LIGHT_STAND.get()));
+                createIntegerMultiBlockDrops(ModBlocks.WORK_LIGHT_STAND.get()));
         this.dropSelf(ModBlocks.FLOOR_WORK_LIGHT.get());
         this.dropSelf(ModBlocks.FUEL_DRUM.get());
         this.dropSelf(ModBlocks.CCTV_CAMERA.get());
-        this.dropSelf(ModBlocks.INDUSTRIAL_LAMP.get());
+//        this.dropSelf(ModBlocks.INDUSTRIAL_LAMP.get());
         this.dropSelf(ModBlocks.OBLONG_CAGE_LAMP.get());
 
         this.dropSelf(ModBlocks.CASSETTE_PLAYER.get());
@@ -385,21 +388,18 @@ protected LootTable.Builder createStairRailingDrops(Block pBlock) {
             ;
 }
 
-protected LootTable.Builder createMultiBlockDrops(Block pBlock) {
-    //It turns out, .withPool()s can be stacked together to form separate loot pools.
-    //For example, the vanilla function createPotFlowerItemTable() in BlockLootSubProvider
+    protected LootTable.Builder createIntegerMultiBlockDrops(Block pBlock) {
+        return LootTable.lootTable()
 
-    return LootTable.lootTable()
-
-            .withPool(LootPool.lootPool()
-                    .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
-                            .setProperties(StatePropertiesPredicate.Builder.properties()
-                                    .hasProperty(TwoBlockMultiBlock.HALF_PART, TwoBlockMultiBlockState.NEGATIVE))) //when true
-                    .add(this.applyExplosionDecay(pBlock, LootItem.lootTableItem(pBlock)
-                                    .apply(List.of(1), (p_249985_) -> SetItemCountFunction.setCount(ConstantValue.exactly((float) p_249985_))))
-                            .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))))
-            ;
-}
+                .withPool(LootPool.lootPool()
+                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
+                                .setProperties(StatePropertiesPredicate.Builder.properties()
+                                        .hasProperty(IntegerMultiBlock.PART, 0))) //when true
+                        .add(this.applyExplosionDecay(pBlock, LootItem.lootTableItem(pBlock)
+                                        .apply(List.of(1), (p_249985_) -> SetItemCountFunction.setCount(ConstantValue.exactly((float) p_249985_))))
+                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))))
+                ;
+    }
 
     @Override
     protected Iterable<Block> getKnownBlocks() {

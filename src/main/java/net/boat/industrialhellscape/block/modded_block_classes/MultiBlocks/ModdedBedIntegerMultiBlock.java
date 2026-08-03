@@ -1,59 +1,62 @@
 package net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks;
 
-import net.boat.industrialhellscape.block.modded_block_state_properties.TwoBlockMultiBlockState;
-import net.boat.industrialhellscape.block.modded_logic_enums.MultiBlockPlacementDirection;
+import net.boat.industrialhellscape.block.modded_interfaces.MultiBlockPlacementInterface;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.EntityBlock;
-import net.minecraft.world.level.block.SimpleWaterloggedBlock;
-import net.minecraft.world.level.block.entity.BedBlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
+public class ModdedBedIntegerMultiBlock extends ModelledIntegerMultiBlock{
 
-public class ModdedBedBlock extends Modelled2BMBlock implements SimpleWaterloggedBlock {
+    protected boolean multiplePeopleCanSleepOn;
 
-    public static final BooleanProperty OCCUPIED = BlockStateProperties.OCCUPIED;
-
-    public ModdedBedBlock(Properties pProperties, VoxelShape hitboxPositiveShape, VoxelShape hitboxNegativeShape) {
-        // When registering this block, pass in:
-        // Block properties
-        // VoxelShape hitbox for positive (forward half)
-        // VoxelShape hitbox for negative (backwards half, closest towards player when placed down)
-        super(pProperties, MultiBlockPlacementDirection.FORWARD,hitboxPositiveShape,  hitboxNegativeShape);
+    public ModdedBedIntegerMultiBlock(Properties pProperties, int registerMaxBlockStates, int[][] multiBlockPlacementMatrix, VoxelShape[] hitboxShapeArray, boolean multiplePeopleCanSleepOn) {
+        super(pProperties, registerMaxBlockStates, multiBlockPlacementMatrix, hitboxShapeArray);
         this.registerDefaultState(this.stateDefinition.any()
-                .setValue(HALF_PART, TwoBlockMultiBlockState.NEGATIVE)
+                .setValue(PART, 0)
                 .setValue(FACING,Direction.NORTH)
-                .setValue(OCCUPIED, false)
+                .setValue(BlockStateProperties.WATERLOGGED,false)
+                .setValue(BlockStateProperties.OCCUPIED, false)
         );
+
+        this.multiplePeopleCanSleepOn = multiplePeopleCanSleepOn;
+    }
+
+    public BlockState getStateForPlacement(BlockPlaceContext pContext) {
+        Level level = pContext.getLevel();
+        BlockPos originPos = pContext.getClickedPos();
+        level.getBlockState(originPos);
+        BlockState pState;
+        Direction facing = pContext.getHorizontalDirection(); //Facing is NOT opposite to facilitate proper sleeping orientation
+        FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
+        pState = this.defaultBlockState().setValue(BlockStateProperties.WATERLOGGED,fluidstate.getType() == Fluids.WATER); //set default Block State for this block, THEN assign waterlogged state (so it doesnt try to do that for air)
+
+        return MultiBlockPlacementInterface.placeOriginBlock(level, originPos, pState, FACING, facing, multiBlockPlacementMatrix);
     }
 
     @Override
     public @NotNull Direction getBedDirection(@NotNull BlockState state, LevelReader level, @NotNull BlockPos pos) {
-        //Ensures player faces the correct direction when sleeping
         BlockState blockstate = level.getBlockState(pos);
-        return blockstate.getBlock() instanceof ModdedBedBlock ? blockstate.getValue(FACING) : Direction.NORTH;
+        return blockstate.getBlock() instanceof ModdedBedIntegerMultiBlock ? blockstate.getValue(FACING) : Direction.NORTH;
     }
 
     @Override
@@ -74,7 +77,7 @@ public class ModdedBedBlock extends Modelled2BMBlock implements SimpleWaterlogge
             //Redefine pos as that of the POSITIVE block by finding the pos behind the current block
             //If the block at that position is an instance of the same block
             //CONSUME
-            if (state.getValue(HALF_PART) != TwoBlockMultiBlockState.POSITIVE) {
+            if (state.getValue(PART) == 1) {
                 pos = pos.relative(state.getValue(FACING));
                 state = level.getBlockState(pos);
                 if (!state.is(this)) {
@@ -90,8 +93,12 @@ public class ModdedBedBlock extends Modelled2BMBlock implements SimpleWaterlogge
                 }
                 Vec3 vec3 = pos.getCenter();
                 level.explode(null, level.damageSources().badRespawnPointExplosion(vec3), null, vec3, 5.0F, true, Level.ExplosionInteraction.BLOCK);
+            } else if (state.getValue(BlockStateProperties.OCCUPIED) && !multiplePeopleCanSleepOn) {
+                //forbid sleeping if occupied
+                player.displayClientMessage(Component.translatable("block.minecraft.bed.occupied"), true);
+                return InteractionResult.SUCCESS;
             } else {
-                //Forbids sleeping unless nighttime or thunderstorm, I think
+                //If no other conditions met, Initiates sleeping unless nighttime or thunderstorm, I think
                 player.startSleepInBed(pos).ifLeft((p_49477_) -> {
                     if (p_49477_.getMessage() != null) {
                         player.displayClientMessage(p_49477_.getMessage(), true);
@@ -115,6 +122,6 @@ public class ModdedBedBlock extends Modelled2BMBlock implements SimpleWaterlogge
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(FACING, HALF_PART, OCCUPIED, WATERLOGGED);
+        pBuilder.add(FACING, PART, BlockStateProperties.OCCUPIED, BlockStateProperties.WATERLOGGED);
     }
 }

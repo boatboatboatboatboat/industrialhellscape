@@ -2,10 +2,9 @@ package net.boat.industrialhellscape.datagen;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
-import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.TwoBlockMultiBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.IntegerMultiBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.SurfaceMountBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.TextureToggleBlocks.SimpleTextureToggleBlock;
-import net.boat.industrialhellscape.block.modded_block_state_properties.TwoBlockMultiBlockState;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -19,7 +18,7 @@ import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
-import static net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.ModelToggleLightBulbBlock.ALT_STATE;
+import java.util.Arrays;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
@@ -30,7 +29,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         //Debug Blocks
         //genSimpleSBI(ModBlocks.PROTOTYPE_MACHINE.get(), build3FaceTexturesBlockModel("prototype_machine","experimental", "prototype_machine_front", "prototype_machine_side", "prototype_machine_top"));
-
+        genFullBlockIntegerMultiBlockSI(ModBlocks.DEBUG_BLOCK.get(), "debug_textures", 4);
+        genModelledIntegerMultiBlockS(ModBlocks.BODY_PILLOW.get(), "body_pillow");
 
         //Base Building Blocks
         genSimpleSBI(ModBlocks.METALWORKS.get(), build6FaceTexturesBlockModel("metalworks","metalworks","metalworks_side","metalworks_side", "metalworks_side","metalworks_side","metalworks_top","metalworks_bottom"));
@@ -225,29 +225,35 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genTrapdoorSBI(ModBlocks.RUSTY_VENT_TRAPDOOR.get(),"solid");
 
         //FURNITURE BLOCKS WITH EXISTING BLOCK MODELS
-        GenFacingModelledSI(ModBlocks.SINK.get(),"");
-        GenFacingModelledSI(ModBlocks.OFFICE_CHAIR.get(),"office_chair");
-        GenFacingModelledSI(ModBlocks.BLACK_OFFICE_CHAIR.get(), "office_chair");
-        GenFacingModelledSI(ModBlocks.FOLDING_CHAIR.get(), "");
-        GenFacingModelledSI(ModBlocks.WHITE_WALL_MEDKIT.get(),"medkit_containers");
-        GenFacingModelledSI(ModBlocks.RED_WALL_MEDKIT.get(),"medkit_containers");
-        GenFacingModelledSI(ModBlocks.FIRE_EXTINGUISHER.get(), "");
-        GenFacingPoweredSI(ModBlocks.TOILET.get(), "toilet");
+        genFacingModelledSI(ModBlocks.SINK.get(),"");
+        genFacingModelledSI(ModBlocks.OFFICE_CHAIR.get(),"office_chair");
+        genFacingModelledSI(ModBlocks.BLACK_OFFICE_CHAIR.get(), "office_chair");
+        genFacingModelledSI(ModBlocks.FOLDING_CHAIR.get(), "");
+        genFacingModelledSI(ModBlocks.WHITE_WALL_MEDKIT.get(),"medkit_containers");
+        genFacingModelledSI(ModBlocks.RED_WALL_MEDKIT.get(),"medkit_containers");
+        genFacingModelledSI(ModBlocks.FIRE_EXTINGUISHER.get(), "");
+        genFacingPoweredSI(ModBlocks.TOILET.get(), "toilet");
         genAttachedSI(ModBlocks.SMOKE_ALARM.get(), "");
         genAttachedSBI(ModBlocks.FUEL_DRUM.get(), "", build6FaceTexturesBlockModel("fuel_drum","fuel_drum", "red_labeled_fuel_drum_front", "red_labeled_fuel_drum_front", "red_labeled_fuel_drum_side", "red_labeled_fuel_drum_side", "red_fuel_drum_up","red_fuel_drum_down"));
         genWAllVsCeilingSI(ModBlocks.CCTV_CAMERA.get(),"cctv_camera","ceiling","wall");
-        GenFacingLightSI(ModBlocks.FLOOR_WORK_LIGHT.get(), "work_light", "work_light_lamp");
-        GenFacingLightSI(ModBlocks.RETRO_COMPUTER.get(), "retro_computer", "retro_computer_screen");
-        GenFacingLightSI(ModBlocks.RETRO_COMPUTER_2.get(), "retro_computer", "retro_computer_2_screen");
-        GenFacingLightSI(ModBlocks.MONITOR_AND_KEYBOARD.get(), "modern_computer", "monitor_screen");
-        GenFacingModelledSI(ModBlocks.DESKTOP_TOWER.get(), "modern_computer");
-        GenFacingPoweredSI(ModBlocks.CASSETTE_PLAYER.get(), "cassette_player");
-        TwoBlockMultiBlock(ModBlocks.LARGE_LOCKER.get(), "locker");
+        genFacingLightSI(ModBlocks.FLOOR_WORK_LIGHT.get(), "work_light", "work_light_lamp");
+        genInteractableIntegerMultiBlock(ModBlocks.WORK_LIGHT_STAND.get(),"work_light", "lit_unlit_textures","1","work_light_lamp_on", new Integer[]{1});
+        genInteractableIntegerMultiBlock(ModBlocks.VITALS_MONITOR.get(),"vitals_monitor", "lit_unlit_textures","1","vitals_monitor_screen_on", new Integer[]{1});
+        genModelledIntegerMultiBlockS(ModBlocks.IV_DRIPSTAND.get(), "iv_dripstand");
+        genModelledIntegerMultiBlockS(ModBlocks.OPERATING_TABLE.get(), "operating_table");
+        genModelledIntegerMultiBlockS(ModBlocks.MEDICAL_BED.get(), "medical_bed");
+
+        genFacingLightSI(ModBlocks.RETRO_COMPUTER.get(), "retro_computer", "retro_computer_screen");
+        genFacingLightSI(ModBlocks.RETRO_COMPUTER_2.get(), "retro_computer", "retro_computer_2_screen");
+        genFacingLightSI(ModBlocks.MONITOR_AND_KEYBOARD.get(), "modern_computer", "monitor_screen");
+        genFacingModelledSI(ModBlocks.DESKTOP_TOWER.get(), "modern_computer");
+        genFacingPoweredSI(ModBlocks.CASSETTE_PLAYER.get(), "cassette_player");
+        genModelledIntegerMultiBlockS(ModBlocks.LARGE_LOCKER.get(), "locker");
         genHorizontalSBI(ModBlocks.LOCKER_BOX.get(), build6FaceTexturesBlockModel("locker_box","locker","locker_box_front","locker_box_side","locker_box_side","locker_box_side","locker_box_top","locker_box_bottom"));
 
-        GenFacingModelledSI(ModBlocks.URINAL.get(), "urinal");
+        genFacingModelledSI(ModBlocks.URINAL.get(), "urinal");
         genSurfaceLightSI(ModBlocks.OBLONG_CAGE_LAMP.get(), "lighting");
-        genSurfaceLightSI(ModBlocks.INDUSTRIAL_LAMP.get(), "lighting");
+//        genSurfaceLightSI(ModBlocks.INDUSTRIAL_LAMP.get(), "lighting");
     }
 
     //---------- CUSTOM BLOCK MODEL GENERATORS ----------
@@ -270,24 +276,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         ).texture("particle", modLoc("block/" + folderName +"/" + top));
     }
 
-    private ModelFile buildAntiCullBlock(String blockName, String folderName, String side, String top, String renderType) {
-        return models()
-                .withExistingParent(blockName, modLoc("block/anticull_template"))
-                .texture("side", modLoc("block/" + folderName + "/" + side)) //side
-                .texture("top", modLoc("block/" + folderName + "/" + top)) //top
-                .texture("bottom", modLoc("block/" + folderName + "/" + side)) //bottom
-                .renderType(renderType);
-    }
-
-    private ModelFile buildSimpleBlockWithRenderType(String blockName, String folderName, String renderType) {
-        //Builds a textured model that uses six texture .pngs for all 6 faces.
-
-        return models().cubeAll(
-                blockName,
-                modLoc( "block/" + folderName+ "/" + blockName)
-        ).texture("particle", modLoc("block/" + folderName +"/" + blockName)).renderType(renderType);
-    }
-
     private ModelFile buildCubeColumn(String modelName, String folderName, String sideTexture, String endTexture) {
         String basePath = "block/"; //generated/resources/assets/models/blocks
 
@@ -295,6 +283,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .withExistingParent(basePath + modelName, mcLoc("block/cube_column"))
                 .texture("side", IndustrialHellscape.MOD_ID + ":" + basePath + (folderName+(folderName.isEmpty() ? "":"/")) + sideTexture)
                 .texture("end", IndustrialHellscape.MOD_ID + ":" + basePath + (folderName+(folderName.isEmpty() ? "":"/")) + endTexture);
+    }
+
+    private ModelFile buildFullBlockIntegerMultiBlock(String blockName, String textureSubFolder, String allSideTexture, int blockState) {
+        //Builds a textured model that uses three texture .pngs for all 6 faces.
+        return build6FaceTexturesBlockModel(blockName, textureSubFolder, allSideTexture, allSideTexture, allSideTexture,allSideTexture,allSideTexture,allSideTexture);
     }
 
     //---------- END OF CUSTOM BLOCK MODEL GENERATOR METHODS ----------
@@ -457,17 +450,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, models().getExistingFile(modLoc(existingModelPath)));
     }
 
-    private void genAntiCullBLock(Block block, String folderName, String side, String top, String renderType) {
-        //For truss blocks. A side and top texture are required to accomodate Catwalk trusss
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        simpleBlock(block, buildAntiCullBlock(stringName, folderName, side, top, renderType));
-
-        String existingModelPath = "block/"+stringName;
-
-        //GENERATE ITEM MODEL
-        simpleBlockItem(block, models().getExistingFile(modLoc(existingModelPath)));
-    }
-
     private void genTextureToggleAntiCullSBI(Block block, String textureSubFolder, String side, String top, String renderType) {
         //For truss blocks. A side and top texture are required to accomodate Catwalk truss
 
@@ -548,7 +530,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private void genDoorSBI(Block block, String renderType) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        String existingModelPath = "block/"+stringName;
         doorBlockWithRenderType(((DoorBlock) block), modLoc("block/door/"+stringName+"_bottom"), modLoc("block/door/"+stringName+"_top"), renderType);
     }
 
@@ -620,56 +601,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, models().getExistingFile(modLoc(unpoweredModelPath)));
     }
 
-    //change or remove
-    private void genModelToggleSBI(Block block, String folderName) {
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        String onModelStringName = stringName + "_on";
-        String unpoweredModelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
-        String poweredModelPath = "block/"+stringName+"_on"; //generated/resources
-        String poweredTexturePath = "block/lit_unlit_textures/"+stringName+"_on";
-
-        //On Model
-        ModelFile generatedOnModel = models()
-                .withExistingParent(onModelStringName, modLoc(unpoweredModelPath))
-                .texture("1", poweredTexturePath);
-
-        getVariantBuilder(block)
-                .forAllStatesExcept(state -> {
-                    AttachFace face = state.getValue(BlockStateProperties.ATTACH_FACE);
-                    Direction facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
-                    Boolean lit = state.getValue(BlockStateProperties.LIT);
-                    Boolean altState = state.getValue(ALT_STATE);
-                    String modelToUse = lit? poweredModelPath : unpoweredModelPath;
-
-                    int yRot = switch (facing) {
-                        case SOUTH -> 180;
-                        case WEST  -> 270;
-                        case EAST  -> 90;
-                        default -> 0; //NORTH
-                    };
-
-                    if(altState) {
-                        return ConfiguredModel.builder()
-                                .modelFile(models().getExistingFile(modLoc(modelToUse)))
-                                .rotationY(yRot+90)
-                                .rotationX(face == AttachFace.FLOOR ? 0 : (face == AttachFace.WALL ? 90 : 180) )
-
-                                .build();
-                    } else {
-                        return ConfiguredModel.builder()
-                                .modelFile(models().getExistingFile(modLoc(modelToUse)))
-                                .rotationX(face == AttachFace.FLOOR ? 0 : (face == AttachFace.WALL ? 90 : 180) )
-                                .rotationY(yRot)
-                                .build();
-                    }
-                }, BlockStateProperties.WATERLOGGED);
-
-        //GENERATE ITEM MODEL
-        simpleBlockItem(block, models().getExistingFile(modLoc(unpoweredModelPath)));
-    }
-
-
-    private void GenFacingModelledSI(Block block, String folderName) {
+    private void genFacingModelledSI(Block block, String folderName) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String modelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
 
@@ -693,7 +625,104 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //GENERATE ITEM MODEL
         simpleBlockItem(block, models().getExistingFile(modLoc(modelPath)));
     }
-    private void GenFacingLightSI(Block block, String folderName, String litUnlitTextureName) {
+
+    private void genFullBlockIntegerMultiBlockSI(Block block, String textureSubFolder, int maxStates) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+
+        //make all models first
+        for(int i=0; i<maxStates;i++) {
+            buildFullBlockIntegerMultiBlock(stringName+"_"+i,textureSubFolder, stringName+"_"+i, i);
+        }
+
+        getVariantBuilder(block)
+                .forAllStatesExcept(state -> {
+                    Direction horizontalFacing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+
+                    int yRot = switch (horizontalFacing) {
+                        case SOUTH -> 180;
+                        case WEST  -> 270;
+                        case EAST  -> 90;
+                        default -> 0; //NORTH
+                    };
+
+                    int intBlockState = state.getValue(IntegerMultiBlock.PART);
+
+                    return ConfiguredModel.builder()
+                            .modelFile(models().getExistingFile(modLoc("block/"+stringName + "_"+intBlockState)))
+                            .rotationY(yRot)
+                            .build();
+                }, BlockStateProperties.WATERLOGGED);
+
+        //GENERATE ITEM MODEL
+        simpleBlockItem(block, models().getExistingFile(modLoc("block/"+stringName + "_"+0)));
+    }
+
+    private void genModelledIntegerMultiBlockS(Block block, String existingModelSubFolder) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+
+        getVariantBuilder(block)
+                .forAllStatesExcept(state -> {
+                    Direction horizontalFacing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+
+                    int yRot = switch (horizontalFacing) {
+                        case SOUTH -> 180;
+                        case WEST  -> 270;
+                        case EAST  -> 90;
+                        default -> 0; //NORTH
+                    };
+
+                    int intBlockState = state.getValue(IntegerMultiBlock.PART);
+
+                    return ConfiguredModel.builder()
+                            .modelFile(models().getExistingFile(modLoc("block/"+ existingModelSubFolder+(existingModelSubFolder.isEmpty() ? "":"/") +stringName  + "_"+intBlockState)))
+                            .rotationY(yRot)
+                            .build();
+                }, BlockStateProperties.WATERLOGGED);
+    }
+
+    private void genInteractableIntegerMultiBlock(Block block, String existingModelSubFolder, String litTextureSubFolder, String lightableTextureKey, String litTextureName, Integer[] arrayOfStatesWithModelChange) {
+        //Integer Object used for arrayOfStatesWithModelChange instead of Primitive
+        //The .contains() comparison only works with Integer Objects
+
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        String onModelStringName = stringName + "_on";
+        String unpoweredParentModelPath = "block/"+existingModelSubFolder+(existingModelSubFolder.isEmpty() ? "":"/")+stringName;
+        String poweredModelPath = "block/"+onModelStringName; //generated/resources
+        String poweredTexturePath = "block/"+litTextureSubFolder+(litTextureSubFolder.isEmpty() ? "":"/")+litTextureName;
+
+        //On Model (generated from existing parent)
+        for(int i=0; i<arrayOfStatesWithModelChange.length; i++) {
+            int stateWithModelChange = arrayOfStatesWithModelChange[i];
+            models()
+                    .withExistingParent(onModelStringName+"_"+stateWithModelChange, modLoc(unpoweredParentModelPath+"_"+stateWithModelChange))
+                    .texture(lightableTextureKey, poweredTexturePath);
+        }
+
+        getVariantBuilder(block)
+                .forAllStatesExcept(state -> {
+                    Direction horizontalFacing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+                    boolean lit = state.getValue(BlockStateProperties.LIT);
+                    Integer intBlockState = state.getValue(IntegerMultiBlock.PART);
+                    boolean partIntDesignatedForModelChange = (Arrays.asList(arrayOfStatesWithModelChange).contains(intBlockState) );
+                    boolean modelNeedsChange = (lit && partIntDesignatedForModelChange);
+
+                    String modelToUse = modelNeedsChange? poweredModelPath : unpoweredParentModelPath;
+
+                    int yRot = switch (horizontalFacing) {
+                        case SOUTH -> 180;
+                        case WEST  -> 270;
+                        case EAST  -> 90;
+                        default -> 0; //NORTH
+                    };
+
+                    return ConfiguredModel.builder()
+                            .modelFile(models().getExistingFile(modLoc(modelToUse+"_"+intBlockState)))
+                            .rotationY(yRot)
+                            .build();
+                }, BlockStateProperties.WATERLOGGED);
+    }
+
+    private void genFacingLightSI(Block block, String folderName, String litUnlitTextureName) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String onModelStringName = stringName + "_on";
         String unpoweredModelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
@@ -728,7 +757,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, models().getExistingFile(modLoc(unpoweredModelPath)));
     }
 
-    private void GenFacingPoweredSI(Block block, String folderName) {
+    private void genFacingPoweredSI(Block block, String folderName) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String unpoweredModelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
         String poweredModelPath = unpoweredModelPath+"_on";
@@ -795,33 +824,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     .build();
 
         }, BlockStateProperties.WATERLOGGED);
-    }
-
-    private void TwoBlockMultiBlock(Block block, String folderName) {
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        String blockName = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
-        String positiveBlockName = blockName+"_positive";
-        String negativeBlockName = blockName+"_negative";
-
-        getVariantBuilder(block)
-                .forAllStatesExcept(state -> {
-                    Direction horizontalFacing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
-                    TwoBlockMultiBlockState half = state.getValue(TwoBlockMultiBlock.HALF_PART);
-                    String modelToUse = (half == TwoBlockMultiBlockState.POSITIVE)? positiveBlockName : negativeBlockName;
-
-                    int yRot = switch (horizontalFacing   ) {
-                        case SOUTH -> 180;
-                        case WEST  -> 270;
-                        case EAST  -> 90;
-                        default -> 0; //NORTH
-                    };
-
-                    return ConfiguredModel.builder()
-                            .modelFile(models().getExistingFile(modLoc(modelToUse)))
-                            .rotationY(yRot)
-                            .build();
-                }, BlockStateProperties.WATERLOGGED);
-
     }
 
     private void genWAllVsCeilingSI(Block block, String folderName, String ceilingModelKey, String wallModelKey) {

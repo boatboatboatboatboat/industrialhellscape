@@ -246,7 +246,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.WORK_LIGHT_STAND.get().asItem(),
                         ModBlocks.FLOOR_WORK_LIGHT.get().asItem(),
                         ModBlocks.CCTV_CAMERA.get().asItem(),
-                        ModBlocks.INDUSTRIAL_LAMP.get().asItem(),
+//                        ModBlocks.INDUSTRIAL_LAMP.get().asItem(),
                         ModBlocks.OBLONG_CAGE_LAMP.get().asItem()
                 );
         this.tag(ModTags.Items.TECHNOLOGY_FURNITURE_CATEGORY)

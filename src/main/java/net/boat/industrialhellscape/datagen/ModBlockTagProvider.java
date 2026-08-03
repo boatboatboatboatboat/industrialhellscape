@@ -253,7 +253,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.FLOOR_WORK_LIGHT.get(),
                         ModBlocks.FUEL_DRUM.get(),
                         ModBlocks.CCTV_CAMERA.get(),
-                        ModBlocks.INDUSTRIAL_LAMP.get(),
+//                        ModBlocks.INDUSTRIAL_LAMP.get(),
                         ModBlocks.OBLONG_CAGE_LAMP.get()
                 );
 
@@ -370,6 +370,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModTags.Blocks.TRAPDOOR_BLOCKS,
 
                         ModTags.Blocks.ALL_FURNITURE_BLOCKS
+                )
+                .add(
+                        ModBlocks.DEBUG_BLOCK.get()
                 );
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .addTags(
@@ -386,6 +389,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModTags.Blocks.TRAPDOOR_BLOCKS,
 
                         ModTags.Blocks.ALL_FURNITURE_BLOCKS //All furniture can be mined with axe or pickaxe.
+                )
+                .add(
+                        ModBlocks.DEBUG_BLOCK.get()
                 );
         this.tag(BlockTags.MINEABLE_WITH_AXE)
                 .addTags(
@@ -396,6 +402,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(ModTags.Blocks.MOD_CREATE_FAN_TRANSPARENT)
                 .addTags(
                         ModTags.Blocks.TRUSS_BLOCKS
+                )
+                .add(
+                        ModBlocks.HORIZONTAL_CUTOUT_VENT.get(),
+                        ModBlocks.RUSTY_HORIZONTAL_CUTOUT_VENT.get(),
+                        ModBlocks.VERTICAL_CUTOUT_VENT.get(),
+                        ModBlocks.RUSTY_VERTICAL_CUTOUT_VENT.get()
                 );
 
         this.tag(ModTags.Blocks.MOD_CREATE_SIMPLE_MOUNTED_STORAGE)

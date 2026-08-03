@@ -3,7 +3,6 @@ package net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBloc
 import net.boat.industrialhellscape.entity.ModEntities;
 import net.boat.industrialhellscape.entity.SittableEntity.SittableEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -30,11 +29,6 @@ public class SittableFacingBlock extends ModelledFacingBlock implements SimpleWa
 
     public SittableFacingBlock(Properties pProperties, VoxelShape soloShape) {
         super(pProperties, soloShape);
-
-        this.registerDefaultState(this.stateDefinition.any()
-                .setValue(FACING, Direction.NORTH)
-                .setValue(WATERLOGGED, false)
-        );
     }
 
     @Override

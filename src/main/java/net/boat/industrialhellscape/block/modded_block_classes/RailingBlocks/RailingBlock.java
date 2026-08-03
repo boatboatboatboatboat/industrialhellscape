@@ -114,24 +114,16 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock, ToolU
     public static boolean playerFacesExistingRailing(Direction facing, BlockState state) {
         switch(facing) {
             case NORTH -> {
-                if (state.getValue(NORTH_FENCE)) {
-                    return state.getValue(NORTH_FENCE);
-                }
+                return state.getValue(NORTH_FENCE);
             }
             case SOUTH -> {
-                if (state.getValue(SOUTH_FENCE)) {
-                    return state.getValue(SOUTH_FENCE);
-                }
+                return state.getValue(SOUTH_FENCE);
             }
             case WEST -> {
-                if (state.getValue(WEST_FENCE)) {
-                    return state.getValue(WEST_FENCE);
-                }
+                return state.getValue(WEST_FENCE);
             }
             case EAST -> {
-                if (state.getValue(EAST_FENCE)) {
-                    return state.getValue(EAST_FENCE);
-                }
+                return state.getValue(EAST_FENCE);
             }
         }
         return false;
