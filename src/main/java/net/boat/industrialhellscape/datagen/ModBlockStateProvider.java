@@ -30,7 +30,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //Debug Blocks
         //genSimpleSBI(ModBlocks.PROTOTYPE_MACHINE.get(), build3FaceTexturesBlockModel("prototype_machine","experimental", "prototype_machine_front", "prototype_machine_side", "prototype_machine_top"));
         genFullBlockIntegerMultiBlockSI(ModBlocks.DEBUG_BLOCK.get(), "debug_textures", 4);
-        genModelledIntegerMultiBlockS(ModBlocks.BODY_PILLOW.get(), "body_pillow");
+        genModelledIntegerMultiBlockS(ModBlocks.BODY_PILLOW_OZY.get(), "body_pillow");
+        genVariantMultiBlock(ModBlocks.BODY_PILLOW_FANG.get(), ModBlocks.BODY_PILLOW_OZY.get(),"body_pillow","body_pillow","body_pillow_front_graphic_fang", "1", new Integer[]{1} );
 
         //Base Building Blocks
         genSimpleSBI(ModBlocks.METALWORKS.get(), build6FaceTexturesBlockModel("metalworks","metalworks","metalworks_side","metalworks_side", "metalworks_side","metalworks_side","metalworks_top","metalworks_bottom"));
@@ -199,6 +200,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genTrapdoorSBI(ModBlocks.RUSTY_VENT_TRAPDOOR.get(),"solid");
 
         //FURNITURE BLOCKS WITH EXISTING BLOCK MODELS
+        //genFacingModelledSI(ModBlocks.REMOVE_THIS_ITEM.get(), "remove_this_item");
         genFacingModelledSI(ModBlocks.SINK.get(),"");
         genFacingModelledSI(ModBlocks.OFFICE_CHAIR.get(),"office_chair");
         genFacingModelledSI(ModBlocks.BLACK_OFFICE_CHAIR.get(), "office_chair");
@@ -651,6 +653,46 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
                     return ConfiguredModel.builder()
                             .modelFile(models().getExistingFile(modLoc("block/"+ optionalFolder(modelSubFolder) +stringName  + "_"+intBlockState)))
+                            .rotationY(yRot)
+                            .build();
+                }, BlockStateProperties.WATERLOGGED);
+    }
+
+    private void genVariantMultiBlock(Block block, Block parentBlock, String originalModelSubFolder, String variantTextureSubFolder, String variantTextureName, String textureKey, Integer[] arrayOfStatesWithModelChange) {
+        //Integer Object used for arrayOfStatesWithModelChange instead of Primitive
+        //The .contains() comparison only works with Integer Objects
+
+        String variantBlockName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        String parentBlockName = BuiltInRegistries.BLOCK.getKey(parentBlock).getPath();
+        String parentModelPath = "block/"+optionalFolder(originalModelSubFolder)+parentBlockName;
+        String variantGeneratedModelPath = "block/"+variantBlockName; //generated/resources
+        String variantTexturePath = "block/"+optionalFolder(variantTextureSubFolder)+variantTextureName;
+
+        //On Model (generated from existing parent)
+        for(int i=0; i<arrayOfStatesWithModelChange.length; i++) {
+            int stateWithModelChange = arrayOfStatesWithModelChange[i];
+            models()
+                    .withExistingParent(variantBlockName+"_"+stateWithModelChange, modLoc(parentModelPath+"_"+stateWithModelChange))
+                    .texture(textureKey, variantTexturePath);
+        }
+
+        getVariantBuilder(block)
+                .forAllStatesExcept(state -> {
+                    Direction horizontalFacing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+                    Integer intBlockState = state.getValue(IntegerMultiBlock.PART);
+                    boolean partIntDesignatedForModelChange = (Arrays.asList(arrayOfStatesWithModelChange).contains(intBlockState) );
+
+                    String modelToUse = partIntDesignatedForModelChange? variantGeneratedModelPath : parentModelPath;
+
+                    int yRot = switch (horizontalFacing) {
+                        case SOUTH -> 180;
+                        case WEST  -> 270;
+                        case EAST  -> 90;
+                        default -> 0; //NORTH
+                    };
+
+                    return ConfiguredModel.builder()
+                            .modelFile(models().getExistingFile(modLoc(modelToUse+"_"+intBlockState)))
                             .rotationY(yRot)
                             .build();
                 }, BlockStateProperties.WATERLOGGED);

@@ -112,28 +112,19 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock, ToolU
     }
 
     public static boolean playerFacesExistingRailing(Direction facing, BlockState state) {
-        switch(facing) {
-            case NORTH -> {
-                return state.getValue(NORTH_FENCE);
-            }
-            case SOUTH -> {
-                return state.getValue(SOUTH_FENCE);
-            }
-            case WEST -> {
-                return state.getValue(WEST_FENCE);
-            }
-            case EAST -> {
-                return state.getValue(EAST_FENCE);
-            }
-        }
-        return false;
+        return switch(facing) {
+            case SOUTH -> state.getValue(SOUTH_FENCE);
+            case WEST -> state.getValue(WEST_FENCE);
+            case EAST -> state.getValue(EAST_FENCE);
+            case NORTH -> state.getValue(NORTH_FENCE);
+            default -> false;
+        };
     }
 
     @Nullable
     @Override
     public BlockState getStateForPlacement (BlockPlaceContext pContext) {
 
-        Player player = pContext.getPlayer();
         Level level = pContext.getLevel();
         BlockPos position = pContext.getClickedPos();
         Direction facing = pContext.getHorizontalDirection(); //.getOpposite(); //Makes more sense to not get direction opposite of player facing for these types of blocks.
@@ -142,7 +133,7 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock, ToolU
         BlockState state = level.getBlockState(position); //Get the current block-state of the RailingBlock (which should already be there)
         boolean isRailingBlock = clickedBlock instanceof RailingBlock;
 
-        if(isRailingBlock) { //If there is a RailingBlock at the location of placement - THIS OVERRIDES BLOCK PLACEMENT ON TOP OF FORMER BLOCK PLS PLS PLS FIX
+        if(isRailingBlock) { //If there is a RailingBlock at the location of placement
             switch(facing) { //Assign true to the property corresponding with the direction player is facing to place a new railing in that direction next to existing ones
                 case NORTH -> state = state.setValue(NORTH_FENCE, true);
                 case SOUTH -> state = state.setValue(SOUTH_FENCE, true);

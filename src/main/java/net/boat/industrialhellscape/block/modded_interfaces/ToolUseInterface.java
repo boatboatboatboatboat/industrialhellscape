@@ -13,7 +13,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.block.state.properties.Property;
 import org.jetbrains.annotations.NotNull;
 
 import static net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.ParapetBlock.*;
@@ -63,7 +63,6 @@ public interface ToolUseInterface {
     }
 
     default ItemInteractionResult RailingRotationToolUse(ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, int flag) {
-
         if(state.getBlock() instanceof RailingBlock) {
             if(checkForIHCompatTools(stack)) {
                 boolean north = state.getValue(NORTH_FENCE);

@@ -44,7 +44,8 @@ public class ModCreativeModeTabs {
                 //BLOCK ITEMS
                 //Secret / Dev Blocks
                 //ModBlocks.PROTOTYPE_MACHINE.asItem(),
-                ModBlocks.BODY_PILLOW.asItem(),
+                ModBlocks.BODY_PILLOW_OZY.asItem(),
+                ModBlocks.BODY_PILLOW_FANG.asItem(),
                 ModBlocks.DEBUG_BLOCK.asItem(),
 
                 //Vesselplate Vertical Variants (Hidden to prevent JEI clutter)

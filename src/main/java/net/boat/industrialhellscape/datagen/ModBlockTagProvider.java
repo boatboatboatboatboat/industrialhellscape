@@ -397,7 +397,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 );
 
         this.tag(ModTags.Blocks.MOD_SABLE_MASS_SUPER_LIGHT)
-                .add(ModBlocks.BODY_PILLOW.get()
+                .add(
+                        ModBlocks.BODY_PILLOW_OZY.get(),
+                        ModBlocks.BODY_PILLOW_FANG.get()
                 );
         this.tag(ModTags.Blocks.MOD_SABLE_MASS_LIGHT)
                 .addTags(

@@ -29,13 +29,15 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     protected void generate() {
 
         //DEBUG BLOCK
-        //this.dropSelf(ModBlocks.PROTOTYPE_MACHINE.get());
+        //this.dropSelf(ModBlocks.REMOVE_THIS_ITEM.get());
         this.add(ModBlocks.DEBUG_BLOCK.get(),
                 createIntegerMultiBlockDrops(ModBlocks.DEBUG_BLOCK.get()));
 
         //JOKE BLOCK
-        this.add(ModBlocks.BODY_PILLOW.get(),
-                createIntegerMultiBlockDrops(ModBlocks.BODY_PILLOW.get()));
+        this.add(ModBlocks.BODY_PILLOW_OZY.get(),
+                createIntegerMultiBlockDrops(ModBlocks.BODY_PILLOW_OZY.get()));
+        this.add(ModBlocks.BODY_PILLOW_FANG.get(),
+                createIntegerMultiBlockDrops(ModBlocks.BODY_PILLOW_FANG.get()));
 
         //BASE BUILDING BLOCKS
         this.dropSelf(ModBlocks.METALWORKS.get());

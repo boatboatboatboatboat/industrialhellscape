@@ -9,6 +9,7 @@
   "item.industrialhellscape.gas_station_pill": "Gas Station Pill",
 
   "block.industrialhellscape.prototype_machine": "Prototype Machine",
+  "block.industrialhellscape.remove_this_item": "Remove This Item",
 
   "block.industrialhellscape.riveted_vesselplate": "Riveted Vesselplate",
   "block.industrialhellscape.horizontal_vesselplate": "Vesselplate",
@@ -221,6 +222,8 @@
   "block.industrialhellscape.folding_chair": "Folding Chair",
 
   "block.industrialhellscape.body_pillow": "Body Pillow",
+  "block.industrialhellscape.body_pillow_fang": "Body Pillow",
+  "block.industrialhellscape.body_pillow_sock": "Body Pillow",
 
   "block.industrialhellscape.retro_computer": "Retro Computer",
   "block.industrialhellscape.retro_computer_2": "Retro Computer 2",

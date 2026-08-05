@@ -29,6 +29,6 @@ public class ModTrades {
 
         rareTrades.add((level,entity) -> new MerchantOffer(
                 new ItemCost(Items.EMERALD, 16),
-                new ItemStack(ModBlocks.BODY_PILLOW.get(), 1), 1, 0, 0.5f));
+                new ItemStack(ModBlocks.BODY_PILLOW_OZY.get(), 1), 1, 0, 0.5f));
     }
 }

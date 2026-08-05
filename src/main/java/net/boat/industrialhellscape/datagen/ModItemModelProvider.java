@@ -41,6 +41,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicFolderedItem(ModBlocks.BULKHEAD_DOOR.get().asItem(), "door");
         basicFolderedItem(ModItems.MARQUEE_DISC.get().asItem(), "disc");
 
+        /*
+        Multiblocks (fully constructed blocks cannot be rendered in GUIs without a separate model.
+        Use a seperate 16x16 texture in the items/multiblock path
+         */
+        basicFolderedItem(ModBlocks.BODY_PILLOW_OZY.get().asItem(), "multiblock");
+        basicFolderedItem(ModBlocks.BODY_PILLOW_FANG.get().asItem(), "multiblock");
     }
     public ItemModelBuilder basicFolderedItem(Item item, String subFolder) {
         return this.folderedItemFinder(Objects.requireNonNull(BuiltInRegistries.ITEM.getKey(item)), subFolder);

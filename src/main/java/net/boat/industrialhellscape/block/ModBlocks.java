@@ -71,6 +71,7 @@ public class ModBlocks {
         specificBlockReplacement("weathered_gray_rockrete_slab", "rough_gray_rockrete_slab");
         specificBlockReplacement("weathered_gray_rockrete_stairs", "rough_gray_rockrete_stairs");
 
+        //V1.1.0 changes
         specificBlockReplacement("horizontal_grate", "horizontal_vent");
         specificBlockReplacement("vertical_grate", "vertical_vent");
         specificBlockReplacement("horizontal_cutout_grate", "horizontal_cutout_vent");
@@ -104,8 +105,23 @@ public class ModBlocks {
             () -> new IntegerMultiBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.OAK_PLANKS), 4, MultiBlockPlacementArrayCollection.SIDEWAYS_PLACEMENT));
 
+//    public static final DeferredBlock<Block> REMOVE_THIS_ITEM = registerBlockAndBlockItem("remove_this_item",
+//            () -> new ModelledFacingBlock(BlockBehaviour
+//                    .Properties.ofFullCopy(Blocks.OAK_PLANKS).sound(SoundType.SLIME_BLOCK), HitboxGeometryCollection.DECAL_FLOOR()));
+
     //JOKE BLOCKS
-    public static final DeferredBlock<Block> BODY_PILLOW = registerBlockAndBlockItem("body_pillow",
+    public static final DeferredBlock<Block> BODY_PILLOW_OZY = registerBlockAndBlockItem("body_pillow",
+            () -> new ModdedBedBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.WHITE_WOOL)
+                    .sound(SoundType.SLIME_BLOCK)
+                    .noOcclusion(),
+                    2,
+                    MultiBlockPlacementArrayCollection.SLEEPABLE_BED_PLACEMENT,
+                    new VoxelShape[]{HitboxGeometryCollection.PILLOW_NEGATIVE(), HitboxGeometryCollection.PILLOW_POSITIVE()},
+                    true
+            )
+    );
+    public static final DeferredBlock<Block> BODY_PILLOW_FANG = registerBlockAndBlockItem("body_pillow_fang",
             () -> new ModdedBedBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.WHITE_WOOL)
                     .sound(SoundType.SLIME_BLOCK)

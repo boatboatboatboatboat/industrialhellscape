@@ -306,8 +306,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(Items.QUARTZ), has(Items.QUARTZ))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("industrialhellscape", "haven_tool_from_crafting"));
 
-        //Create 1x Vesselplate from 1x iron ingots
-        HavenSingleIngredientRecipe(ModBlocks.HORIZONTAL_VESSELPLATE.get(), vesselplatePerIronIngot, Ingredient.of(Items.IRON_INGOT), "vesselplate_from_iron_ingot", recipeOutput);
+        //Create 1x Vesselplate from 1x iron ingots (ORIGINALLY 1 IRON INGOT)
+        HavenSingleIngredientRecipe(ModBlocks.HORIZONTAL_VESSELPLATE.get(), vesselplatePerIronIngot, Ingredient.of(ModTags.Items.IH_RECIPE_INGOTS), "vesselplate_from_iron_ingot", recipeOutput);
         //Create 9x Vesselplate from 1x iron block
         HavenSingleIngredientRecipe(ModBlocks.HORIZONTAL_VESSELPLATE.get(), vesselplatePerIronIngot*9, Ingredient.of(Items.IRON_BLOCK), "vesselplate_from_iron_block", recipeOutput);
         //Create Rockrete Base Block from 1 stone
@@ -316,7 +316,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         //Create 1x Vesselglass Base Block from 1 iron ingot and 1 glass
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.VESSELGLASS.get(), vesselglassPerCraft)
                 .requires(ModItems.INHELL_HAVEN_DEVICE.get())
-                .requires(Items.IRON_INGOT)
+                .requires(Ingredient.of(ModTags.Items.IH_RECIPE_INGOTS)) //ORIGINALLY 1 IRON INGOT
                 .requires(Items.GLASS)
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("industrialhellscape", "vesselglass_from_crafting"));
@@ -327,7 +327,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("ABA")
                 .pattern(" A ")
 
-                .define('A', Items.IRON_INGOT)
+                .define('A', Ingredient.of(ModTags.Items.IH_RECIPE_INGOTS)) //ORIGINALLY 1 IRON INGOT
                 .define('B', ModItems.INHELL_HAVEN_DEVICE.get())
 
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
@@ -339,7 +339,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern(" B ")
                 .pattern("A A")
 
-                .define('A', Items.IRON_INGOT)
+                .define('A', Ingredient.of(ModTags.Items.IH_RECIPE_INGOTS)) //ORIGINALLY 1 IRON INGOT
                 .define('B', ModItems.INHELL_HAVEN_DEVICE.get())
 
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
@@ -351,7 +351,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("ABA")
                 .pattern("A A")
 
-                .define('A', Items.IRON_INGOT)
+                .define('A', Ingredient.of(ModTags.Items.IH_RECIPE_INGOTS)) //ORIGINALLY 1 IRON INGOT
                 .define('B', ModItems.INHELL_HAVEN_DEVICE.get())
 
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
@@ -362,7 +362,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern(" B ")
                 .pattern("AAA")
 
-                .define('A', Items.IRON_INGOT)
+                .define('A', Ingredient.of(ModTags.Items.IH_RECIPE_INGOTS)) //ORIGINALLY 1 IRON INGOT
                 .define('B', ModItems.INHELL_HAVEN_DEVICE.get())
 
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
@@ -373,7 +373,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModItems.INHELL_HAVEN_DEVICE.get())
                 .requires(Ingredient.of(ModTags.Items.IH_RECIPE_STONELIKES))
                 .requires(Ingredient.of(ItemTags.LOGS))
-                .requires(Ingredient.of(Items.IRON_INGOT))
+                .requires(Ingredient.of(ModTags.Items.IH_RECIPE_INGOTS)) //ORIGINALLY 1 IRON INGOT
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("industrialhellscape", "furniture_kit_from_crafting_log"));
 
@@ -384,7 +384,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(Ingredient.of(ItemTags.PLANKS))
                 .requires(Ingredient.of(ItemTags.PLANKS))
                 .requires(Ingredient.of(ItemTags.PLANKS))
-                .requires(Items.IRON_INGOT)
+                .requires(Ingredient.of(ModTags.Items.IH_RECIPE_INGOTS))
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath("industrialhellscape", "furniture_kit_from_crafting_planks"));
         
@@ -453,13 +453,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         reversibleBlockCrafting(ModItems.TERMINATION_LETTER.get(), ModItems.JOB_APPLICATION.get(), recipeOutput);
 
-        //Create Body Pillow from existing body pillow obtained from Wandering Trader
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.BODY_PILLOW.get(), 2)
+        //Create Ozymandeas Body Pillow from existing body pillow obtained from Wandering Trader
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.BODY_PILLOW_OZY.get(), 2)
                 .requires(ModItems.INHELL_HAVEN_DEVICE.get())
                 .requires(ItemTags.WOOL)
                 .requires(ItemTags.WOOL)
                 .requires(ItemTags.WOOL)
-                .requires(ModBlocks.BODY_PILLOW.get().asItem())
+                .requires(ModBlocks.BODY_PILLOW_OZY.get().asItem())
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, "body_pillow"));
         //---------- END OF RECIPES FOR JOKE CONTENT ----------

@@ -1,6 +1,5 @@
 package net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks;
 
-import net.boat.industrialhellscape.block.modded_block_state_properties.DynamicConnectionState;
 import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -14,8 +13,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.BooleanOp;
@@ -166,7 +163,6 @@ public class ParapetBlock extends RailingBlock implements SimpleWaterloggedBlock
             boolean rightDiagonalBlockisThisBlock = rightDiagonalState.is(this);
             boolean rightBlockIsAirOrThisBlock = rightBlock.isAir() || rightBlock.is(this);
 
-
             if(outerCornerNeedsBlock(facing, pState, leftDiagonalState, leftDiagonalBlockisThisBlock, "left") && leftBlockIsAirOrThisBlock) {
                 placeOuterCornerBlock(pLevel, facing, pState, leftPosFromBlock, leftBlock, rightPosFromBlock, rightBlock, "left");
             }
@@ -174,7 +170,6 @@ public class ParapetBlock extends RailingBlock implements SimpleWaterloggedBlock
                 placeOuterCornerBlock(pLevel, facing, pState, leftPosFromBlock, leftBlock, rightPosFromBlock, rightBlock, "right");
             }
         }
-
     }
 
     public static boolean outerCornerNeedsBlock(Direction playerFacing, BlockState currentBlockState, BlockState blockStateAtDiagonalPos, boolean diagonalIsThisBlock, String leftOrRight) {
@@ -254,6 +249,7 @@ public class ParapetBlock extends RailingBlock implements SimpleWaterloggedBlock
             }
         }
     }
+
     @Override
     public @Nonnull VoxelShape getInteractionShape(BlockState pState, @Nonnull BlockGetter pLevel, @Nonnull BlockPos pPos) {
         VoxelShape shape = Shapes.empty();
@@ -266,7 +262,6 @@ public class ParapetBlock extends RailingBlock implements SimpleWaterloggedBlock
         if (pState.getValue(NORTH_EAST_FENCE)) shape = Shapes.join(shape, SHAPE_NE, BooleanOp.OR);
         if (pState.getValue(SOUTH_WEST_FENCE))  shape = Shapes.join(shape, SHAPE_SW,  BooleanOp.OR);
         if (pState.getValue(SOUTH_EAST_FENCE))  shape = Shapes.join(shape, SHAPE_SE,  BooleanOp.OR);
-
 
         return shape;
     }
