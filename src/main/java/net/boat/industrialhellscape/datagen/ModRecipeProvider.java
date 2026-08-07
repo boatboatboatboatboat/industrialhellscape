@@ -311,7 +311,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         //Create 9x Vesselplate from 1x iron block
         HavenSingleIngredientRecipe(ModBlocks.HORIZONTAL_VESSELPLATE.get(), vesselplatePerIronIngot*9, Ingredient.of(Items.IRON_BLOCK), "vesselplate_from_iron_block", recipeOutput);
         //Create Rockrete Base Block from 1 stone
-        HavenSingleIngredientRecipe(ModBlocks.ROUGH_GRAY_ROCKRETE.get(), rockretePerStone, Ingredient.of(ModTags.Items.IH_RECIPE_STONELIKES), "rockrete_from_stone", recipeOutput);
+        HavenSingleIngredientRecipe(ModBlocks.ROUGH_GRAY_ROCKRETE.get(), rockretePerStone, Ingredient.of(ModTags.Items.IH_RECIPE_STONES), "rockrete_from_stone", recipeOutput);
 
         //Create 1x Vesselglass Base Block from 1 iron ingot and 1 glass
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.VESSELGLASS.get(), vesselglassPerCraft)
@@ -371,7 +371,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         //Create Furniture Kit Base Block from 1 stonetype, one log (or 4 planks), one iron ingot, and the HAVEN device
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.IHEA_FURNITURE_KIT.get(), furnitureKitPerCraft)
                 .requires(ModItems.INHELL_HAVEN_DEVICE.get())
-                .requires(Ingredient.of(ModTags.Items.IH_RECIPE_STONELIKES))
+                .requires(Ingredient.of(ModTags.Items.IH_RECIPE_STONES))
                 .requires(Ingredient.of(ItemTags.LOGS))
                 .requires(Ingredient.of(ModTags.Items.IH_RECIPE_INGOTS)) //ORIGINALLY 1 IRON INGOT
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
@@ -379,7 +379,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.IHEA_FURNITURE_KIT.get(), furnitureKitPerCraft)
                 .requires(ModItems.INHELL_HAVEN_DEVICE.get())
-                .requires(Ingredient.of(ModTags.Items.IH_RECIPE_STONELIKES))
+                .requires(Ingredient.of(ModTags.Items.IH_RECIPE_STONES))
                 .requires(Ingredient.of(ItemTags.PLANKS))
                 .requires(Ingredient.of(ItemTags.PLANKS))
                 .requires(Ingredient.of(ItemTags.PLANKS))

@@ -56,13 +56,11 @@ public class StorageTwoBlock extends IntegerMultiBlock implements EntityBlock, S
         //See modded interface MultiBlockPlacementInterface for more details
         //return MultiBlockPlacementInterface.newBlockEntityInNegativeBlock(pos, state);
         if(state.getBlock() instanceof StorageTwoBlock) {
-            if(state.getValue(PART) != 0) { //If the block is the POSITIVE block
-                return null; //no new block entities will be generated
+            if(state.getValue(PART) == 0) { //If the block is the POSITIVE block
+                return new StorageBE(pos, state);
             }
-            return new StorageBE(pos, state); //new StorageBE(pos, state); //One block entity will be present in this multiblock: in the NEGATIVE block
-        } else {
-            return null;
         }
+        return null;
     }
 
     @Override

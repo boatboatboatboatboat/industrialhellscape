@@ -14,7 +14,7 @@ public class ModTags {
         public static final TagKey<Block> VESSELPLATE_BLOCKS = tag("vesselplate_blocks");
         public static final TagKey<Block> VESSELGLASS_BLOCKS = tag("vesselglass_blocks");
         public static final TagKey<Block> ROCKRETE_BLOCKS = tag("rockrete_blocks");
-        public static final TagKey<Block> TRUSS_BLOCKS = tag("strut_blocks");
+        public static final TagKey<Block> TRUSS_BLOCKS = tag("truss_blocks");
         public static final TagKey<Block> HVAC_BLOCKS = tag("hvac_blocks");
 
         public static final TagKey<Block> PIPEWORKS_BLOCKS = tag("pipeworks_blocks");
@@ -22,7 +22,9 @@ public class ModTags {
         public static final TagKey<Block> DOOR_BLOCKS = tag("door_blocks");
         public static final TagKey<Block> TRAPDOOR_BLOCKS = tag("trapdoor_blocks");
 
-        public static final TagKey<Block> STORAGE_BLOCKS = tag("storage_blocks");
+        public static final TagKey<Block> INVENTORY_BLOCKS = tag("inventory_blocks");
+
+        public static final TagKey<Block> BODY_PILLOW_BLOCK = tag("body_pillow_block");
 
         //FURNITURE CATEGORIES
         public static final TagKey<Block> SAFETY_FURNITURE_CATEGORY = tag("safety_furniture_category");
@@ -68,6 +70,10 @@ public class ModTags {
         /*
         "smeltable" item tags are a legacy naming scheme. Blocks of this tag are full-blocks. Block items
          of this tag will stonecut into slabs and stairs, which cannot be reverted similar to vanilla blocks.
+
+         If you are a modpack dev, you can use these tags for block smelting recipes, and they will have the
+         intended effect.
+         But you will need to redo the recipes to obtain the blocks in the first place.
          */
         public static final TagKey<Item> VESSELPLATE_SMELTABLE_ITEM = tag("vesselplate_smeltable_item");
         public static final TagKey<Item> VESSELGLASS_SMELTABLE_ITEM = tag("vesselglass_smeltable_item");
@@ -86,15 +92,17 @@ public class ModTags {
         public static final TagKey<Item> SAFETY_FURNITURE_CATEGORY = tag("safety_furniture_category");
         public static final TagKey<Item> HYGIENE_FURNITURE_CATEGORY= tag("hygiene_furniture_category");
         public static final TagKey<Item> INDUSTRIAL_FURNITURE_CATEGORY = tag("industrial_furniture_category");
-        public static final TagKey<Item> TECHNOLOGY_FURNITURE_CATEGORY= tag("technology_furniture_category");
+        public static final TagKey<Item> TECHNOLOGY_FURNITURE_CATEGORY = tag("technology_furniture_category");
         public static final TagKey<Item> AMENITY_FURNITURE_CATEGORY = tag("amenity_furniture_category");
         public static final TagKey<Item> ALL_FURNITURE_ITEMS = tag("all_furniture_items");
 
+        public static final TagKey<Item> BODY_PILLOW_ITEM = tag("body_pillow_item");
+
         //For crafting convenience
-        public static final TagKey<Item> IH_RECIPE_STONELIKES = tag("ih_recipe_stonelikes");
+        public static final TagKey<Item> IH_RECIPE_STONES = tag("ih_recipe_stones");
         public static final TagKey<Item> IH_RECIPE_INGOTS = tag("ih_recipe_ingots");
 
-        //For tool use
+        //For tool use on modded content
         public static final TagKey<Item> IH_COMPATIBLE_TOOLS = tag("ih_compatible_tools");
 
         //---------- METHODS ----------

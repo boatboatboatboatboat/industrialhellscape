@@ -132,6 +132,17 @@ public class ModBlocks {
                     true
             )
     );
+    public static final DeferredBlock<Block> BODY_PILLOW_PROV = registerBlockAndBlockItem("body_pillow_prov",
+            () -> new ModdedBedBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.WHITE_WOOL)
+                    .sound(SoundType.SLIME_BLOCK)
+                    .noOcclusion(),
+                    2,
+                    MultiBlockPlacementArrayCollection.SLEEPABLE_BED_PLACEMENT,
+                    new VoxelShape[]{HitboxGeometryCollection.PILLOW_NEGATIVE(), HitboxGeometryCollection.PILLOW_POSITIVE()},
+                    true
+            )
+    );
 
     //BASE BLOCKS
     public static final DeferredBlock<Block> IHEA_FURNITURE_KIT = registerBlockAndBlockItem("ihea_furniture_kit",

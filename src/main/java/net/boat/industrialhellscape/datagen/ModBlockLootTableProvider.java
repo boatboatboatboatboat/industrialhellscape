@@ -38,6 +38,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 createIntegerMultiBlockDrops(ModBlocks.BODY_PILLOW_OZY.get()));
         this.add(ModBlocks.BODY_PILLOW_FANG.get(),
                 createIntegerMultiBlockDrops(ModBlocks.BODY_PILLOW_FANG.get()));
+        this.add(ModBlocks.BODY_PILLOW_PROV.get(),
+                createIntegerMultiBlockDrops(ModBlocks.BODY_PILLOW_PROV.get()));
 
         //BASE BUILDING BLOCKS
         this.dropSelf(ModBlocks.METALWORKS.get());

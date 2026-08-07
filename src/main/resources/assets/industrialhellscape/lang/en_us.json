@@ -223,6 +223,7 @@
 
   "block.industrialhellscape.body_pillow": "Body Pillow",
   "block.industrialhellscape.body_pillow_fang": "Body Pillow",
+  "block.industrialhellscape.body_pillow_prov": "Body Pillow",
   "block.industrialhellscape.body_pillow_sock": "Body Pillow",
 
   "block.industrialhellscape.retro_computer": "Retro Computer",
@@ -265,6 +266,8 @@
 
   "block.industrialhellscape.duct": "Duct",
   "block.industrialhellscape.duct_vent": "Duct Vent",
+  "block.industrialhellscape.rusty_duct": "Rusty Duct",
+  "block.industrialhellscape.rusty_duct_vent": "Rusty Duct Vent",
 
   "block.industrialhellscape.horizontal_vent": "Vent",
   "block.industrialhellscape.vertical_vent": "Vent",

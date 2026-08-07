@@ -6,7 +6,7 @@
 	"texture_size": [32, 32],
 	"textures": {
 		"0": "industrialhellscape:block/body_pillow/body_pillow",
-		"particle": "industrialhellscape:block/body_pillow/body_pillow_front_graphic"
+		"particle": "industrialhellscape:block/body_pillow/body_pillow"
 	},
 	"elements": [
 		{

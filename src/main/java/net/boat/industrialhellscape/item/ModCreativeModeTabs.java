@@ -46,6 +46,7 @@ public class ModCreativeModeTabs {
                 //ModBlocks.PROTOTYPE_MACHINE.asItem(),
                 ModBlocks.BODY_PILLOW_OZY.asItem(),
                 ModBlocks.BODY_PILLOW_FANG.asItem(),
+                ModBlocks.BODY_PILLOW_PROV.asItem(),
                 ModBlocks.DEBUG_BLOCK.asItem(),
 
                 //Vesselplate Vertical Variants (Hidden to prevent JEI clutter)

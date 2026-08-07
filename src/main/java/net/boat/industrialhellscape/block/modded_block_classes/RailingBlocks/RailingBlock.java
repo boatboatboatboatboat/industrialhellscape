@@ -93,30 +93,31 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock, ToolU
         this.COLLISION_SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, COLLISON_SHAPE_NORTH);
     }
 
+    @Override
     public boolean canBeReplaced(BlockState pState, @Nonnull BlockPlaceContext pUseContext) {
-        //Fixed to allow RailingBlocks to be placed on top of existing blocks if appropriate conditions met.
+        /*
+        Fixed to allow RailingBlocks to be placed on top of existing blocks if appropriate conditions met.
+        Formerly caused a client-side crash with Sable. Somehow this is fixed by rearranging the boolean checks.
+        Not entirely sure why.
+         */
 
         Player player = pUseContext.getPlayer();
-        Level level = pUseContext.getLevel();
-        BlockPos position = pUseContext.getClickedPos();
-        Direction facing = pUseContext.getHorizontalDirection(); //.getOpposite(); //Makes more sense to not get direction opposite of player facing for these types of blocks.
+        Direction facing = pUseContext.getHorizontalDirection(); //.getOpposite(); //Makes more sense to NOT get direction opposite of player facing for these types of blocks.
+        boolean itemInHandIsThis = (player != null) && pUseContext.getItemInHand().is(this.asItem());
 
-        BlockState state = level.getBlockState(position); //Get the current block-state of the RailingBlock (which should already be there)
-
-        //You may place another block inside this block if
-        //The selected block is an instance of this class AND
-        //The item in hand is this AND
-        //A player exists that is placing the block AND
-        //Player is NOT facing an existing railing
-        return pState.getBlock() instanceof RailingBlock && pUseContext.getItemInHand().is(this.asItem()) && (player != null) && !playerFacesExistingRailing(facing, state);
+        /*
+        If Player exists with an instance of RailingBlock in their hand, and is NOT facing an existing railing, return true.
+        This allows additional railings to be placed in the same block
+         */
+        return (itemInHandIsThis && !playerFacesExistingRailing(facing, pState));
     }
 
-    public static boolean playerFacesExistingRailing(Direction facing, BlockState state) {
+    protected static boolean playerFacesExistingRailing(Direction facing, BlockState pState) {
         return switch(facing) {
-            case SOUTH -> state.getValue(SOUTH_FENCE);
-            case WEST -> state.getValue(WEST_FENCE);
-            case EAST -> state.getValue(EAST_FENCE);
-            case NORTH -> state.getValue(NORTH_FENCE);
+            case SOUTH -> pState.getValue(SOUTH_FENCE);
+            case WEST -> pState.getValue(WEST_FENCE);
+            case EAST -> pState.getValue(EAST_FENCE);
+            case NORTH -> pState.getValue(NORTH_FENCE);
             default -> false;
         };
     }
@@ -130,7 +131,7 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock, ToolU
         Direction facing = pContext.getHorizontalDirection(); //.getOpposite(); //Makes more sense to not get direction opposite of player facing for these types of blocks.
         FluidState fluid = level.getFluidState(position);
         Block clickedBlock = level.getBlockState(position).getBlock();
-        BlockState state = level.getBlockState(position); //Get the current block-state of the RailingBlock (which should already be there)
+        BlockState state = level.getBlockState(position); //Get the current block-state
         boolean isRailingBlock = clickedBlock instanceof RailingBlock;
 
         if(isRailingBlock) { //If there is a RailingBlock at the location of placement
@@ -190,12 +191,13 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock, ToolU
         // Used to ensure the block doesn't leave a ghost behind if all 4 sides are gone
         //If there is NO railings present at the blockstate of this location (All FENCE properties were set to false)
         //Set the block at that location to be an air block, erasing the block.
+
         if (!railingExists(pState)) pLevel.setBlock(pPos, Blocks.AIR.defaultBlockState(), 0);
         super.neighborChanged(pState, pLevel, pPos, neighborBlock, neighborPos, movedByPiston);
     }
 
     //Corresponds a Direction input to the block-state boolean property for railing blocks.
-    public static BooleanProperty fromDirection (Direction face) {
+    protected static BooleanProperty fromDirection (Direction face) {
         return switch (face) {
             case SOUTH -> SOUTH_FENCE;
             case EAST  -> EAST_FENCE;
@@ -205,11 +207,13 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock, ToolU
     }
 
     //Checks if ANY railings exist at that block position
-    public static boolean railingExists(BlockState pState) {
+    private static boolean railingExists(BlockState pState) {
         boolean occupied = false;
-        // For all possible cardinal values
-        // "occupied" becomes true ONLY IF any of the block state boolean properties are TRUE
-        // Meaning that a RailingBlock is present here.
+
+        /* For all possible cardinal values
+           "occupied" becomes true ONLY IF any of the block state boolean properties are TRUE
+           Meaning that a RailingBlock is present here.
+         */
         for (Direction dir : BlockStateProperties.HORIZONTAL_FACING.getPossibleValues()) {
             occupied |= pState.getValue(fromDirection(dir));
         }

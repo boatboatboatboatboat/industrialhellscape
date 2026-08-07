@@ -44,161 +44,161 @@ public class ModItemTagProvider extends ItemTagsProvider {
         //---------- RECIPE DATAGEN INPUT TAGS ----------
         this.tag(ModTags.Items.HVAC_SMELTABLE_ITEM)
                 .add(
-                        ModBlocks.DUCT.get().asItem(),
-                        ModBlocks.RUSTY_DUCT.get().asItem(),
+                        ModBlocks.DUCT.asItem(),
+                        ModBlocks.RUSTY_DUCT.asItem(),
 
-                        ModBlocks.HORIZONTAL_VENT.get().asItem(),
-                        ModBlocks.VERTICAL_VENT.get().asItem(),
-                        ModBlocks.HORIZONTAL_CUTOUT_VENT.get().asItem(),
-                        ModBlocks.VERTICAL_CUTOUT_VENT.get().asItem(),
+                        ModBlocks.HORIZONTAL_VENT.asItem(),
+                        ModBlocks.VERTICAL_VENT.asItem(),
+                        ModBlocks.HORIZONTAL_CUTOUT_VENT.asItem(),
+                        ModBlocks.VERTICAL_CUTOUT_VENT.asItem(),
 
-                        ModBlocks.RUSTY_HORIZONTAL_VENT.get().asItem(),
-                        ModBlocks.RUSTY_VERTICAL_VENT.get().asItem(),
-                        ModBlocks.RUSTY_HORIZONTAL_CUTOUT_VENT.get().asItem(),
-                        ModBlocks.RUSTY_VERTICAL_CUTOUT_VENT.get().asItem()
+                        ModBlocks.RUSTY_HORIZONTAL_VENT.asItem(),
+                        ModBlocks.RUSTY_VERTICAL_VENT.asItem(),
+                        ModBlocks.RUSTY_HORIZONTAL_CUTOUT_VENT.asItem(),
+                        ModBlocks.RUSTY_VERTICAL_CUTOUT_VENT.asItem()
                 );
         this.tag(ModTags.Items.METALWORKS_ITEMS)
                 .add(
-                        ModBlocks.METALWORKS.get().asItem(),
+                        ModBlocks.METALWORKS.asItem(),
 
-                        ModBlocks.YELLOW_STAIR_RAILING.get().asItem(),
-                        ModBlocks.YELLOW_RAILING.get().asItem(),
-                        ModBlocks.GRAY_STAIR_RAILING.get().asItem(),
-                        ModBlocks.GRAY_RAILING.get().asItem(),
-                        ModBlocks.BLACK_STAIR_RAILING.get().asItem(),
-                        ModBlocks.BLACK_RAILING.get().asItem(),
-                        ModBlocks.RUSTY_STAIR_RAILING.get().asItem(),
-                        ModBlocks.RUSTY_RAILING.get().asItem(),
+                        ModBlocks.YELLOW_STAIR_RAILING.asItem(),
+                        ModBlocks.YELLOW_RAILING.asItem(),
+                        ModBlocks.GRAY_STAIR_RAILING.asItem(),
+                        ModBlocks.GRAY_RAILING.asItem(),
+                        ModBlocks.BLACK_STAIR_RAILING.asItem(),
+                        ModBlocks.BLACK_RAILING.asItem(),
+                        ModBlocks.RUSTY_STAIR_RAILING.asItem(),
+                        ModBlocks.RUSTY_RAILING.asItem(),
 
-                        ModBlocks.RUSTY_BOLTED_BRACKET.get().asItem(),
-                        ModBlocks.BLACK_BOLTED_BRACKET.get().asItem(),
-                        ModBlocks.GRAY_BOLTED_BRACKET.get().asItem(),
-                        ModBlocks.SMALL_GRAY_BOLTED_BRACKET.get().asItem(),
-                        ModBlocks.SMALL_BLACK_BOLTED_BRACKET.get().asItem(),
-                        ModBlocks.SMALL_RUSTY_BOLTED_BRACKET.get().asItem()
+                        ModBlocks.RUSTY_BOLTED_BRACKET.asItem(),
+                        ModBlocks.BLACK_BOLTED_BRACKET.asItem(),
+                        ModBlocks.GRAY_BOLTED_BRACKET.asItem(),
+                        ModBlocks.SMALL_GRAY_BOLTED_BRACKET.asItem(),
+                        ModBlocks.SMALL_BLACK_BOLTED_BRACKET.asItem(),
+                        ModBlocks.SMALL_RUSTY_BOLTED_BRACKET.asItem()
                 );
         this.tag(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM)
                 .add(
-                        ModBlocks.HORIZONTAL_VESSELPLATE.get().asItem(),
-                        ModBlocks.VERTICAL_VESSELPLATE.get().asItem(),
-                        ModBlocks.HORIZONTAL_REINFORCED_VESSELPLATE.get().asItem(),
-                        ModBlocks.VERTICAL_REINFORCED_VESSELPLATE.get().asItem(),
-                        ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
-                        ModBlocks.RIVETED_VESSELPLATE.get().asItem(),
-                        ModBlocks.VESSELPLATE_PILLAR.get().asItem(),
+                        ModBlocks.HORIZONTAL_VESSELPLATE.asItem(),
+                        ModBlocks.VERTICAL_VESSELPLATE.asItem(),
+                        ModBlocks.HORIZONTAL_REINFORCED_VESSELPLATE.asItem(),
+                        ModBlocks.VERTICAL_REINFORCED_VESSELPLATE.asItem(),
+                        ModBlocks.SMOOTH_VESSELPLATE.asItem(),
+                        ModBlocks.RIVETED_VESSELPLATE.asItem(),
+                        ModBlocks.VESSELPLATE_PILLAR.asItem(),
 
-                        ModBlocks.GRAY_HORIZONTAL_VESSELPLATE.get().asItem(),
-                        ModBlocks.GRAY_VERTICAL_VESSELPLATE.get().asItem(),
-                        ModBlocks.GRAY_HORIZONTAL_REINFORCED_VESSELPLATE.get().asItem(),
-                        ModBlocks.GRAY_VERTICAL_REINFORCED_VESSELPLATE.get().asItem(),
-                        ModBlocks.SMOOTH_GRAY_VESSELPLATE.get().asItem(),
-                        ModBlocks.GRAY_RIVETED_VESSELPLATE.get().asItem(),
-                        ModBlocks.GRAY_VESSELPLATE_PILLAR.get().asItem(),
+                        ModBlocks.GRAY_HORIZONTAL_VESSELPLATE.asItem(),
+                        ModBlocks.GRAY_VERTICAL_VESSELPLATE.asItem(),
+                        ModBlocks.GRAY_HORIZONTAL_REINFORCED_VESSELPLATE.asItem(),
+                        ModBlocks.GRAY_VERTICAL_REINFORCED_VESSELPLATE.asItem(),
+                        ModBlocks.SMOOTH_GRAY_VESSELPLATE.asItem(),
+                        ModBlocks.GRAY_RIVETED_VESSELPLATE.asItem(),
+                        ModBlocks.GRAY_VESSELPLATE_PILLAR.asItem(),
 
-                        ModBlocks.RUSTY_HORIZONTAL_VESSELPLATE.get().asItem(),
-                        ModBlocks.RUSTY_VERTICAL_VESSELPLATE.get().asItem(),
-                        ModBlocks.RUSTY_HORIZONTAL_REINFORCED_VESSELPLATE.get().asItem(),
-                        ModBlocks.RUSTY_VERTICAL_REINFORCED_VESSELPLATE.get().asItem(),
-                        ModBlocks.RUSTY_VESSELPLATE_PILLAR.get().asItem(),
+                        ModBlocks.RUSTY_HORIZONTAL_VESSELPLATE.asItem(),
+                        ModBlocks.RUSTY_VERTICAL_VESSELPLATE.asItem(),
+                        ModBlocks.RUSTY_HORIZONTAL_REINFORCED_VESSELPLATE.asItem(),
+                        ModBlocks.RUSTY_VERTICAL_REINFORCED_VESSELPLATE.asItem(),
+                        ModBlocks.RUSTY_VESSELPLATE_PILLAR.asItem(),
 
-                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE.get().asItem(),
-                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE_SLAB.get().asItem(),
-                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE_STAIRS.get().asItem(),
-                        ModBlocks.RUSTY_RIVETED_VESSELPLATE.get().asItem(),
-                        ModBlocks.RUSTY_RIVETED_VESSELPLATE_SLAB.get().asItem(),
-                        ModBlocks.RUSTY_RIVETED_VESSELPLATE_STAIRS.get().asItem()
+                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE.asItem(),
+                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE_SLAB.asItem(),
+                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE_STAIRS.asItem(),
+                        ModBlocks.RUSTY_RIVETED_VESSELPLATE.asItem(),
+                        ModBlocks.RUSTY_RIVETED_VESSELPLATE_SLAB.asItem(),
+                        ModBlocks.RUSTY_RIVETED_VESSELPLATE_STAIRS.asItem()
                 );
         this.tag(ModTags.Items.TRUSS_SMELTABLE_ITEM)
                 .add(
-                        ModBlocks.TRUSS.get().asItem(),
-                        ModBlocks.TRUSS_STAIRS.get().asItem(),
-                        ModBlocks.TRUSS_SLAB.get().asItem(),
+                        ModBlocks.TRUSS.asItem(),
+                        ModBlocks.TRUSS_STAIRS.asItem(),
+                        ModBlocks.TRUSS_SLAB.asItem(),
 
-                        ModBlocks.CATWALK_TRUSS.get().asItem(),
-                        ModBlocks.CATWALK_TRUSS_STAIRS.get().asItem(),
-                        ModBlocks.CATWALK_TRUSS_SLAB.get().asItem(),
-                        ModBlocks.GRAY_TRUSS.get().asItem(),
-                        ModBlocks.GRAY_CATWALK_TRUSS.get().asItem(),
-                        ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.get().asItem(),
-                        ModBlocks.GRAY_CATWALK_TRUSS_SLAB.get().asItem(),
-                        ModBlocks.GRAY_TRUSS_STAIRS.get().asItem(),
-                        ModBlocks.GRAY_TRUSS_SLAB.get().asItem(),
+                        ModBlocks.CATWALK_TRUSS.asItem(),
+                        ModBlocks.CATWALK_TRUSS_STAIRS.asItem(),
+                        ModBlocks.CATWALK_TRUSS_SLAB.asItem(),
+                        ModBlocks.GRAY_TRUSS.asItem(),
+                        ModBlocks.GRAY_CATWALK_TRUSS.asItem(),
+                        ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.asItem(),
+                        ModBlocks.GRAY_CATWALK_TRUSS_SLAB.asItem(),
+                        ModBlocks.GRAY_TRUSS_STAIRS.asItem(),
+                        ModBlocks.GRAY_TRUSS_SLAB.asItem(),
 
-                        ModBlocks.RUSTY_TRUSS.get().asItem(),
-                        ModBlocks.RUSTY_TRUSS_STAIRS.get().asItem(),
-                        ModBlocks.RUSTY_TRUSS_SLAB.get().asItem()
+                        ModBlocks.RUSTY_TRUSS.asItem(),
+                        ModBlocks.RUSTY_TRUSS_STAIRS.asItem(),
+                        ModBlocks.RUSTY_TRUSS_SLAB.asItem()
                 );
         this.tag(ModTags.Items.VESSELGLASS_SMELTABLE_ITEM)
                 .add(
-                        ModBlocks.VESSELGLASS.get().asItem(),
-                        ModBlocks.REINFORCED_VESSELGLASS.get().asItem(),
-                        ModBlocks.GRAY_VESSELGLASS.get().asItem(),
-                        ModBlocks.GRAY_REINFORCED_VESSELGLASS.get().asItem(),
-                        ModBlocks.RUSTY_VESSELGLASS.get().asItem(),
-                        ModBlocks.RUSTY_REINFORCED_VESSELGLASS.get().asItem()
+                        ModBlocks.VESSELGLASS.asItem(),
+                        ModBlocks.REINFORCED_VESSELGLASS.asItem(),
+                        ModBlocks.GRAY_VESSELGLASS.asItem(),
+                        ModBlocks.GRAY_REINFORCED_VESSELGLASS.asItem(),
+                        ModBlocks.RUSTY_VESSELGLASS.asItem(),
+                        ModBlocks.RUSTY_REINFORCED_VESSELGLASS.asItem()
                 );
         this.tag(ModTags.Items.ROCKRETE_SMELTABLE_ITEM)
                 .add(
-                        ModBlocks.ROUGH_GRAY_ROCKRETE.get().asItem(),
-                        ModBlocks.ROUGH_RED_ROCKRETE.get().asItem(),
-                        ModBlocks.ROUGH_BLUE_ROCKRETE.get().asItem(),
-                        ModBlocks.ROUGH_GREEN_ROCKRETE.get().asItem(),
-                        ModBlocks.ROUGH_YELLOW_ROCKRETE.get().asItem(),
+                        ModBlocks.ROUGH_GRAY_ROCKRETE.asItem(),
+                        ModBlocks.ROUGH_RED_ROCKRETE.asItem(),
+                        ModBlocks.ROUGH_BLUE_ROCKRETE.asItem(),
+                        ModBlocks.ROUGH_GREEN_ROCKRETE.asItem(),
+                        ModBlocks.ROUGH_YELLOW_ROCKRETE.asItem(),
 
-                        ModBlocks.GRAY_ROCKRETE.get().asItem(),
-                        ModBlocks.GRAY_ROCKRETE_PILLAR.get().asItem(),
+                        ModBlocks.GRAY_ROCKRETE.asItem(),
+                        ModBlocks.GRAY_ROCKRETE_PILLAR.asItem(),
 
-                        ModBlocks.RED_ROCKRETE.get().asItem(),
-                        ModBlocks.RED_ROCKRETE_PILLAR.get().asItem(),
+                        ModBlocks.RED_ROCKRETE.asItem(),
+                        ModBlocks.RED_ROCKRETE_PILLAR.asItem(),
 
-                        ModBlocks.BLUE_ROCKRETE.get().asItem(),
-                        ModBlocks.BLUE_ROCKRETE_PILLAR.get().asItem(),
+                        ModBlocks.BLUE_ROCKRETE.asItem(),
+                        ModBlocks.BLUE_ROCKRETE_PILLAR.asItem(),
 
-                        ModBlocks.GREEN_ROCKRETE.get().asItem(),
-                        ModBlocks.GREEN_ROCKRETE_PILLAR.get().asItem(),
+                        ModBlocks.GREEN_ROCKRETE.asItem(),
+                        ModBlocks.GREEN_ROCKRETE_PILLAR.asItem(),
 
-                        ModBlocks.YELLOW_ROCKRETE.get().asItem(),
-                        ModBlocks.YELLOW_ROCKRETE_PILLAR.get().asItem()
+                        ModBlocks.YELLOW_ROCKRETE.asItem(),
+                        ModBlocks.YELLOW_ROCKRETE_PILLAR.asItem()
                 );
         this.tag(ModTags.Items.DOOR_ITEMS)
                 .add(
-                        ModBlocks.ARMORED_DOOR.get().asItem(),
-                        ModBlocks.STAMPED_METAL_DOOR.get().asItem(),
-                        ModBlocks.BULKHEAD_DOOR.get().asItem()
+                        ModBlocks.ARMORED_DOOR.asItem(),
+                        ModBlocks.STAMPED_METAL_DOOR.asItem(),
+                        ModBlocks.BULKHEAD_DOOR.asItem()
                 );
         this.tag(ModTags.Items.TRAPDOOR_ITEMS)
                 .add(
-                        ModBlocks.VENT_TRAPDOOR.get().asItem(),
-                        ModBlocks.RUSTY_VENT_TRAPDOOR.get().asItem()
+                        ModBlocks.VENT_TRAPDOOR.asItem(),
+                        ModBlocks.RUSTY_VENT_TRAPDOOR.asItem()
                 );
         this.tag(ModTags.Items.PIPEWORKS_ITEMS)
                 .add(
-                        ModBlocks.PIPEWORKS.get().asItem(),
+                        ModBlocks.PIPEWORKS.asItem(),
 
-                        ModBlocks.COPPER_PIPE_CONDUIT.get().asItem(),
-                        ModBlocks.COPPER_PIPE_CONDUIT_PLANAR_CORNER.get().asItem(),
-                        ModBlocks.COPPER_PIPE_CONDUIT_INNER_CORNER.get().asItem(),
-                        ModBlocks.COPPER_PIPE_CONDUIT_OUTER_CORNER.get().asItem(),
+                        ModBlocks.COPPER_PIPE_CONDUIT.asItem(),
+                        ModBlocks.COPPER_PIPE_CONDUIT_PLANAR_CORNER.asItem(),
+                        ModBlocks.COPPER_PIPE_CONDUIT_INNER_CORNER.asItem(),
+                        ModBlocks.COPPER_PIPE_CONDUIT_OUTER_CORNER.asItem(),
 
-                        ModBlocks.BRASS_PIPE_CONDUIT.get().asItem(),
-                        ModBlocks.BRASS_PIPE_CONDUIT_PLANAR_CORNER.get().asItem(),
-                        ModBlocks.BRASS_PIPE_CONDUIT_INNER_CORNER.get().asItem(),
-                        ModBlocks.BRASS_PIPE_CONDUIT_OUTER_CORNER.get().asItem(),
+                        ModBlocks.BRASS_PIPE_CONDUIT.asItem(),
+                        ModBlocks.BRASS_PIPE_CONDUIT_PLANAR_CORNER.asItem(),
+                        ModBlocks.BRASS_PIPE_CONDUIT_INNER_CORNER.asItem(),
+                        ModBlocks.BRASS_PIPE_CONDUIT_OUTER_CORNER.asItem(),
 
-                        ModBlocks.GRAY_PIPE_CONDUIT.get().asItem(),
-                        ModBlocks.GRAY_PIPE_CONDUIT_PLANAR_CORNER.get().asItem(),
-                        ModBlocks.GRAY_PIPE_CONDUIT_INNER_CORNER.get().asItem(),
-                        ModBlocks.GRAY_PIPE_CONDUIT_OUTER_CORNER.get().asItem()
+                        ModBlocks.GRAY_PIPE_CONDUIT.asItem(),
+                        ModBlocks.GRAY_PIPE_CONDUIT_PLANAR_CORNER.asItem(),
+                        ModBlocks.GRAY_PIPE_CONDUIT_INNER_CORNER.asItem(),
+                        ModBlocks.GRAY_PIPE_CONDUIT_OUTER_CORNER.asItem()
                 );
-        //FURNITURE CATEGORIES BELOW
 
+        //FURNITURE CATEGORIES BELOW
         this.tag(ModTags.Items.FURNITURE_CATEGORIES)
                 .add(
-                        ModBlocks.SAFETY_FURNISHINGS.get().asItem(),
-                        ModBlocks.HYGIENE_FURNISHINGS.get().asItem(),
-                        ModBlocks.INDUSTRIAL_FURNISHINGS.get().asItem(),
-                        ModBlocks.TECHNOLOGY_FURNISHINGS.get().asItem(),
-                        ModBlocks.AMENITY_FURNISHINGS.get().asItem().asItem()
+                        ModBlocks.SAFETY_FURNISHINGS.asItem(),
+                        ModBlocks.HYGIENE_FURNISHINGS.asItem(),
+                        ModBlocks.INDUSTRIAL_FURNISHINGS.asItem(),
+                        ModBlocks.TECHNOLOGY_FURNISHINGS.asItem(),
+                        ModBlocks.AMENITY_FURNISHINGS.asItem().asItem()
                 );
 
         this.tag(ModTags.Items.ALL_FURNITURE_ITEMS)
@@ -211,60 +211,60 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 );
         this.tag(ModTags.Items.SAFETY_FURNITURE_CATEGORY)
                 .add(
-                        ModBlocks.RED_WALL_MEDKIT.get().asItem(),
-                        ModBlocks.WHITE_WALL_MEDKIT.get().asItem(),
-                        ModBlocks.FIRE_EXTINGUISHER.get().asItem(),
-                        ModBlocks.SMOKE_ALARM.get().asItem(),
-                        ModBlocks.OPERATING_TABLE.get().asItem(),
-                        ModBlocks.MEDICAL_BED.get().asItem(),
-                        ModBlocks.IV_DRIPSTAND.get().asItem(),
-                        ModBlocks.VITALS_MONITOR.get().asItem()
+                        ModBlocks.RED_WALL_MEDKIT.asItem(),
+                        ModBlocks.WHITE_WALL_MEDKIT.asItem(),
+                        ModBlocks.FIRE_EXTINGUISHER.asItem(),
+                        ModBlocks.SMOKE_ALARM.asItem(),
+                        ModBlocks.OPERATING_TABLE.asItem(),
+                        ModBlocks.MEDICAL_BED.asItem(),
+                        ModBlocks.IV_DRIPSTAND.asItem(),
+                        ModBlocks.VITALS_MONITOR.asItem()
                 );
         this.tag(ModTags.Items.HYGIENE_FURNITURE_CATEGORY)
                 .add(
-                        ModBlocks.TOILET.get().asItem(),
-                        ModBlocks.SINK.get().asItem(),
-                        ModBlocks.URINAL.get().asItem()
+                        ModBlocks.TOILET.asItem(),
+                        ModBlocks.SINK.asItem(),
+                        ModBlocks.URINAL.asItem()
                 );
         this.tag(ModTags.Items.INDUSTRIAL_FURNITURE_CATEGORY)
                 .add(
-                        ModBlocks.LOCKER_BOX.get().asItem(),
-                        ModBlocks.LARGE_LOCKER.get().asItem(),
-                        ModBlocks.WORK_LIGHT_STAND.get().asItem(),
-                        ModBlocks.FLOOR_WORK_LIGHT.get().asItem(),
-                        ModBlocks.CCTV_CAMERA.get().asItem(),
-//                        ModBlocks.INDUSTRIAL_LAMP.get().asItem(),
-                        ModBlocks.OBLONG_CAGE_LAMP.get().asItem()
+                        ModBlocks.LOCKER_BOX.asItem(),
+                        ModBlocks.LARGE_LOCKER.asItem(),
+                        ModBlocks.WORK_LIGHT_STAND.asItem(),
+                        ModBlocks.FLOOR_WORK_LIGHT.asItem(),
+                        ModBlocks.CCTV_CAMERA.asItem(),
+//                        ModBlocks.INDUSTRIAL_LAMP.asItem(),
+                        ModBlocks.OBLONG_CAGE_LAMP.asItem()
                 );
         this.tag(ModTags.Items.TECHNOLOGY_FURNITURE_CATEGORY)
                 .add(
-                        ModBlocks.RETRO_COMPUTER.get().asItem(),
-                        ModBlocks.RETRO_COMPUTER_2.get().asItem(),
-                        ModBlocks.MONITOR_AND_KEYBOARD.get().asItem(),
-                        ModBlocks.DESKTOP_TOWER.get().asItem(),
-                        ModBlocks.CASSETTE_PLAYER.get().asItem()
+                        ModBlocks.RETRO_COMPUTER.asItem(),
+                        ModBlocks.RETRO_COMPUTER_2.asItem(),
+                        ModBlocks.MONITOR_AND_KEYBOARD.asItem(),
+                        ModBlocks.DESKTOP_TOWER.asItem(),
+                        ModBlocks.CASSETTE_PLAYER.asItem()
                 );
 
         this.tag(ModTags.Items.AMENITY_FURNITURE_CATEGORY)
                 .add(
-                        ModBlocks.DESK.get().asItem(),
-                        ModBlocks.DESK_DRAWER.get().asItem(),
+                        ModBlocks.DESK.asItem(),
+                        ModBlocks.DESK_DRAWER.asItem(),
 
-                        ModBlocks.METAL_DESK.get().asItem(),
-                        ModBlocks.METAL_DESK_DRAWER.get().asItem(),
-                        ModBlocks.METAL_DESK_DRAWER_2.get().asItem(),
+                        ModBlocks.METAL_DESK.asItem(),
+                        ModBlocks.METAL_DESK_DRAWER.asItem(),
+                        ModBlocks.METAL_DESK_DRAWER_2.asItem(),
 
-                        ModBlocks.OFFICE_DESK_DRAWER.get().asItem(),
-                        ModBlocks.OFFICE_DESK.get().asItem(),
+                        ModBlocks.OFFICE_DESK_DRAWER.asItem(),
+                        ModBlocks.OFFICE_DESK.asItem(),
 
-                        ModBlocks.OFFICE_CHAIR.get().asItem(),
-                        ModBlocks.BLACK_OFFICE_CHAIR.get().asItem(),
-                        ModBlocks.FOLDING_CHAIR.get().asItem()
+                        ModBlocks.OFFICE_CHAIR.asItem(),
+                        ModBlocks.BLACK_OFFICE_CHAIR.asItem(),
+                        ModBlocks.FOLDING_CHAIR.asItem()
                 );
         //---------- END OF RECIPE DATAGEN INPUT TAGS ----------
 
         //---------- MISC TAGS ----------
-        this.tag(ModTags.Items.IH_RECIPE_STONELIKES)
+        this.tag(ModTags.Items.IH_RECIPE_STONES)
                 .add(
                         Items.COBBLESTONE,
                         Items.COBBLED_DEEPSLATE,
@@ -275,12 +275,18 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         Items.ANDESITE,
                         Items.BLACKSTONE,
                         Items.END_STONE
-                );
+        );
 
         this.tag(ModTags.Items.IH_RECIPE_INGOTS)
                 .add(
-                        Items.COPPER_INGOT,
                         Items.IRON_INGOT
+        );
+
+        this.tag(ModTags.Items.BODY_PILLOW_ITEM)
+                .add(
+                        ModBlocks.BODY_PILLOW_OZY.asItem(),
+                        ModBlocks.BODY_PILLOW_FANG.asItem(),
+                        ModBlocks.BODY_PILLOW_PROV.asItem()
                 );
 
         this.tag(ModTags.Items.IH_COMPATIBLE_TOOLS)
@@ -289,7 +295,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 )
                 .addTags(
                         PICKAXES
-                );
+        );
     }
 
     //---------- END OF MISC TAGS ----------
