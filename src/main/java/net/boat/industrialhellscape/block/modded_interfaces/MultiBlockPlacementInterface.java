@@ -41,6 +41,8 @@ public interface MultiBlockPlacementInterface {
     }
 
     static void destroyRemainingMultiBlock(LevelAccessor pLevel, Block thisBlock, BlockPos pos, IntegerProperty partProperty, BlockState pState, int[][] multiBlockMatrix) {
+        //Interface method intended to be called when onRemove() is called in the block class.
+
         BlockPos originPos = vectorToOriginBlockPos(pos, multiBlockMatrix,pState, partProperty);
 
         //Max IntegerProperty blockState, counting from 0. For a two block multiblock, this value should return 1

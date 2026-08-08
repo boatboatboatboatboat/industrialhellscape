@@ -30,7 +30,6 @@ public class IntegerMultiBlock extends SimpleFacingBlock implements MultiBlockPl
         this.multiBlockPlacementMatrix = multiBlockPlacementMatrix;
         maximumBlockStates = registerMaxBlockStates;
 
-
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(PART, 0)
                 .setValue(FACING, Direction.NORTH)
