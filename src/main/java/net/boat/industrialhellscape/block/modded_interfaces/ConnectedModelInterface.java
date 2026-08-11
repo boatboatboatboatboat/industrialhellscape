@@ -65,14 +65,14 @@ public interface ConnectedModelInterface {
         return state;
     }
 
-    default void whenConnectedNeighborUpdated(Block thisBlock, BlockState state, Level level, BlockPos positionClicked, BlockPos fromPos, TagKey<Block> BlockSetFamily, ConnectingBlockPlacementDirection placementDirection,
+    default void whenConnectedNeighborUpdated(Block thisBlock, BlockState state, Level level, BlockPos positionClicked, BlockPos neighborPos, TagKey<Block> BlockSetFamily, ConnectingBlockPlacementDirection placementDirection,
                                               DirectionProperty facingProperty, EnumProperty<DynamicConnectionState> typeProperty, BooleanProperty waterLoggedProperty) {
         if (!level.isClientSide) {
             if (state.getValue(waterLoggedProperty)) {
-                level.scheduleTick(fromPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+                level.scheduleTick(neighborPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
             }
         }
-        if (level.isClientSide) return;
+//        if (level.isClientSide) return; why was this here
 
         Direction directionClicked = state.getValue(facingProperty).getOpposite();
 
@@ -80,7 +80,7 @@ public interface ConnectedModelInterface {
         BlockState getNegativeState = placementDirection == ConnectingBlockPlacementDirection.HORIZONTAL ? getStateAtRelativeRight(level, positionClicked, directionClicked) : getStateRelativeBottom(level, positionClicked);
 
         DynamicConnectionState type = getTypeAndFamily(thisBlock, state, getPositiveState, getNegativeState, BlockSetFamily, facingProperty);
-        if (state.getValue(typeProperty) == type) return;
+//        if (state.getValue(typeProperty) == type) return;  why was this here
 
         state = state.setValue(typeProperty, type);
         level.setBlock(positionClicked, state, 3); //3
@@ -161,7 +161,7 @@ public interface ConnectedModelInterface {
     which model to use to connect to neighboring blocks.
 
     Certain blocks can connect to completely different blocks (desks and drawers). Both blocks must be part of a
-    block tag, passed to the appropriate method to check for eligibility.
+    block tag. There will be appropriate methods with that argument below.
      */
     default DynamicConnectionState getStackingRailType(Block thisBlock, BlockState state, BlockState aboveState, BlockState belowState, BooleanProperty booleanFacingProperty) {
         boolean neighborBelowIsSameBlock = (aboveState.is(thisBlock))

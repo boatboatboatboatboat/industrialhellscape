@@ -27,12 +27,11 @@ INFO:
 -----
 Handles block entity behavior for all inheriting block classes.
 
-getSlotCount() used by StorageBlockInterface to detect desired Block Entity item slot amount to create.
-getOpenSound() and getClosedSound() used by StorageBlockInterface to detect desired sounds for opening and closing Block Entity menu.
+getSlotCount() used by StorageBE to acquire desired Block Entity item slot amount, registered per Block instance.
+getOpenSound() & getCloseSound() used by StorageBE to acquire desired sound effects registered per Block instance.
 */
 
 public class BaseStorageBlock extends BaseEntityBlock implements StorageBlockInterface {
-    //public static final MapCodec<BaseStorageBlock> CODEC = simpleCodec(BaseStorageBlock::new);
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
     public final int SLOTS;
     public final SoundEvent OPEN_SOUND;
@@ -52,16 +51,19 @@ public class BaseStorageBlock extends BaseEntityBlock implements StorageBlockInt
 
     @Override
     public int getSlotCount() {
+        //StorageBlockInterface
         return SLOTS;
     }
 
     @Override
     public SoundEvent getOpenSound() {
+        //StorageBlockInterface
         return OPEN_SOUND;
     }
 
     @Override
     public SoundEvent getCloseSound() {
+        //StorageBlockInterface
         return CLOSE_SOUND;
     }
 

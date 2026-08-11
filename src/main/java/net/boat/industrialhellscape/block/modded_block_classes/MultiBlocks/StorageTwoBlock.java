@@ -12,6 +12,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 
@@ -74,12 +75,20 @@ public class StorageTwoBlock extends IntegerMultiBlock implements EntityBlock, S
     }
 
     @Override
-    public void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) {
-        BlockPos originPos = MultiBlockPlacementInterface.vectorToOriginBlockPos(pos, multiBlockPlacementMatrix,state, PART);
-        StorageBlockInterface.dropContainerInventory(this, state, level, originPos, newState);
-        MultiBlockPlacementInterface.destroyRemainingMultiBlock(level, this, pos, PART, state, multiBlockPlacementMatrix);
+    public boolean onDestroyedByPlayer(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, boolean willHarvest, FluidState fluid) {
+        /*
+        https://docs.neoforged.net/docs/1.21.1/blocks/
 
-        super.onRemove(state, level, pos, newState, isMoving);
+        Experimentally determined:
+        playerDestroy() will not work in Creative Mode at all. It can be called manually by another method related to block destruction,
+        such as playerWillDestroy() or onDestroyedByPlayer
+         */
+
+        BlockPos originPos = MultiBlockPlacementInterface.vectorToOriginBlockPos(pPos, multiBlockPlacementMatrix,pState, PART);
+        StorageBlockInterface.dropContainerInventory(this, pState, pLevel, originPos, pLevel.getBlockState(pPos));
+
+        MultiBlockPlacementInterface.destroyRemainingMultiBlock(pLevel, pPlayer, this, pPos, PART, pState, multiBlockPlacementMatrix);
+        return super.onDestroyedByPlayer(pState, pLevel, pPos, pPlayer, willHarvest, fluid);
     }
 
     //---------- End of Block Entity Handling Methods ----------

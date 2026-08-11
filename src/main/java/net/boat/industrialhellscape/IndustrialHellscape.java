@@ -1,29 +1,21 @@
 package net.boat.industrialhellscape;
 
+import com.mojang.logging.LogUtils;
 import net.boat.industrialhellscape.block.ModBlocks;
 import net.boat.industrialhellscape.block.modded_block_entities.ModBlockEntities;
 import net.boat.industrialhellscape.entity.ModEntities;
-import net.boat.industrialhellscape.entity.SittableEntity.SittableEntityRenderer;
 import net.boat.industrialhellscape.item.ModCreativeModeTabs;
 import net.boat.industrialhellscape.item.ModItems;
 import net.boat.industrialhellscape.sound.ModSounds;
-import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.neoforged.fml.config.ModConfig;
-import org.slf4j.Logger;
-
-import com.mojang.logging.LogUtils;
-
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraft.client.Minecraft;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(IndustrialHellscape.MOD_ID)
@@ -71,27 +63,5 @@ public class IndustrialHellscape {
     public void onServerStarting(ServerStartingEvent event) {
         // Do something when the server starts
         //LOGGER.info("HELLO from server starting");
-    }
-
-    // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-    @EventBusSubscriber(modid = IndustrialHellscape.MOD_ID, value = Dist.CLIENT)
-    static class ClientModEvents {
-        @SubscribeEvent
-        static void onClientSetup(FMLClientSetupEvent event) {
-            // Some client setup code
-            LOGGER.info("HELLO FROM CLIENT SETUP");
-            LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
-            EntityRenderers.register(ModEntities.CHAIR.get(), SittableEntityRenderer::new);
-        }
-
-
-//        @SubscribeEvent
-//        public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
-//            event.registerBlockEntityRenderer(ModBlockEntities.DEBUG_BE.get(), DebugBERenderer::new);
-//        }
-//        @SubscribeEvent
-//        public static void registerScreens(RegisterMenuScreensEvent event) {
-//            event.register(ModMenuTypes.DEBUG_BE_MENU.get(), DebugBEScreen::new);
-//        }
     }
 }

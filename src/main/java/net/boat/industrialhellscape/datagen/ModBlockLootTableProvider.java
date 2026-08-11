@@ -36,6 +36,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         //JOKE BLOCK
         this.add(ModBlocks.BODY_PILLOW_OZY.get(),
                 createIntegerMultiBlockDrops(ModBlocks.BODY_PILLOW_OZY.get()));
+//        this.dropSelf(ModBlocks.BODY_PILLOW_OZY.get());
         this.add(ModBlocks.BODY_PILLOW_FANG.get(),
                 createIntegerMultiBlockDrops(ModBlocks.BODY_PILLOW_FANG.get()));
         this.add(ModBlocks.BODY_PILLOW_PROV.get(),

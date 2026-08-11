@@ -2,6 +2,7 @@ package net.boat.industrialhellscape.block.modded_interfaces;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
@@ -40,32 +41,51 @@ public interface MultiBlockPlacementInterface {
         };
     }
 
-    static void destroyRemainingMultiBlock(LevelAccessor pLevel, Block thisBlock, BlockPos pos, IntegerProperty partProperty, BlockState pState, int[][] multiBlockMatrix) {
-        //Interface method intended to be called when onRemove() is called in the block class.
+    static void destroyRemainingMultiBlock(LevelAccessor pLevel, Player pPlayer, Block thisBlock, BlockPos pos, IntegerProperty partProperty, BlockState pState, int[][] multiBlockMatrix) {
 
+        /*
+        Experimentally determined:
+        neighborChanged() appears to be called right before a block disappears. Meaning if a multiblock part is mined,
+        adjacent blocks will receive neighborChanged() updates with neighborState being the state of the multiblock part
+        prior to its removal.
+
+        Unfortunately, create contraptions will trigger both neighborChanged() and onRemove() for each block attached.
+        */
+
+        /*
+        used as a helper method for onDestroyedByPlayer().
+
+        This logic isn't used for block updates, so
+        it's probably fine to run heavier logic for the specific case
+        where a player is actually mining the block.
+
+        Create Mod machinery calls level.destroyBlock somewhere in their code (removing the block and dropping loot)
+        This is why all multiBLock loot tables are restricted to dropping only for the first blockState, part:0, to prevent duping.
+         */
+
+        //BlockPos of the first block of the multiblock, part "0"
         BlockPos originPos = vectorToOriginBlockPos(pos, multiBlockMatrix,pState, partProperty);
 
-        //Max IntegerProperty blockState, counting from 0. For a two block multiblock, this value should return 1
-        int intFinalBlockState = multiBlockMatrix.length - 1;
-        //identify the current block of the multiblock via its partProperty, counting from 0;
-        int intCurrentBlockState = pState.getValue(partProperty);
-        BlockState currentBlockState = pLevel.getBlockState(pos);
-        boolean currentBlockIsThisBlock = currentBlockState.is(thisBlock);
+        for (int i = 0; i < multiBlockMatrix.length; i++) {
+            BlockPos blockPosToCheck = vectorToBlockPos(originPos, multiBlockMatrix, i, pState);
 
-        //Identify the next block state in sequence. If it is the last block, loop back to zero. Else, increment.
-        int intNextBlockState = (intCurrentBlockState == intFinalBlockState) ? 0 : intCurrentBlockState + 1 ;
-        BlockPos nextBlockPos = vectorToBlockPos(originPos,multiBlockMatrix, intNextBlockState, pState);
-        BlockState nextBlockState = pLevel.getBlockState(nextBlockPos);
-        boolean nextBlockIsThisBlock = nextBlockState.is(thisBlock);
+            boolean multiBLockPartIsHere = pLevel.getBlockState(blockPosToCheck).is(thisBlock);
 
-        /*Executes destruction of subsequent block only if subsequent block is this block and current block is gone (e.g. is Air, or somehow replaced entirely)
-          This ensures that state updates set via .setBlock() which trigger onRemove() for some reason, don't lead to unintended block destruction even if all blocks are intact.
+            if (multiBLockPartIsHere) {
+                /*
+                If Player is in creative mode, the for-loop will remove all multiBlock parts without dropping loot from
+                their loot table.
+                If Player is in survival, the for-loop will remove all multiblock parts, and when possible, drop loot from
+                their loot table.
 
-          Known side effect: If a non-origin block (one that is not blockState Part: 0) is mined by a Creative Mode player, this method triggers, and .destroyBlock() produce the
-           loot pool for block Part: 0 and dropping the item despite player being in Creative Mode.
-         */
-        if(nextBlockIsThisBlock && !currentBlockIsThisBlock) {
-            pLevel.destroyBlock(vectorToBlockPos(originPos, multiBlockMatrix, intNextBlockState, pState), true);
+                That is the distinction between level.removeBlock() and level.destroyBlock()
+                 */
+                if(pPlayer.isCreative()) {
+                    pLevel.removeBlock(vectorToBlockPos(originPos, multiBlockMatrix, i, pState), true);
+                } else {
+                    pLevel.destroyBlock(vectorToBlockPos(originPos, multiBlockMatrix, i, pState), true);
+                }
+            }
         }
     }
 
