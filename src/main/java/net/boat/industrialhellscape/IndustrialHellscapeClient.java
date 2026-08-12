@@ -1,19 +1,15 @@
 package net.boat.industrialhellscape;
 
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
-
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 
 // This class will not load on dedicated servers. Accessing client side code from here is safe.
 @Mod(value = IndustrialHellscape.MOD_ID, dist = Dist.CLIENT)
 // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-@EventBusSubscriber(modid = IndustrialHellscape.MOD_ID, value = Dist.CLIENT)
+//@EventBusSubscriber(modid = IndustrialHellscape.MOD_ID, value = Dist.CLIENT) Uncomment only if there is a SubscribeEvent in this class
 public class IndustrialHellscapeClient {
     public IndustrialHellscapeClient(ModContainer container) {
 
@@ -25,9 +21,9 @@ public class IndustrialHellscapeClient {
         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
     }
 
-    @SubscribeEvent
-    static void onClientSetup(FMLClientSetupEvent event) {
-        // Some client setup code
-        // IndustrialHellscape.LOGGER.info("HELLO FROM CLIENT SETUP");
-    }
+//    @SubscribeEvent
+//    static void onClientSetup(FMLClientSetupEvent event) {
+//        // Some client setup code
+//        // IndustrialHellscape.LOGGER.info("HELLO FROM CLIENT SETUP");
+//    }
 }

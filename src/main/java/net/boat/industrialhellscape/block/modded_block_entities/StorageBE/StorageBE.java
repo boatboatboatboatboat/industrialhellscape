@@ -27,7 +27,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class StorageBE extends RandomizableContainerBlockEntity {
-    private int SLOTS;
+    private final int SLOTS;
     public final SoundEvent OPEN_SOUND;
     public final SoundEvent CLOSE_SOUND;
 

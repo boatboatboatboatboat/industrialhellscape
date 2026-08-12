@@ -5,7 +5,6 @@ import net.boat.industrialhellscape.block.modded_block_entities.StorageBE.Storag
 import net.boat.industrialhellscape.block.modded_interfaces.StorageBlockInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -82,7 +81,7 @@ public class BaseStorageBlock extends BaseEntityBlock implements StorageBlockInt
     }
 
     protected void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) {
-        Containers.dropContentsOnDestroy(state, newState, level, pos);
+        StorageBlockInterface.dropContainerInventory(this, state, level, pos, newState);
         super.onRemove(state, level, pos, newState, isMoving);
     }
 
