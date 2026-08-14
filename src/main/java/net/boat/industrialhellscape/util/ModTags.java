@@ -22,7 +22,7 @@ public class ModTags {
         public static final TagKey<Block> DOOR_BLOCKS = tag("door_blocks");
         public static final TagKey<Block> TRAPDOOR_BLOCKS = tag("trapdoor_blocks");
 
-        public static final TagKey<Block> INVENTORY_BLOCKS = tag("inventory_blocks");
+        public static final TagKey<Block> STORAGE_INVENTORY_BLOCKS = tag("storage_blocks");
 
         public static final TagKey<Block> BODY_PILLOW_BLOCK = tag("body_pillow_block");
 

@@ -321,7 +321,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModTags.Blocks.GRAY_PIPE_CONDUIT
                 );
 
-        this.tag(ModTags.Blocks.INVENTORY_BLOCKS)
+        this.tag(ModTags.Blocks.STORAGE_INVENTORY_BLOCKS)
                 .add(
                         ModBlocks.OFFICE_DESK_DRAWER.get(),
                         ModBlocks.DESK_DRAWER.get(),
@@ -400,7 +400,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         this.tag(ModTags.Blocks.MOD_CREATE_SIMPLE_MOUNTED_STORAGE)
                 .addTags(
-                        ModTags.Blocks.INVENTORY_BLOCKS
+                        ModTags.Blocks.STORAGE_INVENTORY_BLOCKS
                 );
 
         this.tag(ModTags.Blocks.MOD_SABLE_MASS_SUPER_LIGHT)

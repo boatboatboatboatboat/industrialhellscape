@@ -3,11 +3,9 @@ package net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks;
 import net.boat.industrialhellscape.block.modded_block_entities.StorageBE.StorageBE;
 import net.boat.industrialhellscape.block.modded_interfaces.MultiBlockPlacementInterface;
 import net.boat.industrialhellscape.block.modded_interfaces.StorageBlockInterface;
-import net.boat.industrialhellscape.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -83,20 +81,14 @@ public class StorageTwoBlock extends IntegerMultiBlock implements EntityBlock, S
 
         Experimentally determined:
         playerDestroy() will not work in Creative Mode at all. It can be called manually by another method related to block destruction,
-        such as playerWillDestroy() or onDestroyedByPlayer
+        such as playerWillDestroy() or onDestroyedByPlayer. The latter is overridden here.
          */
 
         BlockPos originPos = MultiBlockPlacementInterface.vectorToOriginBlockPos(pPos, multiBlockPlacementMatrix,pState, PART);
-        playSound(pLevel,pPos, ModSounds.METALPIPEFALLINGSOUNDEFFECT.get());
         StorageBlockInterface.dropContainerInventory(this, pState, pLevel, originPos, pLevel.getBlockState(pPos));
 
         MultiBlockPlacementInterface.destroyRemainingMultiBlock(pLevel, pPlayer, this, pPos, PART, pState, multiBlockPlacementMatrix);
         return super.onDestroyedByPlayer(pState, pLevel, pPos, pPlayer, willHarvest, fluid);
-    }
-
-    private static void playSound(Level pLevel, BlockPos pPos, SoundEvent outputSound) {
-        pLevel.playSeededSound(null, pPos.getX(), pPos.getY(), pPos.getZ(),
-                outputSound, SoundSource.BLOCKS, 1f, 1f, 0);
     }
 
     //---------- End of Block Entity Handling Methods ----------
