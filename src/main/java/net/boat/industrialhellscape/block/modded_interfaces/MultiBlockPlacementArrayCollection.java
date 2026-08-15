@@ -13,6 +13,12 @@ public interface MultiBlockPlacementArrayCollection {
         I can add more indices to encode flags for special per-state logic.
     */
 
+    //Funny Dev blocks
+    int[][] DUNKELSGLORP = { {0, 0, 0}, {1, 0, 0}, {2, 0, 0},
+                            {2, 1, 0}, {2, 2, 0}, {2, 2, 1},
+                            {2, 2, 2}, {2, 1, 2}, {2, 0, 2},
+                            {1, 0, 2}, {2, 0, 2} };
+
     //For two-block multiblocks; 2 3D vectors required.
     int[][] SIDEWAYS_PLACEMENT = { {0, 0, 0}, {1, 0, 0} }; //places second block right of first block
     int[][] VERTICAL_PLACEMENT = { {0, 0, 0}, {0, 1, 0} }; // places second block above first block

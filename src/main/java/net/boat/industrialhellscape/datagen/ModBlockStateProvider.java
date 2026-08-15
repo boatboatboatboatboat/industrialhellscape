@@ -2,7 +2,8 @@ package net.boat.industrialhellscape.datagen;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
-import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.IntegerMultiBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.Integer11Blocks.Integer11Block;
+import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.Integer2Blocks.Integer2Block;
 import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.SurfaceMountBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.TextureToggleBlocks.SimpleTextureToggleBlock;
 import net.minecraft.core.Direction;
@@ -12,6 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.AttachFace;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
@@ -29,7 +31,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         //Debug Blocks
         //genSimpleSBI(ModBlocks.PROTOTYPE_MACHINE.get(), build3FaceTexturesBlockModel("prototype_machine","experimental", "prototype_machine_front", "prototype_machine_side", "prototype_machine_top"));
-        genFullBlockIntegerMultiBlockSI(ModBlocks.DEBUG_BLOCK.get(), "debug_textures", 4);
+        genFullBlockIntegerMultiBlockSI(ModBlocks.DEBUG_BLOCK.get(), "debug_textures", 11, Integer11Block.PART);
 
         genModelledIntegerMultiBlockS(ModBlocks.BODY_PILLOW_OZY.get(), "body_pillow");
         genVariantMultiBlock(ModBlocks.BODY_PILLOW_FANG.get(), ModBlocks.BODY_PILLOW_OZY.get(),"body_pillow","body_pillow","body_pillow_front_graphic_fang", "1", new Integer[]{1} );
@@ -607,7 +609,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, models().getExistingFile(modLoc(modelPath)));
     }
 
-    private void genFullBlockIntegerMultiBlockSI(Block block, String textureSubFolder, int maxStates) {
+    private void genFullBlockIntegerMultiBlockSI(Block block, String textureSubFolder, int maxStates, IntegerProperty integerProperty) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 
         //make all models first
@@ -626,7 +628,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                         default -> 0; //NORTH
                     };
 
-                    int intBlockState = state.getValue(IntegerMultiBlock.PART);
+                    int intBlockState = state.getValue(integerProperty);
 
                     return ConfiguredModel.builder()
                             .modelFile(models().getExistingFile(modLoc("block/"+stringName + "_"+intBlockState)))
@@ -652,7 +654,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                         default -> 0; //NORTH
                     };
 
-                    int intBlockState = state.getValue(IntegerMultiBlock.PART);
+                    int intBlockState = state.getValue(Integer2Block.PART);
 
                     return ConfiguredModel.builder()
                             .modelFile(models().getExistingFile(modLoc("block/"+ optionalFolder(modelSubFolder) +stringName  + "_"+intBlockState)))
@@ -682,7 +684,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         getVariantBuilder(block)
                 .forAllStatesExcept(state -> {
                     Direction horizontalFacing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
-                    Integer intBlockState = state.getValue(IntegerMultiBlock.PART);
+                    Integer intBlockState = state.getValue(Integer2Block.PART);
                     boolean partIntDesignatedForModelChange = (Arrays.asList(arrayOfStatesWithModelChange).contains(intBlockState) );
 
                     String modelToUse = partIntDesignatedForModelChange? variantGeneratedModelPath : parentModelPath;
@@ -723,7 +725,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .forAllStatesExcept(state -> {
                     Direction horizontalFacing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
                     boolean lit = state.getValue(BlockStateProperties.LIT);
-                    Integer intBlockState = state.getValue(IntegerMultiBlock.PART);
+                    Integer intBlockState = state.getValue(Integer2Block.PART);
                     boolean partIntDesignatedForModelChange = (Arrays.asList(arrayOfStatesWithModelChange).contains(intBlockState) );
                     boolean modelNeedsChange = (lit && partIntDesignatedForModelChange);
 

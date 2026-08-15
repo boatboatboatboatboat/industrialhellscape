@@ -1,4 +1,4 @@
-package net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks;
+package net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.Integer2Blocks;
 
 import net.boat.industrialhellscape.block.modded_interfaces.MultiBlockPlacementInterface;
 import net.minecraft.core.BlockPos;
@@ -26,12 +26,12 @@ import javax.annotation.Nonnull;
 //The direction these are placed is set by parameter "multiBlockPlacementDirection". The second half of the structure can be placed vertically, horizontally, or forward to the first half.
 //Supports a custom hitbox for custom model, passed during registration.
 
-public class ModelledTwoBlock extends IntegerMultiBlock implements SimpleWaterloggedBlock {
+public class Modelled2Block extends Integer2Block implements SimpleWaterloggedBlock {
 
     private final VoxelShape[] hitboxShapeArray;
 
-    public ModelledTwoBlock(BlockBehaviour.Properties pProperties, int registerMaxBlockStates, int[][] multiBlockPlacementMatrix, VoxelShape[] hitboxShapeArray) {
-        super(pProperties, registerMaxBlockStates, multiBlockPlacementMatrix);
+    public Modelled2Block(BlockBehaviour.Properties pProperties, int[][] multiBlockPlacementMatrix, VoxelShape[] hitboxShapeArray) {
+        super(pProperties, multiBlockPlacementMatrix);
 
         this.hitboxShapeArray = hitboxShapeArray;
 

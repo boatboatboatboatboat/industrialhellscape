@@ -1,4 +1,4 @@
-package net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks;
+package net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.Integer2Blocks;
 
 import net.boat.industrialhellscape.block.modded_interfaces.MultiBlockPlacementInterface;
 import net.minecraft.core.BlockPos;
@@ -17,10 +17,9 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-public class LightStandTwoBlock extends ModelledTwoBlock {
-
-    public LightStandTwoBlock(Properties pProperties, int registerMaxBlockStates, int[][] multiBlockPlacementMatrix, VoxelShape[] hitboxShapeArray) {
-        super(pProperties, registerMaxBlockStates, multiBlockPlacementMatrix, hitboxShapeArray);
+public class LightStand2Block extends Modelled2Block {
+    public LightStand2Block(Properties pProperties, int[][] multiBlockPlacementMatrix, VoxelShape[] hitboxShapeArray) {
+        super(pProperties, multiBlockPlacementMatrix, hitboxShapeArray);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(BlockStateProperties.LIT, false)
                 .setValue(PART, 0)

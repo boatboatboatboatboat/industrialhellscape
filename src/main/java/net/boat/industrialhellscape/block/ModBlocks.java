@@ -3,8 +3,11 @@ package net.boat.industrialhellscape.block;
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks.AxialPillarBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks.ConnectedFurnitureBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBlocks.FacingFallableBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.*;
+import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.Integer11Blocks.Storage11Block;
+import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.Integer2Blocks.Bed2Block;
+import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.Integer2Blocks.LightStand2Block;
+import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.Integer2Blocks.Modelled2Block;
+import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.Integer2Blocks.Storage2Block;
 import net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBlocks.*;
 import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.ParapetBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.RailingBlock;
@@ -102,42 +105,44 @@ public class ModBlocks {
     }
 
     public static final DeferredBlock<Block> DEBUG_BLOCK = registerBlockAndBlockItem("debug_block",
-            () -> new IntegerMultiBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.OAK_PLANKS), 4, MultiBlockPlacementArrayCollection.SIDEWAYS_PLACEMENT));
-
+            () -> new Storage11Block(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    , MultiBlockPlacementArrayCollection.DUNKELSGLORP
+                    , 54
+                    , ModSounds.METAL_BOX_OPEN.get()
+                    , ModSounds.METAL_BOX_CLOSE.get()
+            )
+    );
 //    public static final DeferredBlock<Block> REMOVE_THIS_ITEM = registerBlockAndBlockItem("remove_this_item",
 //            () -> new ModelledFacingBlock(BlockBehaviour
 //                    .Properties.ofFullCopy(Blocks.OAK_PLANKS).sound(SoundType.SLIME_BLOCK), HitboxGeometryCollection.DECAL_FLOOR()));
 
     //JOKE BLOCKS
     public static final DeferredBlock<Block> BODY_PILLOW_OZY = registerBlockAndBlockItem("body_pillow",
-            () -> new ModdedBedBlock(BlockBehaviour
+            () -> new Bed2Block(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.WHITE_WOOL)
                     .sound(SoundType.SLIME_BLOCK)
                     .noOcclusion(),
-                    2,
                     MultiBlockPlacementArrayCollection.SLEEPABLE_BED_PLACEMENT,
                     new VoxelShape[]{HitboxGeometryCollection.PILLOW_NEGATIVE(), HitboxGeometryCollection.PILLOW_POSITIVE()},
                     true
             )
     );
     public static final DeferredBlock<Block> BODY_PILLOW_FANG = registerBlockAndBlockItem("body_pillow_fang",
-            () -> new ModdedBedBlock(BlockBehaviour
+            () -> new Bed2Block(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.WHITE_WOOL)
                     .sound(SoundType.SLIME_BLOCK)
                     .noOcclusion(),
-                    2,
                     MultiBlockPlacementArrayCollection.SLEEPABLE_BED_PLACEMENT,
                     new VoxelShape[]{HitboxGeometryCollection.PILLOW_NEGATIVE(), HitboxGeometryCollection.PILLOW_POSITIVE()},
                     true
             )
     );
     public static final DeferredBlock<Block> BODY_PILLOW_PROV = registerBlockAndBlockItem("body_pillow_prov",
-            () -> new ModdedBedBlock(BlockBehaviour
+            () -> new Bed2Block(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.WHITE_WOOL)
                     .sound(SoundType.SLIME_BLOCK)
                     .noOcclusion(),
-                    2,
                     MultiBlockPlacementArrayCollection.SLEEPABLE_BED_PLACEMENT,
                     new VoxelShape[]{HitboxGeometryCollection.PILLOW_NEGATIVE(), HitboxGeometryCollection.PILLOW_POSITIVE()},
                     true
@@ -1263,21 +1268,19 @@ public class ModBlocks {
             )
     );
     public static final DeferredBlock<Block> OPERATING_TABLE = registerBlockAndBlockItem("operating_table",
-            () -> new ModelledTwoBlock(BlockBehaviour
+            () -> new Modelled2Block(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .sound(SoundType.METAL)
                     .noOcclusion(),
-                    2,
                     MultiBlockPlacementArrayCollection.FRONTAL_PLACEMENT,
                     new VoxelShape[]{HitboxGeometryCollection.OPERATING_TABLE_NEGATIVE(), HitboxGeometryCollection.OPERATING_TABLE_POSITIVE()}
             )
     );
     public static final DeferredBlock<Block> MEDICAL_BED = registerBlockAndBlockItem("medical_bed",
-            () -> new ModdedBedBlock(BlockBehaviour
+            () -> new Bed2Block(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .sound(SoundType.METAL)
                     .noOcclusion(),
-                    2,
                     MultiBlockPlacementArrayCollection.SLEEPABLE_BED_PLACEMENT,
                     new VoxelShape[] {HitboxGeometryCollection.MEDICAL_BED_NEGATIVE(),
                     HitboxGeometryCollection.MEDICAL_BED_POSITIVE()},
@@ -1285,19 +1288,17 @@ public class ModBlocks {
             )
     );
     public static final DeferredBlock<Block> VITALS_MONITOR = registerBlockAndBlockItem("vitals_monitor",
-            () -> new LightStandTwoBlock(BlockBehaviour
+            () -> new LightStand2Block(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0),
-                    2,
                     MultiBlockPlacementArrayCollection.VERTICAL_PLACEMENT,
                     new VoxelShape[]{HitboxGeometryCollection.VITALS_MONITOR_BASE(),HitboxGeometryCollection.VITALS_MONITOR_TOP()}
             )
     );
     public static final DeferredBlock<Block> IV_DRIPSTAND = registerBlockAndBlockItem("iv_dripstand",
-            () -> new ModelledTwoBlock(BlockBehaviour
+            () -> new Modelled2Block(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.OAK_PLANKS)
                     .noOcclusion(),
-                    2,
                     MultiBlockPlacementArrayCollection.VERTICAL_PLACEMENT,
                     new VoxelShape[]{HitboxGeometryCollection.THIN_VERTICAL_ROD_SHAPE(),
                     HitboxGeometryCollection.THIN_VERTICAL_ROD_SHAPE()}
@@ -1330,9 +1331,8 @@ public class ModBlocks {
     );
 //
     public static final DeferredBlock<Block> LARGE_LOCKER = registerBlockAndBlockItem("large_locker",
-            () -> new StorageTwoBlock(BlockBehaviour
+            () -> new Storage2Block(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    , 2
                     , MultiBlockPlacementArrayCollection.VERTICAL_PLACEMENT
                     , 54
                     , ModSounds.METAL_BOX_OPEN.get()
@@ -1365,10 +1365,9 @@ public class ModBlocks {
     );
 
     public static final DeferredBlock<Block> WORK_LIGHT_STAND = registerBlockAndBlockItem("work_light_stand",
-            () -> new LightStandTwoBlock(BlockBehaviour
+            () -> new LightStand2Block(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0),
-                    2,
                     MultiBlockPlacementArrayCollection.VERTICAL_PLACEMENT,
                     new VoxelShape[]{HitboxGeometryCollection.THIN_VERTICAL_ROD_SHAPE(),HitboxGeometryCollection.WORK_LIGHT_MOUNT_SHAPE()}
             )

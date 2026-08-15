@@ -38,6 +38,9 @@ public class ModBlockEntities {
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<StorageBE>> STORAGE_BE = BLOCK_ENTITIES.register("storage_be", () -> BlockEntityType.Builder.of(
                                     StorageBE::new,
+
+                                    ModBlocks.DEBUG_BLOCK.get(),
+
                                     ModBlocks.RED_WALL_MEDKIT.get(),
                                     ModBlocks.WHITE_WALL_MEDKIT.get(),
                                     ModBlocks.OFFICE_DESK_DRAWER.get(),

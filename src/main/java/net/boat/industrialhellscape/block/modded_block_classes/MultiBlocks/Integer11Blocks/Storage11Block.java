@@ -1,4 +1,4 @@
-package net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks;
+package net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.Integer11Blocks;
 
 import net.boat.industrialhellscape.block.modded_block_entities.StorageBE.StorageBE;
 import net.boat.industrialhellscape.block.modded_interfaces.MultiBlockPlacementInterface;
@@ -16,13 +16,13 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 
-public class StorageTwoBlock extends IntegerMultiBlock implements EntityBlock, StorageBlockInterface{
+public class Storage11Block extends Integer11Block implements EntityBlock, StorageBlockInterface{
     public final int SLOTS; //Amount of inventory slots. Should be a multiple of 9.
     public final SoundEvent OPEN_SOUND;
     public final SoundEvent CLOSE_SOUND;
 
-    public StorageTwoBlock(Properties pProperties, int registerMaxBlockStates, int[][] multiBlockPlacementMatrix, int slotsAmount, SoundEvent openSound, SoundEvent closeSound) {
-        super(pProperties, registerMaxBlockStates, multiBlockPlacementMatrix);
+    public Storage11Block(Properties pProperties, int[][] multiBlockPlacementMatrix, int slotsAmount, SoundEvent openSound, SoundEvent closeSound) {
+        super(pProperties, multiBlockPlacementMatrix);
 
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(PART, 0)
@@ -56,7 +56,7 @@ public class StorageTwoBlock extends IntegerMultiBlock implements EntityBlock, S
     public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
         //See modded interface MultiBlockPlacementInterface for more details
         //return MultiBlockPlacementInterface.newBlockEntityInNegativeBlock(pos, state);
-        if(state.getBlock() instanceof StorageTwoBlock) {
+        if(state.getBlock() instanceof Storage11Block) {
             if(state.getValue(PART) == 0) { //If the block is the POSITIVE block
                 return new StorageBE(pos, state);
             }

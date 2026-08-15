@@ -1,4 +1,4 @@
-package net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks;
+package net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.Integer2Blocks;
 
 import net.boat.industrialhellscape.block.modded_interfaces.MultiBlockPlacementInterface;
 import net.boat.industrialhellscape.sound.ModSounds;
@@ -14,6 +14,8 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -25,15 +27,15 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-public class ModdedBedBlock extends ModelledTwoBlock {
+public class Bed2Block extends Modelled2Block {
 
     protected boolean multiplePeopleCanSleepOn;
 
-    public ModdedBedBlock(Properties pProperties, int registerMaxBlockStates, int[][] multiBlockPlacementMatrix, VoxelShape[] hitboxShapeArray, boolean multiplePeopleCanSleepOn) {
-        super(pProperties, registerMaxBlockStates, multiBlockPlacementMatrix, hitboxShapeArray);
+    public Bed2Block(BlockBehaviour.Properties pProperties, int[][] multiBlockPlacementMatrix, VoxelShape[] hitboxShapeArray, boolean multiplePeopleCanSleepOn) {
+        super(pProperties, multiBlockPlacementMatrix, hitboxShapeArray);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(PART, 0)
-                .setValue(FACING,Direction.NORTH)
+                .setValue(HorizontalDirectionalBlock.FACING,Direction.NORTH)
                 .setValue(BlockStateProperties.WATERLOGGED,false)
                 .setValue(BlockStateProperties.OCCUPIED, false)
         );
@@ -50,13 +52,13 @@ public class ModdedBedBlock extends ModelledTwoBlock {
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
         pState = this.defaultBlockState().setValue(BlockStateProperties.WATERLOGGED,fluidstate.getType() == Fluids.WATER); //set default Block State for this block, THEN assign waterlogged state (so it doesnt try to do that for air)
 
-        return MultiBlockPlacementInterface.placeOriginBlock(level, originPos, pState, FACING, facing, multiBlockPlacementMatrix);
+        return MultiBlockPlacementInterface.placeOriginBlock(level, originPos, pState, HorizontalDirectionalBlock.FACING, facing, multiBlockPlacementMatrix);
     }
 
     @Override
     public @NotNull Direction getBedDirection(@NotNull BlockState state, LevelReader level, @NotNull BlockPos pos) {
         BlockState blockstate = level.getBlockState(pos);
-        return blockstate.getBlock() instanceof ModdedBedBlock ? blockstate.getValue(FACING) : Direction.NORTH;
+        return blockstate.getBlock() instanceof Bed2Block ? blockstate.getValue(HorizontalDirectionalBlock.FACING) : Direction.NORTH;
     }
 
     @Override
@@ -78,7 +80,7 @@ public class ModdedBedBlock extends ModelledTwoBlock {
             //If the block at that position is an instance of the same block
             //CONSUME
             if (state.getValue(PART) == 1) {
-                pos = pos.relative(state.getValue(FACING));
+                pos = pos.relative(state.getValue(HorizontalDirectionalBlock.FACING));
                 state = level.getBlockState(pos);
                 if (!state.is(this)) {
                     return InteractionResult.CONSUME;
@@ -87,7 +89,7 @@ public class ModdedBedBlock extends ModelledTwoBlock {
             //Explodes if you are disallowed to set spawn in certain dimensions
             if (!canSetSpawn(level)) {
                 level.removeBlock(pos, false);
-                BlockPos blockpos = pos.relative(state.getValue(FACING).getOpposite());
+                BlockPos blockpos = pos.relative(state.getValue(HorizontalDirectionalBlock.FACING).getOpposite());
                 if (level.getBlockState(blockpos).is(this)) {
                     level.removeBlock(blockpos, false);
                 }
@@ -122,6 +124,6 @@ public class ModdedBedBlock extends ModelledTwoBlock {
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(FACING, PART, BlockStateProperties.OCCUPIED, BlockStateProperties.WATERLOGGED);
+        pBuilder.add(HorizontalDirectionalBlock.FACING, PART, BlockStateProperties.OCCUPIED, BlockStateProperties.WATERLOGGED);
     }
 }
