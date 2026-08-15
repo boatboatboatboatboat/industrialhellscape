@@ -8,7 +8,6 @@ import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
@@ -24,7 +23,7 @@ public interface StorageBlockInterface {
     SoundEvent getCloseSound();
     //---------- END OF NECESSARY FIELDS FOR BLOCK ENTITY ----------
 
-    static void dropContainerInventory(Block block, BlockState state, Level level, BlockPos pos, BlockState newState) {
+    static void dropContainerInventory(BlockState state, Level level, BlockPos pos) {
         //Stupid roundabout way to drop inventory to keep maintaining non-dupe compat with Aeronautics
         BlockEntity blockEntity = level.getBlockEntity(pos);
         if (blockEntity instanceof Container container) {
@@ -32,6 +31,7 @@ public interface StorageBlockInterface {
             level.updateNeighbourForOutputSignal(pos, state.getBlock());
         }
     }
+
     static InteractionResult OpenContainerInventory(Level level, @NotNull BlockPos pos, @NotNull Player player) {
         if (level.isClientSide) {
             return InteractionResult.SUCCESS;

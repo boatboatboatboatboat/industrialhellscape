@@ -9,11 +9,11 @@ import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 @EventBusSubscriber(modid = IndustrialHellscape.MOD_ID)
 public class ModBlockEntityCapabilities {
     @SubscribeEvent
-    public static void registerCapabilities(RegisterCapabilitiesEvent event) {
+    public static void registerBlockEntityCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
                 ModBlockEntities.STORAGE_BE.get(),
-                (be, c) -> be.getItemCapability());
-
+                (be, c) -> be.getItemCapability()
+        );
     }
 }

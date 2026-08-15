@@ -85,7 +85,7 @@ public class StorageTwoBlock extends IntegerMultiBlock implements EntityBlock, S
          */
 
         BlockPos originPos = MultiBlockPlacementInterface.vectorToOriginBlockPos(pPos, multiBlockPlacementMatrix,pState, PART);
-        StorageBlockInterface.dropContainerInventory(this, pState, pLevel, originPos, pLevel.getBlockState(pPos));
+        StorageBlockInterface.dropContainerInventory(pState, pLevel, originPos);
 
         MultiBlockPlacementInterface.destroyRemainingMultiBlock(pLevel, pPlayer, this, pPos, PART, pState, multiBlockPlacementMatrix);
         return super.onDestroyedByPlayer(pState, pLevel, pPos, pPlayer, willHarvest, fluid);

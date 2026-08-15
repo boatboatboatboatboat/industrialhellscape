@@ -81,7 +81,7 @@ public class BaseStorageBlock extends BaseEntityBlock implements StorageBlockInt
     }
 
     protected void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) {
-        StorageBlockInterface.dropContainerInventory(this, state, level, pos, newState);
+        StorageBlockInterface.dropContainerInventory(state, level, pos);
         super.onRemove(state, level, pos, newState, isMoving);
     }
 
