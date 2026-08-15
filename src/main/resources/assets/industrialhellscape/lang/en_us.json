@@ -1,6 +1,8 @@
 {
-  "industrialhellscape.configuration.tagged_pickaxe_compat": "Pickaxe Item-Tag compatible",
-  "industrialhellscape.configuration.crouch_to_change_states": "Crouching toggles block-state changes for certain blocks",
+  "industrialhellscape.configuration.tagged_pickaxe_compat": "Pickaxe Item-Tag Compatible",
+  "industrialhellscape.configuration.tagged_pickaxe_compat_desc": "Allow all items tagged 'minecraft:pickaxe' to rotate or interact with this mod's blocks (Modded or otherwise).",
+  "industrialhellscape.configuration.crouch_to_change_texture": "Crouching Toggles Texture",
+  "industrialhellscape.configuration.crouch_to_change_texture_desc": "When placing connective-texture blocks, allow crouching to switch to alternative state texture connection upon placement",
 
   "item.industrialhellscape.inhell_haven_device": "HAVEN Tool",
   "item.industrialhellscape.job_application": "Job Application",

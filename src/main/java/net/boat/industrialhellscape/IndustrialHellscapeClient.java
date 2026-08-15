@@ -1,8 +1,14 @@
 package net.boat.industrialhellscape;
 
+import net.boat.industrialhellscape.entity.ModEntities;
+import net.boat.industrialhellscape.entity.SittableEntity.SittableEntityRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
@@ -16,14 +22,16 @@ public class IndustrialHellscapeClient {
         // Allows NeoForge to create a config screen for this mod's configs.
         // The config screen is accessed by going to the Mods screen > clicking on your mod > clicking on config.
         // Do not forget to add translations for your config options to the en_us.json file.
-
-        //This is currently the only reason there is a client-side main class for this mod.
         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
+        IndustrialHellscape.LOGGER.info("InHell Client: Config Screen Registration Complete");
     }
 
-//    @SubscribeEvent
-//    static void onClientSetup(FMLClientSetupEvent event) {
-//        // Some client setup code
-//        // IndustrialHellscape.LOGGER.info("HELLO FROM CLIENT SETUP");
-//    }
+    @EventBusSubscriber(modid = IndustrialHellscape.MOD_ID, value = Dist.CLIENT)
+    public static class ClientModEvents {
+        @SubscribeEvent
+        public static void onClientSetup(FMLClientSetupEvent event) {
+            EntityRenderers.register(ModEntities.CHAIR.get(), SittableEntityRenderer::new);
+            IndustrialHellscape.LOGGER.info("InHell Client: Client-side Entity Renderer Registration Complete");
+        }
+    }
 }

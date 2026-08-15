@@ -1,7 +1,7 @@
 package net.boat.industrialhellscape.item.modded_items;
 
 
-import net.boat.industrialhellscape.ModDamageTypes;
+import net.boat.industrialhellscape.item.ModDamageTypes;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;

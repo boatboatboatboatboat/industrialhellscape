@@ -37,13 +37,17 @@ public class IndustrialHellscape {
         NeoForge.EVENT_BUS.register(this);
 
         ModCreativeModeTabs.register(modEventBus);
+        IndustrialHellscape.LOGGER.info("InHell: Creative Tab Registration Complete");
         ModItems.register(modEventBus);
+        IndustrialHellscape.LOGGER.info("InHell: Item Registration Complete");
         ModBlocks.register(modEventBus);
-
+        IndustrialHellscape.LOGGER.info("InHell: Block Registration Complete");
         ModSounds.register(modEventBus);
-
+        IndustrialHellscape.LOGGER.info("InHell: Sound Registration Complete");
         ModEntities.register(modEventBus); //Sittable Entity (in-world)
+        IndustrialHellscape.LOGGER.info("InHell: Entity Registration Complete");
         ModBlockEntities.register(modEventBus); //Block Entities handling GUIs and inventory
+        IndustrialHellscape.LOGGER.info("InHell: Block Entity Registration Complete");
 
         //Deprecated Content Safe Removal/Replacement for in-game
         ModBlocks.removeAndReplaceBlocks();
@@ -51,6 +55,7 @@ public class IndustrialHellscape {
 
         //Registers config options for this mod. The config screen registration is handled in IndustrialHellscapeClient
         modContainer.registerConfig(ModConfig.Type.COMMON, ModCommonConfig.SPEC);
+        IndustrialHellscape.LOGGER.info("InHell: Common Config Registration Complete");
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
@@ -62,6 +67,6 @@ public class IndustrialHellscape {
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         // Do something when the server starts
-        //LOGGER.info("HELLO from server starting");
+        LOGGER.info("HELLO from server starting");
     }
 }

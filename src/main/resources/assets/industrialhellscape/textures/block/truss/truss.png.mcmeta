@@ -6,7 +6,7 @@
     "textures": [
       "industrialhellscape:ctm/ctm2x2_truss"
       ],
-      "connect_inside": true
+      "extra": {"connect_inside": "true"}
     }
   }
 }

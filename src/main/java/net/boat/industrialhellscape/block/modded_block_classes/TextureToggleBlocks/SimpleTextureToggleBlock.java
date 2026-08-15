@@ -43,7 +43,7 @@ public class SimpleTextureToggleBlock extends Block implements ToolUseInterface 
         BlockState state = this.defaultBlockState();
 
         if(player != null) {
-            if(player.isCrouching() && ModCommonConfig.crouchToChangeBlockStatesEnabled()) {
+            if(player.isCrouching() && ModCommonConfig.crouchToChangeTexture()) {
                 state = state.setValue(ALT_STATE,true);
             }
         }

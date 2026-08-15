@@ -138,7 +138,7 @@ public class CornerBlock extends ModelledSurfaceMountBlock implements SimpleWate
         if (clickedFaceDirection.getAxis() == Direction.Axis.Y) { //On Floor or Ceiling
             state = this.defaultBlockState()
                     .setValue(ATTACH_FACE, clickedFaceDirection == Direction.UP ? AttachFace.FLOOR : AttachFace.CEILING).setValue(FACING, facing);
-        } else if (playerExists && player.isShiftKeyDown()) { //On wall, but player is crouching.
+        } else if (playerExists && player.isCrouching()) { //On wall, but player is crouching.
             state = this.defaultBlockState()
                     .setValue(ATTACH_FACE, AttachFace.CEILING).setValue(FACING, facing);
         } else { //On walls

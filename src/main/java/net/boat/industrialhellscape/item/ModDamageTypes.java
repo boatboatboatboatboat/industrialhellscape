@@ -1,5 +1,6 @@
-package net.boat.industrialhellscape;
+package net.boat.industrialhellscape.item;
 
+import net.boat.industrialhellscape.IndustrialHellscape;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;

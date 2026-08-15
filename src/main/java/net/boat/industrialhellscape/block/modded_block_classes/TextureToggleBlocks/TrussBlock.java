@@ -1,5 +1,6 @@
 package net.boat.industrialhellscape.block.modded_block_classes.TextureToggleBlocks;
 
+import net.boat.industrialhellscape.ModCommonConfig;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -46,7 +47,7 @@ public class TrussBlock extends SimpleTextureToggleBlock implements SimpleWaterl
         BlockState state = this.defaultBlockState();
 
         if(player != null) {
-            if(player.isCrouching()) {
+            if(player.isCrouching() && ModCommonConfig.crouchToChangeTexture()) {
                 state = state.setValue(ALT_STATE,true);
             }
         }

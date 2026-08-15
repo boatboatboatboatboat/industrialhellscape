@@ -5,7 +5,8 @@
     "layer": "CUTOUT",
     "textures": [
       "industrialhellscape:ctm/ctm2x2_rusty_truss"
-      ]
+      ],
+    "extra": {"connect_inside": "true"}
     }
   }
 }

@@ -1,7 +1,7 @@
-package net.boat.industrialhellscape;
+package net.boat.industrialhellscape.item;
 
+import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
-import net.boat.industrialhellscape.item.ModItems;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -14,8 +14,6 @@ import net.neoforged.neoforge.event.village.WandererTradesEvent;
 import java.util.List;
 
 @EventBusSubscriber(modid = IndustrialHellscape.MOD_ID)
-
-//Despite being grayed out, this class and event is functional and active.
 public class ModTrades {
     @SubscribeEvent
     public static void registerWanderingTrades(WandererTradesEvent event) {
