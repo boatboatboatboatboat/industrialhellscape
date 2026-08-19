@@ -53,7 +53,7 @@ public class SimpleTextureToggleBlock extends Block implements ToolUseInterface 
 
     @Override
     protected @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
-        return simpleToolUse(stack, state, level, pos, player, ALT_STATE, 2);
+        return ToolUseInterface.simpleToolUse(stack, state, level, pos, player, ALT_STATE, 2);
     }
 
     @Override

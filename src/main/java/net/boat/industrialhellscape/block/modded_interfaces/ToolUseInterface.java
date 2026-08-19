@@ -29,7 +29,7 @@ public interface ToolUseInterface {
         return ModCommonConfig.taggedPickaxeCompatEnabled() ? stack.is(ModTags.Items.IH_COMPATIBLE_TOOLS) : stack.is(ModItems.INHELL_HAVEN_DEVICE.get()) ;
     }
 
-    default ItemInteractionResult simpleToolUse(ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, Property<?> cycleProperty, int flag) {
+    static ItemInteractionResult simpleToolUse(ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, Property<?> cycleProperty, int flag) {
             //IF TAGGED PICKAXE COMPAT ENABLED, ALLOW ALL COMPATIBLE TOOLS TO INTERACT WITH BLOCKS
             if(checkForIHCompatTools(stack)) {
                 state = state.cycle(cycleProperty);
@@ -40,7 +40,7 @@ public interface ToolUseInterface {
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
-    default ItemInteractionResult crouchToolUse(ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, Property<?> cycleProperty1, int flag1, Property<?> cycleProperty2, int flag2) {
+    static ItemInteractionResult crouchToolUse(ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, Property<?> cycleProperty1, int flag1, Property<?> cycleProperty2, int flag2) {
         boolean playerIsCrouching = player.isCrouching();
 
         //IF TAGGED PICKAXE COMPAT ENABLED, ALLOW ALL COMPATIBLE TOOLS TO INTERACT WITH BLOCKS
@@ -62,7 +62,7 @@ public interface ToolUseInterface {
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
-    default ItemInteractionResult RailingRotationToolUse(ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, int flag) {
+    static ItemInteractionResult RailingRotationToolUse(ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, int flag) {
         if(state.getBlock() instanceof RailingBlock) {
             if(checkForIHCompatTools(stack)) {
                 boolean north = state.getValue(NORTH_FENCE);

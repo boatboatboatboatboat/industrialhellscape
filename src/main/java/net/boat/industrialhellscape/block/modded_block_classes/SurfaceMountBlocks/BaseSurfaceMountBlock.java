@@ -17,14 +17,14 @@ import javax.annotation.Nullable;
 /*
 INFO:
 -----
-Block can be placed on any surface. If on floor or ceiling, it will face the direction it is placed down.
+Full block that can be placed on any surface. If on floor or ceiling, it will face the direction it is placed down.
 If on wall, will face away from the wall it is touching.
 */
 
-public class SurfaceMountBlock extends HorizontalDirectionalBlock {
+public class BaseSurfaceMountBlock extends HorizontalDirectionalBlock {
     public static final EnumProperty<AttachFace> ATTACH_FACE = BlockStateProperties.ATTACH_FACE;
 
-    public SurfaceMountBlock(Properties pProperties) {
+    public BaseSurfaceMountBlock(Properties pProperties) {
         super(pProperties);
 
         this.registerDefaultState(this.stateDefinition.any()

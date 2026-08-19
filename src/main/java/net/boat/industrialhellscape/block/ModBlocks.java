@@ -13,7 +13,7 @@ import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.Par
 import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.RailingBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.StairRailingBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.StorageBlocks.BarrelStorageBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.StorageBlocks.ConnectedStorageBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks.ConnectedStorageBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.StorageBlocks.FacingStorageBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.StorageBlocks.ModelledFacingStorageBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.*;
@@ -21,7 +21,7 @@ import net.boat.industrialhellscape.block.modded_block_classes.TextureToggleBloc
 import net.boat.industrialhellscape.block.modded_block_classes.TextureToggleBlocks.TrussBlock;
 import net.boat.industrialhellscape.block.modded_interfaces.HitboxGeometryCollection;
 import net.boat.industrialhellscape.block.modded_interfaces.MultiBlockPlacementArrayCollection;
-import net.boat.industrialhellscape.block.modded_logic_enums.ConnectingBlockPlacementDirection;
+import net.boat.industrialhellscape.block.modded_logic_enums.ConnectingBlockPlacementOrientation;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.client.gui.screens.Screen;
@@ -1102,7 +1102,7 @@ public class ModBlocks {
                     .noOcclusion())
     );
     public static final DeferredBlock<Block> COPPER_PIPE_CONDUIT_PLANAR_CORNER = registerBlockAndBlockItem("copper_pipe_conduit_planar_corner",
-            () -> new SurfaceMountRotatableBlock(BlockBehaviour
+            () -> new SurfaceRotatableBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
 
                     .noOcclusion())
@@ -1130,7 +1130,7 @@ public class ModBlocks {
                     .noOcclusion())
     );
     public static final DeferredBlock<Block> BRASS_PIPE_CONDUIT_PLANAR_CORNER = registerBlockAndBlockItem("brass_pipe_conduit_planar_corner",
-            () -> new SurfaceMountRotatableBlock(BlockBehaviour
+            () -> new SurfaceRotatableBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
 
                     .noOcclusion())
@@ -1158,7 +1158,7 @@ public class ModBlocks {
                     .noOcclusion())
     );
     public static final DeferredBlock<Block> GRAY_PIPE_CONDUIT_PLANAR_CORNER = registerBlockAndBlockItem("gray_pipe_conduit_planar_corner",
-            () -> new SurfaceMountRotatableBlock(BlockBehaviour
+            () -> new SurfaceRotatableBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
 
                     .noOcclusion())
@@ -1457,7 +1457,7 @@ public class ModBlocks {
                     HitboxGeometryCollection.DESK_LEFT_SHAPE(),
                     HitboxGeometryCollection.DESK_MIDDLE_SHAPE(),
                     HitboxGeometryCollection.DESK_RIGHT_SHAPE(),
-                    ConnectingBlockPlacementDirection.HORIZONTAL)
+                    ConnectingBlockPlacementOrientation.HORIZONTAL)
 
     );
     public static final DeferredBlock<Block> DESK_DRAWER = registerBlockAndBlockItem("desk_drawer",
@@ -1470,7 +1470,7 @@ public class ModBlocks {
                     HitboxGeometryCollection.DESK_DRAWER_LEFT_SHAPE(),
                     HitboxGeometryCollection.DESK_DRAWER_MIDDLE_SHAPE(),
                     HitboxGeometryCollection.DESK_DRAWER_RIGHT_SHAPE(),
-                    ConnectingBlockPlacementDirection.HORIZONTAL,
+                    ConnectingBlockPlacementOrientation.HORIZONTAL,
                     ModSounds.METAL_BOX_OPEN.get(),
                     ModSounds.METAL_BOX_CLOSE.get()
             )
@@ -1484,7 +1484,7 @@ public class ModBlocks {
                     HitboxGeometryCollection.METAL_DESK_LEFT_SHAPE(),
                     HitboxGeometryCollection.METAL_DESK_MIDDLE_SHAPE(),
                     HitboxGeometryCollection.METAL_DESK_RIGHT_SHAPE(),
-                    ConnectingBlockPlacementDirection.HORIZONTAL
+                    ConnectingBlockPlacementOrientation.HORIZONTAL
             )
     );
     public static final DeferredBlock<Block> METAL_DESK_DRAWER = registerBlockAndBlockItem("metal_desk_drawer",
@@ -1497,7 +1497,7 @@ public class ModBlocks {
                     HitboxGeometryCollection.METAL_DESK_DRAWER_LEFT_SHAPE(),
                     HitboxGeometryCollection.METAL_DESK_DRAWER_MIDDLE_SHAPE(),
                     HitboxGeometryCollection.METAL_DESK_DRAWER_RIGHT_SHAPE(),
-                    ConnectingBlockPlacementDirection.HORIZONTAL,
+                    ConnectingBlockPlacementOrientation.HORIZONTAL,
                     ModSounds.METAL_BOX_OPEN.get(),
                     ModSounds.METAL_BOX_CLOSE.get()
             )
@@ -1513,7 +1513,7 @@ public class ModBlocks {
                     HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
                     HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
                     HitboxGeometryCollection.OFFICE_DESK_DRAWER_SHAPE(),
-                    ConnectingBlockPlacementDirection.HORIZONTAL,
+                    ConnectingBlockPlacementOrientation.HORIZONTAL,
                     ModSounds.METAL_BOX_OPEN.get(),
                     ModSounds.METAL_BOX_CLOSE.get()
             )
@@ -1529,7 +1529,7 @@ public class ModBlocks {
                     HitboxGeometryCollection.OFFICE_DESK_MIDDLE_SHAPE(),
                     HitboxGeometryCollection.OFFICE_DESK_RIGHT_SHAPE(),
 
-                    ConnectingBlockPlacementDirection.HORIZONTAL
+                    ConnectingBlockPlacementOrientation.HORIZONTAL
             )
 
     );
@@ -1544,7 +1544,7 @@ public class ModBlocks {
                     HitboxGeometryCollection.METAL_DESK_DRAWER_2_LEFT_SHAPE(),
                     HitboxGeometryCollection.METAL_DESK_DRAWER_2_MIDDLE_SHAPE(),
                     HitboxGeometryCollection.METAL_DESK_DRAWER_2_RIGHT_SHAPE(),
-                    ConnectingBlockPlacementDirection.HORIZONTAL,
+                    ConnectingBlockPlacementOrientation.HORIZONTAL,
                     ModSounds.METAL_BOX_OPEN.get(),
                     ModSounds.METAL_BOX_CLOSE.get()
             )

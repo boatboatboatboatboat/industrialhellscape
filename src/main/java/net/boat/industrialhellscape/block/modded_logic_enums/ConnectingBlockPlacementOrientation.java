@@ -11,13 +11,13 @@ INFO:
 */
 import net.minecraft.util.StringRepresentable;
 
-public enum ConnectingBlockPlacementDirection implements StringRepresentable {
+public enum ConnectingBlockPlacementOrientation implements StringRepresentable {
     VERTICAL("vertical"),
     HORIZONTAL("horizontal"),
     FORWARD("forward");
 
     private final String name;
-    private ConnectingBlockPlacementDirection(String type) {this.name = type;}
+    private ConnectingBlockPlacementOrientation(String type) {this.name = type;}
     public String toString() {return this.name;}
     public String getSerializedName() {return this.name;}
 }

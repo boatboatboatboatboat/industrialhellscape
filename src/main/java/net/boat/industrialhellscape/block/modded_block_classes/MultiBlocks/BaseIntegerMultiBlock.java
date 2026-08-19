@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
 
 public abstract class BaseIntegerMultiBlock extends SimpleFacingBlock implements MultiBlockPlacementInterface, IBlockExtension {
     public int[][] multiBlockPlacementMatrix; //not static, the placement matrix is unique to many kinds of blocks
-    public final IntegerProperty partProperty;
+    public final IntegerProperty partProperty; //not static, extended classes define a max ceiling on IntegerProperty
 
     public BaseIntegerMultiBlock(Properties pProperties, int[][] multiBlockPlacementMatrix, IntegerProperty partProperty) {
         super(pProperties);

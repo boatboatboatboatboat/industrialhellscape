@@ -136,6 +136,8 @@ public class StorageBE extends RandomizableContainerBlockEntity {
         }
     }
 
+    //Used to establish item handling capability (compat with other item logistics mods like Create or AE2)
+    //Registered in ModBlockCapabilities
     public IItemHandler getItemCapability() {
         return new InvWrapper(this);
     }

@@ -153,7 +153,7 @@ public class CornerBlock extends ModelledSurfaceMountBlock implements SimpleWate
 
     @Override
     protected @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
-        return crouchToolUse(stack, state, level, pos, player, ATTACH_FACE, 3, FACING, 3);
+        return ToolUseInterface.crouchToolUse(stack, state, level, pos, player, ATTACH_FACE, 3, FACING, 3);
     }
 
     @Override

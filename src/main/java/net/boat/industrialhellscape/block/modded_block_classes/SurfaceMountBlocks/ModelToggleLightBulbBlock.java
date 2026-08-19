@@ -140,14 +140,14 @@ public class ModelToggleLightBulbBlock extends LightBulbBlock implements ToolUse
             return InteractionResult.CONSUME;
         } else {
             float pitch = next.getValue(BlockStateProperties.INVERTED) ? 0.6f : 0.5f;
-            level.playSound((Player)null, pos, onOffSound, SoundSource.BLOCKS, 0.3f, pitch);
+            level.playSound(null, pos, onOffSound, SoundSource.BLOCKS, 0.3f, pitch);
             return InteractionResult.CONSUME;
         }
     }
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        return simpleToolUse(stack, state, level, pos, player, ALT_STATE, 2);
+        return ToolUseInterface.simpleToolUse(stack, state, level, pos, player, ALT_STATE, 2);
     }
 
     @Override

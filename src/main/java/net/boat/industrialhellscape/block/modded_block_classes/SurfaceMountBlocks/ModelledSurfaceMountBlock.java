@@ -28,7 +28,7 @@ This block can be placed on all surfaces. It can be waterlogged.
 
 */
 
-public class ModelledSurfaceMountBlock extends SurfaceMountBlock implements SimpleWaterloggedBlock {
+public class ModelledSurfaceMountBlock extends BaseSurfaceMountBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     protected final VoxelShape SHAPE_NORTH;

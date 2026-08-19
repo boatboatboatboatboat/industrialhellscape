@@ -183,7 +183,7 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock, ToolU
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        return RailingRotationToolUse(stack, state, level, pos, player, 3);
+        return ToolUseInterface.RailingRotationToolUse(stack, state, level, pos, player, 3);
     }
 
     @Override

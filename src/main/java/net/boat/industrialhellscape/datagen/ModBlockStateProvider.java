@@ -4,7 +4,7 @@ import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
 import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.Integer11Blocks.Integer11Block;
 import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.Integer2Blocks.Integer2Block;
-import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.SurfaceMountBlock;
+import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.BaseSurfaceMountBlock;
 import net.boat.industrialhellscape.block.modded_block_classes.TextureToggleBlocks.SimpleTextureToggleBlock;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -54,7 +54,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genFolderedSBI(ModBlocks.DUCT.get(), "duct");
         genFolderedSBI(ModBlocks.RUSTY_DUCT.get(), "duct");
 
-        //Railing Blocks
+        //Railing Blocks (non-generated block state json files. non-generated models)
         genI(ModBlocks.YELLOW_RAILING.get(),"railing");
         genCustomI(ModBlocks.YELLOW_STAIR_RAILING.get(),"railing","yellow_stair_rail_left");
         genI(ModBlocks.GRAY_RAILING.get(),"railing");
@@ -104,14 +104,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genSimpleTextureToggleSBI(ModBlocks.RUSTY_VERTICAL_VESSELPLATE.get(),"vesselplate",  "solid");
         genSimpleTextureToggleSBI(ModBlocks.RUSTY_HORIZONTAL_REINFORCED_VESSELPLATE.get(),"vesselplate", "solid");
         genSimpleTextureToggleSBI(ModBlocks.RUSTY_VERTICAL_REINFORCED_VESSELPLATE.get(),"vesselplate",  "solid");
-
-        genSimpleTextureToggleSBI(ModBlocks.SMOOTH_RUSTY_VESSELPLATE.get(),"vesselplate","solid");
-        genStairsWithRenderTypeSBI(ModBlocks.SMOOTH_RUSTY_VESSELPLATE_STAIRS.get(),"vesselplate","smooth_rusty_vesselplate","smooth_rusty_vesselplate","smooth_rusty_vesselplate","solid");
-        genSlabsWithCustomDoubleSBI(ModBlocks.SMOOTH_RUSTY_VESSELPLATE_SLAB.get(), ModBlocks.SMOOTH_RUSTY_VESSELPLATE.get(),"vesselplate","smooth_rusty_vesselplate_double_slab","smooth_rusty_vesselplate", "smooth_rusty_vesselplate","","");
-
         genSimpleTextureToggleSBI(ModBlocks.RUSTY_RIVETED_VESSELPLATE.get(),"vesselplate","solid");
+        genSimpleTextureToggleSBI(ModBlocks.SMOOTH_RUSTY_VESSELPLATE.get(),"vesselplate","solid");
+
         genStairsWithRenderTypeSBI(ModBlocks.RUSTY_RIVETED_VESSELPLATE_STAIRS.get(),"vesselplate","rusty_riveted_vesselplate","rusty_riveted_vesselplate","rusty_riveted_vesselplate","solid");
+        genStairsWithRenderTypeSBI(ModBlocks.SMOOTH_RUSTY_VESSELPLATE_STAIRS.get(),"vesselplate","smooth_rusty_vesselplate","smooth_rusty_vesselplate","smooth_rusty_vesselplate","solid");
         genSlabsWithCustomDoubleSBI(ModBlocks.RUSTY_RIVETED_VESSELPLATE_SLAB.get(), ModBlocks.RUSTY_RIVETED_VESSELPLATE.get(),"vesselplate","rusty_riveted_vesselplate_double_slab","rusty_riveted_vesselplate", "rusty_riveted_vesselplate","","");
+        genSlabsWithCustomDoubleSBI(ModBlocks.SMOOTH_RUSTY_VESSELPLATE_SLAB.get(), ModBlocks.SMOOTH_RUSTY_VESSELPLATE.get(),"vesselplate","smooth_rusty_vesselplate_double_slab","smooth_rusty_vesselplate", "smooth_rusty_vesselplate","","");
 
         //Truss Blocks
         genTextureToggleAntiCullSBI(ModBlocks.TRUSS.get(),"truss", "truss","truss", "cutout");
@@ -194,6 +193,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genCornerShapedBlocksSI(ModBlocks.SMALL_GRAY_BOLTED_BRACKET.get(),"bolted_bracket");
         genCornerShapedBlocksSI(ModBlocks.SMALL_BLACK_BOLTED_BRACKET.get(),"bolted_bracket");
         genCornerShapedBlocksSI(ModBlocks.SMALL_RUSTY_BOLTED_BRACKET.get(),"bolted_bracket");
+
+        genCornerShapedBlocksSI(ModBlocks.COPPER_PIPE_CONDUIT_OUTER_CORNER.get(),"copper_pipe_conduit");
+        genCornerShapedBlocksSI(ModBlocks.BRASS_PIPE_CONDUIT_OUTER_CORNER.get(),"brass_pipe_conduit");
+        genCornerShapedBlocksSI(ModBlocks.GRAY_PIPE_CONDUIT_OUTER_CORNER.get(),"gray_pipe_conduit");
+        genCornerShapedBlocksSI(ModBlocks.COPPER_PIPE_CONDUIT_INNER_CORNER.get(),"copper_pipe_conduit");
+        genCornerShapedBlocksSI(ModBlocks.BRASS_PIPE_CONDUIT_INNER_CORNER.get(),"brass_pipe_conduit");
+        genCornerShapedBlocksSI(ModBlocks.GRAY_PIPE_CONDUIT_INNER_CORNER.get(),"gray_pipe_conduit");
 
         //Doors
         genDoorSBI(ModBlocks.ARMORED_DOOR.get() , "cutout");
@@ -858,7 +864,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         getVariantBuilder(block)
                 .forAllStatesExcept(state -> {
                     Direction horizontalFacing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
-                    AttachFace surfaceAttached = state.getValue(SurfaceMountBlock.ATTACH_FACE);
+                    AttachFace surfaceAttached = state.getValue(BaseSurfaceMountBlock.ATTACH_FACE);
                     String modelToUse = (surfaceAttached == AttachFace.CEILING || surfaceAttached == AttachFace.FLOOR)? ceilingOrFloorModel : wallModel;
 
                     int yRot = switch (horizontalFacing   ) {

@@ -3,11 +3,8 @@ package net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBloc
 import net.boat.industrialhellscape.block.modded_block_state_properties.RelativePlanarDirectionState;
 import net.boat.industrialhellscape.block.modded_interfaces.HitboxRotationInterface;
 import net.boat.industrialhellscape.block.modded_interfaces.ToolUseInterface;
-import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -35,8 +32,9 @@ import javax.annotation.Nonnull;
 //INFO:
 //-----
 //Block can be placed on walls, ceilings, and floors (FACING). In addition to this, it can be rotated in four directions on that surface (PLANE_DIRECTION)
+//I hate this, but maybe it can be useful for something else
 
-public class SurfaceMountRotatableBlock extends Block implements SimpleWaterloggedBlock, ToolUseInterface {
+public class SurfaceRotatableBlock extends Block implements SimpleWaterloggedBlock, ToolUseInterface {
 
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
     public static final EnumProperty<RelativePlanarDirectionState> PLANE_DIRECTION = EnumProperty.create("plane_direction", RelativePlanarDirectionState.class);
@@ -50,7 +48,7 @@ public class SurfaceMountRotatableBlock extends Block implements SimpleWaterlogg
     public static final VoxelShape SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH);
     public static final VoxelShape SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH);
 
-    public SurfaceMountRotatableBlock(Properties pProperties) {
+    public SurfaceRotatableBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(FACING, Direction.NORTH)
@@ -104,7 +102,7 @@ public class SurfaceMountRotatableBlock extends Block implements SimpleWaterlogg
 
     @Override
     protected @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
-        return crouchToolUse(stack, state, level, pos, player, FACING, 3, PLANE_DIRECTION, 3);
+        return ToolUseInterface.crouchToolUse(stack, state, level, pos, player, FACING, 3, PLANE_DIRECTION, 3);
     }
 
     public @Nonnull FluidState getFluidState(BlockState pState) {
