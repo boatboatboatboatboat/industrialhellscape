@@ -110,6 +110,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 );
         this.tag(ModTags.Items.TRUSS_SMELTABLE_ITEM)
                 .add(
+                        ModBlocks.TRUSS_SUPPORT.asItem(),
                         ModBlocks.TRUSS.asItem(),
                         ModBlocks.TRUSS_STAIRS.asItem(),
                         ModBlocks.TRUSS_SLAB.asItem(),

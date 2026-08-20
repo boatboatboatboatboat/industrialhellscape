@@ -105,6 +105,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 );
         this.tag(ModTags.Blocks.TRUSS_BLOCKS)
                 .add(
+                        ModBlocks.TRUSS_SUPPORT.get(),
                         ModBlocks.TRUSS.get(),
                         ModBlocks.TRUSS_STAIRS.get(),
                         ModBlocks.TRUSS_SLAB.get(),

@@ -1,10 +1,10 @@
 package net.boat.industrialhellscape.datagen;
 
 import net.boat.industrialhellscape.block.ModBlocks;
-import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.Integer11Blocks.Integer11Block;
-import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.Integer2Blocks.Integer2Block;
-import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.RailingBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.StairRailingBlock;
+import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer11Blocks.Integer11Block;
+import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.Integer2Block;
+import net.boat.industrialhellscape.block.block_classes.RailingBlocks.RailingBlock;
+import net.boat.industrialhellscape.block.block_classes.RailingBlocks.StairRailingBlock;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
@@ -151,6 +151,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.RUSTY_VESSELPLATE_PILLAR.get());
 
         //TRUSS BLOCKS
+        this.dropSelf(ModBlocks.TRUSS_SUPPORT.get());
         this.dropSelf(ModBlocks.TRUSS.get());
         this.add(ModBlocks.TRUSS_SLAB.get(), createSlabItemTable(ModBlocks.TRUSS_SLAB.get()));
         this.dropSelf(ModBlocks.TRUSS_STAIRS.get());

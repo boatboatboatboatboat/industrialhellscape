@@ -245,6 +245,7 @@
   "block.industrialhellscape.rusty_railing": "Rusty Railing",
   "block.industrialhellscape.rusty_stair_railing": "Rusty Stair Railing",
 
+  "block.industrialhellscape.truss_support": "Truss Support",
   "block.industrialhellscape.truss": "Truss",
   "block.industrialhellscape.truss_stairs": "Truss Stairs",
   "block.industrialhellscape.truss_slab": "Truss Slab",
@@ -252,6 +253,7 @@
   "block.industrialhellscape.catwalk_truss_stairs": "Catwalk Truss Stairs",
   "block.industrialhellscape.catwalk_truss_slab": "Catwalk Truss Slab",
 
+  "block.industrialhellscape.gray_truss_support": "Gray Truss Support",
   "block.industrialhellscape.gray_truss": "Gray Truss",
   "block.industrialhellscape.gray_truss_stairs": "Gray Truss Stairs",
   "block.industrialhellscape.gray_truss_slab": "Gray Truss Slab",
@@ -259,6 +261,7 @@
   "block.industrialhellscape.gray_catwalk_truss_stairs": "Gray Catwalk Truss Stairs",
   "block.industrialhellscape.gray_catwalk_truss_slab": "Gray Catwalk Truss Slab",
 
+  "block.industrialhellscape.rusty_truss_support": "Rusty Truss Support",
   "block.industrialhellscape.rusty_truss": "Rusty Truss",
   "block.industrialhellscape.rusty_truss_stairs": "Rusty Truss Stairs",
   "block.industrialhellscape.rusty_truss_slab": "Rusty Truss Slab",

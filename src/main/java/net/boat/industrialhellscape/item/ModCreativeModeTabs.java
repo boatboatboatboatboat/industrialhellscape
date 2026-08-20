@@ -49,6 +49,9 @@ public class ModCreativeModeTabs {
                 ModBlocks.BODY_PILLOW_PROV.asItem(),
                 ModBlocks.DEBUG_BLOCK.asItem(),
 
+                //Unreleased
+                ModBlocks.TRUSS_SUPPORT.get().asItem(),
+
                 //Vesselplate Vertical Variants (Hidden to prevent JEI clutter)
                 ModBlocks.VERTICAL_VESSELPLATE.asItem(),
                 ModBlocks.VERTICAL_REINFORCED_VESSELPLATE.asItem(),

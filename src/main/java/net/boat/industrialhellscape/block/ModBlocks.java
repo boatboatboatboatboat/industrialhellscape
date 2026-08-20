@@ -1,27 +1,28 @@
 package net.boat.industrialhellscape.block;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
-import net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks.AxialPillarBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks.ConnectedFurnitureBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.Integer11Blocks.Storage11Block;
-import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.Integer2Blocks.Bed2Block;
-import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.Integer2Blocks.LightStand2Block;
-import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.Integer2Blocks.Modelled2Block;
-import net.boat.industrialhellscape.block.modded_block_classes.MultiBlocks.Integer2Blocks.Storage2Block;
-import net.boat.industrialhellscape.block.modded_block_classes.PlacedFacingBlocks.*;
-import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.ParapetBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.RailingBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.StairRailingBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.StorageBlocks.BarrelStorageBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.ConnectedBlocks.ConnectedStorageBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.StorageBlocks.FacingStorageBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.StorageBlocks.ModelledFacingStorageBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.SurfaceMountBlocks.*;
-import net.boat.industrialhellscape.block.modded_block_classes.TextureToggleBlocks.SimpleTextureToggleBlock;
-import net.boat.industrialhellscape.block.modded_block_classes.TextureToggleBlocks.TrussBlock;
-import net.boat.industrialhellscape.block.modded_interfaces.HitboxGeometryCollection;
-import net.boat.industrialhellscape.block.modded_interfaces.MultiBlockPlacementArrayCollection;
-import net.boat.industrialhellscape.block.modded_logic_enums.ConnectingBlockPlacementOrientation;
+import net.boat.industrialhellscape.block.block_classes.AxisPillarBlocks.ConnectedPillarBlock;
+import net.boat.industrialhellscape.block.block_classes.AxisPillarBlocks.ModelledPillarBlock;
+import net.boat.industrialhellscape.block.block_classes.ConnectedBlocks.ConnectedFurnitureBlock;
+import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer11Blocks.Storage11Block;
+import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.Bed2Block;
+import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.LightStand2Block;
+import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.Modelled2Block;
+import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.Storage2Block;
+import net.boat.industrialhellscape.block.block_classes.PlacedFacingBlocks.*;
+import net.boat.industrialhellscape.block.block_classes.RailingBlocks.ParapetBlock;
+import net.boat.industrialhellscape.block.block_classes.RailingBlocks.RailingBlock;
+import net.boat.industrialhellscape.block.block_classes.RailingBlocks.StairRailingBlock;
+import net.boat.industrialhellscape.block.block_classes.StorageBlocks.BarrelStorageBlock;
+import net.boat.industrialhellscape.block.block_classes.ConnectedBlocks.ConnectedStorageBlock;
+import net.boat.industrialhellscape.block.block_classes.StorageBlocks.FacingStorageBlock;
+import net.boat.industrialhellscape.block.block_classes.StorageBlocks.ModelledFacingStorageBlock;
+import net.boat.industrialhellscape.block.block_classes.SurfaceMountBlocks.*;
+import net.boat.industrialhellscape.block.block_classes.TextureToggleBlocks.SimpleTextureToggleBlock;
+import net.boat.industrialhellscape.block.block_classes.TextureToggleBlocks.TrussBlock;
+import net.boat.industrialhellscape.block.block_interfaces.HitboxGeometryCollection;
+import net.boat.industrialhellscape.block.block_interfaces.MultiBlockPlacementArrayCollection;
+import net.boat.industrialhellscape.block.logic_enums.ConnectingBlockPlacementOrientation;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.client.gui.screens.Screen;
@@ -577,7 +578,7 @@ public class ModBlocks {
             )
     );
     public static final DeferredBlock<Block> VESSELPLATE_PILLAR = registerBlockAndBlockItem("vesselplate_pillar",
-            () -> new AxialPillarBlock(BlockBehaviour
+            () -> new ConnectedPillarBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
             )
     );
@@ -664,7 +665,7 @@ public class ModBlocks {
             )
     );
     public static final DeferredBlock<Block> GRAY_VESSELPLATE_PILLAR = registerBlockAndBlockItem("gray_vesselplate_pillar",
-            () -> new AxialPillarBlock(BlockBehaviour
+            () -> new ConnectedPillarBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
             )
     );
@@ -750,12 +751,19 @@ public class ModBlocks {
             )
     );
     public static final DeferredBlock<Block> RUSTY_VESSELPLATE_PILLAR = registerBlockAndBlockItem("rusty_vesselplate_pillar",
-            () -> new AxialPillarBlock(BlockBehaviour
+            () -> new ConnectedPillarBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
             )
     );
     
     //TRUSS BLOCKS
+    public static final DeferredBlock<Block> TRUSS_SUPPORT = registerBlockAndBlockItem("truss_support",
+            () -> new ModelledPillarBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
+                    HitboxGeometryCollection.HOLLOW_TRUSS())
+    );
     public static final DeferredBlock<Block> TRUSS = registerBlockAndBlockItem("truss",
             () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
@@ -931,13 +939,6 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
-
-    public static final DeferredBlock<Block> GRAY_ROCKRETE_PILLAR = registerBlockAndBlockItem("gray_rockrete_pillar",
-            () -> new AxialPillarBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE)
-            )
-    );
-
     public static final DeferredBlock<Block> ROUGH_GRAY_ROCKRETE = registerBlockAndBlockItem("rough_gray_rockrete",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
@@ -952,14 +953,14 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
-    //GREEN ROCKRETE
-    public static final DeferredBlock<Block> GREEN_ROCKRETE = registerBlockAndBlockItem("green_rockrete",
-            () -> new Block(BlockBehaviour
+    public static final DeferredBlock<Block> GRAY_ROCKRETE_PILLAR = registerBlockAndBlockItem("gray_rockrete_pillar",
+            () -> new ConnectedPillarBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
-    public static final DeferredBlock<Block> ROUGH_GREEN_ROCKRETE = registerBlockAndBlockItem("rough_green_rockrete",
-            () -> new SimpleTextureToggleBlock(BlockBehaviour
+    //GREEN ROCKRETE
+    public static final DeferredBlock<Block> GREEN_ROCKRETE = registerBlockAndBlockItem("green_rockrete",
+            () -> new Block(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
@@ -969,6 +970,11 @@ public class ModBlocks {
     );
     public static final DeferredBlock<Block> GREEN_ROCKRETE_SLAB = registerBlockAndBlockItem("green_rockrete_slab",
             () -> new SlabBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE)
+            )
+    );
+    public static final DeferredBlock<Block> ROUGH_GREEN_ROCKRETE = registerBlockAndBlockItem("rough_green_rockrete",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
@@ -982,7 +988,7 @@ public class ModBlocks {
             )
     );
     public static final DeferredBlock<Block> GREEN_ROCKRETE_PILLAR = registerBlockAndBlockItem("green_rockrete_pillar",
-            () -> new AxialPillarBlock(BlockBehaviour
+            () -> new ConnectedPillarBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
@@ -992,17 +998,17 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
-    public static final DeferredBlock<Block> ROUGH_YELLOW_ROCKRETE = registerBlockAndBlockItem("rough_yellow_rockrete",
-            () -> new SimpleTextureToggleBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE)
-            )
-    );
     public static final DeferredBlock<Block> YELLOW_ROCKRETE_STAIRS = registerBlockAndBlockItem("yellow_rockrete_stairs",
             () -> new StairBlock(ModBlocks.YELLOW_ROCKRETE.get().defaultBlockState(),
                     BlockBehaviour.Properties.ofFullCopy(Blocks.STONE))
     );
     public static final DeferredBlock<Block> YELLOW_ROCKRETE_SLAB = registerBlockAndBlockItem("yellow_rockrete_slab",
             () -> new SlabBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE)
+            )
+    );
+    public static final DeferredBlock<Block> ROUGH_YELLOW_ROCKRETE = registerBlockAndBlockItem("rough_yellow_rockrete",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
@@ -1016,7 +1022,7 @@ public class ModBlocks {
             )
     );
     public static final DeferredBlock<Block> YELLOW_ROCKRETE_PILLAR = registerBlockAndBlockItem("yellow_rockrete_pillar",
-            () -> new AxialPillarBlock(BlockBehaviour
+            () -> new ConnectedPillarBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
@@ -1026,17 +1032,17 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
-    public static final DeferredBlock<Block> ROUGH_BLUE_ROCKRETE = registerBlockAndBlockItem("rough_blue_rockrete",
-            () -> new SimpleTextureToggleBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE)
-            )
-    );
     public static final DeferredBlock<Block> BLUE_ROCKRETE_STAIRS = registerBlockAndBlockItem("blue_rockrete_stairs",
             () -> new StairBlock(ModBlocks.BLUE_ROCKRETE.get().defaultBlockState(),
                     BlockBehaviour.Properties.ofFullCopy(Blocks.STONE))
     );
     public static final DeferredBlock<Block> BLUE_ROCKRETE_SLAB = registerBlockAndBlockItem("blue_rockrete_slab",
             () -> new SlabBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE)
+            )
+    );
+    public static final DeferredBlock<Block> ROUGH_BLUE_ROCKRETE = registerBlockAndBlockItem("rough_blue_rockrete",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
@@ -1050,7 +1056,7 @@ public class ModBlocks {
             )
     );
     public static final DeferredBlock<Block> BLUE_ROCKRETE_PILLAR = registerBlockAndBlockItem("blue_rockrete_pillar",
-            () -> new AxialPillarBlock(BlockBehaviour
+            () -> new ConnectedPillarBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
@@ -1060,17 +1066,17 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
-    public static final DeferredBlock<Block> ROUGH_RED_ROCKRETE = registerBlockAndBlockItem("rough_red_rockrete",
-            () -> new SimpleTextureToggleBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE)
-            )
-    );
     public static final DeferredBlock<Block> RED_ROCKRETE_STAIRS = registerBlockAndBlockItem("red_rockrete_stairs",
             () -> new StairBlock(ModBlocks.RED_ROCKRETE.get().defaultBlockState(),
                     BlockBehaviour.Properties.ofFullCopy(Blocks.STONE))
     );
     public static final DeferredBlock<Block> RED_ROCKRETE_SLAB = registerBlockAndBlockItem("red_rockrete_slab",
             () -> new SlabBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE)
+            )
+    );
+    public static final DeferredBlock<Block> ROUGH_RED_ROCKRETE = registerBlockAndBlockItem("rough_red_rockrete",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
@@ -1084,7 +1090,7 @@ public class ModBlocks {
             )
     );
     public static final DeferredBlock<Block> RED_ROCKRETE_PILLAR = registerBlockAndBlockItem("red_rockrete_pillar",
-            () -> new AxialPillarBlock(BlockBehaviour
+            () -> new ConnectedPillarBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );

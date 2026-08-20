@@ -2,7 +2,7 @@ package net.boat.industrialhellscape.datagen;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
-import net.boat.industrialhellscape.block.modded_block_classes.RailingBlocks.ParapetBlock;
+import net.boat.industrialhellscape.block.block_classes.RailingBlocks.ParapetBlock;
 import net.boat.industrialhellscape.item.ModItems;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.HolderLookup;
@@ -63,6 +63,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.RUSTY_HORIZONTAL_CUTOUT_VENT.get().asItem()
     );
     private static final List<ItemLike> TRUSS_STONECUT_OUTPUT = List.of(
+            ModBlocks.TRUSS_SUPPORT.get().asItem(),
             ModBlocks.TRUSS.get().asItem(),
             ModBlocks.TRUSS_STAIRS.get().asItem(),
             ModBlocks.TRUSS_SLAB.get().asItem(),

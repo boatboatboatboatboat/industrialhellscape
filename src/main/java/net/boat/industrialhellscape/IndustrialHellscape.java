@@ -2,7 +2,7 @@ package net.boat.industrialhellscape;
 
 import com.mojang.logging.LogUtils;
 import net.boat.industrialhellscape.block.ModBlocks;
-import net.boat.industrialhellscape.block.modded_block_entities.ModBlockEntities;
+import net.boat.industrialhellscape.block.block_entities.ModBlockEntities;
 import net.boat.industrialhellscape.entity.ModEntities;
 import net.boat.industrialhellscape.item.ModCreativeModeTabs;
 import net.boat.industrialhellscape.item.ModItems;
