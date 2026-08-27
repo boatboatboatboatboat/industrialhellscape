@@ -34,21 +34,21 @@ import javax.annotation.Nonnull;
 //-----
 //Can be placed on any surface (FACING). Additionally, can be rotated orthogonally on that surface (ORIENTATION).
 
-public class WallPIpeBlock extends Block implements SimpleWaterloggedBlock, ToolUseInterface, ConnectedModelInterface {
+public class WallPipeBlock extends Block implements SimpleWaterloggedBlock, ToolUseInterface, ConnectedModelInterface {
     public static final EnumProperty<Direction> FACING = BlockStateProperties.FACING;
     public static final EnumProperty<SurfacePipeMountState> ORIENTATION = EnumProperty.create("axis", SurfacePipeMountState.class);
     public static final EnumProperty<DynamicConnectionState> TYPE = EnumProperty.create("type", DynamicConnectionState.class); //"TYPE" is used to store enum value of "solo, pos, neg, middle"
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    public static final VoxelShape SHAPE_FLOOR = Block.box(0, 0, 0, 16, 6, 16);
-    public static final VoxelShape SHAPE_CEILING = Block.box(0, 10, 0, 16, 16, 16);
+    public static final VoxelShape SHAPE_FLOOR = Block.box(0, 0.1, 0, 16, 6, 16);
+    public static final VoxelShape SHAPE_CEILING = Block.box(0, 10, 0, 16, 15.9, 16);
 
-    public static final VoxelShape SHAPE_NORTH = Block.box(0, 0, 0, 16, 16, 6);
+    public static final VoxelShape SHAPE_NORTH = Block.box(0, 0, 0.1, 16, 16, 6);
     public static final VoxelShape SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH);
     public static final VoxelShape SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH);
     public static final VoxelShape SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH);
 
-    public WallPIpeBlock(Properties pProperties) {
+    public WallPipeBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(FACING, Direction.DOWN) //Default surface pipe is placed on

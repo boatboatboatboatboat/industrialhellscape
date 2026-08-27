@@ -89,6 +89,20 @@ public interface MultiBlockPlacementInterface {
         }
     }
 
+    static void removeRemainingMultiBlock(LevelAccessor pLevel, Block thisBlock, BlockPos pos, IntegerProperty partProperty, BlockState pState, int[][] multiBlockMatrix) {
+        BlockPos originPos = vectorToOriginBlockPos(pos, multiBlockMatrix,pState, partProperty);
+
+        for (int i = 0; i < multiBlockMatrix.length; i++) {
+            BlockPos blockPosToCheck = vectorToBlockPos(originPos, multiBlockMatrix, i, pState);
+
+            boolean multiBLockPartIsHere = pLevel.getBlockState(blockPosToCheck).is(thisBlock);
+
+            if (multiBLockPartIsHere) {
+                pLevel.removeBlock(vectorToBlockPos(originPos, multiBlockMatrix, i, pState), true);
+            }
+        }
+    }
+
     static void updateRemainingMultiBlock(LevelAccessor pLevel, Block thisBlock, BlockPos pos, IntegerProperty partProperty, BooleanProperty interactiveProperty, BlockState pState, int[][] multiBlockMatrix) {
         /*
         Used by useWithoutItem() override

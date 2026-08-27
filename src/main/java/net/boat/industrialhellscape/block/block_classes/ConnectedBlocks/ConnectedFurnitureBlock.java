@@ -1,17 +1,22 @@
 package net.boat.industrialhellscape.block.block_classes.ConnectedBlocks;
 
-import net.boat.industrialhellscape.block.block_state_enums.DynamicConnectionState;
 import net.boat.industrialhellscape.block.block_interfaces.ConnectedModelInterface;
 import net.boat.industrialhellscape.block.block_interfaces.HitboxRotationInterface;
 import net.boat.industrialhellscape.block.block_interfaces.ToolUseInterface;
+import net.boat.industrialhellscape.block.block_state_enums.DynamicConnectionState;
 import net.boat.industrialhellscape.block.logic_enums.ConnectingBlockPlacementOrientation;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -30,6 +35,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 
 /*
 INFO:
@@ -135,15 +141,27 @@ public class ConnectedFurnitureBlock extends Block implements SimpleWaterloggedB
                 SOLO_SHAPE_NORTH,SOLO_SHAPE_SOUTH,SOLO_SHAPE_EAST,SOLO_SHAPE_WEST,
                 FACING, TYPE);
     }
+
     @Override
-    public @Nullable BlockState getStateForPlacement(@NotNull BlockPlaceContext pContext) {
-        //See this mod's ConnectedModelInterface interface to view the following method.
-        return ConnectedModelInterface.ConnectedFurnitureStateForPlacement(pContext, this, FACING, TYPE, WATERLOGGED, placementDirection, blockSetFamily);
+    public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
+           /*
+         Certain mods call getStateForPlacement() early without an actual block placement action from the player
+         If a helper method used in getStateForPlacement() uses level.setBlock(), these mods may unintentionally
+         update blocks in the world without user input. This is to be avoided by moving setBlock() actions into
+         a separate helper method used elsewhere, such as in useItemOn or setPlacedBy
+         */
+        return ConnectedModelInterface.ConnectedFurnitureStateForPlacement(context,this,FACING,TYPE,WATERLOGGED,placementDirection,blockSetFamily);
+    }
+
+    @Override
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+        ConnectedModelInterface.connectedFurnitureUpdateNeighbors(level,placer,pos, state, FACING, TYPE, placementDirection, blockSetFamily);
+        super.setPlacedBy(level, pos, state, placer, stack);
     }
 
     @Override
     protected void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean movedByPiston) {
-        ConnectedModelInterface.fixNeighborStateUponRemove(this,state,level,pos,newState,FACING,TYPE,blockSetFamily);
+        ConnectedModelInterface.fixFurnitureNeighborUponRemove(this,state,level,pos,newState,FACING,TYPE,blockSetFamily);
         super.onRemove(state, level, pos, newState, movedByPiston);
     }
 
@@ -172,5 +190,16 @@ public class ConnectedFurnitureBlock extends Block implements SimpleWaterloggedB
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, WATERLOGGED, TYPE); //Block's blockstates; its NSEW orientation, its connection type defined
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        if (Screen.hasShiftDown()) {
+            tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_connecting_furniture"));
+        } else {
+            tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.shift_down"));
+        }
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
 }

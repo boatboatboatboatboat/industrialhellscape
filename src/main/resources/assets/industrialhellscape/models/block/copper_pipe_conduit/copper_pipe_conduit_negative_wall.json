@@ -55,17 +55,20 @@
 		{
 			"name": "group",
 			"origin": [13, 1, 0],
+			"scope": 0,
 			"color": 0,
 			"children": [
 				{
 					"name": "pipes",
 					"origin": [7, 1, 0],
+					"scope": 0,
 					"color": 0,
 					"children": [0, 1, 2]
 				},
 				{
 					"name": "brackets",
 					"origin": [13, 1, 0],
+					"scope": 0,
 					"color": 0,
 					"children": [3]
 				}

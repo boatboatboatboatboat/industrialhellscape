@@ -23,7 +23,7 @@
 			"to": [16, 13, 16],
 			"faces": {
 				"north": {"uv": [6.75, 13, 10.75, 15.75], "texture": "#0"},
-				"south": {"uv": [8, 4, 12, 6.75], "texture": "#0"},
+				"south": {"uv": [8, 4, 12, 6.75], "texture": "#0", "cullface": "south"},
 				"down": {"uv": [1.5, 12, 1.75, 16], "rotation": 90, "texture": "#0"}
 			}
 		}
@@ -63,11 +63,13 @@
 		{
 			"name": "modern_table",
 			"origin": [8, 8, 8],
+			"scope": 0,
 			"color": 0,
 			"children": [
 				{
 					"name": "legs",
 					"origin": [8, 8, 8],
+					"scope": 0,
 					"color": 0,
 					"children": []
 				},

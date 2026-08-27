@@ -27,8 +27,7 @@
 			"faces": {
 				"north": {"uv": [4.25, 6.75, 8.25, 7.5], "texture": "#0", "cullface": "north"},
 				"south": {"uv": [4.25, 6.75, 8.25, 7.5], "texture": "#0", "cullface": "south"},
-				"up": {"uv": [8, 0, 12, 4], "texture": "#0", "cullface": "up"},
-				"down": {"uv": [0, 0, 4, 4], "texture": "#0"}
+				"up": {"uv": [8, 0, 12, 4], "texture": "#0", "cullface": "up"}
 			}
 		}
 	],
@@ -67,11 +66,13 @@
 		{
 			"name": "modern_table",
 			"origin": [8, 8, 8],
+			"scope": 0,
 			"color": 0,
 			"children": [
 				{
 					"name": "legs",
 					"origin": [8, 8, 8],
+					"scope": 0,
 					"color": 0,
 					"children": []
 				},

@@ -53,8 +53,7 @@
 				"north": {"uv": [4, 6.75, 8, 7.5], "texture": "#0", "cullface": "north"},
 				"east": {"uv": [0, 6.75, 4, 7.5], "texture": "#0", "cullface": "east"},
 				"south": {"uv": [8, 6.75, 12, 7.5], "texture": "#0", "cullface": "south"},
-				"up": {"uv": [12, 0, 16, 4], "texture": "#0", "cullface": "up"},
-				"down": {"uv": [0, 0, 4, 4], "texture": "#0"}
+				"up": {"uv": [12, 0, 16, 4], "texture": "#0", "cullface": "up"}
 			}
 		}
 	],
@@ -93,11 +92,13 @@
 		{
 			"name": "modern_table",
 			"origin": [8, 8, 8],
+			"scope": 0,
 			"color": 0,
 			"children": [
 				{
 					"name": "legs",
 					"origin": [8, 8, 8],
+					"scope": 0,
 					"color": 0,
 					"children": [0, 1]
 				},

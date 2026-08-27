@@ -67,7 +67,6 @@ public class RandomTickSoundBlock extends ModelledSurfaceMountBlock{
         if (pState.getValue(POWERED)) { //If powered (true)
             playSound(pLevel, pPos, OUTPUT_SOUND);
         }
-
     }
 
     private static void playSound(Level pLevel, BlockPos pPos, SoundEvent outputSound) {

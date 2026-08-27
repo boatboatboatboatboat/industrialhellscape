@@ -10,6 +10,7 @@
   "item.industrialhellscape.disc_1": "Marquee Music Disc",
   "item.industrialhellscape.gas_station_pill": "Gas Station Pill",
 
+  "block.industrialhellscape.peanut_statue": "§eHim§4",
   "block.industrialhellscape.prototype_machine": "Prototype Machine",
   "block.industrialhellscape.remove_this_item": "Remove This Item",
 
@@ -295,6 +296,7 @@
   "sounds.industrialhellscape.switch_on":"Switch On",
   "sounds.industrialhellscape.switch_off":"Switch Off",
   "sounds.industrialhellscape.horsepill":"Bones shattered and flesh contorted",
+  "sounds.industrialhellscape.peanut_statue_sound": "Peanut noises",
 
   "block.industrialhellscape.armored_door": "Armored Door",
   "block.industrialhellscape.bulkhead_door": "Bulkhead Door",
@@ -309,11 +311,12 @@
   "tooltip.industrialhellscape.advise_craft_vertical": "Vertical variant. Crafted from base variant.",
   "tooltip.industrialhellscape.advise_craft_horizontal": "Horizontal variant.",
   "tooltip.industrialhellscape.blockworks": "Use a pickaxe to rotate blocks stone-cut from this. Crouching with HAVEN tool allows full rotation functionality.",
-  "tooltip.industrialhellscape.shift_down": "Press §eShift§r for more Information",
+  "tooltip.industrialhellscape.shift_down": "§eShift§r: More Information",
   "tooltip.industrialhellscape.disc_1": "14 Minutes Until Launch - Oscar Borisovich Feltsman",
   "tooltip.industrialhellscape.job_application": "Sneak Interact to convert Nitwit villagers into employable villagers. Nametagged villagers unaffected.",
   "tooltip.industrialhellscape.termination_letter": "Sneak Interact to convert Employed villagers into unemployed villagers. Nametagged villagers unaffected.",
   "tooltip.industrialhellscape.horsepill": "§6 Enhances your body with \"equine characteristics!\"",
+  "tooltip.industrialhellscape.advise_connecting_furniture": "Look diagonally before placing to connect to existing furniture",
 
   "death.attack.horsepilldeathmessage": "%1$s has been horsed.",
 

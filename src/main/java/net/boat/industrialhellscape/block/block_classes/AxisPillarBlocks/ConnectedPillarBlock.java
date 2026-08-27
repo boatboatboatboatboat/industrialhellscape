@@ -1,14 +1,21 @@
 package net.boat.industrialhellscape.block.block_classes.AxisPillarBlocks;
 
-import net.boat.industrialhellscape.block.block_state_enums.DynamicConnectionState;
 import net.boat.industrialhellscape.block.block_interfaces.ConnectedModelInterface;
+import net.boat.industrialhellscape.block.block_state_enums.DynamicConnectionState;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 
 /*
@@ -40,9 +47,34 @@ public class ConnectedPillarBlock extends RotatedPillarBlock implements Connecte
     @Override
     public @NotNull BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
         /*
-        To improve performance, state-changing update logic only executes when a block is placed down next to an adjacent one.
+         Certain mods call getStateForPlacement() early without an actual block placement action from the player
+         If a helper method used in getStateForPlacement() uses level.setBlock(), these mods may unintentionally
+         update blocks in the world without user input. This is to be avoided by moving setBlock() actions into
+         a separate helper method used elsewhere, such as in useItemOn or setPlacedBy
          */
-        return ConnectedModelInterface.AxialPillarStateForPlacement(context, this, AXIS, TYPE);
+        return ConnectedModelInterface.AxialPillarStateForPlacement(context,this,AXIS,TYPE);
+    }
+
+    @Override
+    protected @NotNull ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        /*
+        Getting the face direction of a block at a player's crosshair before placing a block is usually done in getStateForPlacement
+        By calling context.getClickedFace(), which internally calls the getDirection() method in BlockHitResult.
+
+        Because this direction is necessary for intuitive pillar placement, level update logic is executed in a helper
+        method located here, in order to access BlockHitResult
+         */
+
+        if(stack.is(this.asItem())) { //ensures other block items dont trigger a state update
+            ConnectedModelInterface.AxialPillarUpdateNeighbors(level,hitResult,state,pos,this,AXIS,TYPE);
+        }
+        return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+    }
+
+    @Override
+    protected void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean movedByPiston) {
+        ConnectedModelInterface.fixPillarNeighborUponRemove(this,state,level,pos,newState,AXIS ,TYPE);
+        super.onRemove(state, level, pos, newState, movedByPiston);
     }
 
     @Override

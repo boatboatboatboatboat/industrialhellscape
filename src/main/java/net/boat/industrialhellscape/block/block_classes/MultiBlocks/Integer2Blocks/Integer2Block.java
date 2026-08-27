@@ -8,9 +8,8 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.neoforged.neoforge.common.extensions.IBlockExtension;
 
-public class Integer2Block extends BaseIntegerMultiBlock implements MultiBlockPlacementInterface, IBlockExtension {
+public class Integer2Block extends BaseIntegerMultiBlock implements MultiBlockPlacementInterface {
     //Specific to this class and subclasses
     public static final IntegerProperty PART = IntegerProperty.create("part",0, 1);
 

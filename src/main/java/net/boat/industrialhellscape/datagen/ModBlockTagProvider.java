@@ -381,6 +381,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 )
                 .add(
                         ModBlocks.DEBUG_BLOCK.get()
+                        //,ModBlocks.PEANUT_STATUE.get()
                 );
         this.tag(BlockTags.MINEABLE_WITH_AXE)
                 .addTags(

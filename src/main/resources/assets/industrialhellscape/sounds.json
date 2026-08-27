@@ -65,6 +65,24 @@
       "industrialhellscape:horsepill"
     ]
   },
+  "peanut_statue_sound_1": {
+    "subtitle": "sounds.industrialhellscape.peanut_statue_sound",
+    "sounds": [
+      "industrialhellscape:peanut_statue_sound_1"
+    ]
+  },
+  "peanut_statue_sound_2": {
+    "subtitle": "sounds.industrialhellscape.peanut_statue_sound",
+    "sounds": [
+      "industrialhellscape:peanut_statue_sound_2"
+    ]
+  },
+  "peanut_statue_sound_3": {
+    "subtitle": "sounds.industrialhellscape.peanut_statue_sound",
+    "sounds": [
+      "industrialhellscape:peanut_statue_sound_3"
+    ]
+  },
   "song_1": {
     "sounds": [
       {

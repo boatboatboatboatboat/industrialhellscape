@@ -28,6 +28,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.JOB_APPLICATION.get());
         basicItem(ModItems.TERMINATION_LETTER.get());
         basicItem(ModItems.GAS_STATION_PILL.get());
+        //basicItem(ModBlocks.PEANUT_STATUE.asItem());
 
         //  Blocks
         wallItem(ModBlocks.GRAY_ROCKRETE_WALL, ModBlocks.ROUGH_GRAY_ROCKRETE.get(), "rough_rockrete");

@@ -147,18 +147,21 @@
 		{
 			"name": "desk_solo",
 			"origin": [8, 8, 8],
+			"scope": 0,
 			"color": 0,
 			"children": [
 				0,
 				{
 					"name": "left_side",
 					"origin": [8, 8, 8],
+					"scope": 0,
 					"color": 0,
 					"children": [1, 2, 3]
 				},
 				{
 					"name": "right_side",
 					"origin": [8, 8, 8],
+					"scope": 0,
 					"color": 0,
 					"children": [4, 5, 6]
 				},

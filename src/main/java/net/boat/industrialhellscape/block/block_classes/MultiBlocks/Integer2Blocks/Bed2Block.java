@@ -1,16 +1,17 @@
 package net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks;
 
 import net.boat.industrialhellscape.block.block_interfaces.MultiBlockPlacementInterface;
-import net.boat.industrialhellscape.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundSource;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.vehicle.DismountHelper;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.ExplosionDamageCalculator;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -26,6 +27,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Optional;
 
 public class Bed2Block extends Modelled2Block {
 
@@ -65,53 +68,66 @@ public class Bed2Block extends Modelled2Block {
     public boolean isBed(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull LivingEntity sleeper) {
         return true;
     }
+    //Respawning wil not work without this NeoForge interface method (1.21.1 only)
+    @Override
+    public @NotNull Optional<ServerPlayer.RespawnPosAngle> getRespawnPosition(BlockState state, EntityType<?> type, LevelReader levelReader, BlockPos pos, float orientation) {
+        Direction blockFacingDirection = state.getValue(FACING);
+        BlockPos centerOfBedFoot = pos.relative(blockFacingDirection.getOpposite()); //foot of bed
+
+        //initialize loop variables
+        BlockPos candidatePos = centerOfBedFoot;
+        Vec3 vec3 = DismountHelper.findSafeDismountLocation(type, levelReader, candidatePos, true);
+        boolean candidateVec3NotNull = false; //avoid spawning on top of bed by default (loop will start checking at -1,-1,-1 offset. would eventually return here anyway.)
+
+        for(int i = -1; i < 2; i++) {
+            for(int j = -1; j < 2; j++) {
+                for(int k = -1; k < 2; k++) {
+                    if(candidateVec3NotNull) {
+                        return Optional.of(new ServerPlayer.RespawnPosAngle(vec3,blockFacingDirection.getOpposite().toYRot()));
+                    }
+                    candidatePos = centerOfBedFoot.offset(i,j,k);
+                    vec3 = DismountHelper.findSafeDismountLocation(type, levelReader, candidatePos, true);
+                    candidateVec3NotNull = (vec3 != null);
+                }
+            }
+        }
+        return Optional.empty();
+    }
 
     @Override
-    protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
-        //Code taken from vanilla BedBlock code with minor modifications
+    protected @NotNull InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         if (level.isClientSide) {
-
-//            level.addParticle(ParticleTypes.HEART, pos.getX(), pos.getY()+0.5, pos.getZ(), 0, 2, 0);
-
             return InteractionResult.CONSUME;
         } else {
-            //If the block interacted with is not the POSITIVE block
-            //Redefine pos as that of the POSITIVE block by finding the pos behind the current block
-            //If the block at that position is an instance of the same block
-            //CONSUME
-            if (state.getValue(PART) == 1) {
-                pos = pos.relative(state.getValue(HorizontalDirectionalBlock.FACING));
+            if (state.getValue(PART) != 1) { //reassign pos and state as "bed head" position if needed
+                pos = pos.relative(state.getValue(FACING));
                 state = level.getBlockState(pos);
                 if (!state.is(this)) {
                     return InteractionResult.CONSUME;
                 }
             }
-            //Explodes if you are disallowed to set spawn in certain dimensions
-            if (!canSetSpawn(level)) {
+
+            if (!canSetSpawn(level)) { //removes bed before triggering explosion
                 level.removeBlock(pos, false);
-                BlockPos blockpos = pos.relative(state.getValue(HorizontalDirectionalBlock.FACING).getOpposite());
+                BlockPos blockpos = pos.relative(state.getValue(FACING).getOpposite());
                 if (level.getBlockState(blockpos).is(this)) {
                     level.removeBlock(blockpos, false);
                 }
+
                 Vec3 vec3 = pos.getCenter();
-                level.explode(null, level.damageSources().badRespawnPointExplosion(vec3), null, vec3, 5.0F, true, Level.ExplosionInteraction.BLOCK);
-            } else if (state.getValue(BlockStateProperties.OCCUPIED) && !multiplePeopleCanSleepOn) {
-                //forbid sleeping if occupied
-                player.displayClientMessage(Component.translatable("block.minecraft.bed.occupied"), true);
+                level.explode(null, level.damageSources().badRespawnPointExplosion(vec3), (ExplosionDamageCalculator)null, vec3, 5.0F, true, Level.ExplosionInteraction.BLOCK);
+                return InteractionResult.SUCCESS;
+            } else if (state.getValue(BlockStateProperties.OCCUPIED)) {
                 return InteractionResult.SUCCESS;
             } else {
-                //If no other conditions met, Initiates sleeping unless nighttime or thunderstorm, I think
                 player.startSleepInBed(pos).ifLeft((p_49477_) -> {
                     if (p_49477_.getMessage() != null) {
                         player.displayClientMessage(p_49477_.getMessage(), true);
                     }
-
                 });
+
+                return InteractionResult.SUCCESS;
             }
-            if(player.isSleeping()) {
-                level.playSound(null, pos, ModSounds.SNORE.get(), SoundSource.BLOCKS, 1f, 1f);
-            }
-            return InteractionResult.SUCCESS;
         }
     }
 
@@ -120,7 +136,7 @@ public class Bed2Block extends Modelled2Block {
     }
 
     protected boolean isPathfindable(@NotNull BlockState state, @NotNull PathComputationType pathComputationType) {
-        return false;
+        return true;
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {

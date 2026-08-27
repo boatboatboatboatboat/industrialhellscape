@@ -43,6 +43,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 createIntegerMultiBlockDrops(ModBlocks.BODY_PILLOW_FANG.get(),Integer2Block.PART));
         this.add(ModBlocks.BODY_PILLOW_PROV.get(),
                 createIntegerMultiBlockDrops(ModBlocks.BODY_PILLOW_PROV.get(),Integer2Block.PART));
+        //this.dropSelf(ModBlocks.PEANUT_STATUE.get());
 
         //BASE BUILDING BLOCKS
         this.dropSelf(ModBlocks.METALWORKS.get());

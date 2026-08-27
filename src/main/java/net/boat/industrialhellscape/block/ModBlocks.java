@@ -5,10 +5,7 @@ import net.boat.industrialhellscape.block.block_classes.AxisPillarBlocks.Connect
 import net.boat.industrialhellscape.block.block_classes.AxisPillarBlocks.ModelledPillarBlock;
 import net.boat.industrialhellscape.block.block_classes.ConnectedBlocks.ConnectedFurnitureBlock;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer11Blocks.Storage11Block;
-import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.Bed2Block;
-import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.LightStand2Block;
-import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.Modelled2Block;
-import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.Storage2Block;
+import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.*;
 import net.boat.industrialhellscape.block.block_classes.PlacedFacingBlocks.*;
 import net.boat.industrialhellscape.block.block_classes.RailingBlocks.ParapetBlock;
 import net.boat.industrialhellscape.block.block_classes.RailingBlocks.RailingBlock;
@@ -114,6 +111,13 @@ public class ModBlocks {
                     , ModSounds.METAL_BOX_CLOSE.get()
             )
     );
+//    public static final DeferredBlock<Block> PEANUT_STATUE = registerBlockAndBlockItem("peanut_statue",
+//            () -> new PeanutStatueBlock(BlockBehaviour
+//                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+//                    , MultiBlockPlacementArrayCollection.VERTICAL_PLACEMENT
+//                    , new VoxelShape[]{HitboxGeometryCollection.PEANUT_STATUE(), HitboxGeometryCollection.PEANUT_STATUE()}
+//            )
+//    );
 //    public static final DeferredBlock<Block> REMOVE_THIS_ITEM = registerBlockAndBlockItem("remove_this_item",
 //            () -> new ModelledFacingBlock(BlockBehaviour
 //                    .Properties.ofFullCopy(Blocks.OAK_PLANKS).sound(SoundType.SLIME_BLOCK), HitboxGeometryCollection.DECAL_FLOOR()));
@@ -443,56 +447,6 @@ public class ModBlocks {
                     .noOcclusion()
             )
     );
-    public static final DeferredBlock<Block> GRAY_ROCKRETE_PARAPET = registerBlockAndBlockItem("gray_rockrete_parapet",
-            () -> new ParapetBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .noOcclusion(),
-                    4,
-                    0
-            )
-    );
-    public static final DeferredBlock<Block> RED_ROCKRETE_PARAPET = registerBlockAndBlockItem("red_rockrete_parapet",
-            () -> new ParapetBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .noOcclusion(),
-                    4,
-                    0
-            )
-    );
-    public static final DeferredBlock<Block> YELLOW_ROCKRETE_PARAPET = registerBlockAndBlockItem("yellow_rockrete_parapet",
-            () -> new ParapetBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .noOcclusion(),
-                    4,
-                    0
-            )
-    );
-    public static final DeferredBlock<Block> BLUE_ROCKRETE_PARAPET = registerBlockAndBlockItem("blue_rockrete_parapet",
-            () -> new ParapetBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .noOcclusion(),
-                    4,
-                    0
-            )
-    );
-    public static final DeferredBlock<Block> GREEN_ROCKRETE_PARAPET = registerBlockAndBlockItem("green_rockrete_parapet",
-            () -> new ParapetBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .noOcclusion(),
-                    4,
-                    0
-            )
-    );
-    public static final DeferredBlock<WallBlock> GRAY_ROCKRETE_WALL = registerBlockAndBlockItem("gray_rockrete_wall",
-            () -> new WallBlock(BlockBehaviour.Properties.of().strength(2f).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<WallBlock> RED_ROCKRETE_WALL = registerBlockAndBlockItem("red_rockrete_wall",
-            () -> new WallBlock(BlockBehaviour.Properties.of().strength(2f).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<WallBlock> YELLOW_ROCKRETE_WALL = registerBlockAndBlockItem("yellow_rockrete_wall",
-            () -> new WallBlock(BlockBehaviour.Properties.of().strength(2f).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<WallBlock> BLUE_ROCKRETE_WALL = registerBlockAndBlockItem("blue_rockrete_wall",
-            () -> new WallBlock(BlockBehaviour.Properties.of().strength(2f).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<WallBlock> GREEN_ROCKRETE_WALL = registerBlockAndBlockItem("green_rockrete_wall",
-            () -> new WallBlock(BlockBehaviour.Properties.of().strength(2f).requiresCorrectToolForDrops()));
 
     //VESSELPLATE BLOCKS
     public static final DeferredBlock<Block> RIVETED_VESSELPLATE = registerBlockAndBlockItem("riveted_vesselplate",
@@ -769,7 +723,7 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion()
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
-                    true)
+                    true) //false makes seams appear at edges of inverted faces
             {
                 @Override
                 public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
@@ -958,6 +912,16 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
+    public static final DeferredBlock<Block> GRAY_ROCKRETE_PARAPET = registerBlockAndBlockItem("gray_rockrete_parapet",
+            () -> new ParapetBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    4,
+                    0
+            )
+    );
+    public static final DeferredBlock<WallBlock> GRAY_ROCKRETE_WALL = registerBlockAndBlockItem("gray_rockrete_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.of().strength(2f).requiresCorrectToolForDrops()));
     //GREEN ROCKRETE
     public static final DeferredBlock<Block> GREEN_ROCKRETE = registerBlockAndBlockItem("green_rockrete",
             () -> new Block(BlockBehaviour
@@ -992,6 +956,16 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
+    public static final DeferredBlock<Block> GREEN_ROCKRETE_PARAPET = registerBlockAndBlockItem("green_rockrete_parapet",
+            () -> new ParapetBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    4,
+                    0
+            )
+    );
+    public static final DeferredBlock<WallBlock> GREEN_ROCKRETE_WALL = registerBlockAndBlockItem("green_rockrete_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.of().strength(2f).requiresCorrectToolForDrops()));
     //YELLOW ROCKRETE
     public static final DeferredBlock<Block> YELLOW_ROCKRETE = registerBlockAndBlockItem("yellow_rockrete",
             () -> new Block(BlockBehaviour
@@ -1026,6 +1000,16 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
+    public static final DeferredBlock<Block> YELLOW_ROCKRETE_PARAPET = registerBlockAndBlockItem("yellow_rockrete_parapet",
+            () -> new ParapetBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    4,
+                    0
+            )
+    );
+    public static final DeferredBlock<WallBlock> YELLOW_ROCKRETE_WALL = registerBlockAndBlockItem("yellow_rockrete_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.of().strength(2f).requiresCorrectToolForDrops()));
     //BLUE ROCKRETE
     public static final DeferredBlock<Block> BLUE_ROCKRETE = registerBlockAndBlockItem("blue_rockrete",
             () -> new Block(BlockBehaviour
@@ -1060,6 +1044,16 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
+    public static final DeferredBlock<Block> BLUE_ROCKRETE_PARAPET = registerBlockAndBlockItem("blue_rockrete_parapet",
+            () -> new ParapetBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    4,
+                    0
+            )
+    );
+    public static final DeferredBlock<WallBlock> BLUE_ROCKRETE_WALL = registerBlockAndBlockItem("blue_rockrete_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.of().strength(2f).requiresCorrectToolForDrops()));
     //RED ROCKRETE
     public static final DeferredBlock<Block> RED_ROCKRETE = registerBlockAndBlockItem("red_rockrete",
             () -> new Block(BlockBehaviour
@@ -1094,6 +1088,16 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );
+    public static final DeferredBlock<Block> RED_ROCKRETE_PARAPET = registerBlockAndBlockItem("red_rockrete_parapet",
+            () -> new ParapetBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    4,
+                    0
+            )
+    );
+    public static final DeferredBlock<WallBlock> RED_ROCKRETE_WALL = registerBlockAndBlockItem("red_rockrete_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.of().strength(2f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> GRIMY_RESTROOM_TILE = registerBlockAndBlockItem("grimy_restroom_tile",
             () -> new Block(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
@@ -1102,7 +1106,7 @@ public class ModBlocks {
 
     //PIPE BLOCKS //disable occlusion or else block behind it will not render (invisible)
     public static final DeferredBlock<Block> COPPER_PIPE_CONDUIT = registerBlockAndBlockItem("copper_pipe_conduit",
-            () -> new WallPIpeBlock(BlockBehaviour
+            () -> new WallPipeBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
 
                     .noOcclusion())
@@ -1130,7 +1134,7 @@ public class ModBlocks {
             )
     );
     public static final DeferredBlock<Block> BRASS_PIPE_CONDUIT = registerBlockAndBlockItem("brass_pipe_conduit",
-            () -> new WallPIpeBlock(BlockBehaviour
+            () -> new WallPipeBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
 
                     .noOcclusion())
@@ -1158,7 +1162,7 @@ public class ModBlocks {
             )
     );
     public static final DeferredBlock<Block> GRAY_PIPE_CONDUIT = registerBlockAndBlockItem("gray_pipe_conduit",
-            () -> new WallPIpeBlock(BlockBehaviour
+            () -> new WallPipeBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
 
                     .noOcclusion())

@@ -54,7 +54,7 @@
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
 			"faces": {
 				"north": {"uv": [6, 6.75, 9.5, 9.5], "texture": "#0"},
-				"east": {"uv": [12.25, 9.5, 15, 12.25], "texture": "#0", "cullface": "west"},
+				"east": {"uv": [12.25, 9.5, 15, 12.25], "texture": "#0", "cullface": "east"},
 				"south": {"uv": [5.5, 4, 9, 6.75], "texture": "#0"},
 				"west": {"uv": [7, 13.25, 4.25, 16], "texture": "#0"},
 				"down": {"uv": [16, 13.25, 12.5, 16], "rotation": 180, "texture": "#0"}
@@ -100,18 +100,21 @@
 		{
 			"name": "desk_solo",
 			"origin": [8, 8, 8],
+			"scope": 0,
 			"color": 0,
 			"children": [
 				0,
 				{
 					"name": "left_side",
 					"origin": [8, 8, 8],
+					"scope": 0,
 					"color": 0,
 					"children": []
 				},
 				{
 					"name": "right_side",
 					"origin": [8, 8, 8],
+					"scope": 0,
 					"color": 0,
 					"children": [1, 2]
 				},

@@ -3,6 +3,7 @@ package net.boat.industrialhellscape.datagen;
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer11Blocks.Integer11Block;
+import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.PeanutStatueBlock;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.Integer2Block;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -27,6 +28,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //Debug Blocks
         //genSimpleSBI(ModBlocks.PROTOTYPE_MACHINE.get(), build3FaceTexturesBlockModel("prototype_machine","experimental", "prototype_machine_front", "prototype_machine_side", "prototype_machine_top"));
         genFullBlockIntegerMultiBlockSI(ModBlocks.DEBUG_BLOCK.get(), "debug_textures", 11, Integer11Block.PART);
+        //genPeanutS((PeanutStatueBlock) ModBlocks.PEANUT_STATUE.get(), "peanut_statue");
 
         genModelledIntegerMultiBlockS(ModBlocks.BODY_PILLOW_OZY.get(), "body_pillow");
         genVariantMultiBlock(ModBlocks.BODY_PILLOW_FANG.get(), ModBlocks.BODY_PILLOW_OZY.get(),"body_pillow","body_pillow","body_pillow_front_graphic_fang", "1", new Integer[]{1} );
@@ -647,6 +649,55 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         //GENERATE ITEM MODEL
         simpleBlockItem(block, models().getExistingFile(modLoc("block/"+stringName)));
+    }
+
+    private void genPeanutS(PeanutStatueBlock block, String modelSubFolder) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+
+        getVariantBuilder(block)
+                .forAllStatesExcept(state -> {
+                    Direction horizontalFacing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+                    boolean diagonal = state.getValue(PeanutStatueBlock.DIAGONAL);
+
+                    String appendDiagonal = diagonal ? "_diagonal" : "";
+
+                    int yRot = switch (horizontalFacing) {
+                        case SOUTH -> 180;
+                        case WEST  -> 270;
+                        case EAST  -> 90;
+                        default -> 0;
+                    };
+
+                    int intBlockState = state.getValue(Integer2Block.PART);
+
+                    return ConfiguredModel.builder()
+                            .modelFile(models().getExistingFile(modLoc("block/"+ optionalFolder(modelSubFolder) +stringName  + "_"+intBlockState+appendDiagonal)))
+                            .rotationY(yRot)
+                            .build();
+                }, BlockStateProperties.WATERLOGGED);
+    }
+
+    private void genInterCardinalMultiBLock(Block block, String modelSubFolder) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+
+        getVariantBuilder(block)
+                .forAllStatesExcept(state -> {
+                    Direction horizontalFacing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+
+                    int yRot = switch (horizontalFacing) {
+                        case SOUTH -> 180;
+                        case WEST  -> 270;
+                        case EAST  -> 90;
+                        default -> 0; //NORTH
+                    };
+
+                    int intBlockState = state.getValue(Integer2Block.PART);
+
+                    return ConfiguredModel.builder()
+                            .modelFile(models().getExistingFile(modLoc("block/"+ optionalFolder(modelSubFolder) +stringName  + "_"+intBlockState)))
+                            .rotationY(yRot)
+                            .build();
+                }, BlockStateProperties.WATERLOGGED);
     }
 
     private void genModelledIntegerMultiBlockS(Block block, String modelSubFolder) {

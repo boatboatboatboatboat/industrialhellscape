@@ -32,6 +32,10 @@ public class ModSounds {
     public static final Supplier<SoundEvent> SWITCH_ON = registerSoundEvents("switch_on");
     public static final Supplier<SoundEvent> SWITCH_OFF = registerSoundEvents("switch_off");
 
+    public static final Supplier<SoundEvent> PEANUT_STATUE_SOUND_1 = registerSoundEvents("peanut_statue_sound_1");
+    public static final Supplier<SoundEvent> PEANUT_STATUE_SOUND_2 = registerSoundEvents("peanut_statue_sound_2");
+    public static final Supplier<SoundEvent> PEANUT_STATUE_SOUND_3 = registerSoundEvents("peanut_statue_sound_3");
+
     public static final DeferredSoundType HOLLOW_METAL_BLOCK_SOUNDS = new DeferredSoundType(2f,1.5f,
             ModSounds.METAL_CLANK, //Break
             ModSounds.METAL_CLANK, //Step
