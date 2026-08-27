@@ -37,17 +37,11 @@ public class IndustrialHellscape {
         NeoForge.EVENT_BUS.register(this);
 
         ModCreativeModeTabs.register(modEventBus);
-        IndustrialHellscape.LOGGER.info("InHell: Creative Tab Registration Complete");
         ModItems.register(modEventBus);
-        IndustrialHellscape.LOGGER.info("InHell: Item Registration Complete");
         ModBlocks.register(modEventBus);
-        IndustrialHellscape.LOGGER.info("InHell: Block Registration Complete");
         ModSounds.register(modEventBus);
-        IndustrialHellscape.LOGGER.info("InHell: Sound Registration Complete");
         ModEntities.register(modEventBus); //Sittable Entity (in-world)
-        IndustrialHellscape.LOGGER.info("InHell: Entity Registration Complete");
         ModBlockEntities.register(modEventBus); //Block Entities handling GUIs and inventory
-        IndustrialHellscape.LOGGER.info("InHell: Block Entity Registration Complete");
 
         //Deprecated Content Safe Removal/Replacement for in-game
         ModBlocks.removeAndReplaceBlocks();
