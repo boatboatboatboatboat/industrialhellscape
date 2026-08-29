@@ -150,7 +150,7 @@ public class ConnectedFurnitureBlock extends Block implements SimpleWaterloggedB
          update blocks in the world without user input. This is to be avoided by moving setBlock() actions into
          a separate helper method used elsewhere, such as in useItemOn or setPlacedBy
          */
-        return ConnectedModelInterface.ConnectedFurnitureStateForPlacement(context,this,FACING,TYPE,WATERLOGGED,placementDirection,blockSetFamily);
+        return ConnectedModelInterface.ConnectedFurnitureStateForPlacement(context,this,FACING,TYPE,placementDirection,blockSetFamily);
     }
 
     @Override

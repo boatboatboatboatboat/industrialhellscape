@@ -25,7 +25,6 @@ MultiBlocks will incur the same consequences, but blocks away from the origin bl
 public class ModBlockCapabilities {
     @SubscribeEvent
     public static void registerBlockEntityCapabilities(RegisterCapabilitiesEvent event) {
-        IndustrialHellscape.LOGGER.info("InHell: ItemHandler registration for StorageBE complete");
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
                 ModBlockEntities.STORAGE_BE.get(),
@@ -38,7 +37,6 @@ public class ModBlockCapabilities {
 
     @SubscribeEvent
     public static void registerBlockCapabilities(RegisterCapabilitiesEvent event) {
-        IndustrialHellscape.LOGGER.info("InHell: ItemHandler registration for BaseIntegerMultiBlock(s) complete");
         event.registerBlock(
                 Capabilities.ItemHandler.BLOCK, // capability to register for
                 (level, pos, state, be, side) -> {

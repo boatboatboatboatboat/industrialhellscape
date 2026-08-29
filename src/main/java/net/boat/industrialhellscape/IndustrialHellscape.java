@@ -49,7 +49,6 @@ public class IndustrialHellscape {
 
         //Registers config options for this mod. The config screen registration is handled in IndustrialHellscapeClient
         modContainer.registerConfig(ModConfig.Type.COMMON, ModCommonConfig.SPEC);
-        IndustrialHellscape.LOGGER.info("InHell: Common Config Registration Complete");
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {

@@ -78,11 +78,24 @@ public class SurfaceRotatableBlock extends Block implements SimpleWaterloggedBlo
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
         Direction facing = pContext.getHorizontalDirection();
         BlockState state = this.defaultBlockState();
+
+        Level level = pContext.getLevel();
         Direction directionClicked = pContext.getClickedFace().getOpposite(); //Are you clicking the floor, ceiling, north wall, south wall, east wall, west wall?
+        BlockPos pos = pContext.getClickedPos();
+        BlockState clickedState = level.getBlockState(pos.relative(directionClicked));
+        boolean clickedStateIsPipeBlock = (clickedState.getBlock() instanceof WallPipeBlock) || (clickedState.getBlock() instanceof SurfaceRotatableBlock);
+
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
 
         //This section determines surface alignment based on where you click to place.
-        state = state.setValue(FACING, directionClicked);
+        if(clickedStateIsPipeBlock) {
+            if(directionClicked == clickedState.getValue(FACING)) { //avoid placing on top of existing pipes
+                return null;
+            }
+            state = state.setValue(FACING, clickedState.getValue(FACING));
+        } else {
+            state = state.setValue(FACING, directionClicked);
+        }
 
         //This section determines waterlogging.
         state =  state.setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
