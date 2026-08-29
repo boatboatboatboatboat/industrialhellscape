@@ -5,12 +5,16 @@ import net.boat.industrialhellscape.block.block_interfaces.HitboxRotationInterfa
 import net.boat.industrialhellscape.block.block_interfaces.ToolUseInterface;
 import net.boat.industrialhellscape.block.block_state_enums.DynamicConnectionState;
 import net.boat.industrialhellscape.block.block_state_enums.SurfacePipeMountState;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -29,6 +33,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 
 //INFO:
 //-----
@@ -80,20 +85,24 @@ public class WallPipeBlock extends Block implements SimpleWaterloggedBlock, Tool
     }
 
     @Override
-    protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
-        ConnectedModelInterface.updateWallPipeNeighbors(this,state,level,pos,state,FACING, ORIENTATION);
-        super.onPlace(state, level, pos, oldState, movedByPiston);
+    protected void onPlace(BlockState newState, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
+        if(newState.getBlock() != this) {
+            ConnectedModelInterface.updateWallPipeNeighbors(this,newState,level,pos,newState,FACING, ORIENTATION);
+        }
+        super.onPlace(newState, level, pos, oldState, movedByPiston);
     }
 
     @Override
     protected void onRemove(BlockState priorState, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
-        ConnectedModelInterface.updateWallPipeNeighbors(this,priorState,level,pos,newState,FACING, ORIENTATION);
+        if(newState.getBlock() != this) {
+            ConnectedModelInterface.updateWallPipeNeighbors(this,priorState,level,pos,newState,FACING, ORIENTATION);
+        }
         super.onRemove(priorState, level, pos, newState, movedByPiston);
     }
 
     @Override
-    protected @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
-        return ToolUseInterface.crouchToolUse(stack, state, level, pos, player, TYPE, 2, ORIENTATION, 3);
+    protected @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState newState, @NotNull Level level, @NotNull BlockPos pos, Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
+        return ToolUseInterface.crouchToolUse(stack, newState, level, pos, player, TYPE, 2, ORIENTATION, 3);
     }
 
     @Override
@@ -137,6 +146,16 @@ public class WallPipeBlock extends Block implements SimpleWaterloggedBlock, Tool
     @Override
     public @NotNull BlockState mirror(BlockState pState, Mirror pMirror) {
         return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        if (Screen.hasShiftDown()) {
+            tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.pipe_conduit"));
+        } else {
+            tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.shift_down"));
+        }
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
 
     @Override

@@ -23,7 +23,6 @@ public class IndustrialHellscapeClient {
         // The config screen is accessed by going to the Mods screen > clicking on your mod > clicking on config.
         // Do not forget to add translations for your config options to the en_us.json file.
         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
-        IndustrialHellscape.LOGGER.info("InHell Client: Config Screen Registration Complete");
     }
 
     @EventBusSubscriber(modid = IndustrialHellscape.MOD_ID, value = Dist.CLIENT)
@@ -31,7 +30,6 @@ public class IndustrialHellscapeClient {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             EntityRenderers.register(ModEntities.CHAIR.get(), SittableEntityRenderer::new);
-            IndustrialHellscape.LOGGER.info("InHell Client: Client-side Entity Renderer Registration Complete");
         }
     }
 }

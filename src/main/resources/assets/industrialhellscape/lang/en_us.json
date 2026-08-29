@@ -307,6 +307,7 @@
 
   "tooltip.industrialhellscape.haventool": "Right-click and/or sneak-right-click to rotate some I.H. blocks, or change texture behavior. It also stone-cuts.",
   "tooltip.industrialhellscape.ihea_furniture_kit": "Use in a stonecutter to craft themed decor blocks.",
+  "tooltip.industrialhellscape.pipe_conduit": "Crouch with HAVEN tool to change bracket pattern.",
   "tooltip.industrialhellscape.advise_stonecut": "Stonecut for variants or use HAVEN Tool.",
   "tooltip.industrialhellscape.advise_craft_vertical": "Vertical variant. Crafted from base variant.",
   "tooltip.industrialhellscape.advise_craft_horizontal": "Horizontal variant.",
