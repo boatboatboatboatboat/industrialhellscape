@@ -55,238 +55,239 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     private static final boolean doMetalworksCookRecycle = false;
 
     private static final List<ItemLike> HVAC_STONECUT_OUTPUT = List.of(
-            ModBlocks.DUCT.get().asItem(),
-            ModBlocks.RUSTY_DUCT.get().asItem(),
-            ModBlocks.HORIZONTAL_VENT.get().asItem(),
-            ModBlocks.HORIZONTAL_CUTOUT_VENT.get().asItem(),
-            ModBlocks.RUSTY_HORIZONTAL_VENT.get().asItem(),
-            ModBlocks.RUSTY_HORIZONTAL_CUTOUT_VENT.get().asItem()
+            ModBlocks.DUCT.asItem(),
+            ModBlocks.RUSTY_DUCT.asItem(),
+            ModBlocks.HORIZONTAL_VENT.asItem(),
+            ModBlocks.HORIZONTAL_CUTOUT_VENT.asItem(),
+            ModBlocks.RUSTY_HORIZONTAL_VENT.asItem(),
+            ModBlocks.RUSTY_HORIZONTAL_CUTOUT_VENT.asItem()
     );
     private static final List<ItemLike> TRUSS_STONECUT_OUTPUT = List.of(
-            ModBlocks.TRUSS_SUPPORT.get().asItem(),
-            ModBlocks.TRUSS.get().asItem(),
-            ModBlocks.TRUSS_STAIRS.get().asItem(),
-            ModBlocks.TRUSS_SLAB.get().asItem(),
+            ModBlocks.TRUSS_SUPPORT.asItem(),
+            ModBlocks.TRUSS.asItem(),
+            ModBlocks.TRUSS_STAIRS.asItem(),
+            ModBlocks.TRUSS_SLAB.asItem(),
 
-            ModBlocks.CATWALK_TRUSS.get().asItem(),
-            ModBlocks.CATWALK_TRUSS_SLAB.get().asItem(),
-            ModBlocks.CATWALK_TRUSS_STAIRS.get().asItem(),
+            ModBlocks.CATWALK_TRUSS.asItem(),
+            ModBlocks.CATWALK_TRUSS_SLAB.asItem(),
+            ModBlocks.CATWALK_TRUSS_STAIRS.asItem(),
 
-            ModBlocks.GRAY_TRUSS.get().asItem(),
-            ModBlocks.GRAY_TRUSS_STAIRS.get().asItem(),
-            ModBlocks.GRAY_TRUSS_SLAB.get().asItem(),
+            ModBlocks.GRAY_TRUSS.asItem(),
+            ModBlocks.GRAY_TRUSS_STAIRS.asItem(),
+            ModBlocks.GRAY_TRUSS_SLAB.asItem(),
 
-            ModBlocks.GRAY_CATWALK_TRUSS.get().asItem(),
-            ModBlocks.GRAY_CATWALK_TRUSS_SLAB.get().asItem(),
-            ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.get().asItem(),
+            ModBlocks.GRAY_CATWALK_TRUSS.asItem(),
+            ModBlocks.GRAY_CATWALK_TRUSS_SLAB.asItem(),
+            ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.asItem(),
 
-            ModBlocks.RUSTY_TRUSS.get().asItem(),
-            ModBlocks.RUSTY_TRUSS_STAIRS.get().asItem(),
-            ModBlocks.RUSTY_TRUSS_SLAB.get().asItem(),
+            ModBlocks.RUSTY_TRUSS.asItem(),
+            ModBlocks.RUSTY_TRUSS_STAIRS.asItem(),
+            ModBlocks.RUSTY_TRUSS_SLAB.asItem(),
 
-            ModBlocks.RUSTY_CATWALK_TRUSS.get().asItem(),
-            ModBlocks.RUSTY_CATWALK_TRUSS_STAIRS.get().asItem(),
-            ModBlocks.RUSTY_CATWALK_TRUSS_SLAB.get().asItem()
+            ModBlocks.RUSTY_CATWALK_TRUSS.asItem(),
+            ModBlocks.RUSTY_CATWALK_TRUSS_STAIRS.asItem(),
+            ModBlocks.RUSTY_CATWALK_TRUSS_SLAB.asItem()
     );
 
     private static final List<ItemLike> VESSELPLATE_STONECUT_OUTPUT = List.of(
-            ModBlocks.RIVETED_VESSELPLATE.get().asItem(),
-            ModBlocks.HORIZONTAL_VESSELPLATE.get().asItem(),
-            ModBlocks.VESSELPLATE_PILLAR.get().asItem(),
-            ModBlocks.SMOOTH_VESSELPLATE.get().asItem(),
-            ModBlocks.HORIZONTAL_REINFORCED_VESSELPLATE.get().asItem(),
+            ModBlocks.RIVETED_VESSELPLATE.asItem(),
+            ModBlocks.HORIZONTAL_VESSELPLATE.asItem(),
+            ModBlocks.VESSELPLATE_PILLAR.asItem(),
+            ModBlocks.SMOOTH_VESSELPLATE.asItem(),
+            ModBlocks.HORIZONTAL_REINFORCED_VESSELPLATE.asItem(),
 
-            ModBlocks.GRAY_RIVETED_VESSELPLATE.get().asItem(),
-            ModBlocks.SMOOTH_GRAY_VESSELPLATE.get().asItem(),
-            ModBlocks.GRAY_VESSELPLATE_PILLAR.get().asItem(),
-            ModBlocks.GRAY_HORIZONTAL_VESSELPLATE.get().asItem(),
+            ModBlocks.GRAY_RIVETED_VESSELPLATE.asItem(),
+            ModBlocks.SMOOTH_GRAY_VESSELPLATE.asItem(),
+            ModBlocks.GRAY_VESSELPLATE_PILLAR.asItem(),
+            ModBlocks.GRAY_HORIZONTAL_VESSELPLATE.asItem(),
 
-            ModBlocks.SMOOTH_VESSELPLATE_SLAB.get().asItem(),
-            ModBlocks.SMOOTH_VESSELPLATE_STAIRS.get().asItem(),
-            ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get().asItem(),
-            ModBlocks.SMOOTH_GRAY_VESSELPLATE_STAIRS.get().asItem(),
+            ModBlocks.SMOOTH_VESSELPLATE_SLAB.asItem(),
+            ModBlocks.SMOOTH_VESSELPLATE_STAIRS.asItem(),
+            ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.asItem(),
+            ModBlocks.SMOOTH_GRAY_VESSELPLATE_STAIRS.asItem(),
 
-            ModBlocks.RIVETED_VESSELPLATE_STAIRS.get().asItem(),
-            ModBlocks.RIVETED_VESSELPLATE_SLAB.get().asItem(),
-            ModBlocks.GRAY_RIVETED_VESSELPLATE_STAIRS.get().asItem(),
-            ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get().asItem(),
+            ModBlocks.RIVETED_VESSELPLATE_STAIRS.asItem(),
+            ModBlocks.RIVETED_VESSELPLATE_SLAB.asItem(),
+            ModBlocks.GRAY_RIVETED_VESSELPLATE_STAIRS.asItem(),
+            ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.asItem(),
 
-            ModBlocks.RUSTY_HORIZONTAL_VESSELPLATE.get().asItem(),
-            ModBlocks.RUSTY_VERTICAL_VESSELPLATE.get().asItem(),
-            ModBlocks.RUSTY_HORIZONTAL_REINFORCED_VESSELPLATE.get().asItem(),
-            ModBlocks.RUSTY_VERTICAL_REINFORCED_VESSELPLATE.get().asItem(),
-            ModBlocks.RUSTY_VESSELPLATE_PILLAR.get().asItem(),
+            ModBlocks.RUSTY_HORIZONTAL_VESSELPLATE.asItem(),
+            ModBlocks.RUSTY_VERTICAL_VESSELPLATE.asItem(),
+            ModBlocks.RUSTY_HORIZONTAL_REINFORCED_VESSELPLATE.asItem(),
+            ModBlocks.RUSTY_VERTICAL_REINFORCED_VESSELPLATE.asItem(),
+            ModBlocks.RUSTY_VESSELPLATE_PILLAR.asItem(),
 
-            ModBlocks.SMOOTH_RUSTY_VESSELPLATE.get().asItem(),
-            ModBlocks.SMOOTH_RUSTY_VESSELPLATE_SLAB.get().asItem(),
-            ModBlocks.SMOOTH_RUSTY_VESSELPLATE_STAIRS.get().asItem(),
+            ModBlocks.SMOOTH_RUSTY_VESSELPLATE.asItem(),
+            ModBlocks.SMOOTH_RUSTY_VESSELPLATE_SLAB.asItem(),
+            ModBlocks.SMOOTH_RUSTY_VESSELPLATE_STAIRS.asItem(),
 
-            ModBlocks.RUSTY_RIVETED_VESSELPLATE.get().asItem(),
-            ModBlocks.RUSTY_RIVETED_VESSELPLATE_SLAB.get().asItem()
+            ModBlocks.RUSTY_RIVETED_VESSELPLATE.asItem(),
+            ModBlocks.RUSTY_RIVETED_VESSELPLATE_SLAB.asItem()
     );
     private static final List<ItemLike> ROCKRETE_STONECUT_OUTPUT = List.of(
 
-            ModBlocks.ROUGH_GRAY_ROCKRETE.get().asItem(),
-            ModBlocks.ROUGH_GRAY_ROCKRETE_SLAB.get().asItem(),
-            ModBlocks.ROUGH_GRAY_ROCKRETE_STAIRS.get().asItem(),
-            ModBlocks.ROUGH_GREEN_ROCKRETE.get().asItem(),
-            ModBlocks.ROUGH_GREEN_ROCKRETE_SLAB.get().asItem(),
-            ModBlocks.ROUGH_GREEN_ROCKRETE_STAIRS.get().asItem(),
-            ModBlocks.ROUGH_YELLOW_ROCKRETE.get().asItem(),
-            ModBlocks.ROUGH_YELLOW_ROCKRETE_SLAB.get().asItem(),
-            ModBlocks.ROUGH_YELLOW_ROCKRETE_STAIRS.get().asItem(),
-            ModBlocks.ROUGH_BLUE_ROCKRETE.get().asItem(),
-            ModBlocks.ROUGH_BLUE_ROCKRETE_SLAB.get().asItem(),
-            ModBlocks.ROUGH_BLUE_ROCKRETE_STAIRS.get().asItem(),
-            ModBlocks.ROUGH_RED_ROCKRETE.get().asItem(),
-            ModBlocks.ROUGH_RED_ROCKRETE_SLAB.get().asItem(),
-            ModBlocks.ROUGH_RED_ROCKRETE_STAIRS.get().asItem(),
+            ModBlocks.ROUGH_GRAY_ROCKRETE.asItem(),
+            ModBlocks.ROUGH_GRAY_ROCKRETE_SLAB.asItem(),
+            ModBlocks.ROUGH_GRAY_ROCKRETE_STAIRS.asItem(),
+            ModBlocks.ROUGH_GREEN_ROCKRETE.asItem(),
+            ModBlocks.ROUGH_GREEN_ROCKRETE_SLAB.asItem(),
+            ModBlocks.ROUGH_GREEN_ROCKRETE_STAIRS.asItem(),
+            ModBlocks.ROUGH_YELLOW_ROCKRETE.asItem(),
+            ModBlocks.ROUGH_YELLOW_ROCKRETE_SLAB.asItem(),
+            ModBlocks.ROUGH_YELLOW_ROCKRETE_STAIRS.asItem(),
+            ModBlocks.ROUGH_BLUE_ROCKRETE.asItem(),
+            ModBlocks.ROUGH_BLUE_ROCKRETE_SLAB.asItem(),
+            ModBlocks.ROUGH_BLUE_ROCKRETE_STAIRS.asItem(),
+            ModBlocks.ROUGH_RED_ROCKRETE.asItem(),
+            ModBlocks.ROUGH_RED_ROCKRETE_SLAB.asItem(),
+            ModBlocks.ROUGH_RED_ROCKRETE_STAIRS.asItem(),
 
-            ModBlocks.GRAY_ROCKRETE.get().asItem(),
-            ModBlocks.GRAY_ROCKRETE_SLAB.get().asItem(),
-            ModBlocks.GRAY_ROCKRETE_STAIRS.get().asItem(),
-            ModBlocks.GRAY_ROCKRETE_PILLAR.get().asItem(),
-            ModBlocks.GRAY_ROCKRETE_PARAPET.get().asItem(),
+            ModBlocks.GRAY_ROCKRETE.asItem(),
+            ModBlocks.GRAY_ROCKRETE_SLAB.asItem(),
+            ModBlocks.GRAY_ROCKRETE_STAIRS.asItem(),
+            ModBlocks.GRAY_ROCKRETE_PILLAR.asItem(),
+            ModBlocks.GRAY_ROCKRETE_PARAPET.asItem(),
 
-            ModBlocks.GREEN_ROCKRETE.get().asItem(),
-            ModBlocks.GREEN_ROCKRETE_SLAB.get().asItem(),
-            ModBlocks.GREEN_ROCKRETE_STAIRS.get().asItem(),
-            ModBlocks.GREEN_ROCKRETE_PILLAR.get().asItem(),
-            ModBlocks.GREEN_ROCKRETE_PARAPET.get().asItem(),
+            ModBlocks.GREEN_ROCKRETE.asItem(),
+            ModBlocks.GREEN_ROCKRETE_SLAB.asItem(),
+            ModBlocks.GREEN_ROCKRETE_STAIRS.asItem(),
+            ModBlocks.GREEN_ROCKRETE_PILLAR.asItem(),
+            ModBlocks.GREEN_ROCKRETE_PARAPET.asItem(),
 
-            ModBlocks.YELLOW_ROCKRETE.get().asItem(),
+            ModBlocks.YELLOW_ROCKRETE.asItem(),
 
-            ModBlocks.YELLOW_ROCKRETE_SLAB.get().asItem(),
-            ModBlocks.YELLOW_ROCKRETE_STAIRS.get().asItem(),
+            ModBlocks.YELLOW_ROCKRETE_SLAB.asItem(),
+            ModBlocks.YELLOW_ROCKRETE_STAIRS.asItem(),
 
-            ModBlocks.YELLOW_ROCKRETE_PILLAR.get().asItem(),
-            ModBlocks.YELLOW_ROCKRETE_PARAPET.get().asItem(),
+            ModBlocks.YELLOW_ROCKRETE_PILLAR.asItem(),
+            ModBlocks.YELLOW_ROCKRETE_PARAPET.asItem(),
 
-            ModBlocks.BLUE_ROCKRETE.get().asItem(),
+            ModBlocks.BLUE_ROCKRETE.asItem(),
 
-            ModBlocks.BLUE_ROCKRETE_SLAB.get().asItem(),
-            ModBlocks.BLUE_ROCKRETE_STAIRS.get().asItem(),
-            ModBlocks.BLUE_ROCKRETE_PILLAR.get().asItem(),
-            ModBlocks.BLUE_ROCKRETE_PARAPET.get().asItem(),
+            ModBlocks.BLUE_ROCKRETE_SLAB.asItem(),
+            ModBlocks.BLUE_ROCKRETE_STAIRS.asItem(),
+            ModBlocks.BLUE_ROCKRETE_PILLAR.asItem(),
+            ModBlocks.BLUE_ROCKRETE_PARAPET.asItem(),
 
-            ModBlocks.RED_ROCKRETE.get().asItem(),
-            ModBlocks.RED_ROCKRETE_SLAB.get().asItem(),
-            ModBlocks.RED_ROCKRETE_STAIRS.get().asItem(),
-            ModBlocks.RED_ROCKRETE_PILLAR.get().asItem(),
-            ModBlocks.RED_ROCKRETE_PARAPET.get().asItem(),
+            ModBlocks.RED_ROCKRETE.asItem(),
+            ModBlocks.RED_ROCKRETE_SLAB.asItem(),
+            ModBlocks.RED_ROCKRETE_STAIRS.asItem(),
+            ModBlocks.RED_ROCKRETE_PILLAR.asItem(),
+            ModBlocks.RED_ROCKRETE_PARAPET.asItem(),
 
-            ModBlocks.GRAY_ROCKRETE_WALL.get().asItem(),
-            ModBlocks.RED_ROCKRETE_WALL.get().asItem(),
-            ModBlocks.YELLOW_ROCKRETE_WALL.get().asItem(),
-            ModBlocks.BLUE_ROCKRETE_WALL.get().asItem(),
-            ModBlocks.GREEN_ROCKRETE_WALL.get().asItem(),
+            ModBlocks.GRAY_ROCKRETE_WALL.asItem(),
+            ModBlocks.RED_ROCKRETE_WALL.asItem(),
+            ModBlocks.YELLOW_ROCKRETE_WALL.asItem(),
+            ModBlocks.BLUE_ROCKRETE_WALL.asItem(),
+            ModBlocks.GREEN_ROCKRETE_WALL.asItem(),
 
-            ModBlocks.GRIMY_RESTROOM_TILE.get().asItem()
+            ModBlocks.GRIMY_RESTROOM_TILE.asItem()
     );
     private static final List<ItemLike> VESSELGLASS_STONECUT_OUTPUT = List.of(
-            ModBlocks.VESSELGLASS.get().asItem(),
-            ModBlocks.REINFORCED_VESSELGLASS.get().asItem(),
-            ModBlocks.GRAY_REINFORCED_VESSELGLASS.get().asItem(),
-            ModBlocks.GRAY_VESSELGLASS.get().asItem(),
-            ModBlocks.RUSTY_REINFORCED_VESSELGLASS.get().asItem(),
-            ModBlocks.RUSTY_VESSELGLASS.get().asItem()
+            ModBlocks.VESSELGLASS.asItem(),
+            ModBlocks.REINFORCED_VESSELGLASS.asItem(),
+            ModBlocks.GRAY_REINFORCED_VESSELGLASS.asItem(),
+            ModBlocks.GRAY_VESSELGLASS.asItem(),
+            ModBlocks.RUSTY_REINFORCED_VESSELGLASS.asItem(),
+            ModBlocks.RUSTY_VESSELGLASS.asItem()
     );
 
     private static final List<ItemLike> PIPEWORKS_STONECUT_OUTPUT = List.of(
-            ModBlocks.PIPEWORKS.get().asItem(),
-            ModBlocks.COPPER_PIPE_CONDUIT.get().asItem(),
-            ModBlocks.COPPER_PIPE_CONDUIT_PLANAR_CORNER.get().asItem(),
-            ModBlocks.COPPER_PIPE_CONDUIT_INNER_CORNER.get().asItem(),
-            ModBlocks.COPPER_PIPE_CONDUIT_OUTER_CORNER.get().asItem(),
-            ModBlocks.BRASS_PIPE_CONDUIT.get().asItem(),
-            ModBlocks.BRASS_PIPE_CONDUIT_PLANAR_CORNER.get().asItem(),
-            ModBlocks.BRASS_PIPE_CONDUIT_INNER_CORNER.get().asItem(),
-            ModBlocks.BRASS_PIPE_CONDUIT_OUTER_CORNER.get().asItem(),
-            ModBlocks.GRAY_PIPE_CONDUIT.get().asItem(),
-            ModBlocks.GRAY_PIPE_CONDUIT_PLANAR_CORNER.get().asItem(),
-            ModBlocks.GRAY_PIPE_CONDUIT_INNER_CORNER.get().asItem(),
-            ModBlocks.GRAY_PIPE_CONDUIT_OUTER_CORNER.get().asItem()
+            ModBlocks.PIPEWORKS.asItem(),
+            ModBlocks.COPPER_PIPE_CONDUIT.asItem(),
+            ModBlocks.COPPER_PIPE_CONDUIT_PLANAR_CORNER.asItem(),
+            ModBlocks.COPPER_PIPE_CONDUIT_INNER_CORNER.asItem(),
+            ModBlocks.COPPER_PIPE_CONDUIT_OUTER_CORNER.asItem(),
+            ModBlocks.BRASS_PIPE_CONDUIT.asItem(),
+            ModBlocks.BRASS_PIPE_CONDUIT_PLANAR_CORNER.asItem(),
+            ModBlocks.BRASS_PIPE_CONDUIT_INNER_CORNER.asItem(),
+            ModBlocks.BRASS_PIPE_CONDUIT_OUTER_CORNER.asItem(),
+            ModBlocks.GRAY_PIPE_CONDUIT.asItem(),
+            ModBlocks.GRAY_PIPE_CONDUIT_PLANAR_CORNER.asItem(),
+            ModBlocks.GRAY_PIPE_CONDUIT_INNER_CORNER.asItem(),
+            ModBlocks.GRAY_PIPE_CONDUIT_OUTER_CORNER.asItem()
     );
 
     private static final List<ItemLike> METALWORKS_STONECUT_OUTPUT = List.of(
-            ModBlocks.METALWORKS.get().asItem(),
-            ModBlocks.RUSTY_BOLTED_BRACKET.get().asItem(),
-            ModBlocks.BLACK_BOLTED_BRACKET.get().asItem(),
-            ModBlocks.GRAY_BOLTED_BRACKET.get().asItem(),
-            ModBlocks.SMALL_GRAY_BOLTED_BRACKET.get().asItem(),
-            ModBlocks.SMALL_BLACK_BOLTED_BRACKET.get().asItem(),
-            ModBlocks.SMALL_RUSTY_BOLTED_BRACKET.get().asItem(),
-            ModBlocks.YELLOW_RAILING.get().asItem(),
-            ModBlocks.YELLOW_STAIR_RAILING.get().asItem(),
-            ModBlocks.GRAY_RAILING.get().asItem(),
-            ModBlocks.GRAY_STAIR_RAILING.get().asItem(),
-            ModBlocks.BLACK_RAILING.get().asItem(),
-            ModBlocks.BLACK_STAIR_RAILING.get().asItem(),
-            ModBlocks.RUSTY_RAILING.get().asItem(),
-            ModBlocks.RUSTY_STAIR_RAILING.get().asItem()
+            ModBlocks.METALWORKS.asItem(),
+            ModBlocks.RUSTY_BOLTED_BRACKET.asItem(),
+            ModBlocks.BLACK_BOLTED_BRACKET.asItem(),
+            ModBlocks.GRAY_BOLTED_BRACKET.asItem(),
+            ModBlocks.SMALL_GRAY_BOLTED_BRACKET.asItem(),
+            ModBlocks.SMALL_BLACK_BOLTED_BRACKET.asItem(),
+            ModBlocks.SMALL_RUSTY_BOLTED_BRACKET.asItem(),
+            ModBlocks.YELLOW_RAILING.asItem(),
+            ModBlocks.YELLOW_STAIR_RAILING.asItem(),
+            ModBlocks.GRAY_RAILING.asItem(),
+            ModBlocks.GRAY_STAIR_RAILING.asItem(),
+            ModBlocks.BLACK_RAILING.asItem(),
+            ModBlocks.BLACK_STAIR_RAILING.asItem(),
+            ModBlocks.RUSTY_RAILING.asItem(),
+            ModBlocks.RUSTY_STAIR_RAILING.asItem()
+            //ModBlocks.CHAINLINK_FENCE.asItem()
     );
     private static final List<ItemLike> DOORS_STONECUT_OUTPUT = List.of(
-            ModBlocks.ARMORED_DOOR.get().asItem(),
-            ModBlocks.STAMPED_METAL_DOOR.get().asItem(),
-            ModBlocks.BULKHEAD_DOOR.get().asItem()
+            ModBlocks.ARMORED_DOOR.asItem(),
+            ModBlocks.STAMPED_METAL_DOOR.asItem(),
+            ModBlocks.BULKHEAD_DOOR.asItem()
     );
     private static final List<ItemLike> TRAPDOORS_STONECUT_OUTPUT = List.of(
-            ModBlocks.VENT_TRAPDOOR.get().asItem(),
-            ModBlocks.RUSTY_VENT_TRAPDOOR.get().asItem()
+            ModBlocks.VENT_TRAPDOOR.asItem(),
+            ModBlocks.RUSTY_VENT_TRAPDOOR.asItem()
     );
     private static final List<ItemLike> FURNITURE_CATEGORIES = List.of(
-            ModBlocks.SAFETY_FURNISHINGS.get().asItem(),
-            ModBlocks.HYGIENE_FURNISHINGS.get().asItem(),
-            ModBlocks.INDUSTRIAL_FURNISHINGS.get().asItem(),
-            ModBlocks.TECHNOLOGY_FURNISHINGS.get().asItem(),
-            ModBlocks.AMENITY_FURNISHINGS.get().asItem()
+            ModBlocks.SAFETY_FURNISHINGS.asItem(),
+            ModBlocks.HYGIENE_FURNISHINGS.asItem(),
+            ModBlocks.INDUSTRIAL_FURNISHINGS.asItem(),
+            ModBlocks.TECHNOLOGY_FURNISHINGS.asItem(),
+            ModBlocks.AMENITY_FURNISHINGS.asItem()
     );
 
     private static final List<ItemLike> SAFETY_FURNITURE = List.of(
-            ModBlocks.RED_WALL_MEDKIT.get().asItem(),
-            ModBlocks.WHITE_WALL_MEDKIT.get().asItem(),
-            ModBlocks.FIRE_EXTINGUISHER.get().asItem(),
-            ModBlocks.SMOKE_ALARM.get().asItem(),
-            ModBlocks.OPERATING_TABLE.get().asItem(),
-            ModBlocks.MEDICAL_BED.get().asItem(),
-            ModBlocks.IV_DRIPSTAND.get().asItem(),
-            ModBlocks.VITALS_MONITOR.get().asItem()
+            ModBlocks.RED_WALL_MEDKIT.asItem(),
+            ModBlocks.WHITE_WALL_MEDKIT.asItem(),
+            ModBlocks.FIRE_EXTINGUISHER.asItem(),
+            ModBlocks.SMOKE_ALARM.asItem(),
+            ModBlocks.OPERATING_TABLE.asItem(),
+            ModBlocks.MEDICAL_BED.asItem(),
+            ModBlocks.IV_DRIPSTAND.asItem(),
+            ModBlocks.VITALS_MONITOR.asItem()
     );
     private static final List<ItemLike> HYGIENE_FURNITURE = List.of(
-            ModBlocks.TOILET.get().asItem(),
-            ModBlocks.SINK.get().asItem(),
-            ModBlocks.URINAL.get().asItem()
+            ModBlocks.TOILET.asItem(),
+            ModBlocks.SINK.asItem(),
+            ModBlocks.URINAL.asItem()
     );
     private static final List<ItemLike> INDUSTRIAL_FURNITURE = List.of(
-            ModBlocks.LOCKER_BOX.get().asItem(),
-            ModBlocks.LARGE_LOCKER.get().asItem(),
-            ModBlocks.WORK_LIGHT_STAND.get().asItem(),
-            ModBlocks.FLOOR_WORK_LIGHT.get().asItem(),
-            ModBlocks.FUEL_DRUM.get().asItem(),
+            ModBlocks.LOCKER_BOX.asItem(),
+            ModBlocks.LARGE_LOCKER.asItem(),
+            ModBlocks.WORK_LIGHT_STAND.asItem(),
+            ModBlocks.FLOOR_WORK_LIGHT.asItem(),
+            ModBlocks.FUEL_DRUM.asItem(),
 //            ModBlocks.INDUSTRIAL_LAMP.get(),
             ModBlocks.OBLONG_CAGE_LAMP.get()
     );
     private static final List<ItemLike> TECHNOLOGY_FURNITURE = List.of(
-            ModBlocks.RETRO_COMPUTER.get().asItem(),
-            ModBlocks.RETRO_COMPUTER_2.get().asItem(),
-            ModBlocks.MONITOR_AND_KEYBOARD.get().asItem(),
-            ModBlocks.DESKTOP_TOWER.get().asItem(),
-            ModBlocks.CASSETTE_PLAYER.get().asItem(),
-            ModBlocks.CCTV_CAMERA.get().asItem()
+            ModBlocks.RETRO_COMPUTER.asItem(),
+            ModBlocks.RETRO_COMPUTER_2.asItem(),
+            ModBlocks.MONITOR_AND_KEYBOARD.asItem(),
+            ModBlocks.DESKTOP_TOWER.asItem(),
+            ModBlocks.CASSETTE_PLAYER.asItem(),
+            ModBlocks.CCTV_CAMERA.asItem()
     );
     private static final List<ItemLike> AMENITY_FURNITURE = List.of(
-            ModBlocks.DESK.get().asItem(),
-            ModBlocks.DESK_DRAWER.get().asItem(),
-            ModBlocks.METAL_DESK.get().asItem(),
-            ModBlocks.METAL_DESK_DRAWER.get().asItem(),
-            ModBlocks.METAL_DESK_DRAWER_2.get().asItem(),
+            ModBlocks.DESK.asItem(),
+            ModBlocks.DESK_DRAWER.asItem(),
+            ModBlocks.METAL_DESK.asItem(),
+            ModBlocks.METAL_DESK_DRAWER.asItem(),
+            ModBlocks.METAL_DESK_DRAWER_2.asItem(),
 
-            ModBlocks.OFFICE_DESK_DRAWER.get().asItem(),
-            ModBlocks.OFFICE_DESK.get().asItem(),
+            ModBlocks.OFFICE_DESK_DRAWER.asItem(),
+            ModBlocks.OFFICE_DESK.asItem(),
 
-            ModBlocks.OFFICE_CHAIR.get().asItem(),
-            ModBlocks.BLACK_OFFICE_CHAIR.get().asItem(),
-            ModBlocks.FOLDING_CHAIR.get().asItem()
+            ModBlocks.OFFICE_CHAIR.asItem(),
+            ModBlocks.BLACK_OFFICE_CHAIR.asItem(),
+            ModBlocks.FOLDING_CHAIR.asItem()
     );
 
 
@@ -460,7 +461,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ItemTags.WOOL)
                 .requires(ItemTags.WOOL)
                 .requires(ItemTags.WOOL)
-                .requires(ModBlocks.BODY_PILLOW_OZY.get().asItem())
+                .requires(ModBlocks.BODY_PILLOW_OZY.asItem())
                 .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, "body_pillow"));
         //---------- END OF RECIPES FOR JOKE CONTENT ----------

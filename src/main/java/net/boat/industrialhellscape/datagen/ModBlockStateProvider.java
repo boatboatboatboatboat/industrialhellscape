@@ -3,8 +3,8 @@ package net.boat.industrialhellscape.datagen;
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer11Blocks.Integer11Block;
-import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.PeanutStatueBlock;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.Integer2Block;
+import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.PeanutStatueBlock;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.Arrays;
@@ -29,6 +30,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //genSimpleSBI(ModBlocks.PROTOTYPE_MACHINE.get(), build3FaceTexturesBlockModel("prototype_machine","experimental", "prototype_machine_front", "prototype_machine_side", "prototype_machine_top"));
         genFullBlockIntegerMultiBlockSI(ModBlocks.DEBUG_BLOCK.get(), "debug_textures", 11, Integer11Block.PART);
         //genPeanutS((PeanutStatueBlock) ModBlocks.PEANUT_STATUE.get(), "peanut_statue");
+        genCustomWallBlockSBI(ModBlocks.CHAINLINK_FENCE.get(), "chainlink_fence");
 
         genModelledIntegerMultiBlockS(ModBlocks.BODY_PILLOW_OZY.get(), "body_pillow");
         genVariantMultiBlock(ModBlocks.BODY_PILLOW_FANG.get(), ModBlocks.BODY_PILLOW_OZY.get(),"body_pillow","body_pillow","body_pillow_front_graphic_fang", "1", new Integer[]{1} );
@@ -939,5 +941,145 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //GENERATE ITEM MODEL
         simpleBlockItem(block, models().getExistingFile(modLoc(wallModel)));
 
+    }
+
+    private void genCustomWallBlockSBI(WallBlock block, String modelSubFolder) {
+        String blockStringNameId = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        String modelBasePath = "block/"+optionalFolder(modelSubFolder)+blockStringNameId;
+
+        String modelPostPath = modelBasePath+"_post";
+        String modelTopPostPath = modelBasePath+"_top_post";
+        String modelFencePath = modelBasePath+"_fence";
+        String modelTopFencePath = modelBasePath+"_top_fence";
+
+        ModelFile postModelFile = models().getExistingFile(modLoc(modelPostPath));
+        ModelFile topPostModelFile = models().getExistingFile(modLoc(modelTopPostPath));
+
+        ModelFile fenceModelFile = models().getExistingFile(modLoc(modelFencePath));
+        ModelFile topFenceModelFile = models().getExistingFile(modLoc(modelTopFencePath));
+
+        MultiPartBlockStateBuilder multipartBuilder = getMultipartBuilder(block);
+
+            //DO NOT TOUCH THIS
+            /*
+            Post model will not render unless:
+            "up": true AND either of the wall connections return TALL
+
+            AND[(1), (2)]
+
+            - (1) = AND[{"up":true}]
+
+            - (2) = OR[{"east_wall":tall}, {"west_wall":tall}, {"south_wall":tall},{"north_wall":tall}]
+
+            https://docs.minecraftforge.net/en/latest/datagen/client/modelproviders/
+            "Conditions can be grouped (via #nestedGroup) as long as the current grouping only contains other groups and no **single conditions**"???
+             */
+
+        //Main Fence Post
+        MultiPartBlockStateBuilder.PartBuilder postMultiState = multipartBuilder.part().modelFile(postModelFile).addModel();
+        MultiPartBlockStateBuilder.PartBuilder.ConditionGroup OR_alone_or_connected = postMultiState.nestedGroup().useOr(); //initialize exterior nested group with AND logic for contents
+        MultiPartBlockStateBuilder.PartBuilder.ConditionGroup AND_alone = OR_alone_or_connected.nestedGroup();
+        //MultiPartBlockStateBuilder.PartBuilder.ConditionGroup AND_connected = OR_alone_or_connected.nestedGroup();
+
+        OR_alone_or_connected.nestedGroup()
+                .condition(BlockStateProperties.UP,true)
+                .condition(BlockStateProperties.EAST_WALL, WallSide.NONE)
+                .condition(BlockStateProperties.WEST_WALL, WallSide.NONE)
+                .condition(BlockStateProperties.SOUTH_WALL, WallSide.NONE)
+                .condition(BlockStateProperties.NORTH_WALL, WallSide.NONE);
+
+        AND_alone.nestedGroup().condition(BlockStateProperties.UP, true);
+        AND_alone.nestedGroup().useOr()
+                .condition(BlockStateProperties.EAST_WALL, WallSide.TALL)
+                .condition(BlockStateProperties.WEST_WALL, WallSide.TALL)
+                .condition(BlockStateProperties.SOUTH_WALL, WallSide.TALL)
+                .condition(BlockStateProperties.NORTH_WALL, WallSide.TALL);
+
+
+
+//        MultiPartBlockStateBuilder.PartBuilder postMultiState = multipartBuilder.part().modelFile(postModelFile).addModel();
+//        MultiPartBlockStateBuilder.PartBuilder.ConditionGroup postLogicSuperGroup = postMultiState.nestedGroup(); //initialize exterior nested group with AND logic for contents
+//        postLogicSuperGroup
+//                .nestedGroup()
+//                .condition(BlockStateProperties.UP, true);
+//        //.endNestedGroup(); //appears to be optional here
+//        postLogicSuperGroup
+//                .nestedGroup() //initialize interior nested group and assign OR logic to contents
+//                .useOr()
+//                .condition(BlockStateProperties.EAST_WALL, WallSide.TALL)
+//                .condition(BlockStateProperties.WEST_WALL, WallSide.TALL)
+//                .condition(BlockStateProperties.SOUTH_WALL, WallSide.TALL)
+//                .condition(BlockStateProperties.NORTH_WALL, WallSide.TALL);
+//        postLogicSuperGroup
+//                .nestedGroup() //initialize interior nested group and assign OR logic to contents
+//                .useOr()
+//                .condition(BlockStateProperties.EAST_WALL, WallSide.NONE)
+//                .condition(BlockStateProperties.WEST_WALL, WallSide.NONE)
+//                .condition(BlockStateProperties.SOUTH_WALL, WallSide.NONE)
+//                .condition(BlockStateProperties.NORTH_WALL, WallSide.NONE);
+        //.endNestedGroup(); //appears to be optional here
+        //postMultiState.end(); //closes the exterior nested group
+
+
+        //Main fence
+        for(int i = 0; i<4; i++) {
+            MultiPartBlockStateBuilder.PartBuilder fenceMultiStateN = multipartBuilder.part().modelFile(fenceModelFile).rotationY(i*90).addModel();
+            fenceMultiStateN
+                    .nestedGroup()
+                    .condition(
+                            switch(i) {
+                                case 0 -> BlockStateProperties.SOUTH_WALL;
+                                case 1 -> BlockStateProperties.WEST_WALL;
+                                case 2 -> BlockStateProperties.NORTH_WALL;
+                                default -> BlockStateProperties.EAST_WALL;
+                            }
+                            , WallSide.TALL);
+            fenceMultiStateN.end();
+        }
+
+        //Barbed Wire
+        for(int i = 0; i<4; i++) {
+        MultiPartBlockStateBuilder.PartBuilder topPostEW = multipartBuilder.part().modelFile(topFenceModelFile).rotationY(i*90).addModel();
+        topPostEW.useOr()
+                //.condition(BlockStateProperties.EAST_WALL, WallSide.LOW)
+                .condition(switch(i) {
+                    case 0 -> BlockStateProperties.SOUTH_WALL;
+                    case 1 -> BlockStateProperties.WEST_WALL;
+                    case 2 -> BlockStateProperties.NORTH_WALL;
+                    default -> BlockStateProperties.EAST_WALL;
+                }
+                , WallSide.LOW);
+        topPostEW.end();
+        }
+
+        //Barbed Wire FenceTop
+        MultiPartBlockStateBuilder.PartBuilder topPostMultiStateEW = multipartBuilder.part().modelFile(topPostModelFile).rotationY(90).addModel();
+        MultiPartBlockStateBuilder.PartBuilder.ConditionGroup topPostLogicSuperGroupEW = topPostMultiStateEW.nestedGroup(); //initialize exterior nested group with AND logic for contents
+        topPostLogicSuperGroupEW
+                .nestedGroup()
+                .condition(BlockStateProperties.UP, true);
+        //.endNestedGroup(); //appears to be optional here
+        topPostLogicSuperGroupEW
+                .nestedGroup() //initialize interior nested group and assign OR logic to contents
+                .useOr()
+                .condition(BlockStateProperties.EAST_WALL, WallSide.LOW)
+                .condition(BlockStateProperties.WEST_WALL, WallSide.LOW);
+        //.endNestedGroup(); //appears to be optional here
+        topPostMultiStateEW.end(); //closes the exterior nested group
+
+        //Barbed Wire FenceTop
+        MultiPartBlockStateBuilder.PartBuilder topPostMultiStateNS = multipartBuilder.part().modelFile(topPostModelFile).rotationY(0).addModel();
+        MultiPartBlockStateBuilder.PartBuilder.ConditionGroup topPostLogicSuperGroupNS = topPostMultiStateNS.nestedGroup(); //initialize exterior nested group with AND logic for contents
+        topPostLogicSuperGroupNS
+                .nestedGroup()
+                .condition(BlockStateProperties.UP, true);
+        //.endNestedGroup(); //appears to be optional here
+        topPostLogicSuperGroupNS
+                .nestedGroup() //initialize interior nested group and assign OR logic to contents
+                .useOr()
+                .condition(BlockStateProperties.NORTH_WALL, WallSide.LOW)
+                .condition(BlockStateProperties.SOUTH_WALL, WallSide.LOW);
+        //.endNestedGroup(); //appears to be optional here
+        topPostMultiStateNS.end(); //closes the exterior nested group
     }
 }

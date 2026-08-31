@@ -51,6 +51,7 @@ public class ModCreativeModeTabs {
 
                 //Unreleased
                 ModBlocks.TRUSS_SUPPORT.get().asItem(),
+                ModBlocks.CHAINLINK_FENCE.get().asItem(),
 
                 //Vesselplate Vertical Variants (Hidden to prevent JEI clutter)
                 ModBlocks.VERTICAL_VESSELPLATE.asItem(),

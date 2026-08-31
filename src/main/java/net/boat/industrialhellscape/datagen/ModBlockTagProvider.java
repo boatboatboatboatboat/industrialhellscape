@@ -60,7 +60,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.BLACK_BOLTED_BRACKET.get(),
                         ModBlocks.SMALL_BLACK_BOLTED_BRACKET.get(),
                         ModBlocks.RUSTY_BOLTED_BRACKET.get(),
-                        ModBlocks.SMALL_RUSTY_BOLTED_BRACKET.get()
+                        ModBlocks.SMALL_RUSTY_BOLTED_BRACKET.get(),
+
+                        ModBlocks.CHAINLINK_FENCE.get()
                 );
 
         this.tag(ModTags.Blocks.VESSELPLATE_BLOCKS)
@@ -341,7 +343,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.YELLOW_ROCKRETE_WALL.get(),
                         ModBlocks.BLUE_ROCKRETE_WALL.get(),
                         ModBlocks.GRAY_ROCKRETE_WALL.get(),
-                        ModBlocks.GREEN_ROCKRETE_WALL.get()
+                        ModBlocks.GREEN_ROCKRETE_WALL.get(),
+                        ModBlocks.CHAINLINK_FENCE.get()  //TODO - make chainLink fence only connect to itself
                 );
 
         this.tag(BlockTags.NEEDS_STONE_TOOL) //When specific tool tiers are required

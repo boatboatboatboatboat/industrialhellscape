@@ -28,6 +28,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -44,10 +45,10 @@ public class WallPipeBlock extends Block implements SimpleWaterloggedBlock, Tool
     public static final EnumProperty<SurfacePipeMountState> ORIENTATION = EnumProperty.create("axis", SurfacePipeMountState.class);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    public static final VoxelShape SHAPE_FLOOR = Block.box(0, 0.1, 0, 16, 6, 16);
-    public static final VoxelShape SHAPE_CEILING = Block.box(0, 10, 0, 16, 15.9, 16);
+    public static final VoxelShape SHAPE_FLOOR = Block.box(0, 0, 0, 16, 6, 16);
+    public static final VoxelShape SHAPE_CEILING = Block.box(0, 10, 0, 16, 16, 16);
+    public static final VoxelShape SHAPE_NORTH = Block.box(0, 0, 0, 16, 16, 6);
 
-    public static final VoxelShape SHAPE_NORTH = Block.box(0, 0, 0.1, 16, 16, 6);
     public static final VoxelShape SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH);
     public static final VoxelShape SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH);
     public static final VoxelShape SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH);
@@ -80,15 +81,27 @@ public class WallPipeBlock extends Block implements SimpleWaterloggedBlock, Tool
     }
 
     @Override
+    protected VoxelShape getOcclusionShape(BlockState state, BlockGetter level, BlockPos pos) {
+        return Shapes.empty(); //Fix for more culling bullshit. Should return an empty VoxelShape instead of null (will hang on startup otherwise)
+    }
+
+    @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
         return ConnectedModelInterface.wallPipeStateForPlacement(this,pContext,FACING, ORIENTATION);
     }
 
     @Override
     protected void onPlace(BlockState newState, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
-        if(newState.getBlock() != this) {
-            ConnectedModelInterface.updateWallPipeNeighbors(this,newState,level,pos,newState,FACING, ORIENTATION);
+        if(oldState.getBlock() == this) {
+            return;
         }
+
+        if(newState.getBlock() != this) {
+            return;
+        }
+
+        ConnectedModelInterface.updateWallPipeNeighbors(this,newState,level,pos,newState,FACING, ORIENTATION);
+
         super.onPlace(newState, level, pos, oldState, movedByPiston);
     }
 

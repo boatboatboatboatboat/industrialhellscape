@@ -75,7 +75,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.GRAY_BOLTED_BRACKET.asItem(),
                         ModBlocks.SMALL_GRAY_BOLTED_BRACKET.asItem(),
                         ModBlocks.SMALL_BLACK_BOLTED_BRACKET.asItem(),
-                        ModBlocks.SMALL_RUSTY_BOLTED_BRACKET.asItem()
+                        ModBlocks.SMALL_RUSTY_BOLTED_BRACKET.asItem(),
+                        ModBlocks.CHAINLINK_FENCE.asItem()
                 );
         this.tag(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM)
                 .add(

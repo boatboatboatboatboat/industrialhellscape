@@ -247,6 +247,7 @@ public interface ConnectedModelInterface {
         Player player = context.getPlayer();
         BlockState clickedState = level.getBlockState(pos.relative(directionClicked));
         boolean clickedStateIsSurfaceRotateableBlock = clickedState.getBlock() instanceof SurfaceRotatableBlock;
+        boolean clickedStateIsSRBonWall = clickedStateIsSurfaceRotateableBlock && clickedState.getValue(facingProperty).getAxis() != Direction.Axis.Y;
         boolean clickedStateIsThisBlock = clickedState.is(thisBlock);
         boolean clickedStateIsFlatWallPipe = clickedStateIsThisBlock && clickedState.getValue(facingProperty).getAxis() == Direction.Axis.Y;
         boolean clickedStateIsWallPipeOnWall = clickedStateIsThisBlock && clickedState.getValue(facingProperty).getAxis() != Direction.Axis.Y;
@@ -265,7 +266,7 @@ public interface ConnectedModelInterface {
         }
 
         //Assign ORIENTATION
-        if(directionClicked.getAxis() == Direction.Axis.Y || clickedStateIsFlatWallPipe) {
+        if( (directionClicked.getAxis() == Direction.Axis.Y && !clickedStateIsWallPipeOnWall) || clickedStateIsFlatWallPipe) { //placing on floor or clicked pipe on floor
 
             if(cardinalDirection == Direction.Axis.X) { //Is player facing X axis? Align pipe STRAIGHT
                 state = state.setValue(orientationProperty, SurfacePipeMountState.STRAIGHT);
@@ -273,7 +274,7 @@ public interface ConnectedModelInterface {
                 state = state.setValue(orientationProperty, SurfacePipeMountState.SIDEWAYS);
             }
 
-        } else if(clickedStateIsWallPipeOnWall) {
+        } else if(clickedStateIsWallPipeOnWall) { //placing on wall or clicked pipe on wall
             state = state.setValue(orientationProperty, clickedState.getValue(orientationProperty));
 
         }else if(player != null) { //permits crouching toggling orientation when on walls
@@ -309,7 +310,7 @@ public interface ConnectedModelInterface {
         BlockState negativeNeighborState = level.getBlockState(negativeNeighborPos);
 
         if(positiveNeighborState.getBlock() instanceof WallPipeBlock) {
-            if(positiveNeighborState.getValue(orientationProperty) == priorState.getValue(orientationProperty)) {
+            if((positiveNeighborState.getValue(orientationProperty) == priorState.getValue(orientationProperty)) && (positiveNeighborState.getValue(facingProperty) == priorState.getValue(facingProperty)) ) {
                 //unsafe unless assured state argument is of a wallpipe (instanceof)
                 BlockPos extraPositiveNeighborPos = getPipeNeighborPosition(positiveNeighborState,positiveNeighborPos,Direction.AxisDirection.POSITIVE, facingProperty, orientationProperty);
                 BlockState extraPositiveNeighborState = level.getBlockState(extraPositiveNeighborPos);
@@ -319,7 +320,7 @@ public interface ConnectedModelInterface {
             }
         }
 
-        if(negativeNeighborState.getBlock() instanceof WallPipeBlock) {
+        if((negativeNeighborState.getBlock() instanceof WallPipeBlock) && (negativeNeighborState.getValue(facingProperty) == priorState.getValue(facingProperty)) ) {
             if(negativeNeighborState.getValue(orientationProperty) == priorState.getValue(orientationProperty)) {
                 //unsafe unless assured state argument is of a wallpipe (instanceof)
                 BlockPos extraNegativeNeighborPos = getPipeNeighborPosition(negativeNeighborState,negativeNeighborPos,Direction.AxisDirection.NEGATIVE, facingProperty, orientationProperty);

@@ -4,6 +4,7 @@ import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.block_classes.AxisPillarBlocks.ConnectedPillarBlock;
 import net.boat.industrialhellscape.block.block_classes.AxisPillarBlocks.ModelledPillarBlock;
 import net.boat.industrialhellscape.block.block_classes.ConnectedBlocks.ConnectedFurnitureBlock;
+import net.boat.industrialhellscape.block.block_classes.FenceBlocks.ChainLinkFenceBlock;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer11Blocks.Storage11Block;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.*;
 import net.boat.industrialhellscape.block.block_classes.PlacedFacingBlocks.*;
@@ -153,6 +154,9 @@ public class ModBlocks {
                     true
             )
     );
+
+    public static final DeferredBlock<WallBlock> CHAINLINK_FENCE = registerBlockAndBlockItem("chainlink_fence",
+            () -> new ChainLinkFenceBlock(BlockBehaviour.Properties.of().strength(2f).requiresCorrectToolForDrops()));
 
     //BASE BLOCKS
     public static final DeferredBlock<Block> IHEA_FURNITURE_KIT = registerBlockAndBlockItem("ihea_furniture_kit",

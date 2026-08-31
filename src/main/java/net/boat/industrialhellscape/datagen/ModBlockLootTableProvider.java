@@ -34,6 +34,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         //this.dropSelf(ModBlocks.REMOVE_THIS_ITEM.get());
         this.add(ModBlocks.DEBUG_BLOCK.get(),
                 createIntegerMultiBlockDrops(ModBlocks.DEBUG_BLOCK.get(),Integer11Block.PART));
+        this.dropSelf(ModBlocks.CHAINLINK_FENCE.get());
 
         //JOKE BLOCK
         this.add(ModBlocks.BODY_PILLOW_OZY.get(),
