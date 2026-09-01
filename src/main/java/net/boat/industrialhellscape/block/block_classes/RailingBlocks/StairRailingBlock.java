@@ -1,7 +1,7 @@
 package net.boat.industrialhellscape.block.block_classes.RailingBlocks;
 
 import net.boat.industrialhellscape.block.block_interfaces.HitboxRotationInterface;
-import net.boat.industrialhellscape.util.ModTags;
+import net.boat.industrialhellscape.block.block_interfaces.ToolUseInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -105,10 +105,8 @@ public class StairRailingBlock extends Block implements SimpleWaterloggedBlock {
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        boolean playerHasTool = stack.is(ModTags.Items.IH_COMPATIBLE_TOOLS);
-
         //Rotates the current railings counterclockwise.
-        if(playerHasTool) {
+        if(ToolUseInterface.checkForEnabledTool(stack)) {
             state = state.cycle(FACING);
 
             level.setBlock(pos, state, 3);

@@ -22,21 +22,14 @@ public class ModItemTagProvider extends ItemTagsProvider {
     public ModItemTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagLookup<Block>> blockTags, @Nullable ExistingFileHelper existingFileHelper) {
         super(output, lookupProvider, blockTags, IndustrialHellscape.MOD_ID, existingFileHelper);
     }
-    public static final TagKey<Item> PICKAXES = TagKey.create(BuiltInRegistries.ITEM.key(), ResourceLocation.fromNamespaceAndPath("minecraft", "pickaxes"));
-
-    public static final TagKey<Item> TOOLS = TagKey.create(BuiltInRegistries.ITEM.key(), ResourceLocation.fromNamespaceAndPath("c", "tools"));
-    public static final TagKey<Item> WRENCH = TagKey.create(BuiltInRegistries.ITEM.key(), ResourceLocation.fromNamespaceAndPath("c", "wrench"));
+    public static final TagKey<Item> COMMON_WRENCH_TOOL = TagKey.create(BuiltInRegistries.ITEM.key(), ResourceLocation.fromNamespaceAndPath("c", "tools/wrench"));
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         //---------- EXTERNAL TAG REGISTRATION ----------
-        tag(TOOLS); //Common
-        tag(WRENCH); //Common
+        tag(COMMON_WRENCH_TOOL); //Common
 
-        this.tag(WRENCH)
-                .add(ModItems.INHELL_HAVEN_DEVICE.get()
-                );
-        this.tag(TOOLS)
+        this.tag(COMMON_WRENCH_TOOL)
                 .add(ModItems.INHELL_HAVEN_DEVICE.get()
                 );
         //---------- END OF MODLOADER TAG REGISTRATION ----------
@@ -290,14 +283,6 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.BODY_PILLOW_FANG.asItem(),
                         ModBlocks.BODY_PILLOW_PROV.asItem()
                 );
-
-        this.tag(ModTags.Items.IH_COMPATIBLE_TOOLS)
-                .add(
-                        ModItems.INHELL_HAVEN_DEVICE.get()
-                )
-                .addTags(
-                        PICKAXES
-        );
     }
 
     //---------- END OF MISC TAGS ----------

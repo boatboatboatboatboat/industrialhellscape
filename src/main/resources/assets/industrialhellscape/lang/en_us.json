@@ -1,8 +1,7 @@
 {
   "industrialhellscape.configuration.tagged_pickaxe_compat": "Pickaxe Item-Tag Compatible",
-  "industrialhellscape.configuration.tagged_pickaxe_compat_desc": "Allow all items tagged 'minecraft:pickaxe' to rotate or interact with this mod's blocks (Modded or otherwise).",
+  "industrialhellscape.configuration.tagged_wrench_compat": "Wrench Item-Tag Compatible",
   "industrialhellscape.configuration.crouch_to_change_texture": "Crouching Toggles Texture",
-  "industrialhellscape.configuration.crouch_to_change_texture_desc": "When placing connective-texture blocks, allow crouching to switch to alternative state texture connection upon placement",
 
   "item.industrialhellscape.inhell_haven_device": "HAVEN Tool",
   "item.industrialhellscape.job_application": "Job Application",
@@ -311,6 +310,7 @@
   "tooltip.industrialhellscape.advise_stonecut": "Stonecut for variants or use HAVEN Tool.",
   "tooltip.industrialhellscape.advise_craft_vertical": "Vertical variant. Crafted from base variant.",
   "tooltip.industrialhellscape.advise_craft_horizontal": "Horizontal variant.",
+  "tooltip.industrialhellscape.advise_pill_eating_creative": "You sense that a gruesome fate was avoided. You should not eat these pills in a survival situation.",
   "tooltip.industrialhellscape.blockworks": "Use a pickaxe to rotate blocks stone-cut from this. Crouching with HAVEN tool allows full rotation functionality.",
   "tooltip.industrialhellscape.shift_down": "§eShift§r: More Information",
   "tooltip.industrialhellscape.disc_1": "14 Minutes Until Launch - Oscar Borisovich Feltsman",

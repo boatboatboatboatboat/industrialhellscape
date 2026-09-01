@@ -249,8 +249,9 @@ public interface ConnectedModelInterface {
         boolean clickedStateIsSurfaceRotateableBlock = clickedState.getBlock() instanceof SurfaceRotatableBlock;
         boolean clickedStateIsSRBonWall = clickedStateIsSurfaceRotateableBlock && clickedState.getValue(facingProperty).getAxis() != Direction.Axis.Y;
         boolean clickedStateIsThisBlock = clickedState.is(thisBlock);
-        boolean clickedStateIsFlatWallPipe = clickedStateIsThisBlock && clickedState.getValue(facingProperty).getAxis() == Direction.Axis.Y;
-        boolean clickedStateIsWallPipeOnWall = clickedStateIsThisBlock && clickedState.getValue(facingProperty).getAxis() != Direction.Axis.Y;
+        boolean clickedStateIsWallPipeOnFloor = clickedStateIsThisBlock ? (clickedState.getValue(facingProperty).getAxis() == Direction.Axis.Y) : false;
+        boolean clickedStateIsWallPipeOnWall = clickedStateIsThisBlock ? (clickedState.getValue(facingProperty).getAxis() != Direction.Axis.Y) : false;
+        boolean clickedDirectionUpOnNonWallPipe = !(clickedStateIsThisBlock) ? (directionClicked.getAxis() == Direction.Axis.Y) : false;
 
         //Assign WATERLOGGING
         state =  state.setValue(BlockStateProperties.WATERLOGGED, fluidstate.getType() == Fluids.WATER);
@@ -266,7 +267,7 @@ public interface ConnectedModelInterface {
         }
 
         //Assign ORIENTATION
-        if( (directionClicked.getAxis() == Direction.Axis.Y && !clickedStateIsWallPipeOnWall) || clickedStateIsFlatWallPipe) { //placing on floor or clicked pipe on floor
+        if(clickedDirectionUpOnNonWallPipe || clickedStateIsWallPipeOnFloor) { //placing on floor or clicked pipe on floor
 
             if(cardinalDirection == Direction.Axis.X) { //Is player facing X axis? Align pipe STRAIGHT
                 state = state.setValue(orientationProperty, SurfacePipeMountState.STRAIGHT);
@@ -275,9 +276,13 @@ public interface ConnectedModelInterface {
             }
 
         } else if(clickedStateIsWallPipeOnWall) { //placing on wall or clicked pipe on wall
-            state = state.setValue(orientationProperty, clickedState.getValue(orientationProperty));
+            if(directionClicked.getAxis() == Direction.Axis.Y) {
+                state = state.setValue(orientationProperty, SurfacePipeMountState.SIDEWAYS);
+            } else {
+                state = state.setValue(orientationProperty, SurfacePipeMountState.STRAIGHT);
+            }
 
-        }else if(player != null) { //permits crouching toggling orientation when on walls
+        } else if(player != null) { //permits crouching toggling orientation when on walls
             if(player.isCrouching()) {
                 state = state.setValue(orientationProperty, SurfacePipeMountState.STRAIGHT);
             } else {

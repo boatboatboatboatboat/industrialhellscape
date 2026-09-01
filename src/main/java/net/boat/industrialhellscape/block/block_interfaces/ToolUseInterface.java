@@ -19,42 +19,40 @@ import org.jetbrains.annotations.NotNull;
 import static net.boat.industrialhellscape.block.block_classes.RailingBlocks.ParapetBlock.*;
 
 public interface ToolUseInterface {
+    static boolean checkForWrench(ItemStack stack) {
+        return (ModCommonConfig.taggedWrenchCompatEnabled() && stack.is(ModTags.Items.COMMON_WRENCH_TAG)) || stack.is(ModItems.INHELL_HAVEN_DEVICE.get());
+    }
 
-    static boolean checkForIHCompatTools(ItemStack stack) {
-    /*
-    Helper method to check if tool is appropriate for triggering block interaction
-    If config enabled for pickaxe tools, do a boolean check to see the player's hand has an item stack that is of that tag.
-    If config disabled, only check for the mod's primary tool item.
-     */
-        return ModCommonConfig.taggedPickaxeCompatEnabled() ? stack.is(ModTags.Items.IH_COMPATIBLE_TOOLS) : stack.is(ModItems.INHELL_HAVEN_DEVICE.get()) ;
+    static boolean checkForPickaxe(ItemStack stack) {
+        return (ModCommonConfig.taggedPickaxeCompatEnabled() && stack.is(ModTags.Items.VANILLA_PICKAXE_TAG)) || stack.is(ModItems.INHELL_HAVEN_DEVICE.get());
+    }
+
+    static boolean checkForEnabledTool(ItemStack stack) {
+        return checkForWrench(stack) || checkForPickaxe(stack);
     }
 
     static ItemInteractionResult simpleToolUse(ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, Property<?> cycleProperty, int flag) {
-            //IF TAGGED PICKAXE COMPAT ENABLED, ALLOW ALL COMPATIBLE TOOLS TO INTERACT WITH BLOCKS
-            if(checkForIHCompatTools(stack)) {
-                state = state.cycle(cycleProperty);
-                level.setBlock(pos, state, flag);
-                level.playSound(player, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 0.25f, 1f);
-                return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        if(checkForEnabledTool(stack)) {
+            state = state.cycle(cycleProperty);
+            level.setBlock(pos, state, flag);
+            level.playSound(player, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 0.25f, 1f);
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
-    static ItemInteractionResult crouchToolUse(ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, Property<?> cycleProperty1, int flag1, Property<?> cycleProperty2, int flag2) {
+    static ItemInteractionResult crouchToolUse(ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, Property<?> propertyChangedWhenCrouched, int flag1, Property<?> propertyChangedWhenStanding, int flag2) {
         boolean playerIsCrouching = player.isCrouching();
 
-        //IF TAGGED PICKAXE COMPAT ENABLED, ALLOW ALL COMPATIBLE TOOLS TO INTERACT WITH BLOCKS
-        if(checkForIHCompatTools(stack)) {
+        if(checkForEnabledTool(stack)) {
             level.playSound(player, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 0.25f, 1f);
 
             if(playerIsCrouching) {
-                //Cycles Property 1 if crouched
-                state = state.cycle(cycleProperty1);
+                state = state.cycle(propertyChangedWhenCrouched);
                 level.setBlock(pos, state, flag1);
 
             } else {
-                //Cycles Property 2 by default
-                state = state.cycle(cycleProperty2);
+                state = state.cycle(propertyChangedWhenStanding);
                 level.setBlock(pos, state, flag2);
             }
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
@@ -64,7 +62,7 @@ public interface ToolUseInterface {
 
     static ItemInteractionResult RailingRotationToolUse(ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, int flag) {
         if(state.getBlock() instanceof RailingBlock) {
-            if(checkForIHCompatTools(stack)) {
+            if(checkForEnabledTool(stack)) {
                 boolean north = state.getValue(NORTH_FENCE);
                 boolean south = state.getValue(SOUTH_FENCE);
                 boolean east = state.getValue(EAST_FENCE);

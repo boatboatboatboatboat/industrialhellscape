@@ -103,7 +103,8 @@ public class ModTags {
         public static final TagKey<Item> IH_RECIPE_INGOTS = tag("ih_recipe_ingots");
 
         //For tool use on modded content
-        public static final TagKey<Item> IH_COMPATIBLE_TOOLS = tag("ih_compatible_tools");
+        public static final TagKey<Item> COMMON_WRENCH_TAG = moddedTag("c","tools/wrench");
+        public static final TagKey<Item> VANILLA_PICKAXE_TAG = moddedTag("minecraft","pickaxes");
 
         //---------- METHODS ----------
         private static TagKey<Item> tag(String name) {

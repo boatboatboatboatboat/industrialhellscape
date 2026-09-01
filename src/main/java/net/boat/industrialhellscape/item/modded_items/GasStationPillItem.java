@@ -79,16 +79,23 @@ public class GasStationPillItem extends Item {
 
     //If player eats pill
     public @NotNull ItemStack finishUsingItem(@NotNull ItemStack itemstack, @NotNull Level world, @NotNull LivingEntity entity) {
-        if (entity instanceof Player) {
-            if(!entity.level().isClientSide) {
-                addParticlesAroundSelf(entity, ParticleTypes.HAPPY_VILLAGER);
-            }
-            entity.makeSound(ModSounds.HORSEPILL.get());
-            entity.hurt(entity.level().damageSources().source(ModDamageTypes.HORSEPILL_DAMAGE), 512F);
+        if (entity instanceof Player player) {
 
-            if(entity.level() instanceof ServerLevel serverLevel && !entity.isAlive()) {
-                Component name = entity.getName();
-                EntityType.HORSE.spawn(serverLevel, entity.blockPosition(), MobSpawnType.MOB_SUMMONED).setCustomName(name);
+            if(player.level().isClientSide) {
+                addParticlesAroundSelf(player, ParticleTypes.HAPPY_VILLAGER);
+            }
+
+            player.makeSound(ModSounds.HORSEPILL.get());
+            player.hurt(player.level().damageSources().source(ModDamageTypes.HORSEPILL_DAMAGE), 512F);
+
+            //Serverside
+            if(player.level() instanceof ServerLevel serverLevel && !player.isAlive()) {
+                Component name = player.getName();
+                EntityType.HORSE.spawn(serverLevel, player.blockPosition(), MobSpawnType.MOB_SUMMONED).setCustomName(name);
+
+            //Clientside
+            } else if(player.level().isClientSide && player.isCreative()) {
+                player.sendSystemMessage(Component.translatable("tooltip.industrialhellscape.advise_pill_eating_creative"));
             }
         }
 
