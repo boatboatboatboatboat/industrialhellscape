@@ -457,7 +457,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         //Create Ozymandeas Body Pillow from existing body pillow obtained from Wandering Trader
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.BODY_PILLOW_OZY.get(), 2)
-                .requires(ModItems.INHELL_HAVEN_DEVICE.get())
                 .requires(ItemTags.WOOL)
                 .requires(ItemTags.WOOL)
                 .requires(ItemTags.WOOL)
