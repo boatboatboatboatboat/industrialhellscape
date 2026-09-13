@@ -2,7 +2,7 @@ package net.boat.industrialhellscape.block;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.block_classes.AxisPillarBlocks.ConnectedPillarBlock;
-import net.boat.industrialhellscape.block.block_classes.AxisPillarBlocks.ModelledPillarBlock;
+import net.boat.industrialhellscape.block.block_classes.AxisPillarBlocks.TrussBeamBlock;
 import net.boat.industrialhellscape.block.block_classes.ConnectedBlocks.ConnectedFurnitureBlock;
 import net.boat.industrialhellscape.block.block_classes.FenceBlocks.ChainLinkFenceBlock;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer11Blocks.Storage11Block;
@@ -112,13 +112,13 @@ public class ModBlocks {
                     , ModSounds.METAL_BOX_CLOSE.get()
             )
     );
-//    public static final DeferredBlock<Block> PEANUT_STATUE = registerBlockAndBlockItem("peanut_statue",
-//            () -> new PeanutStatueBlock(BlockBehaviour
-//                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-//                    , MultiBlockPlacementArrayCollection.VERTICAL_PLACEMENT
-//                    , new VoxelShape[]{HitboxGeometryCollection.PEANUT_STATUE(), HitboxGeometryCollection.PEANUT_STATUE()}
-//            )
-//    );
+    public static final DeferredBlock<Block> PEANUT_STATUE = registerBlockAndBlockItem("peanut_statue",
+            () -> new PeanutStatueBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    , MultiBlockPlacementArrayCollection.VERTICAL_PLACEMENT
+                    , new VoxelShape[]{HitboxGeometryCollection.PEANUT_STATUE(), HitboxGeometryCollection.PEANUT_STATUE()}
+            )
+    );
 //    public static final DeferredBlock<Block> REMOVE_THIS_ITEM = registerBlockAndBlockItem("remove_this_item",
 //            () -> new ModelledFacingBlock(BlockBehaviour
 //                    .Properties.ofFullCopy(Blocks.OAK_PLANKS).sound(SoundType.SLIME_BLOCK), HitboxGeometryCollection.DECAL_FLOOR()));
@@ -715,8 +715,8 @@ public class ModBlocks {
     );
     
     //TRUSS BLOCKS
-    public static final DeferredBlock<Block> TRUSS_SUPPORT = registerBlockAndBlockItem("truss_support",
-            () -> new ModelledPillarBlock(BlockBehaviour
+    public static final DeferredBlock<Block> TRUSS_BEAM = registerBlockAndBlockItem("truss_beam",
+            () -> new TrussBeamBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion()
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
@@ -770,6 +770,13 @@ public class ModBlocks {
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS))
     );
 
+    public static final DeferredBlock<Block> GRAY_TRUSS_BEAM = registerBlockAndBlockItem("gray_truss_beam",
+            () -> new TrussBeamBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
+                    HitboxGeometryCollection.HOLLOW_TRUSS())
+    );
     public static final DeferredBlock<Block> GRAY_TRUSS = registerBlockAndBlockItem("gray_truss",
             () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
@@ -804,6 +811,13 @@ public class ModBlocks {
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS))
     );
 
+    public static final DeferredBlock<Block> RUSTY_TRUSS_BEAM = registerBlockAndBlockItem("rusty_truss_beam",
+            () -> new TrussBeamBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
+                    .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
+                    HitboxGeometryCollection.HOLLOW_TRUSS())
+    );
     public static final DeferredBlock<Block> RUSTY_TRUSS = registerBlockAndBlockItem("rusty_truss",
             () -> new TrussBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)

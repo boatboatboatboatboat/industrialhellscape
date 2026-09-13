@@ -2,6 +2,7 @@ package net.boat.industrialhellscape.datagen;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
+import net.boat.industrialhellscape.block.block_classes.AxisPillarBlocks.TrussBeamBlock;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer11Blocks.Integer11Block;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.Integer2Block;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.PeanutStatueBlock;
@@ -29,7 +30,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //Debug Blocks
         //genSimpleSBI(ModBlocks.PROTOTYPE_MACHINE.get(), build3FaceTexturesBlockModel("prototype_machine","experimental", "prototype_machine_front", "prototype_machine_side", "prototype_machine_top"));
         genFullBlockIntegerMultiBlockSI(ModBlocks.DEBUG_BLOCK.get(), "debug_textures", 11, Integer11Block.PART);
-        //genPeanutS((PeanutStatueBlock) ModBlocks.PEANUT_STATUE.get(), "peanut_statue");
+        genPeanutS((PeanutStatueBlock) ModBlocks.PEANUT_STATUE.get(), "peanut_statue");
         genCustomWallBlockSBI(ModBlocks.CHAINLINK_FENCE.get(), "chainlink_fence");
 
         genModelledIntegerMultiBlockS(ModBlocks.BODY_PILLOW_OZY.get(), "body_pillow");
@@ -111,7 +112,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genSlabsWithCustomDoubleSBI(ModBlocks.SMOOTH_RUSTY_VESSELPLATE_SLAB.get(), ModBlocks.SMOOTH_RUSTY_VESSELPLATE.get(),"vesselplate","smooth_rusty_vesselplate_double_slab","smooth_rusty_vesselplate", "smooth_rusty_vesselplate","","");
 
         //Truss Blocks
-        genTrussSupportSBI(ModBlocks.TRUSS_SUPPORT.get(), "truss", RotatedPillarBlock.AXIS);
+        genTrussSupportSBI(ModBlocks.TRUSS_BEAM.get(), "truss", RotatedPillarBlock.AXIS, TrussBeamBlock.ALT_STATE);
 
         genTextureToggleAntiCullSBI(ModBlocks.TRUSS.get(),"truss", "truss","truss", "cutout");
         genStairsWithRenderTypeSBI(ModBlocks.TRUSS_STAIRS.get(),"truss","reinforced_truss","truss","truss","cutout");
@@ -121,7 +122,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genStairsWithRenderTypeSBI(ModBlocks.CATWALK_TRUSS_STAIRS.get(),"truss","reinforced_truss","truss","floorgrate_catwalk","cutout");
         genAntiCullSlabBlockSBI(ModBlocks.CATWALK_TRUSS_SLAB.get(), "truss", "truss", "floorgrate_catwalk","truss","cutout");
 
-        //genAxisBlockWithHorizontalVariantSBI(ModBlocks.GRAY_TRUSS_SUPPORT.get(), "truss", RotatedPillarBlock.AXIS);
+        genTrussSupportSBI(ModBlocks.GRAY_TRUSS_BEAM.get(), "truss", RotatedPillarBlock.AXIS, TrussBeamBlock.ALT_STATE);
         genTextureToggleAntiCullSBI(ModBlocks.GRAY_TRUSS.get(),"truss", "gray_truss","gray_truss", "cutout");
         genStairsWithRenderTypeSBI(ModBlocks.GRAY_TRUSS_STAIRS.get(),"truss","gray_reinforced_truss","gray_truss","gray_truss","cutout");
         genAntiCullSlabBlockSBI(ModBlocks.GRAY_TRUSS_SLAB.get(), "truss", "gray_truss", "gray_truss","gray_truss","cutout");
@@ -130,7 +131,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genStairsWithRenderTypeSBI(ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.get(),"truss","gray_reinforced_truss","gray_truss","gray_floorgrate_catwalk","cutout");
         genAntiCullSlabBlockSBI(ModBlocks.GRAY_CATWALK_TRUSS_SLAB.get(), "truss", "gray_truss", "gray_floorgrate_catwalk","gray_truss", "cutout");
 
-        //genAxisBlockWithHorizontalVariantSBI(ModBlocks.RUSTY_TRUSS_SUPPORT.get(), "truss", RotatedPillarBlock.AXIS);
+        genTrussSupportSBI(ModBlocks.RUSTY_TRUSS_BEAM.get(), "truss", RotatedPillarBlock.AXIS, TrussBeamBlock.ALT_STATE);
         genTextureToggleAntiCullSBI(ModBlocks.RUSTY_TRUSS.get(),"truss", "rusty_truss","rusty_truss", "cutout");
         genStairsWithRenderTypeSBI(ModBlocks.RUSTY_TRUSS_STAIRS.get(),"truss","rusty_reinforced_truss","rusty_truss","rusty_truss","cutout");
         genAntiCullSlabBlockSBI(ModBlocks.RUSTY_TRUSS_SLAB.get(), "truss", "rusty_truss", "rusty_truss","rusty_truss","cutout");
@@ -620,16 +621,19 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, models().getExistingFile(modLoc("block/"+stringName + "_"+0)));
     }
 
-    private void genTrussSupportSBI(Block block, String textureSubFolder, EnumProperty<Direction.Axis> axisProperty) {
+    private void genTrussSupportSBI(Block block, String textureSubFolder, EnumProperty<Direction.Axis> axisProperty, BooleanProperty booleanProperty) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 
         //make all models first
-        buildSingleTextureKeyBlockModel(stringName, "truss_support", "truss", textureSubFolder, stringName, "cutout");
-        buildSingleTextureKeyBlockModel(stringName+"_horizontal", "truss_support_horizontal", "truss", textureSubFolder, stringName, "cutout");
+        buildSingleTextureKeyBlockModel(stringName+"_horizontal_0", "truss_beam_horizontal_0", "truss", textureSubFolder, stringName, "cutout");
+        buildSingleTextureKeyBlockModel(stringName+"_horizontal_1", "truss_beam_horizontal_1", "truss", textureSubFolder, stringName, "cutout");
+        buildSingleTextureKeyBlockModel(stringName+"_vertical_0", "truss_beam_vertical_0", "truss", textureSubFolder, stringName, "cutout");
+        buildSingleTextureKeyBlockModel(stringName+"_vertical_1", "truss_beam_vertical_1", "truss", textureSubFolder, stringName, "cutout");
 
         getVariantBuilder(block)
                 .forAllStatesExcept(state -> {
                     Direction.Axis axis = state.getValue(axisProperty);
+                    boolean altState = state.getValue(booleanProperty);
 
                     int yRot = switch (axis) {
                         case X -> 90;
@@ -638,9 +642,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     };
 
                     String modelVariantName = switch (axis) {
-                        case X, Z -> "truss_support_horizontal";
-                        case Y  -> "truss_support";
+                        case X, Z -> stringName+"_horizontal_" + (altState ? "1" : "0");
+                        case Y  -> stringName+"_vertical_" + (altState ? "1" : "0");
                     };
+
 
                     return ConfiguredModel.builder()
                             .modelFile(models().getExistingFile(modLoc("block/"+modelVariantName)))
@@ -650,7 +655,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 }, BlockStateProperties.WATERLOGGED);
 
         //GENERATE ITEM MODEL
-        simpleBlockItem(block, models().getExistingFile(modLoc("block/"+stringName)));
+        simpleBlockItem(block, models().getExistingFile(modLoc("block/"+stringName+"_vertical_0")));
     }
 
     private void genPeanutS(PeanutStatueBlock block, String modelSubFolder) {

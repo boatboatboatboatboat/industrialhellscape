@@ -44,7 +44,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 createIntegerMultiBlockDrops(ModBlocks.BODY_PILLOW_FANG.get(),Integer2Block.PART));
         this.add(ModBlocks.BODY_PILLOW_PROV.get(),
                 createIntegerMultiBlockDrops(ModBlocks.BODY_PILLOW_PROV.get(),Integer2Block.PART));
-        //this.dropSelf(ModBlocks.PEANUT_STATUE.get());
+        this.dropSelf(ModBlocks.PEANUT_STATUE.get());
 
         //BASE BUILDING BLOCKS
         this.dropSelf(ModBlocks.METALWORKS.get());
@@ -153,7 +153,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.RUSTY_VESSELPLATE_PILLAR.get());
 
         //TRUSS BLOCKS
-        this.dropSelf(ModBlocks.TRUSS_SUPPORT.get());
+        this.dropSelf(ModBlocks.TRUSS_BEAM.get());
         this.dropSelf(ModBlocks.TRUSS.get());
         this.add(ModBlocks.TRUSS_SLAB.get(), createSlabItemTable(ModBlocks.TRUSS_SLAB.get()));
         this.dropSelf(ModBlocks.TRUSS_STAIRS.get());
@@ -161,6 +161,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.CATWALK_TRUSS_STAIRS.get());
         this.add(ModBlocks.CATWALK_TRUSS_SLAB.get(), createSlabItemTable(ModBlocks.CATWALK_TRUSS_SLAB.get()));
 
+        this.dropSelf(ModBlocks.GRAY_TRUSS_BEAM.get());
         this.dropSelf(ModBlocks.GRAY_TRUSS.get());
         this.dropSelf(ModBlocks.GRAY_CATWALK_TRUSS.get());
         this.dropSelf(ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.get());
@@ -168,6 +169,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.add(ModBlocks.GRAY_TRUSS_SLAB.get(), createSlabItemTable(ModBlocks.GRAY_TRUSS_SLAB.get()));
         this.dropSelf(ModBlocks.GRAY_TRUSS_STAIRS.get());
 
+        this.dropSelf(ModBlocks.RUSTY_TRUSS_BEAM.get());
         this.dropSelf(ModBlocks.RUSTY_TRUSS.get());
         this.add(ModBlocks.RUSTY_TRUSS_SLAB.get(), createSlabItemTable(ModBlocks.RUSTY_TRUSS_SLAB.get()));
         this.dropSelf(ModBlocks.RUSTY_TRUSS_STAIRS.get());

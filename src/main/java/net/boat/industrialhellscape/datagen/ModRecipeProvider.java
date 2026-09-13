@@ -63,7 +63,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.RUSTY_HORIZONTAL_CUTOUT_VENT.asItem()
     );
     private static final List<ItemLike> TRUSS_STONECUT_OUTPUT = List.of(
-            ModBlocks.TRUSS_SUPPORT.asItem(),
+            ModBlocks.TRUSS_BEAM.asItem(),
             ModBlocks.TRUSS.asItem(),
             ModBlocks.TRUSS_STAIRS.asItem(),
             ModBlocks.TRUSS_SLAB.asItem(),
@@ -72,6 +72,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.CATWALK_TRUSS_SLAB.asItem(),
             ModBlocks.CATWALK_TRUSS_STAIRS.asItem(),
 
+            ModBlocks.GRAY_TRUSS_BEAM.asItem(),
             ModBlocks.GRAY_TRUSS.asItem(),
             ModBlocks.GRAY_TRUSS_STAIRS.asItem(),
             ModBlocks.GRAY_TRUSS_SLAB.asItem(),
@@ -80,6 +81,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.GRAY_CATWALK_TRUSS_SLAB.asItem(),
             ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.asItem(),
 
+            ModBlocks.RUSTY_TRUSS_BEAM.asItem(),
             ModBlocks.RUSTY_TRUSS.asItem(),
             ModBlocks.RUSTY_TRUSS_STAIRS.asItem(),
             ModBlocks.RUSTY_TRUSS_SLAB.asItem(),

@@ -1,5 +1,6 @@
 package net.boat.industrialhellscape.block.block_classes.SurfaceMountBlocks;
 
+import net.boat.industrialhellscape.block.block_interfaces.CustomModEnumsInterface;
 import net.boat.industrialhellscape.block.block_interfaces.HitboxRotationInterface;
 import net.boat.industrialhellscape.block.block_interfaces.ToolUseInterface;
 import net.minecraft.core.BlockPos;
@@ -28,8 +29,8 @@ import javax.annotation.Nonnull;
 
 // Code obtained from Create Deco mod (CC0 1.0 license)
 
-public class ModelToggleLightBulbBlock extends LightBulbBlock implements ToolUseInterface {
-    public static final BooleanProperty ALT_STATE = BooleanProperty.create("alt_state");
+public class ModelToggleLightBulbBlock extends LightBulbBlock implements ToolUseInterface, CustomModEnumsInterface {
+    public static final BooleanProperty ALT_STATE = CustomModEnumsInterface.ALT_STATE;
 
     private final VoxelShape ALT_SHAPE_NORTH;
     private final VoxelShape ALT_SHAPE_SOUTH;

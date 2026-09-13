@@ -107,20 +107,21 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 );
         this.tag(ModTags.Blocks.TRUSS_BLOCKS)
                 .add(
-                        ModBlocks.TRUSS_SUPPORT.get(),
+                        ModBlocks.TRUSS_BEAM.get(),
                         ModBlocks.TRUSS.get(),
                         ModBlocks.TRUSS_STAIRS.get(),
                         ModBlocks.TRUSS_SLAB.get(),
                         ModBlocks.CATWALK_TRUSS.get(),
                         ModBlocks.CATWALK_TRUSS_STAIRS.get(),
                         ModBlocks.CATWALK_TRUSS_SLAB.get(),
+                        ModBlocks.GRAY_TRUSS_BEAM.get(),
                         ModBlocks.GRAY_TRUSS.get(),
                         ModBlocks.GRAY_CATWALK_TRUSS.get(),
                         ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.get(),
                         ModBlocks.GRAY_CATWALK_TRUSS_SLAB.get(),
                         ModBlocks.GRAY_TRUSS_STAIRS.get(),
                         ModBlocks.GRAY_TRUSS_SLAB.get(),
-
+                        ModBlocks.RUSTY_TRUSS_BEAM.get(),
                         ModBlocks.RUSTY_TRUSS.get(),
                         ModBlocks.RUSTY_TRUSS_STAIRS.get(),
                         ModBlocks.RUSTY_TRUSS_SLAB.get()
@@ -383,8 +384,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModTags.Blocks.ALL_FURNITURE_BLOCKS //All furniture can be mined with pickaxe.
                 )
                 .add(
-                        ModBlocks.DEBUG_BLOCK.get()
-                        //,ModBlocks.PEANUT_STATUE.get()
+                        ModBlocks.DEBUG_BLOCK.get(),
+                        ModBlocks.PEANUT_STATUE.get()
                 );
         this.tag(BlockTags.MINEABLE_WITH_AXE)
                 .addTags(

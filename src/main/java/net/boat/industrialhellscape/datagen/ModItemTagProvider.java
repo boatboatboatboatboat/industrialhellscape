@@ -73,6 +73,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 );
         this.tag(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM)
                 .add(
+                        //DONT PUT SLABS HERE
                         ModBlocks.HORIZONTAL_VESSELPLATE.asItem(),
                         ModBlocks.VERTICAL_VESSELPLATE.asItem(),
                         ModBlocks.HORIZONTAL_REINFORCED_VESSELPLATE.asItem(),
@@ -104,27 +105,24 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 );
         this.tag(ModTags.Items.TRUSS_SMELTABLE_ITEM)
                 .add(
-                        ModBlocks.TRUSS_SUPPORT.asItem(),
+                        //DONT PUT SLABS HERE
+                        ModBlocks.TRUSS_BEAM.asItem(),
                         ModBlocks.TRUSS.asItem(),
                         ModBlocks.TRUSS_STAIRS.asItem(),
-                        ModBlocks.TRUSS_SLAB.asItem(),
-
                         ModBlocks.CATWALK_TRUSS.asItem(),
                         ModBlocks.CATWALK_TRUSS_STAIRS.asItem(),
-                        ModBlocks.CATWALK_TRUSS_SLAB.asItem(),
+                        ModBlocks.GRAY_TRUSS_BEAM.asItem(),
                         ModBlocks.GRAY_TRUSS.asItem(),
                         ModBlocks.GRAY_CATWALK_TRUSS.asItem(),
                         ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.asItem(),
-                        ModBlocks.GRAY_CATWALK_TRUSS_SLAB.asItem(),
                         ModBlocks.GRAY_TRUSS_STAIRS.asItem(),
-                        ModBlocks.GRAY_TRUSS_SLAB.asItem(),
-
+                        ModBlocks.RUSTY_TRUSS_BEAM.asItem(),
                         ModBlocks.RUSTY_TRUSS.asItem(),
-                        ModBlocks.RUSTY_TRUSS_STAIRS.asItem(),
-                        ModBlocks.RUSTY_TRUSS_SLAB.asItem()
+                        ModBlocks.RUSTY_TRUSS_STAIRS.asItem()
                 );
         this.tag(ModTags.Items.VESSELGLASS_SMELTABLE_ITEM)
                 .add(
+                        //DONT PUT SLABS HERE
                         ModBlocks.VESSELGLASS.asItem(),
                         ModBlocks.REINFORCED_VESSELGLASS.asItem(),
                         ModBlocks.GRAY_VESSELGLASS.asItem(),
@@ -134,6 +132,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 );
         this.tag(ModTags.Items.ROCKRETE_SMELTABLE_ITEM)
                 .add(
+                        //DONT PUT SLABS HERE
                         ModBlocks.ROUGH_GRAY_ROCKRETE.asItem(),
                         ModBlocks.ROUGH_RED_ROCKRETE.asItem(),
                         ModBlocks.ROUGH_BLUE_ROCKRETE.asItem(),
