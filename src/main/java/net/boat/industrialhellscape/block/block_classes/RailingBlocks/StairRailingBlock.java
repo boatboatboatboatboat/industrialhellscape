@@ -54,8 +54,8 @@ public class StairRailingBlock extends Block implements SimpleWaterloggedBlock {
 
     // Hitbox shapes (8 total, 2x4) for left and right variants of the stair rail per cardinal direction (used both for collision and interaction)
     // Modded interface HitboxRotationInterface helps rotate voxels along cardinal directions. See interface for more details
-    private static final VoxelShape SHAPE_NORTH_LEFT = Block.box(0d, 0d, 0d, 2d, 14, 16d);
-    private static final VoxelShape SHAPE_NORTH_RIGHT = Block.box(14d, 0d, 0d, 16d, 14, 16d);
+    private static final VoxelShape SHAPE_NORTH_LEFT = Block.box(0d, 0d, 0d, 1d, 14, 16d);
+    private static final VoxelShape SHAPE_NORTH_RIGHT = Block.box(15d, 0d, 0d, 16d, 14, 16d);
 
     private static final VoxelShape SHAPE_SOUTH_LEFT = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH_LEFT);
     private static final VoxelShape SHAPE_SOUTH_RIGHT = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH_RIGHT);

@@ -46,6 +46,7 @@ public class Bed2Block extends Modelled2Block {
         this.multiplePeopleCanSleepOn = multiplePeopleCanSleepOn;
     }
 
+    @Override //<inclusion 19/9/26
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         Level level = pContext.getLevel();
         BlockPos originPos = pContext.getClickedPos();

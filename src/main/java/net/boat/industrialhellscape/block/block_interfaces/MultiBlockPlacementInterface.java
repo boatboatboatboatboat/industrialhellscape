@@ -18,6 +18,15 @@ public interface MultiBlockPlacementInterface {
         int[] currentVector = multiBlockMatrix[rowIndice];
         Direction placementDirection = pState.getValue(BlockStateProperties.HORIZONTAL_FACING);
 
+        /*
+        For default scenario (a block was placed and the block faces north):
+
+        First column tells how many blocks West this block of the entire multiblock will be placed
+        Second column tells how many blocks Up this block will be placed
+        Third column tells how many blocks South this block will be placed
+
+        */
+
         return switch(placementDirection) {
             case WEST -> originPos.relative(Direction.SOUTH, currentVector[0]).relative(Direction.UP, currentVector[1]).relative(Direction.EAST, currentVector[2]);
             case SOUTH -> originPos.relative(Direction.EAST, currentVector[0]).relative(Direction.UP, currentVector[1]).relative(Direction.NORTH, currentVector[2]);
@@ -133,7 +142,7 @@ public interface MultiBlockPlacementInterface {
 
             //if a position for a future multiblock part placement is invalid, stop & exit for-loop and return null for this method.
             if (!blockCanBePlacedHere) {
-                return null;
+                return null; //NULL RETURN IF PLACEMENT NOT APPROPRIATE
             }
         }
 
@@ -142,7 +151,7 @@ public interface MultiBlockPlacementInterface {
         return pState.setValue(directionProperty, facing);
     }
 
-    static void constructMultiBlock(Level pLevel, BlockPos originPos, int[][] multiBlockMatrix, IntegerProperty partProperty) {
+    static void constructMultiBlock(Level pLevel, Block thisBlock, BlockPos originPos, int[][] multiBlockMatrix, IntegerProperty partProperty, DirectionProperty directionProperty) {
         /*
         Used for setPlacedBy() override
 
@@ -153,7 +162,34 @@ public interface MultiBlockPlacementInterface {
         BlockState state = pLevel.getBlockState(originPos);
         for (int i = 0; i < multiBlockMatrix.length; i++) {
             BlockPos nextPosition = vectorToBlockPos(originPos, multiBlockMatrix, i, state);
-            pLevel.setBlock(nextPosition, state.setValue(partProperty, i), 3);
+
+            BlockState stateAtPotentialPlacement = pLevel.getBlockState(nextPosition);
+
+            /*
+            Fix for Create SchematiCannon build ordering messing up horizontal multiblocks
+            - Appears to act as if a player is placing down each individual block, recognizing vanilla states such as direction FACING
+            - Schematicannons appear to respect modded blocks' getStateForPlacement logic but ignores null returns that protects against invalid placement,
+                placing the origin block down anyways and allowing subsequent setPlacedBy behavior
+
+            - A redundant check has to be done either in setPlacedBy or a helper method within it.
+                This prevents the origin block placed down by default to set other blocks which will destroy existing blocks in a schematic-Cannon build
+             */
+
+            if(stateAtPotentialPlacement.isAir()) {
+                /*
+                getStateForPlacement logic already prevents block from being placed down in obstructive environments
+
+                if another mod bypasses that method, ensures that a successfully placed down block does not destroy other blocks
+                while constructing itself
+
+                IF OBSTRUCTION CHECK FAILS AND ORIGIN BLOCK IS PLACED:
+                    - ONLY PLACE SUBSEQUENT BLOCKS IF THAT POSITION CONTAINS ONLY AIR
+                    - Prevents other block destruction but not weird state placement for finished block;
+                    - A schematicannon'd structure needs these blocks re-placed by player manually; where safeguards are fully present
+                    - World-gen structures are probably fine and separate from this issue
+                 */
+                pLevel.setBlock(nextPosition, state.setValue(partProperty, i), 3);
+            }
         }
     }
 

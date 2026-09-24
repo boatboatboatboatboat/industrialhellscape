@@ -245,7 +245,7 @@ public class PeanutStatueBlock extends Modelled2Block implements Fallable {
 
                     //set a new block at testPos as an originBlock. May be facing a player.
                     level.setBlock(testPos,state.setValue(PART, 0),3); //Needs an origin block placed down for constructMultiBlock to work properly
-                    MultiBlockPlacementInterface.constructMultiBlock(level,testPos,multiBlockPlacementMatrix, PART); //only bottom half teleports if this is commented out
+                    MultiBlockPlacementInterface.constructMultiBlock(level, this, testPos,multiBlockPlacementMatrix, PART, FACING); //only bottom half teleports if this is commented out
                     MultiBlockPlacementInterface.removeRemainingMultiBlock(level, this, currentPos, PART, state, multiBlockPlacementMatrix);
                     return; //exit for-loop. teleport complete
                 }

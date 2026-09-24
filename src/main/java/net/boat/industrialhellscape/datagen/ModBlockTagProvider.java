@@ -124,7 +124,13 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.RUSTY_TRUSS_BEAM.get(),
                         ModBlocks.RUSTY_TRUSS.get(),
                         ModBlocks.RUSTY_TRUSS_STAIRS.get(),
-                        ModBlocks.RUSTY_TRUSS_SLAB.get()
+                        ModBlocks.RUSTY_TRUSS_SLAB.get(),
+
+                        //added to mining tags 24/9/2026
+                        ModBlocks.RUSTY_CATWALK_TRUSS.get(),
+                        ModBlocks.RUSTY_CATWALK_TRUSS_STAIRS.get(),
+                        ModBlocks.RUSTY_CATWALK_TRUSS_SLAB.get()
+
                 );
         this.tag(ModTags.Blocks.VESSELGLASS_BLOCKS)
                 .add(

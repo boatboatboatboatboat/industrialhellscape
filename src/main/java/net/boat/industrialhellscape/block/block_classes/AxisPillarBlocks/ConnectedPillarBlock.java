@@ -4,9 +4,7 @@ import net.boat.industrialhellscape.block.block_interfaces.ConnectedModelInterfa
 import net.boat.industrialhellscape.block.block_state_enums.DynamicConnectionState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
@@ -82,10 +80,6 @@ public class ConnectedPillarBlock extends RotatedPillarBlock implements Connecte
 
         //When setPlacedBy is called, the block's axis and type is already known and placed into the world.
         //Use this to determine the location of the neighbor to update state
-
-        if(placer instanceof Player player) {
-            player.displayClientMessage(Component.literal("fuck"), true);
-        }
 
         Direction.Axis placedStateAxis = state.getValue(AXIS);
         DynamicConnectionState placedStateType = state.getValue(TYPE);

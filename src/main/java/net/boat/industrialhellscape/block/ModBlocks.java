@@ -399,7 +399,7 @@ public class ModBlocks {
             () -> new RailingBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
-                    2,
+                    1,
                     15
             )
     );
@@ -413,7 +413,7 @@ public class ModBlocks {
             () -> new RailingBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
-                    2,
+                    1,
                     15
             )
     );
@@ -427,7 +427,7 @@ public class ModBlocks {
             () -> new RailingBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
-                    2,
+                    1,
                     15
             )
     );
@@ -441,7 +441,7 @@ public class ModBlocks {
             () -> new RailingBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
-                    2,
+                    1,
                     15
             )
     );

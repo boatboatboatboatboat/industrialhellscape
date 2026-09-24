@@ -51,8 +51,13 @@ public abstract class BaseIntegerMultiBlock extends SimpleFacingBlock implements
         return super.onDestroyedByPlayer(pState, pLevel, pPos, pPlayer, willHarvest, fluid);
     }
 
+    @Override
+    protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
+        super.onPlace(state, level, pos, oldState, movedByPiston);
+    }
+
     public void setPlacedBy(@Nonnull Level pLevel, @Nonnull BlockPos pPos, @Nonnull BlockState pState, @Nullable LivingEntity pPlacer, @Nonnull ItemStack pStack) {
-        MultiBlockPlacementInterface.constructMultiBlock(pLevel, pPos, multiBlockPlacementMatrix, partProperty);
+        MultiBlockPlacementInterface.constructMultiBlock(pLevel, this,  pPos, multiBlockPlacementMatrix, partProperty, FACING);
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {

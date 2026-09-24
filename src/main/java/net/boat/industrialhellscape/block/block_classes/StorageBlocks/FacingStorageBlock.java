@@ -5,6 +5,8 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -72,6 +74,16 @@ public class FacingStorageBlock extends BaseStorageBlock implements EntityBlock 
         //getOpposite() is used to rectify in-world placement while keeping any auto-generated asymmetric textured full-block models consistent.
         state = state.setValue(FACING, directionClicked); //Defines facing direction of the block
         return state;
+    }
+
+    @Override
+    protected BlockState rotate(BlockState state, Rotation rot) {
+        return (BlockState)state.setValue(FACING, rot.rotate((Direction)state.getValue(FACING)));
+    }
+
+    @Override
+    protected BlockState mirror(BlockState state, Mirror mirror) {
+        return state.rotate(mirror.getRotation((Direction)state.getValue(FACING)));
     }
 
     @Override
