@@ -148,12 +148,15 @@ public class PeanutStatueBlock extends Modelled2Block implements Fallable {
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player pPlayer, boolean willHarvest, FluidState fluid) {
         if(!level.isClientSide) {
             this.miningPlayer = pPlayer;
-            particleCircle(level, pos);
-            particleLine(level,pos,pos);
 
             //duplication
+            MultiBlockPlacementInterface.destroyRemainingMultiBlock(level, pPlayer, this, pos, partProperty, state, multiBlockPlacementMatrix);
             teleport(state,level,pos,pos, pPlayer,10,10,10);
-            teleport(state,level,pos,pos, pPlayer,10,10,10);
+            //teleport(state,level,pos,pos, pPlayer,10,10,10); //will duplicate as it teleports. Now disabled
+        }
+
+        if(level.isClientSide) {
+            particleCircle(level, pos);
         }
         return level.isClientSide() ? level.setBlock(pos, fluid.createLegacyBlock(), 11) : level.removeBlock(pos, false);
     }
@@ -250,8 +253,13 @@ public class PeanutStatueBlock extends Modelled2Block implements Fallable {
                     return; //exit for-loop. teleport complete
                 }
             } //end of for-loop
+
+            //doesn't work. level is always server-side when this method is called
+//        if(level.isClientSide) {
+//            particleCircle(level, testPos);
+//        }
+
         } //end of serverside logic
-        particleLine(level,testPos, currentPos);
     }
     @Override
     public boolean isRandomlyTicking(@NotNull BlockState pState) {
@@ -261,7 +269,7 @@ public class PeanutStatueBlock extends Modelled2Block implements Fallable {
     //issue narros to here
     @Override
     public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource pRandom) {
-        if(!level.isClientSide) { //therefore is server side
+        if(!level.isClientSide) { //therefore is server side and applies to all players
             playPeanutNoises(level, pos, (float) 1.5);
             List<ServerPlayer> playersOnline = level.players();
             if(playersOnline.isEmpty()) { return; } //If server is empty

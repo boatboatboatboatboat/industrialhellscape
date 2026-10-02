@@ -8,6 +8,8 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 public class SittableEntity extends Entity {
+    //  Sable/Aeronautics sublevel positioning governed by sable Entity tag "sable:retain_in_sub_level"
+
     public SittableEntity(EntityType<?> entityType, Level level) {
         super(entityType, level);
     }

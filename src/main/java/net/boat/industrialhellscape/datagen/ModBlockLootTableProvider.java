@@ -36,6 +36,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 createIntegerMultiBlockDrops(ModBlocks.DEBUG_BLOCK.get(),Integer11Block.PART));
         this.dropSelf(ModBlocks.CHAINLINK_FENCE.get());
 
+        //IN-DEVELOPMENT BLOCK
+        this.dropSelf(ModBlocks.INDUSTRIAL_LEVER.get());
+
         //JOKE BLOCK
         this.add(ModBlocks.BODY_PILLOW_OZY.get(),
                 createIntegerMultiBlockDrops(ModBlocks.BODY_PILLOW_OZY.get(),Integer2Block.PART));
@@ -44,7 +47,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 createIntegerMultiBlockDrops(ModBlocks.BODY_PILLOW_FANG.get(),Integer2Block.PART));
         this.add(ModBlocks.BODY_PILLOW_PROV.get(),
                 createIntegerMultiBlockDrops(ModBlocks.BODY_PILLOW_PROV.get(),Integer2Block.PART));
-        this.dropSelf(ModBlocks.PEANUT_STATUE.get());
+        this.add(ModBlocks.PEANUT_STATUE.get(),
+                createIntegerMultiBlockDrops(ModBlocks.PEANUT_STATUE.get(), Integer2Block.PART));
 
         //BASE BUILDING BLOCKS
         this.dropSelf(ModBlocks.METALWORKS.get());

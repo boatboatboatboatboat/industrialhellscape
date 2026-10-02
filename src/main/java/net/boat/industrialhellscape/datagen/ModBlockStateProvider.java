@@ -33,6 +33,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genPeanutS((PeanutStatueBlock) ModBlocks.PEANUT_STATUE.get(), "peanut_statue");
         genCustomWallBlockSBI(ModBlocks.CHAINLINK_FENCE.get(), "chainlink_fence");
 
+        //In-Development Block
+        genSurfaceModelChangeSI(ModBlocks.INDUSTRIAL_LEVER.get(), "lever");
+
         genModelledIntegerMultiBlockS(ModBlocks.BODY_PILLOW_OZY.get(), "body_pillow");
         genVariantMultiBlock(ModBlocks.BODY_PILLOW_FANG.get(), ModBlocks.BODY_PILLOW_OZY.get(),"body_pillow","body_pillow","body_pillow_front_graphic_fang", "1", new Integer[]{1} );
         genVariantMultiBlock(ModBlocks.BODY_PILLOW_PROV.get(), ModBlocks.BODY_PILLOW_OZY.get(),"body_pillow","body_pillow","body_pillow_front_graphic_prov", "1", new Integer[]{1} );
@@ -565,6 +568,36 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, models().getExistingFile(modLoc(unpoweredModelPath)));
     }
 
+    private void genSurfaceModelChangeSI(Block block, String modelSubFolder) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        String unpoweredModelPath = "block/"+optionalFolder(modelSubFolder)+stringName;
+        String poweredModelPath = unpoweredModelPath+"_on"; //NOT GENERATED, EXISTING MODEL
+
+        getVariantBuilder(block)
+                .forAllStatesExcept(state -> {
+                    AttachFace face = state.getValue(BlockStateProperties.ATTACH_FACE);
+                    Direction facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+                    Boolean lit = state.getValue(BlockStateProperties.POWERED);
+                    String modelToUse = lit? poweredModelPath : unpoweredModelPath;
+
+                    int yRot = switch (facing) {
+                        case SOUTH -> 180;
+                        case WEST  -> 270;
+                        case EAST  -> 90;
+                        default -> 0; //NORTH
+                    };
+
+                    return ConfiguredModel.builder()
+                            .modelFile(models().getExistingFile(modLoc(modelToUse)))
+                            .rotationX(face == AttachFace.FLOOR ? 0 : (face == AttachFace.WALL ? 90 : 180) )
+                            .rotationY(yRot)
+                            .build();
+                }, BlockStateProperties.WATERLOGGED);
+
+        //GENERATE ITEM MODEL
+        simpleBlockItem(block, models().getExistingFile(modLoc(unpoweredModelPath)));
+    }
+
     private void genFacingModelledSI(Block block, String folderName) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String modelPath = "block/"+folderName+(folderName.isEmpty() ? "":"/")+stringName;
@@ -679,29 +712,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
                     return ConfiguredModel.builder()
                             .modelFile(models().getExistingFile(modLoc("block/"+ optionalFolder(modelSubFolder) +stringName  + "_"+intBlockState+appendDiagonal)))
-                            .rotationY(yRot)
-                            .build();
-                }, BlockStateProperties.WATERLOGGED);
-    }
-
-    private void genInterCardinalMultiBLock(Block block, String modelSubFolder) {
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-
-        getVariantBuilder(block)
-                .forAllStatesExcept(state -> {
-                    Direction horizontalFacing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
-
-                    int yRot = switch (horizontalFacing) {
-                        case SOUTH -> 180;
-                        case WEST  -> 270;
-                        case EAST  -> 90;
-                        default -> 0; //NORTH
-                    };
-
-                    int intBlockState = state.getValue(Integer2Block.PART);
-
-                    return ConfiguredModel.builder()
-                            .modelFile(models().getExistingFile(modLoc("block/"+ optionalFolder(modelSubFolder) +stringName  + "_"+intBlockState)))
                             .rotationY(yRot)
                             .build();
                 }, BlockStateProperties.WATERLOGGED);
@@ -999,32 +1009,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .condition(BlockStateProperties.WEST_WALL, WallSide.TALL)
                 .condition(BlockStateProperties.SOUTH_WALL, WallSide.TALL)
                 .condition(BlockStateProperties.NORTH_WALL, WallSide.TALL);
-
-
-
-//        MultiPartBlockStateBuilder.PartBuilder postMultiState = multipartBuilder.part().modelFile(postModelFile).addModel();
-//        MultiPartBlockStateBuilder.PartBuilder.ConditionGroup postLogicSuperGroup = postMultiState.nestedGroup(); //initialize exterior nested group with AND logic for contents
-//        postLogicSuperGroup
-//                .nestedGroup()
-//                .condition(BlockStateProperties.UP, true);
-//        //.endNestedGroup(); //appears to be optional here
-//        postLogicSuperGroup
-//                .nestedGroup() //initialize interior nested group and assign OR logic to contents
-//                .useOr()
-//                .condition(BlockStateProperties.EAST_WALL, WallSide.TALL)
-//                .condition(BlockStateProperties.WEST_WALL, WallSide.TALL)
-//                .condition(BlockStateProperties.SOUTH_WALL, WallSide.TALL)
-//                .condition(BlockStateProperties.NORTH_WALL, WallSide.TALL);
-//        postLogicSuperGroup
-//                .nestedGroup() //initialize interior nested group and assign OR logic to contents
-//                .useOr()
-//                .condition(BlockStateProperties.EAST_WALL, WallSide.NONE)
-//                .condition(BlockStateProperties.WEST_WALL, WallSide.NONE)
-//                .condition(BlockStateProperties.SOUTH_WALL, WallSide.NONE)
-//                .condition(BlockStateProperties.NORTH_WALL, WallSide.NONE);
-        //.endNestedGroup(); //appears to be optional here
-        //postMultiState.end(); //closes the exterior nested group
-
 
         //Main fence
         for(int i = 0; i<4; i++) {

@@ -50,26 +50,9 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.RUSTY_HORIZONTAL_CUTOUT_VENT.asItem(),
                         ModBlocks.RUSTY_VERTICAL_CUTOUT_VENT.asItem()
                 );
-        this.tag(ModTags.Items.METALWORKS_ITEMS)
+        this.tag(ModTags.Items.REDSTONE_BLOCK_ITEMS)
                 .add(
-                        ModBlocks.METALWORKS.asItem(),
-
-                        ModBlocks.YELLOW_STAIR_RAILING.asItem(),
-                        ModBlocks.YELLOW_RAILING.asItem(),
-                        ModBlocks.GRAY_STAIR_RAILING.asItem(),
-                        ModBlocks.GRAY_RAILING.asItem(),
-                        ModBlocks.BLACK_STAIR_RAILING.asItem(),
-                        ModBlocks.BLACK_RAILING.asItem(),
-                        ModBlocks.RUSTY_STAIR_RAILING.asItem(),
-                        ModBlocks.RUSTY_RAILING.asItem(),
-
-                        ModBlocks.RUSTY_BOLTED_BRACKET.asItem(),
-                        ModBlocks.BLACK_BOLTED_BRACKET.asItem(),
-                        ModBlocks.GRAY_BOLTED_BRACKET.asItem(),
-                        ModBlocks.SMALL_GRAY_BOLTED_BRACKET.asItem(),
-                        ModBlocks.SMALL_BLACK_BOLTED_BRACKET.asItem(),
-                        ModBlocks.SMALL_RUSTY_BOLTED_BRACKET.asItem(),
-                        ModBlocks.CHAINLINK_FENCE.asItem()
+                        ModBlocks.INDUSTRIAL_LEVER.asItem()
                 );
         this.tag(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM)
                 .add(
@@ -183,6 +166,27 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.GRAY_PIPE_CONDUIT_PLANAR_CORNER.asItem(),
                         ModBlocks.GRAY_PIPE_CONDUIT_INNER_CORNER.asItem(),
                         ModBlocks.GRAY_PIPE_CONDUIT_OUTER_CORNER.asItem()
+                );
+        this.tag(ModTags.Items.METALWORKS_ITEMS)
+                .add(
+                        ModBlocks.METALWORKS.asItem(),
+
+                        ModBlocks.YELLOW_STAIR_RAILING.asItem(),
+                        ModBlocks.YELLOW_RAILING.asItem(),
+                        ModBlocks.GRAY_STAIR_RAILING.asItem(),
+                        ModBlocks.GRAY_RAILING.asItem(),
+                        ModBlocks.BLACK_STAIR_RAILING.asItem(),
+                        ModBlocks.BLACK_RAILING.asItem(),
+                        ModBlocks.RUSTY_STAIR_RAILING.asItem(),
+                        ModBlocks.RUSTY_RAILING.asItem(),
+
+                        ModBlocks.RUSTY_BOLTED_BRACKET.asItem(),
+                        ModBlocks.BLACK_BOLTED_BRACKET.asItem(),
+                        ModBlocks.GRAY_BOLTED_BRACKET.asItem(),
+                        ModBlocks.SMALL_GRAY_BOLTED_BRACKET.asItem(),
+                        ModBlocks.SMALL_BLACK_BOLTED_BRACKET.asItem(),
+                        ModBlocks.SMALL_RUSTY_BOLTED_BRACKET.asItem(),
+                        ModBlocks.CHAINLINK_FENCE.asItem()
                 );
 
         //FURNITURE CATEGORIES BELOW

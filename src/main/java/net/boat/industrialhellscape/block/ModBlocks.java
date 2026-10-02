@@ -119,6 +119,14 @@ public class ModBlocks {
                     , new VoxelShape[]{HitboxGeometryCollection.PEANUT_STATUE(), HitboxGeometryCollection.PEANUT_STATUE()}
             )
     );
+
+    //IN-DEVELOPMENT BLOCKS
+    public static final DeferredBlock<Block> INDUSTRIAL_LEVER = registerBlockAndBlockItem("industrial_lever",
+            () -> new WaterloggableLeverBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.OAK_PLANKS),
+                    HitboxGeometryCollection.INDUSTRIAL_LEVER())
+    );
+
 //    public static final DeferredBlock<Block> REMOVE_THIS_ITEM = registerBlockAndBlockItem("remove_this_item",
 //            () -> new ModelledFacingBlock(BlockBehaviour
 //                    .Properties.ofFullCopy(Blocks.OAK_PLANKS).sound(SoundType.SLIME_BLOCK), HitboxGeometryCollection.DECAL_FLOOR()));
@@ -1531,6 +1539,21 @@ public class ModBlocks {
             )
 
     );
+    public static final DeferredBlock<Block> METAL_DESK_DRAWER_2 = registerBlockAndBlockItem("metal_desk_drawer_2",
+            () -> new ConnectedStorageBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    18,
+                    ModTags.Blocks.METAL_DESK,
+                    HitboxGeometryCollection.METAL_DESK_DRAWER_2_SOLO_SHAPE(),
+                    HitboxGeometryCollection.METAL_DESK_DRAWER_2_LEFT_SHAPE(),
+                    HitboxGeometryCollection.METAL_DESK_DRAWER_2_MIDDLE_SHAPE(),
+                    HitboxGeometryCollection.METAL_DESK_DRAWER_2_RIGHT_SHAPE(),
+                    ConnectingBlockPlacementOrientation.HORIZONTAL,
+                    ModSounds.METAL_BOX_OPEN.get(),
+                    ModSounds.METAL_BOX_CLOSE.get()
+            )
+    );
     public static final DeferredBlock<Block> OFFICE_DESK_DRAWER = registerBlockAndBlockItem("office_desk_drawer",
             () -> new ConnectedStorageBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
@@ -1561,22 +1584,6 @@ public class ModBlocks {
             )
 
     );
-
-    public static final DeferredBlock<Block> METAL_DESK_DRAWER_2 = registerBlockAndBlockItem("metal_desk_drawer_2",
-            () -> new ConnectedStorageBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .noOcclusion(),
-                    18,
-                    ModTags.Blocks.METAL_DESK,
-                    HitboxGeometryCollection.METAL_DESK_DRAWER_2_SOLO_SHAPE(),
-                    HitboxGeometryCollection.METAL_DESK_DRAWER_2_LEFT_SHAPE(),
-                    HitboxGeometryCollection.METAL_DESK_DRAWER_2_MIDDLE_SHAPE(),
-                    HitboxGeometryCollection.METAL_DESK_DRAWER_2_RIGHT_SHAPE(),
-                    ConnectingBlockPlacementOrientation.HORIZONTAL,
-                    ModSounds.METAL_BOX_OPEN.get(),
-                    ModSounds.METAL_BOX_CLOSE.get()
-            )
-    );
     public static final DeferredBlock<Block> OFFICE_CHAIR = registerBlockAndBlockItem("office_chair",
             () -> new SittableFacingBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.OAK_PLANKS)
@@ -1595,7 +1602,7 @@ public class ModBlocks {
     public static final DeferredBlock<Block> FOLDING_CHAIR = registerBlockAndBlockItem("folding_chair",
             () -> new SittableFacingBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.OAK_PLANKS)
-                    .noOcclusion(),
+                  .noOcclusion(),
                     HitboxGeometryCollection.FOLDING_CHAIR()
             )
     );

@@ -200,6 +200,11 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
                         ModBlocks.GRIMY_RESTROOM_TILE.get()
                 );
+        this.tag(ModTags.Blocks.REDSTONE_BLOCKS) //FOR CORRECT MINING TOOLS AND TOOL TIER
+                .add(
+                        ModBlocks.INDUSTRIAL_LEVER.get()
+                );
+
         this.tag(ModTags.Blocks.DOOR_BLOCKS) //FOR CORRECT MINING TOOLS AND TOOL TIER
                 .add(
                         ModBlocks.ARMORED_DOOR.get(),
@@ -361,6 +366,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
                         ModTags.Blocks.TRUSS_BLOCKS,
                         ModTags.Blocks.HVAC_BLOCKS,
+                        ModTags.Blocks.REDSTONE_BLOCKS,
 
                         ModTags.Blocks.PIPEWORKS_BLOCKS,
                         ModTags.Blocks.METALWORKS_BLOCKS,
@@ -378,8 +384,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModTags.Blocks.ROCKRETE_BLOCKS,
                         ModTags.Blocks.VESSELPLATE_BLOCKS,
                         ModTags.Blocks.VESSELGLASS_BLOCKS,
+
                         ModTags.Blocks.TRUSS_BLOCKS,
                         ModTags.Blocks.HVAC_BLOCKS,
+                        ModTags.Blocks.REDSTONE_BLOCKS,
 
                         ModTags.Blocks.PIPEWORKS_BLOCKS,
                         ModTags.Blocks.METALWORKS_BLOCKS,
@@ -426,6 +434,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
                         ModTags.Blocks.HVAC_BLOCKS,
                         ModTags.Blocks.TRUSS_BLOCKS,
+
+                        //door-type blocks now lower-mass 25/9/26
+                        ModTags.Blocks.DOOR_BLOCKS,
+                        ModTags.Blocks.TRAPDOOR_BLOCKS,
 
                         ModTags.Blocks.ALL_FURNITURE_BLOCKS
                 );

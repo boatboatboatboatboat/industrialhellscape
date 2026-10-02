@@ -16,6 +16,7 @@ public class ModTags {
         public static final TagKey<Block> ROCKRETE_BLOCKS = tag("rockrete_blocks");
         public static final TagKey<Block> TRUSS_BLOCKS = tag("truss_blocks");
         public static final TagKey<Block> HVAC_BLOCKS = tag("hvac_blocks");
+        public static final TagKey<Block> REDSTONE_BLOCKS = tag("redstone_blocks");
 
         public static final TagKey<Block> PIPEWORKS_BLOCKS = tag("pipeworks_blocks");
         public static final TagKey<Block> METALWORKS_BLOCKS = tag("metalworks_blocks");
@@ -74,6 +75,8 @@ public class ModTags {
          If you are a modpack dev, you can use these tags for block smelting recipes, and they will have the
          intended effect.
          But you will need to redo the recipes to obtain the blocks in the first place.
+
+         "-_ITEM" IS NOT PLURAL. NO "S"
          */
         public static final TagKey<Item> VESSELPLATE_SMELTABLE_ITEM = tag("vesselplate_smeltable_item");
         public static final TagKey<Item> VESSELGLASS_SMELTABLE_ITEM = tag("vesselglass_smeltable_item");
@@ -81,8 +84,12 @@ public class ModTags {
         public static final TagKey<Item> TRUSS_SMELTABLE_ITEM = tag("strut_smeltable_item");
         public static final TagKey<Item> HVAC_SMELTABLE_ITEM = tag("hvac_smeltable_item");
 
+        /*
+        "-_ITEMS" IS PLURAL. THERE IS "S"
+         */
         public static final TagKey<Item> PIPEWORKS_ITEMS = tag("pipeworks_items");
         public static final TagKey<Item> METALWORKS_ITEMS = tag("metalworks_items");
+        public static final TagKey<Item> REDSTONE_BLOCK_ITEMS = tag("redstone_block_items");
 
         public static final TagKey<Item> DOOR_ITEMS = tag("door_items");
         public static final TagKey<Item> TRAPDOOR_ITEMS = tag("trapdoor_items");
