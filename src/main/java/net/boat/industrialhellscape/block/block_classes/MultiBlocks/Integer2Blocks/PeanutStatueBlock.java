@@ -7,7 +7,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -35,7 +34,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
 import java.util.function.BiConsumer;
 
 import static java.lang.Math.cos;
@@ -43,7 +41,6 @@ import static java.lang.Math.sin;
 
 public class PeanutStatueBlock extends Modelled2Block implements Fallable {
     public static final BooleanProperty DIAGONAL = BooleanProperty.create("diagonal");
-    public Player miningPlayer;
 
     public PeanutStatueBlock(Properties pProperties, int[][] multiBlockPlacementMatrix, VoxelShape[] hitboxShapeArray) {
         super(pProperties, multiBlockPlacementMatrix, hitboxShapeArray);
@@ -147,7 +144,6 @@ public class PeanutStatueBlock extends Modelled2Block implements Fallable {
     @Override
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player pPlayer, boolean willHarvest, FluidState fluid) {
         if(!level.isClientSide) {
-            this.miningPlayer = pPlayer;
 
             //duplication
             MultiBlockPlacementInterface.destroyRemainingMultiBlock(level, pPlayer, this, pos, partProperty, state, multiBlockPlacementMatrix);
@@ -271,10 +267,10 @@ public class PeanutStatueBlock extends Modelled2Block implements Fallable {
     public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource pRandom) {
         if(!level.isClientSide) { //therefore is server side and applies to all players
             playPeanutNoises(level, pos, (float) 1.5);
-            List<ServerPlayer> playersOnline = level.players();
-            if(playersOnline.isEmpty()) { return; } //If server is empty
+//            List<ServerPlayer> playersOnline = level.players();
+//            if(playersOnline.isEmpty()) { return; } //If server is empty
 
-            Player victim = level.getNearestPlayer(pos.getX(),pos.getY(),pos.getZ(),10, null);
+            Player victim = level.getNearestPlayer(pos.getX(),pos.getY(),pos.getZ(),10, null); //nullable
             if(victim != null) {
                 BlockPos abovePos = pos.above();
                 BlockPos belowPos = pos.below();
@@ -295,24 +291,6 @@ public class PeanutStatueBlock extends Modelled2Block implements Fallable {
             }
 
         }
-
-//            List<ServerPlayer> playersOnline = level.players();
-//            if(playersOnline.size() > 1) { return;} //If player is alone on server
-//            if (!level.isAreaLoaded(pos, 1)) { return;} //if area is loaded for peanut
-//            if(state.getValue(PART) == 1) { return;} //both halves should not tick at the same time.
-//
-//            Player victim = playersOnline.getFirst();
-//            BlockPos victimPos = victim.getOnPos();
-//            Direction victimDirection = victim.getDirection();
-//            Direction whereToSpawnBehindVictim = victimDirection.getOpposite();
-//            BlockPos posBehindVictim = victimPos.relative(whereToSpawnBehindVictim, 6);
-//            float randomFloat = level.getRandom().nextFloat();
-//
-//            if(randomFloat < 0.5) {
-//                teleport(state, level, pos, posBehindVictim, victim,3,3,3);
-//            }
-
-//            }
     }
 
     private BlockState stateToLookAtEntityAttacker(Entity entity, BlockPos newPos, BlockState state) {
