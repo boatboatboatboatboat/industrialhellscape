@@ -28,7 +28,6 @@ import javax.annotation.Nullable;
 INFO:
 -----
 This block can be placed on all surfaces. It can be waterlogged.
-
 */
 
 public class ModelledSurfaceMountBlock extends FaceAttachedHorizontalDirectionalBlock implements SimpleWaterloggedBlock {

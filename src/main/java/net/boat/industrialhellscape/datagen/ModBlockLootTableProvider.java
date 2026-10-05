@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
@@ -34,10 +35,31 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         //this.dropSelf(ModBlocks.REMOVE_THIS_ITEM.get());
         this.add(ModBlocks.DEBUG_BLOCK.get(),
                 createIntegerMultiBlockDrops(ModBlocks.DEBUG_BLOCK.get(),Integer11Block.PART));
-        this.dropSelf(ModBlocks.CHAINLINK_FENCE.get());
 
-        //IN-DEVELOPMENT BLOCK
+        //IN-DEVELOPMENT BLOCKS
+        this.dropSelf(ModBlocks.CHAINLINK_FENCE.get());
         this.dropSelf(ModBlocks.INDUSTRIAL_LEVER.get());
+        this.add(ModBlocks.REDSTONE_TRANSCEIVER.get(), //Drops unique item stack based on selected Data Component
+                createSingleItemTable(ModBlocks.REDSTONE_TRANSCEIVER.get())
+                        //Apply boolean data to item stack
+                        .apply(
+                                CopyComponentsFunction.copyComponents(
+                                        CopyComponentsFunction.Source.BLOCK_ENTITY
+                                ).include(ModDataComponents.IS_POWERED.get())
+                        )
+                        //Apply string data to item stack
+                        .apply(
+                                CopyComponentsFunction.copyComponents(
+                                        CopyComponentsFunction.Source.BLOCK_ENTITY
+                                ).include(ModDataComponents.IS_RECEIVER.get())
+                        )
+                        //Apply string data to item stack
+                        .apply(
+                                CopyComponentsFunction.copyComponents(
+                                        CopyComponentsFunction.Source.BLOCK_ENTITY
+                                ).include(ModDataComponents.FREQUENCY_STRING.get())
+                        )
+        );
 
         //JOKE BLOCK
         this.add(ModBlocks.BODY_PILLOW_OZY.get(),

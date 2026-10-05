@@ -11,7 +11,6 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.function.Supplier;
 
 public class ModEntities {
-
     private static final float chairHeight = 0.50f; // 1.00 is a full block height
 
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =

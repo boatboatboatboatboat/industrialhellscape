@@ -7,7 +7,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -35,7 +34,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
 import java.util.function.BiConsumer;
 
 import static java.lang.Math.cos;
@@ -271,8 +269,8 @@ public class PeanutStatueBlock extends Modelled2Block implements Fallable {
     public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource pRandom) {
         if(!level.isClientSide) { //therefore is server side and applies to all players
             playPeanutNoises(level, pos, (float) 1.5);
-            List<ServerPlayer> playersOnline = level.players();
-            if(playersOnline.isEmpty()) { return; } //If server is empty
+//            List<ServerPlayer> playersOnline = level.players();
+//            if(playersOnline.isEmpty()) { return; } //If server is empty
 
             Player victim = level.getNearestPlayer(pos.getX(),pos.getY(),pos.getZ(),10, null);
             if(victim != null) {

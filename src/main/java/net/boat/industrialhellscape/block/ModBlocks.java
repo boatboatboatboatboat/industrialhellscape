@@ -21,6 +21,7 @@ import net.boat.industrialhellscape.block.block_classes.TextureToggleBlocks.Trus
 import net.boat.industrialhellscape.block.block_interfaces.HitboxGeometryCollection;
 import net.boat.industrialhellscape.block.block_interfaces.MultiBlockPlacementArrayCollection;
 import net.boat.industrialhellscape.block.logic_enums.ConnectingBlockPlacementOrientation;
+import net.boat.industrialhellscape.experimental_sandbox.RedstoneTransceiverBlock;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.client.gui.screens.Screen;
@@ -125,6 +126,13 @@ public class ModBlocks {
             () -> new WaterloggableLeverBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.OAK_PLANKS),
                     HitboxGeometryCollection.INDUSTRIAL_LEVER())
+    );
+
+    //----- BLOCK ONLY. ITEM IS REGISTERED IN MODITEMS CLASS -----
+    public static final DeferredBlock<Block> REDSTONE_TRANSCEIVER = registerBlockOnly("redstone_transceiver",
+            () -> new RedstoneTransceiverBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.OAK_PLANKS),
+                    HitboxGeometryCollection.FULL_BLOCK())
     );
 
 //    public static final DeferredBlock<Block> REMOVE_THIS_ITEM = registerBlockAndBlockItem("remove_this_item",
