@@ -1,4 +1,4 @@
-package net.boat.industrialhellscape.block.block_classes.SurfaceMountBlocks;
+package net.boat.industrialhellscape.block.block_classes.FaceAttachedHorizontalDirectionBlocks;
 
 import net.boat.industrialhellscape.block.block_interfaces.HitboxRotationInterface;
 import net.boat.industrialhellscape.block.block_interfaces.ToolUseInterface;
@@ -46,7 +46,7 @@ Having the 3D model of the block aligned this way allows combinations of X and Y
 Keywords: bracket, Pipe Conduit Inner Corner, Pipe Conduit Outer Corner, pipe_conduit_inner_corner, pipe_conduit_outer_corner
 */
 
-public class CornerBlock extends ModelledSurfaceMountBlock implements SimpleWaterloggedBlock, ToolUseInterface {
+public class CornerBlock extends ModelledFAHDBlock implements SimpleWaterloggedBlock, ToolUseInterface {
 
     public static DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING; //"FACING" is used to store DirectionProperty value of "north, south, east, west" //KJ
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -134,15 +134,15 @@ public class CornerBlock extends ModelledSurfaceMountBlock implements SimpleWate
 
         BlockState state; //Start with default blockstate
 
-        if (clickedFaceDirection.getAxis() == Direction.Axis.Y) { //On Floor or Ceiling
+        if (clickedFaceDirection.getAxis() == Direction.Axis.Y) { //On Floor or Ceiling, assign respectively floor/ceiling AttachFace enum value
             state = this.defaultBlockState()
                     .setValue(FACE, clickedFaceDirection == Direction.UP ? AttachFace.FLOOR : AttachFace.CEILING).setValue(FACING, facing);
-        } else if (playerExists && player.isCrouching()) { //On wall, but player is crouching.
-            state = this.defaultBlockState()
-                    .setValue(FACE, AttachFace.CEILING).setValue(FACING, facing);
-        } else { //On walls
+        } else if (playerExists && player.isCrouching()) { //On wall, but player is crouching, assign wall Attachface enum value
             state = this.defaultBlockState()
                     .setValue(FACE, AttachFace.WALL).setValue(FACING, facing);
+        } else { //On wall, player not crouching, assign attachFace ceiling (intended default state) - i thought i fixed this many times
+            state = this.defaultBlockState()
+                    .setValue(FACE, AttachFace.CEILING).setValue(FACING, facing);
         }
 
         state = state.setValue(WATERLOGGED,fluidstate.getType() == Fluids.WATER);

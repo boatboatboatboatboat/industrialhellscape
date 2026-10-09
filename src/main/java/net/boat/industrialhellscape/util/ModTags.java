@@ -12,6 +12,8 @@ public class ModTags {
     public static class Blocks {
         //MAIN BLOCK CATEGORIES
         public static final TagKey<Block> VESSELPLATE_BLOCKS = tag("vesselplate_blocks");
+        //public static final TagKey<Block> PANEL_BLOCKS = tag("panel_blocks"); //tentative category
+
         public static final TagKey<Block> VESSELGLASS_BLOCKS = tag("vesselglass_blocks");
         public static final TagKey<Block> ROCKRETE_BLOCKS = tag("rockrete_blocks");
         public static final TagKey<Block> TRUSS_BLOCKS = tag("truss_blocks");

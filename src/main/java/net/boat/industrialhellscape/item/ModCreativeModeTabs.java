@@ -50,9 +50,6 @@ public class ModCreativeModeTabs {
                 ModBlocks.DEBUG_BLOCK.asItem(),
                 ModBlocks.PEANUT_STATUE.asItem(),
 
-                //Unreleased
-                ModBlocks.CHAINLINK_FENCE.get().asItem(),
-
                 //Vesselplate Vertical Variants (Hidden to prevent JEI clutter)
                 ModBlocks.VERTICAL_VESSELPLATE.asItem(),
                 ModBlocks.VERTICAL_REINFORCED_VESSELPLATE.asItem(),

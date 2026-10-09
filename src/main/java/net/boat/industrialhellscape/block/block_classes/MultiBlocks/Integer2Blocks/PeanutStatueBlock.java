@@ -1,5 +1,6 @@
 package net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks;
 
+import net.boat.industrialhellscape.ModServerConfig;
 import net.boat.industrialhellscape.block.block_interfaces.MultiBlockPlacementInterface;
 import net.boat.industrialhellscape.item.ModItems;
 import net.boat.industrialhellscape.sound.ModSounds;
@@ -145,10 +146,13 @@ public class PeanutStatueBlock extends Modelled2Block implements Fallable {
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player pPlayer, boolean willHarvest, FluidState fluid) {
         if(!level.isClientSide) {
 
-            //duplication
+
             MultiBlockPlacementInterface.destroyRemainingMultiBlock(level, pPlayer, this, pos, partProperty, state, multiBlockPlacementMatrix);
-            teleport(state,level,pos,pos, pPlayer,10,10,10);
-            //teleport(state,level,pos,pos, pPlayer,10,10,10); //will duplicate as it teleports. Now disabled
+
+            //duplication
+            for(int i=0; i<ModServerConfig.peanutStatueTeleportAttemptsInt(); i++) {
+                teleport(state,level,pos,pos, pPlayer,10,10,10);
+            }
         }
 
         if(level.isClientSide) {
@@ -189,7 +193,7 @@ public class PeanutStatueBlock extends Modelled2Block implements Fallable {
 
     @Override
     protected @NotNull ItemInteractionResult useItemOn(ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
-        if(stack.is(ModItems.INHELL_HAVEN_DEVICE.get())) {
+        if(stack.is(ModItems.INHELL_HAVEN_DEVICE.get()) && ModServerConfig.havenToolDestroysPeanutStatue()) {
             BlockPos abovePos = pos.above();
             BlockPos belowPos = pos.below();
             switch(state.getValue(PART)) {
@@ -257,20 +261,26 @@ public class PeanutStatueBlock extends Modelled2Block implements Fallable {
 
         } //end of serverside logic
     }
+
     @Override
     public boolean isRandomlyTicking(@NotNull BlockState pState) {
         return true;
     }
 
-    //issue narros to here
     @Override
     public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource pRandom) {
         if(!level.isClientSide) { //therefore is server side and applies to all players
             playPeanutNoises(level, pos, (float) 1.5);
-//            List<ServerPlayer> playersOnline = level.players();
-//            if(playersOnline.isEmpty()) { return; } //If server is empty
 
-            Player victim = level.getNearestPlayer(pos.getX(),pos.getY(),pos.getZ(),10, null); //nullable
+            Player victim = level.getNearestPlayer(pos.getX(),pos.getY(),pos.getZ(),10, null); //NOT nullable
+
+            if((victim != null) && ModServerConfig.peanutStatueDisappearsOnRandomTick()) {
+                //potential exception avoided by passing victim (player) into helper method
+                //if nearest player is in creative when random tick happens, peanut will disappear and leave behind item as if mined by player
+                MultiBlockPlacementInterface.destroyRemainingMultiBlock(level, victim, this, pos, partProperty, state, multiBlockPlacementMatrix);
+                return; //exits prematurely to prevent subsequent code from undoing removal with setBlock() logic
+            }
+
             if(victim != null) {
                 BlockPos abovePos = pos.above();
                 BlockPos belowPos = pos.below();

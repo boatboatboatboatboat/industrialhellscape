@@ -1,4 +1,4 @@
-package net.boat.industrialhellscape.block.block_classes.SurfaceMountBlocks;
+package net.boat.industrialhellscape.block.block_classes.FaceAttachedHorizontalDirectionBlocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -25,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.function.BiConsumer;
 
-public class WaterloggableLeverBlock extends ModelledSurfaceMountBlock {
+public class WaterloggableLeverBlock extends ModelledFAHDBlock {
 
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
@@ -95,8 +95,8 @@ public class WaterloggableLeverBlock extends ModelledSurfaceMountBlock {
     }
 
     protected static void playSound(@Nullable Player player, LevelAccessor level, BlockPos pos, BlockState state) {
-        float f = state.getValue(POWERED) ? 0.6F : 0.5F;
-        level.playSound(player, pos, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3F, f);
+        float soundPitch = state.getValue(POWERED) ? 0.6F : 0.3F;
+        level.playSound(player, pos, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3F, soundPitch);
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {

@@ -1,6 +1,7 @@
 package net.boat.industrialhellscape.item.modded_items;
 
 
+import net.boat.industrialhellscape.ModServerConfig;
 import net.boat.industrialhellscape.item.ModDamageTypes;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.minecraft.core.particles.ParticleOptions;
@@ -80,13 +81,12 @@ public class GasStationPillItem extends Item {
     //If player eats pill
     public @NotNull ItemStack finishUsingItem(@NotNull ItemStack itemstack, @NotNull Level world, @NotNull LivingEntity entity) {
         if (entity instanceof Player player) {
-
             if(player.level().isClientSide) {
                 addParticlesAroundSelf(player, ParticleTypes.HAPPY_VILLAGER);
             }
 
             player.makeSound(ModSounds.HORSEPILL.get());
-            player.hurt(player.level().damageSources().source(ModDamageTypes.HORSEPILL_DAMAGE), 512F);
+            player.hurt(player.level().damageSources().source(ModDamageTypes.HORSEPILL_DAMAGE), ModServerConfig.gasStationPillDamage());
 
             //Serverside
             if(player.level() instanceof ServerLevel serverLevel && !player.isAlive()) {

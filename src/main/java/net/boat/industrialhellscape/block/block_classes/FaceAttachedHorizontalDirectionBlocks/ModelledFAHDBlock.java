@@ -1,4 +1,4 @@
-package net.boat.industrialhellscape.block.block_classes.SurfaceMountBlocks;
+package net.boat.industrialhellscape.block.block_classes.FaceAttachedHorizontalDirectionBlocks;
 
 import com.mojang.serialization.MapCodec;
 import net.boat.industrialhellscape.block.block_interfaces.HitboxRotationInterface;
@@ -27,10 +27,10 @@ import javax.annotation.Nullable;
 /*
 INFO:
 -----
-This block can be placed on all surfaces. It can be waterlogged.
+This block can be placed on all surfaces (facing cardinal directions on ceilings/floors). It can be waterlogged.
 */
 
-public class ModelledSurfaceMountBlock extends FaceAttachedHorizontalDirectionalBlock implements SimpleWaterloggedBlock {
+public class ModelledFAHDBlock extends FaceAttachedHorizontalDirectionalBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     protected final VoxelShape SHAPE_NORTH;
@@ -50,7 +50,7 @@ public class ModelledSurfaceMountBlock extends FaceAttachedHorizontalDirectional
 
 
 
-    public ModelledSurfaceMountBlock(Properties pProperties, VoxelShape floorHitBox) {
+    public ModelledFAHDBlock(Properties pProperties, VoxelShape floorHitBox) {
         super(pProperties);
 
         this.SHAPE_FLOOR_NORTH = floorHitBox;
@@ -96,7 +96,6 @@ public class ModelledSurfaceMountBlock extends FaceAttachedHorizontalDirectional
         Direction facing = pContext.getHorizontalDirection().getOpposite();
         Direction clickedFaceDirection = pContext.getClickedFace();
 
-        BlockPos blockPos = pContext.getClickedPos();
         BlockState state; //Start with default blockstate
 
         if (clickedFaceDirection.getAxis() == Direction.Axis.Y) { //On Floor or Ceiling

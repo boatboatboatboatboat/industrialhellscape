@@ -3,6 +3,11 @@
   "industrialhellscape.configuration.tagged_wrench_compat": "Wrench Item-Tag Compatible",
   "industrialhellscape.configuration.crouch_to_change_texture": "Crouching Toggles Texture",
 
+  "industrialhellscape.configuration.peanut_statue_teleport_attempts": "Peanut Statue Teleport Attempts",
+  "industrialhellscape.configuration.enable_peanut_statue_random_tick_disappear": "Enable Peanut Statue block to disappear on random ticks",
+
+  "industrialhellscape.configuration.pill_damage": "Pill Instant Damage if eaten",
+
   "item.industrialhellscape.inhell_haven_device": "HAVEN Tool",
   "item.industrialhellscape.job_application": "Job Application",
   "item.industrialhellscape.termination_letter": "Termination Letter",
@@ -13,6 +18,10 @@
   "block.industrialhellscape.prototype_machine": "Prototype Machine",
   "block.industrialhellscape.remove_this_item": "Remove This Item",
 
+  "block.industrialhellscape.vesselplate_sheeting": "Vesselplate Sheeting",
+  "block.industrialhellscape.vesselplate_sheeting_slab": "Vesselplate Sheeting Slab",
+  "block.industrialhellscape.vesselplate_sheeting_stairs": "Vesselplate Sheeting Stairs",
+  "block.industrialhellscape.sheeting_panel": "Sheeting Panel",
   "block.industrialhellscape.riveted_vesselplate": "Riveted Vesselplate",
   "block.industrialhellscape.horizontal_vesselplate": "Vesselplate",
   "block.industrialhellscape.vertical_vesselplate": "Vesselplate",
@@ -26,6 +35,11 @@
 
   "block.industrialhellscape.riveted_vesselplate_slab": "Riveted Vesselplate Slab",
   "block.industrialhellscape.riveted_vesselplate_stairs": "Riveted Vesselplate Stairs",
+
+  "block.industrialhellscape.gray_vesselplate_sheeting": "Gray Vesselplate Sheeting",
+  "block.industrialhellscape.gray_vesselplate_sheeting_slab": "Gray Vesselplate Sheeting Slab",
+  "block.industrialhellscape.gray_vesselplate_sheeting_stairs": "Gray Vesselplate Sheeting Stairs",
+  "block.industrialhellscape.gray_sheeting_panel": "Gray Sheeting Panel",
   "block.industrialhellscape.gray_riveted_vesselplate_slab": "Gray Riveted Vesselplate Slab",
   "block.industrialhellscape.gray_riveted_vesselplate_stairs": "Gray Riveted Vesselplate Stairs",
 
@@ -41,6 +55,10 @@
   "block.industrialhellscape.smooth_gray_vesselplate_slab": "Smooth Gray Vesselplate Slab",
   "block.industrialhellscape.gray_vesselplate_pillar": "Gray Vesselplate Pillar",
 
+  "block.industrialhellscape.rusty_vesselplate_sheeting": "Rusty Vesselplate Sheeting",
+  "block.industrialhellscape.rusty_vesselplate_sheeting_slab": "Rusty Vesselplate Sheeting Slab",
+  "block.industrialhellscape.rusty_vesselplate_sheeting_stairs": "Rusty Vesselplate Sheeting Stairs",
+  "block.industrialhellscape.rusty_sheeting_panel": "Rusty Sheeting Panel",
   "block.industrialhellscape.rusty_horizontal_vesselplate": "Rusty Vesselplate",
   "block.industrialhellscape.rusty_vertical_vesselplate": "Rusty Vesselplate",
   "block.industrialhellscape.rusty_vertical_reinforced_vesselplate": "Rusty Reinforced Vesselplate",
@@ -236,6 +254,8 @@
 
   "block.industrialhellscape.work_light_stand": "Work Light Stand",
   "block.industrialhellscape.floor_work_light": "Floor Work Light",
+
+  "block.industrialhellscape.barbed_wire_fence": "Barbed Wire Fence",
   "block.industrialhellscape.yellow_railing": "Yellow Railing",
   "block.industrialhellscape.yellow_stair_railing": "Yellow Stair Railing",
   "block.industrialhellscape.gray_railing": "Gray Railing",

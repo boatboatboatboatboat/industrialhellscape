@@ -57,6 +57,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         this.tag(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM)
                 .add(
                         //DONT PUT SLABS HERE
+                        ModBlocks.VESSELPLATE_SHEETING.asItem(),
                         ModBlocks.HORIZONTAL_VESSELPLATE.asItem(),
                         ModBlocks.VERTICAL_VESSELPLATE.asItem(),
                         ModBlocks.HORIZONTAL_REINFORCED_VESSELPLATE.asItem(),
@@ -65,6 +66,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.RIVETED_VESSELPLATE.asItem(),
                         ModBlocks.VESSELPLATE_PILLAR.asItem(),
 
+                        ModBlocks.GRAY_VESSELPLATE_SHEETING.asItem(),
                         ModBlocks.GRAY_HORIZONTAL_VESSELPLATE.asItem(),
                         ModBlocks.GRAY_VERTICAL_VESSELPLATE.asItem(),
                         ModBlocks.GRAY_HORIZONTAL_REINFORCED_VESSELPLATE.asItem(),
@@ -73,6 +75,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.GRAY_RIVETED_VESSELPLATE.asItem(),
                         ModBlocks.GRAY_VESSELPLATE_PILLAR.asItem(),
 
+                        ModBlocks.RUSTY_VESSELPLATE_SHEETING.asItem(),
                         ModBlocks.RUSTY_HORIZONTAL_VESSELPLATE.asItem(),
                         ModBlocks.RUSTY_VERTICAL_VESSELPLATE.asItem(),
                         ModBlocks.RUSTY_HORIZONTAL_REINFORCED_VESSELPLATE.asItem(),
@@ -80,11 +83,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.RUSTY_VESSELPLATE_PILLAR.asItem(),
 
                         ModBlocks.SMOOTH_RUSTY_VESSELPLATE.asItem(),
-                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE_SLAB.asItem(),
-                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE_STAIRS.asItem(),
-                        ModBlocks.RUSTY_RIVETED_VESSELPLATE.asItem(),
-                        ModBlocks.RUSTY_RIVETED_VESSELPLATE_SLAB.asItem(),
-                        ModBlocks.RUSTY_RIVETED_VESSELPLATE_STAIRS.asItem()
+                        ModBlocks.RUSTY_RIVETED_VESSELPLATE.asItem()
                 );
         this.tag(ModTags.Items.TRUSS_SMELTABLE_ITEM)
                 .add(
@@ -171,6 +170,11 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(
                         ModBlocks.METALWORKS.asItem(),
 
+                        ModBlocks.SHEETING_PANEL.asItem(),
+                        ModBlocks.GRAY_SHEETING_PANEL.asItem(),
+                        ModBlocks.RUSTY_SHEETING_PANEL.asItem(),
+                        ModBlocks.BARBED_WIRE_FENCE.asItem(),
+
                         ModBlocks.YELLOW_STAIR_RAILING.asItem(),
                         ModBlocks.YELLOW_RAILING.asItem(),
                         ModBlocks.GRAY_STAIR_RAILING.asItem(),
@@ -186,7 +190,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.SMALL_GRAY_BOLTED_BRACKET.asItem(),
                         ModBlocks.SMALL_BLACK_BOLTED_BRACKET.asItem(),
                         ModBlocks.SMALL_RUSTY_BOLTED_BRACKET.asItem(),
-                        ModBlocks.CHAINLINK_FENCE.asItem()
+                        ModBlocks.BARBED_WIRE_FENCE.asItem()
                 );
 
         //FURNITURE CATEGORIES BELOW

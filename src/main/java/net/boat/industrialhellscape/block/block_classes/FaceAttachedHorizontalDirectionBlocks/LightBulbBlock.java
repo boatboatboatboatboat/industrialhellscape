@@ -1,4 +1,4 @@
-package net.boat.industrialhellscape.block.block_classes.SurfaceMountBlocks;
+package net.boat.industrialhellscape.block.block_classes.FaceAttachedHorizontalDirectionBlocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 
 // Code obtained from Create Deco mod (CC0 1.0 license)
 
-public class LightBulbBlock extends ModelledSurfaceMountBlock {
+public class LightBulbBlock extends ModelledFAHDBlock {
     public final SoundEvent ON_SOUND;
     public final SoundEvent OFF_SOUND;
 

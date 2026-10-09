@@ -6,6 +6,7 @@ import net.boat.industrialhellscape.block.block_classes.AxisPillarBlocks.TrussBe
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer11Blocks.Integer11Block;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.Integer2Block;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.PeanutStatueBlock;
+import net.boat.industrialhellscape.block.block_classes.PanelBlocks.PanelBlock;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -31,7 +32,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //genSimpleSBI(ModBlocks.PROTOTYPE_MACHINE.get(), build3FaceTexturesBlockModel("prototype_machine","experimental", "prototype_machine_front", "prototype_machine_side", "prototype_machine_top"));
         genFullBlockIntegerMultiBlockSI(ModBlocks.DEBUG_BLOCK.get(), "debug_textures", 11, Integer11Block.PART);
         genPeanutS((PeanutStatueBlock) ModBlocks.PEANUT_STATUE.get(), "peanut_statue");
-        genCustomWallBlockSBI(ModBlocks.CHAINLINK_FENCE.get(), "chainlink_fence");
 
         //In-Development Block
         genSurfaceModelChangeSI(ModBlocks.INDUSTRIAL_LEVER.get(), "lever");
@@ -77,7 +77,19 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genSimpleTextureToggleSBI(ModBlocks.RUSTY_HORIZONTAL_CUTOUT_VENT.get(),"vent","cutout");
         genSimpleTextureToggleSBI(ModBlocks.RUSTY_VERTICAL_CUTOUT_VENT.get(),"vent","cutout");
 
+        //Panel Blocks
+        genMultiStatePanelSBI((PanelBlock) ModBlocks.SHEETING_PANEL.get(),"", "panel2pixel","vesselplate","vesselplate_pillar","vesselplate_sheeting","vesselplate_pillar_top");
+        genMultiStatePanelSBI((PanelBlock) ModBlocks.GRAY_SHEETING_PANEL.get(),"", "panel2pixel","vesselplate","gray_vesselplate_pillar","gray_vesselplate_sheeting","gray_vesselplate_pillar_top");
+        genMultiStatePanelSBI((PanelBlock) ModBlocks.RUSTY_SHEETING_PANEL.get(),"", "panel2pixel","vesselplate","rusty_vesselplate_pillar","rusty_vesselplate_sheeting","rusty_vesselplate_pillar_top");
+
+        //Fence Blocks
+        genFenceBlockSB( (FenceBlock) ModBlocks.BARBED_WIRE_FENCE.get(), "fence","barbed_wire_fence_post", "barbed_wire_fence");
+
         //Vesselplate Blocks
+        genFolderedSBI(ModBlocks.VESSELPLATE_SHEETING.get(), "vesselplate");
+        genStairsWithRenderTypeSBI(ModBlocks.VESSELPLATE_SHEETING_STAIRS.get(),"vesselplate","vesselplate_sheeting","vesselplate_sheeting","vesselplate_sheeting","solid");
+        genSlabsWithCustomDoubleSBI(ModBlocks.VESSELPLATE_SHEETING_SLAB.get(), ModBlocks.VESSELPLATE_SHEETING.get(),"vesselplate","vesselplate_sheeting","vesselplate_sheeting", "vesselplate_sheeting","","");
+
         genSimpleTextureToggleSBI(ModBlocks.RIVETED_VESSELPLATE.get(),"vesselplate",  "solid");
         genSimpleTextureToggleSBI(ModBlocks.HORIZONTAL_REINFORCED_VESSELPLATE.get(),"vesselplate", "solid");
         genSimpleTextureToggleSBI(ModBlocks.VERTICAL_REINFORCED_VESSELPLATE.get(),"vesselplate",  "solid");
@@ -90,6 +102,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genSlabsWithCustomDoubleSBI(ModBlocks.RIVETED_VESSELPLATE_SLAB.get(), ModBlocks.RIVETED_VESSELPLATE.get(),"vesselplate","riveted_vesselplate_double_slab", "riveted_vesselplate","riveted_vesselplate","","");
         genSlabsWithCustomDoubleSBI(ModBlocks.SMOOTH_VESSELPLATE_SLAB.get(), ModBlocks.SMOOTH_VESSELPLATE.get(),"vesselplate","smooth_vesselplate_double_slab","smooth_vesselplate", "smooth_vesselplate","","");
 
+        genFolderedSBI(ModBlocks.GRAY_VESSELPLATE_SHEETING.get(), "vesselplate");
+        genStairsWithRenderTypeSBI(ModBlocks.GRAY_VESSELPLATE_SHEETING_STAIRS.get(),"vesselplate","gray_vesselplate_sheeting","gray_vesselplate_sheeting","gray_vesselplate_sheeting","solid");
+        genSlabsWithCustomDoubleSBI(ModBlocks.GRAY_VESSELPLATE_SHEETING_SLAB.get(), ModBlocks.GRAY_VESSELPLATE_SHEETING.get(),"vesselplate","gray_vesselplate_sheeting","gray_vesselplate_sheeting", "gray_vesselplate_sheeting","","");
+
         genSimpleTextureToggleSBI(ModBlocks.GRAY_RIVETED_VESSELPLATE.get(),"vesselplate","solid");
         genSimpleTextureToggleSBI(ModBlocks.GRAY_VERTICAL_REINFORCED_VESSELPLATE.get(),"vesselplate", "solid");
         genSimpleTextureToggleSBI(ModBlocks.GRAY_HORIZONTAL_REINFORCED_VESSELPLATE.get(),"vesselplate", "solid");
@@ -101,6 +117,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genStairsWithRenderTypeSBI(ModBlocks.SMOOTH_GRAY_VESSELPLATE_STAIRS.get(),"vesselplate","smooth_gray_vesselplate","smooth_gray_vesselplate","smooth_gray_vesselplate","solid");
         genSlabsWithCustomDoubleSBI(ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get(), ModBlocks.GRAY_RIVETED_VESSELPLATE.get(),"vesselplate","gray_riveted_vesselplate_double_slab","gray_riveted_vesselplate","gray_riveted_vesselplate","","");
         genSlabsWithCustomDoubleSBI(ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get(), ModBlocks.SMOOTH_GRAY_VESSELPLATE.get(),"vesselplate","smooth_gray_vesselplate_double_slab","smooth_gray_vesselplate", "smooth_gray_vesselplate","","");
+
+        genFolderedSBI(ModBlocks.RUSTY_VESSELPLATE_SHEETING.get(), "vesselplate");
+        genStairsWithRenderTypeSBI(ModBlocks.RUSTY_VESSELPLATE_SHEETING_STAIRS.get(),"vesselplate","rusty_vesselplate_sheeting","rusty_vesselplate_sheeting","rusty_vesselplate_sheeting","solid");
+        genSlabsWithCustomDoubleSBI(ModBlocks.RUSTY_VESSELPLATE_SHEETING_SLAB.get(), ModBlocks.RUSTY_VESSELPLATE_SHEETING.get(),"vesselplate","rusty_vesselplate_sheeting","rusty_vesselplate_sheeting", "rusty_vesselplate_sheeting","","");
+
 
         genSimpleTextureToggleSBI(ModBlocks.RUSTY_HORIZONTAL_VESSELPLATE.get(),"vesselplate", "solid");
         genSimpleTextureToggleSBI(ModBlocks.RUSTY_VERTICAL_VESSELPLATE.get(),"vesselplate",  "solid");
@@ -956,6 +977,125 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //GENERATE ITEM MODEL
         simpleBlockItem(block, models().getExistingFile(modLoc(wallModel)));
 
+    }
+
+    private void genMultiStatePanelSBI(PanelBlock block, String modelSubFolder, String parentModelName, String faceTextureSubFolder, String edgeTextureSubFolder, String faceTextureFileName, String edgeTextureFileName) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        String blockFolder = "block/"; //generated/resources/assets/models/blocks but also used for mod's non-generated resource folder
+        String generatedModelDestination = blockFolder+stringName;
+        String existingParentModelLocation = blockFolder+optionalFolder(modelSubFolder)+parentModelName;
+        String faceTexturePath = blockFolder+optionalFolder(faceTextureSubFolder)+faceTextureFileName;
+        String edgeTexturePath = blockFolder+optionalFolder(edgeTextureSubFolder)+edgeTextureFileName;
+
+        //ModelFile floorPanelModelFile = models().getExistingFile(modLoc(parentModelPath));
+        ModelFile floorPanelModelFile = models().withExistingParent(generatedModelDestination, modLoc(existingParentModelLocation))
+                .texture("0", faceTexturePath)
+                .texture("1", edgeTexturePath);
+
+        MultiPartBlockStateBuilder multipartBuilder = getMultipartBuilder(block);
+
+        //preallocate for-loop variables;
+        int xDegrees = 0;
+        int yDegrees = 0;
+
+        //Determine correct X and Y model rotations based on block state
+        for(Direction dir : BlockStateProperties.FACING.getPossibleValues()) {
+            switch(dir) {
+                case NORTH -> {
+                    xDegrees = 270; //right hand rule (negative)
+                    yDegrees = 0;
+                }
+                case WEST -> {
+                    xDegrees = 270; //orig 90
+                    yDegrees = 270; //orig 90
+                }
+                case SOUTH -> {
+                    xDegrees = 270;
+                    yDegrees = 180;
+                }
+                case EAST -> {
+                    xDegrees = 270; //orig 90
+                    yDegrees = 90; //orig 270
+                }
+
+                case UP -> {
+                    xDegrees = 180;
+                    yDegrees = 0;
+                }
+                case DOWN -> {
+                    xDegrees = 0;
+                    yDegrees = 0;
+                }
+            }
+
+            MultiPartBlockStateBuilder.PartBuilder panelModelBuilder = multipartBuilder.part().modelFile(floorPanelModelFile).rotationX(xDegrees).rotationY(yDegrees).addModel();
+            panelModelBuilder.useOr()
+                    .condition(switch(dir) {
+                                case NORTH -> BlockStateProperties.NORTH;
+                                case WEST -> BlockStateProperties.WEST;
+                                case EAST -> BlockStateProperties.EAST;
+                                case SOUTH -> BlockStateProperties.SOUTH;
+
+                                case UP -> BlockStateProperties.UP;
+                                case DOWN -> BlockStateProperties.DOWN;
+                            }
+                            , true);
+            panelModelBuilder.end();
+        }
+
+        simpleBlockItem(block, models().getExistingFile(modLoc(generatedModelDestination)));
+    }
+
+    private void genFenceBlockSB(FenceBlock block, String modelSubFolder, String postFileName, String fenceFileName) {
+        String blockFolder = "block/";
+
+        //Already existing model files
+        String existingPostModelLocation = blockFolder+optionalFolder(modelSubFolder)+postFileName;
+        String existingFenceModelLocation = blockFolder+optionalFolder(modelSubFolder)+fenceFileName;
+
+        //Post Model
+        ModelFile postModelFile = models().getExistingFile(modLoc(existingPostModelLocation));
+        //Fence Model
+        ModelFile fenceModelFile = models().getExistingFile(modLoc(existingFenceModelLocation));
+
+        MultiPartBlockStateBuilder multipartBuilder = getMultipartBuilder(block);
+
+        //preallocate for-loop variables;
+        int yDegrees = 0;
+
+        //Generate Fence model states
+        for(Direction dir : BlockStateProperties.HORIZONTAL_FACING.getPossibleValues()) {
+            switch (dir) {
+                case NORTH -> {
+                    yDegrees = 0;
+                }
+                case WEST -> {
+                    yDegrees = 270;
+                }
+                case SOUTH -> {
+                    yDegrees = 180;
+                }
+                case EAST -> {
+                    yDegrees = 90;
+                }
+            }
+
+            MultiPartBlockStateBuilder.PartBuilder fenceModelBuilder = multipartBuilder.part().modelFile(fenceModelFile).rotationY(yDegrees).addModel();
+            fenceModelBuilder.useOr()
+                    .condition(switch(dir) {
+                                case WEST -> BlockStateProperties.WEST;
+                                case EAST -> BlockStateProperties.EAST;
+                                case SOUTH -> BlockStateProperties.SOUTH;
+                                default -> BlockStateProperties.NORTH;
+                            }
+                            , true);
+            fenceModelBuilder.end();
+        }
+        //generate fencePost model state
+        MultiPartBlockStateBuilder.PartBuilder postModelBuilder = multipartBuilder.part().modelFile(postModelFile).rotationY(yDegrees).addModel();
+        postModelBuilder.useOr()
+                .condition(BlockStateProperties.UP, true);
+        postModelBuilder.end();
     }
 
     private void genCustomWallBlockSBI(WallBlock block, String modelSubFolder) {

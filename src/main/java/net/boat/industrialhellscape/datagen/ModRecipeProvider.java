@@ -92,12 +92,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     );
 
     private static final List<ItemLike> VESSELPLATE_STONECUT_OUTPUT = List.of(
+            ModBlocks.VESSELPLATE_SHEETING.get(),
             ModBlocks.RIVETED_VESSELPLATE.asItem(),
             ModBlocks.HORIZONTAL_VESSELPLATE.asItem(),
             ModBlocks.VESSELPLATE_PILLAR.asItem(),
             ModBlocks.SMOOTH_VESSELPLATE.asItem(),
             ModBlocks.HORIZONTAL_REINFORCED_VESSELPLATE.asItem(),
 
+            ModBlocks.GRAY_VESSELPLATE_SHEETING.asItem(),
             ModBlocks.GRAY_RIVETED_VESSELPLATE.asItem(),
             ModBlocks.SMOOTH_GRAY_VESSELPLATE.asItem(),
             ModBlocks.GRAY_VESSELPLATE_PILLAR.asItem(),
@@ -113,6 +115,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.GRAY_RIVETED_VESSELPLATE_STAIRS.asItem(),
             ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.asItem(),
 
+            ModBlocks.RUSTY_SHEETING_PANEL.asItem(),
             ModBlocks.RUSTY_HORIZONTAL_VESSELPLATE.asItem(),
             ModBlocks.RUSTY_VERTICAL_VESSELPLATE.asItem(),
             ModBlocks.RUSTY_HORIZONTAL_REINFORCED_VESSELPLATE.asItem(),
@@ -212,6 +215,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     private static final List<ItemLike> METALWORKS_STONECUT_OUTPUT = List.of(
             ModBlocks.METALWORKS.asItem(),
+
+            ModBlocks.SHEETING_PANEL.asItem(),
+            ModBlocks.GRAY_SHEETING_PANEL.asItem(),
+            ModBlocks.RUSTY_SHEETING_PANEL.asItem(),
+
+            ModBlocks.BARBED_WIRE_FENCE.asItem(),
+
             ModBlocks.RUSTY_BOLTED_BRACKET.asItem(),
             ModBlocks.BLACK_BOLTED_BRACKET.asItem(),
             ModBlocks.GRAY_BOLTED_BRACKET.asItem(),
@@ -226,7 +236,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.BLACK_STAIR_RAILING.asItem(),
             ModBlocks.RUSTY_RAILING.asItem(),
             ModBlocks.RUSTY_STAIR_RAILING.asItem()
-            //ModBlocks.CHAINLINK_FENCE.asItem()
     );
     private static final List<ItemLike> DOORS_STONECUT_OUTPUT = List.of(
             ModBlocks.ARMORED_DOOR.asItem(),

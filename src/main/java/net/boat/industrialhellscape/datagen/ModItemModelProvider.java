@@ -37,10 +37,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         wallItem(ModBlocks.BLUE_ROCKRETE_WALL, ModBlocks.ROUGH_BLUE_ROCKRETE.get(), "rough_rockrete");
         wallItem(ModBlocks.GREEN_ROCKRETE_WALL, ModBlocks.ROUGH_GREEN_ROCKRETE.get(), "rough_rockrete");
 
-        basicFolderedItem(ModBlocks.ARMORED_DOOR.get().asItem(), "door");
-        basicFolderedItem(ModBlocks.STAMPED_METAL_DOOR.get().asItem(), "door");
-        basicFolderedItem(ModBlocks.BULKHEAD_DOOR.get().asItem(), "door");
-        basicFolderedItem(ModItems.MARQUEE_DISC.get().asItem(), "disc");
+        basicFolderedItem(ModBlocks.ARMORED_DOOR.asItem(), "door");
+        basicFolderedItem(ModBlocks.STAMPED_METAL_DOOR.asItem(), "door");
+        basicFolderedItem(ModBlocks.BULKHEAD_DOOR.asItem(), "door");
+        basicFolderedItem(ModItems.MARQUEE_DISC.asItem(), "disc");
+
+        basicFolderedItem(ModBlocks.BARBED_WIRE_FENCE.asItem(), "fence");
 
         /*
         Multiblocks (fully constructed blocks cannot be rendered in GUIs without a separate model.

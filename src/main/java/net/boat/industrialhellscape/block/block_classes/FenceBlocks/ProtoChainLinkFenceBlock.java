@@ -22,12 +22,12 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nonnull;
 import java.util.Map;
 
-public class ChainLinkFenceBlock extends WallBlock implements ToolUseInterface {
+public class ProtoChainLinkFenceBlock extends WallBlock implements ToolUseInterface {
 
     private final Map<BlockState, VoxelShape> shapeByIndex;
     private final Map<BlockState, VoxelShape> collisionShapeByIndex;
 
-    public ChainLinkFenceBlock(Properties properties) {
+    public ProtoChainLinkFenceBlock(Properties properties) {
         super(properties);
         this.shapeByIndex = this.makeShapes(2.0F, 2.0F, 16.0F, 0.0F, 14.0F, 16.0F);
         this.collisionShapeByIndex = this.makeShapes(2.0F, 2.0F, 24.0F, 0.0F, 24.0F, 24.0F);

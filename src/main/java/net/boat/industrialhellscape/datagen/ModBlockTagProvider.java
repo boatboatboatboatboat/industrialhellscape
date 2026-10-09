@@ -46,6 +46,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(
                         ModBlocks.METALWORKS.get(),
 
+                        ModBlocks.SHEETING_PANEL.get(),
+                        ModBlocks.GRAY_SHEETING_PANEL.get(),
+                        ModBlocks.RUSTY_SHEETING_PANEL.get(),
+
                         ModBlocks.YELLOW_STAIR_RAILING.get(),
                         ModBlocks.YELLOW_RAILING.get(),
                         ModBlocks.GRAY_STAIR_RAILING.get(),
@@ -60,13 +64,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.BLACK_BOLTED_BRACKET.get(),
                         ModBlocks.SMALL_BLACK_BOLTED_BRACKET.get(),
                         ModBlocks.RUSTY_BOLTED_BRACKET.get(),
-                        ModBlocks.SMALL_RUSTY_BOLTED_BRACKET.get(),
-
-                        ModBlocks.CHAINLINK_FENCE.get()
+                        ModBlocks.SMALL_RUSTY_BOLTED_BRACKET.get()
                 );
 
         this.tag(ModTags.Blocks.VESSELPLATE_BLOCKS)
                 .add(
+                        ModBlocks.VESSELPLATE_SHEETING.get(),
                         ModBlocks.HORIZONTAL_VESSELPLATE.get(),
                         ModBlocks.VERTICAL_VESSELPLATE.get(),
                         ModBlocks.HORIZONTAL_REINFORCED_VESSELPLATE.get(),
@@ -79,6 +82,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.SMOOTH_VESSELPLATE_SLAB.get(),
                         ModBlocks.SMOOTH_VESSELPLATE_STAIRS.get(),
 
+                        ModBlocks.GRAY_VESSELPLATE_SHEETING.get(),
                         ModBlocks.GRAY_HORIZONTAL_VESSELPLATE.get(),
                         ModBlocks.GRAY_VERTICAL_VESSELPLATE.get(),
                         ModBlocks.GRAY_HORIZONTAL_REINFORCED_VESSELPLATE.get(),
@@ -91,6 +95,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get(),
                         ModBlocks.SMOOTH_GRAY_VESSELPLATE_STAIRS.get(),
 
+                        ModBlocks.RUSTY_VESSELPLATE_SHEETING.get(),
                         ModBlocks.RUSTY_HORIZONTAL_VESSELPLATE.get(),
                         ModBlocks.RUSTY_VERTICAL_VESSELPLATE.get(),
                         ModBlocks.RUSTY_HORIZONTAL_REINFORCED_VESSELPLATE.get(),
@@ -350,14 +355,42 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         this.tag(BlockTags.WALLS)
                 .add(
+                        /*
+                        Wall and Fence-type blocks require this vanilla tag
+                        in order to connect properly
+
+                        Walls and Fences are DIFFERENT TAGS
+                        */
                         ModBlocks.GRAY_ROCKRETE_WALL.get(),
                         ModBlocks.RED_ROCKRETE_WALL.get(),
                         ModBlocks.YELLOW_ROCKRETE_WALL.get(),
                         ModBlocks.BLUE_ROCKRETE_WALL.get(),
                         ModBlocks.GRAY_ROCKRETE_WALL.get(),
-                        ModBlocks.GREEN_ROCKRETE_WALL.get(),
-                        ModBlocks.CHAINLINK_FENCE.get()  //TODO - make chainLink fence only connect to itself
+                        ModBlocks.GREEN_ROCKRETE_WALL.get()
                 );
+
+        this.tag(BlockTags.FENCES)
+                .add(
+                        /*
+                        Wall and Fence-type blocks require this vanilla tag
+                        in order to connect properly
+
+                        Walls and Fences are DIFFERENT TAGS
+                        */
+                        ModBlocks.BARBED_WIRE_FENCE.get()
+                );
+        this.tag(BlockTags.WOODEN_FENCES)
+                .add(
+                        /*
+                        Fence Blocks need both FENCES and WOODEN_FENCES
+                        tags in order to connect properly
+
+                        isSameFence() is a boolean check in FenceBlock vanilla class
+                        that checks if a block has both tags before connecting
+                        */
+                        ModBlocks.BARBED_WIRE_FENCE.get()
+                );
+
 
         this.tag(BlockTags.NEEDS_STONE_TOOL) //When specific tool tiers are required
                 .addTags(
