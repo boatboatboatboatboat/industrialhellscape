@@ -1,4 +1,4 @@
-package net.boat.industrialhellscape.block.block_classes.SurfaceMountBlocks;
+package net.boat.industrialhellscape.block.block_classes.FaceAttachedHorizontalDirectionBlocks;
 
 import net.boat.industrialhellscape.block.block_interfaces.CustomModEnumsInterface;
 import net.boat.industrialhellscape.block.block_interfaces.HitboxRotationInterface;

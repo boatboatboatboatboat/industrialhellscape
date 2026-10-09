@@ -44,6 +44,21 @@ public interface HitboxGeometryCollection {
 
         return shape;
     }
+
+    static VoxelShape VERTICAL_ROD_4X4_SHAPE(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0.375, 0, 0.375, 0.625, 1, 0.625), BooleanOp.OR);
+
+        return shape;
+    }
+
+    static VoxelShape FENCE_2PIXEL_THICK_SHAPE() {
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0.4375, 0, 0, 0.5625, 1, 0.625), BooleanOp.OR);
+
+        return shape;
+    }
+
     //---------- END OF Y-SYMMETRIC HITBOXES ----------
 
     static VoxelShape TOILET(){
@@ -397,9 +412,9 @@ public interface HitboxGeometryCollection {
 
         return shape;
     }
-    static VoxelShape PANEL_FLOOR(){
+    static VoxelShape PANEL_2PIXEL_THICK_FLOOR(){
         VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape, Shapes.box(0, 0, 0, 1, 0.1875, 1), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0, 0, 0, 1, 0.0625, 1), BooleanOp.OR);
 
         return shape;
     }
@@ -500,8 +515,7 @@ public interface HitboxGeometryCollection {
 
     static VoxelShape FOLDING_CHAIR(){
         VoxelShape shape = Shapes.empty();
-        //shape = Shapes.join(shape, Shapes.box(0.1875, 0.5625, 0.15625, 0.8125, 0.625, 0.78125), BooleanOp.OR); //TODO- REVERT CHANGES IF NOT CAUSE OF UNSITITNG
-        shape = Shapes.join(shape, Shapes.box(0.1875, 0, 0.15625, 0.8125, 0.1, 0.78125), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.1875, 0.5625, 0.15625, 0.8125, 0.625, 0.78125), BooleanOp.OR);
 
         return shape;
     }

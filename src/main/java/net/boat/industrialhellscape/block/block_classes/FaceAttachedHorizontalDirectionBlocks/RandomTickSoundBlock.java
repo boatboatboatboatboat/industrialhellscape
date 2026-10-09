@@ -1,4 +1,4 @@
-package net.boat.industrialhellscape.block.block_classes.SurfaceMountBlocks;
+package net.boat.industrialhellscape.block.block_classes.FaceAttachedHorizontalDirectionBlocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -28,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
     Currently used for: Smoke Alarm
  */
 
-public class RandomTickSoundBlock extends ModelledSurfaceMountBlock{
+public class RandomTickSoundBlock extends ModelledFAHDBlock {
 
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 

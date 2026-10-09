@@ -2,8 +2,8 @@ package net.boat.industrialhellscape.block.block_interfaces;
 
 import net.boat.industrialhellscape.block.block_classes.AxisPillarBlocks.ConnectedPillarBlock;
 import net.boat.industrialhellscape.block.block_classes.ConnectedBlocks.ConnectedFurnitureBlock;
-import net.boat.industrialhellscape.block.block_classes.SurfaceMountBlocks.SurfaceRotatableBlock;
-import net.boat.industrialhellscape.block.block_classes.SurfaceMountBlocks.WallPipeBlock;
+import net.boat.industrialhellscape.block.block_classes.FaceAttachedHorizontalDirectionBlocks.SurfaceRotatableBlock;
+import net.boat.industrialhellscape.block.block_classes.FaceAttachedHorizontalDirectionBlocks.WallPipeBlock;
 import net.boat.industrialhellscape.block.block_state_enums.DynamicConnectionState;
 import net.boat.industrialhellscape.block.block_state_enums.SurfacePipeMountState;
 import net.boat.industrialhellscape.block.logic_enums.ConnectingBlockPlacementOrientation;

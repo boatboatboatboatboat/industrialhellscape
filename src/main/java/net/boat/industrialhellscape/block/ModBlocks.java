@@ -4,18 +4,19 @@ import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.block_classes.AxisPillarBlocks.ConnectedPillarBlock;
 import net.boat.industrialhellscape.block.block_classes.AxisPillarBlocks.TrussBeamBlock;
 import net.boat.industrialhellscape.block.block_classes.ConnectedBlocks.ConnectedFurnitureBlock;
-import net.boat.industrialhellscape.block.block_classes.FenceBlocks.ChainLinkFenceBlock;
+import net.boat.industrialhellscape.block.block_classes.ConnectedBlocks.ConnectedStorageBlock;
+import net.boat.industrialhellscape.block.block_classes.FaceAttachedHorizontalDirectionBlocks.*;
+import net.boat.industrialhellscape.block.block_classes.FenceBlocks.optionalFencePostFenceBlock;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer11Blocks.Storage11Block;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.*;
+import net.boat.industrialhellscape.block.block_classes.PanelBlocks.PanelBlock;
 import net.boat.industrialhellscape.block.block_classes.PlacedFacingBlocks.*;
 import net.boat.industrialhellscape.block.block_classes.RailingBlocks.ParapetBlock;
 import net.boat.industrialhellscape.block.block_classes.RailingBlocks.RailingBlock;
 import net.boat.industrialhellscape.block.block_classes.RailingBlocks.StairRailingBlock;
 import net.boat.industrialhellscape.block.block_classes.StorageBlocks.BarrelStorageBlock;
-import net.boat.industrialhellscape.block.block_classes.ConnectedBlocks.ConnectedStorageBlock;
 import net.boat.industrialhellscape.block.block_classes.StorageBlocks.FacingStorageBlock;
 import net.boat.industrialhellscape.block.block_classes.StorageBlocks.ModelledFacingStorageBlock;
-import net.boat.industrialhellscape.block.block_classes.SurfaceMountBlocks.*;
 import net.boat.industrialhellscape.block.block_classes.TextureToggleBlocks.SimpleTextureToggleBlock;
 import net.boat.industrialhellscape.block.block_classes.TextureToggleBlocks.TrussBlock;
 import net.boat.industrialhellscape.block.block_interfaces.HitboxGeometryCollection;
@@ -51,6 +52,8 @@ public class ModBlocks {
             DeferredRegister.createBlocks(IndustrialHellscape.MOD_ID);
 
     public static void removeAndReplaceBlocks() { //Replaces both Block and Block Item with replacements. This is called in the IndustrialHellscape main class
+        specificBlockReplacement("vesselplate_sheeting_panel", "sheeting_panel");
+
         specificBlockReplacement("smooth_gray_rockrete", "gray_rockrete");
         specificBlockReplacement("smooth_red_rockrete", "red_rockrete");
         specificBlockReplacement("smooth_yellow_rockrete", "yellow_rockrete");
@@ -162,9 +165,6 @@ public class ModBlocks {
                     true
             )
     );
-
-    public static final DeferredBlock<WallBlock> CHAINLINK_FENCE = registerBlockAndBlockItem("chainlink_fence",
-            () -> new ChainLinkFenceBlock(BlockBehaviour.Properties.of().strength(2f).requiresCorrectToolForDrops()));
 
     //BASE BLOCKS
     public static final DeferredBlock<Block> IHEA_FURNITURE_KIT = registerBlockAndBlockItem("ihea_furniture_kit",
@@ -460,7 +460,55 @@ public class ModBlocks {
             )
     );
 
+    //PANEL BLOCKS
+    public static final DeferredBlock<Block> SHEETING_PANEL = registerBlockAndBlockItem("sheeting_panel",
+            () -> new PanelBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.PANEL_2PIXEL_THICK_FLOOR()
+            )
+    );
+    public static final DeferredBlock<Block> GRAY_SHEETING_PANEL = registerBlockAndBlockItem("gray_sheeting_panel",
+            () -> new PanelBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.PANEL_2PIXEL_THICK_FLOOR()
+            )
+    );
+    public static final DeferredBlock<Block> RUSTY_SHEETING_PANEL = registerBlockAndBlockItem("rusty_sheeting_panel",
+            () -> new PanelBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.PANEL_2PIXEL_THICK_FLOOR()
+            )
+    );
+
+    public static final DeferredBlock<Block> BARBED_WIRE_FENCE = registerBlockAndBlockItem("barbed_wire_fence",
+            () -> new optionalFencePostFenceBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BARS).sound(SoundType.CHAIN)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.VERTICAL_ROD_4X4_SHAPE(),
+                    HitboxGeometryCollection.FENCE_2PIXEL_THICK_SHAPE()
+            )
+    );
+
     //VESSELPLATE BLOCKS
+    public static final DeferredBlock<Block> VESSELPLATE_SHEETING = registerBlockAndBlockItem("vesselplate_sheeting",
+            () -> new Block(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+            )
+    );
+    public static final DeferredBlock<Block> VESSELPLATE_SHEETING_STAIRS = registerBlockAndBlockItem("vesselplate_sheeting_stairs",
+            () -> new StairBlock(ModBlocks.VESSELPLATE_SHEETING.get().defaultBlockState(),
+                    BlockBehaviour
+                            .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+            )
+    );
+    public static final DeferredBlock<Block> VESSELPLATE_SHEETING_SLAB = registerBlockAndBlockItem("vesselplate_sheeting_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+            )
+    );
     public static final DeferredBlock<Block> RIVETED_VESSELPLATE = registerBlockAndBlockItem("riveted_vesselplate",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
@@ -549,6 +597,23 @@ public class ModBlocks {
             )
     );
 
+    public static final DeferredBlock<Block> GRAY_VESSELPLATE_SHEETING = registerBlockAndBlockItem("gray_vesselplate_sheeting",
+            () -> new Block(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+            )
+    );
+    public static final DeferredBlock<Block> GRAY_VESSELPLATE_SHEETING_STAIRS = registerBlockAndBlockItem("gray_vesselplate_sheeting_stairs",
+            () -> new StairBlock(ModBlocks.GRAY_VESSELPLATE_SHEETING.get().defaultBlockState(),
+                    BlockBehaviour
+                            .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+            )
+    );
+    public static final DeferredBlock<Block> GRAY_VESSELPLATE_SHEETING_SLAB = registerBlockAndBlockItem("gray_vesselplate_sheeting_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+            )
+    );
+
     public static final DeferredBlock<Block> GRAY_RIVETED_VESSELPLATE = registerBlockAndBlockItem("gray_riveted_vesselplate",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
@@ -632,6 +697,23 @@ public class ModBlocks {
     );
     public static final DeferredBlock<Block> GRAY_VESSELPLATE_PILLAR = registerBlockAndBlockItem("gray_vesselplate_pillar",
             () -> new ConnectedPillarBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+            )
+    );
+
+    public static final DeferredBlock<Block> RUSTY_VESSELPLATE_SHEETING = registerBlockAndBlockItem("rusty_vesselplate_sheeting",
+            () -> new Block(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+            )
+    );
+    public static final DeferredBlock<Block> RUSTY_VESSELPLATE_SHEETING_STAIRS = registerBlockAndBlockItem("rusty_vesselplate_sheeting_stairs",
+            () -> new StairBlock(ModBlocks.RUSTY_VESSELPLATE_SHEETING.get().defaultBlockState(),
+                    BlockBehaviour
+                            .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+            )
+    );
+    public static final DeferredBlock<Block> RUSTY_VESSELPLATE_SHEETING_SLAB = registerBlockAndBlockItem("rusty_vesselplate_sheeting_slab",
+            () -> new SlabBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
             )
     );
@@ -1392,10 +1474,10 @@ public class ModBlocks {
             )
     );
     public static final DeferredBlock<Block> CCTV_CAMERA = registerBlockAndBlockItem("cctv_camera",
-            () -> new ModelledSurfaceMountBlock(BlockBehaviour
+            () -> new ModelledFAHDBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion()
-                    .lightLevel(state -> state.getValue(ModelledSurfaceMountBlock.WATERLOGGED) ? 0 : 3),
+                    .lightLevel(state -> state.getValue(ModelledFAHDBlock.WATERLOGGED) ? 0 : 3),
                     HitboxGeometryCollection.DECAL_FLOOR()
             )
     );

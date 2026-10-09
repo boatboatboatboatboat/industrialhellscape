@@ -3,6 +3,7 @@ package net.boat.industrialhellscape.datagen;
 import net.boat.industrialhellscape.block.ModBlocks;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer11Blocks.Integer11Block;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.Integer2Block;
+import net.boat.industrialhellscape.block.block_classes.PanelBlocks.PanelBlock;
 import net.boat.industrialhellscape.block.block_classes.RailingBlocks.RailingBlock;
 import net.boat.industrialhellscape.block.block_classes.RailingBlocks.StairRailingBlock;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
@@ -34,7 +35,6 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         //this.dropSelf(ModBlocks.REMOVE_THIS_ITEM.get());
         this.add(ModBlocks.DEBUG_BLOCK.get(),
                 createIntegerMultiBlockDrops(ModBlocks.DEBUG_BLOCK.get(),Integer11Block.PART));
-        this.dropSelf(ModBlocks.CHAINLINK_FENCE.get());
 
         //IN-DEVELOPMENT BLOCK
         this.dropSelf(ModBlocks.INDUSTRIAL_LEVER.get());
@@ -112,6 +112,20 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.RUSTY_VERTICAL_CUTOUT_VENT.get());
 
         //VESSELPLATE BLOCKS
+        this.dropSelf(ModBlocks.VESSELPLATE_SHEETING.get());
+        this.dropSelf(ModBlocks.VESSELPLATE_SHEETING_STAIRS.get());
+        this.add(ModBlocks.VESSELPLATE_SHEETING_SLAB.get(),
+                createSlabItemTable(ModBlocks.VESSELPLATE_SHEETING_SLAB.get()));
+        this.dropSelf(ModBlocks.GRAY_VESSELPLATE_SHEETING.get());
+        this.dropSelf(ModBlocks.GRAY_VESSELPLATE_SHEETING_STAIRS.get());
+        this.add(ModBlocks.GRAY_VESSELPLATE_SHEETING_SLAB.get(),
+                createSlabItemTable(ModBlocks.GRAY_VESSELPLATE_SHEETING_SLAB.get()));
+        this.dropSelf(ModBlocks.RUSTY_VESSELPLATE_SHEETING.get());
+        this.dropSelf(ModBlocks.RUSTY_VESSELPLATE_SHEETING_STAIRS.get());
+        this.add(ModBlocks.RUSTY_VESSELPLATE_SHEETING_SLAB.get(),
+                createSlabItemTable(ModBlocks.RUSTY_VESSELPLATE_SHEETING_SLAB.get()));
+
+
         this.dropSelf(ModBlocks.HORIZONTAL_VESSELPLATE.get());
         this.dropSelf(ModBlocks.VERTICAL_VESSELPLATE.get());
         this.dropSelf(ModBlocks.HORIZONTAL_REINFORCED_VESSELPLATE.get());
@@ -155,6 +169,17 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.RUSTY_HORIZONTAL_REINFORCED_VESSELPLATE.get());
         this.dropSelf(ModBlocks.RUSTY_VERTICAL_REINFORCED_VESSELPLATE.get());
         this.dropSelf(ModBlocks.RUSTY_VESSELPLATE_PILLAR.get());
+
+        //PANEL BLOCKS
+        this.add(ModBlocks.SHEETING_PANEL.get(),
+                createPanelBlockDrops(ModBlocks.SHEETING_PANEL.get()));
+        this.add(ModBlocks.GRAY_SHEETING_PANEL.get(),
+                createPanelBlockDrops(ModBlocks.GRAY_SHEETING_PANEL.get()));
+        this.add(ModBlocks.RUSTY_SHEETING_PANEL.get(),
+                createPanelBlockDrops(ModBlocks.RUSTY_SHEETING_PANEL.get()));
+
+        //FENCE BLOCKS
+        this.dropSelf(ModBlocks.BARBED_WIRE_FENCE.get());
 
         //TRUSS BLOCKS
         this.dropSelf(ModBlocks.TRUSS_BEAM.get());
@@ -362,6 +387,58 @@ protected LootTable.Builder createRailingDrops(Block pBlock) {
 
             ;
 }
+
+    protected LootTable.Builder createPanelBlockDrops(Block pBlock) {
+        //It turns out, .withPool()s can be stacked together to form separate loot pools.
+        //For example, the vanilla function createPotFlowerItemTable() in BlockLootSubProvider
+
+        return LootTable.lootTable()
+
+                //Separate Loot pool for NORTH_SHAPE blockstate (0-1 item output)
+                .withPool(LootPool.lootPool()
+                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
+                                .setProperties(StatePropertiesPredicate.Builder.properties()
+                                        .hasProperty(PanelBlock.NORTH_PANEL, true))) //when true
+                        .add(this.applyExplosionDecay(pBlock, LootItem.lootTableItem(pBlock)
+                                        .apply(List.of(1), (p_249985_) -> SetItemCountFunction.setCount(ConstantValue.exactly((float) p_249985_))))
+                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))))
+                .withPool(LootPool.lootPool()
+                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
+                                .setProperties(StatePropertiesPredicate.Builder.properties()
+                                        .hasProperty(PanelBlock.SOUTH_PANEL, true))) //when true
+                        .add(this.applyExplosionDecay(pBlock, LootItem.lootTableItem(pBlock)
+                                        .apply(List.of(1), (p_249985_) -> SetItemCountFunction.setCount(ConstantValue.exactly((float) p_249985_))))
+                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))))
+                .withPool(LootPool.lootPool()
+                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
+                                .setProperties(StatePropertiesPredicate.Builder.properties()
+                                        .hasProperty(PanelBlock.EAST_PANEL, true))) //when true
+                        .add(this.applyExplosionDecay(pBlock, LootItem.lootTableItem(pBlock)
+                                        .apply(List.of(1), (p_249985_) -> SetItemCountFunction.setCount(ConstantValue.exactly((float) p_249985_))))
+                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))))
+                .withPool(LootPool.lootPool()
+                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
+                                .setProperties(StatePropertiesPredicate.Builder.properties()
+                                        .hasProperty(PanelBlock.WEST_PANEL, true))) //when true
+                        .add(this.applyExplosionDecay(pBlock, LootItem.lootTableItem(pBlock)
+                                        .apply(List.of(1), (p_249985_) -> SetItemCountFunction.setCount(ConstantValue.exactly((float) p_249985_))))
+                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))))
+                .withPool(LootPool.lootPool()
+                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
+                                .setProperties(StatePropertiesPredicate.Builder.properties()
+                                        .hasProperty(PanelBlock.UP_PANEL, true))) //when true
+                        .add(this.applyExplosionDecay(pBlock, LootItem.lootTableItem(pBlock)
+                                        .apply(List.of(1), (p_249985_) -> SetItemCountFunction.setCount(ConstantValue.exactly((float) p_249985_))))
+                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))))
+                .withPool(LootPool.lootPool()
+                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
+                                .setProperties(StatePropertiesPredicate.Builder.properties()
+                                        .hasProperty(PanelBlock.DOWN_PANEL, true))) //when true
+                        .add(this.applyExplosionDecay(pBlock, LootItem.lootTableItem(pBlock)
+                                        .apply(List.of(1), (p_249985_) -> SetItemCountFunction.setCount(ConstantValue.exactly((float) p_249985_))))
+                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))))
+                ;
+    }
 
 protected LootTable.Builder createStairRailingDrops(Block pBlock) {
     return LootTable.lootTable()

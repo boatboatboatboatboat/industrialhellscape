@@ -54,8 +54,6 @@ public class ModelledFacingBlock extends SimpleFacingBlock implements SimpleWate
 
     @Override
     public @Nonnull VoxelShape getShape(BlockState pState, @Nonnull BlockGetter pLevel, @Nonnull BlockPos pPos, @Nonnull CollisionContext pContext) {
-
-        //When placed, if the block's "TYPE" property is one of these cases, find its horizontal orientation and give it the correct hitbox
         //North is the default orientation assumed if no other cases met
 
         return switch (pState.getValue(FACING)) {
