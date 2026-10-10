@@ -6,7 +6,7 @@ import net.boat.industrialhellscape.block.block_classes.AxisPillarBlocks.TrussBe
 import net.boat.industrialhellscape.block.block_classes.ConnectedBlocks.ConnectedFurnitureBlock;
 import net.boat.industrialhellscape.block.block_classes.ConnectedBlocks.ConnectedStorageBlock;
 import net.boat.industrialhellscape.block.block_classes.FaceAttachedHorizontalDirectionBlocks.*;
-import net.boat.industrialhellscape.block.block_classes.FenceBlocks.optionalFencePostFenceBlock;
+import net.boat.industrialhellscape.block.block_classes.FenceBlocks.FencePostBlock;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer11Blocks.Storage11Block;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.*;
 import net.boat.industrialhellscape.block.block_classes.PanelBlocks.PanelBlock;
@@ -492,7 +492,15 @@ public class ModBlocks {
     );
 
     public static final DeferredBlock<Block> BARBED_WIRE_FENCE = registerBlockAndBlockItem("barbed_wire_fence",
-            () -> new optionalFencePostFenceBlock(BlockBehaviour
+            () -> new FencePostBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BARS).sound(SoundType.CHAIN)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.VERTICAL_ROD_4X4_SHAPE(),
+                    HitboxGeometryCollection.FENCE_2PIXEL_THICK_SHAPE()
+            )
+    );
+    public static final DeferredBlock<Block> BARBED_WIRE_FENCE_TOP = registerBlockAndBlockItem("barbed_wire_fence_top",
+            () -> new FencePostBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BARS).sound(SoundType.CHAIN)
                     .noOcclusion(),
                     HitboxGeometryCollection.VERTICAL_ROD_4X4_SHAPE(),
@@ -1426,8 +1434,8 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.OAK_PLANKS)
                     .noOcclusion(),
                     MultiBlockPlacementArrayCollection.VERTICAL_PLACEMENT,
-                    new VoxelShape[]{HitboxGeometryCollection.THIN_VERTICAL_ROD_SHAPE(),
-                    HitboxGeometryCollection.THIN_VERTICAL_ROD_SHAPE()}
+                    new VoxelShape[]{HitboxGeometryCollection.VERTICAL_ROD_4X4_SHAPE(),
+                    HitboxGeometryCollection.VERTICAL_ROD_4X4_SHAPE()}
             )
     );
 //
@@ -1495,7 +1503,7 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0),
                     MultiBlockPlacementArrayCollection.VERTICAL_PLACEMENT,
-                    new VoxelShape[]{HitboxGeometryCollection.THIN_VERTICAL_ROD_SHAPE(),HitboxGeometryCollection.WORK_LIGHT_MOUNT_SHAPE()}
+                    new VoxelShape[]{HitboxGeometryCollection.VERTICAL_ROD_4X4_SHAPE(),HitboxGeometryCollection.WORK_LIGHT_MOUNT_SHAPE()}
             )
     );
 

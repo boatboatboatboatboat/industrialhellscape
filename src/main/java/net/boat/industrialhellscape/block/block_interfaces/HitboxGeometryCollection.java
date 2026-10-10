@@ -38,9 +38,10 @@ public interface HitboxGeometryCollection {
 
         return shape;
     }
-    static VoxelShape THIN_VERTICAL_ROD_SHAPE(){
+
+    static VoxelShape VERTICAL_ROD_2x2_SHAPE(){
         VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape, Shapes.box(0.375, 0.01, 0.375, 0.625, 0.99, 0.625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.4375, 0, 0.4375, 0.5625, 1, 0.5625), BooleanOp.OR);
 
         return shape;
     }
@@ -54,7 +55,7 @@ public interface HitboxGeometryCollection {
 
     static VoxelShape FENCE_2PIXEL_THICK_SHAPE() {
         VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape, Shapes.box(0.4375, 0, 0, 0.5625, 1, 0.625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.4375, 0.1875, 0, 0.5625, 1, 0.625), BooleanOp.OR);
 
         return shape;
     }
@@ -296,9 +297,6 @@ public interface HitboxGeometryCollection {
 
         return shape;
     }
-
-    static VoxelShape[] WORK_LIGHT_STAND_ARRAY = {HitboxGeometryCollection.THIN_VERTICAL_ROD_SHAPE(), HitboxGeometryCollection.WORK_LIGHT_MOUNT_SHAPE()};
-
 
     static VoxelShape FLOOR_WORK_LIGHT_SHAPE(){
         VoxelShape shape = Shapes.empty();

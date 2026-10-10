@@ -84,6 +84,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         //Fence Blocks
         genFenceBlockSB( (FenceBlock) ModBlocks.BARBED_WIRE_FENCE.get(), "fence","barbed_wire_fence_post", "barbed_wire_fence");
+        genFenceTopBlockSB( (FenceBlock) ModBlocks.BARBED_WIRE_FENCE_TOP.get(), "fence","barbed_wire_fence_top_post", "barbed_wire_fence_top_fence");
 
         //Vesselplate Blocks
         genFolderedSBI(ModBlocks.VESSELPLATE_SHEETING.get(), "vesselplate");
@@ -1058,6 +1059,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //Fence Model
         ModelFile fenceModelFile = models().getExistingFile(modLoc(existingFenceModelLocation));
 
+        //Main
         MultiPartBlockStateBuilder multipartBuilder = getMultipartBuilder(block);
 
         //preallocate for-loop variables;
@@ -1087,15 +1089,219 @@ public class ModBlockStateProvider extends BlockStateProvider {
                                 case EAST -> BlockStateProperties.EAST;
                                 case SOUTH -> BlockStateProperties.SOUTH;
                                 default -> BlockStateProperties.NORTH;
-                            }
-                            , true);
+                                }, true);
             fenceModelBuilder.end();
         }
-        //generate fencePost model state
-        MultiPartBlockStateBuilder.PartBuilder postModelBuilder = multipartBuilder.part().modelFile(postModelFile).rotationY(yDegrees).addModel();
-        postModelBuilder.useOr()
+        //----- Generate Fence Post model state -----
+
+//        //State Matrix
+//        char[][] fenceStateCombinationsWherePostShouldExist = {
+//                // N    S      E      W
+//                {'f', 'f', 'f', 'f'}, //
+//                {'t', 'x', 't', 'x'},   // NE corner / tri / cross
+//                {'t', 'x', 'x', 't'},   // NW corner / tri / cross
+//                {'x', 't', 't', 'x'},   // SE corner / tri / cross
+//                {'x', 't', 'x', 't'},   // SW corner / tri / cross
+//                {'t', 'f', 'f', 'f'},  // N end
+//                {'f', 't', 'f', 'f'},  // S end
+//                {'f', 'f', 't', 'f'},  // E end
+//                {'f', 'f', 'f', 't'}   // W end
+//        };
+        //Comment in if using CDeco's fencepost rendering method
+//        for (char[] stateCombination : fenceStateCombinationsWherePostShouldExist) {
+//            MultiPartBlockStateBuilder.PartBuilder part = multipartBuilder.part().modelFile(postModelFile).addModel();
+//            if (stateCombination[0] == 't') {
+//                part.conditions.put(BlockStateProperties.NORTH, true);
+//            } else if (stateCombination[0] == 'f') {
+//                part.conditions.put(BlockStateProperties.NORTH, false);
+//            } // else 'x' don't care
+//            if (stateCombination[1] == 't') {
+//                part.conditions.put(BlockStateProperties.SOUTH, true);
+//            } else if (stateCombination[1] == 'f') {
+//                part.conditions.put(BlockStateProperties.SOUTH, false);
+//            } // else 'x' don't care
+//            if (stateCombination[2] == 't') {
+//                part.conditions.put(BlockStateProperties.EAST, true);
+//            } else if (stateCombination[2] == 'f') {
+//                part.conditions.put(BlockStateProperties.EAST, false);
+//            } // else 'x' don't care
+//            if (stateCombination[3] == 't') {
+//                part.conditions.put(BlockStateProperties.WEST, true);
+//            } else if (stateCombination[3] == 'f') {
+//                part.conditions.put(BlockStateProperties.WEST, false);
+//            } // else 'x' don't care
+//            //part.end();
+//        }
+
+        //keep this
+        multipartBuilder.part().modelFile(postModelFile).addModel()
+                .conditions.put(BlockStateProperties.UP, true);
+    }
+
+    private void genFenceTopBlockSB(FenceBlock block, String modelSubFolder, String postFileName, String fenceFileName) {
+        String blockFolder = "block/";
+
+        //Already existing model files
+        String existingPostModelLocation = blockFolder+optionalFolder(modelSubFolder)+postFileName;
+        String existingFenceModelLocation = blockFolder+optionalFolder(modelSubFolder)+fenceFileName;
+
+        //Post Model
+        ModelFile postModelFile = models().getExistingFile(modLoc(existingPostModelLocation));
+        //Fence Model
+        ModelFile fenceModelFile = models().getExistingFile(modLoc(existingFenceModelLocation));
+
+        //Main
+        MultiPartBlockStateBuilder multipartBuilder = getMultipartBuilder(block);
+
+        //preallocate for-loop variables;
+        int yDegrees = 0;
+
+        //Generate Fence model states
+        for(Direction dir : BlockStateProperties.HORIZONTAL_FACING.getPossibleValues()) {
+            switch (dir) {
+                case NORTH -> {
+                    yDegrees = 0;
+                }
+                case WEST -> {
+                    yDegrees = 270;
+                }
+                case SOUTH -> {
+                    yDegrees = 180;
+                }
+                case EAST -> {
+                    yDegrees = 90;
+                }
+            }
+
+            MultiPartBlockStateBuilder.PartBuilder fenceModelBuilder = multipartBuilder.part().modelFile(fenceModelFile).rotationY(yDegrees).addModel();
+            fenceModelBuilder.useOr()
+                    .condition(switch(dir) {
+                        case WEST -> BlockStateProperties.WEST;
+                        case EAST -> BlockStateProperties.EAST;
+                        case SOUTH -> BlockStateProperties.SOUTH;
+                        default -> BlockStateProperties.NORTH;
+                    }, true);
+            fenceModelBuilder.end();
+        }
+        //----- Generate Fence Post model state -----
+
+//        //State Matrix
+//        char[][] fenceStateCombinationsWherePostShouldExist = {
+//                // N    S      E      W    // Fifth column determines what fencepost model should look like
+//                {'f', 'f', 'f', 'f', 'a'}, //
+//                {'t', 'x', 't', 'x', 'a'},   // NE corner / tri / cross
+//                {'t', 'x', 'x', 't', 'a'},   // NW corner / tri / cross
+//                {'x', 't', 't', 'x', 'a'},   // SE corner / tri / cross
+//                {'x', 't', 'x', 't', 'a'},   // SW corner / tri / cross
+//                {'t', 'f', 'f', 'f', 'z'},  // N end
+//                {'f', 't', 'f', 'f', 'z'},  // S end
+//                {'f', 'f', 't', 'f', 'x'},  // E end
+//                {'f', 'f', 'f', 't', 'x'}   // W end
+//        };
+//        //Comment in if using CDeco's fencepost rendering method
+//        for (char[] stateCombination : fenceStateCombinationsWherePostShouldExist) {
+//            MultiPartBlockStateBuilder.PartBuilder part; // = multipartBuilder.part().modelFile(postModelFile).addModel();
+//
+//            //fencepost
+//            if(stateCombination[4] == 'a') { //adds two models on top of each other but one is rotated 90 degrees
+//                part = multipartBuilder.part().modelFile(postModelFile).addModel();
+//
+//            } else if (stateCombination[4] == 'z') { //no need to rotate (already z-axis-aligned)
+//                part = multipartBuilder.part().modelFile(postModelFile).rotationY(00).addModel();
+//
+//            } else { //(stateCombination[4] == 'x')  rotate 90 degrees to align with x-axis
+//                part = multipartBuilder.part().modelFile(postModelFile).rotationY(90).addModel();
+//            }
+//
+//            if (stateCombination[0] == 't') {
+//                part.conditions.put(BlockStateProperties.NORTH, true);
+//            } else if (stateCombination[0] == 'f') {
+//                part.conditions.put(BlockStateProperties.NORTH, false);
+//            } // else 'x' don't care
+//            if (stateCombination[1] == 't') {
+//                part.conditions.put(BlockStateProperties.SOUTH, true);
+//            } else if (stateCombination[1] == 'f') {
+//                part.conditions.put(BlockStateProperties.SOUTH, false);
+//            } // else 'x' don't care
+//            if (stateCombination[2] == 't') {
+//                part.conditions.put(BlockStateProperties.EAST, true);
+//            } else if (stateCombination[2] == 'f') {
+//                part.conditions.put(BlockStateProperties.EAST, false);
+//            } // else 'x' don't care
+//            if (stateCombination[3] == 't') {
+//                part.conditions.put(BlockStateProperties.WEST, true);
+//            } else if (stateCombination[3] == 'f') {
+//                part.conditions.put(BlockStateProperties.WEST, false);
+//            } // else 'x' don't care
+//            //part.end();
+//        }
+
+        //below code works, but needs fence posts to be manually toggled
+
+        //Barbed Wire FenceTop    //Condition: UP AND (EAST OR WEST)
+        MultiPartBlockStateBuilder.PartBuilder topPostMultiStateEW = multipartBuilder.part().modelFile(postModelFile).rotationY(90).addModel();
+        MultiPartBlockStateBuilder.PartBuilder.ConditionGroup topPostLogicSuperGroupEW = topPostMultiStateEW.nestedGroup(); //initialize exterior nested group with AND logic for contents
+        topPostLogicSuperGroupEW
+                .nestedGroup()
                 .condition(BlockStateProperties.UP, true);
-        postModelBuilder.end();
+        //.endNestedGroup(); //appears to be optional here
+        topPostLogicSuperGroupEW
+                .nestedGroup() //initialize interior nested group and assign OR logic to contents
+                .useOr()
+                .condition(BlockStateProperties.EAST, true)
+                .condition(BlockStateProperties.WEST, true);
+        //.endNestedGroup(); //appears to be optional here
+        topPostMultiStateEW.end(); //closes the exterior nested group
+
+        //Barbed Wire FenceTop     //Condition: UP AND (EAST OR WEST)
+        MultiPartBlockStateBuilder.PartBuilder topPostMultiStateNS = multipartBuilder.part().modelFile(postModelFile).rotationY(0).addModel();
+        MultiPartBlockStateBuilder.PartBuilder.ConditionGroup topPostLogicSuperGroupNS = topPostMultiStateNS.nestedGroup(); //initialize exterior nested group with AND logic for contents
+        topPostLogicSuperGroupNS
+                .nestedGroup()
+                .condition(BlockStateProperties.UP, true);
+        //.endNestedGroup(); //appears to be optional here
+        topPostLogicSuperGroupNS
+                .nestedGroup() //initialize interior nested group and assign OR logic to contents
+                .useOr()
+                .condition(BlockStateProperties.NORTH, true)
+                .condition(BlockStateProperties.SOUTH, true);
+        //.endNestedGroup(); //appears to be optional here
+        topPostMultiStateNS.end(); //closes the exterior nested group
+
+        //Barbed Wire FenceTop     //Condition: UP AND (NSEW all false)
+        MultiPartBlockStateBuilder.PartBuilder topPostMultiStateSOLO = multipartBuilder.part().modelFile(postModelFile).rotationY(00).addModel();
+        MultiPartBlockStateBuilder.PartBuilder.ConditionGroup topPostLogicSuperGroupSOLO = topPostMultiStateSOLO.nestedGroup(); //initialize exterior nested group with AND logic for contents
+        topPostLogicSuperGroupSOLO
+                .nestedGroup()
+                .condition(BlockStateProperties.UP, true);
+        //.endNestedGroup(); //appears to be optional here
+        topPostLogicSuperGroupSOLO
+                .nestedGroup() //initialize interior nested group and assign OR logic to contents
+//                .useOr()
+                .condition(BlockStateProperties.NORTH, false)
+                .condition(BlockStateProperties.SOUTH, false)
+                .condition(BlockStateProperties.EAST, false)
+                .condition(BlockStateProperties.WEST, false);
+        //.endNestedGroup(); //appears to be optional here
+        topPostMultiStateSOLO.end(); //closes the exterior nested group
+
+        //Barbed Wire FenceTop     //Condition: UP AND (NSEW all false), same as before, but adds a 90 degree rotated barbed post model
+        MultiPartBlockStateBuilder.PartBuilder topPostMultiStateSOLO_90 = multipartBuilder.part().modelFile(postModelFile).rotationY(90).addModel();
+        MultiPartBlockStateBuilder.PartBuilder.ConditionGroup topPostLogicSuperGroupSOLO_90 = topPostMultiStateSOLO_90.nestedGroup(); //initialize exterior nested group with AND logic for contents
+        topPostLogicSuperGroupSOLO_90
+                .nestedGroup()
+                .condition(BlockStateProperties.UP, true);
+        //.endNestedGroup(); //appears to be optional here
+        topPostLogicSuperGroupSOLO_90
+                .nestedGroup() //initialize interior nested group and assign OR logic to contents
+//                .useOr()
+                .condition(BlockStateProperties.NORTH, false)
+                .condition(BlockStateProperties.SOUTH, false)
+                .condition(BlockStateProperties.EAST, false)
+                .condition(BlockStateProperties.WEST, false);
+        //.endNestedGroup(); //appears to be optional here
+        topPostMultiStateSOLO_90.end(); //closes the exterior nested group
+
     }
 
     private void genCustomWallBlockSBI(WallBlock block, String modelSubFolder) {

@@ -50,6 +50,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.GRAY_SHEETING_PANEL.get(),
                         ModBlocks.RUSTY_SHEETING_PANEL.get(),
 
+                        ModBlocks.BARBED_WIRE_FENCE.get(),
+                        ModBlocks.BARBED_WIRE_FENCE_TOP.get(),
+
                         ModBlocks.YELLOW_STAIR_RAILING.get(),
                         ModBlocks.YELLOW_RAILING.get(),
                         ModBlocks.GRAY_STAIR_RAILING.get(),
@@ -377,20 +380,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
                         Walls and Fences are DIFFERENT TAGS
                         */
-                        ModBlocks.BARBED_WIRE_FENCE.get()
+                        ModBlocks.BARBED_WIRE_FENCE.get(),
+                        ModBlocks.BARBED_WIRE_FENCE_TOP.get()
                 );
-        this.tag(BlockTags.WOODEN_FENCES)
-                .add(
-                        /*
-                        Fence Blocks need both FENCES and WOODEN_FENCES
-                        tags in order to connect properly
-
-                        isSameFence() is a boolean check in FenceBlock vanilla class
-                        that checks if a block has both tags before connecting
-                        */
-                        ModBlocks.BARBED_WIRE_FENCE.get()
-                );
-
 
         this.tag(BlockTags.NEEDS_STONE_TOOL) //When specific tool tiers are required
                 .addTags(

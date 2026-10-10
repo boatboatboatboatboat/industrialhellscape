@@ -9,6 +9,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -173,7 +174,9 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.SHEETING_PANEL.asItem(),
                         ModBlocks.GRAY_SHEETING_PANEL.asItem(),
                         ModBlocks.RUSTY_SHEETING_PANEL.asItem(),
+
                         ModBlocks.BARBED_WIRE_FENCE.asItem(),
+                        ModBlocks.BARBED_WIRE_FENCE_TOP.asItem(),
 
                         ModBlocks.YELLOW_STAIR_RAILING.asItem(),
                         ModBlocks.YELLOW_RAILING.asItem(),
@@ -189,8 +192,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.GRAY_BOLTED_BRACKET.asItem(),
                         ModBlocks.SMALL_GRAY_BOLTED_BRACKET.asItem(),
                         ModBlocks.SMALL_BLACK_BOLTED_BRACKET.asItem(),
-                        ModBlocks.SMALL_RUSTY_BOLTED_BRACKET.asItem(),
-                        ModBlocks.BARBED_WIRE_FENCE.asItem()
+                        ModBlocks.SMALL_RUSTY_BOLTED_BRACKET.asItem()
                 );
 
         //FURNITURE CATEGORIES BELOW
@@ -264,6 +266,13 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.FOLDING_CHAIR.asItem()
                 );
         //---------- END OF RECIPE DATAGEN INPUT TAGS ----------
+
+        //---------- VANILLA ITEM TAGS ----------
+        this.tag(ItemTags.FENCES)
+                .add(
+                        ModBlocks.BARBED_WIRE_FENCE.asItem(),
+                        ModBlocks.BARBED_WIRE_FENCE_TOP.asItem()
+                );
 
         //---------- MISC TAGS ----------
         this.tag(ModTags.Items.IH_RECIPE_STONES)
