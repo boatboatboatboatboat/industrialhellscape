@@ -221,6 +221,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.RUSTY_SHEETING_PANEL.asItem(),
 
             ModBlocks.BARBED_WIRE_FENCE.asItem(),
+            ModBlocks.BARBED_WIRE_FENCE_TOP.asItem(),
 
             ModBlocks.RUSTY_BOLTED_BRACKET.asItem(),
             ModBlocks.BLACK_BOLTED_BRACKET.asItem(),

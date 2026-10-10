@@ -180,6 +180,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         //FENCE BLOCKS
         this.dropSelf(ModBlocks.BARBED_WIRE_FENCE.get());
+        this.dropSelf(ModBlocks.BARBED_WIRE_FENCE_TOP.get());
 
         //TRUSS BLOCKS
         this.dropSelf(ModBlocks.TRUSS_BEAM.get());
