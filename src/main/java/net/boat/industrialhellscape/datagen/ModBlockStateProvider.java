@@ -1239,69 +1239,64 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //below code works, but needs fence posts to be manually toggled
 
         //Barbed Wire FenceTop    //Condition: UP AND (EAST OR WEST)
-        MultiPartBlockStateBuilder.PartBuilder topPostMultiStateEW = multipartBuilder.part().modelFile(postModelFile).rotationY(90).addModel();
-        MultiPartBlockStateBuilder.PartBuilder.ConditionGroup topPostLogicSuperGroupEW = topPostMultiStateEW.nestedGroup(); //initialize exterior nested group with AND logic for contents
-        topPostLogicSuperGroupEW
-                .nestedGroup()
+        MultiPartBlockStateBuilder.PartBuilder fencePostSuperGroup_UandEorW = multipartBuilder.part().modelFile(postModelFile).rotationY(90).addModel();
+        fencePostSuperGroup_UandEorW
+                .nestedGroup() //create a subgroup inside super-group
                 .condition(BlockStateProperties.UP, true);
         //.endNestedGroup(); //appears to be optional here
-        topPostLogicSuperGroupEW
-                .nestedGroup() //initialize interior nested group and assign OR logic to contents
-                .useOr()
+        fencePostSuperGroup_UandEorW
+                .nestedGroup() //create another second subgroup inside super-group
+                .useOr() //conditions within this subgroup are OR
                 .condition(BlockStateProperties.EAST, true)
                 .condition(BlockStateProperties.WEST, true);
         //.endNestedGroup(); //appears to be optional here
-        topPostMultiStateEW.end(); //closes the exterior nested group
+        fencePostSuperGroup_UandEorW.end(); //closes the exterior group (super-group)
 
-        //Barbed Wire FenceTop     //Condition: UP AND (EAST OR WEST)
-        MultiPartBlockStateBuilder.PartBuilder topPostMultiStateNS = multipartBuilder.part().modelFile(postModelFile).rotationY(0).addModel();
-        MultiPartBlockStateBuilder.PartBuilder.ConditionGroup topPostLogicSuperGroupNS = topPostMultiStateNS.nestedGroup(); //initialize exterior nested group with AND logic for contents
-        topPostLogicSuperGroupNS
-                .nestedGroup()
+        //Barbed Wire FenceTop     //Condition: UP AND (NORTH OR SOUTH)
+        MultiPartBlockStateBuilder.PartBuilder fencePostSuperGroupUandNorS = multipartBuilder.part().modelFile(postModelFile).rotationY(0).addModel();
+        fencePostSuperGroupUandNorS
+                .nestedGroup() //create a subgroup inside super-group
                 .condition(BlockStateProperties.UP, true);
         //.endNestedGroup(); //appears to be optional here
-        topPostLogicSuperGroupNS
-                .nestedGroup() //initialize interior nested group and assign OR logic to contents
-                .useOr()
+        fencePostSuperGroupUandNorS
+                .nestedGroup() //create another subgroup inside super-group
+                .useOr() //conditions within this subgroup are OR
                 .condition(BlockStateProperties.NORTH, true)
                 .condition(BlockStateProperties.SOUTH, true);
         //.endNestedGroup(); //appears to be optional here
-        topPostMultiStateNS.end(); //closes the exterior nested group
+        fencePostSuperGroupUandNorS.end(); //closes the exterior group (super-group)
 
         //Barbed Wire FenceTop     //Condition: UP AND (NSEW all false)
-        MultiPartBlockStateBuilder.PartBuilder topPostMultiStateSOLO = multipartBuilder.part().modelFile(postModelFile).rotationY(00).addModel();
-        MultiPartBlockStateBuilder.PartBuilder.ConditionGroup topPostLogicSuperGroupSOLO = topPostMultiStateSOLO.nestedGroup(); //initialize exterior nested group with AND logic for contents
-        topPostLogicSuperGroupSOLO
-                .nestedGroup()
+        MultiPartBlockStateBuilder.PartBuilder fencePostSuperGroupSoloConnection = multipartBuilder.part().modelFile(postModelFile).rotationY(0).addModel();
+        fencePostSuperGroupSoloConnection
+                .nestedGroup()  //create a subgroup inside super-group
                 .condition(BlockStateProperties.UP, true);
         //.endNestedGroup(); //appears to be optional here
-        topPostLogicSuperGroupSOLO
-                .nestedGroup() //initialize interior nested group and assign OR logic to contents
-//                .useOr()
+        fencePostSuperGroupSoloConnection
+                .nestedGroup()  //create another subgroup inside super-group
+//                .useOr() //conditions within groups are AND by default
                 .condition(BlockStateProperties.NORTH, false)
                 .condition(BlockStateProperties.SOUTH, false)
                 .condition(BlockStateProperties.EAST, false)
                 .condition(BlockStateProperties.WEST, false);
         //.endNestedGroup(); //appears to be optional here
-        topPostMultiStateSOLO.end(); //closes the exterior nested group
+        fencePostSuperGroupSoloConnection.end(); //closes the exterior group (super-group)
 
-        //Barbed Wire FenceTop     //Condition: UP AND (NSEW all false), same as before, but adds a 90 degree rotated barbed post model
-        MultiPartBlockStateBuilder.PartBuilder topPostMultiStateSOLO_90 = multipartBuilder.part().modelFile(postModelFile).rotationY(90).addModel();
-        MultiPartBlockStateBuilder.PartBuilder.ConditionGroup topPostLogicSuperGroupSOLO_90 = topPostMultiStateSOLO_90.nestedGroup(); //initialize exterior nested group with AND logic for contents
-        topPostLogicSuperGroupSOLO_90
-                .nestedGroup()
+        //Barbed Wire FenceTop     //Condition: UP AND (NSEW all false), identical to before, but adds a 90 degree rotated barbed post model
+        MultiPartBlockStateBuilder.PartBuilder fencePostSuperGroupSoloConnection_yRot90 = multipartBuilder.part().modelFile(postModelFile).rotationY(90).addModel();
+        fencePostSuperGroupSoloConnection_yRot90
+                .nestedGroup() //create a subgroup inside super-group
                 .condition(BlockStateProperties.UP, true);
         //.endNestedGroup(); //appears to be optional here
-        topPostLogicSuperGroupSOLO_90
-                .nestedGroup() //initialize interior nested group and assign OR logic to contents
-//                .useOr()
+        fencePostSuperGroupSoloConnection_yRot90
+                .nestedGroup()  //create another subgroup inside super-group
+//                .useOr() //conditions within groups are AND by default
                 .condition(BlockStateProperties.NORTH, false)
                 .condition(BlockStateProperties.SOUTH, false)
                 .condition(BlockStateProperties.EAST, false)
                 .condition(BlockStateProperties.WEST, false);
         //.endNestedGroup(); //appears to be optional here
-        topPostMultiStateSOLO_90.end(); //closes the exterior nested group
-
+        fencePostSuperGroupSoloConnection_yRot90.end(); //closes the exterior nested group
     }
 
     private void genCustomWallBlockSBI(WallBlock block, String modelSubFolder) {

@@ -53,9 +53,9 @@ public interface HitboxGeometryCollection {
         return shape;
     }
 
-    static VoxelShape FENCE_2PIXEL_THICK_SHAPE() {
+    static VoxelShape FENCE_4PIXEL_THICK_SHAPE() {
         VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape, Shapes.box(0.4375, 0.1875, 0, 0.5625, 1, 0.625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.3125, 0.1875, 0, 0.6875, 1.5, 0.625), BooleanOp.OR);
 
         return shape;
     }
