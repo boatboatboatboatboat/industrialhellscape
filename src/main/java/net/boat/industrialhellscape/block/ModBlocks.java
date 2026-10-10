@@ -496,7 +496,7 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.IRON_BARS).sound(SoundType.CHAIN)
                     .noOcclusion(),
                     HitboxGeometryCollection.VERTICAL_ROD_4X4_SHAPE(),
-                    HitboxGeometryCollection.FENCE_2PIXEL_THICK_SHAPE()
+                    HitboxGeometryCollection.FENCE_4PIXEL_THICK_SHAPE()
             )
     );
     public static final DeferredBlock<Block> BARBED_WIRE_FENCE_TOP = registerBlockAndBlockItem("barbed_wire_fence_top",
@@ -504,7 +504,7 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.IRON_BARS).sound(SoundType.CHAIN)
                     .noOcclusion(),
                     HitboxGeometryCollection.VERTICAL_ROD_4X4_SHAPE(),
-                    HitboxGeometryCollection.FENCE_2PIXEL_THICK_SHAPE()
+                    HitboxGeometryCollection.FENCE_4PIXEL_THICK_SHAPE()
             )
     );
 
