@@ -35,7 +35,8 @@ Source: https://github.com/talrey/CreateDeco/blob/1.21-neo/src/main/java/com/git
 Source License: CC0 1.0 Universal
 
 Custom fence implementation:
-    - Tool use toggles the appearance of the fence post.
+    - Tool use toggles the appearance of the fence post, which vertically chains up to 16 block height.
+    - If placed on WallBlocks, wall columns will line up below any produced fence posts
 
 Caveats observed from CDeco's fence implementation:
     - The visible fence post is not correlated with the boolean UP property. It may render even when "UP" is false.
@@ -49,9 +50,11 @@ Caveats observed from CDeco's fence implementation:
  */
 
 public class FencePostBlock extends FenceBlock implements ToolUseInterface {
-    public static final BooleanProperty UP = BlockStateProperties.UP; //fencePost block state that optionally renders post
-    public final VoxelShape POST_SHAPE;
+    //fencePost block state
+    public static final BooleanProperty UP = BlockStateProperties.UP;
 
+    //hitboxes
+    public final VoxelShape POST_SHAPE;
     public final VoxelShape NORTH_SHAPE;
     public final VoxelShape SOUTH_SHAPE;
     public final VoxelShape EAST_SHAPE;
@@ -60,20 +63,20 @@ public class FencePostBlock extends FenceBlock implements ToolUseInterface {
 
     public FencePostBlock(Properties pProperties, VoxelShape postShape, VoxelShape fenceShape) {
         super(pProperties);
+
+        //hitbox definitions
         this.POST_SHAPE = postShape;
         this.NORTH_SHAPE = fenceShape;
         this.SOUTH_SHAPE = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH,fenceShape);
         this.EAST_SHAPE = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST,fenceShape);
         this.WEST_SHAPE = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST,fenceShape);
 
-        /*
-        copy/pasted Create deco (if post-placement is handled by multi-part blockstate rendering,
-        set default "UP" value to false
-         */
-
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(UP, false)
-
+                /*
+                keep at false. If enclosing an area with fences, a "true" default "UP" value
+                results in the very last fence segment before the corner having an unnecessary fencepost
+                */
                 .setValue(NORTH, false)
                 .setValue(EAST, false)
                 .setValue(SOUTH, false)
@@ -86,7 +89,11 @@ public class FencePostBlock extends FenceBlock implements ToolUseInterface {
         return RenderShape.MODEL;
     }
 
-    @Override //necessary for wallBlocks to create columns to support fence posts based on hitbox reading
+    /*
+        Necessary for wallBlocks to create columns to support fence posts based on hitbox reading
+        (isCovered() method in WallBlocks)
+     */
+    @Override
     protected VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         VoxelShape shape = Shapes.empty();
         if(state.getValue(UP)) shape = Shapes.join(shape,POST_SHAPE, BooleanOp.OR);
@@ -98,7 +105,7 @@ public class FencePostBlock extends FenceBlock implements ToolUseInterface {
     }
 
     protected static boolean directionToConnectionStateEval(Direction face, boolean north, boolean south, boolean east, boolean west) {
-        //direction to BooleanProperty
+        //direction to boolean
         return switch (face) {
             case SOUTH -> south;
             case EAST -> east;
@@ -107,7 +114,7 @@ public class FencePostBlock extends FenceBlock implements ToolUseInterface {
         };
     }
 
-    //comment out onPlace() and onRemove() if using CDeco's fencepost method
+    //comment out onPlace() and updateShape() if using CDeco's fencepost method
     @Override
     protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
         /*
@@ -120,7 +127,12 @@ public class FencePostBlock extends FenceBlock implements ToolUseInterface {
          */
 
         if( (state.getBlock().equals(oldState.getBlock()))  ) {
-            return; //don't correct neighbors if block itself is unchanged.
+            return;
+            /*
+            Don't correct neighbors if block itself is unchanged.
+            Allows players to create fence posts next to each other without
+            fence-post removal logic undoing the actions.
+             */
         }
 
         for(Direction dir: BlockStateProperties.HORIZONTAL_FACING.getPossibleValues()) {
@@ -139,61 +151,39 @@ public class FencePostBlock extends FenceBlock implements ToolUseInterface {
                          /*
                         If neighboring fenceBlock DOES NOT have ANY perpendicular connection AND has at least one in-line connection
                         remove neighbor's fence post
-
-                        if statement allows logic to pass through if conditions aren't met. This
-                        prevents needless block update chains.
                          */
                     case EAST, WEST -> {
                         if( (!(north || south)) && (directionToConnectionStateEval(dir, north,south,east,west)) ) {
-                            level.setBlock(neighborPos, neighborState.setValue(UP, false), 3);
+                            level.setBlock(neighborPos, neighborState.setValue(UP, false), 3); //fencepost removal
                         }
                     }
                     case NORTH, SOUTH -> {
                         if( (!(east || west)) && (directionToConnectionStateEval(dir, north,south,east,west)) ) {
-                            level.setBlock(neighborPos, neighborState.setValue(UP, false), 3);
+                            level.setBlock(neighborPos, neighborState.setValue(UP, false), 3); //fencepost removal
                         }
                     }
                 }
             }
         }
 
-        //add post to self
-//        boolean north = state.getValue(NORTH);
-//        boolean south = state.getValue(SOUTH);
-//        boolean east = state.getValue(EAST);
-//        boolean west = state.getValue(WEST);
-//        int amountOfConnections = amountOfConnections(north, south, east, west);
-//        switch(amountOfConnections) {
-//            case 0,1,3,4 -> {
-//                state = state.setValue(UP, true);
-//                level.setBlock(pos, state, 3);
-//            }
-//        }
+        //add post to self when placed into world after above logic is complete
         level.setBlock(pos, setFencePostBasedOnConnectionAmount(state),3);
     }
 
     @Override
     protected BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
-
+        /*
+        fence connection logic from FenceBlock class must happen FIRST before
+        fence-post eligibility can be accurately determined
+         */
         state = super.updateShape(state, facing, facingState, level, currentPos, facingPos);
 
-        if(facingState.getBlock() instanceof WallBlock) { //weirdly buggy when placed on wallBlocks
+        if(facingState.getBlock() instanceof WallBlock) {
+            //WallBlocks trigger unnecessary amounts of block updates. Also slightly buggy
             return state;
         }
 
         //Handles ENabling of FencePost ONLY
-//        boolean north = state.getValue(NORTH);
-//        boolean south = state.getValue(SOUTH);
-//        boolean east = state.getValue(EAST);
-//        boolean west = state.getValue(WEST);
-//
-//        int amountOfConnections = amountOfConnections(north, south, east, west);
-//
-//        switch(amountOfConnections) {
-//            case 0,1,3,4 -> {
-//                state = state.setValue(UP, true);
-//            }
-//        }
         state = setFencePostBasedOnConnectionAmount(state);
 
         return state;
@@ -202,19 +192,22 @@ public class FencePostBlock extends FenceBlock implements ToolUseInterface {
     protected BlockState setFencePostBasedOnConnectionAmount(BlockState state) {
         boolean[] boolArray = { state.getValue(NORTH), state.getValue(SOUTH), state.getValue(EAST), state.getValue(WEST) };
         //https://www.geeksforgeeks.org/java/java-guava-booleans-counttrue-method-with-examples/
+
+        /*
+            Having two connections does not guarantee a fence-post should be present
+            Corners should have a post, but straight-fence connections should not by default.
+
+            onPlace() will handle fence-post removal
+            updateShape() will handle fence-post creation
+         */
         switch (Booleans.countTrue(boolArray)) {
             case 0,1,3,4 -> {
+                //return an updated state (with fence post)
                 return state.setValue(UP, true);
             }
         }
-        return state; //return what it already has
+        return state; //else, return what it already has
     }
-
-//    protected int amountOfConnections(boolean north, boolean south, boolean east, boolean west) {
-//        boolean[] boolArray = { north, south, east, west };
-//        //https://www.geeksforgeeks.org/java/java-guava-booleans-counttrue-method-with-examples/
-//        return Booleans.countTrue(boolArray);
-//    }
 
     @Override
     protected @NotNull ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
