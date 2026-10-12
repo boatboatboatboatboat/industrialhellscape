@@ -5,7 +5,6 @@ import net.boat.industrialhellscape.block.block_interfaces.HitboxRotationInterfa
 import net.boat.industrialhellscape.block.block_interfaces.ToolUseInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -37,10 +36,12 @@ Source License: CC0 1.0 Universal
 Custom fence implementation:
     - Tool use toggles the appearance of the fence post, which vertically chains up to 16 block height.
     - If placed on WallBlocks, wall columns will line up below any produced fence posts
+    - Multipart blockState datagen handles 90-degree model rotation of fence-post for blocks
+      such as Barbed Wire Fence Top in ModBlockStateProvider
 
 Caveats observed from CDeco's fence implementation:
     - The visible fence post is not correlated with the boolean UP property. It may render even when "UP" is false.
-    - The multipart blockstate handles the combinations in which the visible fence post should render (such as at corners or triple connections),
+    - The multipart blockState handles the combinations in which the visible fence post should render (such as at corners or triple connections),
         independent of whether "UP" is true or not
     - In these cases, using a tool to toggle "UP" blockstate will render the fencepost twice, overlapping identical models
     - Visible change only occurs when a tool toggles "UP" at a straight section of fence (where either NORTH and SOUTH states, or EAST and WEST states are true)
@@ -112,7 +113,7 @@ public class FencePostBlock extends FenceBlock implements ToolUseInterface {
             check if its connected straight along NS or EW
             if so, set its block state to disable the fence post.
 
-            Handles DISabling of FencePost ONLY by performing setBlock on neighbors
+            Handles DISabling of FencePost by performing setBlock on neighbors
          */
 
         if( (state.getBlock().equals(oldState.getBlock()))  ) {
@@ -130,13 +131,9 @@ public class FencePostBlock extends FenceBlock implements ToolUseInterface {
             BlockState neighborState = level.getBlockState(neighborPos);
 
             if((neighborState.getBlock() instanceof FencePostBlock)) {
-                Direction perpendicularDirCW = dir.getClockWise();
-                Direction perpendicularDirCCW = dir.getCounterClockWise();
 
-                //If neighbor state is instance of this block, safely read off boolean connection values
-                boolean connectsCW = neighborState.getValue(fromDirection(perpendicularDirCW));
-                boolean connectsCCW = neighborState.getValue(fromDirection(perpendicularDirCCW));
-                boolean neighborIsErect = fenceHasSupportedPost(level,neighborState,neighborPos);
+                boolean neighborHasCornerConnection = hasCornerConnection(neighborState,dir); //pass in neighbor's state, not current state
+                boolean neighborIsSupported = fenceHasSupportedPost(level,neighborState,neighborPos); //pass in neighbor's state/pos, not current state/pos
                 /*
                     If neighbor FencePostBlock
                     - does not have perpendicular connections
@@ -144,12 +141,7 @@ public class FencePostBlock extends FenceBlock implements ToolUseInterface {
                     - and is not a fencePost already supported above and below by other Posts
                     Remove that neighbor FencePostBlock's fence-post
                 */
-                if( (!(connectsCW || connectsCCW)) && (neighborState.getValue(fromDirection(dir))) && !neighborIsErect) {
-
-                    if(level.isClientSide()) {
-                        level.players().getFirst().sendSystemMessage(Component.literal("onPlace, neighbor is erect: "+!neighborIsErect ));
-                    }
-
+                if( (!(neighborHasCornerConnection) && (neighborState.getValue(fromDirection(dir))) && !neighborIsSupported) ) {
                     level.setBlock(neighborPos, neighborState.setValue(UP, false), 3); //fencepost removal
                 }
             }
@@ -186,7 +178,10 @@ public class FencePostBlock extends FenceBlock implements ToolUseInterface {
          */
         state = super.updateShape(state, facing, facingState, level, currentPos, facingPos);
 
-        //Ignore block updates from blocks above/below fence
+        /*
+            Ignore block updates from blocks above/below fence
+            This avoids weird behavior with WallBlocks
+        */
         if(facing.getAxis().isVertical()) {
             return state;
         }
@@ -236,13 +231,9 @@ public class FencePostBlock extends FenceBlock implements ToolUseInterface {
 
     protected static boolean fencePostShouldBePlaced(BlockState fencePostBlockState) {
         /*
+            Determines fence-post eligibility based on number of connections.
             Having two connections does not guarantee a fence-post should be present
             Corners should have a post, but straight-fence connections should not by default.
-
-            0 connections - Post only. Post must exist.
-            1 connection - Likely a terminal fence segment. Post should exist.
-            3 connections - Triple connection. Post should exist at center.
-            4 connections - All directions connected. Post should exist at center.
          */
 
         //https://www.geeksforgeeks.org/java/java-guava-booleans-counttrue-method-with-examples/
@@ -255,6 +246,16 @@ public class FencePostBlock extends FenceBlock implements ToolUseInterface {
                 return false;
             }
         }
+    }
+
+    protected static boolean hasCornerConnection(BlockState fencePostBlockState, Direction dir) {
+        Direction perpendicularDirCW = dir.getClockWise(); //perpendicular to passed direction
+        Direction perpendicularDirCCW = dir.getCounterClockWise(); //perpendicular to passed direction
+
+        boolean connectsCW = fencePostBlockState.getValue(fromDirection(perpendicularDirCW));
+        boolean connectsCCW = fencePostBlockState.getValue(fromDirection(perpendicularDirCCW));
+
+        return (connectsCW || connectsCCW);
     }
 
     protected static boolean hasCollinearConnection(BlockState fencePostBlockState) {
