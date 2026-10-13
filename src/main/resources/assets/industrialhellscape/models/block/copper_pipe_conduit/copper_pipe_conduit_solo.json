@@ -4,8 +4,8 @@
 	"ambientocclusion": false,
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "industrialhellscape:block/copper_pipe_conduit",
-		"particle": "industrialhellscape:block/copper_pipe_conduit"
+		"0": "industrialhellscape:block/pipe_conduit/copper_pipe_conduit",
+		"particle": "industrialhellscape:block/pipe_conduit/copper_pipe_conduit"
 	},
 	"elements": [
 		{

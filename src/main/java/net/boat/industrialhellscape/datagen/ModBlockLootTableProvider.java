@@ -171,8 +171,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.RUSTY_VESSELPLATE_PILLAR.get());
 
         //PANEL BLOCKS
-        this.add(ModBlocks.SHEETING_PANEL.get(),
-                createPanelBlockDrops(ModBlocks.SHEETING_PANEL.get()));
+        this.add(ModBlocks.BLACK_SHEETING_PANEL.get(),
+                createPanelBlockDrops(ModBlocks.BLACK_SHEETING_PANEL.get()));
         this.add(ModBlocks.GRAY_SHEETING_PANEL.get(),
                 createPanelBlockDrops(ModBlocks.GRAY_SHEETING_PANEL.get()));
         this.add(ModBlocks.RUSTY_SHEETING_PANEL.get(),

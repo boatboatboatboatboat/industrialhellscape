@@ -51,10 +51,6 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.RUSTY_HORIZONTAL_CUTOUT_VENT.asItem(),
                         ModBlocks.RUSTY_VERTICAL_CUTOUT_VENT.asItem()
                 );
-        this.tag(ModTags.Items.REDSTONE_BLOCK_ITEMS)
-                .add(
-                        ModBlocks.INDUSTRIAL_LEVER.asItem()
-                );
         this.tag(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM)
                 .add(
                         //DONT PUT SLABS HERE
@@ -171,7 +167,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(
                         ModBlocks.METALWORKS.asItem(),
 
-                        ModBlocks.SHEETING_PANEL.asItem(),
+                        ModBlocks.BLACK_SHEETING_PANEL.asItem(),
                         ModBlocks.GRAY_SHEETING_PANEL.asItem(),
                         ModBlocks.RUSTY_SHEETING_PANEL.asItem(),
 
@@ -237,7 +233,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.WORK_LIGHT_STAND.asItem(),
                         ModBlocks.FLOOR_WORK_LIGHT.asItem(),
                         ModBlocks.CCTV_CAMERA.asItem(),
-//                        ModBlocks.INDUSTRIAL_LAMP.asItem(),
+                        ModBlocks.INDUSTRIAL_LEVER.asItem(),
                         ModBlocks.OBLONG_CAGE_LAMP.asItem()
                 );
         this.tag(ModTags.Items.TECHNOLOGY_FURNITURE_CATEGORY)

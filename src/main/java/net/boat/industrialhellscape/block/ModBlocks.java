@@ -52,7 +52,7 @@ public class ModBlocks {
             DeferredRegister.createBlocks(IndustrialHellscape.MOD_ID);
 
     public static void removeAndReplaceBlocks() { //Replaces both Block and Block Item with replacements. This is called in the IndustrialHellscape main class
-        specificBlockReplacement("vesselplate_sheeting_panel", "sheeting_panel");
+        specificBlockReplacement("sheeting_panel", "black_sheeting_panel");
 
         specificBlockReplacement("smooth_gray_rockrete", "gray_rockrete");
         specificBlockReplacement("smooth_red_rockrete", "red_rockrete");
@@ -275,22 +275,6 @@ public class ModBlocks {
     public static final DeferredBlock<Block> RUSTY_DUCT = registerBlockAndBlockItem("rusty_duct",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
 
-    //DUCT VENT BLOCKS
-//    public static final DeferredBlock<Block> DUCT_VENT = registerBlockAndBlockItem("duct_vent",
-//            () -> new ModelledSurfaceMountBlock(BlockBehaviour
-//                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-//                    .noOcclusion(),
-//                    HitboxGeometryCollection.PANEL_FLOOR()
-//            )
-//    );
-//    public static final DeferredBlock<Block> RUSTY_DUCT_VENT = registerBlockAndBlockItem("rusty_duct_vent",
-//            () -> new ModelledSurfaceMountBlock(BlockBehaviour
-//                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-//                    .noOcclusion(),
-//                    HitboxGeometryCollection.PANEL_FLOOR()
-//            )
-//    );
-
     //VENT BLOCKS
     public static final DeferredBlock<Block> HORIZONTAL_VENT = registerBlockAndBlockItem("horizontal_vent",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
@@ -461,7 +445,7 @@ public class ModBlocks {
     );
 
     //PANEL BLOCKS
-    public static final DeferredBlock<Block> SHEETING_PANEL = registerBlockAndBlockItem("sheeting_panel",
+    public static final DeferredBlock<Block> BLACK_SHEETING_PANEL = registerBlockAndBlockItem("black_sheeting_panel",
             () -> new PanelBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
