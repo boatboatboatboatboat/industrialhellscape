@@ -386,7 +386,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
                         ModTags.Blocks.TRUSS_BLOCKS,
                         ModTags.Blocks.HVAC_BLOCKS,
-                        ModTags.Blocks.REDSTONE_BLOCKS,
 
                         ModTags.Blocks.PIPEWORKS_BLOCKS,
                         ModTags.Blocks.METALWORKS_BLOCKS,
@@ -407,7 +406,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
                         ModTags.Blocks.TRUSS_BLOCKS,
                         ModTags.Blocks.HVAC_BLOCKS,
-                        ModTags.Blocks.REDSTONE_BLOCKS,
 
                         ModTags.Blocks.PIPEWORKS_BLOCKS,
                         ModTags.Blocks.METALWORKS_BLOCKS,

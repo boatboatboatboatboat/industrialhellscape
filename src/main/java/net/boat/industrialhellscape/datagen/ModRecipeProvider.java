@@ -126,7 +126,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.RIVETED_VESSELPLATE_STAIRS.asItem(),
             ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.asItem(),
             ModBlocks.GRAY_RIVETED_VESSELPLATE_STAIRS.asItem(),
-            ModBlocks.RUSTY_RIVETED_VESSELPLATE.asItem(),
             ModBlocks.RUSTY_RIVETED_VESSELPLATE_SLAB.asItem(),
 
             ModBlocks.VESSELPLATE_SHEETING_SLAB.asItem(),

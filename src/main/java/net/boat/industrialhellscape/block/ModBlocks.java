@@ -945,34 +945,39 @@ public class ModBlocks {
     public static final DeferredBlock<Block> REINFORCED_VESSELGLASS = registerBlockAndBlockItem("reinforced_vesselglass",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties
-                    .ofFullCopy(Blocks.GLASS)
+                    .ofFullCopy(Blocks.STONE)
+                    .noOcclusion()
             )
     );
     public static final DeferredBlock<Block> VESSELGLASS = registerBlockAndBlockItem("vesselglass",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.GLASS)
+                    .Properties.ofFullCopy(Blocks.STONE)
             )
     );
     public static final DeferredBlock<Block> GRAY_REINFORCED_VESSELGLASS = registerBlockAndBlockItem("gray_reinforced_vesselglass",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties
-                    .ofFullCopy(Blocks.GLASS)
+                    .ofFullCopy(Blocks.STONE)
+                    .noOcclusion()
             )
     );
     public static final DeferredBlock<Block> GRAY_VESSELGLASS = registerBlockAndBlockItem("gray_vesselglass",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.GLASS)
+                    .Properties.ofFullCopy(Blocks.STONE)
+                    .noOcclusion()
             )
     );
     public static final DeferredBlock<Block> RUSTY_REINFORCED_VESSELGLASS = registerBlockAndBlockItem("rusty_reinforced_vesselglass",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties
-                    .ofFullCopy(Blocks.GLASS)
+                    .ofFullCopy(Blocks.STONE)
+                    .noOcclusion()
             )
     );
     public static final DeferredBlock<Block> RUSTY_VESSELGLASS = registerBlockAndBlockItem("rusty_vesselglass",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.GLASS)
+                    .Properties.ofFullCopy(Blocks.STONE)
+                    .noOcclusion()
             )
     );
 
