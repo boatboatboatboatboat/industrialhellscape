@@ -46,7 +46,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(
                         ModBlocks.METALWORKS.get(),
 
-                        ModBlocks.SHEETING_PANEL.get(),
+                        ModBlocks.BLACK_SHEETING_PANEL.get(),
                         ModBlocks.GRAY_SHEETING_PANEL.get(),
                         ModBlocks.RUSTY_SHEETING_PANEL.get(),
 
@@ -208,11 +208,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
                         ModBlocks.GRIMY_RESTROOM_TILE.get()
                 );
-        this.tag(ModTags.Blocks.REDSTONE_BLOCKS) //FOR CORRECT MINING TOOLS AND TOOL TIER
-                .add(
-                        ModBlocks.INDUSTRIAL_LEVER.get()
-                );
-
         this.tag(ModTags.Blocks.DOOR_BLOCKS) //FOR CORRECT MINING TOOLS AND TOOL TIER
                 .add(
                         ModBlocks.ARMORED_DOOR.get(),
@@ -264,7 +259,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.FLOOR_WORK_LIGHT.get(),
                         ModBlocks.FUEL_DRUM.get(),
                         ModBlocks.CCTV_CAMERA.get(),
-//                        ModBlocks.INDUSTRIAL_LAMP.get(),
+                        ModBlocks.INDUSTRIAL_LEVER.get(),
                         ModBlocks.OBLONG_CAGE_LAMP.get()
                 );
 

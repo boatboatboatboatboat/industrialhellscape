@@ -7,6 +7,8 @@ import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer11Blo
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.Integer2Block;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.PeanutStatueBlock;
 import net.boat.industrialhellscape.block.block_classes.PanelBlocks.PanelBlock;
+import net.boat.industrialhellscape.block.block_classes.RailingBlocks.ParapetBlock;
+import net.boat.industrialhellscape.block.block_classes.RailingBlocks.RailingBlock;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -29,12 +31,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         //Debug Blocks
-        //genSimpleSBI(ModBlocks.PROTOTYPE_MACHINE.get(), build3FaceTexturesBlockModel("prototype_machine","experimental", "prototype_machine_front", "prototype_machine_side", "prototype_machine_top"));
         genFullBlockIntegerMultiBlockSI(ModBlocks.DEBUG_BLOCK.get(), "debug_textures", 11, Integer11Block.PART);
         genPeanutS((PeanutStatueBlock) ModBlocks.PEANUT_STATUE.get(), "peanut_statue");
 
         //In-Development Block
-        genSurfaceModelChangeSI(ModBlocks.INDUSTRIAL_LEVER.get(), "lever");
+        genFaceAttachedModelChangeSI(ModBlocks.INDUSTRIAL_LEVER.get(), "lever");
 
         genModelledIntegerMultiBlockS(ModBlocks.BODY_PILLOW_OZY.get(), "body_pillow");
         genVariantMultiBlock(ModBlocks.BODY_PILLOW_FANG.get(), ModBlocks.BODY_PILLOW_OZY.get(),"body_pillow","body_pillow","body_pillow_front_graphic_fang", "1", new Integer[]{1} );
@@ -56,15 +57,24 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genFolderedSBI(ModBlocks.DUCT.get(), "duct");
         genFolderedSBI(ModBlocks.RUSTY_DUCT.get(), "duct");
 
-        //Railing Blocks (non-generated block state json files. non-generated models)
-        genI(ModBlocks.YELLOW_RAILING.get(),"railing");
+        //Railing Blocks (generated block state json files. generated block models from parent, generated item models)
+        genRailingBlockSI((RailingBlock) ModBlocks.YELLOW_RAILING.get(),"railing","yellow_railing","railing","yellow_railing");
+        genRailingBlockSI((RailingBlock) ModBlocks.BLACK_RAILING.get(),"railing","yellow_railing","railing","black_railing");
+        genRailingBlockSI((RailingBlock) ModBlocks.GRAY_RAILING.get(),"railing","yellow_railing","railing","gray_railing");
+        genRailingBlockSI((RailingBlock) ModBlocks.RUSTY_RAILING.get(),"railing","yellow_railing","railing","rusty_railing");
+
+        //Stair Railing Blocks
         genCustomI(ModBlocks.YELLOW_STAIR_RAILING.get(),"railing","yellow_stair_rail_left");
-        genI(ModBlocks.GRAY_RAILING.get(),"railing");
         genCustomI(ModBlocks.GRAY_STAIR_RAILING.get(),"railing","gray_stair_rail_left");
-        genI(ModBlocks.BLACK_RAILING.get(),"railing");
         genCustomI(ModBlocks.BLACK_STAIR_RAILING.get(),"railing","black_stair_rail_left");
-        genI(ModBlocks.RUSTY_RAILING.get(),"railing");
         genCustomI(ModBlocks.RUSTY_STAIR_RAILING.get(),"railing","rusty_stair_rail_left");
+
+        //Parapet Blocks
+        genParapetBlockS((ParapetBlock) ModBlocks.GRAY_ROCKRETE_PARAPET.get(), "parapet","rockrete_parapet", "rockrete_parapets","gray_rockrete_parapet");
+        genParapetBlockS((ParapetBlock) ModBlocks.RED_ROCKRETE_PARAPET.get(), "parapet","rockrete_parapet", "rockrete_parapets","red_rockrete_parapet");
+        genParapetBlockS((ParapetBlock) ModBlocks.GREEN_ROCKRETE_PARAPET.get(), "parapet","rockrete_parapet", "rockrete_parapets","green_rockrete_parapet");
+        genParapetBlockS((ParapetBlock) ModBlocks.BLUE_ROCKRETE_PARAPET.get(), "parapet","rockrete_parapet", "rockrete_parapets","blue_rockrete_parapet");
+        genParapetBlockS((ParapetBlock) ModBlocks.YELLOW_ROCKRETE_PARAPET.get(), "parapet","rockrete_parapet", "rockrete_parapets","yellow_rockrete_parapet");
 
         //vent Blocks
         genSimpleTextureToggleSBI(ModBlocks.HORIZONTAL_VENT.get(),"vent", "solid");
@@ -78,7 +88,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genSimpleTextureToggleSBI(ModBlocks.RUSTY_VERTICAL_CUTOUT_VENT.get(),"vent","cutout");
 
         //Panel Blocks
-        genMultiStatePanelSBI((PanelBlock) ModBlocks.SHEETING_PANEL.get(),"", "panel2pixel","vesselplate","vesselplate_pillar","vesselplate_sheeting","vesselplate_pillar_top");
+        genMultiStatePanelSBI((PanelBlock) ModBlocks.BLACK_SHEETING_PANEL.get(),"", "panel2pixel","vesselplate","vesselplate_pillar","vesselplate_sheeting","vesselplate_pillar_top");
         genMultiStatePanelSBI((PanelBlock) ModBlocks.GRAY_SHEETING_PANEL.get(),"", "panel2pixel","vesselplate","gray_vesselplate_pillar","gray_vesselplate_sheeting","gray_vesselplate_pillar_top");
         genMultiStatePanelSBI((PanelBlock) ModBlocks.RUSTY_SHEETING_PANEL.get(),"", "panel2pixel","vesselplate","rusty_vesselplate_pillar","rusty_vesselplate_sheeting","rusty_vesselplate_pillar_top");
 
@@ -141,29 +151,29 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         genTextureToggleAntiCullSBI(ModBlocks.TRUSS.get(),"truss", "truss","truss", "cutout");
         genStairsWithRenderTypeSBI(ModBlocks.TRUSS_STAIRS.get(),"truss","reinforced_truss","truss","truss","cutout");
-        genAntiCullSlabBlockSBI(ModBlocks.TRUSS_SLAB.get(), "truss", "truss", "truss","truss","cutout");
+        genAntiCullSlabBlockSI(ModBlocks.TRUSS_SLAB.get(), "truss", "truss", "truss","truss","cutout");
 
         genTextureToggleAntiCullSBI(ModBlocks.CATWALK_TRUSS.get(),"truss", "truss","floorgrate_catwalk", "cutout");
         genStairsWithRenderTypeSBI(ModBlocks.CATWALK_TRUSS_STAIRS.get(),"truss","reinforced_truss","truss","floorgrate_catwalk","cutout");
-        genAntiCullSlabBlockSBI(ModBlocks.CATWALK_TRUSS_SLAB.get(), "truss", "truss", "floorgrate_catwalk","truss","cutout");
+        genAntiCullSlabBlockSI(ModBlocks.CATWALK_TRUSS_SLAB.get(), "truss", "truss", "floorgrate_catwalk","truss","cutout");
 
         genTrussSupportSBI(ModBlocks.GRAY_TRUSS_BEAM.get(), "truss", RotatedPillarBlock.AXIS, TrussBeamBlock.ALT_STATE);
         genTextureToggleAntiCullSBI(ModBlocks.GRAY_TRUSS.get(),"truss", "gray_truss","gray_truss", "cutout");
         genStairsWithRenderTypeSBI(ModBlocks.GRAY_TRUSS_STAIRS.get(),"truss","gray_reinforced_truss","gray_truss","gray_truss","cutout");
-        genAntiCullSlabBlockSBI(ModBlocks.GRAY_TRUSS_SLAB.get(), "truss", "gray_truss", "gray_truss","gray_truss","cutout");
+        genAntiCullSlabBlockSI(ModBlocks.GRAY_TRUSS_SLAB.get(), "truss", "gray_truss", "gray_truss","gray_truss","cutout");
 
         genTextureToggleAntiCullSBI(ModBlocks.GRAY_CATWALK_TRUSS.get(),"truss", "gray_truss","gray_floorgrate_catwalk", "cutout");
         genStairsWithRenderTypeSBI(ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.get(),"truss","gray_reinforced_truss","gray_truss","gray_floorgrate_catwalk","cutout");
-        genAntiCullSlabBlockSBI(ModBlocks.GRAY_CATWALK_TRUSS_SLAB.get(), "truss", "gray_truss", "gray_floorgrate_catwalk","gray_truss", "cutout");
+        genAntiCullSlabBlockSI(ModBlocks.GRAY_CATWALK_TRUSS_SLAB.get(), "truss", "gray_truss", "gray_floorgrate_catwalk","gray_truss", "cutout");
 
         genTrussSupportSBI(ModBlocks.RUSTY_TRUSS_BEAM.get(), "truss", RotatedPillarBlock.AXIS, TrussBeamBlock.ALT_STATE);
         genTextureToggleAntiCullSBI(ModBlocks.RUSTY_TRUSS.get(),"truss", "rusty_truss","rusty_truss", "cutout");
         genStairsWithRenderTypeSBI(ModBlocks.RUSTY_TRUSS_STAIRS.get(),"truss","rusty_reinforced_truss","rusty_truss","rusty_truss","cutout");
-        genAntiCullSlabBlockSBI(ModBlocks.RUSTY_TRUSS_SLAB.get(), "truss", "rusty_truss", "rusty_truss","rusty_truss","cutout");
+        genAntiCullSlabBlockSI(ModBlocks.RUSTY_TRUSS_SLAB.get(), "truss", "rusty_truss", "rusty_truss","rusty_truss","cutout");
 
         genTextureToggleAntiCullSBI(ModBlocks.RUSTY_CATWALK_TRUSS.get(),"truss", "rusty_truss","rusty_floorgrate_catwalk", "cutout");
         genStairsWithRenderTypeSBI(ModBlocks.RUSTY_CATWALK_TRUSS_STAIRS.get(),"truss","rusty_reinforced_truss","rusty_truss","rusty_floorgrate_catwalk","cutout");
-        genAntiCullSlabBlockSBI(ModBlocks.RUSTY_CATWALK_TRUSS_SLAB.get(), "truss", "rusty_truss", "rusty_floorgrate_catwalk","rusty_truss","cutout");
+        genAntiCullSlabBlockSI(ModBlocks.RUSTY_CATWALK_TRUSS_SLAB.get(), "truss", "rusty_truss", "rusty_floorgrate_catwalk","rusty_truss","cutout");
 
         //Vesselglass Blocks
         genSimpleTextureToggleSBI(ModBlocks.VESSELGLASS.get(),"vesselglass","translucent");
@@ -215,19 +225,19 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genSimpleWallsSB(ModBlocks.GREEN_ROCKRETE_WALL.get(), ModBlocks.ROUGH_GREEN_ROCKRETE.get(), "rough_rockrete");
 
         //BRACKETS
-        genCornerShapedBlocksSI(ModBlocks.RUSTY_BOLTED_BRACKET.get(),"bolted_bracket");
-        genCornerShapedBlocksSI(ModBlocks.BLACK_BOLTED_BRACKET.get(),"bolted_bracket");
-        genCornerShapedBlocksSI(ModBlocks.GRAY_BOLTED_BRACKET.get(),"bolted_bracket");
-        genCornerShapedBlocksSI(ModBlocks.SMALL_GRAY_BOLTED_BRACKET.get(),"bolted_bracket");
-        genCornerShapedBlocksSI(ModBlocks.SMALL_BLACK_BOLTED_BRACKET.get(),"bolted_bracket");
-        genCornerShapedBlocksSI(ModBlocks.SMALL_RUSTY_BOLTED_BRACKET.get(),"bolted_bracket");
+        genCornerShapedBlocksSI(ModBlocks.RUSTY_BOLTED_BRACKET.get(),"bolted_bracket","bolted_bracket","bolted_bracket","rusty_bolted_bracket");
+        genCornerShapedBlocksSI(ModBlocks.BLACK_BOLTED_BRACKET.get(),"bolted_bracket","bolted_bracket","bolted_bracket","black_bolted_bracket");
+        genCornerShapedBlocksSI(ModBlocks.GRAY_BOLTED_BRACKET.get(),"bolted_bracket","bolted_bracket","bolted_bracket","gray_bolted_bracket");
+        genCornerShapedBlocksSI(ModBlocks.SMALL_GRAY_BOLTED_BRACKET.get(),"bolted_bracket","small_bolted_bracket","bolted_bracket","small_rusty_bolted_bracket");
+        genCornerShapedBlocksSI(ModBlocks.SMALL_BLACK_BOLTED_BRACKET.get(),"bolted_bracket","small_bolted_bracket","bolted_bracket","small_black_bolted_bracket");
+        genCornerShapedBlocksSI(ModBlocks.SMALL_RUSTY_BOLTED_BRACKET.get(),"bolted_bracket","small_bolted_bracket","bolted_bracket","small_gray_bolted_bracket");
 
-        genCornerShapedBlocksSI(ModBlocks.COPPER_PIPE_CONDUIT_OUTER_CORNER.get(),"copper_pipe_conduit");
-        genCornerShapedBlocksSI(ModBlocks.BRASS_PIPE_CONDUIT_OUTER_CORNER.get(),"brass_pipe_conduit");
-        genCornerShapedBlocksSI(ModBlocks.GRAY_PIPE_CONDUIT_OUTER_CORNER.get(),"gray_pipe_conduit");
-        genCornerShapedBlocksSI(ModBlocks.COPPER_PIPE_CONDUIT_INNER_CORNER.get(),"copper_pipe_conduit");
-        genCornerShapedBlocksSI(ModBlocks.BRASS_PIPE_CONDUIT_INNER_CORNER.get(),"brass_pipe_conduit");
-        genCornerShapedBlocksSI(ModBlocks.GRAY_PIPE_CONDUIT_INNER_CORNER.get(),"gray_pipe_conduit");
+        genCornerShapedBlocksSI(ModBlocks.COPPER_PIPE_CONDUIT_OUTER_CORNER.get(),"pipe_conduit_corner","pipe_conduit_outer_corner","pipe_conduit","copper_pipe_conduit");
+        genCornerShapedBlocksSI(ModBlocks.BRASS_PIPE_CONDUIT_OUTER_CORNER.get(),"pipe_conduit_corner","pipe_conduit_outer_corner","pipe_conduit","brass_pipe_conduit");
+        genCornerShapedBlocksSI(ModBlocks.GRAY_PIPE_CONDUIT_OUTER_CORNER.get(),"pipe_conduit_corner","pipe_conduit_outer_corner","pipe_conduit","gray_pipe_conduit");
+        genCornerShapedBlocksSI(ModBlocks.COPPER_PIPE_CONDUIT_INNER_CORNER.get(),"pipe_conduit_corner","pipe_conduit_inner_corner","pipe_conduit","copper_pipe_conduit");
+        genCornerShapedBlocksSI(ModBlocks.BRASS_PIPE_CONDUIT_INNER_CORNER.get(),"pipe_conduit_corner","pipe_conduit_inner_corner","pipe_conduit","brass_pipe_conduit");
+        genCornerShapedBlocksSI(ModBlocks.GRAY_PIPE_CONDUIT_INNER_CORNER.get(),"pipe_conduit_corner","pipe_conduit_inner_corner","pipe_conduit","gray_pipe_conduit");
 
         //Doors
         genDoorSBI(ModBlocks.ARMORED_DOOR.get() , "cutout");
@@ -467,7 +477,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, models().getExistingFile(modLoc(existingModelPath)));
     }
 
-    private void genAntiCullSlabBlockSBI(Block block, String textureSubFolder, String sideTextureName, String topTextureName, String bottomTextureName, String renderType) {
+    private void genAntiCullSlabBlockSI(Block block, String textureSubFolder, String sideTextureName, String topTextureName, String bottomTextureName, String renderType) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 
         ResourceLocation side = modLoc("block/" + textureSubFolder + "/" + sideTextureName);
@@ -522,14 +532,20 @@ public class ModBlockStateProvider extends BlockStateProvider {
         doorBlockWithRenderType(((DoorBlock) block), modLoc("block/door/"+stringName+"_bottom"), modLoc("block/door/"+stringName+"_top"), renderType);
     }
 
-    private void genCornerShapedBlocksSI(Block block, String modelSubFolder) {
+    private void genCornerShapedBlocksSI(Block block, String modelSubFolder, String parentModelName, String textureSubFolder, String textureName) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        String existingModelPath = "block/"+optionalFolder(modelSubFolder)+stringName;
+        String blockFolder = "block/"; //generated/resources/assets/models/blocks but also used for mod's non-generated resource folder
+        String texturePath = blockFolder+optionalFolder(textureSubFolder)+textureName;
+        String generatedModelDestination = blockFolder+stringName;
+        String existingParentModelLocation = blockFolder+optionalFolder(modelSubFolder)+parentModelName;
+
+        ModelFile cornerBlockModel = models().withExistingParent(generatedModelDestination, modLoc(existingParentModelLocation))
+                .texture("0", texturePath)
+                .texture("particle", texturePath);
 
         getVariantBuilder(block).forAllStatesExcept(state -> {
             Direction facing = state.getValue(FaceAttachedHorizontalDirectionalBlock.FACING);
             AttachFace face = state.getValue(FaceAttachedHorizontalDirectionalBlock.FACE);
-            simpleBlockItem(block, models().getExistingFile(modLoc(existingModelPath)));
 
             int yRot = switch (facing) {
                 case SOUTH -> 270;
@@ -539,7 +555,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
             };
 
             return ConfiguredModel.builder()
-                    .modelFile(models().getExistingFile(modLoc("block/"+optionalFolder(modelSubFolder)+stringName)))
+                    .modelFile(models().getExistingFile(modLoc(generatedModelDestination)))
                     .rotationX(face == AttachFace.FLOOR ? 0 : (face == AttachFace.WALL ? 90 : 180) )
                     //If the current blockstate is "FLOOR", don't rotate in X direction.
                     //If not,
@@ -551,6 +567,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     .build();
 
         }, BlockStateProperties.WATERLOGGED);
+
+        simpleBlockItem(block, models().getExistingFile(modLoc(generatedModelDestination)));
     }
 
     private void genSurfaceLightSI(Block block, String modelSubFolder) {
@@ -590,7 +608,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, models().getExistingFile(modLoc(unpoweredModelPath)));
     }
 
-    private void genSurfaceModelChangeSI(Block block, String modelSubFolder) {
+    private void genFaceAttachedModelChangeSI(Block block, String modelSubFolder) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String unpoweredModelPath = "block/"+optionalFolder(modelSubFolder)+stringName;
         String poweredModelPath = unpoweredModelPath+"_on"; //NOT GENERATED, EXISTING MODEL
@@ -1093,47 +1111,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
             fenceModelBuilder.end();
         }
         //----- Generate Fence Post model state -----
-
-//        //State Matrix
-//        char[][] fenceStateCombinationsWherePostShouldExist = {
-//                // N    S      E      W
-//                {'f', 'f', 'f', 'f'}, //
-//                {'t', 'x', 't', 'x'},   // NE corner / tri / cross
-//                {'t', 'x', 'x', 't'},   // NW corner / tri / cross
-//                {'x', 't', 't', 'x'},   // SE corner / tri / cross
-//                {'x', 't', 'x', 't'},   // SW corner / tri / cross
-//                {'t', 'f', 'f', 'f'},  // N end
-//                {'f', 't', 'f', 'f'},  // S end
-//                {'f', 'f', 't', 'f'},  // E end
-//                {'f', 'f', 'f', 't'}   // W end
-//        };
-        //Comment in if using CDeco's fencepost rendering method
-//        for (char[] stateCombination : fenceStateCombinationsWherePostShouldExist) {
-//            MultiPartBlockStateBuilder.PartBuilder part = multipartBuilder.part().modelFile(postModelFile).addModel();
-//            if (stateCombination[0] == 't') {
-//                part.conditions.put(BlockStateProperties.NORTH, true);
-//            } else if (stateCombination[0] == 'f') {
-//                part.conditions.put(BlockStateProperties.NORTH, false);
-//            } // else 'x' don't care
-//            if (stateCombination[1] == 't') {
-//                part.conditions.put(BlockStateProperties.SOUTH, true);
-//            } else if (stateCombination[1] == 'f') {
-//                part.conditions.put(BlockStateProperties.SOUTH, false);
-//            } // else 'x' don't care
-//            if (stateCombination[2] == 't') {
-//                part.conditions.put(BlockStateProperties.EAST, true);
-//            } else if (stateCombination[2] == 'f') {
-//                part.conditions.put(BlockStateProperties.EAST, false);
-//            } // else 'x' don't care
-//            if (stateCombination[3] == 't') {
-//                part.conditions.put(BlockStateProperties.WEST, true);
-//            } else if (stateCombination[3] == 'f') {
-//                part.conditions.put(BlockStateProperties.WEST, false);
-//            } // else 'x' don't care
-//            //part.end();
-//        }
-
-        //keep this
         multipartBuilder.part().modelFile(postModelFile).addModel()
                 .conditions.put(BlockStateProperties.UP, true);
     }
@@ -1184,59 +1161,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
             fenceModelBuilder.end();
         }
         //----- Generate Fence Post model state -----
-
-//        //State Matrix
-//        char[][] fenceStateCombinationsWherePostShouldExist = {
-//                // N    S      E      W    // Fifth column determines what fencepost model should look like
-//                {'f', 'f', 'f', 'f', 'a'}, //
-//                {'t', 'x', 't', 'x', 'a'},   // NE corner / tri / cross
-//                {'t', 'x', 'x', 't', 'a'},   // NW corner / tri / cross
-//                {'x', 't', 't', 'x', 'a'},   // SE corner / tri / cross
-//                {'x', 't', 'x', 't', 'a'},   // SW corner / tri / cross
-//                {'t', 'f', 'f', 'f', 'z'},  // N end
-//                {'f', 't', 'f', 'f', 'z'},  // S end
-//                {'f', 'f', 't', 'f', 'x'},  // E end
-//                {'f', 'f', 'f', 't', 'x'}   // W end
-//        };
-//        //Comment in if using CDeco's fencepost rendering method
-//        for (char[] stateCombination : fenceStateCombinationsWherePostShouldExist) {
-//            MultiPartBlockStateBuilder.PartBuilder part; // = multipartBuilder.part().modelFile(postModelFile).addModel();
-//
-//            //fencepost
-//            if(stateCombination[4] == 'a') { //adds two models on top of each other but one is rotated 90 degrees
-//                part = multipartBuilder.part().modelFile(postModelFile).addModel();
-//
-//            } else if (stateCombination[4] == 'z') { //no need to rotate (already z-axis-aligned)
-//                part = multipartBuilder.part().modelFile(postModelFile).rotationY(00).addModel();
-//
-//            } else { //(stateCombination[4] == 'x')  rotate 90 degrees to align with x-axis
-//                part = multipartBuilder.part().modelFile(postModelFile).rotationY(90).addModel();
-//            }
-//
-//            if (stateCombination[0] == 't') {
-//                part.conditions.put(BlockStateProperties.NORTH, true);
-//            } else if (stateCombination[0] == 'f') {
-//                part.conditions.put(BlockStateProperties.NORTH, false);
-//            } // else 'x' don't care
-//            if (stateCombination[1] == 't') {
-//                part.conditions.put(BlockStateProperties.SOUTH, true);
-//            } else if (stateCombination[1] == 'f') {
-//                part.conditions.put(BlockStateProperties.SOUTH, false);
-//            } // else 'x' don't care
-//            if (stateCombination[2] == 't') {
-//                part.conditions.put(BlockStateProperties.EAST, true);
-//            } else if (stateCombination[2] == 'f') {
-//                part.conditions.put(BlockStateProperties.EAST, false);
-//            } // else 'x' don't care
-//            if (stateCombination[3] == 't') {
-//                part.conditions.put(BlockStateProperties.WEST, true);
-//            } else if (stateCombination[3] == 'f') {
-//                part.conditions.put(BlockStateProperties.WEST, false);
-//            } // else 'x' don't care
-//            //part.end();
-//        }
-
-        //below code works, but needs fence posts to be manually toggled
 
         //Barbed Wire FenceTop    //Condition: UP AND (EAST OR WEST)
         MultiPartBlockStateBuilder.PartBuilder fencePostSuperGroup_UandEorW = multipartBuilder.part().modelFile(postModelFile).rotationY(90).addModel();
@@ -1296,120 +1220,151 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .condition(BlockStateProperties.EAST, false)
                 .condition(BlockStateProperties.WEST, false);
         //.endNestedGroup(); //appears to be optional here
-        fencePostSuperGroupSoloConnection_yRot90.end(); //closes the exterior nested group
+        fencePostSuperGroupSoloConnection_yRot90.end(); //closes the exterior group (super-group)
     }
 
-    private void genCustomWallBlockSBI(WallBlock block, String modelSubFolder) {
-        String blockStringNameId = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        String modelBasePath = "block/"+optionalFolder(modelSubFolder)+blockStringNameId;
+    private void genRailingBlockSI(RailingBlock block, String modelSubFolder, String parentModelName, String textureSubFolder, String textureName) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        String blockFolder = "block/"; //generated/resources/assets/models/blocks but also used for mod's non-generated resource folder
+        String generatedModelDestination = blockFolder+stringName;
+        String existingParentModelLocation = blockFolder+optionalFolder(modelSubFolder)+parentModelName;
+        String faceTexturePath = blockFolder+optionalFolder(textureSubFolder)+textureName;
 
-        String modelPostPath = modelBasePath+"_post";
-        String modelTopPostPath = modelBasePath+"_top_post";
-        String modelFencePath = modelBasePath+"_fence";
-        String modelTopFencePath = modelBasePath+"_top_fence";
-
-        ModelFile postModelFile = models().getExistingFile(modLoc(modelPostPath));
-        ModelFile topPostModelFile = models().getExistingFile(modLoc(modelTopPostPath));
-
-        ModelFile fenceModelFile = models().getExistingFile(modLoc(modelFencePath));
-        ModelFile topFenceModelFile = models().getExistingFile(modLoc(modelTopFencePath));
+        //railing model
+        ModelFile railingModelFile = models().withExistingParent(generatedModelDestination, modLoc(existingParentModelLocation))
+                .texture("0", faceTexturePath)
+                .texture("particle", faceTexturePath);
 
         MultiPartBlockStateBuilder multipartBuilder = getMultipartBuilder(block);
 
-            //DO NOT TOUCH THIS
-            /*
-            Post model will not render unless:
-            "up": true AND either of the wall connections return TALL
+        //preallocate for-loop variables;
+        int yDegrees = 0;
 
-            AND[(1), (2)]
-
-            - (1) = AND[{"up":true}]
-
-            - (2) = OR[{"east_wall":tall}, {"west_wall":tall}, {"south_wall":tall},{"north_wall":tall}]
-
-            https://docs.minecraftforge.net/en/latest/datagen/client/modelproviders/
-            "Conditions can be grouped (via #nestedGroup) as long as the current grouping only contains other groups and no **single conditions**"???
-             */
-
-        //Main Fence Post
-        MultiPartBlockStateBuilder.PartBuilder postMultiState = multipartBuilder.part().modelFile(postModelFile).addModel();
-        MultiPartBlockStateBuilder.PartBuilder.ConditionGroup OR_alone_or_connected = postMultiState.nestedGroup().useOr(); //initialize exterior nested group with AND logic for contents
-        MultiPartBlockStateBuilder.PartBuilder.ConditionGroup AND_alone = OR_alone_or_connected.nestedGroup();
-        //MultiPartBlockStateBuilder.PartBuilder.ConditionGroup AND_connected = OR_alone_or_connected.nestedGroup();
-
-        OR_alone_or_connected.nestedGroup()
-                .condition(BlockStateProperties.UP,true)
-                .condition(BlockStateProperties.EAST_WALL, WallSide.NONE)
-                .condition(BlockStateProperties.WEST_WALL, WallSide.NONE)
-                .condition(BlockStateProperties.SOUTH_WALL, WallSide.NONE)
-                .condition(BlockStateProperties.NORTH_WALL, WallSide.NONE);
-
-        AND_alone.nestedGroup().condition(BlockStateProperties.UP, true);
-        AND_alone.nestedGroup().useOr()
-                .condition(BlockStateProperties.EAST_WALL, WallSide.TALL)
-                .condition(BlockStateProperties.WEST_WALL, WallSide.TALL)
-                .condition(BlockStateProperties.SOUTH_WALL, WallSide.TALL)
-                .condition(BlockStateProperties.NORTH_WALL, WallSide.TALL);
-
-        //Main fence
-        for(int i = 0; i<4; i++) {
-            MultiPartBlockStateBuilder.PartBuilder fenceMultiStateN = multipartBuilder.part().modelFile(fenceModelFile).rotationY(i*90).addModel();
-            fenceMultiStateN
-                    .nestedGroup()
-                    .condition(
-                            switch(i) {
-                                case 0 -> BlockStateProperties.SOUTH_WALL;
-                                case 1 -> BlockStateProperties.WEST_WALL;
-                                case 2 -> BlockStateProperties.NORTH_WALL;
-                                default -> BlockStateProperties.EAST_WALL;
-                            }
-                            , WallSide.TALL);
-            fenceMultiStateN.end();
-        }
-
-        //Barbed Wire
-        for(int i = 0; i<4; i++) {
-        MultiPartBlockStateBuilder.PartBuilder topPostEW = multipartBuilder.part().modelFile(topFenceModelFile).rotationY(i*90).addModel();
-        topPostEW.useOr()
-                //.condition(BlockStateProperties.EAST_WALL, WallSide.LOW)
-                .condition(switch(i) {
-                    case 0 -> BlockStateProperties.SOUTH_WALL;
-                    case 1 -> BlockStateProperties.WEST_WALL;
-                    case 2 -> BlockStateProperties.NORTH_WALL;
-                    default -> BlockStateProperties.EAST_WALL;
+        //Generate Fence model states
+        for(Direction dir : BlockStateProperties.HORIZONTAL_FACING.getPossibleValues()) {
+            switch (dir) {
+                case NORTH -> {
+                    yDegrees = 0;
                 }
-                , WallSide.LOW);
-        topPostEW.end();
+                case WEST -> {
+                    yDegrees = 270;
+                }
+                case SOUTH -> {
+                    yDegrees = 180;
+                }
+                case EAST -> {
+                    yDegrees = 90;
+                }
+            }
+
+            MultiPartBlockStateBuilder.PartBuilder railingModelBuilder = multipartBuilder.part().modelFile(railingModelFile).rotationY(yDegrees).addModel();
+            railingModelBuilder.useOr()
+                    .condition(switch(dir) {
+                        case WEST -> BlockStateProperties.WEST;
+                        case EAST -> BlockStateProperties.EAST;
+                        case SOUTH -> BlockStateProperties.SOUTH;
+                        default -> BlockStateProperties.NORTH;
+                    }, true);
+            railingModelBuilder.end();
         }
 
-        //Barbed Wire FenceTop
-        MultiPartBlockStateBuilder.PartBuilder topPostMultiStateEW = multipartBuilder.part().modelFile(topPostModelFile).rotationY(90).addModel();
-        MultiPartBlockStateBuilder.PartBuilder.ConditionGroup topPostLogicSuperGroupEW = topPostMultiStateEW.nestedGroup(); //initialize exterior nested group with AND logic for contents
-        topPostLogicSuperGroupEW
-                .nestedGroup()
-                .condition(BlockStateProperties.UP, true);
-        //.endNestedGroup(); //appears to be optional here
-        topPostLogicSuperGroupEW
-                .nestedGroup() //initialize interior nested group and assign OR logic to contents
-                .useOr()
-                .condition(BlockStateProperties.EAST_WALL, WallSide.LOW)
-                .condition(BlockStateProperties.WEST_WALL, WallSide.LOW);
-        //.endNestedGroup(); //appears to be optional here
-        topPostMultiStateEW.end(); //closes the exterior nested group
+        //GENERATE ITEM MODEL
+        simpleBlockItem(block, models().getExistingFile(modLoc(generatedModelDestination)));
 
-        //Barbed Wire FenceTop
-        MultiPartBlockStateBuilder.PartBuilder topPostMultiStateNS = multipartBuilder.part().modelFile(topPostModelFile).rotationY(0).addModel();
-        MultiPartBlockStateBuilder.PartBuilder.ConditionGroup topPostLogicSuperGroupNS = topPostMultiStateNS.nestedGroup(); //initialize exterior nested group with AND logic for contents
-        topPostLogicSuperGroupNS
-                .nestedGroup()
-                .condition(BlockStateProperties.UP, true);
-        //.endNestedGroup(); //appears to be optional here
-        topPostLogicSuperGroupNS
-                .nestedGroup() //initialize interior nested group and assign OR logic to contents
-                .useOr()
-                .condition(BlockStateProperties.NORTH_WALL, WallSide.LOW)
-                .condition(BlockStateProperties.SOUTH_WALL, WallSide.LOW);
-        //.endNestedGroup(); //appears to be optional here
-        topPostMultiStateNS.end(); //closes the exterior nested group
+    }
+
+    private void genParapetBlockS(ParapetBlock block, String modelSubFolder, String parentModelName, String textureSubFolder, String textureName) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        String blockFolder = "block/"; //generated/resources/assets/models/blocks but also used for mod's non-generated resource folder
+        String texturePath = blockFolder+optionalFolder(textureSubFolder)+textureName;
+        String innerCornerSuffix = "_ic";
+        String outerCornerSuffix = "_oc";
+        String mainWallSuffix = "_wall";
+
+        String generatedModelDestination_IC = blockFolder+stringName+innerCornerSuffix; //block/gray_rockrete_parapet_ic
+        String existingParentModelLocation_IC = blockFolder+optionalFolder(modelSubFolder)+parentModelName+innerCornerSuffix; //block/parapet/rockrete_parapet_ic
+
+        String generatedModelDestination_OC = blockFolder+stringName+outerCornerSuffix;
+        String existingParentModelLocation_OC = blockFolder+optionalFolder(modelSubFolder)+parentModelName+outerCornerSuffix;
+
+        String generatedModelDestination_Wall = blockFolder+stringName+mainWallSuffix;
+        String existingParentModelLocation_Wall = blockFolder+optionalFolder(modelSubFolder)+parentModelName+mainWallSuffix;
+
+        //Inner Corner Model
+        ModelFile parapetModelFile_IC = models().withExistingParent(generatedModelDestination_IC, modLoc(existingParentModelLocation_IC))
+                .texture("0", texturePath)
+                .texture("particle", texturePath);
+
+        //Outer Corner Model
+        ModelFile parapetModelFile_OC = models().withExistingParent(generatedModelDestination_OC, modLoc(existingParentModelLocation_OC))
+                .texture("0", texturePath)
+                .texture("particle", texturePath);
+
+        //Main Wall Model
+        ModelFile parapetModelFile_Wall = models().withExistingParent(generatedModelDestination_Wall, modLoc(existingParentModelLocation_Wall))
+                .texture("0", texturePath)
+                .texture("particle", texturePath);
+
+        MultiPartBlockStateBuilder multipartBuilder = getMultipartBuilder(block);
+
+        //preallocate for-loop variables;
+        int yDegrees = 0;
+
+        //Generate Fence model states
+        for(Direction dir : BlockStateProperties.HORIZONTAL_FACING.getPossibleValues()) {
+            switch (dir) {
+                case NORTH -> {
+                    yDegrees = 0;
+                }
+                case WEST -> {
+                    yDegrees = 270;
+                }
+                case SOUTH -> {
+                    yDegrees = 180;
+                }
+                case EAST -> {
+                    yDegrees = 90;
+                }
+            }
+
+            //Inner Corner (IC NW model applies to North and West booleans
+            MultiPartBlockStateBuilder.PartBuilder parapetBuilder_IC = multipartBuilder.part().modelFile(parapetModelFile_IC).rotationY(yDegrees).addModel();
+            parapetBuilder_IC.useOr()
+                    .condition(switch (dir) {
+                        case WEST -> BlockStateProperties.WEST; //correct
+                        case EAST -> BlockStateProperties.EAST; //correct
+                        case SOUTH -> BlockStateProperties.SOUTH;
+                        default -> BlockStateProperties.NORTH;
+                    }, true)
+                    .condition(switch (dir) {
+                        case WEST -> BlockStateProperties.SOUTH; //correct //orig south
+                        case EAST -> BlockStateProperties.NORTH; //correct //orig north
+                        case SOUTH -> BlockStateProperties.EAST; //orig east
+                        default -> BlockStateProperties.WEST; //orig west
+                    }, true);
+            parapetBuilder_IC.end();
+
+            //Outer Corner
+            MultiPartBlockStateBuilder.PartBuilder parapetBuilder_OC = multipartBuilder.part().modelFile(parapetModelFile_OC).rotationY(yDegrees).addModel();
+            parapetBuilder_OC.useOr()
+                    .condition(switch(dir) {
+                        case WEST -> ParapetBlock.SOUTH_WEST_FENCE;
+                        case EAST -> ParapetBlock.NORTH_EAST_FENCE;
+                        case SOUTH -> ParapetBlock.SOUTH_EAST_FENCE;
+                        default -> ParapetBlock.NORTH_WEST_FENCE;
+                    }, true);
+            parapetBuilder_OC.end();
+
+            //Main Wall
+            MultiPartBlockStateBuilder.PartBuilder parapetBuilder_Wall = multipartBuilder.part().modelFile(parapetModelFile_Wall).rotationY(yDegrees).addModel();
+            parapetBuilder_Wall.useOr()
+                    .condition(switch (dir) {
+                        case WEST -> BlockStateProperties.WEST;
+                        case EAST -> BlockStateProperties.EAST;
+                        case SOUTH -> BlockStateProperties.SOUTH;
+                        default -> BlockStateProperties.NORTH;
+                    }, true);
+            parapetBuilder_Wall.end();
+        }
     }
 }

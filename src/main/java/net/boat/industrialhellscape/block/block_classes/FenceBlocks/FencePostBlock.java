@@ -3,14 +3,18 @@ package net.boat.industrialhellscape.block.block_classes.FenceBlocks;
 import com.google.common.primitives.Booleans;
 import net.boat.industrialhellscape.block.block_interfaces.HitboxRotationInterface;
 import net.boat.industrialhellscape.block.block_interfaces.ToolUseInterface;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -27,6 +31,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 
 /*
@@ -60,7 +66,6 @@ public class FencePostBlock extends FenceBlock implements ToolUseInterface {
     public final VoxelShape SOUTH_SHAPE;
     public final VoxelShape EAST_SHAPE;
     public final VoxelShape WEST_SHAPE;
-
 
     public FencePostBlock(Properties pProperties, VoxelShape postShape, VoxelShape fenceShape) {
         super(pProperties);
@@ -143,6 +148,20 @@ public class FencePostBlock extends FenceBlock implements ToolUseInterface {
                 */
                 if( (!(neighborHasCornerConnection) && (neighborState.getValue(fromDirection(dir))) && !neighborIsSupported) ) {
                     level.setBlock(neighborPos, neighborState.setValue(UP, false), 3); //fencepost removal
+//                    /*
+//                     Based on current "dir", if the opposite neighbor to the current block has a post,
+//                     don't disable the current neighbor's post.
+//
+//                     This final check avoids unintentional post disabling if player
+//                     attempts to erect an adjacent post on a 1-block tall fence-row; none of those
+//                     fence-posts are be considered "supported" and one would be unintentially disabled
+//                     */
+//                    BlockPos opposingNeighborPos = pos.relative(dir.getOpposite());
+//                    BlockState opposingNeighborState = level.getBlockState(opposingNeighborPos);
+//                    boolean opposingNeighborHasPost = opposingNeighborState.getValue(UP);
+//                    if(!opposingNeighborHasPost) {
+//                        level.setBlock(neighborPos, neighborState.setValue(UP, false), 3); //fencepost removal
+//                    }
                 }
             }
         }
@@ -206,16 +225,16 @@ public class FencePostBlock extends FenceBlock implements ToolUseInterface {
         if(fenceConnectionsExist(state)) { //prevent removal of single post if fence is unconnected, to prevent invisible ghost blocks
             if(ToolUseInterface.checkForEnabledTool(stack)) {
                 state = state.cycle(UP);
-                level.setBlock(pos, state, 3);
                 level.playSound(player, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 0.25f, 1f);
 
+                //preallocate loop variable
                 BlockState aboveBlockState;
 
-                for(int i = 0; i<16; i++) {
-                    pos = pos.above();
+                for(int i = 0; i<8; i++) {
                     aboveBlockState = level.getBlockState(pos);
                     if(aboveBlockState.getBlock() instanceof FencePostBlock) {
                         level.setBlock(pos, aboveBlockState.setValue(UP, state.getValue(UP)),3);
+                        pos = pos.above();
                     } else {
                         //stop loop early if no more fencePostBlocks detected
                         break;
@@ -229,20 +248,35 @@ public class FencePostBlock extends FenceBlock implements ToolUseInterface {
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
+    @Override
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        if (Screen.hasShiftDown()) {
+            tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_fence"));
+        } else {
+            tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.shift_down"));
+        }
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+    }
+
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(UP, NORTH, EAST, WEST, SOUTH, WATERLOGGED);
+    }
+
+    //---------- Class Helper Methods Below ----------
     protected static boolean fencePostShouldBePlaced(BlockState fencePostBlockState) {
         /*
             Determines fence-post eligibility based on number of connections.
-            Having two connections does not guarantee a fence-post should be present
-            Corners should have a post, but straight-fence connections should not by default.
+            Having two connections does not guarantee a fence-post should be present;
+            corners should have a post, but straight-fence connections should not by default.
          */
 
         //https://www.geeksforgeeks.org/java/java-guava-booleans-counttrue-method-with-examples/
         boolean[] boolArray = { fencePostBlockState.getValue(NORTH), fencePostBlockState.getValue(SOUTH), fencePostBlockState.getValue(EAST), fencePostBlockState.getValue(WEST) };
         switch (Booleans.countTrue(boolArray)) {
-            case 0,1,3,4 -> {
+            case 0,1,3,4 -> { //not 2
                 return true;
             }
-            default -> {
+            default -> { //2 connections
                 return false;
             }
         }
@@ -289,13 +323,13 @@ public class FencePostBlock extends FenceBlock implements ToolUseInterface {
 
     private static boolean fenceConnectionsExist(BlockState pState) {
         //Checks if ANY fence connections exist at that block position
-        boolean occupied = false;
+        boolean atLeastOneConnection = false;
 
         for (Direction dir : BlockStateProperties.HORIZONTAL_FACING.getPossibleValues()) {
-            occupied |= pState.getValue(fromDirection(dir));
+            atLeastOneConnection |= pState.getValue(fromDirection(dir));
         }
 
-        return occupied;
+        return atLeastOneConnection;
     }
 
     protected static BooleanProperty fromDirection(Direction face) {
@@ -306,9 +340,5 @@ public class FencePostBlock extends FenceBlock implements ToolUseInterface {
             case WEST -> WEST;
             default -> NORTH;
         };
-    }
-
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(UP, NORTH, EAST, WEST, SOUTH, WATERLOGGED);
     }
 }
