@@ -1,5 +1,6 @@
 package net.boat.industrialhellscape.block.block_classes.FaceAttachedHorizontalDirectionBlocks;
 
+import net.boat.industrialhellscape.ModServerConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -58,13 +59,14 @@ public class RandomTickSoundBlock extends ModelledFAHDBlock {
 
     @Override
     public boolean isRandomlyTicking(BlockState pState) {
-        return pState.getValue(POWERED); //If powered (true), randomly tick
+        return pState.getValue(POWERED);
     }
 
+    @Override
     public void randomTick(@NotNull BlockState pState, ServerLevel pLevel, @NotNull BlockPos pPos, @NotNull RandomSource pRandom) {
         //If chunk is loaded, random tick the RandomTickSoundBlock if it is powered
         if (!pLevel.isAreaLoaded(pPos, 1)) return;
-        if (pState.getValue(POWERED)) { //If powered (true)
+        if (pState.getValue(POWERED) && ModServerConfig.smokeAlarmPlaysSound()) { //If powered (true)
             playSound(pLevel, pPos, OUTPUT_SOUND);
         }
     }

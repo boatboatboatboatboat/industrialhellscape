@@ -34,6 +34,10 @@ public class Storage2Block extends Integer2Block implements EntityBlock, Storage
         this.CLOSE_SOUND = closeSound;
     }
 
+    /*
+        TODO: UPDATE LOCKER BLOCKS WITH NEW MODELS AND TEXTURES AND STOP USING FULL-BLOCK MODELS FOR THIS
+     */
+
     @Override
     public int getSlotCount() {
         return SLOTS;

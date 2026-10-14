@@ -9,6 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.FluidState;
@@ -25,7 +26,6 @@ public abstract class BaseIntegerMultiBlock extends SimpleFacingBlock implements
 
     public BaseIntegerMultiBlock(Properties pProperties, int[][] multiBlockPlacementMatrix, IntegerProperty partProperty) {
         super(pProperties);
-        //maximumBlockStates = registerMaxBlockStates-1;
         this.multiBlockPlacementMatrix = multiBlockPlacementMatrix;
         this.partProperty = partProperty; //Will eventually be initialized by passing in a defined IntegerProperty as the last argument
 
@@ -34,39 +34,40 @@ public abstract class BaseIntegerMultiBlock extends SimpleFacingBlock implements
         );
     }
 
-    @Override
-    public boolean onDestroyedByPlayer(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, boolean willHarvest, FluidState fluid) {
-        /*
-        https://docs.neoforged.net/docs/1.21.1/blocks/
-
-        Experimentally determined:
-        playerDestroy() will not work in Creative Mode at all. It can be called manually by another method related to block destruction,
-        such as playerWillDestroy() or onDestroyedByPlayer
-         */
-
-        //Forgot if I tried using interface method in onRemove() but with if( newState.getBlock() != state.getBlock() )
-        //Probably because onRemove doesn't have a Player argument to check for creative mode to change level block-removal method
-
-        MultiBlockPlacementInterface.destroyRemainingMultiBlock(pLevel, pPlayer, this, pPos, partProperty, pState, multiBlockPlacementMatrix);
-        return super.onDestroyedByPlayer(pState, pLevel, pPos, pPlayer, willHarvest, fluid);
+    public BlockState getStateForPlacement(BlockPlaceContext pContext) {
+        BlockState pState = this.defaultBlockState();
+        Direction facing = pContext.getHorizontalDirection().getOpposite(); //Standard orientation for Minecraft blocks with a "front" side (faces opposite, towards player)
+        return pState.setValue(FACING,facing);
     }
 
     @Override
-    protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
-        super.onPlace(state, level, pos, oldState, movedByPiston);
+    protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+        return MultiBlockPlacementInterface.isFreeFromObstruction(state,level,pos,multiBlockPlacementMatrix);
     }
 
     public void setPlacedBy(@Nonnull Level pLevel, @Nonnull BlockPos pPos, @Nonnull BlockState pState, @Nullable LivingEntity pPlacer, @Nonnull ItemStack pStack) {
         MultiBlockPlacementInterface.constructMultiBlock(pLevel, this,  pPos, multiBlockPlacementMatrix, partProperty, FACING);
     }
 
-    public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        Level level = pContext.getLevel();
-        BlockPos originPos = pContext.getClickedPos();
-        BlockState pState = this.defaultBlockState();
-        Direction facing = pContext.getHorizontalDirection().getOpposite(); //Standard orientation for Minecraft blocks with a "front" side (faces opposite, towards player)
+    @Override
+    public boolean onDestroyedByPlayer(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, boolean willHarvest, FluidState fluid) {
+        /*
+            https://docs.neoforged.net/docs/1.21.1/blocks/
 
-        return MultiBlockPlacementInterface.placeOriginBlock(level, originPos, pState, FACING, facing, multiBlockPlacementMatrix);
+            Experimentally determined:
+            playerDestroy() will not work in Creative Mode at all. It can be called manually by another method related to block destruction,
+            such as playerWillDestroy() or onDestroyedByPlayer (this method)
+         */
+
+        /*
+            onDestroyedByPlayer()
+            -Has a Player parameter to allow checking for creative mode for proper item-dropping behavior
+            -Won't make multi-block act weird with Create mod, unlike neighborChanged()
+            -Presumably only ever called by real players, intentionally triggering the destruction for-loop
+         */
+
+        MultiBlockPlacementInterface.destroyRemainingMultiBlock(pLevel, pPlayer, this, pPos, partProperty, pState, multiBlockPlacementMatrix);
+        return super.onDestroyedByPlayer(pState, pLevel, pPos, pPlayer, willHarvest, fluid);
     }
 
     public PushReaction getPistonPushReaction(@NotNull BlockState pState) {

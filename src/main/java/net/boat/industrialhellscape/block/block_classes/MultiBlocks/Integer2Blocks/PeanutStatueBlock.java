@@ -198,14 +198,14 @@ public class PeanutStatueBlock extends Modelled2Block implements Fallable {
             BlockPos belowPos = pos.below();
             switch(state.getValue(PART)) {
                 case 0 -> {
-                    level.removeBlock(pos,false); //bottom
+                    level.destroyBlock(pos,true); //bottom
                     if(level.getBlockState(abovePos).is(this)) {
-                        level.removeBlock(abovePos,false);} //top
+                        level.destroyBlock(abovePos,true);} //top
                 }
                 case 1 -> {
-                    level.removeBlock(pos,false); //top
+                    level.destroyBlock(pos,true); //top
                     if (level.getBlockState(belowPos).is(this)) {
-                        level.removeBlock(belowPos, false); //bottom
+                        level.destroyBlock(belowPos, true); //bottom
                     }
                 }
             }
