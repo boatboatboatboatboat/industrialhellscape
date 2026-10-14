@@ -3,14 +3,18 @@ package net.boat.industrialhellscape.block.block_interfaces;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public interface MultiBlockPlacementInterface {
@@ -19,12 +23,13 @@ public interface MultiBlockPlacementInterface {
         Direction placementDirection = pState.getValue(BlockStateProperties.HORIZONTAL_FACING);
 
         /*
-        For default scenario (a block was placed and the block faces north):
+        For default scenario (a block was placed and the block faces north, not the player):
 
         First column tells how many blocks West this block of the entire multiblock will be placed
         Second column tells how many blocks Up this block will be placed
         Third column tells how many blocks South this block will be placed
 
+        From player pov, positive offset is to right, and away from player towards horizon.
         */
 
         return switch(placementDirection) {
@@ -89,16 +94,18 @@ public interface MultiBlockPlacementInterface {
 
                 That is the distinction between level.removeBlock() and level.destroyBlock()
                  */
-                if(pPlayer.isCreative()) { //no loot drops
+
+                if(pPlayer.isCreative()) { //no loot drops. also pPlayer seems to be nullable
                     pLevel.removeBlock(vectorToBlockPos(originPos, multiBlockMatrix, i, pState), true);
-                } else { //has loot drops
+                } else { //has loot drops if in survival
                     pLevel.destroyBlock(vectorToBlockPos(originPos, multiBlockMatrix, i, pState), true);
                 }
-            }
-        }
+            } //do nothing if multiblock mid-section is somehow missing. continue for-loop until completion
+        } //end for-loop
     }
 
     static void removeRemainingMultiBlock(LevelAccessor pLevel, Block thisBlock, BlockPos pos, IntegerProperty partProperty, BlockState pState, int[][] multiBlockMatrix) {
+        //Removes block with no respect for loot tables. Player is not passed in this method.
         BlockPos originPos = vectorToOriginBlockPos(pos, multiBlockMatrix,pState, partProperty);
 
         for (int i = 0; i < multiBlockMatrix.length; i++) {
@@ -117,6 +124,7 @@ public interface MultiBlockPlacementInterface {
         Used by useWithoutItem() override
         Checks each position of the multiblock. If a part still exists at that location,
         toggle the passed property to change states.
+        This affects all multi-block blocks.
          */
         BlockPos originPos = vectorToOriginBlockPos(pos, multiBlockMatrix,pState, partProperty);
 
@@ -130,9 +138,25 @@ public interface MultiBlockPlacementInterface {
         }
     }
 
-    static BlockState placeOriginBlock(Level pLevel, BlockPos pPos, BlockState pState, DirectionProperty directionProperty, Direction facing, int[][] multiBlockMatrix) {
-        pState = pState.setValue(directionProperty, facing);
+    static BlockState placeModelledOriginBlock(BlockPlaceContext pContext, Block thisBlock, DirectionProperty facingProperty, BooleanProperty waterloggedProperty, boolean placedOppositeFacing) {
+        //automatically assigns facing orientation and waterlogged property
+        //allows control for whether block faces towards (opposite direction of player) or away from player.
 
+        Direction facing = placedOppositeFacing ? pContext.getHorizontalDirection().getOpposite() : pContext.getHorizontalDirection();
+        FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
+
+        //initialize default block state
+        BlockState pState = thisBlock.defaultBlockState();
+        //assign waterlogging state value
+        pState.setValue(waterloggedProperty,fluidstate.getType() == Fluids.WATER);
+        //assign direction facing value
+        pState.setValue(facingProperty, facing);
+
+        return pState;
+    }
+
+    static boolean isFreeFromObstruction(BlockState pState, LevelReader pLevel, BlockPos pPos, int[][] multiBlockMatrix) {
+        //Obstruction checking logic
         //For-loop checks each BlockPos starting from the origin block position, governed by multiBlockMatrix
         for (int i = 0; i < multiBlockMatrix.length; i++) {
             BlockPos blockPosToCheck = vectorToBlockPos(pPos, multiBlockMatrix, i, pState);
@@ -142,13 +166,10 @@ public interface MultiBlockPlacementInterface {
 
             //if a position for a future multiblock part placement is invalid, stop & exit for-loop and return null for this method.
             if (!blockCanBePlacedHere) {
-                return null; //NULL RETURN IF PLACEMENT NOT APPROPRIATE
+                return false; //end this method prematurely and return false
             }
-        }
-
-        //Places down the first block state of the multiBlock if for-loop checks for position pass.
-        //The block class's setPlacedBy method (which should contain .constructMultiBlock() ) will handle construction behavior.
-        return pState.setValue(directionProperty, facing);
+        } //exited for-loop
+        return true; //once  for-loop succeeds with no obstructions detected
     }
 
     static void constructMultiBlock(Level pLevel, Block thisBlock, BlockPos originPos, int[][] multiBlockMatrix, IntegerProperty partProperty, DirectionProperty directionProperty) {
@@ -162,34 +183,35 @@ public interface MultiBlockPlacementInterface {
         BlockState state = pLevel.getBlockState(originPos);
         for (int i = 0; i < multiBlockMatrix.length; i++) {
             BlockPos nextPosition = vectorToBlockPos(originPos, multiBlockMatrix, i, state);
+            pLevel.setBlock(nextPosition, state.setValue(partProperty, i), 3);
 
-            BlockState stateAtPotentialPlacement = pLevel.getBlockState(nextPosition);
-
-            /*
-            Fix for Create SchematiCannon build ordering messing up horizontal multiblocks
-            - Appears to act as if a player is placing down each individual block, recognizing vanilla states such as direction FACING
-            - Schematicannons appear to respect modded blocks' getStateForPlacement logic but ignores null returns that protects against invalid placement,
-                placing the origin block down anyways and allowing subsequent setPlacedBy behavior
-
-            - A redundant check has to be done either in setPlacedBy or a helper method within it.
-                This prevents the origin block placed down by default to set other blocks which will destroy existing blocks in a schematic-Cannon build
-             */
-
-            if(stateAtPotentialPlacement.isAir()) {
-                /*
-                getStateForPlacement logic already prevents block from being placed down in obstructive environments
-
-                if another mod bypasses that method, ensures that a successfully placed down block does not destroy other blocks
-                while constructing itself
-
-                IF OBSTRUCTION CHECK FAILS AND ORIGIN BLOCK IS PLACED:
-                    - ONLY PLACE SUBSEQUENT BLOCKS IF THAT POSITION CONTAINS ONLY AIR
-                    - Prevents other block destruction but not weird state placement for finished block;
-                    - A schematicannon'd structure needs these blocks re-placed by player manually; where safeguards are fully present
-                    - World-gen structures are probably fine and separate from this issue
-                 */
-                pLevel.setBlock(nextPosition, state.setValue(partProperty, i), 3);
-            }
+//            BlockState stateAtPotentialPlacement = pLevel.getBlockState(nextPosition);
+//
+//            /*
+//            Fix for Create SchematiCannon build ordering messing up horizontal multiblocks
+//            - Appears to act as if a player is placing down each individual block, recognizing vanilla states such as direction FACING
+//            - Schematicannons appear to respect modded blocks' getStateForPlacement logic but ignores null returns that protects against invalid placement,
+//                placing the origin block down anyways and allowing subsequent setPlacedBy behavior
+//
+//            - A redundant check has to be done either in setPlacedBy or a helper method within it.
+//                This prevents the origin block placed down by default to set other blocks which will destroy existing blocks in a schematic-Cannon build
+//             */
+//
+//            if(stateAtPotentialPlacement.isAir()) {
+//                /*
+//                getStateForPlacement logic already prevents block from being placed down in obstructive environments
+//
+//                if another mod bypasses that method, ensures that a successfully placed down block does not destroy other blocks
+//                while constructing itself
+//
+//                IF OBSTRUCTION CHECK FAILS AND ORIGIN BLOCK IS PLACED:
+//                    - ONLY PLACE SUBSEQUENT BLOCKS IF THAT POSITION CONTAINS ONLY AIR
+//                    - Prevents other block destruction but not weird state placement for finished block;
+//                    - A schematicannon'd structure needs these blocks re-placed by player manually; where safeguards are fully present
+//                    - World-gen structures are probably fine and separate from this issue
+//                 */
+//                pLevel.setBlock(nextPosition, state.setValue(partProperty, i), 3);
+//            }
         }
     }
 

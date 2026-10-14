@@ -15,7 +15,6 @@ public class Integer2Block extends BaseIntegerMultiBlock implements MultiBlockPl
 
     public Integer2Block(BlockBehaviour.Properties pProperties, int[][] multiBlockPlacementMatrix) {
         super(pProperties, multiBlockPlacementMatrix, PART);
-        //maximumBlockStates = registerMaxBlockStates-1;
         this.multiBlockPlacementMatrix = multiBlockPlacementMatrix;
 
         this.registerDefaultState(this.stateDefinition.any()

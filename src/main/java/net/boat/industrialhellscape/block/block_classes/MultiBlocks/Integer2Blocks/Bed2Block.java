@@ -20,8 +20,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
@@ -48,15 +46,7 @@ public class Bed2Block extends Modelled2Block {
 
     @Override //<inclusion 19/9/26
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        Level level = pContext.getLevel();
-        BlockPos originPos = pContext.getClickedPos();
-        level.getBlockState(originPos);
-        BlockState pState;
-        Direction facing = pContext.getHorizontalDirection(); //Facing is NOT opposite to facilitate proper sleeping orientation
-        FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
-        pState = this.defaultBlockState().setValue(BlockStateProperties.WATERLOGGED,fluidstate.getType() == Fluids.WATER); //set default Block State for this block, THEN assign waterlogged state (so it doesnt try to do that for air)
-
-        return MultiBlockPlacementInterface.placeOriginBlock(level, originPos, pState, HorizontalDirectionalBlock.FACING, facing, multiBlockPlacementMatrix);
+        return MultiBlockPlacementInterface.placeModelledOriginBlock(pContext, this,FACING,BlockStateProperties.WATERLOGGED,false); //vanilla beds place in same direction as player
     }
 
     @Override
@@ -69,6 +59,7 @@ public class Bed2Block extends Modelled2Block {
     public boolean isBed(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull LivingEntity sleeper) {
         return true;
     }
+
     //Respawning wil not work without this NeoForge interface method (1.21.1 only)
     @Override
     public @NotNull Optional<ServerPlayer.RespawnPosAngle> getRespawnPosition(BlockState state, EntityType<?> type, LevelReader levelReader, BlockPos pos, float orientation) {

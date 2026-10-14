@@ -942,6 +942,13 @@ public class ModBlocks {
     );
 
     //VESSELGLASS BLOCKS
+    public static final DeferredBlock<Block> VESSELGLASS = registerBlockAndBlockItem("vesselglass",
+            () -> new SimpleTextureToggleBlock(BlockBehaviour
+                    .Properties
+                    .ofFullCopy(Blocks.STONE)
+                    .noOcclusion()
+            )
+    );
     public static final DeferredBlock<Block> REINFORCED_VESSELGLASS = registerBlockAndBlockItem("reinforced_vesselglass",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties
@@ -949,9 +956,11 @@ public class ModBlocks {
                     .noOcclusion()
             )
     );
-    public static final DeferredBlock<Block> VESSELGLASS = registerBlockAndBlockItem("vesselglass",
+    public static final DeferredBlock<Block> GRAY_VESSELGLASS = registerBlockAndBlockItem("gray_vesselglass",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE)
+                    .Properties
+                    .ofFullCopy(Blocks.STONE)
+                    .noOcclusion()
             )
     );
     public static final DeferredBlock<Block> GRAY_REINFORCED_VESSELGLASS = registerBlockAndBlockItem("gray_reinforced_vesselglass",
@@ -961,9 +970,10 @@ public class ModBlocks {
                     .noOcclusion()
             )
     );
-    public static final DeferredBlock<Block> GRAY_VESSELGLASS = registerBlockAndBlockItem("gray_vesselglass",
+    public static final DeferredBlock<Block> RUSTY_VESSELGLASS = registerBlockAndBlockItem("rusty_vesselglass",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE)
+                    .Properties
+                    .ofFullCopy(Blocks.STONE)
                     .noOcclusion()
             )
     );
@@ -971,12 +981,6 @@ public class ModBlocks {
             () -> new SimpleTextureToggleBlock(BlockBehaviour
                     .Properties
                     .ofFullCopy(Blocks.STONE)
-                    .noOcclusion()
-            )
-    );
-    public static final DeferredBlock<Block> RUSTY_VESSELGLASS = registerBlockAndBlockItem("rusty_vesselglass",
-            () -> new SimpleTextureToggleBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE)
                     .noOcclusion()
             )
     );
@@ -1376,7 +1380,7 @@ public class ModBlocks {
     );
     public static final DeferredBlock<Block> SMOKE_ALARM = registerBlockAndBlockItem("smoke_alarm",
             () -> new RandomTickSoundBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK).randomTicks()
                     .noOcclusion(),
                     HitboxGeometryCollection.SMOKE_DETECTOR_FLOOR(),
                     ModSounds.SMOKE_ALARM.get()

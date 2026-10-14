@@ -17,6 +17,17 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
+/*
+    INFO:
+
+    Modelled2Block superclass:
+    - Multiblock consisting of part #0 and part #1 blockStates
+    - WaterLoggable block
+
+    This class:
+    -Supports Right-click use interaction to cycle a chosen BooleanProperty across all multi-block parts
+ */
+
 public class LightStand2Block extends Modelled2Block {
     public LightStand2Block(Properties pProperties, int[][] multiBlockPlacementMatrix, VoxelShape[] hitboxShapeArray) {
         super(pProperties, multiBlockPlacementMatrix, hitboxShapeArray);

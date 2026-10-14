@@ -5,7 +5,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -19,12 +18,12 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nonnull;
 
-//INFO:
-//-----
-//This block supports cardinal directional placement, and an inventory with GUI. The inventory size is determined upon block registration.
-//Block places two blocks total within the world when placed down; First a "Negative" half, then a "Positive" half.
-//The direction these are placed is set by parameter "multiBlockPlacementDirection". The second half of the structure can be placed vertically, horizontally, or forward to the first half.
-//Supports a custom hitbox for custom model, passed during registration.
+
+/*
+    INFO:
+    - Multiblock consisting of part #0 and part #1 blockStates
+    - WaterLoggable block
+ */
 
 public class Modelled2Block extends Integer2Block implements SimpleWaterloggedBlock {
 
@@ -48,15 +47,7 @@ public class Modelled2Block extends Integer2Block implements SimpleWaterloggedBl
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        Level level = pContext.getLevel();
-        BlockPos originPos = pContext.getClickedPos();
-        level.getBlockState(originPos);
-        BlockState pState;
-        Direction facing = pContext.getHorizontalDirection().getOpposite();
-        FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
-        pState = this.defaultBlockState().setValue(BlockStateProperties.WATERLOGGED,fluidstate.getType() == Fluids.WATER); //set default Block State for this block, THEN assign waterlogged state (so it doesnt try to do that for air)
-
-        return MultiBlockPlacementInterface.placeOriginBlock(level, originPos, pState, FACING, facing, multiBlockPlacementMatrix);
+        return MultiBlockPlacementInterface.placeModelledOriginBlock(pContext, this,FACING,BlockStateProperties.WATERLOGGED,true);
     }
 
     public @Nonnull FluidState getFluidState(BlockState pState) {
