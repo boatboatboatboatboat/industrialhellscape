@@ -37,12 +37,10 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 createIntegerMultiBlockDrops(ModBlocks.DEBUG_BLOCK.get(),Integer11Block.PART));
 
         //IN-DEVELOPMENT BLOCK
-        this.dropSelf(ModBlocks.INDUSTRIAL_LEVER.get());
 
         //JOKE BLOCK
         this.add(ModBlocks.BODY_PILLOW_OZY.get(),
                 createIntegerMultiBlockDrops(ModBlocks.BODY_PILLOW_OZY.get(),Integer2Block.PART));
-//        this.dropSelf(ModBlocks.BODY_PILLOW_OZY.get());
         this.add(ModBlocks.BODY_PILLOW_FANG.get(),
                 createIntegerMultiBlockDrops(ModBlocks.BODY_PILLOW_FANG.get(),Integer2Block.PART));
         this.add(ModBlocks.BODY_PILLOW_PROV.get(),
@@ -180,7 +178,11 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         //FENCE BLOCKS
         this.dropSelf(ModBlocks.BARBED_WIRE_FENCE.get());
-        this.dropSelf(ModBlocks.BARBED_WIRE_FENCE_TOP.get());
+        this.dropSelf(ModBlocks.CHAINLINK_FENCE.get());
+
+        this.dropSelf(ModBlocks.ANGLED_BARBED_WIRE_ARM.get());
+        this.dropSelf(ModBlocks.VERTICAL_BARBED_WIRE_ARM.get());
+        this.dropSelf(ModBlocks.COILED_BARBED_WIRE_ARM.get());
 
         //TRUSS BLOCKS
         this.dropSelf(ModBlocks.TRUSS_BEAM.get());
@@ -318,6 +320,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.LOCKER_BOX.get());
         this.add(ModBlocks.LARGE_LOCKER.get(),
                 createIntegerMultiBlockDrops(ModBlocks.LARGE_LOCKER.get(),Integer2Block.PART));
+        this.dropSelf(ModBlocks.INDUSTRIAL_LEVER.get());
         this.add(ModBlocks.WORK_LIGHT_STAND.get(),
                 createIntegerMultiBlockDrops(ModBlocks.WORK_LIGHT_STAND.get(),Integer2Block.PART));
         this.dropSelf(ModBlocks.FLOOR_WORK_LIGHT.get());

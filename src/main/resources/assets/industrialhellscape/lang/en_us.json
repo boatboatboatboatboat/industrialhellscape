@@ -22,7 +22,7 @@
   "block.industrialhellscape.vesselplate_sheeting": "Vesselplate Sheeting",
   "block.industrialhellscape.vesselplate_sheeting_slab": "Vesselplate Sheeting Slab",
   "block.industrialhellscape.vesselplate_sheeting_stairs": "Vesselplate Sheeting Stairs",
-  "block.industrialhellscape.sheeting_panel": "Sheeting Panel",
+  "block.industrialhellscape.black_sheeting_panel": "Black Sheeting Panel",
   "block.industrialhellscape.riveted_vesselplate": "Riveted Vesselplate",
   "block.industrialhellscape.horizontal_vesselplate": "Vesselplate",
   "block.industrialhellscape.vertical_vesselplate": "Vesselplate",
@@ -257,7 +257,13 @@
   "block.industrialhellscape.floor_work_light": "Floor Work Light",
 
   "block.industrialhellscape.barbed_wire_fence": "Barbed Wire Fence",
-  "block.industrialhellscape.barbed_wire_fence_top": "Barbed Wire Fence Top",
+  "block.industrialhellscape.chainlink_fence": "Chainlink Fence",
+
+  "block.industrialhellscape.angled_barbed_wire_arm": "Angled Barbed Wire Arm",
+  "block.industrialhellscape.vertical_barbed_wire_arm": "Vertical Barbed Wire Arm",
+  "block.industrialhellscape.coiled_barbed_wire_arm": "Coiled Barbed Wire Arm",
+
+
   "block.industrialhellscape.yellow_railing": "Yellow Railing",
   "block.industrialhellscape.yellow_stair_railing": "Yellow Stair Railing",
   "block.industrialhellscape.gray_railing": "Gray Railing",

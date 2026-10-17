@@ -172,7 +172,10 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.RUSTY_SHEETING_PANEL.asItem(),
 
                         ModBlocks.BARBED_WIRE_FENCE.asItem(),
-                        ModBlocks.BARBED_WIRE_FENCE_TOP.asItem(),
+                        ModBlocks.CHAINLINK_FENCE.asItem(),
+                        ModBlocks.ANGLED_BARBED_WIRE_ARM.asItem(),
+                        ModBlocks.VERTICAL_BARBED_WIRE_ARM.asItem(),
+                        ModBlocks.COILED_BARBED_WIRE_ARM.asItem(),
 
                         ModBlocks.YELLOW_STAIR_RAILING.asItem(),
                         ModBlocks.YELLOW_RAILING.asItem(),
@@ -267,7 +270,11 @@ public class ModItemTagProvider extends ItemTagsProvider {
         this.tag(ItemTags.FENCES)
                 .add(
                         ModBlocks.BARBED_WIRE_FENCE.asItem(),
-                        ModBlocks.BARBED_WIRE_FENCE_TOP.asItem()
+                        ModBlocks.CHAINLINK_FENCE.asItem(),
+
+                        ModBlocks.ANGLED_BARBED_WIRE_ARM.asItem(),
+                        ModBlocks.VERTICAL_BARBED_WIRE_ARM.asItem(),
+                        ModBlocks.COILED_BARBED_WIRE_ARM.asItem()
                 );
 
         //---------- MISC TAGS ----------

@@ -183,35 +183,35 @@ public interface MultiBlockPlacementInterface {
         BlockState state = pLevel.getBlockState(originPos);
         for (int i = 0; i < multiBlockMatrix.length; i++) {
             BlockPos nextPosition = vectorToBlockPos(originPos, multiBlockMatrix, i, state);
-            pLevel.setBlock(nextPosition, state.setValue(partProperty, i), 3);
 
-//            BlockState stateAtPotentialPlacement = pLevel.getBlockState(nextPosition);
-//
-//            /*
-//            Fix for Create SchematiCannon build ordering messing up horizontal multiblocks
-//            - Appears to act as if a player is placing down each individual block, recognizing vanilla states such as direction FACING
-//            - Schematicannons appear to respect modded blocks' getStateForPlacement logic but ignores null returns that protects against invalid placement,
-//                placing the origin block down anyways and allowing subsequent setPlacedBy behavior
-//
-//            - A redundant check has to be done either in setPlacedBy or a helper method within it.
-//                This prevents the origin block placed down by default to set other blocks which will destroy existing blocks in a schematic-Cannon build
-//             */
-//
-//            if(stateAtPotentialPlacement.isAir()) {
-//                /*
-//                getStateForPlacement logic already prevents block from being placed down in obstructive environments
-//
-//                if another mod bypasses that method, ensures that a successfully placed down block does not destroy other blocks
-//                while constructing itself
-//
-//                IF OBSTRUCTION CHECK FAILS AND ORIGIN BLOCK IS PLACED:
-//                    - ONLY PLACE SUBSEQUENT BLOCKS IF THAT POSITION CONTAINS ONLY AIR
-//                    - Prevents other block destruction but not weird state placement for finished block;
-//                    - A schematicannon'd structure needs these blocks re-placed by player manually; where safeguards are fully present
-//                    - World-gen structures are probably fine and separate from this issue
-//                 */
-//                pLevel.setBlock(nextPosition, state.setValue(partProperty, i), 3);
-//            }
+            BlockState stateAtPotentialPlacement = pLevel.getBlockState(nextPosition);
+
+            /*
+            Fix for Create SchematiCannon build ordering messing up horizontal multiblocks
+            - Appears to act as if a player is placing down each individual block, recognizing vanilla states such as direction FACING
+            - Schematicannons appear to respect modded blocks' getStateForPlacement logic but ignores null returns that protects against invalid placement,
+                placing the origin block down anyways and allowing subsequent setPlacedBy behavior
+            - aside from getStateForPlacement() null returns, also seems to ignore canSurvive() ? TODO: test further
+
+            - A redundant check has to be done either in setPlacedBy or a helper method within it.
+                This prevents the origin block placed down by default to set other blocks which will destroy existing blocks in a schematic-Cannon build
+             */
+
+            if(stateAtPotentialPlacement.isAir()) {
+                /*
+                getStateForPlacement logic already prevents block from being placed down in obstructive environments
+
+                if another mod bypasses that method, ensures that a successfully placed down block does not destroy other blocks
+                while constructing itself
+
+                IF OBSTRUCTION CHECK FAILS AND ORIGIN BLOCK IS PLACED:
+                    - ONLY PLACE SUBSEQUENT BLOCKS IF THAT POSITION CONTAINS ONLY AIR
+                    - Prevents other block destruction but not weird state placement for finished block;
+                    - A schematicannon'd structure needs these blocks re-placed by player manually; where safeguards are fully present
+                    - World-gen structures are probably fine and separate from this issue
+                 */
+                pLevel.setBlock(nextPosition, state.setValue(partProperty, i), 3);
+            }
         }
     }
 

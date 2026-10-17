@@ -54,6 +54,9 @@ public class ModBlocks {
     public static void removeAndReplaceBlocks() { //Replaces both Block and Block Item with replacements. This is called in the IndustrialHellscape main class
         specificBlockReplacement("sheeting_panel", "black_sheeting_panel");
 
+        specificBlockReplacement("barbed_wire_fence_top", "angled_barbed_wire_arm");
+        specificBlockReplacement("thin_barbed_wire_fence_top", "vertical_barbed_wire_arm");
+
         specificBlockReplacement("smooth_gray_rockrete", "gray_rockrete");
         specificBlockReplacement("smooth_red_rockrete", "red_rockrete");
         specificBlockReplacement("smooth_yellow_rockrete", "yellow_rockrete");
@@ -106,6 +109,7 @@ public class ModBlocks {
         );
     }
 
+    //EXPERIMENTAL BLOCKS
     public static final DeferredBlock<Block> DEBUG_BLOCK = registerBlockAndBlockItem("debug_block",
             () -> new Storage11Block(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
@@ -115,24 +119,6 @@ public class ModBlocks {
                     , ModSounds.METAL_BOX_CLOSE.get()
             )
     );
-    public static final DeferredBlock<Block> PEANUT_STATUE = registerBlockAndBlockItem("peanut_statue",
-            () -> new PeanutStatueBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    , MultiBlockPlacementArrayCollection.VERTICAL_PLACEMENT
-                    , new VoxelShape[]{HitboxGeometryCollection.PEANUT_STATUE(), HitboxGeometryCollection.PEANUT_STATUE()}
-            )
-    );
-
-    //IN-DEVELOPMENT BLOCKS
-    public static final DeferredBlock<Block> INDUSTRIAL_LEVER = registerBlockAndBlockItem("industrial_lever",
-            () -> new WaterloggableLeverBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.OAK_PLANKS),
-                    HitboxGeometryCollection.INDUSTRIAL_LEVER())
-    );
-
-//    public static final DeferredBlock<Block> REMOVE_THIS_ITEM = registerBlockAndBlockItem("remove_this_item",
-//            () -> new ModelledFacingBlock(BlockBehaviour
-//                    .Properties.ofFullCopy(Blocks.OAK_PLANKS).sound(SoundType.SLIME_BLOCK), HitboxGeometryCollection.DECAL_FLOOR()));
 
     //JOKE BLOCKS
     public static final DeferredBlock<Block> BODY_PILLOW_OZY = registerBlockAndBlockItem("body_pillow",
@@ -163,6 +149,13 @@ public class ModBlocks {
                     MultiBlockPlacementArrayCollection.SLEEPABLE_BED_PLACEMENT,
                     new VoxelShape[]{HitboxGeometryCollection.PILLOW_NEGATIVE(), HitboxGeometryCollection.PILLOW_POSITIVE()},
                     true
+            )
+    );
+    public static final DeferredBlock<Block> PEANUT_STATUE = registerBlockAndBlockItem("peanut_statue",
+            () -> new PeanutStatueBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    , MultiBlockPlacementArrayCollection.VERTICAL_PLACEMENT
+                    , new VoxelShape[]{HitboxGeometryCollection.PEANUT_STATUE(), HitboxGeometryCollection.PEANUT_STATUE()}
             )
     );
 
@@ -475,7 +468,31 @@ public class ModBlocks {
                     HitboxGeometryCollection.FENCE_4PIXEL_THICK_SHAPE()
             )
     );
-    public static final DeferredBlock<Block> BARBED_WIRE_FENCE_TOP = registerBlockAndBlockItem("barbed_wire_fence_top",
+    public static final DeferredBlock<Block> CHAINLINK_FENCE = registerBlockAndBlockItem("chainlink_fence",
+            () -> new FencePostBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BARS).sound(SoundType.CHAIN)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.VERTICAL_ROD_4X4_SHAPE(),
+                    HitboxGeometryCollection.FENCE_4PIXEL_THICK_SHAPE()
+            )
+    );
+    public static final DeferredBlock<Block> ANGLED_BARBED_WIRE_ARM = registerBlockAndBlockItem("angled_barbed_wire_arm",
+            () -> new FencePostBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BARS).sound(SoundType.CHAIN)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.VERTICAL_ROD_4X4_SHAPE(),
+                    HitboxGeometryCollection.FENCE_4PIXEL_THICK_SHAPE()
+            )
+    );
+    public static final DeferredBlock<Block> VERTICAL_BARBED_WIRE_ARM = registerBlockAndBlockItem("vertical_barbed_wire_arm",
+            () -> new FencePostBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BARS).sound(SoundType.CHAIN)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.VERTICAL_ROD_4X4_SHAPE(),
+                    HitboxGeometryCollection.FENCE_4PIXEL_THICK_SHAPE()
+            )
+    );
+    public static final DeferredBlock<Block> COILED_BARBED_WIRE_ARM = registerBlockAndBlockItem("coiled_barbed_wire_arm",
             () -> new FencePostBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BARS).sound(SoundType.CHAIN)
                     .noOcclusion(),
@@ -1473,6 +1490,11 @@ public class ModBlocks {
                     ModSounds.METAL_BOX_OPEN.get(),
                     ModSounds.METAL_BOX_CLOSE.get()
             )
+    );
+    public static final DeferredBlock<Block> INDUSTRIAL_LEVER = registerBlockAndBlockItem("industrial_lever",
+            () -> new WaterloggableLeverBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.OAK_PLANKS),
+                    HitboxGeometryCollection.INDUSTRIAL_LEVER())
     );
     public static final DeferredBlock<Block> CCTV_CAMERA = registerBlockAndBlockItem("cctv_camera",
             () -> new ModelledFAHDBlock(BlockBehaviour

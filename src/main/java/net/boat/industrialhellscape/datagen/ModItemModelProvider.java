@@ -43,7 +43,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicFolderedItem(ModItems.MARQUEE_DISC.asItem(), "disc");
 
         basicFolderedItem(ModBlocks.BARBED_WIRE_FENCE.asItem(), "fence");
-        basicFolderedItem(ModBlocks.BARBED_WIRE_FENCE_TOP.asItem(), "fence");
+        basicFolderedItem(ModBlocks.CHAINLINK_FENCE.asItem(), "fence");
+
+        basicFolderedItem(ModBlocks.ANGLED_BARBED_WIRE_ARM.asItem(), "fence");
+        basicFolderedItem(ModBlocks.VERTICAL_BARBED_WIRE_ARM.asItem(), "fence");
+        basicFolderedItem(ModBlocks.COILED_BARBED_WIRE_ARM.asItem(), "fence");
 
         /*
         Multiblocks (fully constructed blocks cannot be rendered in GUIs without a separate model.
