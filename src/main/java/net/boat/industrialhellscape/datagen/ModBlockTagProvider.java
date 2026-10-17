@@ -51,7 +51,11 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.RUSTY_SHEETING_PANEL.get(),
 
                         ModBlocks.BARBED_WIRE_FENCE.get(),
-                        ModBlocks.BARBED_WIRE_FENCE_TOP.get(),
+                        ModBlocks.CHAINLINK_FENCE.get(),
+
+                        ModBlocks.ANGLED_BARBED_WIRE_ARM.get(),
+                        ModBlocks.VERTICAL_BARBED_WIRE_ARM.get(),
+                        ModBlocks.COILED_BARBED_WIRE_ARM.get(),
 
                         ModBlocks.YELLOW_STAIR_RAILING.get(),
                         ModBlocks.YELLOW_RAILING.get(),
@@ -376,7 +380,11 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         Walls and Fences are DIFFERENT TAGS
                         */
                         ModBlocks.BARBED_WIRE_FENCE.get(),
-                        ModBlocks.BARBED_WIRE_FENCE_TOP.get()
+                        ModBlocks.CHAINLINK_FENCE.get(),
+
+                        ModBlocks.ANGLED_BARBED_WIRE_ARM.get(),
+                        ModBlocks.VERTICAL_BARBED_WIRE_ARM.get(),
+                        ModBlocks.COILED_BARBED_WIRE_ARM.get()
                 );
 
         this.tag(BlockTags.NEEDS_STONE_TOOL) //When specific tool tiers are required

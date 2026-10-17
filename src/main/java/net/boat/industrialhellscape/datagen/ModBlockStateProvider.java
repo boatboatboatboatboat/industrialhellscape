@@ -23,6 +23,12 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.Arrays;
 
+/*
+    Notes:
+    - Within this class, modLoc() specifies that a filepath string ( "block/example_folder/example_block_model" ) is from inside this mod, not vanilla minecraft
+
+ */
+
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, IndustrialHellscape.MOD_ID, exFileHelper);
@@ -35,7 +41,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genPeanutS((PeanutStatueBlock) ModBlocks.PEANUT_STATUE.get(), "peanut_statue");
 
         //In-Development Block
-        genFaceAttachedModelChangeSI(ModBlocks.INDUSTRIAL_LEVER.get(), "lever");
 
         genModelledIntegerMultiBlockS(ModBlocks.BODY_PILLOW_OZY.get(), "body_pillow");
         genVariantMultiBlock(ModBlocks.BODY_PILLOW_FANG.get(), ModBlocks.BODY_PILLOW_OZY.get(),"body_pillow","body_pillow","body_pillow_front_graphic_fang", "1", new Integer[]{1} );
@@ -93,8 +98,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genMultiStatePanelSBI((PanelBlock) ModBlocks.RUSTY_SHEETING_PANEL.get(),"", "panel2pixel","vesselplate","rusty_vesselplate_pillar","rusty_vesselplate_sheeting","rusty_vesselplate_pillar_top");
 
         //Fence Blocks
-        genFenceBlockSB( (FenceBlock) ModBlocks.BARBED_WIRE_FENCE.get(), "fence","barbed_wire_fence_post", "barbed_wire_fence");
-        genFenceTopBlockSB( (FenceBlock) ModBlocks.BARBED_WIRE_FENCE_TOP.get(), "fence","barbed_wire_fence_top_post", "barbed_wire_fence_top_fence");
+        genFenceBlockSB( (FenceBlock) ModBlocks.BARBED_WIRE_FENCE.get(), "fence","4x4_fence_post", "2d_fence", "fence", "barbed_wire_fencepost", "barbed_wire_fence");
+        genFenceBlockSB( (FenceBlock) ModBlocks.CHAINLINK_FENCE.get(), "fence","2x2_fence_post", "2d_fence", "fence", "chainlink_fencepost", "chainlink_fence");
+
+        //Fence Top Blocks
+        genOrthoRotFencePostS( (FenceBlock) ModBlocks.ANGLED_BARBED_WIRE_ARM.get(), "fence","angled_barbed_wire_arm", "angled_barbed_wire");
+        genOrthoRotFencePostS( (FenceBlock) ModBlocks.COILED_BARBED_WIRE_ARM.get(), "fence","coiled_barbed_wire_fencepost", "coiled_barbed_wire");
+        genFenceBlockSB( (FenceBlock) ModBlocks.VERTICAL_BARBED_WIRE_ARM.get(), "fence","vertical_barbed_wire_arm", "2d_fence", "fence", "vertical_barbed_wire_arm", "barbed_wire_fence");
 
         //Vesselplate Blocks
         genFolderedSBI(ModBlocks.VESSELPLATE_SHEETING.get(), "vesselplate");
@@ -262,6 +272,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genAttachedSBI(ModBlocks.FUEL_DRUM.get(), "", build6FaceTexturesBlockModel("fuel_drum","fuel_drum", "red_labeled_fuel_drum_front", "red_labeled_fuel_drum_front", "red_labeled_fuel_drum_side", "red_labeled_fuel_drum_side", "red_fuel_drum_up","red_fuel_drum_down"));
         genWAllVsCeilingSI(ModBlocks.CCTV_CAMERA.get(),"cctv_camera","ceiling","wall");
         genFacingLightSI(ModBlocks.FLOOR_WORK_LIGHT.get(), "work_light", "work_light_lamp");
+        genFaceAttachedModelChangeSI(ModBlocks.INDUSTRIAL_LEVER.get(), "lever");
         genInteractableIntegerMultiBlock(ModBlocks.WORK_LIGHT_STAND.get(),"work_light", "lit_unlit_textures","1","work_light_lamp_on", new Integer[]{1});
         genInteractableIntegerMultiBlock(ModBlocks.VITALS_MONITOR.get(),"vitals_monitor", "lit_unlit_textures","1","vitals_monitor_screen_on", new Integer[]{1});
         genModelledIntegerMultiBlockS(ModBlocks.IV_DRIPSTAND.get(), "iv_dripstand");
@@ -694,6 +705,32 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, models().getExistingFile(modLoc("block/"+stringName + "_"+0)));
     }
 
+    private void genFullBlockIntegerPropFromVanillaAssetsSBI(Block block, String vanillaModelName, IntegerProperty integerProperty) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+
+//        //make all models first
+//        for(int i=0; i<maxStates;i++) {
+//            models().cubeAll(
+//                    stringName,
+//                    modLoc( "block/" + vanillaModelName+"_"+i) //all sides, append integer value at end of file name automatically
+//            )
+//            .texture("particle", modLoc("block/" + vanillaModelName));
+//        }
+
+        getVariantBuilder(block)
+                .forAllStates(state -> {
+                    int intBlockState = state.getValue(integerProperty);
+
+                    return ConfiguredModel.builder()
+                            .modelFile(models().getExistingFile(ResourceLocation.fromNamespaceAndPath("minecraft","block/" + vanillaModelName+"_"+intBlockState)))
+                            .build();
+                }
+        );
+
+        //GENERATE ITEM MODEL
+        simpleBlockItem(block, models().getExistingFile(ResourceLocation.fromNamespaceAndPath("minecraft","block/" + vanillaModelName+"_"+0)));
+    }
+
     private void genTrussSupportSBI(Block block, String textureSubFolder, EnumProperty<Direction.Axis> axisProperty, BooleanProperty booleanProperty) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 
@@ -1065,17 +1102,27 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, models().getExistingFile(modLoc(generatedModelDestination)));
     }
 
-    private void genFenceBlockSB(FenceBlock block, String modelSubFolder, String postFileName, String fenceFileName) {
+    private void genFenceBlockSB(FenceBlock block, String modelSubFolder, String parentPostName, String parentFenceName, String textureSubFolder, String postTextureFileName, String fenceTextureFileName) {
         String blockFolder = "block/";
+        String fenceModelName = BuiltInRegistries.BLOCK.getKey(block).getPath(); //Same as block id, but appended with "_post"
+        String postModelName = fenceModelName+"_post";
 
-        //Already existing model files
-        String existingPostModelLocation = blockFolder+optionalFolder(modelSubFolder)+postFileName;
-        String existingFenceModelLocation = blockFolder+optionalFolder(modelSubFolder)+fenceFileName;
+        //Already existing (Parent) model files
+        String parentPostModelLocation = blockFolder+optionalFolder(modelSubFolder)+parentPostName;
+        String parentFenceModelLocation = blockFolder+optionalFolder(modelSubFolder)+parentFenceName;
+
+        //Generated model files
+        String generatedPostModelLocation = blockFolder+postModelName;
+        String generatedFenceModelLocation = blockFolder+fenceModelName;
+
+        //Texture path
+        String postTexturePath = blockFolder+optionalFolder(textureSubFolder)+postTextureFileName;
+        String fenceTexturePath = blockFolder+optionalFolder(textureSubFolder)+fenceTextureFileName;
 
         //Post Model
-        ModelFile postModelFile = models().getExistingFile(modLoc(existingPostModelLocation));
+        ModelFile postModelFile = models().withExistingParent(generatedPostModelLocation, modLoc(parentPostModelLocation)).texture("0", postTexturePath);
         //Fence Model
-        ModelFile fenceModelFile = models().getExistingFile(modLoc(existingFenceModelLocation));
+        ModelFile fenceModelFile = models().withExistingParent(generatedFenceModelLocation, modLoc(parentFenceModelLocation)).texture("0", fenceTexturePath);
 
         //Main
         MultiPartBlockStateBuilder multipartBuilder = getMultipartBuilder(block);
@@ -1115,7 +1162,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .conditions.put(BlockStateProperties.UP, true);
     }
 
-    private void genFenceTopBlockSB(FenceBlock block, String modelSubFolder, String postFileName, String fenceFileName) {
+    private void genOrthoRotFencePostS(FenceBlock block, String modelSubFolder, String postFileName, String fenceFileName) {
         String blockFolder = "block/";
 
         //Already existing model files
@@ -1367,4 +1414,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
             parapetBuilder_Wall.end();
         }
     }
+
+
 }

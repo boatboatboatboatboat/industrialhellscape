@@ -25,18 +25,60 @@ public class DataGenerators {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-        generator.addProvider(event.includeServer(), new LootTableProvider(packOutput, Collections.emptySet(),
-                List.of(new LootTableProvider.SubProviderEntry(ModBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider));
-        generator.addProvider(event.includeServer(), new ModRecipeProvider(packOutput, lookupProvider));
+        generator.addProvider(
+                event.includeServer(),
+                new LootTableProvider(packOutput,
+                    Collections.emptySet(),
+                    List.of(
+                            new LootTableProvider.SubProviderEntry(ModBlockLootTableProvider::new, LootContextParamSets.BLOCK)
+                            //new loot table variants are added to this list
+                    ),
+                    lookupProvider
+                )
+        );
 
+        generator.addProvider(
+                event.includeServer(),
+                new ModRecipeProvider(
+                        packOutput,
+                        lookupProvider
+                )
+        );
+
+        //blockTagsProvider; Used for both block tag and item tag generators for some reason
         BlockTagsProvider blockTagsProvider = new ModBlockTagProvider(packOutput, lookupProvider, existingFileHelper);
-        generator.addProvider(event.includeServer(), blockTagsProvider);
-        generator.addProvider(event.includeServer(), new ModItemTagProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
+
+        generator.addProvider(
+                event.includeServer(),
+                blockTagsProvider
+        );
+
+        generator.addProvider(
+                event.includeServer(),
+                new ModItemTagProvider(
+                        packOutput,
+                        lookupProvider,
+                        blockTagsProvider.contentsGetter(),
+                        existingFileHelper
+                )
+        );
 
         //DataMap
         //generator.addProvider(event.includeServer(), new ModDataMapProvider(packOutput, lookupProvider));
 
-        generator.addProvider(event.includeClient(), new ModItemModelProvider(packOutput, existingFileHelper));
-        generator.addProvider(event.includeClient(), new ModBlockStateProvider(packOutput, existingFileHelper));
-        }
+        generator.addProvider(
+                event.includeClient(),
+                new ModItemModelProvider(
+                        packOutput,
+                        existingFileHelper
+                )
+        );
+
+        generator.addProvider(
+                event.includeClient(),
+                new ModBlockStateProvider(
+                        packOutput, existingFileHelper
+                )
+        );
+    }
 }

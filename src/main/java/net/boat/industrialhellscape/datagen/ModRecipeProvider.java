@@ -240,7 +240,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.YELLOW_STAIR_RAILING.asItem(),
 
             ModBlocks.BARBED_WIRE_FENCE.asItem(),
-            ModBlocks.BARBED_WIRE_FENCE_TOP.asItem()
+            ModBlocks.CHAINLINK_FENCE.asItem(),
+            ModBlocks.ANGLED_BARBED_WIRE_ARM.asItem(),
+            ModBlocks.VERTICAL_BARBED_WIRE_ARM.asItem(),
+            ModBlocks.COILED_BARBED_WIRE_ARM.asItem()
     );
     private static final List<ItemLike> DOORS_STONECUT_OUTPUT = List.of(
             ModBlocks.ARMORED_DOOR.asItem(),

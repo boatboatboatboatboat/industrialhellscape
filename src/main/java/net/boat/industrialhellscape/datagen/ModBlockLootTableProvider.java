@@ -16,7 +16,6 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
@@ -37,35 +36,11 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.add(ModBlocks.DEBUG_BLOCK.get(),
                 createIntegerMultiBlockDrops(ModBlocks.DEBUG_BLOCK.get(),Integer11Block.PART));
 
-        //IN-DEVELOPMENT BLOCKS
-        this.dropSelf(ModBlocks.CHAINLINK_FENCE.get());
-        this.dropSelf(ModBlocks.INDUSTRIAL_LEVER.get());
-        this.add(ModBlocks.REDSTONE_TRANSCEIVER.get(), //Drops unique item stack based on selected Data Component
-                createSingleItemTable(ModBlocks.REDSTONE_TRANSCEIVER.get())
-                        //Apply boolean data to item stack
-                        .apply(
-                                CopyComponentsFunction.copyComponents(
-                                        CopyComponentsFunction.Source.BLOCK_ENTITY
-                                ).include(ModDataComponents.IS_POWERED.get())
-                        )
-                        //Apply string data to item stack
-                        .apply(
-                                CopyComponentsFunction.copyComponents(
-                                        CopyComponentsFunction.Source.BLOCK_ENTITY
-                                ).include(ModDataComponents.IS_RECEIVER.get())
-                        )
-                        //Apply string data to item stack
-                        .apply(
-                                CopyComponentsFunction.copyComponents(
-                                        CopyComponentsFunction.Source.BLOCK_ENTITY
-                                ).include(ModDataComponents.FREQUENCY_STRING.get())
-                        )
-        );
+        //IN-DEVELOPMENT BLOCK
 
         //JOKE BLOCK
         this.add(ModBlocks.BODY_PILLOW_OZY.get(),
                 createIntegerMultiBlockDrops(ModBlocks.BODY_PILLOW_OZY.get(),Integer2Block.PART));
-//        this.dropSelf(ModBlocks.BODY_PILLOW_OZY.get());
         this.add(ModBlocks.BODY_PILLOW_FANG.get(),
                 createIntegerMultiBlockDrops(ModBlocks.BODY_PILLOW_FANG.get(),Integer2Block.PART));
         this.add(ModBlocks.BODY_PILLOW_PROV.get(),
@@ -203,7 +178,11 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         //FENCE BLOCKS
         this.dropSelf(ModBlocks.BARBED_WIRE_FENCE.get());
-        this.dropSelf(ModBlocks.BARBED_WIRE_FENCE_TOP.get());
+        this.dropSelf(ModBlocks.CHAINLINK_FENCE.get());
+
+        this.dropSelf(ModBlocks.ANGLED_BARBED_WIRE_ARM.get());
+        this.dropSelf(ModBlocks.VERTICAL_BARBED_WIRE_ARM.get());
+        this.dropSelf(ModBlocks.COILED_BARBED_WIRE_ARM.get());
 
         //TRUSS BLOCKS
         this.dropSelf(ModBlocks.TRUSS_BEAM.get());
@@ -341,6 +320,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.LOCKER_BOX.get());
         this.add(ModBlocks.LARGE_LOCKER.get(),
                 createIntegerMultiBlockDrops(ModBlocks.LARGE_LOCKER.get(),Integer2Block.PART));
+        this.dropSelf(ModBlocks.INDUSTRIAL_LEVER.get());
         this.add(ModBlocks.WORK_LIGHT_STAND.get(),
                 createIntegerMultiBlockDrops(ModBlocks.WORK_LIGHT_STAND.get(),Integer2Block.PART));
         this.dropSelf(ModBlocks.FLOOR_WORK_LIGHT.get());
