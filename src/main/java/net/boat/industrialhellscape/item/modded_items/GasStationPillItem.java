@@ -86,7 +86,9 @@ public class GasStationPillItem extends Item {
             }
 
             player.makeSound(ModSounds.HORSEPILL.get());
-            player.hurt(player.level().damageSources().source(ModDamageTypes.HORSEPILL_DAMAGE), ModServerConfig.gasStationPillDamage());
+            player.hurt(
+                    player.level().damageSources().source(ModDamageTypes.HORSEPILL_DAMAGE), ModServerConfig.gasStationPillDamage()
+            );
 
             //Serverside
             if(player.level() instanceof ServerLevel serverLevel && !player.isAlive()) {

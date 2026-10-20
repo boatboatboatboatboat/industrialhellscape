@@ -19,6 +19,7 @@ import net.boat.industrialhellscape.block.block_classes.StorageBlocks.FacingStor
 import net.boat.industrialhellscape.block.block_classes.StorageBlocks.ModelledFacingStorageBlock;
 import net.boat.industrialhellscape.block.block_classes.TextureToggleBlocks.SimpleTextureToggleBlock;
 import net.boat.industrialhellscape.block.block_classes.TextureToggleBlocks.TrussBlock;
+import net.boat.industrialhellscape.block.block_classes.experiments.CustomBrushableBlock;
 import net.boat.industrialhellscape.block.block_interfaces.HitboxGeometryCollection;
 import net.boat.industrialhellscape.block.block_interfaces.MultiBlockPlacementArrayCollection;
 import net.boat.industrialhellscape.block.logic_enums.ConnectingBlockPlacementOrientation;
@@ -117,6 +118,14 @@ public class ModBlocks {
                     , 54
                     , ModSounds.METAL_BOX_OPEN.get()
                     , ModSounds.METAL_BOX_CLOSE.get()
+            )
+    );
+    public static final DeferredBlock<Block> VERY_SUSPICIOUS_SAND = registerBlockAndBlockItem("very_suspicious_sand",
+            () -> new CustomBrushableBlock(
+                    Blocks.SAND,
+                    SoundEvents.BRUSH_SAND,
+                    SoundEvents.BRUSH_SAND_COMPLETED,
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.SAND)
             )
     );
 

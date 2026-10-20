@@ -33,20 +33,23 @@ This block can be placed on all surfaces (facing cardinal directions on ceilings
 public class ModelledFAHDBlock extends FaceAttachedHorizontalDirectionalBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    protected final VoxelShape SHAPE_NORTH;
-    protected final VoxelShape SHAPE_SOUTH;
-    protected final VoxelShape SHAPE_EAST;
-    protected final VoxelShape SHAPE_WEST;
+    //Wall hitbox
+    protected VoxelShape SHAPE_NORTH;
+    protected VoxelShape SHAPE_SOUTH;
+    protected VoxelShape SHAPE_EAST;
+    protected VoxelShape SHAPE_WEST;
 
-    protected final VoxelShape SHAPE_FLOOR_NORTH;
-    protected final VoxelShape SHAPE_FLOOR_SOUTH;
-    protected final VoxelShape SHAPE_FLOOR_EAST;
-    protected final VoxelShape SHAPE_FLOOR_WEST;
+    //Floor hitbox
+    protected VoxelShape SHAPE_FLOOR_NORTH;
+    protected VoxelShape SHAPE_FLOOR_SOUTH;
+    protected VoxelShape SHAPE_FLOOR_EAST;
+    protected VoxelShape SHAPE_FLOOR_WEST;
 
-    protected final VoxelShape SHAPE_CEILING_NORTH;
-    protected final VoxelShape SHAPE_CEILING_SOUTH;
-    protected final VoxelShape SHAPE_CEILING_EAST;
-    protected final VoxelShape SHAPE_CEILING_WEST;
+    //Ceiling hitbox
+    protected VoxelShape SHAPE_CEILING_NORTH;
+    protected VoxelShape SHAPE_CEILING_SOUTH;
+    protected VoxelShape SHAPE_CEILING_EAST;
+    protected VoxelShape SHAPE_CEILING_WEST;
 
 
 
