@@ -30,13 +30,14 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.GAS_STATION_PILL.get());
         basicItem(ModBlocks.PEANUT_STATUE.asItem());
 
-        //  Blocks
+        //  Wall Blocks
         wallItem(ModBlocks.GRAY_ROCKRETE_WALL, ModBlocks.ROUGH_GRAY_ROCKRETE.get(), "rough_rockrete");
         wallItem(ModBlocks.RED_ROCKRETE_WALL, ModBlocks.ROUGH_RED_ROCKRETE.get(), "rough_rockrete");
         wallItem(ModBlocks.YELLOW_ROCKRETE_WALL, ModBlocks.ROUGH_YELLOW_ROCKRETE.get(), "rough_rockrete");
         wallItem(ModBlocks.BLUE_ROCKRETE_WALL, ModBlocks.ROUGH_BLUE_ROCKRETE.get(), "rough_rockrete");
         wallItem(ModBlocks.GREEN_ROCKRETE_WALL, ModBlocks.ROUGH_GREEN_ROCKRETE.get(), "rough_rockrete");
 
+        // Blocks with 2D Item Sprites
         basicFolderedItem(ModBlocks.ARMORED_DOOR.asItem(), "door");
         basicFolderedItem(ModBlocks.STAMPED_METAL_DOOR.asItem(), "door");
         basicFolderedItem(ModBlocks.BULKHEAD_DOOR.asItem(), "door");
@@ -50,8 +51,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicFolderedItem(ModBlocks.COILED_BARBED_WIRE_ARM.asItem(), "fence");
 
         /*
-        Multiblocks (fully constructed blocks cannot be rendered in GUIs without a separate model.
-        Use a separate 16x16 texture in the items/multiblock path
+        - Multiblocks (fully constructed blocks cannot be rendered in GUIs without a separate model
+            fully assembling every part together
+        - Use a separate 16x16 texture in the items/multiblock path to avoid redundancy and save RAM/storage
          */
         basicFolderedItem(ModBlocks.BODY_PILLOW_OZY.get().asItem(), "multiblock");
         basicFolderedItem(ModBlocks.BODY_PILLOW_FANG.get().asItem(), "multiblock");

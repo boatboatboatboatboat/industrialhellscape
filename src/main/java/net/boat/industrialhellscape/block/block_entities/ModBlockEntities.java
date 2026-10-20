@@ -20,37 +20,49 @@ public class ModBlockEntities {
 //            A crash will happen otherwise. This was not an issue in 1.20.1
 //             */
 //            ModBlocks.RED_WALL_MEDKIT.get(),
-//            ModBlocks.WHITE_WALL_MEDKIT.get(),
-//            ModBlocks.OFFICE_DESK_DRAWER.get(),
-//            ModBlocks.DESK_DRAWER.get(),
-//            ModBlocks.METAL_DESK_DRAWER.get(),
-//            ModBlocks.METAL_DESK_DRAWER_2.get(),
-//
-//            ModBlocks.LOCKER_BOX.get(),
-//            ModBlocks.LARGE_LOCKER.get(),
-//            ModBlocks.FUEL_DRUM.get()
-//
+//            etc etc
 //    ).build(null));
 
-    public static void register(IEventBus eventBus) {
-        BLOCK_ENTITIES.register(eventBus);
-    }
 
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<StorageBE>> STORAGE_BE = BLOCK_ENTITIES.register("storage_be", () -> BlockEntityType.Builder.of(
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<StorageBE>> STORAGE_BE = BLOCK_ENTITIES.register(
+            "storage_be",
+            () -> BlockEntityType.Builder.of(
                                     StorageBE::new,
-
+                                    /*
+                                        - REQUIRED to pass in all valid blocks for BEs or else
+                                            crash will occur.
+                                        - Was not an issue in 1.20.1
+                                     */
                                     ModBlocks.DEBUG_BLOCK.get(),
-
                                     ModBlocks.RED_WALL_MEDKIT.get(),
                                     ModBlocks.WHITE_WALL_MEDKIT.get(),
                                     ModBlocks.OFFICE_DESK_DRAWER.get(),
                                     ModBlocks.DESK_DRAWER.get(),
                                     ModBlocks.METAL_DESK_DRAWER.get(),
                                     ModBlocks.METAL_DESK_DRAWER_2.get(),
-
                                     ModBlocks.LOCKER_BOX.get(),
                                     ModBlocks.LARGE_LOCKER.get(),
                                     ModBlocks.FUEL_DRUM.get()
                                     )
-                                    .build(null));
+                                    .build(null)
+    );
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BrushableBE>> BRUSHABLE_BE = BLOCK_ENTITIES.register(
+            "brushable_be",
+            () -> BlockEntityType.Builder.of(
+                            BrushableBE::new,
+                                    /*
+                                        - REQUIRED to pass in all valid blocks for BEs or else
+                                            crash will occur.
+                                        - Was not an issue in 1.20.1
+                                     */
+                            ModBlocks.VERY_SUSPICIOUS_SAND.get()
+                    )
+                    .build(null)
+    );
+
+    public static void register(IEventBus eventBus) {
+        BLOCK_ENTITIES.register(eventBus);
+    }
 }

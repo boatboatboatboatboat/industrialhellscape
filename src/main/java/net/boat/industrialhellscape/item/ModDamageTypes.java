@@ -9,4 +9,6 @@ import net.minecraft.world.damagesource.DamageType;
 public class ModDamageTypes {
     public static final ResourceKey<DamageType> HORSEPILL_DAMAGE =
             ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, "horsepill_damage"));
+    public static final ResourceKey<DamageType> LANDMINE_DAMAGE =
+            ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, "landmine_damage"));
 }

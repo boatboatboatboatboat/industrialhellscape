@@ -37,6 +37,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 createIntegerMultiBlockDrops(ModBlocks.DEBUG_BLOCK.get(),Integer11Block.PART));
 
         //IN-DEVELOPMENT BLOCK
+        this.dropWhenSilkTouch(ModBlocks.VERY_SUSPICIOUS_SAND.get());
 
         //JOKE BLOCK
         this.add(ModBlocks.BODY_PILLOW_OZY.get(),

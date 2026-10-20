@@ -34,14 +34,16 @@ INFO:
 
 Corner blocks have unique geometric issues that make them distinct from other blocks that can be placed on floors, ceilings, or walls.
 
-Textured (Blockbench) models for normal blocks are saved in the default orientation of "on the floor, facing North"
+BlockBench models for normal blocks are saved in the default orientation of "on the floor, facing North"
 Most block classes accept a Voxelshape hitbox assuming this default orientation too.
+This includes any other subclass of ModelledFAHDBlock.
 
-Textured (Blockbench) models for corner blocks are saved in the default orientation of "on the floor, facing West"
+On contrary, BlockBench models for corner blocks (this class) are saved in the default orientation of "on the floor, facing West"
 VoxelShapes for corner blocks therefore default to this too, "INNER_CORNER_DOWN_W = downShape;" see below.
-
-This is because Minecraft cannot rotate models in the Z axis when generating block states. This makes my life harder.
-Having the 3D model of the block aligned this way allows combinations of X and Y axis rotations to achieve all possible block states orientations.
+    - If player is facing north and places a CornerBlock on the wall, the wall variant is rotated 90 degrees about Z-direction
+    - This is in contrast to other FAHD blocks like levers, which will simply rotate 90 degrees about X axis if player facing north places a lever down
+    - Minecraft cannot rotate models in the Z axis when generating block states. This makes my life harder.
+    - Having the 3D model of the block aligned west by default, this way allows combinations of X and Y axis rotations to achieve all necessary block states orientations.
 
 Keywords: bracket, Pipe Conduit Inner Corner, Pipe Conduit Outer Corner, pipe_conduit_inner_corner, pipe_conduit_outer_corner
 */
@@ -51,39 +53,30 @@ public class CornerBlock extends ModelledFAHDBlock implements SimpleWaterloggedB
     public static DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING; //"FACING" is used to store DirectionProperty value of "north, south, east, west" //KJ
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    // 4 * 3 blockstates and therefore hitbox models based on above properties
-    private final VoxelShape INNER_CORNER_UP_E;
-    private final VoxelShape INNER_CORNER_UP_N;
-    private final VoxelShape INNER_CORNER_UP_W;
-    private final VoxelShape INNER_CORNER_UP_S;
+    public CornerBlock(Properties pProperties, VoxelShape floorHitBox) {
+        super(pProperties, floorHitBox);
 
-    private final VoxelShape INNER_CORNER_DOWN_E;
-    private final VoxelShape INNER_CORNER_DOWN_N;
-    private final VoxelShape INNER_CORNER_DOWN_W;
-    private final VoxelShape INNER_CORNER_DOWN_S;
+        //Redefine operations on existing VoxelShape fields of superclass ModelledFAHDBlock
 
-    private final VoxelShape INNER_CORNER_SIDE_E;
-    private final VoxelShape INNER_CORNER_SIDE_N;
-    private final VoxelShape INNER_CORNER_SIDE_W;
-    private final VoxelShape INNER_CORNER_SIDE_S;
+        //Wall Hitbox
+        SHAPE_WEST = HitboxRotationInterface.rotateVoxelXAxisIntTimes(1, floorHitBox);
+        SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelYAxisIntTimes(1, SHAPE_WEST);
+        SHAPE_EAST = HitboxRotationInterface.rotateVoxelYAxisIntTimes(2, SHAPE_WEST);
+        SHAPE_NORTH = HitboxRotationInterface.rotateVoxelYAxisIntTimes(3, SHAPE_WEST);
 
-    public CornerBlock(Properties pProperties, VoxelShape downShape) {
-        super(pProperties, downShape);
+        //Floor Hitbox
+        SHAPE_FLOOR_WEST = floorHitBox; //g
+        SHAPE_FLOOR_SOUTH = HitboxRotationInterface.rotateVoxelYAxisIntTimes(1, SHAPE_FLOOR_WEST);
+        SHAPE_FLOOR_EAST = HitboxRotationInterface.rotateVoxelYAxisIntTimes(2, SHAPE_FLOOR_WEST);
+        SHAPE_FLOOR_NORTH = HitboxRotationInterface.rotateVoxelYAxisIntTimes(3, SHAPE_FLOOR_WEST);
 
-        INNER_CORNER_DOWN_W = downShape; //g
-        INNER_CORNER_DOWN_S = HitboxRotationInterface.rotateVoxelYAxisIntTimes(1, INNER_CORNER_DOWN_W);
-        INNER_CORNER_DOWN_E = HitboxRotationInterface.rotateVoxelYAxisIntTimes(2, INNER_CORNER_DOWN_W);
-        INNER_CORNER_DOWN_N = HitboxRotationInterface.rotateVoxelYAxisIntTimes(3, INNER_CORNER_DOWN_W);
+        //Ceiling Hitbox
+        SHAPE_CEILING_WEST = HitboxRotationInterface.rotateVoxelXAxisIntTimes(2, floorHitBox);
+        SHAPE_CEILING_SOUTH = HitboxRotationInterface.rotateVoxelYAxisIntTimes(1, SHAPE_CEILING_WEST);
+        SHAPE_CEILING_EAST = HitboxRotationInterface.rotateVoxelYAxisIntTimes(2, SHAPE_CEILING_WEST);
+        SHAPE_CEILING_NORTH = HitboxRotationInterface.rotateVoxelYAxisIntTimes(3, SHAPE_CEILING_WEST);
 
-        INNER_CORNER_UP_W = HitboxRotationInterface.rotateVoxelXAxisIntTimes(2, downShape);
-        INNER_CORNER_UP_S = HitboxRotationInterface.rotateVoxelYAxisIntTimes(1, INNER_CORNER_UP_W);
-        INNER_CORNER_UP_E = HitboxRotationInterface.rotateVoxelYAxisIntTimes(2, INNER_CORNER_UP_W);
-        INNER_CORNER_UP_N = HitboxRotationInterface.rotateVoxelYAxisIntTimes(3, INNER_CORNER_UP_W);
 
-        INNER_CORNER_SIDE_W = HitboxRotationInterface.rotateVoxelXAxisIntTimes(1, downShape);
-        INNER_CORNER_SIDE_S = HitboxRotationInterface.rotateVoxelYAxisIntTimes(1, INNER_CORNER_SIDE_W);
-        INNER_CORNER_SIDE_E = HitboxRotationInterface.rotateVoxelYAxisIntTimes(2, INNER_CORNER_SIDE_W);
-        INNER_CORNER_SIDE_N = HitboxRotationInterface.rotateVoxelYAxisIntTimes(3, INNER_CORNER_SIDE_W);
 
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
@@ -100,27 +93,27 @@ public class CornerBlock extends ModelledFAHDBlock implements SimpleWaterloggedB
         switch(pState.getValue(FACE)){
             case FLOOR:
                 switch(facingForShape) {
-                    case NORTH: return INNER_CORNER_DOWN_N;
-                    case SOUTH: return INNER_CORNER_DOWN_S;
-                    case EAST: return INNER_CORNER_DOWN_E;
-                    case WEST: return INNER_CORNER_DOWN_W;
+                    case NORTH: return SHAPE_FLOOR_NORTH;
+                    case SOUTH: return SHAPE_FLOOR_SOUTH;
+                    case EAST: return SHAPE_FLOOR_EAST;
+                    case WEST: return SHAPE_FLOOR_WEST;
                 }
             case CEILING:
                 switch(facingForShape) {
-                    case NORTH: return INNER_CORNER_UP_N;
-                    case SOUTH: return INNER_CORNER_UP_S;
-                    case EAST: return INNER_CORNER_UP_E;
-                    case WEST: return INNER_CORNER_UP_W;
+                    case NORTH: return SHAPE_CEILING_NORTH;
+                    case SOUTH: return SHAPE_CEILING_SOUTH;
+                    case EAST: return SHAPE_CEILING_EAST;
+                    case WEST: return SHAPE_CEILING_WEST;
                 }
             case WALL:
                 switch(facingForShape) {
-                    case NORTH: return INNER_CORNER_SIDE_N;
-                    case SOUTH: return INNER_CORNER_SIDE_S;
-                    case EAST: return INNER_CORNER_SIDE_E;
-                    case WEST: return INNER_CORNER_SIDE_W;
+                    case NORTH: return SHAPE_NORTH;
+                    case SOUTH: return SHAPE_SOUTH;
+                    case EAST: return SHAPE_EAST;
+                    case WEST: return SHAPE_WEST;
                 }
             default:
-                return INNER_CORNER_UP_N;
+                return SHAPE_CEILING_NORTH;
         }
     }
 

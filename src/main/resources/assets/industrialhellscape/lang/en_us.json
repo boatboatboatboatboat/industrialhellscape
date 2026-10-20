@@ -352,6 +352,7 @@
   "tooltip.industrialhellscape.advise_connecting_furniture": "Look diagonally before placing to connect to existing furniture",
 
   "death.attack.horsepilldeathmessage": "%1$s has been horsed.",
+  "death.attack.landminedeathmessage": "%1$s stepped on a landmine",
 
   "gui.industrialhellscape.inventory_menu": "InHell Storage",
   "gui.industrialhellscape.creative_tab": "InHell",

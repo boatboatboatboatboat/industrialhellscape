@@ -30,8 +30,9 @@ public class DataGenerators {
                 new LootTableProvider(packOutput,
                     Collections.emptySet(),
                     List.of(
-                            new LootTableProvider.SubProviderEntry(ModBlockLootTableProvider::new, LootContextParamSets.BLOCK)
                             //new loot table variants are added to this list
+                            new LootTableProvider.SubProviderEntry(ModBlockLootTableProvider::new, LootContextParamSets.BLOCK),
+                            new LootTableProvider.SubProviderEntry(BrushingLootTableProvider::new, LootContextParamSets.ARCHAEOLOGY)
                     ),
                     lookupProvider
                 )
