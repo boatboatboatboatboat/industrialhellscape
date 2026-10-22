@@ -162,7 +162,12 @@ public interface ExplosiveInterface {
         boolean explosiveArmed = !state.getValue(disarmProperty);
         boolean playerIsHoldingBrush = stack.is(Items.BRUSH);
         boolean playerIsHoldingDefuserItem = stack.is(Items.SHEARS) || stack.is(ModItems.INHELL_HAVEN_DEVICE.get());
-        boolean hasSilkTouch = 0 != stack.getEnchantmentLevel(level.registryAccess().holderOrThrow(Enchantments.SILK_TOUCH));
+        //https://www.reddit.com/r/fabricmc/comments/of4bw3/check_if_itemstack_has_specific_enchantment/ ???
+
+        //https://www.reddit.com/r/fabricmc/comments/1gjlr8x/enchantments_in_121/
+        boolean containsSilkTouch = stack.getEnchantments().toString().contains(Enchantments.SILK_TOUCH.toString());
+
+        //player.sendSystemMessage(Component.literal("You hold silk touch item: "+ containsSilkTouch));
 
         //if using a Defusal Item
         if(playerIsHoldingDefuserItem) {
@@ -174,8 +179,8 @@ public interface ExplosiveInterface {
             return ItemInteractionResult.SUCCESS;
 
         //Item Has Silk Touch
-        } else if(hasSilkTouch) {
-            //if mine is already armed
+        } else if(containsSilkTouch) {
+            //if mine is already disarmed
             if(!explosiveArmed) {
                 ExplosiveInterface.armExplosiveBE(state, level, pos, player, disarmProperty);
             }
