@@ -13,6 +13,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
+//urinal plays sound on interact
+
 public class SoundModelledFacingBlock extends ModelledFacingBlock {
 
     public final Supplier<SoundEvent> INTERACT_SOUND;

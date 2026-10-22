@@ -33,6 +33,7 @@ public class IndustrialHellscapeClient {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             EntityRenderers.register(ModEntities.CHAIR.get(), SittableEntityRenderer::new);
+            //EntityRenderers.register(ModEntities.LANDMINE.get(), LandmineEntityRenderer::new);
         }
     }
 

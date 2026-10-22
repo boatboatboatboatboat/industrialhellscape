@@ -27,6 +27,8 @@ import org.jetbrains.annotations.NotNull;
     This block can be placed on any surface, facing towards player and away from surface.
     It will output a sound based on randomTicks only when turned on by player interaction.
     Currently used for: Smoke Alarm
+
+    Has property: POWERED; activated on player interaction
  */
 
 public class RandomTickSoundBlock extends ModelledFAHDBlock {

@@ -2,6 +2,8 @@ package net.boat.industrialhellscape.block.block_entities;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
+import net.boat.industrialhellscape.block.experiments.BrushableBE;
+import net.boat.industrialhellscape.block.experiments.LandmineBE;
 import net.boat.industrialhellscape.block.block_entities.StorageBE.StorageBE;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -58,6 +60,16 @@ public class ModBlockEntities {
                                         - Was not an issue in 1.20.1
                                      */
                             ModBlocks.VERY_SUSPICIOUS_SAND.get()
+                    )
+                    .build(null)
+    );
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<LandmineBE>> LANDMINE_BE = BLOCK_ENTITIES.register(
+            "landmine_be",
+            () -> BlockEntityType.Builder.of(
+                            LandmineBE::new,
+                            ModBlocks.LAND_MINE.get()
+
                     )
                     .build(null)
     );

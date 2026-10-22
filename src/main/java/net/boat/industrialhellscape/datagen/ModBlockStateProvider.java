@@ -38,6 +38,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         //In-Development Block
         genBrushableBlockSI(ModBlocks.VERY_SUSPICIOUS_SAND.get(), "suspicious_sand");
+        genHorizontalModelTogglingSI(ModBlocks.LAND_MINE.get(), "mine", "disarmed", BlockStateProperties.DISARMED, true);
 
         //Hidden Joke Blocks
         genPeanutS((PeanutStatueBlock) ModBlocks.PEANUT_STATUE.get(), "peanut_statue");
@@ -299,9 +300,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genHorizontalTextureTogglingSI(ModBlocks.MONITOR_AND_KEYBOARD.get(), "modern_computer", "monitor_screen");
 
         //Model Toggling Furniture Blocks ( Models that change entirely upon interaction )
-        genFaceAttachedModelTogglingSI(ModBlocks.INDUSTRIAL_LEVER.get(), "lever");
-        genHorizontalModelTogglingSI(ModBlocks.CASSETTE_PLAYER.get(), "cassette_player");
-        genHorizontalModelTogglingSI(ModBlocks.TOILET.get(), "toilet");
+        genFaceAttachedModelTogglingSI(ModBlocks.INDUSTRIAL_LEVER.get(), "lever", "on", BlockStateProperties.POWERED);
+        genHorizontalModelTogglingSI(ModBlocks.CASSETTE_PLAYER.get(), "cassette_player", "on", BlockStateProperties.POWERED, false);
+        genHorizontalModelTogglingSI(ModBlocks.TOILET.get(), "toilet", "on", BlockStateProperties.POWERED, false);
 
         //Furniture Blocks ( Multi-Block models. Block State generation. No block model generation. NO ITEM MODEL GENERATION. Item .json models must be manually created ) TODO - Make 2D item sprites to save a few kilobytes
         genMultiBlockHorizontalS(ModBlocks.IV_DRIPSTAND.get(), "iv_dripstand");
@@ -685,16 +686,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, models().getExistingFile(modLoc(unpoweredModelPath)));
     }
 
-    private void genFaceAttachedModelTogglingSI(Block block, String modelSubFolder) {
+    private void genFaceAttachedModelTogglingSI(Block block, String modelSubFolder, String suffixForModelTogglePath, BooleanProperty toggleProperty) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String unpoweredModelPath = "block/"+optionalFolder(modelSubFolder)+stringName;
-        String poweredModelPath = unpoweredModelPath+"_on"; //NOT GENERATED, EXISTING MODEL
+        String poweredModelPath = unpoweredModelPath+"_"+suffixForModelTogglePath; //NOT GENERATED, EXISTING MODEL
 
         getVariantBuilder(block)
                 .forAllStatesExcept(state -> {
                     AttachFace face = state.getValue(BlockStateProperties.ATTACH_FACE);
                     Direction facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
-                    Boolean lit = state.getValue(BlockStateProperties.POWERED);
+                    Boolean lit = state.getValue(toggleProperty);
                     String modelToUse = lit? poweredModelPath : unpoweredModelPath;
 
                     int yRot = switch (facing) {
@@ -1021,15 +1022,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, models().getExistingFile(modLoc(unpoweredModelPath)));
     }
 
-    private void genHorizontalModelTogglingSI(Block block, String modelSubFolder) {
+    private void genHorizontalModelTogglingSI(Block block, String modelSubFolder, String suffixForModelTogglePath, BooleanProperty toggleProperty, boolean useToggledTrueStateForItemModel) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String unpoweredModelPath = "block/"+optionalFolder(modelSubFolder)+stringName;
-        String poweredModelPath = unpoweredModelPath+"_on";
+        String poweredModelPath = unpoweredModelPath+"_"+suffixForModelTogglePath;
+        String itemModelPath = useToggledTrueStateForItemModel ? poweredModelPath : unpoweredModelPath;
 
         getVariantBuilder(block)
                 .forAllStatesExcept(state -> {
                     Direction horizontalFacing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
-                    Boolean powered = state.getValue(BlockStateProperties.POWERED);
+                    Boolean powered = state.getValue(toggleProperty);
                     String modelToUse = powered? poweredModelPath : unpoweredModelPath;
 
                     int yRot = switch (horizontalFacing   ) {
@@ -1046,7 +1048,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 }, BlockStateProperties.WATERLOGGED);
 
         //GENERATE ITEM MODEL
-        simpleBlockItem(block, models().getExistingFile(modLoc(unpoweredModelPath)));
+        simpleBlockItem(block, models().getExistingFile(modLoc(itemModelPath)));
     }
 
     private void genFaceAttachedModelledSI(Block block, String modelSubFolder) {

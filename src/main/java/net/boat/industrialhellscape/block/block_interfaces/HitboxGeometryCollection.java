@@ -563,4 +563,11 @@ public interface HitboxGeometryCollection {
 
         return shape;
     }
+
+    static VoxelShape LAND_MINE(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0.25, 0, 0.25, 0.75, 0.25, 0.75), BooleanOp.OR);
+
+        return shape;
+    }
 }
