@@ -19,6 +19,9 @@
   "block.industrialhellscape.prototype_machine": "Prototype Machine",
   "block.industrialhellscape.remove_this_item": "Remove This Item",
 
+  "block.industrialhellscape.very_suspicious_sand": "Very Suspicious Sand",
+  "block.industrialhellscape.land_mine": "Land Mine",
+
   "block.industrialhellscape.vesselplate_sheeting": "Vesselplate Sheeting",
   "block.industrialhellscape.vesselplate_sheeting_slab": "Vesselplate Sheeting Slab",
   "block.industrialhellscape.vesselplate_sheeting_stairs": "Vesselplate Sheeting Stairs",

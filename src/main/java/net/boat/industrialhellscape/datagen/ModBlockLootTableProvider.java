@@ -38,6 +38,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         //IN-DEVELOPMENT BLOCK
         this.dropWhenSilkTouch(ModBlocks.VERY_SUSPICIOUS_SAND.get());
+        this.dropSelf(ModBlocks.LAND_MINE.get());
 
         //JOKE BLOCK
         this.add(ModBlocks.BODY_PILLOW_OZY.get(),

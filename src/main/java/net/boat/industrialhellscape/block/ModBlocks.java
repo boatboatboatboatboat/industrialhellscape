@@ -19,7 +19,8 @@ import net.boat.industrialhellscape.block.block_classes.StorageBlocks.FacingStor
 import net.boat.industrialhellscape.block.block_classes.StorageBlocks.ModelledFacingStorageBlock;
 import net.boat.industrialhellscape.block.block_classes.TextureToggleBlocks.SimpleTextureToggleBlock;
 import net.boat.industrialhellscape.block.block_classes.TextureToggleBlocks.TrussBlock;
-import net.boat.industrialhellscape.block.block_classes.experiments.CustomBrushableBlock;
+import net.boat.industrialhellscape.block.experiments.CustomBrushableBlock;
+import net.boat.industrialhellscape.block.experiments.LandMineBlock;
 import net.boat.industrialhellscape.block.block_interfaces.HitboxGeometryCollection;
 import net.boat.industrialhellscape.block.block_interfaces.MultiBlockPlacementArrayCollection;
 import net.boat.industrialhellscape.block.logic_enums.ConnectingBlockPlacementOrientation;
@@ -126,6 +127,15 @@ public class ModBlocks {
                     SoundEvents.BRUSH_SAND,
                     SoundEvents.BRUSH_SAND_COMPLETED,
                     BlockBehaviour.Properties.ofFullCopy(Blocks.SAND)
+            )
+    );
+    public static final DeferredBlock<Block> LAND_MINE = registerBlockAndBlockItem("land_mine",
+            () -> new LandMineBlock(
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
+                            .explosionResistance(1)
+                            .noOcclusion(),
+                    SoundEvents.COPPER_FALL,
+                    HitboxGeometryCollection.LAND_MINE()
             )
     );
 

@@ -38,6 +38,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         //---------- RECIPE DATAGEN INPUT TAGS ----------
         this.tag(ModTags.Items.HVAC_SMELTABLE_ITEM)
                 .add(
+                        //DONT PUT SLABS HERE
                         ModBlocks.DUCT.asItem(),
                         ModBlocks.RUSTY_DUCT.asItem(),
 

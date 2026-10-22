@@ -76,8 +76,6 @@ public class CornerBlock extends ModelledFAHDBlock implements SimpleWaterloggedB
         SHAPE_CEILING_EAST = HitboxRotationInterface.rotateVoxelYAxisIntTimes(2, SHAPE_CEILING_WEST);
         SHAPE_CEILING_NORTH = HitboxRotationInterface.rotateVoxelYAxisIntTimes(3, SHAPE_CEILING_WEST);
 
-
-
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(FACE, AttachFace.CEILING)

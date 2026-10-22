@@ -404,7 +404,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModTags.Blocks.ALL_FURNITURE_BLOCKS
                 )
                 .add(
-                        ModBlocks.DEBUG_BLOCK.get()
+                        ModBlocks.DEBUG_BLOCK.get(),
+                        ModBlocks.LAND_MINE.get()
                 );
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .addTags(
@@ -425,7 +426,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 )
                 .add(
                         ModBlocks.DEBUG_BLOCK.get(),
-                        ModBlocks.PEANUT_STATUE.get()
+                        ModBlocks.PEANUT_STATUE.get(),
+                        ModBlocks.LAND_MINE.get()
                 );
         this.tag(BlockTags.MINEABLE_WITH_AXE)
                 .addTags(

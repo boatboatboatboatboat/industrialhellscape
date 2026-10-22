@@ -1,7 +1,7 @@
-package net.boat.industrialhellscape.datagen;
+package net.boat.industrialhellscape.block.experiments;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
-import net.boat.industrialhellscape.item.ModItems;
+import net.boat.industrialhellscape.block.ModBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.LootTableSubProvider;
@@ -40,7 +40,7 @@ public class BrushingLootTableProvider implements LootTableSubProvider {
                 .setRolls(ConstantValue.exactly(1))
                 //.setBonusRolls(ConstantValue.exactly(1))
                 // Add a loot entry. This example returns an item loot entry. See below for more loot entries.
-                .add(LootItem.lootTableItem(ModItems.GAS_STATION_PILL.get()))
+                .add(LootItem.lootTableItem(ModBlocks.LAND_MINE.get()))
                 )
         );
     }
