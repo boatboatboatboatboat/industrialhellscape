@@ -1,7 +1,7 @@
 package net.boat.industrialhellscape.datagen;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
-import net.boat.industrialhellscape.block.experiments.BrushingLootTableProvider;
+import net.boat.industrialhellscape.block.experiments.LandMineBlocks.BrushingLootTableProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;

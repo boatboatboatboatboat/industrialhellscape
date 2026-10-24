@@ -3,7 +3,7 @@ package net.boat.industrialhellscape.datagen;
 import net.boat.industrialhellscape.block.ModBlocks;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer11Blocks.Integer11Block;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.Integer2Block;
-import net.boat.industrialhellscape.block.block_classes.PanelBlocks.PanelBlock;
+import net.boat.industrialhellscape.block.experiments.PanelBlocks.PanelBlock;
 import net.boat.industrialhellscape.block.block_classes.RailingBlocks.RailingBlock;
 import net.boat.industrialhellscape.block.block_classes.RailingBlocks.StairRailingBlock;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;

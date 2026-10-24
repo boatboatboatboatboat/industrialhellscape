@@ -1,7 +1,7 @@
 package net.boat.industrialhellscape.block.block_classes.TextureToggleBlocks;
 
 import net.boat.industrialhellscape.ModCommonConfig;
-import net.boat.industrialhellscape.block.block_interfaces.CustomModEnumsInterface;
+import net.boat.industrialhellscape.block.block_interfaces.ModEnumsInterface;
 import net.boat.industrialhellscape.block.block_interfaces.ToolUseInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -32,7 +32,7 @@ INFO:
 */
 
 public class SimpleTextureToggleBlock extends Block implements ToolUseInterface {
-    public static final BooleanProperty ALT_STATE = CustomModEnumsInterface.ALT_STATE;
+    public static final BooleanProperty ALT_STATE = ModEnumsInterface.ALT_STATE;
     public SimpleTextureToggleBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.stateDefinition.any().setValue(ALT_STATE, false));

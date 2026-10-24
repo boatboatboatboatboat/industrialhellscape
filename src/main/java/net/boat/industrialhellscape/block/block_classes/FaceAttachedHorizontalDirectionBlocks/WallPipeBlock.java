@@ -2,6 +2,7 @@ package net.boat.industrialhellscape.block.block_classes.FaceAttachedHorizontalD
 
 import net.boat.industrialhellscape.block.block_interfaces.ConnectedModelInterface;
 import net.boat.industrialhellscape.block.block_interfaces.HitboxRotationInterface;
+import net.boat.industrialhellscape.block.block_interfaces.ModEnumsInterface;
 import net.boat.industrialhellscape.block.block_interfaces.ToolUseInterface;
 import net.boat.industrialhellscape.block.block_state_enums.DynamicConnectionState;
 import net.boat.industrialhellscape.block.block_state_enums.SurfacePipeMountState;
@@ -42,7 +43,7 @@ import java.util.List;
 
 public class WallPipeBlock extends Block implements SimpleWaterloggedBlock, ToolUseInterface, ConnectedModelInterface {
     public static final EnumProperty<Direction> FACING = BlockStateProperties.FACING;
-    public static final EnumProperty<SurfacePipeMountState> ORIENTATION = EnumProperty.create("axis", SurfacePipeMountState.class);
+    public static final EnumProperty<SurfacePipeMountState> ORIENTATION = ModEnumsInterface.ORIENTATION;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public static final VoxelShape SHAPE_FLOOR = Block.box(0, 0, 0, 16, 6, 16);
@@ -87,7 +88,7 @@ public class WallPipeBlock extends Block implements SimpleWaterloggedBlock, Tool
 
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        return ConnectedModelInterface.wallPipeStateForPlacement(this,pContext,FACING, ORIENTATION);
+        return ConnectedModelInterface.wallPipeStateForPlacement(this,pContext,FACING, ORIENTATION, TYPE);
     }
 
     @Override
@@ -100,7 +101,7 @@ public class WallPipeBlock extends Block implements SimpleWaterloggedBlock, Tool
             return;
         }
 
-        ConnectedModelInterface.updateWallPipeNeighbors(this,newState,level,pos,newState,FACING, ORIENTATION);
+        ConnectedModelInterface.updateWallPipeNeighbors(this,newState,level,pos,newState,FACING, ORIENTATION, TYPE);
 
         super.onPlace(newState, level, pos, oldState, movedByPiston);
     }
@@ -108,7 +109,7 @@ public class WallPipeBlock extends Block implements SimpleWaterloggedBlock, Tool
     @Override
     protected void onRemove(BlockState priorState, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
         if(newState.getBlock() != this) {
-            ConnectedModelInterface.updateWallPipeNeighbors(this,priorState,level,pos,newState,FACING, ORIENTATION);
+            ConnectedModelInterface.updateWallPipeNeighbors(this,priorState,level,pos,newState,FACING, ORIENTATION, TYPE);
         }
         super.onRemove(priorState, level, pos, newState, movedByPiston);
     }

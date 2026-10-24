@@ -113,7 +113,7 @@ public class ConnectedFurnitureBlock extends Block implements SimpleWaterloggedB
         //To determine other blocks aside from its own can this block connect to
         this.blockSetFamily = inputCompatibleBlockSet;
 
-        //To determine which direction placed blocks will connect to.
+        //To determine which direction placed blocks will connect to and check.
         this.placementDirection = placementDirection;
 
         //Default state is Solo/unconnected, facing North, no waterlogging

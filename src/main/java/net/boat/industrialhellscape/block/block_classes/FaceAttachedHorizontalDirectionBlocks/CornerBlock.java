@@ -49,7 +49,6 @@ Keywords: bracket, Pipe Conduit Inner Corner, Pipe Conduit Outer Corner, pipe_co
 */
 
 public class CornerBlock extends ModelledFAHDBlock implements SimpleWaterloggedBlock, ToolUseInterface {
-
     public static DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING; //"FACING" is used to store DirectionProperty value of "north, south, east, west" //KJ
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
@@ -123,17 +122,26 @@ public class CornerBlock extends ModelledFAHDBlock implements SimpleWaterloggedB
         Direction facing = pContext.getHorizontalDirection().getOpposite();
         Direction clickedFaceDirection = pContext.getClickedFace();
 
-        BlockState state; //Start with default blockstate
+        BlockState state = this.defaultBlockState(); //Start with default blockState
 
-        if (clickedFaceDirection.getAxis() == Direction.Axis.Y) { //On Floor or Ceiling, assign respectively floor/ceiling AttachFace enum value
-            state = this.defaultBlockState()
-                    .setValue(FACE, clickedFaceDirection == Direction.UP ? AttachFace.FLOOR : AttachFace.CEILING).setValue(FACING, facing);
+        /*
+            If block placed on ceiling or floor
+            - assign FACE value appropriately,
+            - then assign horizontal fACING property
+         */
+        if (clickedFaceDirection.getAxis() == Direction.Axis.Y) {
+            state = state.setValue(FACE, clickedFaceDirection == Direction.UP ? AttachFace.FLOOR : AttachFace.CEILING)
+                         .setValue(FACING, facing);
+
+        /*
+            If block placer is a player crouching,
+            -set
+         */
         } else if (playerExists && player.isCrouching()) { //On wall, but player is crouching, assign wall Attachface enum value
-            state = this.defaultBlockState()
-                    .setValue(FACE, AttachFace.WALL).setValue(FACING, facing);
-        } else { //On wall, player not crouching, assign attachFace ceiling (intended default state) - i thought i fixed this many times
-            state = this.defaultBlockState()
-                    .setValue(FACE, AttachFace.CEILING).setValue(FACING, facing);
+            state = state.setValue(FACE, AttachFace.WALL).setValue(FACING, facing);
+
+        } else {
+            state = state.setValue(FACE, AttachFace.CEILING).setValue(FACING, facing);
         }
 
         state = state.setValue(WATERLOGGED,fluidstate.getType() == Fluids.WATER);

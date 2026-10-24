@@ -75,63 +75,22 @@ public class ConnectedPillarBlock extends RotatedPillarBlock implements Connecte
 
     @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-
-        //called regardless of if player uses item or not
-
-        //When setPlacedBy is called, the block's axis and type is already known and placed into the world.
-        //Use this to determine the location of the neighbor to update state
-
-        Direction.Axis placedStateAxis = state.getValue(AXIS);
-        DynamicConnectionState placedStateType = state.getValue(TYPE);
-
-        switch(placedStateType) {
-            //If the block placed down is POSITIVE or NEGATIVE type, determined by getStateForPlacement(),  identify neighbor location to check block type.
-            //If it is instance of this block, set neighbor type to MIDDLE to match connection scheme.
-            case POSITIVE, NEGATIVE -> {
-                DynamicConnectionState toggleType = placedStateType.equals(DynamicConnectionState.POSITIVE) ? DynamicConnectionState.NEGATIVE : DynamicConnectionState.POSITIVE;
-                Direction.AxisDirection axisDirectionToCheck = placedStateType.equals(DynamicConnectionState.POSITIVE) ? Direction.AxisDirection.NEGATIVE : Direction.AxisDirection.POSITIVE;
-
-                BlockPos neighborPos = pos.relative(Direction.fromAxisAndDirection(placedStateAxis, axisDirectionToCheck));
-                BlockState neighborBlockState = level.getBlockState(neighborPos);
-
-                BlockPos farNeighborPos = pos.relative(Direction.fromAxisAndDirection(placedStateAxis, axisDirectionToCheck), 2);
-                BlockState farNeighborBlockState = level.getBlockState(farNeighborPos);
-
-                boolean neighborIsThis = neighborBlockState.is(this);
-                boolean farNeighborIsThis = farNeighborBlockState.is(this);
-
-                boolean neighborAlignedSame = false;
-                boolean farNeighborAlignedSame = false;
-                boolean twoNeighborsAlignedSame = false;
-
-                if(neighborIsThis) {
-                    neighborAlignedSame = neighborBlockState.getValue(AXIS) == state.getValue(AXIS);
-                }
-                if(farNeighborIsThis) {
-                    farNeighborAlignedSame = farNeighborBlockState.getValue(AXIS) == state.getValue(AXIS);
-                }
-                if(neighborAlignedSame && farNeighborAlignedSame) {
-                    twoNeighborsAlignedSame = true;
-                }
-
-                if(twoNeighborsAlignedSame) {
-                    level.setBlock(neighborPos,neighborBlockState.setValue(TYPE, DynamicConnectionState.MIDDLE),3);
-                } else if (neighborAlignedSame) {
-                    level.setBlock(neighborPos,neighborBlockState.setValue(TYPE, toggleType),3);
-                }
-
-            }
-            //if Block placed down is SOLO, determined by getStateForPlacement(),
-            //don't do anything.
-            //If Block placed down is MIDDLE, determined by getStateForPlacement(),
-            //Not possible to place down a middle segment by itself
-        }
-
+        ConnectedModelInterface.AxialPillarUpdateNeighbors(level,pos,state,placer,TYPE,AXIS,this);
         super.setPlacedBy(level, pos, state, placer, stack);
     }
 
+    //Why is above not in onPlace? TODO: Experiment with moving logic to onPlace and checking compat with building-assistance mods
+//    @Override
+//    protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
+//        super.onPlace(state, level, pos, oldState, movedByPiston);
+//    }
+
     @Override
     protected void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean movedByPiston) {
+        /*
+            Updates neighbors connection state. Neighbor locations determined by removed block's
+                connection property and axis.
+         */
         ConnectedModelInterface.fixPillarNeighborUponRemove(this,state,level,pos,newState,AXIS ,TYPE);
         super.onRemove(state, level, pos, newState, movedByPiston);
     }
