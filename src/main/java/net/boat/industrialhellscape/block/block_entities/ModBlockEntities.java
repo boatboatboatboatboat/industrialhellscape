@@ -2,8 +2,8 @@ package net.boat.industrialhellscape.block.block_entities;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
-import net.boat.industrialhellscape.block.experiments.BrushableBE;
-import net.boat.industrialhellscape.block.experiments.LandmineBE;
+import net.boat.industrialhellscape.block.experiments.LandMineBlocks.BuriedMineBE;
+import net.boat.industrialhellscape.block.experiments.LandMineBlocks.LandmineBE;
 import net.boat.industrialhellscape.block.block_entities.StorageBE.StorageBE;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -50,10 +50,10 @@ public class ModBlockEntities {
                                     .build(null)
     );
 
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BrushableBE>> BRUSHABLE_BE = BLOCK_ENTITIES.register(
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BuriedMineBE>> BRUSHABLE_BE = BLOCK_ENTITIES.register(
             "brushable_be",
             () -> BlockEntityType.Builder.of(
-                            BrushableBE::new,
+                            BuriedMineBE::new,
                                     /*
                                         - REQUIRED to pass in all valid blocks for BEs or else
                                             crash will occur.

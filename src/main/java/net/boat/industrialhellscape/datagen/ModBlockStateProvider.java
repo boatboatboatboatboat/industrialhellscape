@@ -6,7 +6,7 @@ import net.boat.industrialhellscape.block.block_classes.AxisPillarBlocks.TrussBe
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer11Blocks.Integer11Block;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.Integer2Block;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.PeanutStatueBlock;
-import net.boat.industrialhellscape.block.block_classes.PanelBlocks.PanelBlock;
+import net.boat.industrialhellscape.block.experiments.PanelBlocks.PanelBlock;
 import net.boat.industrialhellscape.block.block_classes.RailingBlocks.ParapetBlock;
 import net.boat.industrialhellscape.block.block_classes.RailingBlocks.RailingBlock;
 import net.minecraft.core.Direction;

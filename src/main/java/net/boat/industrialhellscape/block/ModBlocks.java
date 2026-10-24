@@ -7,10 +7,9 @@ import net.boat.industrialhellscape.block.block_classes.ConnectedBlocks.Connecte
 import net.boat.industrialhellscape.block.block_classes.ConnectedBlocks.ConnectedStorageBlock;
 import net.boat.industrialhellscape.block.block_classes.FaceAttachedHorizontalDirectionBlocks.*;
 import net.boat.industrialhellscape.block.block_classes.FenceBlocks.FencePostBlock;
+import net.boat.industrialhellscape.block.block_classes.HorizontalDirectionBlocks.*;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer11Blocks.Storage11Block;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.*;
-import net.boat.industrialhellscape.block.block_classes.PanelBlocks.PanelBlock;
-import net.boat.industrialhellscape.block.block_classes.PlacedFacingBlocks.*;
 import net.boat.industrialhellscape.block.block_classes.RailingBlocks.ParapetBlock;
 import net.boat.industrialhellscape.block.block_classes.RailingBlocks.RailingBlock;
 import net.boat.industrialhellscape.block.block_classes.RailingBlocks.StairRailingBlock;
@@ -19,10 +18,11 @@ import net.boat.industrialhellscape.block.block_classes.StorageBlocks.FacingStor
 import net.boat.industrialhellscape.block.block_classes.StorageBlocks.ModelledFacingStorageBlock;
 import net.boat.industrialhellscape.block.block_classes.TextureToggleBlocks.SimpleTextureToggleBlock;
 import net.boat.industrialhellscape.block.block_classes.TextureToggleBlocks.TrussBlock;
-import net.boat.industrialhellscape.block.experiments.CustomBrushableBlock;
-import net.boat.industrialhellscape.block.experiments.LandMineBlock;
 import net.boat.industrialhellscape.block.block_interfaces.HitboxGeometryCollection;
 import net.boat.industrialhellscape.block.block_interfaces.MultiBlockPlacementArrayCollection;
+import net.boat.industrialhellscape.block.experiments.LandMineBlocks.CustomBrushableBlock;
+import net.boat.industrialhellscape.block.experiments.LandMineBlocks.LandMineBlock;
+import net.boat.industrialhellscape.block.experiments.PanelBlocks.PanelBlock;
 import net.boat.industrialhellscape.block.logic_enums.ConnectingBlockPlacementOrientation;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.util.ModTags;
@@ -139,6 +139,29 @@ public class ModBlocks {
             )
     );
 
+    //EXPERIMENTAL BLOCKS - PANEL BLOCKS - TENTATIVE INCLUSION
+    public static final DeferredBlock<Block> BLACK_SHEETING_PANEL = registerBlockAndBlockItem("black_sheeting_panel",
+            () -> new PanelBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.PANEL_2PIXEL_THICK_FLOOR()
+            )
+    );
+    public static final DeferredBlock<Block> GRAY_SHEETING_PANEL = registerBlockAndBlockItem("gray_sheeting_panel",
+            () -> new PanelBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.PANEL_2PIXEL_THICK_FLOOR()
+            )
+    );
+    public static final DeferredBlock<Block> RUSTY_SHEETING_PANEL = registerBlockAndBlockItem("rusty_sheeting_panel",
+            () -> new PanelBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .noOcclusion(),
+                    HitboxGeometryCollection.PANEL_2PIXEL_THICK_FLOOR()
+            )
+    );
+
     //JOKE BLOCKS
     public static final DeferredBlock<Block> BODY_PILLOW_OZY = registerBlockAndBlockItem("body_pillow",
             () -> new Bed2Block(BlockBehaviour
@@ -180,7 +203,7 @@ public class ModBlocks {
 
     //BASE BLOCKS
     public static final DeferredBlock<Block> IHEA_FURNITURE_KIT = registerBlockAndBlockItem("ihea_furniture_kit",
-            () -> new SimpleFacingBlock(BlockBehaviour
+            () -> new SimpleHorizontalBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.OAK_PLANKS))
             {
                 @Override
@@ -192,7 +215,7 @@ public class ModBlocks {
 
     );
     public static final DeferredBlock<Block> METALWORKS = registerBlockAndBlockItem("metalworks",
-            () -> new FacingFallableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK), SoundEvents.ANVIL_PLACE){
+            () -> new HorizontalFallableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK), SoundEvents.ANVIL_PLACE){
                 @Override
                 public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
                     if (Screen.hasShiftDown()) {
@@ -204,7 +227,7 @@ public class ModBlocks {
                 }
             });
     public static final DeferredBlock<Block> PIPEWORKS = registerBlockAndBlockItem("pipeworks",
-            () -> new FacingFallableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK), ModSounds.METALPIPEFALLINGSOUNDEFFECT.get()) {
+            () -> new HorizontalFallableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK), ModSounds.METALPIPEFALLINGSOUNDEFFECT.get()) {
                 @Override
                 public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
                     if (Screen.hasShiftDown()) {
@@ -220,7 +243,7 @@ public class ModBlocks {
 
 
     public static final DeferredBlock<Block> SAFETY_FURNISHINGS = registerBlockAndBlockItem("safety_furnishings",
-            () -> new SimpleFacingBlock(BlockBehaviour
+            () -> new SimpleHorizontalBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE))
             {
                 @Override
@@ -231,7 +254,7 @@ public class ModBlocks {
             }
     );
     public static final DeferredBlock<Block> HYGIENE_FURNISHINGS = registerBlockAndBlockItem("hygiene_furnishings",
-            () -> new SimpleFacingBlock(BlockBehaviour
+            () -> new SimpleHorizontalBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE))
             {
                 @Override
@@ -241,7 +264,7 @@ public class ModBlocks {
                 }
             });
     public static final DeferredBlock<Block> INDUSTRIAL_FURNISHINGS = registerBlockAndBlockItem("industrial_furnishings",
-            () -> new SimpleFacingBlock(BlockBehaviour
+            () -> new SimpleHorizontalBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE))
             {
                 @Override
@@ -251,7 +274,7 @@ public class ModBlocks {
                 }
             });
     public static final DeferredBlock<Block> TECHNOLOGY_FURNISHINGS = registerBlockAndBlockItem("technology_furnishings",
-            () -> new SimpleFacingBlock(BlockBehaviour
+            () -> new SimpleHorizontalBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE))
             {
                 @Override
@@ -261,7 +284,7 @@ public class ModBlocks {
                 }
             });
     public static final DeferredBlock<Block> AMENITY_FURNISHINGS = registerBlockAndBlockItem("amenity_furnishings",
-            () -> new SimpleFacingBlock(BlockBehaviour
+            () -> new SimpleHorizontalBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE))
             {
                 @Override
@@ -453,29 +476,6 @@ public class ModBlocks {
             () -> new StairRailingBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion()
-            )
-    );
-
-    //PANEL BLOCKS
-    public static final DeferredBlock<Block> BLACK_SHEETING_PANEL = registerBlockAndBlockItem("black_sheeting_panel",
-            () -> new PanelBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .noOcclusion(),
-                    HitboxGeometryCollection.PANEL_2PIXEL_THICK_FLOOR()
-            )
-    );
-    public static final DeferredBlock<Block> GRAY_SHEETING_PANEL = registerBlockAndBlockItem("gray_sheeting_panel",
-            () -> new PanelBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .noOcclusion(),
-                    HitboxGeometryCollection.PANEL_2PIXEL_THICK_FLOOR()
-            )
-    );
-    public static final DeferredBlock<Block> RUSTY_SHEETING_PANEL = registerBlockAndBlockItem("rusty_sheeting_panel",
-            () -> new PanelBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .noOcclusion(),
-                    HitboxGeometryCollection.PANEL_2PIXEL_THICK_FLOOR()
             )
     );
 
@@ -1408,7 +1408,7 @@ public class ModBlocks {
             )
     );
     public static final DeferredBlock<Block> FIRE_EXTINGUISHER = registerBlockAndBlockItem("fire_extinguisher",
-            () -> new ModelledFacingBlock(BlockBehaviour
+            () -> new ModelledHorizontalBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion(),
                     HitboxGeometryCollection.FIRE_EXTINGUISHER()
@@ -1471,13 +1471,13 @@ public class ModBlocks {
     );
 //
     public static final DeferredBlock<Block> SINK = registerBlockAndBlockItem("sink",
-            () -> new ModelledFacingBlock(BlockBehaviour
+            () -> new ModelledHorizontalBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
                     .noOcclusion(),
                     HitboxGeometryCollection.UPPER_SLAB())
     );
     public static final DeferredBlock<Block> URINAL = registerBlockAndBlockItem("urinal",
-            () -> new SoundModelledFacingBlock(BlockBehaviour
+            () -> new PlaySoundMHBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
                     .noOcclusion(),
                     HitboxGeometryCollection.URINAL(),
@@ -1534,10 +1534,10 @@ public class ModBlocks {
     );
 
     public static final DeferredBlock<Block> FLOOR_WORK_LIGHT = registerBlockAndBlockItem("floor_work_light",
-            () -> new InteractableModelledFacingBlock(BlockBehaviour
+            () -> new InteractableMHBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .noOcclusion()
-                    .lightLevel(state -> state.getValue(InteractableModelledFacingBlock.POWERED) ? 15 : 0),
+                    .lightLevel(state -> state.getValue(InteractableMHBlock.POWERED) ? 15 : 0),
                     HitboxGeometryCollection.FLOOR_WORK_LIGHT_SHAPE(),
                     SoundEvents.STONE_BUTTON_CLICK_ON,
                     SoundEvents.STONE_BUTTON_CLICK_OFF
@@ -1565,41 +1565,41 @@ public class ModBlocks {
 //    );
 
     public static final DeferredBlock<Block> RETRO_COMPUTER = registerBlockAndBlockItem("retro_computer",
-            () -> new InteractableModelledFacingBlock(BlockBehaviour
+            () -> new InteractableMHBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
-                    .lightLevel(state -> state.getValue(InteractableModelledFacingBlock.POWERED) ? 7 : 0),
+                    .lightLevel(state -> state.getValue(InteractableMHBlock.POWERED) ? 7 : 0),
                     HitboxGeometryCollection.RETRO_COMPUTER(),
                     ModSounds.COMPUTER_ON.get(),
                     ModSounds.SWITCH_OFF.get()
             )
     );
     public static final DeferredBlock<Block> RETRO_COMPUTER_2 = registerBlockAndBlockItem("retro_computer_2",
-            () -> new InteractableModelledFacingBlock(BlockBehaviour
+            () -> new InteractableMHBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
-                    .lightLevel(state -> state.getValue(InteractableModelledFacingBlock.POWERED) ? 7 : 0),
+                    .lightLevel(state -> state.getValue(InteractableMHBlock.POWERED) ? 7 : 0),
                     HitboxGeometryCollection.RETRO_COMPUTER_2(),
                     ModSounds.COMPUTER_ON.get(),
                     ModSounds.SWITCH_OFF.get()
             )
     );
     public static final DeferredBlock<Block> MONITOR_AND_KEYBOARD = registerBlockAndBlockItem("monitor_and_keyboard",
-            () -> new InteractableModelledFacingBlock(BlockBehaviour
+            () -> new InteractableMHBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
-                    .lightLevel(state -> state.getValue(InteractableModelledFacingBlock.POWERED) ? 7 : 0),
+                    .lightLevel(state -> state.getValue(InteractableMHBlock.POWERED) ? 7 : 0),
                     HitboxGeometryCollection.MONITOR_AND_KEYBOARD(),
                     SoundEvents.STONE_BUTTON_CLICK_ON,
                     SoundEvents.STONE_BUTTON_CLICK_OFF
             )
     );
     public static final DeferredBlock<Block> DESKTOP_TOWER = registerBlockAndBlockItem("desktop_tower",
-            () -> new ModelledFacingBlock(BlockBehaviour
+            () -> new ModelledHorizontalBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE),
                     HitboxGeometryCollection.DESKTOP_TOWER()
             ) {
             }
     );
     public static final DeferredBlock<Block> CASSETTE_PLAYER = registerBlockAndBlockItem("cassette_player",
-            () -> new InteractableModelledFacingBlock(BlockBehaviour
+            () -> new InteractableMHBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
                     .noOcclusion(),
                     HitboxGeometryCollection.CASSETTE_PLAYER(),
@@ -1709,14 +1709,14 @@ public class ModBlocks {
 
     );
     public static final DeferredBlock<Block> OFFICE_CHAIR = registerBlockAndBlockItem("office_chair",
-            () -> new SittableFacingBlock(BlockBehaviour
+            () -> new ChairHorizontalBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.OAK_PLANKS)
                     .noOcclusion(),
                     HitboxGeometryCollection.OFFICE_CHAIR_SHAPE()
             )
     );
     public static final DeferredBlock<Block> BLACK_OFFICE_CHAIR = registerBlockAndBlockItem("black_office_chair",
-            () -> new SittableFacingBlock(BlockBehaviour
+            () -> new ChairHorizontalBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.OAK_PLANKS)
                     .noOcclusion(),
                     HitboxGeometryCollection.OFFICE_CHAIR_SHAPE()
@@ -1724,7 +1724,7 @@ public class ModBlocks {
     );
 
     public static final DeferredBlock<Block> FOLDING_CHAIR = registerBlockAndBlockItem("folding_chair",
-            () -> new SittableFacingBlock(BlockBehaviour
+            () -> new ChairHorizontalBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.OAK_PLANKS)
                   .noOcclusion(),
                     HitboxGeometryCollection.FOLDING_CHAIR()

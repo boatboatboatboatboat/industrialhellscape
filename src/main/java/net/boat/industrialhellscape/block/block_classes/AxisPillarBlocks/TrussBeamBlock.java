@@ -1,6 +1,6 @@
 package net.boat.industrialhellscape.block.block_classes.AxisPillarBlocks;
 
-import net.boat.industrialhellscape.block.block_interfaces.CustomModEnumsInterface;
+import net.boat.industrialhellscape.block.block_interfaces.ModEnumsInterface;
 import net.boat.industrialhellscape.block.block_interfaces.HitboxRotationInterface;
 import net.boat.industrialhellscape.block.block_interfaces.ToolUseInterface;
 import net.minecraft.core.BlockPos;
@@ -27,15 +27,24 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
-//Uses Axes for state determination
+/*
+INFO:
+-----
+    Axis-aligned pillar block.
+    -Can be waterlogged
+    -Alternates model based on the last block surface it is placed on for
+        diagonal alternating truss connections that extend a beam forward.
+
+ */
 
 public class TrussBeamBlock extends RotatedPillarBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    public static final BooleanProperty ALT_STATE = CustomModEnumsInterface.ALT_STATE;
+    public static final BooleanProperty ALT_STATE = ModEnumsInterface.ALT_STATE;
 
     private final VoxelShape X_HITBOX;
     private final VoxelShape Y_HITBOX;
     private final VoxelShape Z_HITBOX;
+
     public TrussBeamBlock(Properties properties, VoxelShape verticalHitbox) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any()
@@ -58,10 +67,20 @@ public class TrussBeamBlock extends RotatedPillarBlock {
         Direction directionTowardsNeighborPos = directionClickedFace.getOpposite();
         BlockPos neighborPos = clickedPos.relative(directionTowardsNeighborPos);
         BlockState neighborBlockState = level.getBlockState(neighborPos);
-
         FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
-        BlockState state = this.defaultBlockState().setValue(AXIS, context.getClickedFace().getAxis()).setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
 
+        //Assign Placement Axis direction state and waterlogging state simultaneously
+        BlockState state = this.defaultBlockState()
+                .setValue(AXIS, context.getClickedFace().getAxis())
+                .setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
+
+        /*
+            Assign Truss Beam truss-model changing state (ALT_STATE):
+            - If block player places against is this block
+            - And the neighbor block's axis matches the previously assigned axis of this block
+            - Toggle this block's ALT_STATE boolean property as the inverse of the neighbor state's
+                ALT_STATE property
+         */
         if(neighborBlockState.is(this)) {
             if(neighborBlockState.getValue(AXIS) == state.getValue(AXIS)) {
                 state = state.setValue(ALT_STATE, !neighborBlockState.getValue(ALT_STATE)); //boolean toggle
@@ -73,6 +92,7 @@ public class TrussBeamBlock extends RotatedPillarBlock {
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        //Toggles ALT_STATE state value to change truss direction for block with tool
         return ToolUseInterface.simpleToolUse(stack,state,level,pos,player,ALT_STATE,3);
     }
 

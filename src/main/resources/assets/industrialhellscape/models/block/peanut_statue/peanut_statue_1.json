@@ -1,0 +1,68 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"render_type": "minecraft:cutout",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "industrialhellscape:block/peanut_statue",
+		"particle": "industrialhellscape:block/peanut_statue"
+	},
+	"elements": [
+		{
+			"from": [4, 0, 4],
+			"to": [12, 2, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, -1, 6]},
+			"faces": {
+				"north": {"uv": [0.5, 7, 4.5, 8], "texture": "#0"},
+				"east": {"uv": [0.5, 7, 4.5, 8], "texture": "#0"},
+				"south": {"uv": [0.5, 7, 4.5, 8], "texture": "#0"},
+				"west": {"uv": [0.5, 7, 4.5, 8], "texture": "#0"}
+			}
+		},
+		{
+			"from": [3, 2, 3],
+			"to": [13, 14, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 1, 7]},
+			"faces": {
+				"north": {"uv": [0, 1, 5, 7], "texture": "#0"},
+				"east": {"uv": [0, 1, 5, 7], "texture": "#0"},
+				"south": {"uv": [0, 1, 5, 7], "texture": "#0"},
+				"west": {"uv": [0, 1, 5, 7], "texture": "#0"},
+				"up": {"uv": [16, 5, 11, 0], "texture": "#0"},
+				"down": {"uv": [16, 5, 11, 0], "texture": "#0"}
+			}
+		},
+		{
+			"from": [4, 14, 4],
+			"to": [12, 16, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 14, 6]},
+			"faces": {
+				"north": {"uv": [0.5, 0, 4.5, 1], "texture": "#0"},
+				"east": {"uv": [0.5, 0, 4.5, 1], "texture": "#0"},
+				"south": {"uv": [0.5, 0, 4.5, 1], "texture": "#0"},
+				"west": {"uv": [0.5, 0, 4.5, 1], "texture": "#0"},
+				"up": {"uv": [11, 4, 7, 0], "texture": "#0"}
+			}
+		},
+		{
+			"name": "mouth",
+			"from": [2, 0, 2],
+			"to": [14, 10, 8],
+			"rotation": {"angle": 0, "axis": "y", "origin": [2, 2, 2]},
+			"faces": {
+				"north": {"uv": [10, 11, 16, 16], "texture": "#0"},
+				"east": {"uv": [7, 11, 10, 16], "texture": "#0"},
+				"west": {"uv": [10, 11, 7, 16], "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "head",
+			"origin": [7, 2, 7],
+			"scope": 0,
+			"color": 0,
+			"children": [0, 1, 2, 3]
+		}
+	]
+}

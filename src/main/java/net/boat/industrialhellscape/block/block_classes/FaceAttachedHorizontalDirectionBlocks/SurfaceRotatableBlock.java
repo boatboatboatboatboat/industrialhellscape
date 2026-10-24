@@ -38,6 +38,8 @@ import javax.annotation.Nonnull;
 public class SurfaceRotatableBlock extends Block implements SimpleWaterloggedBlock, ToolUseInterface {
 
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
+
+    //TODO - figure out what to do about legacy enum that i dont like
     public static final EnumProperty<RelativePlanarDirectionState> PLANE_DIRECTION = EnumProperty.create("plane_direction", RelativePlanarDirectionState.class);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 

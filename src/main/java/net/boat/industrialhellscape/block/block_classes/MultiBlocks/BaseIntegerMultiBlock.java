@@ -1,6 +1,6 @@
 package net.boat.industrialhellscape.block.block_classes.MultiBlocks;
 
-import net.boat.industrialhellscape.block.block_classes.PlacedFacingBlocks.SimpleFacingBlock;
+import net.boat.industrialhellscape.block.block_classes.HorizontalDirectionBlocks.SimpleHorizontalBlock;
 import net.boat.industrialhellscape.block.block_interfaces.MultiBlockPlacementInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -20,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public abstract class BaseIntegerMultiBlock extends SimpleFacingBlock implements MultiBlockPlacementInterface, IBlockExtension {
+public abstract class BaseIntegerMultiBlock extends SimpleHorizontalBlock implements MultiBlockPlacementInterface, IBlockExtension {
     public int[][] multiBlockPlacementMatrix; //not static, the placement matrix is unique to many kinds of blocks
     public final IntegerProperty partProperty; //not static, extended classes define a max ceiling on IntegerProperty
 
