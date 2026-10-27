@@ -35,10 +35,11 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         //this.dropSelf(ModBlocks.REMOVE_THIS_ITEM.get());
         this.add(ModBlocks.DEBUG_BLOCK.get(),
                 createIntegerMultiBlockDrops(ModBlocks.DEBUG_BLOCK.get(),Integer11Block.PART));
+        this.dropSelf(ModBlocks.ROAD_BARRIER.get());
 
         //IN-DEVELOPMENT BLOCK
-        this.dropWhenSilkTouch(ModBlocks.VERY_SUSPICIOUS_SAND.get());
-        this.dropSelf(ModBlocks.LAND_MINE.get());
+//        this.dropWhenSilkTouch(ModBlocks.VERY_SUSPICIOUS_SAND.get());
+//        this.dropSelf(ModBlocks.LAND_MINE.get());
 
         //JOKE BLOCK
         this.add(ModBlocks.BODY_PILLOW_OZY.get(),
@@ -171,16 +172,16 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.RUSTY_VESSELPLATE_PILLAR.get());
 
         //PANEL BLOCKS
-        this.add(ModBlocks.BLACK_SHEETING_PANEL.get(),
-                createPanelBlockDrops(ModBlocks.BLACK_SHEETING_PANEL.get()));
-        this.add(ModBlocks.GRAY_SHEETING_PANEL.get(),
-                createPanelBlockDrops(ModBlocks.GRAY_SHEETING_PANEL.get()));
-        this.add(ModBlocks.RUSTY_SHEETING_PANEL.get(),
-                createPanelBlockDrops(ModBlocks.RUSTY_SHEETING_PANEL.get()));
+//        this.add(ModBlocks.BLACK_SHEETING_PANEL.get(),
+//                createPanelBlockDrops(ModBlocks.BLACK_SHEETING_PANEL.get()));
+//        this.add(ModBlocks.GRAY_SHEETING_PANEL.get(),
+//                createPanelBlockDrops(ModBlocks.GRAY_SHEETING_PANEL.get()));
+//        this.add(ModBlocks.RUSTY_SHEETING_PANEL.get(),
+//                createPanelBlockDrops(ModBlocks.RUSTY_SHEETING_PANEL.get()));
 
         //FENCE BLOCKS
         this.dropSelf(ModBlocks.BARBED_WIRE_FENCE.get());
-        this.dropSelf(ModBlocks.CHAINLINK_FENCE.get());
+        this.dropSelf(ModBlocks.CHAIN_LINK_FENCE.get());
 
         this.dropSelf(ModBlocks.ANGLED_BARBED_WIRE_ARM.get());
         this.dropSelf(ModBlocks.VERTICAL_BARBED_WIRE_ARM.get());
@@ -264,6 +265,14 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.RED_ROCKRETE_STAIRS.get());
 
         this.dropSelf(ModBlocks.GRIMY_RESTROOM_TILE.get());
+
+        this.dropSelf(ModBlocks.RED_HAZARD_STRIPE.get());
+        this.add(ModBlocks.RED_HAZARD_STRIPE_SLAB.get(), createSlabItemTable(ModBlocks.RED_HAZARD_STRIPE_SLAB.get()));
+        this.dropSelf(ModBlocks.RED_HAZARD_STRIPE_STAIRS.get());
+
+        this.dropSelf(ModBlocks.YELLOW_HAZARD_STRIPE.get());
+        this.add(ModBlocks.YELLOW_HAZARD_STRIPE_SLAB.get(), createSlabItemTable(ModBlocks.YELLOW_HAZARD_STRIPE_SLAB.get()));
+        this.dropSelf(ModBlocks.YELLOW_HAZARD_STRIPE_STAIRS.get());
 
         //DOORS, TRAPDOORS
         this.add(ModBlocks.ARMORED_DOOR.get(),

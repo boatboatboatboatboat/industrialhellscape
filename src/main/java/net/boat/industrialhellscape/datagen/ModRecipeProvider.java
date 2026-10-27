@@ -63,6 +63,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.HORIZONTAL_CUTOUT_VENT.asItem(),
             ModBlocks.RUSTY_HORIZONTAL_VENT.asItem(),
             ModBlocks.RUSTY_HORIZONTAL_CUTOUT_VENT.asItem()
+
+            //TODO: Add more full block vent variants down the line? Grid-shape vents?
     );
     private static final List<ItemLike> TRUSS_STONECUT_OUTPUT = List.of(
             ModBlocks.TRUSS_BEAM.asItem(),
@@ -127,6 +129,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.asItem(),
             ModBlocks.GRAY_RIVETED_VESSELPLATE_STAIRS.asItem(),
             ModBlocks.RUSTY_RIVETED_VESSELPLATE_SLAB.asItem(),
+            ModBlocks.RUSTY_RIVETED_VESSELPLATE_STAIRS.asItem(),
 
             ModBlocks.VESSELPLATE_SHEETING_SLAB.asItem(),
             ModBlocks.VESSELPLATE_SHEETING_STAIRS.asItem(),
@@ -186,7 +189,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.RED_ROCKRETE_PILLAR.asItem(),
             ModBlocks.RED_ROCKRETE_PARAPET.asItem(),
 
-            ModBlocks.GRIMY_RESTROOM_TILE.asItem()
+            ModBlocks.GRIMY_RESTROOM_TILE.asItem(),
+            ModBlocks.RED_HAZARD_STRIPE.asItem(),
+            ModBlocks.RED_HAZARD_STRIPE_STAIRS.asItem(),
+            ModBlocks.RED_HAZARD_STRIPE_SLAB.asItem(),
+
+            ModBlocks.YELLOW_HAZARD_STRIPE.asItem(),
+            ModBlocks.YELLOW_HAZARD_STRIPE_STAIRS.asItem(),
+            ModBlocks.YELLOW_HAZARD_STRIPE_SLAB.asItem()
     );
     private static final List<ItemLike> VESSELGLASS_STONECUT_OUTPUT = List.of(
             ModBlocks.VESSELGLASS.asItem(),
@@ -201,14 +211,17 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     private static final List<ItemLike> PIPEWORKS_STONECUT_OUTPUT = List.of(
             ModBlocks.PIPEWORKS.asItem(),
+
             ModBlocks.COPPER_PIPE_CONDUIT.asItem(),
             ModBlocks.COPPER_PIPE_CONDUIT_PLANAR_CORNER.asItem(),
             ModBlocks.COPPER_PIPE_CONDUIT_INNER_CORNER.asItem(),
             ModBlocks.COPPER_PIPE_CONDUIT_OUTER_CORNER.asItem(),
+
             ModBlocks.BRASS_PIPE_CONDUIT.asItem(),
             ModBlocks.BRASS_PIPE_CONDUIT_PLANAR_CORNER.asItem(),
             ModBlocks.BRASS_PIPE_CONDUIT_INNER_CORNER.asItem(),
             ModBlocks.BRASS_PIPE_CONDUIT_OUTER_CORNER.asItem(),
+
             ModBlocks.GRAY_PIPE_CONDUIT.asItem(),
             ModBlocks.GRAY_PIPE_CONDUIT_PLANAR_CORNER.asItem(),
             ModBlocks.GRAY_PIPE_CONDUIT_INNER_CORNER.asItem(),
@@ -218,19 +231,19 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     private static final List<ItemLike> METALWORKS_STONECUT_OUTPUT = List.of(
             ModBlocks.METALWORKS.asItem(),
 
-            ModBlocks.BLACK_SHEETING_PANEL.asItem(),
+            //ModBlocks.BLACK_SHEETING_PANEL.asItem(),
             ModBlocks.SMALL_BLACK_BOLTED_BRACKET.asItem(),
             ModBlocks.BLACK_BOLTED_BRACKET.asItem(),
             ModBlocks.BLACK_RAILING.asItem(),
             ModBlocks.BLACK_STAIR_RAILING.asItem(),
 
-            ModBlocks.GRAY_SHEETING_PANEL.asItem(),
+            //ModBlocks.GRAY_SHEETING_PANEL.asItem(),
             ModBlocks.SMALL_GRAY_BOLTED_BRACKET.asItem(),
             ModBlocks.GRAY_BOLTED_BRACKET.asItem(),
             ModBlocks.GRAY_RAILING.asItem(),
             ModBlocks.GRAY_STAIR_RAILING.asItem(),
 
-            ModBlocks.RUSTY_SHEETING_PANEL.asItem(),
+            //ModBlocks.RUSTY_SHEETING_PANEL.asItem(),
             ModBlocks.SMALL_RUSTY_BOLTED_BRACKET.asItem(),
             ModBlocks.RUSTY_BOLTED_BRACKET.asItem(),
             ModBlocks.RUSTY_RAILING.asItem(),
@@ -240,7 +253,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.YELLOW_STAIR_RAILING.asItem(),
 
             ModBlocks.BARBED_WIRE_FENCE.asItem(),
-            ModBlocks.CHAINLINK_FENCE.asItem(),
+            ModBlocks.CHAIN_LINK_FENCE.asItem(),
             ModBlocks.ANGLED_BARBED_WIRE_ARM.asItem(),
             ModBlocks.VERTICAL_BARBED_WIRE_ARM.asItem(),
             ModBlocks.COILED_BARBED_WIRE_ARM.asItem()
@@ -259,7 +272,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.HYGIENE_FURNISHINGS.asItem(),
             ModBlocks.INDUSTRIAL_FURNISHINGS.asItem(),
             ModBlocks.TECHNOLOGY_FURNISHINGS.asItem(),
-            ModBlocks.AMENITY_FURNISHINGS.asItem()
+            ModBlocks.AMENITY_FURNISHINGS.asItem(),
+            ModBlocks.ROAD_BARRIER.asItem()
     );
 
     private static final List<ItemLike> SAFETY_FURNITURE = List.of(

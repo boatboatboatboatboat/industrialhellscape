@@ -1,7 +1,6 @@
 package net.boat.industrialhellscape.datagen;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
-import net.boat.industrialhellscape.block.experiments.LandMineBlocks.BrushingLootTableProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -32,8 +31,8 @@ public class DataGenerators {
                     Collections.emptySet(),
                     List.of(
                             //new loot table variants are added to this list
-                            new LootTableProvider.SubProviderEntry(ModBlockLootTableProvider::new, LootContextParamSets.BLOCK),
-                            new LootTableProvider.SubProviderEntry(BrushingLootTableProvider::new, LootContextParamSets.ARCHAEOLOGY)
+                            new LootTableProvider.SubProviderEntry(ModBlockLootTableProvider::new, LootContextParamSets.BLOCK)
+                            //new LootTableProvider.SubProviderEntry(BrushingLootTableProvider::new, LootContextParamSets.ARCHAEOLOGY)
                     ),
                     lookupProvider
                 )

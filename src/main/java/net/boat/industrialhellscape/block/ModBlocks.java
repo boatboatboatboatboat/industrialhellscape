@@ -20,9 +20,6 @@ import net.boat.industrialhellscape.block.block_classes.TextureToggleBlocks.Simp
 import net.boat.industrialhellscape.block.block_classes.TextureToggleBlocks.TrussBlock;
 import net.boat.industrialhellscape.block.block_interfaces.HitboxGeometryCollection;
 import net.boat.industrialhellscape.block.block_interfaces.MultiBlockPlacementArrayCollection;
-import net.boat.industrialhellscape.block.experiments.LandMineBlocks.CustomBrushableBlock;
-import net.boat.industrialhellscape.block.experiments.LandMineBlocks.LandMineBlock;
-import net.boat.industrialhellscape.block.experiments.PanelBlocks.PanelBlock;
 import net.boat.industrialhellscape.block.logic_enums.ConnectingBlockPlacementOrientation;
 import net.boat.industrialhellscape.sound.ModSounds;
 import net.boat.industrialhellscape.util.ModTags;
@@ -58,6 +55,10 @@ public class ModBlocks {
 
         specificBlockReplacement("barbed_wire_fence_top", "angled_barbed_wire_arm");
         specificBlockReplacement("thin_barbed_wire_fence_top", "vertical_barbed_wire_arm");
+        specificBlockReplacement("chainlink_fence", "chain_link_fence");
+
+        specificBlockReplacement("hazard_stripe_red", "red_hazard_stripe");
+        specificBlockReplacement("hazard_stripe_yellow", "yellow_hazard_stripe");
 
         specificBlockReplacement("smooth_gray_rockrete", "gray_rockrete");
         specificBlockReplacement("smooth_red_rockrete", "red_rockrete");
@@ -121,46 +122,55 @@ public class ModBlocks {
                     , ModSounds.METAL_BOX_CLOSE.get()
             )
     );
-    public static final DeferredBlock<Block> VERY_SUSPICIOUS_SAND = registerBlockAndBlockItem("very_suspicious_sand",
-            () -> new CustomBrushableBlock(
-                    Blocks.SAND,
-                    SoundEvents.BRUSH_SAND,
-                    SoundEvents.BRUSH_SAND_COMPLETED,
-                    BlockBehaviour.Properties.ofFullCopy(Blocks.SAND)
-            )
-    );
-    public static final DeferredBlock<Block> LAND_MINE = registerBlockAndBlockItem("land_mine",
-            () -> new LandMineBlock(
-                    BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
-                            .explosionResistance(1)
-                            .noOcclusion(),
-                    SoundEvents.COPPER_FALL,
-                    HitboxGeometryCollection.LAND_MINE()
+
+    public static final DeferredBlock<Block> ROAD_BARRIER = registerBlockAndBlockItem("road_barrier",
+            () -> new ModelledHorizontalBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE),
+                    HitboxGeometryCollection.ROAD_BARRIER()
             )
     );
 
+
+//    public static final DeferredBlock<Block> VERY_SUSPICIOUS_SAND = registerBlockAndBlockItem("very_suspicious_sand",
+//            () -> new BuriedMineBlock(
+//                    Blocks.SAND,
+//                    SoundEvents.BRUSH_SAND,
+//                    SoundEvents.BRUSH_SAND_COMPLETED,
+//                    BlockBehaviour.Properties.ofFullCopy(Blocks.SAND)
+//            )
+//    );
+//    public static final DeferredBlock<Block> LAND_MINE = registerBlockAndBlockItem("land_mine",
+//            () -> new LandMineBlock(
+//                    BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
+//                            .explosionResistance(1)
+//                            .noOcclusion(),
+//                    SoundEvents.COPPER_FALL,
+//                    HitboxGeometryCollection.LAND_MINE()
+//            )
+//    );
+
     //EXPERIMENTAL BLOCKS - PANEL BLOCKS - TENTATIVE INCLUSION
-    public static final DeferredBlock<Block> BLACK_SHEETING_PANEL = registerBlockAndBlockItem("black_sheeting_panel",
-            () -> new PanelBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .noOcclusion(),
-                    HitboxGeometryCollection.PANEL_2PIXEL_THICK_FLOOR()
-            )
-    );
-    public static final DeferredBlock<Block> GRAY_SHEETING_PANEL = registerBlockAndBlockItem("gray_sheeting_panel",
-            () -> new PanelBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .noOcclusion(),
-                    HitboxGeometryCollection.PANEL_2PIXEL_THICK_FLOOR()
-            )
-    );
-    public static final DeferredBlock<Block> RUSTY_SHEETING_PANEL = registerBlockAndBlockItem("rusty_sheeting_panel",
-            () -> new PanelBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-                    .noOcclusion(),
-                    HitboxGeometryCollection.PANEL_2PIXEL_THICK_FLOOR()
-            )
-    );
+//    public static final DeferredBlock<Block> BLACK_SHEETING_PANEL = registerBlockAndBlockItem("black_sheeting_panel",
+//            () -> new PanelBlock(BlockBehaviour
+//                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+//                    .noOcclusion(),
+//                    HitboxGeometryCollection.PANEL_2PIXEL_THICK_FLOOR()
+//            )
+//    );
+//    public static final DeferredBlock<Block> GRAY_SHEETING_PANEL = registerBlockAndBlockItem("gray_sheeting_panel",
+//            () -> new PanelBlock(BlockBehaviour
+//                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+//                    .noOcclusion(),
+//                    HitboxGeometryCollection.PANEL_2PIXEL_THICK_FLOOR()
+//            )
+//    );
+//    public static final DeferredBlock<Block> RUSTY_SHEETING_PANEL = registerBlockAndBlockItem("rusty_sheeting_panel",
+//            () -> new PanelBlock(BlockBehaviour
+//                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+//                    .noOcclusion(),
+//                    HitboxGeometryCollection.PANEL_2PIXEL_THICK_FLOOR()
+//            )
+//    );
 
     //JOKE BLOCKS
     public static final DeferredBlock<Block> BODY_PILLOW_OZY = registerBlockAndBlockItem("body_pillow",
@@ -487,7 +497,7 @@ public class ModBlocks {
                     HitboxGeometryCollection.FENCE_4PIXEL_THICK_SHAPE()
             )
     );
-    public static final DeferredBlock<Block> CHAINLINK_FENCE = registerBlockAndBlockItem("chainlink_fence",
+    public static final DeferredBlock<Block> CHAIN_LINK_FENCE = registerBlockAndBlockItem("chain_link_fence",
             () -> new FencePostBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.IRON_BARS).sound(SoundType.CHAIN)
                     .noOcclusion(),
@@ -1243,8 +1253,43 @@ public class ModBlocks {
     );
     public static final DeferredBlock<WallBlock> RED_ROCKRETE_WALL = registerBlockAndBlockItem("red_rockrete_wall",
             () -> new WallBlock(BlockBehaviour.Properties.of().strength(2f).requiresCorrectToolForDrops()));
+
     public static final DeferredBlock<Block> GRIMY_RESTROOM_TILE = registerBlockAndBlockItem("grimy_restroom_tile",
             () -> new Block(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE)
+            )
+    );
+
+    public static final DeferredBlock<Block> RED_HAZARD_STRIPE = registerBlockAndBlockItem("red_hazard_stripe",
+            () -> new Block(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE)
+            )
+    );
+    public static final DeferredBlock<Block> RED_HAZARD_STRIPE_STAIRS = registerBlockAndBlockItem("red_hazard_stripe_stairs",
+            () -> new StairBlock(ModBlocks.RED_HAZARD_STRIPE.get().defaultBlockState(),
+                    BlockBehaviour
+                            .Properties.ofFullCopy(Blocks.STONE)
+            )
+    );
+    public static final DeferredBlock<Block> RED_HAZARD_STRIPE_SLAB = registerBlockAndBlockItem("red_hazard_stripe_slab",
+            () -> new SlabBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE)
+            )
+    );
+
+    public static final DeferredBlock<Block> YELLOW_HAZARD_STRIPE = registerBlockAndBlockItem("yellow_hazard_stripe",
+            () -> new Block(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE)
+            )
+    );
+    public static final DeferredBlock<Block> YELLOW_HAZARD_STRIPE_STAIRS = registerBlockAndBlockItem("yellow_hazard_stripe_stairs",
+            () -> new StairBlock(ModBlocks.YELLOW_HAZARD_STRIPE.get().defaultBlockState(),
+                    BlockBehaviour
+                            .Properties.ofFullCopy(Blocks.STONE)
+            )
+    );
+    public static final DeferredBlock<Block> YELLOW_HAZARD_STRIPE_SLAB = registerBlockAndBlockItem("yellow_hazard_stripe_slab",
+            () -> new SlabBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
             )
     );

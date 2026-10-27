@@ -1,6 +1,7 @@
 package net.boat.industrialhellscape.block.block_classes.AxisPillarBlocks;
 
 import net.boat.industrialhellscape.block.block_interfaces.ConnectedModelInterface;
+import net.boat.industrialhellscape.block.block_interfaces.ModEnumsInterface;
 import net.boat.industrialhellscape.block.block_state_enums.DynamicConnectionState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -35,7 +36,8 @@ INFO:
  */
 
 public class ConnectedPillarBlock extends RotatedPillarBlock implements ConnectedModelInterface {
-    public static final EnumProperty<DynamicConnectionState> TYPE = EnumProperty.create("type", DynamicConnectionState.class); //Custom enum. "TYPE" is used to store enum value of "solo, pos, neg, middle"
+    //TODO: Due to pillar block rotations and texture alignment on models, X-axis pillar states may require another separate model for consistent textured lighting direction
+    public static final EnumProperty<DynamicConnectionState> TYPE = ModEnumsInterface.TYPE; //Custom enum. "TYPE" is used to store enum value of "solo, pos, neg, middle"
 
     public ConnectedPillarBlock(Properties pProperties) {
         super(pProperties);

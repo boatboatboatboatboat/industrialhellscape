@@ -2,6 +2,7 @@ package net.boat.industrialhellscape.block.experiments.LandMineBlocks;
 
 import net.boat.industrialhellscape.item.ModItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -11,6 +12,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentUser;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -42,6 +44,14 @@ public interface ExplosiveInterface {
     default void setFlagDisarmed() {
     }
 
+    default CompoundTag tagBE(Level level) {
+        return new CompoundTag();
+    }
+
+    default ItemStack getItemFromHandForBlock(ItemStack usedItem) {
+        return ItemStack.EMPTY;
+    }
+
     default void assignExplosiveOwner(UUID explosivePlacer) {
     }
 
@@ -50,30 +60,36 @@ public interface ExplosiveInterface {
     }
 
     default UUID getOwnerOfBE() {
-        return null;
+        //https://www.baeldung.com/java-uuid | Default/fallback value is all zeroes instead of null
+        return UUID.fromString("00000000-0000-0000-0000-000000000000"); //null makes crash when block falls and lands
     }
 
-    ExplosionDamageCalculator LANDMINE_DAMAGE_CALCULATOR = new ExplosionDamageCalculator() {
+    ExplosionDamageCalculator ANTIPERSONNEL_EXPLOSION_DAMAGE_CALCULATOR = new ExplosionDamageCalculator() {
 
         //custom values
-        boolean disableLandMineEntityDamage = false;
-        boolean disableLandMineBlockDestruction = true;
+        boolean enableLandMineEntityDamage = true;
+        boolean enableLandMineBlockDestruction = false;
         final int blockBlastResistanceBoost = 10; //Default behavior is 1; High values - weaker effect on block destruction
-        final int entityLethalityCoefficient = 2; //TNT default is 2; High values - stronger damage over distance
+        final int entityLethalityCoefficient = 2; //TNT default is 2;
+
+        @Override
+        public boolean shouldDamageEntity(Explosion explosion, Entity entity) {
+            return enableLandMineEntityDamage;
+        }
 
         @Override
         public Optional<Float> getBlockExplosionResistance(Explosion explosion, BlockGetter reader, BlockPos pos, BlockState state, FluidState fluid) {
-            if(disableLandMineBlockDestruction) {
-                return Optional.of( (float) 3600000);
-            } else {
+            if(enableLandMineBlockDestruction) {
                 return state.is(Blocks.NETHER_PORTAL) ?
                         Optional.empty()
                         :
                         Optional.of(Math.max((float)
-                                        state.getExplosionResistance(reader, pos, explosion) * blockBlastResistanceBoost,
+                                                state.getExplosionResistance(reader, pos, explosion) * blockBlastResistanceBoost,
                                         fluid.getExplosionResistance(reader, pos, explosion) * blockBlastResistanceBoost
                                 )
                         );
+            } else {
+                return Optional.of( (float) 3600000);
             }
         }
 
@@ -83,12 +99,58 @@ public interface ExplosiveInterface {
             Vec3 vec3 = explosion.center();
             double d0 = Math.sqrt(entity.distanceToSqr(vec3)) / (double)lethality;
             double d1 = ((double)1.0F - d0) * (double)Explosion.getSeenPercent(vec3, entity);
-            float calculatedEntityDamage = (float)((d1 * d1 + d1) / (double)2.0F * (double)7.0F * (double)lethality + (double)1.0F);
-            return disableLandMineEntityDamage ? 0 : calculatedEntityDamage;
+            return (float)((d1 * d1 + d1) / (double)2.0F * (double)7.0F * (double)lethality + (double)1.0F);
+        }
+
+        @Override
+        public float getKnockbackMultiplier(Entity entity) {
+            return super.getKnockbackMultiplier(entity); //1 default
         }
     };
 
+    ExplosionDamageCalculator INCENDIARY_EXPLOSION_DAMAGE_CALCULATOR = new ExplosionDamageCalculator() {
 
+        //custom values
+        boolean enableLandMineEntityDamage = true;
+        boolean enableLandMineBlockDestruction = false;
+        final int blockBlastResistanceBoost = 20; //Default behavior is 1; High values - weaker effect on block destruction
+        final int entityLethalityCoefficient = 1; //TNT default is 2;
+
+        @Override
+        public boolean shouldDamageEntity(Explosion explosion, Entity entity) {
+            return enableLandMineEntityDamage;
+        }
+
+        @Override
+        public Optional<Float> getBlockExplosionResistance(Explosion explosion, BlockGetter reader, BlockPos pos, BlockState state, FluidState fluid) {
+            if(enableLandMineBlockDestruction) {
+                return state.is(Blocks.NETHER_PORTAL) ?
+                        Optional.empty()
+                        :
+                        Optional.of(Math.max((float)
+                                                state.getExplosionResistance(reader, pos, explosion) * blockBlastResistanceBoost,
+                                        fluid.getExplosionResistance(reader, pos, explosion) * blockBlastResistanceBoost
+                                )
+                        );
+            } else {
+                return Optional.of( (float) 3600000);
+            }
+        }
+
+        @Override
+        public float getEntityDamageAmount(Explosion explosion, Entity entity) {
+            float lethality = explosion.radius() * entityLethalityCoefficient;
+            Vec3 vec3 = explosion.center();
+            double d0 = Math.sqrt(entity.distanceToSqr(vec3)) / (double)lethality;
+            double d1 = ((double)1.0F - d0) * (double)Explosion.getSeenPercent(vec3, entity);
+            return (float)((d1 * d1 + d1) / (double)2.0F * (double)7.0F * (double)lethality + (double)1.0F);
+        }
+
+        @Override
+        public float getKnockbackMultiplier(Entity entity) {
+            return super.getKnockbackMultiplier(entity); //1 default
+        }
+    };
 
     static void armExplosiveBE(BlockState state, Level level, BlockPos pos, Player player, BooleanProperty disarmProperty) {
         if (level.getBlockEntity(pos) instanceof LandmineBE be) {
@@ -128,7 +190,7 @@ public interface ExplosiveInterface {
         }
     }
 
-    static void steppedOnMine(Level level, BlockPos pos, BlockState state, Entity entityStepping, BooleanProperty disarmProperty) {
+    static void steppedOnMine(Level level, BlockPos pos, BlockState state, Entity entityStepping, BooleanProperty disarmProperty, Item explosiveInsideBE) {
         if(entityStepping instanceof EquipmentUser bootWearer) {
             ItemStack bootItem = bootWearer.getItemBySlot(EquipmentSlot.FEET);
             boolean bootItemHasFeatherFalling = bootItem.getEnchantments().toString().contains(Enchantments.FEATHER_FALLING.toString());
@@ -140,14 +202,14 @@ public interface ExplosiveInterface {
         }
 
         //explodes by default unless entity has feather falling boots
-        ExplosiveInterface.explodeLandMine(level, pos, state,  entityStepping, disarmProperty);
+        ExplosiveInterface.explodeBasedOnType(level, pos, state,  entityStepping, disarmProperty, explosiveInsideBE);
     }
 
-    static void landmineAttacked(BlockState state, Level level, BlockPos pos, Player player, BooleanProperty disarmProperty) {
+    static void landmineAttacked(BlockState state, Level level, BlockPos pos, Player player, BooleanProperty disarmProperty, Item explosiveInsideBE) {
         boolean attackingToolIsSilkTouch = player.getMainHandItem().getEnchantments().toString().contains(Enchantments.SILK_TOUCH.toString());
 
         if(!attackingToolIsSilkTouch) {
-            ExplosiveInterface.explodeLandMine(level, pos, state,  player, disarmProperty);
+            ExplosiveInterface.explodeBasedOnType(level, pos, state,  player, disarmProperty, explosiveInsideBE);
         }
     }
 
@@ -165,7 +227,7 @@ public interface ExplosiveInterface {
         }
     }
 
-    static ItemInteractionResult interactWithLandmine(Block thisBlock, ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, BooleanProperty disarmProperty) {
+    static ItemInteractionResult interactWithLandmine(Block thisBlock, ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, BooleanProperty disarmProperty, Item explosiveInsideBE) {
         boolean explosiveDisArmed = state.getValue(disarmProperty);
         boolean explosiveArmed = !explosiveDisArmed;
 
@@ -204,7 +266,7 @@ public interface ExplosiveInterface {
 
             //If mine is armed, detonate due to usage of unsafe tool
             if(explosiveArmed) {
-                ExplosiveInterface.explodeLandMine(level,pos, state, player, disarmProperty);
+                ExplosiveInterface.explodeBasedOnType(level,pos, state, player, disarmProperty, explosiveInsideBE);
 
                 //If mine disarmed, arm it
             } else {
@@ -216,10 +278,32 @@ public interface ExplosiveInterface {
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION; //Holding a brush goes to here
     }
 
-    static void explodeLandMine(Level level, BlockPos pos, BlockState state, Entity entityStepping, BooleanProperty disarmProperty) {
-        if(level.getBlockEntity(pos) instanceof ExplosiveInterface be) {
-            //If server-side
-            if(level instanceof ServerLevel serverLevel) {
+    static void explodeBasedOnType(Level level, BlockPos pos, BlockState state, Entity entityStepping, BooleanProperty disarmProperty, Item explosiveItemTypeInsideBE) {
+        String itemAsString = explosiveItemTypeInsideBE.toString();
+        switch (itemAsString) {
+            case "land_mine" -> {
+                explodeAntiPersonnelLandMine(level,pos,state,entityStepping,disarmProperty);
+            }
+            case "incendiary_mine" -> {
+                explodeIncendiaryLandMine(level,pos,state,entityStepping,disarmProperty);
+            }
+        }
+
+    }
+
+    static void explodeAntiPersonnelLandMine(Level level, BlockPos pos, BlockState state, Entity entityStepping, BooleanProperty disarmProperty) {
+        landMineExplosionBuilder(level,pos,state,entityStepping,disarmProperty, ANTIPERSONNEL_EXPLOSION_DAMAGE_CALCULATOR, 4, true);
+    }
+
+    static void explodeIncendiaryLandMine(Level level, BlockPos pos, BlockState state, Entity entityStepping, BooleanProperty disarmProperty) {
+        landMineExplosionBuilder(level,pos,state,entityStepping,disarmProperty, INCENDIARY_EXPLOSION_DAMAGE_CALCULATOR, 6, true);
+    }
+
+    static void landMineExplosionBuilder(Level level, BlockPos pos, BlockState state, Entity entityStepping, BooleanProperty disarmProperty, ExplosionDamageCalculator explosionDamageCalculator, float explosionRadius, boolean hasIncendiaryEffect) {
+        //Serverside
+        if(level instanceof ServerLevel serverLevel) {
+            //If block entity exists at position
+            if(level.getBlockEntity(pos) instanceof ExplosiveInterface be) {
                 //And if LandMine is internally and visually armed
                 if(be.getArmingStatusOfBE() && !state.getValue(disarmProperty)) {
                     //get block entity owner
@@ -228,14 +312,14 @@ public interface ExplosiveInterface {
                     //ensure no drops/surviving mine
                     level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
 
-                    Vec3 vec3 = pos.getCenter().add(0,1,0); //negligible damage if explosion raycasts are in center of block. need offset vertically
+                    Vec3 explosionRelativePosition = pos.getCenter().add(0,1,0); //negligible damage if explosion raycasts are in center of block. need offset vertically
 
-                    level.explode(null, Explosion.getDefaultDamageSource(entityStepping.level(), serverLevel.getEntity(owner)), LANDMINE_DAMAGE_CALCULATOR, vec3, 5.0F, false, Level.ExplosionInteraction.BLOCK);
+                    level.explode(null, Explosion.getDefaultDamageSource(entityStepping.level(), serverLevel.getEntity(owner)), explosionDamageCalculator, explosionRelativePosition, explosionRadius, hasIncendiaryEffect, Level.ExplosionInteraction.BLOCK);
                 }
             }
         }
 
-        //regardless if if-checks pass or fail, remove block entity at position.
+        //regardless if if-checks pass or fail, remove block entity at position if explosion triggered
         level.removeBlockEntity(pos);
     }
 }

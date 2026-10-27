@@ -84,19 +84,17 @@ public class LandMineBlock extends HorizontalFallableBlock implements ExplosiveI
          */
 
         //BE also resets if block state changes.
-        if(!blockState.getValue(DISARMED)) {
-            be.setFlagArmed();
-        }
-        return be;
+        //If armed, instantly flagged for detonation instead of waiting for scheduled tick
+//        if(!blockState.getValue(DISARMED)) {
+//            be.setFlagArmed();
+//        }
+        return be; //seems to be fixed by setting BE uuid field to zeroes
     }
 
     @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
         /*
         Assigns LandMine BE owner to the LivingEntity that placed it down
-
-        BE resets data if block falls and lands (because it spawns a new BE)
-        -Contingency logic
          */
         if(level.getBlockEntity(pos) instanceof ExplosiveInterface be) {
             if(placer != null) {
@@ -104,12 +102,15 @@ public class LandMineBlock extends HorizontalFallableBlock implements ExplosiveI
             }
         }
 
-        //bury mines
+        //bury mines - stack already decremented due to placing
         if(level.getBlockState(pos.below()).getBlock() instanceof FallingBlock) {
-            level.setBlock(pos.below(), ModBlocks.VERY_SUSPICIOUS_SAND.get().defaultBlockState(),3);
-
+            level.setBlock(pos.below(), ModBlocks.DEBUG_BLOCK.get().defaultBlockState(),3);
             level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
             level.removeBlockEntity(pos); //REMOVE ORIGINAL BLOCK ENTITY
+
+            if(level.getBlockEntity(pos.below()) instanceof BuriedMineBE be) {
+                be.buriedItem = this.asItem();
+            }
         }
     }
 
@@ -148,12 +149,12 @@ public class LandMineBlock extends HorizontalFallableBlock implements ExplosiveI
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        return ExplosiveInterface.interactWithLandmine(this, stack,state,level,pos,player,DISARMED);
+        return ExplosiveInterface.interactWithLandmine(this, stack,state,level,pos,player,DISARMED, this.asItem());
     }
 
     @Override
     protected void attack(BlockState state, Level level, BlockPos pos, Player player) {
-        ExplosiveInterface.landmineAttacked(state,level,pos,player,DISARMED);
+        ExplosiveInterface.landmineAttacked(state,level,pos,player,DISARMED, this.asItem());
     }
 
     @Override
@@ -174,7 +175,7 @@ public class LandMineBlock extends HorizontalFallableBlock implements ExplosiveI
 
     @Override
     public void stepOn(Level level, BlockPos pos, BlockState state, Entity entityStepping) {
-        ExplosiveInterface.steppedOnMine(level, pos, state, entityStepping, DISARMED);
+        ExplosiveInterface.steppedOnMine(level, pos, state, entityStepping, DISARMED, this.asItem());
     }
 
     //If adding a new property to a subclass, add all prior properties from super-classes here

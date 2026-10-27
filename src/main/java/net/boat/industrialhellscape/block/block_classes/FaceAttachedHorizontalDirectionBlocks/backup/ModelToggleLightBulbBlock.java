@@ -1,15 +1,13 @@
 package net.boat.industrialhellscape.block.block_classes.FaceAttachedHorizontalDirectionBlocks.backup;
 
 import net.boat.industrialhellscape.block.block_classes.FaceAttachedHorizontalDirectionBlocks.LightBulbBlock;
-import net.boat.industrialhellscape.block.block_interfaces.ModEnumsInterface;
 import net.boat.industrialhellscape.block.block_interfaces.HitboxRotationInterface;
+import net.boat.industrialhellscape.block.block_interfaces.ModEnumsInterface;
 import net.boat.industrialhellscape.block.block_interfaces.ToolUseInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -24,7 +22,6 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
@@ -69,6 +66,7 @@ public class ModelToggleLightBulbBlock extends LightBulbBlock implements ToolUse
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(BlockStateProperties.LIT, false)
                 .setValue(BlockStateProperties.INVERTED, false)
+                .setValue(FACING, Direction.NORTH)
                 .setValue(ALT_STATE, false)
         );
     }
@@ -127,25 +125,25 @@ public class ModelToggleLightBulbBlock extends LightBulbBlock implements ToolUse
             }
         }
     }
-
-    @Override
-    protected @NotNull InteractionResult useWithoutItem (BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player entity, @NotNull BlockHitResult hitResult) {
-        boolean wasOn = state.getValue(BlockStateProperties.LIT);
-        SoundEvent onOffSound = wasOn ? OFF_SOUND : ON_SOUND;
-
-        BlockState next = this.toggle(state.cycle(BlockStateProperties.INVERTED), level, pos);
-
-        if (level.isClientSide) {
-            return InteractionResult.SUCCESS;
-        } else if(entity.isCrouching()) {
-            this.toggle(state.cycle(ALT_STATE), level, pos);
-            return InteractionResult.CONSUME;
-        } else {
-            float pitch = next.getValue(BlockStateProperties.INVERTED) ? 0.6f : 0.5f;
-            level.playSound(null, pos, onOffSound, SoundSource.BLOCKS, 0.3f, pitch);
-            return InteractionResult.CONSUME;
-        }
-    }
+//
+//    @Override
+//    protected @NotNull InteractionResult useWithoutItem (BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player entity, @NotNull BlockHitResult hitResult) {
+//        boolean wasOn = state.getValue(BlockStateProperties.LIT);
+//        SoundEvent onOffSound = wasOn ? OFF_SOUND : ON_SOUND;
+//
+//        BlockState next = this.toggle(state.cycle(BlockStateProperties.INVERTED), level, pos);
+//
+//        if (level.isClientSide) {
+//            return InteractionResult.SUCCESS;
+//        } else if(entity.isCrouching()) {
+//            this.toggle(state.cycle(ALT_STATE), level, pos);
+//            return InteractionResult.CONSUME;
+//        } else {
+//            float pitch = next.getValue(BlockStateProperties.INVERTED) ? 0.6f : 0.5f;
+//            level.playSound(null, pos, onOffSound, SoundSource.BLOCKS, 0.3f, pitch);
+//            return InteractionResult.CONSUME;
+//        }
+//    }
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {

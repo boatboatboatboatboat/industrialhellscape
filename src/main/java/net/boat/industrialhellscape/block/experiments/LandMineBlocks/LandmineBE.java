@@ -4,6 +4,7 @@ import net.boat.industrialhellscape.block.block_entities.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
@@ -16,7 +17,8 @@ public class LandmineBE extends BlockEntity implements ExplosiveInterface {
 
     //Data for explosion killfeed recording (anti-griefing)
     //public LivingEntity owner;
-    public UUID owner = null;
+    //https://www.baeldung.com/java-uuid | Default/fallback value is all zeroes instead of null
+    public UUID owner = UUID.fromString("00000000-0000-0000-0000-000000000000"); //null makes crash when block falls and lands
 
     public LandmineBE(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.LANDMINE_BE.get(), pos, blockState);
@@ -58,6 +60,11 @@ public class LandmineBE extends BlockEntity implements ExplosiveInterface {
     @Override
     public @Nullable UUID getOwnerOfBE() {
         return owner;
+    }
+
+    @Override
+    public CompoundTag tagBE(Level level) {
+        return this.saveCustomOnly(level.registryAccess());
     }
 
     @Override

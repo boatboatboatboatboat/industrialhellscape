@@ -33,7 +33,6 @@ public abstract class BaseIntegerMultiBlock extends SimpleHorizontalBlock implem
                 .setValue(FACING, Direction.NORTH)
         );
     }
-
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         BlockState pState = this.defaultBlockState();
         Direction facing = pContext.getHorizontalDirection().getOpposite(); //Standard orientation for Minecraft blocks with a "front" side (faces opposite, towards player)

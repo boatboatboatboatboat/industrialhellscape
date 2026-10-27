@@ -23,7 +23,7 @@ public class ModServerConfig {
     }
 
     static {
-        HAVEN_TOOL_DESTROYS_PEANUT_STATUE = BUILDER
+        PEANUT_STATUE_MINED_BY_HAVEN_TOOL = BUILDER
                 .comment("Enable HAVEN Tool to remove Peanut Statue without triggering teleport")
                 .define("enable_haven_tool_peanut_statue_removal", true);
     }
@@ -37,11 +37,11 @@ public class ModServerConfig {
     static final ModConfigSpec SPEC = BUILDER.build();
 
     private static final ModConfigSpec.IntValue GAS_STATION_PILL_DAMAGE, PEANUT_STATUE_TELEPORT_ATTEMPTS;
-    private static final ModConfigSpec.BooleanValue PEANUT_STATUE_DISAPPEARS_ON_RANDOM_TICK, HAVEN_TOOL_DESTROYS_PEANUT_STATUE, SMOKE_ALARM_RANDOM_TICK;
+    private static final ModConfigSpec.BooleanValue PEANUT_STATUE_DISAPPEARS_ON_RANDOM_TICK, PEANUT_STATUE_MINED_BY_HAVEN_TOOL, SMOKE_ALARM_RANDOM_TICK;
 
     public static int gasStationPillDamage() { return GAS_STATION_PILL_DAMAGE.get(); }
     public static int peanutStatueTeleportAttemptsInt() { return PEANUT_STATUE_TELEPORT_ATTEMPTS.get(); }
     public static boolean peanutStatueDisappearsOnRandomTick() {return PEANUT_STATUE_DISAPPEARS_ON_RANDOM_TICK.get();}
-    public static boolean havenToolDestroysPeanutStatue() {return HAVEN_TOOL_DESTROYS_PEANUT_STATUE.get();}
+    public static boolean havenToolDestroysPeanutStatue() {return PEANUT_STATUE_MINED_BY_HAVEN_TOOL.get();}
     public static boolean smokeAlarmPlaysSound() {return SMOKE_ALARM_RANDOM_TICK.get();}
 }

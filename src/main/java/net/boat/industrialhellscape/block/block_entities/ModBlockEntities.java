@@ -2,9 +2,9 @@ package net.boat.industrialhellscape.block.block_entities;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
+import net.boat.industrialhellscape.block.block_entities.StorageBE.StorageBE;
 import net.boat.industrialhellscape.block.experiments.LandMineBlocks.BuriedMineBE;
 import net.boat.industrialhellscape.block.experiments.LandMineBlocks.LandmineBE;
-import net.boat.industrialhellscape.block.block_entities.StorageBE.StorageBE;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
@@ -59,7 +59,8 @@ public class ModBlockEntities {
                                             crash will occur.
                                         - Was not an issue in 1.20.1
                                      */
-                            ModBlocks.VERY_SUSPICIOUS_SAND.get()
+                            //ModBlocks.VERY_SUSPICIOUS_SAND.get()
+                            ModBlocks.DEBUG_BLOCK.get()
                     )
                     .build(null)
     );
@@ -68,7 +69,8 @@ public class ModBlockEntities {
             "landmine_be",
             () -> BlockEntityType.Builder.of(
                             LandmineBE::new,
-                            ModBlocks.LAND_MINE.get()
+                            //ModBlocks.LAND_MINE.get()
+                            ModBlocks.DEBUG_BLOCK.get()
 
                     )
                     .build(null)
