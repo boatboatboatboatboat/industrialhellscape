@@ -148,15 +148,15 @@ public interface MultiBlockPlacementInterface {
         //initialize default block state
         BlockState pState = thisBlock.defaultBlockState();
         //assign waterlogging state value
-        pState.setValue(waterloggedProperty,fluidstate.getType() == Fluids.WATER);
+        pState = pState.setValue(waterloggedProperty,fluidstate.getType() == Fluids.WATER);
         //assign direction facing value
-        pState.setValue(facingProperty, facing);
+        pState = pState.setValue(facingProperty, facing);
 
         return pState;
     }
 
     static boolean isFreeFromObstruction(BlockState pState, LevelReader pLevel, BlockPos pPos, int[][] multiBlockMatrix) {
-        //Obstruction checking logic
+        //Obstruction checking logic used in canSurvive() override
         //For-loop checks each BlockPos starting from the origin block position, governed by multiBlockMatrix
         for (int i = 0; i < multiBlockMatrix.length; i++) {
             BlockPos blockPosToCheck = vectorToBlockPos(pPos, multiBlockMatrix, i, pState);
@@ -199,12 +199,7 @@ public interface MultiBlockPlacementInterface {
 
             if(stateAtPotentialPlacement.isAir()) {
                 /*
-                getStateForPlacement logic already prevents block from being placed down in obstructive environments
-
-                if another mod bypasses that method, ensures that a successfully placed down block does not destroy other blocks
-                while constructing itself
-
-                IF OBSTRUCTION CHECK FAILS AND ORIGIN BLOCK IS PLACED:
+                IF ORIGIN BLOCK IS PLACED:
                     - ONLY PLACE SUBSEQUENT BLOCKS IF THAT POSITION CONTAINS ONLY AIR
                     - Prevents other block destruction but not weird state placement for finished block;
                     - A schematicannon'd structure needs these blocks re-placed by player manually; where safeguards are fully present

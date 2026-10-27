@@ -46,12 +46,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(
                         ModBlocks.METALWORKS.get(),
 
-                        ModBlocks.BLACK_SHEETING_PANEL.get(),
-                        ModBlocks.GRAY_SHEETING_PANEL.get(),
-                        ModBlocks.RUSTY_SHEETING_PANEL.get(),
+//                        ModBlocks.BLACK_SHEETING_PANEL.get(),
+//                        ModBlocks.GRAY_SHEETING_PANEL.get(),
+//                        ModBlocks.RUSTY_SHEETING_PANEL.get(),
 
                         ModBlocks.BARBED_WIRE_FENCE.get(),
-                        ModBlocks.CHAINLINK_FENCE.get(),
+                        ModBlocks.CHAIN_LINK_FENCE.get(),
 
                         ModBlocks.ANGLED_BARBED_WIRE_ARM.get(),
                         ModBlocks.VERTICAL_BARBED_WIRE_ARM.get(),
@@ -210,7 +210,14 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.YELLOW_ROCKRETE_SLAB.get(),
                         ModBlocks.YELLOW_ROCKRETE_STAIRS.get(),
 
-                        ModBlocks.GRIMY_RESTROOM_TILE.get()
+                        ModBlocks.GRIMY_RESTROOM_TILE.get(),
+                        ModBlocks.RED_HAZARD_STRIPE.get(),
+                        ModBlocks.RED_HAZARD_STRIPE_STAIRS.get(),
+                        ModBlocks.RED_HAZARD_STRIPE_SLAB.get(),
+
+                        ModBlocks.YELLOW_HAZARD_STRIPE.get(),
+                        ModBlocks.YELLOW_HAZARD_STRIPE_STAIRS.get(),
+                        ModBlocks.YELLOW_HAZARD_STRIPE_SLAB.get()
                 );
         this.tag(ModTags.Blocks.DOOR_BLOCKS) //FOR CORRECT MINING TOOLS AND TOOL TIER
                 .add(
@@ -264,7 +271,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.FUEL_DRUM.get(),
                         ModBlocks.CCTV_CAMERA.get(),
                         ModBlocks.INDUSTRIAL_LEVER.get(),
-                        ModBlocks.OBLONG_CAGE_LAMP.get()
+                        ModBlocks.OBLONG_CAGE_LAMP.get(),
+                        ModBlocks.ROAD_BARRIER.get()
                 );
 
         this.tag(ModTags.Blocks.TECHNOLOGY_FURNITURE_CATEGORY)
@@ -380,7 +388,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         Walls and Fences are DIFFERENT TAGS
                         */
                         ModBlocks.BARBED_WIRE_FENCE.get(),
-                        ModBlocks.CHAINLINK_FENCE.get(),
+                        ModBlocks.CHAIN_LINK_FENCE.get(),
 
                         ModBlocks.ANGLED_BARBED_WIRE_ARM.get(),
                         ModBlocks.VERTICAL_BARBED_WIRE_ARM.get(),
@@ -404,8 +412,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModTags.Blocks.ALL_FURNITURE_BLOCKS
                 )
                 .add(
-                        ModBlocks.DEBUG_BLOCK.get(),
-                        ModBlocks.LAND_MINE.get()
+                        ModBlocks.DEBUG_BLOCK.get()
+                        //ModBlocks.LAND_MINE.get()
                 );
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .addTags(
@@ -426,8 +434,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 )
                 .add(
                         ModBlocks.DEBUG_BLOCK.get(),
-                        ModBlocks.PEANUT_STATUE.get(),
-                        ModBlocks.LAND_MINE.get()
+                        ModBlocks.PEANUT_STATUE.get()
+                        //ModBlocks.LAND_MINE.get()
                 );
         this.tag(BlockTags.MINEABLE_WITH_AXE)
                 .addTags(

@@ -2,12 +2,15 @@ package net.boat.industrialhellscape.block.experiments.LandMineBlocks;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.block_entities.ModBlockEntities;
-import net.boat.industrialhellscape.item.ModItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.BrushableBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -19,9 +22,10 @@ import java.util.UUID;
 public class BuriedMineBE extends BrushableBlockEntity implements ExplosiveInterface {
     private ResourceKey<LootTable> customLootTable = ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, "archaeology/very_suspicious_sand"));
     public UUID owner = null;
+    public Item buriedItem = Items.AIR;
 
     //Flag for tick-scheduling sound-playing delay
-    public boolean hasScheduledArming = false;
+    public boolean isArmed = false;
 
     public BuriedMineBE(BlockPos pos, BlockState blockState) {
         super(pos, blockState);
@@ -37,12 +41,35 @@ public class BuriedMineBE extends BrushableBlockEntity implements ExplosiveInter
         return ModBlockEntities.BRUSHABLE_BE.get();
     }
 
-    @Override //doesnt work for BER
-    public ItemStack getItem() {
-        ItemStack item = ModItems.GAS_STATION_PILL.toStack();
-        return item;
-    }
+//    @Override
+//    public ItemStack getItem() {
+//        ItemStack item = ModItems.GAS_STATION_PILL.toStack();
+//        return item;
+//    }
     //----- End of Overrides of Vanilla BrushableBlockEntity Methods -----
+
+    //---
+
+    //----- Data Stuff -----
+    @Override
+    public void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.loadAdditional(tag, registries);
+        this.isArmed = tag.getBoolean("armed");
+        this.owner = tag.getUUID("owner");
+        ResourceLocation itemPath = ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID,tag.getString("buried_item"));
+        Item item = BuiltInRegistries.ITEM.get(itemPath); //attempt to get an item using resource location industrialhellscape:xyz
+        this.buriedItem = item;
+    }
+
+    // Save values into the passed CompoundTag here.
+    @Override
+    public void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.saveAdditional(tag, registries);
+        tag.putBoolean("armed", this.isArmed);
+        tag.putUUID("owner", this.owner);
+        tag.putString("buried_item", this.buriedItem.toString());
+    }
+    //----- End of Data Stuff -----
 
     //---
 
@@ -56,7 +83,7 @@ public class BuriedMineBE extends BrushableBlockEntity implements ExplosiveInter
 
     @Override
     public boolean getArmingStatusOfBE() {
-        return this.hasScheduledArming;
+        return this.isArmed;
     }
 
     @Override
@@ -70,7 +97,7 @@ public class BuriedMineBE extends BrushableBlockEntity implements ExplosiveInter
             Allows block implementing ExplosiveInterface
             to read flag from block entity
         */
-        return this.hasScheduledArming;
+        return this.isArmed;
     }
 
     @Override
@@ -79,7 +106,7 @@ public class BuriedMineBE extends BrushableBlockEntity implements ExplosiveInter
             Allows block implementing ExplosiveInterface
             to change block entity's flag to true
         */
-        hasScheduledArming = true;
+        isArmed = true;
     }
 
     @Override
@@ -88,7 +115,7 @@ public class BuriedMineBE extends BrushableBlockEntity implements ExplosiveInter
             Allows block implementing ExplosiveInterface
             to change block entity's flag to false
         */
-        hasScheduledArming = false;
+        isArmed = false;
     }
 
     @Override

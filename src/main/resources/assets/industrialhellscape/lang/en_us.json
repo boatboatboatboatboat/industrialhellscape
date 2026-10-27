@@ -5,9 +5,24 @@
 
   "industrialhellscape.configuration.peanut_statue_teleport_attempts": "Peanut Statue Teleport Attempts",
   "industrialhellscape.configuration.enable_peanut_statue_random_tick_disappear": "Peanut Statue disappears on random ticks",
-  "industrialhellscape.configuration.enable_haven_tool_peanut_statue_removal": "Haven Tool removes Peanut Statue",
+  "industrialhellscape.configuration.enable_haven_tool_peanut_statue_removal": "Peanut Statue removed by HAVEN Tool",
   "industrialhellscape.configuration.pill_damage": "Gas Station Pill instant damage",
   "industrialhellscape.configuration.enable_smoke_alarm_sound": "Smoke Alarm makes sound",
+
+  "industrialhellscape.configuration.enable_server_join_message": "Enable Server Join Message",
+
+  "industrialhellscape.client_chat_message.title": "----- Industrial Hellscape Instructions ----- \n",
+
+  "industrialhellscape.client_chat_message.body1": "- InHell requires §neither§r §c§lConnectedTexturesMod§r§r or §c§lFusion§r§r\n",
+  "industrialhellscape.client_chat_message.body2": "for proper display of block textures. \n",
+  "industrialhellscape.client_chat_message.body3": "- Once installed, enable the corresponding Resource Pack for connecting textures. \n",
+
+  "industrialhellscape.client_chat_message.body4": "- §c§lDisable this message§r§r in your mod settings under \n",
+  "industrialhellscape.client_chat_message.body5": "Mods -> Industrial Hellscape -> Client Options \n",
+
+  "industrialhellscape.client_chat_message.body6": "- Common Options: Config Block Placement Preferences \n",
+
+  "industrialhellscape.client_chat_message.eom": "--- Industrial Hellscape - End of Message --- \n",
 
   "item.industrialhellscape.inhell_haven_device": "HAVEN Tool",
   "item.industrialhellscape.job_application": "Job Application",
@@ -21,6 +36,7 @@
 
   "block.industrialhellscape.very_suspicious_sand": "Very Suspicious Sand",
   "block.industrialhellscape.land_mine": "Land Mine",
+  "block.industrialhellscape.road_barrier": "Road Barrier",
 
   "block.industrialhellscape.vesselplate_sheeting": "Vesselplate Sheeting",
   "block.industrialhellscape.vesselplate_sheeting_slab": "Vesselplate Sheeting Slab",
@@ -196,9 +212,15 @@
   "block.industrialhellscape.small_black_bolted_bracket": "Small Black Bolted Bracket",
   "block.industrialhellscape.small_rusty_bolted_bracket": "Small Rusty Bolted Bracket",
 
-  "block.industrialhellscape.hazard_stripe_yellow": "Hazard Stripe Yellow",
-  "block.industrialhellscape.hazard_stripe_red": "Hazard Stripe Red",
   "block.industrialhellscape.grimy_restroom_tile": "Grimy Tiles",
+
+  "block.industrialhellscape.yellow_hazard_stripe": "Yellow Hazard Stripe",
+  "block.industrialhellscape.yellow_hazard_stripe_stairs": "Yellow Hazard Stripe Stairs",
+  "block.industrialhellscape.yellow_hazard_stripe_slab": "Yellow Hazard Stripe Slab",
+
+  "block.industrialhellscape.red_hazard_stripe": "Red Hazard Stripe",
+  "block.industrialhellscape.red_hazard_stripe_stairs": "Red Hazard Stripe Stairs",
+  "block.industrialhellscape.red_hazard_stripe_slab": "Red Hazard Stripe Slab",
 
   "block.industrialhellscape.ihea_furniture_kit": "IHEA Furniture Kit",
   "block.industrialhellscape.safety_furnishings": "Safety Furnishings",
@@ -260,7 +282,7 @@
   "block.industrialhellscape.floor_work_light": "Floor Work Light",
 
   "block.industrialhellscape.barbed_wire_fence": "Barbed Wire Fence",
-  "block.industrialhellscape.chainlink_fence": "Chainlink Fence",
+  "block.industrialhellscape.chain_link_fence": "Chain Link Fence",
 
   "block.industrialhellscape.angled_barbed_wire_arm": "Angled Barbed Wire Arm",
   "block.industrialhellscape.vertical_barbed_wire_arm": "Vertical Barbed Wire Arm",

@@ -17,6 +17,6 @@ public interface ModEnumsInterface {
     EnumProperty<DynamicConnectionState> TYPE = EnumProperty.create("type", DynamicConnectionState .class);
     EnumProperty<SurfacePipeMountState> ORIENTATION = EnumProperty.create("axis", SurfacePipeMountState.class);
 
-    //TODO - figure out what to do about legacy enum that i dont like
+    //TODO - figure out what to do about legacy enum that i don't like
     EnumProperty<RelativePlanarDirectionState> PLANE_DIRECTION = EnumProperty.create("plane_direction", RelativePlanarDirectionState.class);
 }

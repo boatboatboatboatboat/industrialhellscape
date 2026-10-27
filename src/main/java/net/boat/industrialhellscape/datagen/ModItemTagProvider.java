@@ -38,7 +38,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         //---------- RECIPE DATAGEN INPUT TAGS ----------
         this.tag(ModTags.Items.HVAC_SMELTABLE_ITEM)
                 .add(
-                        //DONT PUT SLABS HERE
+                        // DON'T PUT SLABS HERE
                         ModBlocks.DUCT.asItem(),
                         ModBlocks.RUSTY_DUCT.asItem(),
 
@@ -51,10 +51,11 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.RUSTY_VERTICAL_VENT.asItem(),
                         ModBlocks.RUSTY_HORIZONTAL_CUTOUT_VENT.asItem(),
                         ModBlocks.RUSTY_VERTICAL_CUTOUT_VENT.asItem()
+                        // DON'T PUT SLABS HERE
                 );
         this.tag(ModTags.Items.VESSELPLATE_SMELTABLE_ITEM)
                 .add(
-                        //DONT PUT SLABS HERE
+                        // DON'T PUT SLABS HERE
                         ModBlocks.VESSELPLATE_SHEETING.asItem(),
                         ModBlocks.HORIZONTAL_VESSELPLATE.asItem(),
                         ModBlocks.VERTICAL_VESSELPLATE.asItem(),
@@ -82,10 +83,11 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
                         ModBlocks.SMOOTH_RUSTY_VESSELPLATE.asItem(),
                         ModBlocks.RUSTY_RIVETED_VESSELPLATE.asItem()
+                        // DON'T PUT SLABS HERE
                 );
         this.tag(ModTags.Items.TRUSS_SMELTABLE_ITEM)
                 .add(
-                        //DONT PUT SLABS HERE
+                        // DON'T PUT SLABS HERE
                         ModBlocks.TRUSS_BEAM.asItem(),
                         ModBlocks.TRUSS.asItem(),
                         ModBlocks.TRUSS_STAIRS.asItem(),
@@ -99,20 +101,22 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.RUSTY_TRUSS_BEAM.asItem(),
                         ModBlocks.RUSTY_TRUSS.asItem(),
                         ModBlocks.RUSTY_TRUSS_STAIRS.asItem()
+                        // DON'T PUT SLABS HERE
                 );
         this.tag(ModTags.Items.VESSELGLASS_SMELTABLE_ITEM)
                 .add(
-                        //DONT PUT SLABS HERE
+                        // DON'T PUT SLABS HERE
                         ModBlocks.VESSELGLASS.asItem(),
                         ModBlocks.REINFORCED_VESSELGLASS.asItem(),
                         ModBlocks.GRAY_VESSELGLASS.asItem(),
                         ModBlocks.GRAY_REINFORCED_VESSELGLASS.asItem(),
                         ModBlocks.RUSTY_VESSELGLASS.asItem(),
                         ModBlocks.RUSTY_REINFORCED_VESSELGLASS.asItem()
+                        // DON'T PUT SLABS HERE
                 );
         this.tag(ModTags.Items.ROCKRETE_SMELTABLE_ITEM)
                 .add(
-                        //DONT PUT SLABS HERE
+                        // DON'T PUT SLABS HERE
                         ModBlocks.ROUGH_GRAY_ROCKRETE.asItem(),
                         ModBlocks.ROUGH_RED_ROCKRETE.asItem(),
                         ModBlocks.ROUGH_BLUE_ROCKRETE.asItem(),
@@ -132,7 +136,13 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.GREEN_ROCKRETE_PILLAR.asItem(),
 
                         ModBlocks.YELLOW_ROCKRETE.asItem(),
-                        ModBlocks.YELLOW_ROCKRETE_PILLAR.asItem()
+                        ModBlocks.YELLOW_ROCKRETE_PILLAR.asItem(),
+
+                        ModBlocks.GRIMY_RESTROOM_TILE.asItem(),
+
+                        ModBlocks.RED_HAZARD_STRIPE.asItem(),
+                        ModBlocks.YELLOW_HAZARD_STRIPE.asItem()
+                        // DON'T PUT SLABS HERE
                 );
         this.tag(ModTags.Items.DOOR_ITEMS)
                 .add(
@@ -168,12 +178,12 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(
                         ModBlocks.METALWORKS.asItem(),
 
-                        ModBlocks.BLACK_SHEETING_PANEL.asItem(),
-                        ModBlocks.GRAY_SHEETING_PANEL.asItem(),
-                        ModBlocks.RUSTY_SHEETING_PANEL.asItem(),
+//                        ModBlocks.BLACK_SHEETING_PANEL.asItem(),
+//                        ModBlocks.GRAY_SHEETING_PANEL.asItem(),
+//                        ModBlocks.RUSTY_SHEETING_PANEL.asItem(),
 
                         ModBlocks.BARBED_WIRE_FENCE.asItem(),
-                        ModBlocks.CHAINLINK_FENCE.asItem(),
+                        ModBlocks.CHAIN_LINK_FENCE.asItem(),
                         ModBlocks.ANGLED_BARBED_WIRE_ARM.asItem(),
                         ModBlocks.VERTICAL_BARBED_WIRE_ARM.asItem(),
                         ModBlocks.COILED_BARBED_WIRE_ARM.asItem(),
@@ -202,7 +212,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.HYGIENE_FURNISHINGS.asItem(),
                         ModBlocks.INDUSTRIAL_FURNISHINGS.asItem(),
                         ModBlocks.TECHNOLOGY_FURNISHINGS.asItem(),
-                        ModBlocks.AMENITY_FURNISHINGS.asItem().asItem()
+                        ModBlocks.AMENITY_FURNISHINGS.asItem(),
+                        ModBlocks.ROAD_BARRIER.asItem()
                 );
 
         this.tag(ModTags.Items.ALL_FURNITURE_ITEMS)
@@ -271,7 +282,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         this.tag(ItemTags.FENCES)
                 .add(
                         ModBlocks.BARBED_WIRE_FENCE.asItem(),
-                        ModBlocks.CHAINLINK_FENCE.asItem(),
+                        ModBlocks.CHAIN_LINK_FENCE.asItem(),
 
                         ModBlocks.ANGLED_BARBED_WIRE_ARM.asItem(),
                         ModBlocks.VERTICAL_BARBED_WIRE_ARM.asItem(),

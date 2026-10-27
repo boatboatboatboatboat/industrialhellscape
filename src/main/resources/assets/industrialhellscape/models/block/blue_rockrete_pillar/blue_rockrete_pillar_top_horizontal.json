@@ -1,8 +1,0 @@
-{
-  "parent": "industrialhellscape:block/pillar_horizontal_template",
-  "textures": {
-    "end": "industrialhellscape:block/blue_rockrete_pillar/blue_rockrete_pillar_face",
-    "side": "industrialhellscape:block/blue_rockrete_pillar/blue_rockrete_pillar_top",
-    "opposite_side": "industrialhellscape:block/blue_rockrete_pillar/blue_rockrete_pillar_bottom"
-  }
-}

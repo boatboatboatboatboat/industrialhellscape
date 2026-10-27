@@ -6,16 +6,21 @@ import net.boat.industrialhellscape.block.block_classes.AxisPillarBlocks.TrussBe
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer11Blocks.Integer11Block;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.Integer2Block;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.PeanutStatueBlock;
-import net.boat.industrialhellscape.block.experiments.PanelBlocks.PanelBlock;
 import net.boat.industrialhellscape.block.block_classes.RailingBlocks.ParapetBlock;
 import net.boat.industrialhellscape.block.block_classes.RailingBlocks.RailingBlock;
+import net.boat.industrialhellscape.block.block_interfaces.ModEnumsInterface;
+import net.boat.industrialhellscape.block.block_state_enums.DynamicConnectionState;
+import net.boat.industrialhellscape.block.experiments.PanelBlocks.PanelBlock;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.*;
-import net.neoforged.neoforge.client.model.generators.*;
+import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.Arrays;
@@ -37,8 +42,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genFullBlockIntegerMultiBlockSI(ModBlocks.DEBUG_BLOCK.get(), "debug_textures", 11, Integer11Block.PART);
 
         //In-Development Block
-        genBrushableBlockSI(ModBlocks.VERY_SUSPICIOUS_SAND.get(), "suspicious_sand");
-        genHorizontalModelTogglingSI(ModBlocks.LAND_MINE.get(), "mine", "disarmed", BlockStateProperties.DISARMED, true);
+        genHorizontalModelledSI(ModBlocks.ROAD_BARRIER.get(),"barrier");
+//        genBrushableBlockSI(ModBlocks.VERY_SUSPICIOUS_SAND.get(), "suspicious_sand");
+//        genHorizontalModelTogglingSI(ModBlocks.LAND_MINE.get(), "mine", "disarmed", BlockStateProperties.DISARMED, true);
 
         //Hidden Joke Blocks
         genPeanutS((PeanutStatueBlock) ModBlocks.PEANUT_STATUE.get(), "peanut_statue");
@@ -96,13 +102,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genSimpleTextureToggleSBI(ModBlocks.RUSTY_VERTICAL_CUTOUT_VENT.get(),"vent","cutout");
 
         //Panel Blocks (generated block state json files. generated block models from parent, generated item models)
-        genMultiStatePanelSBI((PanelBlock) ModBlocks.BLACK_SHEETING_PANEL.get(),"", "panel2pixel","vesselplate","vesselplate_pillar","vesselplate_sheeting","vesselplate_pillar_top");
-        genMultiStatePanelSBI((PanelBlock) ModBlocks.GRAY_SHEETING_PANEL.get(),"", "panel2pixel","vesselplate","gray_vesselplate_pillar","gray_vesselplate_sheeting","gray_vesselplate_pillar_top");
-        genMultiStatePanelSBI((PanelBlock) ModBlocks.RUSTY_SHEETING_PANEL.get(),"", "panel2pixel","vesselplate","rusty_vesselplate_pillar","rusty_vesselplate_sheeting","rusty_vesselplate_pillar_top");
+//        genMultiStatePanelSBI((PanelBlock) ModBlocks.BLACK_SHEETING_PANEL.get(),"", "panel2pixel","vesselplate","vesselplate_pillar","vesselplate_sheeting","vesselplate_pillar_top");
+//        genMultiStatePanelSBI((PanelBlock) ModBlocks.GRAY_SHEETING_PANEL.get(),"", "panel2pixel","vesselplate","gray_vesselplate_pillar","gray_vesselplate_sheeting","gray_vesselplate_pillar_top");
+//        genMultiStatePanelSBI((PanelBlock) ModBlocks.RUSTY_SHEETING_PANEL.get(),"", "panel2pixel","vesselplate","rusty_vesselplate_pillar","rusty_vesselplate_sheeting","rusty_vesselplate_pillar_top");
 
         //Fence Blocks (generated block state json files. generated block models from parent. NO ITEM MODEL GENERATION. Performed in ModItemModelProvider with manually drawn texture file)
         genFenceBlockSB( (FenceBlock) ModBlocks.BARBED_WIRE_FENCE.get(), "fence","4x4_fence_post", "2d_fence", "fence", "barbed_wire_fencepost", "barbed_wire_fence");
-        genFenceBlockSB( (FenceBlock) ModBlocks.CHAINLINK_FENCE.get(), "fence","2x2_fence_post", "2d_fence", "fence", "chainlink_fencepost", "chainlink_fence");
+        genFenceBlockSB( (FenceBlock) ModBlocks.CHAIN_LINK_FENCE.get(), "fence","2x2_fence_post", "2d_fence", "fence", "chain_link_fencepost", "chain_link_fence");
 
         //Fence Top Blocks ( genOrthoRotFencePostS() does not generate models, uses existing models )
         genOrthoRotFencePostS( (FenceBlock) ModBlocks.ANGLED_BARBED_WIRE_ARM.get(), "fence","angled_barbed_wire_arm", "angled_barbed_wire");
@@ -159,6 +165,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genStairsWithRenderTypeSBI(ModBlocks.SMOOTH_RUSTY_VESSELPLATE_STAIRS.get(),"vesselplate","smooth_rusty_vesselplate","smooth_rusty_vesselplate","smooth_rusty_vesselplate","solid");
         genSlabsWithCustomDoubleSBI(ModBlocks.RUSTY_RIVETED_VESSELPLATE_SLAB.get(), ModBlocks.RUSTY_RIVETED_VESSELPLATE.get(),"vesselplate","rusty_riveted_vesselplate_double_slab","rusty_riveted_vesselplate", "rusty_riveted_vesselplate","","");
         genSlabsWithCustomDoubleSBI(ModBlocks.SMOOTH_RUSTY_VESSELPLATE_SLAB.get(), ModBlocks.SMOOTH_RUSTY_VESSELPLATE.get(),"vesselplate","smooth_rusty_vesselplate_double_slab","smooth_rusty_vesselplate", "smooth_rusty_vesselplate","","");
+
+        //Vesselplate Pillar Blocks
+        genConnectedPillarBlockSBI(ModBlocks.VESSELPLATE_PILLAR.get(), "pillar","pillar_horizontal", "vesselplate_pillar", "vesselplate_pillar");
+        genConnectedPillarBlockSBI(ModBlocks.GRAY_VESSELPLATE_PILLAR.get(), "pillar","pillar_horizontal", "gray_vesselplate_pillar", "gray_vesselplate_pillar");
+        genConnectedPillarBlockSBI(ModBlocks.RUSTY_VESSELPLATE_PILLAR.get(), "pillar","pillar_horizontal", "rusty_vesselplate_pillar", "rusty_vesselplate_pillar");
 
         //Truss Blocks
         genTrussSupportSBI(ModBlocks.TRUSS_BEAM.get(), "truss", RotatedPillarBlock.AXIS, TrussBeamBlock.ALT_STATE);
@@ -219,8 +230,23 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genStairsWithRenderTypeSBI(ModBlocks.RED_ROCKRETE_STAIRS.get(),"rockrete","red_rockrete","red_rockrete","red_rockrete","solid");
         genSimpleSlabsSBI(ModBlocks.RED_ROCKRETE_SLAB.get(), ModBlocks.RED_ROCKRETE.get(), "rockrete");
 
+        //Rockrete Pillar Blocks
+        genConnectedPillarBlockSBI(ModBlocks.GRAY_ROCKRETE_PILLAR.get(), "pillar","pillar_horizontal", "gray_rockrete_pillar", "gray_rockrete_pillar");
+        genConnectedPillarBlockSBI(ModBlocks.BLUE_ROCKRETE_PILLAR.get(), "pillar","pillar_horizontal", "blue_rockrete_pillar", "blue_rockrete_pillar");
+        genConnectedPillarBlockSBI(ModBlocks.GREEN_ROCKRETE_PILLAR.get(), "pillar","pillar_horizontal", "green_rockrete_pillar", "green_rockrete_pillar");
+        genConnectedPillarBlockSBI(ModBlocks.RED_ROCKRETE_PILLAR.get(), "pillar","pillar_horizontal", "red_rockrete_pillar", "red_rockrete_pillar");
+        genConnectedPillarBlockSBI(ModBlocks.YELLOW_ROCKRETE_PILLAR.get(), "pillar","pillar_horizontal", "yellow_rockrete_pillar", "yellow_rockrete_pillar");
+
         //Misc Rockrete Category Blocks
         genFolderedSBI(ModBlocks.GRIMY_RESTROOM_TILE.get(), "");
+
+        genFolderedSBI(ModBlocks.RED_HAZARD_STRIPE.get(), "hazard_stripe");
+        genStairsWithRenderTypeSBI(ModBlocks.RED_HAZARD_STRIPE_STAIRS.get(),"hazard_stripe","red_hazard_stripe","red_hazard_stripe","red_hazard_stripe","solid");
+        genSimpleSlabsSBI(ModBlocks.RED_HAZARD_STRIPE_SLAB.get(), ModBlocks.RED_HAZARD_STRIPE.get(), "hazard_stripe");
+
+        genFolderedSBI(ModBlocks.YELLOW_HAZARD_STRIPE.get(), "hazard_stripe");
+        genStairsWithRenderTypeSBI(ModBlocks.YELLOW_HAZARD_STRIPE_STAIRS.get(),"hazard_stripe","yellow_hazard_stripe","yellow_hazard_stripe","yellow_hazard_stripe","solid");
+        genSimpleSlabsSBI(ModBlocks.YELLOW_HAZARD_STRIPE_SLAB.get(), ModBlocks.YELLOW_HAZARD_STRIPE.get(), "hazard_stripe");
 
         //Rough Rockrete Blocks
         genSimpleTextureToggleSBI(ModBlocks.ROUGH_GRAY_ROCKRETE.get(),"rough_rockrete","solid");
@@ -1059,7 +1085,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         getVariantBuilder(block).forAllStatesExcept(state -> {
             Direction facing = state.getValue(FaceAttachedHorizontalDirectionalBlock.FACING);
             AttachFace face = state.getValue(FaceAttachedHorizontalDirectionalBlock.FACE);
-            simpleBlockItem(block, models().getExistingFile(modLoc(existingModelPath)));
+
 
             return ConfiguredModel.builder()
                     .modelFile(models().getExistingFile(modLoc("block/"+optionalFolder(modelSubFolder)+stringName)))
@@ -1073,6 +1099,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     .build();
 
         }, BlockStateProperties.WATERLOGGED);
+
+        //GENERATE ITEM MODEL
+        simpleBlockItem(block, models().getExistingFile(modLoc(existingModelPath)));
     }
 
     private void genFaceAttachedSI(Block block, String textureSubFolder, String textureName, String frontTextureSuffix, String backTextureSuffix, String leftTextureSuffix, String rightTextureSuffix, String topTextureSuffix, String bottomTextureSuffix) {
@@ -1531,5 +1560,75 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     }, true);
             parapetBuilder_Wall.end();
         }
+    }
+
+    private String axisPillarModelPathBuilder(Block block, String textureAppendType, String modelAppendAxis) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        return "block/"+stringName+textureAppendType+modelAppendAxis;
+    }
+
+    private ModelFile axisPillarModelBuilder(Block block, String textureSubFolder, String textureBaseName, String textureAppendType, String textureAppendOppositeType, String modelAppendAxis, ResourceLocation parentModelPath) {
+        return models().withExistingParent(axisPillarModelPathBuilder(block,textureAppendType,modelAppendAxis), parentModelPath)
+                .texture("end", modLoc("block/" + optionalFolder(textureSubFolder) + textureBaseName+"_end")) //always the end texture
+                .texture("side", modLoc("block/" + optionalFolder(textureSubFolder) + textureBaseName+textureAppendType)) //side texture
+                .texture("opposite_side", modLoc("block/" + optionalFolder(textureSubFolder) + textureBaseName+textureAppendOppositeType));
+    }
+
+    private void genConnectedPillarBlockSBI(Block block, String parentModelSubFolder, String parentModelBaseName, String textureSubFolder, String textureBaseName) {
+
+        getVariantBuilder(block)
+                .forAllStates(state -> {
+
+                    Direction.Axis axis = state.getValue(BlockStateProperties.AXIS);
+                    DynamicConnectionState type = state.getValue(ModEnumsInterface.TYPE);
+
+                    ResourceLocation parentModelPath = switch(axis) {
+                        case X -> modLoc("block/"+optionalFolder(parentModelSubFolder)+parentModelBaseName+"_x");
+                        case Y -> mcLoc("block/cube_column"); //vanilla mc
+                        case Z -> modLoc("block/"+optionalFolder(parentModelSubFolder)+parentModelBaseName+"_z");
+                    };
+
+                    String modelAppendAxis = switch(axis) {
+                        case X -> "_x";
+                        case Y -> "_y";
+                        case Z -> "_z";
+                    };
+
+                    //For texture shading direction consistency, horizontal pillars use opposite side textures
+                    String textureAppendType;
+                    switch(axis) {
+                        case Y -> {
+                            textureAppendType = switch (type) {
+                                case SOLO -> "_solo";
+                                case POSITIVE -> "_positive";
+                                case MIDDLE -> "_middle";
+                                case NEGATIVE -> "_negative";
+                            };
+                        }
+                        default -> {
+                            textureAppendType = switch (type) {
+                                case SOLO -> "_solo";
+                                case POSITIVE -> "_negative";
+                                case MIDDLE -> "_middle";
+                                case NEGATIVE -> "_positive";
+                            };
+                        }
+                    }
+
+                    String textureAppendOppositeType = switch(type) {
+                        case POSITIVE -> "_positive";
+                        case NEGATIVE -> "_negative";
+                        default -> textureAppendType;
+                    };
+
+                            ModelFile modelToUse = axisPillarModelBuilder(block,textureSubFolder,textureBaseName,textureAppendType, textureAppendOppositeType,modelAppendAxis, parentModelPath);
+
+                    return ConfiguredModel.builder()
+                            .modelFile(models().getExistingFile(modLoc(axisPillarModelPathBuilder(block,textureAppendType,modelAppendAxis))))
+                            .build();
+                });
+
+        //GENERATE ITEM MODEL (SOLO, vertical Y-axis model)
+        simpleBlockItem(block, models().getExistingFile(modLoc(axisPillarModelPathBuilder(block,"_solo","_y"))));
     }
 }

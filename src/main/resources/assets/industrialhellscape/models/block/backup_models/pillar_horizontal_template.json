@@ -1,9 +1,20 @@
 {
-  "parent": "industrialhellscape:block/pillar_horizontal_base_template",
+  "parent": "block/block",
   "textures": {
-    "particle": "#end",
-    "end": "#end",
-    "side": "#side",
-    "opposite_side": "#opposite_side"
-  }
+    "particle": "#end"
+  },
+  "elements": [
+    {
+      "from": [0, 0, 0],
+      "to": [16, 16, 16],
+      "faces": {
+        "north": {"uv": [0, 0, 16, 16], "rotation": 180, "texture": "#opposite_side", "cullface": "north"},
+        "east": {"uv": [16, 0, 0, 16], "rotation": 180, "texture": "#opposite_side", "cullface": "east"},
+        "south": {"uv": [0, 0, 16, 16], "rotation": 180, "texture": "#opposite_side", "cullface": "south"},
+        "west": {"uv": [0, 16, 16, 0], "rotation": 180, "texture": "#side", "cullface": "west"},
+        "up": {"uv": [0, 0, 16, 16], "rotation": 180, "texture": "#end", "cullface": "up"},
+        "down": {"uv": [0, 0, 16, 16], "rotation": 0, "texture": "#end", "cullface": "down"}
+      }
+    }
+  ]
 }
