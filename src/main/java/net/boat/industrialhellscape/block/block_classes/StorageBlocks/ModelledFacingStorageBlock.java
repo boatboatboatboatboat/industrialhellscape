@@ -36,7 +36,6 @@ getOpenSound() and getClosedSound() used by StorageBlockInterface to detect desi
 */
 
 public class ModelledFacingStorageBlock extends FacingStorageBlock implements EntityBlock, StorageBlockInterface, SimpleWaterloggedBlock {
-    public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
     public final int SLOTS;
     public final SoundEvent OPEN_SOUND;
     public final SoundEvent CLOSE_SOUND;

@@ -51,6 +51,16 @@ public class BuriedMineBE extends BrushableBlockEntity implements ExplosiveInter
     //---
 
     //----- Data Stuff -----
+
+    // Save values into the passed CompoundTag here.
+    @Override
+    public void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.saveAdditional(tag, registries);
+        tag.putBoolean("armed", this.isArmed);
+        tag.putUUID("owner", this.owner);
+        tag.putString("buried_item", this.buriedItem.toString());
+    }
+
     @Override
     public void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
@@ -61,14 +71,7 @@ public class BuriedMineBE extends BrushableBlockEntity implements ExplosiveInter
         this.buriedItem = item;
     }
 
-    // Save values into the passed CompoundTag here.
-    @Override
-    public void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        super.saveAdditional(tag, registries);
-        tag.putBoolean("armed", this.isArmed);
-        tag.putUUID("owner", this.owner);
-        tag.putString("buried_item", this.buriedItem.toString());
-    }
+
     //----- End of Data Stuff -----
 
     //---

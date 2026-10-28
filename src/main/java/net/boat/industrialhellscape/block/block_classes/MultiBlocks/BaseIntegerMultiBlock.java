@@ -39,13 +39,13 @@ public abstract class BaseIntegerMultiBlock extends SimpleHorizontalBlock implem
         return pState.setValue(FACING,facing);
     }
 
+    public void setPlacedBy(@Nonnull Level pLevel, @Nonnull BlockPos pPos, @Nonnull BlockState pState, @Nullable LivingEntity pPlacer, @Nonnull ItemStack pStack) {
+        MultiBlockPlacementInterface.constructMultiBlock(pLevel, this,  pPos, multiBlockPlacementMatrix, partProperty, FACING);
+    }
+
     @Override
     protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         return MultiBlockPlacementInterface.isFreeFromObstruction(state,level,pos,multiBlockPlacementMatrix);
-    }
-
-    public void setPlacedBy(@Nonnull Level pLevel, @Nonnull BlockPos pPos, @Nonnull BlockState pState, @Nullable LivingEntity pPlacer, @Nonnull ItemStack pStack) {
-        MultiBlockPlacementInterface.constructMultiBlock(pLevel, this,  pPos, multiBlockPlacementMatrix, partProperty, FACING);
     }
 
     @Override

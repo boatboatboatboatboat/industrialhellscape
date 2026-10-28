@@ -272,8 +272,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.HYGIENE_FURNISHINGS.asItem(),
             ModBlocks.INDUSTRIAL_FURNISHINGS.asItem(),
             ModBlocks.TECHNOLOGY_FURNISHINGS.asItem(),
-            ModBlocks.AMENITY_FURNISHINGS.asItem(),
-            ModBlocks.ROAD_BARRIER.asItem()
+            ModBlocks.AMENITY_FURNISHINGS.asItem()
+            //ModBlocks.ROAD_BARRIER.asItem()
     );
 
     private static final List<ItemLike> SAFETY_FURNITURE = List.of(

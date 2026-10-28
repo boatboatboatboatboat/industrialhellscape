@@ -1,5 +1,6 @@
 package net.boat.industrialhellscape.block.block_classes.HorizontalDirectionBlocks;
 
+import net.boat.industrialhellscape.block.block_interfaces.SoundPlayInterface;
 import net.boat.industrialhellscape.entity.ModEntities;
 import net.boat.industrialhellscape.entity.SittableEntity.SittableEntity;
 import net.minecraft.core.BlockPos;
@@ -22,7 +23,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class ToiletBlock extends InteractableMHBlock {
+public class ToiletBlock extends InteractableMHBlock implements SoundPlayInterface {
 
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED; //For binary states (on, off, or lit, unlit)
 
@@ -60,6 +61,8 @@ public class ToiletBlock extends InteractableMHBlock {
             level.setBlock(pos, state, 2);
             SoundEvent onOffSound = wasOn ? OFF_SOUND : ON_SOUND;
             level.playSound(player, pos, onOffSound, SoundSource.BLOCKS, 1f, 1f);
+
+            SoundPlayInterface.onOffSound(state,level,pos,POWERED,ON_SOUND,OFF_SOUND, 1f, 1f, 1f);
             return InteractionResult.sidedSuccess(level.isClientSide);
         }
 

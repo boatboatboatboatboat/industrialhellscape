@@ -15,8 +15,6 @@ import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -31,10 +29,9 @@ getOpenSound() & getCloseSound() used by StorageBE to acquire desired sound effe
 */
 
 public class BaseStorageBlock extends BaseEntityBlock implements StorageBlockInterface {
-    public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
-    public final int SLOTS;
-    public final SoundEvent OPEN_SOUND;
-    public final SoundEvent CLOSE_SOUND;
+    public int SLOTS;
+    public SoundEvent OPEN_SOUND;
+    public SoundEvent CLOSE_SOUND;
 
     public @NotNull MapCodec<BaseStorageBlock> codec() {
         return null;

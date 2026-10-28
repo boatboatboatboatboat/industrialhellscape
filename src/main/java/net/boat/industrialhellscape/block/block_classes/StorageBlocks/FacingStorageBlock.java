@@ -10,7 +10,6 @@ import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import org.jetbrains.annotations.Nullable;
 
@@ -25,17 +24,12 @@ getOpenSound() and getClosedSound() used by StorageBlockInterface to detect desi
 */
 
 public class FacingStorageBlock extends BaseStorageBlock implements EntityBlock {
-    public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
-    public final int SLOTS;
-    public final SoundEvent OPEN_SOUND;
-    public final SoundEvent CLOSE_SOUND;
-
     private static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     public FacingStorageBlock(Properties properties, int slotsAmount, SoundEvent openSound, SoundEvent closeSound) {
         // When registering this block, pass in
         // Properties
-        // Integer amount of slots the block entity inventory will have (multiple of 9)
+        // Integer amount of slots the block entity inventory will have (multiple of 9), or else fallback to 9
         // Sound to play when player opens block
         // Sound to play when player closes block
 

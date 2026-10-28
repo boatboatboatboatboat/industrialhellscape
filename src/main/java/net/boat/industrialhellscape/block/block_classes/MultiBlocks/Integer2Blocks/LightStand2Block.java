@@ -1,11 +1,10 @@
 package net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks;
 
 import net.boat.industrialhellscape.block.block_interfaces.MultiBlockPlacementInterface;
+import net.boat.industrialhellscape.block.block_interfaces.SoundPlayInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -28,9 +27,17 @@ import org.jetbrains.annotations.NotNull;
     -Supports Right-click use interaction to cycle a chosen BooleanProperty across all multi-block parts
  */
 
-public class LightStand2Block extends Modelled2Block {
-    public LightStand2Block(Properties pProperties, int[][] multiBlockPlacementMatrix, VoxelShape[] hitboxShapeArray) {
+public class LightStand2Block extends Modelled2Block implements SoundPlayInterface {
+
+    public SoundEvent ON_SOUND;
+    public SoundEvent OFF_SOUND;
+
+    public LightStand2Block(Properties pProperties, int[][] multiBlockPlacementMatrix, VoxelShape[] hitboxShapeArray, SoundEvent onSound, SoundEvent offSound) {
         super(pProperties, multiBlockPlacementMatrix, hitboxShapeArray);
+
+        this.ON_SOUND = onSound;
+        this.OFF_SOUND = offSound;
+
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(BlockStateProperties.LIT, false)
                 .setValue(PART, 0)
@@ -40,11 +47,14 @@ public class LightStand2Block extends Modelled2Block {
 
     @Override
     public @NotNull InteractionResult useWithoutItem(BlockState pState, Level pLevel, @NotNull BlockPos pPos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
-        boolean wasOn = pState.getValue(BlockStateProperties.LIT);
-        SoundEvent onOffSound = wasOn ? SoundEvents.STONE_BUTTON_CLICK_OFF : SoundEvents.STONE_BUTTON_CLICK_ON;
-
-        pLevel.playSound(player, pPos, onOffSound, SoundSource.BLOCKS, 1f, 1f);
-
+        /*
+            if playing a sound here based on BlockState,
+            - Off Sound will play if BlockState LIT = false before state updates, and vice versa.
+            - This is due to state change happening in interface, and thus BlockState cannot be accessed for live reading;
+            - Switch positions of OFF_SOUND and ON_SOUND in method parameters as a fix
+            - Switch positions of on/off pitch float parameters too if needed
+         */
+        SoundPlayInterface.onOffSound(pState,pLevel,pPos,BlockStateProperties.LIT, OFF_SOUND, ON_SOUND, 0.5f, 0.5f, 0.6f);
         MultiBlockPlacementInterface.updateRemainingMultiBlock(pLevel, this, pPos, PART, BlockStateProperties.LIT, pState, multiBlockPlacementMatrix);
         return InteractionResult.SUCCESS;
     }

@@ -33,15 +33,20 @@ public class ModBlockCapabilities {
                     return be.getItemCapability();
                 }
         );
-    }
 
-    @SubscribeEvent
-    public static void registerBlockCapabilities(RegisterCapabilitiesEvent event) {
+        //Item Capability for MultiBlocks
+        /*
+            - For MultiBlocks with block entities, only one exists.
+            - The Block Entity exists at the "origin" block first placed down (block state part:0)
+            - Any attempt to read the ItemCapability at a MultiBlock part not containing the BE must
+                locate the BlockPos containing the BE before proper capability can be provided.
+         */
         event.registerBlock(
                 Capabilities.ItemHandler.BLOCK, // capability to register for
                 (level, pos, state, be, side) -> {
                     //IndustrialHellscape.LOGGER.info("InHell: Tick. ItemHandler internal logic triggered");
                     if(state.getBlock() instanceof BaseIntegerMultiBlock multiBlock) {
+                        //Only one BE exists per MultiBlock. Find it.
                         BlockEntity targetBlockEntity = level.getBlockEntity(MultiBlockPlacementInterface.vectorToOriginBlockPos(pos, multiBlock.multiBlockPlacementMatrix, state, multiBlock.partProperty));
 
                         if(targetBlockEntity instanceof StorageBE storageBE) {
@@ -49,23 +54,13 @@ public class ModBlockCapabilities {
                         }
                     }
                     return null;
-
-                    //Causation of stackoverflow error below?
-                    //https://docs.neoforged.net/docs/1.20.6/datastorage/capabilities/#querying-capabilities
-
-                    //If state provided is of a IntegerMultiBlock, use the level to point to
-                    //A presumably already existing capability, which should be provided by the block entity (registered above)
-//                    if(state.getBlock() instanceof BaseIntegerMultiBlock multiBlock) {
-//                        //IndustrialHellscape.LOGGER.info("InHell: Tick. ItemHandler internal logic triggered");
-//                        return level.getCapability(
-//                                Capabilities.ItemHandler.BLOCK,
-//                                MultiBlockPlacementInterface.vectorToOriginBlockPos(pos, multiBlock.multiBlockPlacementMatrix, state, multiBlock.partProperty),
-//                                side
-//                        );
+                    //No worky: block entity not guaranteed to exist at pos where multiBlock is
+//                    if(level.getBlockEntity(pos) instanceof StorageBlockInterface storageBE) {
+//                        return storageBE.getItemCapability();
 //                    }
 //                    return null;
                 },
-                // blocks to register for
+                // blocks to register for (MultiBlocks ONLY)
                 ModBlocks.DEBUG_BLOCK.get(),
                 ModBlocks.LARGE_LOCKER.get()
         );

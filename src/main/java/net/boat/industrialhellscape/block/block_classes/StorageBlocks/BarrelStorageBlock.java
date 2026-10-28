@@ -21,11 +21,6 @@ getOpenSound() and getClosedSound() used by StorageBlockInterface to detect desi
 */
 
 public class BarrelStorageBlock extends FacingStorageBlock implements EntityBlock {
-    public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
-    public final int SLOTS;
-    public final SoundEvent OPEN_SOUND;
-    public final SoundEvent CLOSE_SOUND;
-
     private static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<AttachFace> FACE = BlockStateProperties.ATTACH_FACE;
 

@@ -10,9 +10,15 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Optional;
+
 public interface StorageBlockInterface {
+    //All storage Blocks are able to use the OPEN property
+    BooleanProperty OPEN = BlockStateProperties.OPEN;
 
     //--------- NECESSARY FIELDS FOR BLOCK ENTITY ----------
     //Blocks that have a Storage Block Entity and implements this interface MUST possess these methods and supply a value.
@@ -21,6 +27,11 @@ public interface StorageBlockInterface {
     int getSlotCount();
     SoundEvent getOpenSound();
     SoundEvent getCloseSound();
+    default Optional<BlockPos> originBlockPos() { //NBTUtils output
+        return Optional.of(BlockPos.containing(0,0,0)); //non null default value
+    };
+
+
     //---------- END OF NECESSARY FIELDS FOR BLOCK ENTITY ----------
 
     static void dropContainerInventory(BlockState state, Level level, BlockPos pos) {

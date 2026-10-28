@@ -238,11 +238,9 @@ public class FencePostBlock extends FenceBlock implements ToolUseInterface {
                         break;
                     }
                 }
-
                 return ItemInteractionResult.sidedSuccess(level.isClientSide);
             }
         }
-
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 

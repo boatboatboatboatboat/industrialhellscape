@@ -1,16 +1,15 @@
 package net.boat.industrialhellscape.block.block_classes.FaceAttachedHorizontalDirectionBlocks;
 
+import net.boat.industrialhellscape.block.block_interfaces.SoundPlayInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -25,7 +24,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.function.BiConsumer;
 
-public class WaterloggableLeverBlock extends ModelledFAHDBlock {
+public class WaterloggableLeverBlock extends ModelledFAHDBlock implements SoundPlayInterface {
 
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
@@ -44,6 +43,7 @@ public class WaterloggableLeverBlock extends ModelledFAHDBlock {
             return InteractionResult.SUCCESS;
         } else {
             this.pull(state, level, pos, null);
+            SoundPlayInterface.onOffSound(state,level,pos,POWERED, SoundEvents.LEVER_CLICK, SoundEvents.LEVER_CLICK, 0.3f, 0.3f,0.6f);
             return InteractionResult.CONSUME;
         }
     }
@@ -52,7 +52,6 @@ public class WaterloggableLeverBlock extends ModelledFAHDBlock {
         state = state.cycle(POWERED);
         level.setBlock(pos, state, 3);
         this.updateNeighbours(state, level, pos);
-        playSound(player, level, pos, state);
         level.gameEvent(player, state.getValue(POWERED) ? GameEvent.BLOCK_ACTIVATE : GameEvent.BLOCK_DEACTIVATE, pos);
     }
 
@@ -92,11 +91,6 @@ public class WaterloggableLeverBlock extends ModelledFAHDBlock {
             super.onRemove(state, level, pos, newState, isMoving);
         }
 
-    }
-
-    protected static void playSound(@Nullable Player player, LevelAccessor level, BlockPos pos, BlockState state) {
-        float soundPitch = state.getValue(POWERED) ? 0.6F : 0.3F;
-        level.playSound(player, pos, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3F, soundPitch);
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {

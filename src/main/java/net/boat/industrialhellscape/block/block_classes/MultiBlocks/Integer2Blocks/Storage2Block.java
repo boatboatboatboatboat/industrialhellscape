@@ -16,7 +16,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 
-public class Storage2Block extends Integer2Block implements EntityBlock, StorageBlockInterface{
+public class Storage2Block extends Integer2Block implements EntityBlock, StorageBlockInterface {
     public final int SLOTS; //Amount of inventory slots. Should be a multiple of 9.
     public final SoundEvent OPEN_SOUND;
     public final SoundEvent CLOSE_SOUND;

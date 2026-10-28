@@ -1,10 +1,9 @@
 package net.boat.industrialhellscape.block.block_classes.FaceAttachedHorizontalDirectionBlocks;
 
+import net.boat.industrialhellscape.block.block_interfaces.SoundPlayInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -20,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 
 // Code obtained from Create Deco mod (CC0 1.0 license)
 
-public class LightBulbBlock extends ModelledFAHDBlock {
+public class LightBulbBlock extends ModelledFAHDBlock implements SoundPlayInterface {
     public final SoundEvent ON_SOUND;
     public final SoundEvent OFF_SOUND;
 
@@ -70,8 +69,7 @@ public class LightBulbBlock extends ModelledFAHDBlock {
         if (level.isClientSide) {
             return InteractionResult.SUCCESS;
         } else {
-            float pitch = next.getValue(BlockStateProperties.INVERTED) ? 0.6f : 0.5f;
-            level.playSound(null, pos, SoundEvents.COMPARATOR_CLICK, SoundSource.BLOCKS, 0.3f, pitch);
+            SoundPlayInterface.onOffSoundWithUpdateCheck(state,next,level,pos,BlockStateProperties.LIT,ON_SOUND,OFF_SOUND,1f,1f,0.5f);
             return InteractionResult.CONSUME;
         }
     }
@@ -79,6 +77,7 @@ public class LightBulbBlock extends ModelledFAHDBlock {
     private BlockState toggle (BlockState state, Level level, BlockPos pos) {
         BlockState next = state.setValue(BlockStateProperties.LIT, shouldBeLit(state, level, pos));
         level.setBlock(pos, next, 3);
+
         return next;
     }
 

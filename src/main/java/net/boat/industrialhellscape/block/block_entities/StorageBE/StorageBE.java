@@ -1,6 +1,7 @@
 package net.boat.industrialhellscape.block.block_entities.StorageBE;
 
 import net.boat.industrialhellscape.block.block_entities.ModBlockEntities;
+import net.boat.industrialhellscape.block.block_interfaces.SoundPlayInterface;
 import net.boat.industrialhellscape.block.block_interfaces.StorageBlockInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -9,7 +10,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Inventory;
@@ -26,9 +26,18 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-public class StorageBE extends RandomizableContainerBlockEntity {
+/*
+    NOTES:
+    - Load BlockPos NBT data: inside loadAdditional(): NbtUtils.readBlockPos(tag, "be_pos").ifPresent(pos -> this.originBlockPos = pos);
+    - Save BlockPos NBT data: inside saveAdditional(): tag.put("be_pos", NbtUtils.writeBlockPos(this.originBlockPos));
+
+    //Codec.INT.encodeStart(NbtOps.INSTANCE, this.originBlockPos.);
+    //Source: https://forums.minecraftforge.net/topic/99484-solved-116-storing-arraylist-to-nbt/  (5 years ago)
+
+ */
+
+public class StorageBE extends RandomizableContainerBlockEntity implements StorageBlockInterface, SoundPlayInterface {
     private final int SLOTS;
     public final SoundEvent OPEN_SOUND;
     public final SoundEvent CLOSE_SOUND;
@@ -38,26 +47,28 @@ public class StorageBE extends RandomizableContainerBlockEntity {
 
     public StorageBE(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.STORAGE_BE.get(), pos, blockState);
+
+        //Populate Block Entity data with arguments from registered Block
         Block block = blockState.getBlock();
         if (block instanceof StorageBlockInterface storageBlock) { //If block uses StorageBlockInterface. assign its slots and sound effects with its interface methods.
             this.SLOTS = storageBlock.getSlotCount();
             this.OPEN_SOUND = storageBlock.getOpenSound();
             this.CLOSE_SOUND = storageBlock.getCloseSound();
-
         } else { // Else, fall-back to a non-null slot amount, and default barrel sound effects.
             this.SLOTS = 9; //Placeholder
             this.OPEN_SOUND = SoundEvents.BARREL_OPEN;
             this.CLOSE_SOUND = SoundEvents.BARREL_CLOSE;
         }
+
         this.items = NonNullList.withSize(SLOTS, ItemStack.EMPTY);
         this.openersCounter = new ContainerOpenersCounter() {
             protected void onOpen(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state) {
-                StorageBE.this.playSound(OPEN_SOUND);
+                SoundPlayInterface.playSoundBE(OPEN_SOUND,StorageBE.this);
                 //StorageBE.this.updateBlockState(state, true);
                 // In the future, use the interface to update a block's state for special effects like lids opening
             }
             protected void onClose(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state) {
-                StorageBE.this.playSound(CLOSE_SOUND);
+                SoundPlayInterface.playSoundBE(CLOSE_SOUND,StorageBE.this);
                 //StorageBE.this.updateBlockState(state, false);
                 // In the future, use the interface to update a block's state for special effects like lids opening
             }
@@ -86,6 +97,8 @@ public class StorageBE extends RandomizableContainerBlockEntity {
     protected void loadAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
         super.loadAdditional(tag, registries);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+
+
         if (!this.tryLoadLootTable(tag)) {
             ContainerHelper.loadAllItems(tag, this.items, registries);
         }
@@ -104,8 +117,8 @@ public class StorageBE extends RandomizableContainerBlockEntity {
     protected @NotNull Component getDefaultName() { return Component.translatable("gui.industrialhellscape.inventory_menu"); }
 
     @Override
-    public @Nullable AbstractContainerMenu createMenu(int id, @NotNull Inventory inventory) {
-        //GUI appearance based on inventory slot capacity chosen during block registration
+    public @NotNull AbstractContainerMenu createMenu(int id, @NotNull Inventory inventory) {
+        //GUI appearance (vanilla menu/screens) based on inventory slot capacity chosen during block registration
         return switch (SLOTS) {
             case (18) -> new ChestMenu(MenuType.GENERIC_9x2, id, inventory, this, 2);
             case (27) -> new ChestMenu(MenuType.GENERIC_9x3, id, inventory, this, 3);
@@ -114,6 +127,7 @@ public class StorageBE extends RandomizableContainerBlockEntity {
         };
     }
 
+    // ----- CompoundContainer Class Methods -----
     public void startOpen(@NotNull Player player) {
         if (!this.remove && !player.isSpectator()) {
             this.openersCounter.incrementOpeners(player, this.getLevel(), this.getBlockPos(), this.getBlockState());
@@ -125,20 +139,22 @@ public class StorageBE extends RandomizableContainerBlockEntity {
             this.openersCounter.decrementOpeners(player, this.getLevel(), this.getBlockPos(), this.getBlockState());
         }
     }
+    // ----- End of CompoundContainer Class Methods -----
 
-    private void playSound(SoundEvent soundEvent) {
-        double d0 = this.worldPosition.getX() + 0.5D;
-        double d1 = this.worldPosition.getY() + 0.5D;
-        double d2 = this.worldPosition.getZ() + 0.5D;
+    // ----- Capabilities -----
+    public IItemHandler getItemCapability() {return new InvWrapper(this);}
+    // ----- End of Capabilities -----
 
-        if(this.level != null){
-            this.level.playSound(null, d0, d1, d2, soundEvent, SoundSource.BLOCKS, 0.5F, this.level.getRandom().nextFloat() * 0.1F + 0.9F);
-        }
-    }
+    // ----- StorageBlockInterface Methods -----
 
-    //Used to establish item handling capability (compat with other item logistics mods like Create or AE2)
-    //Registered in ModBlockCapabilities
-    public IItemHandler getItemCapability() {
-        return new InvWrapper(this);
-    }
+    @Override
+    public int getSlotCount() {return SLOTS;}
+
+    @Override
+    public SoundEvent getOpenSound() {return OPEN_SOUND;}
+
+    @Override
+    public SoundEvent getCloseSound() {return CLOSE_SOUND;}
+
+    // ----- End of StorageBlockInterface Methods -----
 }

@@ -1492,7 +1492,9 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0),
                     MultiBlockPlacementArrayCollection.VERTICAL_PLACEMENT,
-                    new VoxelShape[]{HitboxGeometryCollection.VITALS_MONITOR_BASE(),HitboxGeometryCollection.VITALS_MONITOR_TOP()}
+                    new VoxelShape[]{HitboxGeometryCollection.VITALS_MONITOR_BASE(),HitboxGeometryCollection.VITALS_MONITOR_TOP()},
+                    ModSounds.COMPUTER_ON.get(),
+                    ModSounds.SWITCH_OFF.get()
             )
     );
     public static final DeferredBlock<Block> IV_DRIPSTAND = registerBlockAndBlockItem("iv_dripstand",
@@ -1574,7 +1576,9 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.IRON_BLOCK)
                     .lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0),
                     MultiBlockPlacementArrayCollection.VERTICAL_PLACEMENT,
-                    new VoxelShape[]{HitboxGeometryCollection.VERTICAL_ROD_4X4_SHAPE(),HitboxGeometryCollection.WORK_LIGHT_MOUNT_SHAPE()}
+                    new VoxelShape[]{HitboxGeometryCollection.VERTICAL_ROD_4X4_SHAPE(),HitboxGeometryCollection.WORK_LIGHT_MOUNT_SHAPE()},
+                    ModSounds.SWITCH_ON.get(),
+                    ModSounds.SWITCH_OFF.get()
             )
     );
 

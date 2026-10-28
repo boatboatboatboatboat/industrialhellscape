@@ -1,5 +1,6 @@
 package net.boat.industrialhellscape.block.block_interfaces;
 
+import net.boat.industrialhellscape.block.block_classes.MultiBlocks.BaseIntegerMultiBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
@@ -19,8 +20,9 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public interface MultiBlockPlacementInterface {
     static BlockPos vectorToBlockPos(BlockPos originPos, int[][] multiBlockMatrix, int rowIndice, BlockState pState) {
-        int[] currentVector = multiBlockMatrix[rowIndice];
+        //From a multiBlock initial (origin) position and part# = 0 state, find the "i" = rowIndice position for the part# = "i" block;
         Direction placementDirection = pState.getValue(BlockStateProperties.HORIZONTAL_FACING);
+        int[] currentVector = multiBlockMatrix[rowIndice];
 
         /*
         For default scenario (a block was placed and the block faces north, not the player):
@@ -41,6 +43,7 @@ public interface MultiBlockPlacementInterface {
     }
 
     static BlockPos vectorToOriginBlockPos(BlockPos pos, int[][] multiBlockMatrix, BlockState pState, IntegerProperty partProperty) {
+        //From a multiBlock position and a multiBlock state, return to its origin block
         Direction placementDirection = pState.getValue(BlockStateProperties.HORIZONTAL_FACING);
         int intBlockState = pState.getValue(partProperty);
         int[] currentVector = multiBlockMatrix[intBlockState];
@@ -58,6 +61,8 @@ public interface MultiBlockPlacementInterface {
     static void destroyRemainingMultiBlock(LevelAccessor pLevel, Player pPlayer, Block thisBlock, BlockPos pos, IntegerProperty partProperty, BlockState pState, int[][] multiBlockMatrix) {
 
         /*
+        Used in onDestroyByPlayer() override
+
         Experimentally determined:
         neighborChanged() appears to be called right before a block disappears. Meaning if a multiblock part is mined,
         adjacent blocks will receive neighborChanged() updates with neighborState being the state of the multiblock part
@@ -67,8 +72,6 @@ public interface MultiBlockPlacementInterface {
         */
 
         /*
-        used as a helper method for onDestroyedByPlayer().
-
         This logic isn't used for block updates, so
         it's probably fine to run heavier logic for the specific case
         where a player is actually mining the block.
@@ -77,7 +80,7 @@ public interface MultiBlockPlacementInterface {
         This is why all multiBLock loot tables are restricted to dropping only for the first blockState, part:0, to prevent duping.
          */
 
-        //BlockPos of the first block of the multiblock, part "0"
+        //Locate BlockPos of the first block of the multiblock, part "0"
         BlockPos originPos = vectorToOriginBlockPos(pos, multiBlockMatrix,pState, partProperty);
 
         for (int i = 0; i < multiBlockMatrix.length; i++) {
@@ -124,7 +127,7 @@ public interface MultiBlockPlacementInterface {
         Used by useWithoutItem() override
         Checks each position of the multiblock. If a part still exists at that location,
         toggle the passed property to change states.
-        This affects all multi-block blocks.
+        This affects ALL multi-block blocks.
          */
         BlockPos originPos = vectorToOriginBlockPos(pos, multiBlockMatrix,pState, partProperty);
 
@@ -139,8 +142,13 @@ public interface MultiBlockPlacementInterface {
     }
 
     static BlockState placeModelledOriginBlock(BlockPlaceContext pContext, Block thisBlock, DirectionProperty facingProperty, BooleanProperty waterloggedProperty, boolean placedOppositeFacing) {
-        //automatically assigns facing orientation and waterlogged property
-        //allows control for whether block faces towards (opposite direction of player) or away from player.
+        /*
+            Used in getStateForPlacement() override for waterloggable blocks
+            - Assigns horizontal facing direction and waterlogged property
+            - Allows control for whether block state is considered facing towards (opposite direction of player)
+                or away from player (boolean placedOppositeFacing)
+            - If boolean is changed, the multiBlockPlacementMatrix will need adjustment for correct multiBlock construction
+         */
 
         Direction facing = placedOppositeFacing ? pContext.getHorizontalDirection().getOpposite() : pContext.getHorizontalDirection();
         FluidState fluidstate = pContext.getLevel().getFluidState(pContext.getClickedPos());
@@ -156,35 +164,54 @@ public interface MultiBlockPlacementInterface {
     }
 
     static boolean isFreeFromObstruction(BlockState pState, LevelReader pLevel, BlockPos pPos, int[][] multiBlockMatrix) {
-        //Obstruction checking logic used in canSurvive() override
-        //For-loop checks each BlockPos starting from the origin block position, governed by multiBlockMatrix
+        /*
+           Used in canSurvive() override
+           - Obstruction checking logic to prevent placing down block in invalid locations.
+           - For-loop checks each BlockPos starting from the origin block position, governed by multiBlockMatrix
+           - Placement Contingency #1
+           - Create SchematicCannon appears to bypass canSurvive()
+        */
         for (int i = 0; i < multiBlockMatrix.length; i++) {
             BlockPos blockPosToCheck = vectorToBlockPos(pPos, multiBlockMatrix, i, pState);
 
             //True if potential block pos is air and within world boundaries
             boolean blockCanBePlacedHere = pLevel.getBlockState(blockPosToCheck).isAir() && pLevel.getWorldBorder().isWithinBounds(blockPosToCheck);
 
-            //if a position for a future multiblock part placement is invalid, stop & exit for-loop and return null for this method.
-            if (!blockCanBePlacedHere) {
-                return false; //end this method prematurely and return false
-            }
+            /*
+                If a position for a future multiblock part placement is invalid,
+                end this method prematurely and return false.
+                "Break" is not required for premature returns;
+            */
+            if (!blockCanBePlacedHere) {return false;}
         } //exited for-loop
-        return true; //once  for-loop succeeds with no obstructions detected
+        return true; //if for-loop succeeds with no obstructions detected. Permit placing down multiBlock.
     }
 
-    static void constructMultiBlock(Level pLevel, Block thisBlock, BlockPos originPos, int[][] multiBlockMatrix, IntegerProperty partProperty, DirectionProperty directionProperty) {
+    static void constructMultiBlock(Level pLevel, BaseIntegerMultiBlock thisBlock, BlockPos originPos, int[][] multiBlockMatrix, IntegerProperty partProperty, DirectionProperty directionProperty) {
         /*
-        Used for setPlacedBy() override
-
-        For each state up to the max state predicted by multiBlockMatrix
-        - obtain a vector of coordinates from multiBlockMatrix, relative to the originPos (the first block placed down already)
-        - set block and assign its PART property the appropriate value in sequence
-         */
+            Used for setPlacedBy() override
+            For each state up to the max state predicted by multiBlockMatrix
+            - obtain a vector of coordinates from multiBlockMatrix, relative to the originPos (the first block placed down already)
+            - set block and assign its PART property the appropriate value in sequence
+        */
         BlockState state = pLevel.getBlockState(originPos);
         for (int i = 0; i < multiBlockMatrix.length; i++) {
             BlockPos nextPosition = vectorToBlockPos(originPos, multiBlockMatrix, i, state);
 
-            BlockState stateAtPotentialPlacement = pLevel.getBlockState(nextPosition);
+            boolean placementPosIsAir = pLevel.getBlockState(nextPosition).isAir();
+
+            /*
+                - If Part# = "i"th blockState cannot locate its origin block (Part# = 0),
+                - improper construction is detected. Cancel further MultiBlock construction
+                - Placement Contingency #2
+                - THIS STOPS THE SCHEMATICANNON BUG
+            */
+            BlockState originBlockState = pLevel.getBlockState(originPos);
+            if(originBlockState.getBlock() instanceof BaseIntegerMultiBlock) {
+                if(originBlockState.getValue(thisBlock.partProperty) != 0) {
+                    return;
+                }
+            }
 
             /*
             Fix for Create SchematiCannon build ordering messing up horizontal multiblocks
@@ -197,13 +224,12 @@ public interface MultiBlockPlacementInterface {
                 This prevents the origin block placed down by default to set other blocks which will destroy existing blocks in a schematic-Cannon build
              */
 
-            if(stateAtPotentialPlacement.isAir()) {
+            if(placementPosIsAir) {
                 /*
-                IF ORIGIN BLOCK IS PLACED:
-                    - ONLY PLACE SUBSEQUENT BLOCKS IF THAT POSITION CONTAINS ONLY AIR
-                    - Prevents other block destruction but not weird state placement for finished block;
-                    - A schematicannon'd structure needs these blocks re-placed by player manually; where safeguards are fully present
-                    - World-gen structures are probably fine and separate from this issue
+                    IF ORIGIN BLOCK IS PLACED:
+                    - Only place
+                    - Placement Contingency #3
+                    - Prevents SchematicCannon from overwriting other blocks
                  */
                 pLevel.setBlock(nextPosition, state.setValue(partProperty, i), 3);
             }
@@ -212,14 +238,13 @@ public interface MultiBlockPlacementInterface {
 
     static VoxelShape setMultiBlockHitBox(BlockState pState, DirectionProperty facingProperty, IntegerProperty partProperty, VoxelShape[] hitboxArray) {
         /*
+            Used for getShape() override
 
-       Used for getShape() override
-
-        A multiblock is registered with a VoxelShape[] array in ModBlocks for block registration.
-        Each index of "hitboxArray" corresponds to a different hitbox for a block in the multiblock.
-        Array position corresponds to blockState PART number.
-        Depending on the assigned direction state of the block, the switch case will rotate this hitbox
-        appropriately.
+            A multiblock is registered with a VoxelShape[] array in ModBlocks for block registration.
+            Each index of "hitboxArray" corresponds to a different hitbox for a block in the multiblock.
+            Array position corresponds to blockState PART number.
+            Depending on the assigned direction state of the block, the switch case will rotate this hitbox
+            appropriately.
          */
         Direction facing = pState.getValue(facingProperty);
         int intCurrentState = pState.getValue(partProperty);
