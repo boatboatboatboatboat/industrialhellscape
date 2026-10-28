@@ -1,8 +1,6 @@
 package net.boat.industrialhellscape.item;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
-import net.boat.industrialhellscape.block.ModBlocks;
-import net.boat.industrialhellscape.datagen.ModDataComponents;
 import net.boat.industrialhellscape.item.modded_items.GasStationPillItem;
 import net.boat.industrialhellscape.item.modded_items.InHellToolItem;
 import net.boat.industrialhellscape.item.modded_items.JobPaperworkItem;
@@ -13,7 +11,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.TooltipFlag;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -38,18 +39,6 @@ public class ModItems {
                 itemID(newID)
         );
     }
-
-    //Experimental
-    public static final DeferredItem<BlockItem> REDSTONE_TRANSCEIVER_ITEM =
-            ITEMS.register(
-                    "redstone_transceiver",
-                    () -> new BlockItem(
-                            ModBlocks.REDSTONE_TRANSCEIVER.get(),
-                            new Item.Properties()
-                                    .component(ModDataComponents.FREQUENCY_STRING.get(), "Limit_Is_16_Char")
-                                    .component(ModDataComponents.IS_RECEIVER.get(), false)
-                    )
-            );
 
     public static final DeferredItem<Item> INHELL_HAVEN_DEVICE = ITEMS.register("inhell_haven_device",
             () -> new InHellToolItem(new Item.Properties())
