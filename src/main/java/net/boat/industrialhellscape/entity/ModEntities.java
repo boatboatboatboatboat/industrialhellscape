@@ -40,6 +40,11 @@ public class ModEntities {
                     .sized(0.5f, foldingChairHeight)
                     .build("chair"));
 
+//    public static final Supplier<EntityType<LandMineEntity>> LANDMINE =
+//            ENTITY_TYPES.register("landmine", () -> EntityType.Builder.of(LandMineEntity::new, MobCategory.MISC)
+//                    .sized(0.5f, foldingChairHeight)
+//                    .build("landmine"));
+
     //fine to keep
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
