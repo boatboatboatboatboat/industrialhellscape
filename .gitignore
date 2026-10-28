@@ -38,3 +38,8 @@ run/
 **/src/generated/**/.cache/
 repo/
 !**/src/**/repo/
+/src/main/resources/assets/industrialhellscape/textures/block/backup/
+/src/main/resources/assets/industrialhellscape/textures/item/backup/
+/src/main/resources/assets/industrialhellscape/models/block/backup_models/
+/src/main/resources/assets/industrialhellscape/blockstates/backup/
+/src/main/java/net/boat/industrialhellscape/block/block_experiments/

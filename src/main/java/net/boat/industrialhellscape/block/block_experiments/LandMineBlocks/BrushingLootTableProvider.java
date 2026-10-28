@@ -1,4 +1,4 @@
-package net.boat.industrialhellscape.block.experiments.LandMineBlocks;
+package net.boat.industrialhellscape.block.block_experiments.LandMineBlocks;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.LootTableSubProvider;

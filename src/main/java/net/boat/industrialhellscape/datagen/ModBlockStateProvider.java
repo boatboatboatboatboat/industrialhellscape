@@ -10,7 +10,7 @@ import net.boat.industrialhellscape.block.block_classes.RailingBlocks.ParapetBlo
 import net.boat.industrialhellscape.block.block_classes.RailingBlocks.RailingBlock;
 import net.boat.industrialhellscape.block.block_interfaces.ModEnumsInterface;
 import net.boat.industrialhellscape.block.block_state_enums.DynamicConnectionState;
-import net.boat.industrialhellscape.block.experiments.PanelBlocks.PanelBlock;
+import net.boat.industrialhellscape.block.block_experiments.PanelBlocks.PanelBlock;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;

@@ -1,4 +1,4 @@
-package net.boat.industrialhellscape.block.experiments.LandMineBlocks;
+package net.boat.industrialhellscape.block.block_experiments.LandMineBlocks;
 
 import net.boat.industrialhellscape.block.block_entities.ModBlockEntities;
 import net.minecraft.core.BlockPos;
