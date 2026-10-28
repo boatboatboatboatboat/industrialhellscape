@@ -1,6 +1,9 @@
-package net.boat.industrialhellscape.block.experiments.LandMineBlocks;
+package net.boat.industrialhellscape.block.block_experiments.LandMineBlocks;
 
+import net.boat.industrialhellscape.block.ModBlocks;
+import net.boat.industrialhellscape.block.block_classes.HorizontalDirectionBlocks.HorizontalFallableBlock;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
@@ -11,9 +14,12 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.BrushableBlock;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.FallingBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BrushableBlockEntity;
@@ -21,25 +27,68 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class BuriedMineBlock extends BrushableBlock implements ExplosiveInterface {
+public class LandMineBlock extends HorizontalFallableBlock implements ExplosiveInterface, EntityBlock {
+
     public static final BooleanProperty DISARMED = BlockStateProperties.DISARMED;
+    private final VoxelShape hitBox;
 
-    public BuriedMineBlock(Block turnsInto, SoundEvent brushSound, SoundEvent brushCompletedSound, Properties properties) {
-        super(turnsInto, brushSound, brushCompletedSound, properties);
-
+    public LandMineBlock(Properties pProperties, SoundEvent onDropSound, VoxelShape hitBox) {
+        super(pProperties, onDropSound);
+        this.hitBox = hitBox;
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(DISARMED, true)
-                .setValue(BlockStateProperties.DUSTED, 0)
         );
     }
 
     @Override
-    public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        BuriedMineBE be = new BuriedMineBE(pos, state);
-        return be;
+    public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
+        Direction directionClicked = pContext.getHorizontalDirection().getOpposite(); //Gets the cardinal direction when player places new block
+        BlockPos pos = pContext.getClickedPos();
+        BlockState state = this.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, directionClicked); //First, defines facing direction of the block
+        FluidState fluid = pContext.getLevel().getFluidState(pos);
+        state = state.setValue(BlockStateProperties.WATERLOGGED, fluid.getType() == Fluids.WATER);
+        return state;
+    }
+
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return hitBox;
+    }
+
+    @Override
+    public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+        LandmineBE be = new LandmineBE(blockPos, blockState);
+
+        //BE resets data if block falls and lands (because it spawns a new BE at different location)
+
+        /*
+            If new block entity needs to spawn when Mine block already armed
+            Preset its armed status to true;
+
+            Fixes the stupid fucking bug where a falling armed mine plays the
+            sound again when it lands.
+         */
+
+        /*
+            if block entity spawns for a landmine that has already been armed,
+            set its flag to armed and ready to detonate
+            -this will only happen in either unnatural scenarios, or if
+                mine falls by gravity and lands with a new block state;
+         */
+
+        //BE also resets if block state changes.
+        //If armed, instantly flagged for detonation instead of waiting for scheduled tick
+//        if(!blockState.getValue(DISARMED)) {
+//            be.setFlagArmed();
+//        }
+        return be; //seems to be fixed by setting BE uuid field to zeroes
     }
 
     @Override
@@ -52,9 +101,19 @@ public class BuriedMineBlock extends BrushableBlock implements ExplosiveInterfac
                 be.assignExplosiveOwner(placer.getUUID());
             }
         }
+
+        //bury mines - stack already decremented due to placing
+        if(level.getBlockState(pos.below()).getBlock() instanceof FallingBlock) {
+            level.setBlock(pos.below(), ModBlocks.DEBUG_BLOCK.get().defaultBlockState(),3);
+            level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
+            level.removeBlockEntity(pos); //REMOVE ORIGINAL BLOCK ENTITY
+
+            if(level.getBlockEntity(pos.below()) instanceof BuriedMineBE be) {
+                be.buriedItem = this.asItem();
+            }
+        }
     }
 
-    //TODO: test removal
     @Override
     public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean isMoving) {
 
@@ -73,6 +132,8 @@ public class BuriedMineBlock extends BrushableBlock implements ExplosiveInterfac
          */
 
         //If a landmine is placed already armed (Unnatural, unlikely event. Only triggered by armed mine above air block, falling and landing)
+
+        //data persists on block state change setBlock
         if(!state.getValue(DISARMED)) {
             //If landMine has block entity inside, get nearest player within 5 blocks
             if(level.getBlockEntity(pos) instanceof ExplosiveInterface be) {
@@ -83,23 +144,17 @@ public class BuriedMineBlock extends BrushableBlock implements ExplosiveInterfac
                 }
             }
         }
-
         super.onPlace(state, level, pos, oldState, isMoving);
     }
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if(level.getBlockEntity(pos) instanceof BuriedMineBE be) {
-            return ExplosiveInterface.interactWithLandmine(this, stack,state,level,pos,player,DISARMED, be.buriedItem);
-        }
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        return ExplosiveInterface.interactWithLandmine(this, stack,state,level,pos,player,DISARMED, this.asItem());
     }
 
     @Override
     protected void attack(BlockState state, Level level, BlockPos pos, Player player) {
-        if(level.getBlockEntity(pos) instanceof BuriedMineBE be) {
-            ExplosiveInterface.landmineAttacked(state,level,pos,player,DISARMED, be.buriedItem);
-        }
+        ExplosiveInterface.landmineAttacked(state,level,pos,player,DISARMED, this.asItem());
     }
 
     @Override
@@ -120,14 +175,13 @@ public class BuriedMineBlock extends BrushableBlock implements ExplosiveInterfac
 
     @Override
     public void stepOn(Level level, BlockPos pos, BlockState state, Entity entityStepping) {
-        if(level.getBlockEntity(pos) instanceof BuriedMineBE be) {
-            ExplosiveInterface.steppedOnMine(level, pos, state, entityStepping, DISARMED, be.buriedItem);
-        }
+        ExplosiveInterface.steppedOnMine(level, pos, state, entityStepping, DISARMED, this.asItem());
     }
 
     //If adding a new property to a subclass, add all prior properties from super-classes here
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(DISARMED, BlockStateProperties.DUSTED);
+        pBuilder.add(DISARMED, BlockStateProperties.HORIZONTAL_FACING, BlockStateProperties.WATERLOGGED);
     }
 }
+

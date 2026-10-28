@@ -1,4 +1,4 @@
-package net.boat.industrialhellscape.block.experiments.AdaptiveDecalBlocks;
+package net.boat.industrialhellscape.block.block_experiments.AdaptiveDecalBlocks;
 
 import net.boat.industrialhellscape.block.block_classes.HorizontalDirectionBlocks.ModelledHorizontalBlock;
 import net.minecraft.core.BlockPos;

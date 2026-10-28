@@ -1,4 +1,4 @@
-package net.boat.industrialhellscape.block.experiments.PanelBlocks;
+package net.boat.industrialhellscape.block.block_experiments.PanelBlocks;
 
 import com.mojang.serialization.MapCodec;
 import net.boat.industrialhellscape.block.block_interfaces.HitboxRotationInterface;
