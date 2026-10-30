@@ -40,6 +40,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.@NotNull Provider provider) {
 
         //----- MAIN BLOCKS -----
+
         //--- Main
         this.tag(ModTags.Blocks.VESSELPLATE_BLOCKS).add(ModRecipeProvider.VESSELPLATE_STONECUT_OUTPUT.toArray(new Block[0]));
         this.tag(ModTags.Blocks.ROCKRETE_BLOCKS).add(ModRecipeProvider.ROCKRETE_STONECUT_OUTPUT.toArray(new Block[0]));
@@ -60,7 +61,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         //----- END OF MAIN BLOCKS -----
 
         //----- FURNITURE BLOCKS -----
-
         this.tag(ModTags.Blocks.ALL_FURNITURE_BLOCKS)
                 .addTags(
                         ModTags.Blocks.AMENITY_FURNITURE_CATEGORY,
@@ -79,7 +79,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(ModTags.Blocks.INDUSTRIAL_FURNITURE_CATEGORY).add(ModRecipeProvider.INDUSTRIAL_FURNITURE_STONECUT_OUTPUT.toArray(new Block[0]));
         this.tag(ModTags.Blocks.TECHNOLOGY_FURNITURE_CATEGORY).add(ModRecipeProvider.TECHNOLOGY_FURNITURE_STONECUT_OUTPUT.toArray(new Block[0]));
         this.tag(ModTags.Blocks.AMENITY_FURNITURE_CATEGORY).add(ModRecipeProvider.AMENITY_FURNITURE_STONECUT_OUTPUT.toArray(new Block[0]));
-
         //----- END OF FURNITURE BLOCKS -----
 
         //----- BODY PILLOWS -----
