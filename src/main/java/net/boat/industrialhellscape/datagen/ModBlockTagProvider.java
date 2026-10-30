@@ -6,11 +6,30 @@ import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
+/*
+    Block Tags for main block types uses lists of stone-cutting recipe outputs found and used in ModRecipeProvider class
+
+    - For "normal" blocks; update block tags through the appropriate recipe list in ModRecipeProvider class
+
+    ModBlockTagProvider:
+    - Blocks with connecting logic with block variants (Desks):
+            update appropriate block-set family Block Tag HERE.
+    - Blocks with Storage Block Entity & Item Storage Capability (Lockers):
+            update STORAGE_INVENTORY_BLOCKS, and MOD_CREATE_SIMPLE_MOUNTED_STORAGE Block Tags HERE
+    - Blocks with "cutout" appearance that read as "vents" for air pass-thru (Vents):
+            update MOD_CREATE_FAN_TRANSPARENT Block Tag HERE
+    - Multiple One-off Joke Blocks (Body-Pillows):
+        update appropriate Block Tag HERE
+    - Experimental Blocks:
+            update mining tool Type, and mining tool Tier Block Tags here
+*/
 
 public class ModBlockTagProvider extends BlockTagsProvider {
     public ModBlockTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
@@ -18,218 +37,30 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     }
 
     @Override
-    protected void addTags(HolderLookup.Provider provider) {
+    protected void addTags(HolderLookup.@NotNull Provider provider) {
 
-        this.tag(ModTags.Blocks.BODY_PILLOW_BLOCK)
-                .add(
-                        ModBlocks.BODY_PILLOW_OZY.get(),
-                        ModBlocks.BODY_PILLOW_FANG.get(),
-                        ModBlocks.BODY_PILLOW_PROV.get()
-                );
+        //----- MAIN BLOCKS -----
+        //--- Main
+        this.tag(ModTags.Blocks.VESSELPLATE_BLOCKS).add(ModRecipeProvider.VESSELPLATE_STONECUT_OUTPUT.toArray(new Block[0]));
+        this.tag(ModTags.Blocks.ROCKRETE_BLOCKS).add(ModRecipeProvider.ROCKRETE_STONECUT_OUTPUT.toArray(new Block[0]));
+        this.tag(ModTags.Blocks.VESSELGLASS_BLOCKS).add(ModRecipeProvider.VESSELGLASS_STONECUT_OUTPUT.toArray(new Block[0]));
 
-        this.tag(ModTags.Blocks.HVAC_BLOCKS)
-                .add(
-                        ModBlocks.DUCT.get(),
-                        ModBlocks.RUSTY_DUCT.get(),
+        //--- Structural
+        this.tag(ModTags.Blocks.HVAC_BLOCKS).add(ModRecipeProvider.HVAC_STONECUT_OUTPUT.toArray(new Block[0]));
+        this.tag(ModTags.Blocks.TRUSS_BLOCKS).add(ModRecipeProvider.TRUSS_STONECUT_OUTPUT.toArray(new Block[0]));
 
-                        ModBlocks.HORIZONTAL_VENT.get(),
-                        ModBlocks.VERTICAL_VENT.get(),
-                        ModBlocks.HORIZONTAL_CUTOUT_VENT.get(),
-                        ModBlocks.VERTICAL_CUTOUT_VENT.get(),
+        //--- Doors
+        this.tag(ModTags.Blocks.DOOR_BLOCKS).add(ModRecipeProvider.DOORS_STONECUT_OUTPUT.toArray(new Block[0]));
+        this.tag(ModTags.Blocks.TRAPDOOR_BLOCKS).add(ModRecipeProvider.TRUSS_STONECUT_OUTPUT.toArray(new Block[0]));
 
-                        ModBlocks.RUSTY_HORIZONTAL_VENT.get(),
-                        ModBlocks.RUSTY_VERTICAL_VENT.get(),
-                        ModBlocks.RUSTY_HORIZONTAL_CUTOUT_VENT.get(),
-                        ModBlocks.RUSTY_VERTICAL_CUTOUT_VENT.get()
-                );
-        this.tag(ModTags.Blocks.METALWORKS_BLOCKS)
-                .add(
-                        ModBlocks.METALWORKS.get(),
+        //--- Works
+        this.tag(ModTags.Blocks.METALWORKS_BLOCKS).add(ModRecipeProvider.METALWORKS_STONECUT_OUTPUT.toArray(new Block[0]));
+        this.tag(ModTags.Blocks.PIPEWORKS_BLOCKS).add(ModRecipeProvider.PIPEWORKS_STONECUT_OUTPUT.toArray(new Block[0]));
 
-//                        ModBlocks.BLACK_SHEETING_PANEL.get(),
-//                        ModBlocks.GRAY_SHEETING_PANEL.get(),
-//                        ModBlocks.RUSTY_SHEETING_PANEL.get(),
+        //----- END OF MAIN BLOCKS -----
 
-                        ModBlocks.BARBED_WIRE_FENCE.get(),
-                        ModBlocks.CHAIN_LINK_FENCE.get(),
+        //----- FURNITURE BLOCKS -----
 
-                        ModBlocks.ANGLED_BARBED_WIRE_ARM.get(),
-                        ModBlocks.VERTICAL_BARBED_WIRE_ARM.get(),
-                        ModBlocks.COILED_BARBED_WIRE_ARM.get(),
-
-                        ModBlocks.YELLOW_STAIR_RAILING.get(),
-                        ModBlocks.YELLOW_RAILING.get(),
-                        ModBlocks.GRAY_STAIR_RAILING.get(),
-                        ModBlocks.GRAY_RAILING.get(),
-                        ModBlocks.BLACK_STAIR_RAILING.get(),
-                        ModBlocks.BLACK_RAILING.get(),
-                        ModBlocks.RUSTY_STAIR_RAILING.get(),
-                        ModBlocks.RUSTY_RAILING.get(),
-
-                        ModBlocks.GRAY_BOLTED_BRACKET.get(),
-                        ModBlocks.SMALL_GRAY_BOLTED_BRACKET.get(),
-                        ModBlocks.BLACK_BOLTED_BRACKET.get(),
-                        ModBlocks.SMALL_BLACK_BOLTED_BRACKET.get(),
-                        ModBlocks.RUSTY_BOLTED_BRACKET.get(),
-                        ModBlocks.SMALL_RUSTY_BOLTED_BRACKET.get()
-                );
-
-        this.tag(ModTags.Blocks.VESSELPLATE_BLOCKS)
-                .add(
-                        ModBlocks.VESSELPLATE_SHEETING.get(),
-                        ModBlocks.HORIZONTAL_VESSELPLATE.get(),
-                        ModBlocks.VERTICAL_VESSELPLATE.get(),
-                        ModBlocks.HORIZONTAL_REINFORCED_VESSELPLATE.get(),
-                        ModBlocks.VERTICAL_REINFORCED_VESSELPLATE.get(),
-                        ModBlocks.SMOOTH_VESSELPLATE.get(),
-                        ModBlocks.RIVETED_VESSELPLATE.get(),
-                        ModBlocks.VESSELPLATE_PILLAR.get(),
-                        ModBlocks.RIVETED_VESSELPLATE_SLAB.get(),
-                        ModBlocks.RIVETED_VESSELPLATE_STAIRS.get(),
-                        ModBlocks.SMOOTH_VESSELPLATE_SLAB.get(),
-                        ModBlocks.SMOOTH_VESSELPLATE_STAIRS.get(),
-
-                        ModBlocks.GRAY_VESSELPLATE_SHEETING.get(),
-                        ModBlocks.GRAY_HORIZONTAL_VESSELPLATE.get(),
-                        ModBlocks.GRAY_VERTICAL_VESSELPLATE.get(),
-                        ModBlocks.GRAY_HORIZONTAL_REINFORCED_VESSELPLATE.get(),
-                        ModBlocks.GRAY_VERTICAL_REINFORCED_VESSELPLATE.get(),
-                        ModBlocks.SMOOTH_GRAY_VESSELPLATE.get(),
-                        ModBlocks.GRAY_RIVETED_VESSELPLATE.get(),
-                        ModBlocks.GRAY_VESSELPLATE_PILLAR.get(),
-                        ModBlocks.GRAY_RIVETED_VESSELPLATE_SLAB.get(),
-                        ModBlocks.GRAY_RIVETED_VESSELPLATE_STAIRS.get(),
-                        ModBlocks.SMOOTH_GRAY_VESSELPLATE_SLAB.get(),
-                        ModBlocks.SMOOTH_GRAY_VESSELPLATE_STAIRS.get(),
-
-                        ModBlocks.RUSTY_VESSELPLATE_SHEETING.get(),
-                        ModBlocks.RUSTY_HORIZONTAL_VESSELPLATE.get(),
-                        ModBlocks.RUSTY_VERTICAL_VESSELPLATE.get(),
-                        ModBlocks.RUSTY_HORIZONTAL_REINFORCED_VESSELPLATE.get(),
-                        ModBlocks.RUSTY_VERTICAL_REINFORCED_VESSELPLATE.get(),
-                        ModBlocks.RUSTY_VESSELPLATE_PILLAR.get(),
-
-                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE.get(),
-                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE_SLAB.get(),
-                        ModBlocks.SMOOTH_RUSTY_VESSELPLATE_STAIRS.get(),
-
-                        ModBlocks.RUSTY_RIVETED_VESSELPLATE.get(),
-                        ModBlocks.RUSTY_RIVETED_VESSELPLATE_SLAB.get(),
-                        ModBlocks.RUSTY_RIVETED_VESSELPLATE_STAIRS.get()
-                );
-        this.tag(ModTags.Blocks.TRUSS_BLOCKS)
-                .add(
-                        ModBlocks.TRUSS_BEAM.get(),
-                        ModBlocks.TRUSS.get(),
-                        ModBlocks.TRUSS_STAIRS.get(),
-                        ModBlocks.TRUSS_SLAB.get(),
-                        ModBlocks.CATWALK_TRUSS.get(),
-                        ModBlocks.CATWALK_TRUSS_STAIRS.get(),
-                        ModBlocks.CATWALK_TRUSS_SLAB.get(),
-                        ModBlocks.GRAY_TRUSS_BEAM.get(),
-                        ModBlocks.GRAY_TRUSS.get(),
-                        ModBlocks.GRAY_CATWALK_TRUSS.get(),
-                        ModBlocks.GRAY_CATWALK_TRUSS_STAIRS.get(),
-                        ModBlocks.GRAY_CATWALK_TRUSS_SLAB.get(),
-                        ModBlocks.GRAY_TRUSS_STAIRS.get(),
-                        ModBlocks.GRAY_TRUSS_SLAB.get(),
-                        ModBlocks.RUSTY_TRUSS_BEAM.get(),
-                        ModBlocks.RUSTY_TRUSS.get(),
-                        ModBlocks.RUSTY_TRUSS_STAIRS.get(),
-                        ModBlocks.RUSTY_TRUSS_SLAB.get(),
-
-                        //added to mining tags 24/9/2026
-                        ModBlocks.RUSTY_CATWALK_TRUSS.get(),
-                        ModBlocks.RUSTY_CATWALK_TRUSS_STAIRS.get(),
-                        ModBlocks.RUSTY_CATWALK_TRUSS_SLAB.get()
-
-                );
-        this.tag(ModTags.Blocks.VESSELGLASS_BLOCKS)
-                .add(
-                        ModBlocks.VESSELGLASS.get(),
-                        ModBlocks.REINFORCED_VESSELGLASS.get(),
-                        ModBlocks.GRAY_VESSELGLASS.get(),
-                        ModBlocks.GRAY_REINFORCED_VESSELGLASS.get(),
-                        ModBlocks.RUSTY_VESSELGLASS.get(),
-                        ModBlocks.RUSTY_REINFORCED_VESSELGLASS.get()
-                );
-        this.tag(ModTags.Blocks.ROCKRETE_BLOCKS)
-                .add(
-                        ModBlocks.ROUGH_GRAY_ROCKRETE.get(),
-                        ModBlocks.ROUGH_GRAY_ROCKRETE_SLAB.get(),
-                        ModBlocks.ROUGH_GRAY_ROCKRETE_STAIRS.get(),
-                        ModBlocks.ROUGH_RED_ROCKRETE.get(),
-                        ModBlocks.ROUGH_RED_ROCKRETE_SLAB.get(),
-                        ModBlocks.ROUGH_RED_ROCKRETE_STAIRS.get(),
-                        ModBlocks.ROUGH_BLUE_ROCKRETE.get(),
-                        ModBlocks.ROUGH_BLUE_ROCKRETE_SLAB.get(),
-                        ModBlocks.ROUGH_BLUE_ROCKRETE_STAIRS.get(),
-                        ModBlocks.ROUGH_GREEN_ROCKRETE.get(),
-                        ModBlocks.ROUGH_GREEN_ROCKRETE_SLAB.get(),
-                        ModBlocks.ROUGH_GREEN_ROCKRETE_STAIRS.get(),
-                        ModBlocks.ROUGH_YELLOW_ROCKRETE.get(),
-                        ModBlocks.ROUGH_YELLOW_ROCKRETE_SLAB.get(),
-                        ModBlocks.ROUGH_YELLOW_ROCKRETE_STAIRS.get(),
-
-                        ModBlocks.GRAY_ROCKRETE_WALL.get(),
-                        ModBlocks.RED_ROCKRETE_WALL.get(),
-                        ModBlocks.YELLOW_ROCKRETE_WALL.get(),
-                        ModBlocks.BLUE_ROCKRETE_WALL.get(),
-                        ModBlocks.GRAY_ROCKRETE_WALL.get(),
-                        ModBlocks.GREEN_ROCKRETE_WALL.get(),
-
-                        ModBlocks.GRAY_ROCKRETE.get(),
-                        ModBlocks.GRAY_ROCKRETE_PILLAR.get(),
-                        ModBlocks.GRAY_ROCKRETE_SLAB.get(),
-                        ModBlocks.GRAY_ROCKRETE_PILLAR.get(),
-                        ModBlocks.GRAY_ROCKRETE_SLAB.get(),
-                        ModBlocks.GRAY_ROCKRETE_STAIRS.get(),
-                        ModBlocks.GRAY_ROCKRETE_PARAPET.get(),
-                        ModBlocks.RED_ROCKRETE_PARAPET.get(),
-                        ModBlocks.YELLOW_ROCKRETE_PARAPET.get(),
-                        ModBlocks.BLUE_ROCKRETE_PARAPET.get(),
-                        ModBlocks.GREEN_ROCKRETE_PARAPET.get(),
-
-                        ModBlocks.RED_ROCKRETE.get(),
-                        ModBlocks.RED_ROCKRETE_PILLAR.get(),
-                        ModBlocks.RED_ROCKRETE_SLAB.get(),
-                        ModBlocks.RED_ROCKRETE_STAIRS.get(),
-
-                        ModBlocks.BLUE_ROCKRETE.get(),
-                        ModBlocks.BLUE_ROCKRETE_PILLAR.get(),
-                        ModBlocks.BLUE_ROCKRETE_SLAB.get(),
-                        ModBlocks.BLUE_ROCKRETE_STAIRS.get(),
-
-                        ModBlocks.GREEN_ROCKRETE.get(),
-                        ModBlocks.GREEN_ROCKRETE_PILLAR.get(),
-                        ModBlocks.GREEN_ROCKRETE_SLAB.get(),
-                        ModBlocks.GREEN_ROCKRETE_STAIRS.get(),
-
-                        ModBlocks.YELLOW_ROCKRETE.get(),
-                        ModBlocks.YELLOW_ROCKRETE_PILLAR.get(),
-                        ModBlocks.YELLOW_ROCKRETE_SLAB.get(),
-                        ModBlocks.YELLOW_ROCKRETE_STAIRS.get(),
-
-                        ModBlocks.GRIMY_RESTROOM_TILE.get(),
-                        ModBlocks.RED_HAZARD_STRIPE.get(),
-                        ModBlocks.RED_HAZARD_STRIPE_STAIRS.get(),
-                        ModBlocks.RED_HAZARD_STRIPE_SLAB.get(),
-
-                        ModBlocks.YELLOW_HAZARD_STRIPE.get(),
-                        ModBlocks.YELLOW_HAZARD_STRIPE_STAIRS.get(),
-                        ModBlocks.YELLOW_HAZARD_STRIPE_SLAB.get()
-                );
-        this.tag(ModTags.Blocks.DOOR_BLOCKS) //FOR CORRECT MINING TOOLS AND TOOL TIER
-                .add(
-                        ModBlocks.ARMORED_DOOR.get(),
-                        ModBlocks.STAMPED_METAL_DOOR.get(),
-                        ModBlocks.BULKHEAD_DOOR.get()
-                );
-        this.tag(ModTags.Blocks.TRAPDOOR_BLOCKS) //FOR CORRECT MINING TOOLS AND TOOL TIER
-                .add(
-                        ModBlocks.VENT_TRAPDOOR.get(),
-                        ModBlocks.RUSTY_VENT_TRAPDOOR.get()
-                );
         this.tag(ModTags.Blocks.ALL_FURNITURE_BLOCKS)
                 .addTags(
                         ModTags.Blocks.AMENITY_FURNITURE_CATEGORY,
@@ -241,68 +72,26 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(
                         ModBlocks.IHEA_FURNITURE_KIT.get()
                 );
-        this.tag(ModTags.Blocks.SAFETY_FURNITURE_CATEGORY)
+        //--- Furniture Categories; Block Contents for each
+        this.tag(ModTags.Blocks.FURNITURE_CATEGORY_BLOCKS).add(ModRecipeProvider.FURNITURE_CATEGORY_STONECUT_OUTPUT.toArray(new Block[0]));
+        this.tag(ModTags.Blocks.SAFETY_FURNITURE_CATEGORY).add(ModRecipeProvider.SAFETY_FURNITURE_STONECUT_OUTPUT.toArray(new Block[0]));
+        this.tag(ModTags.Blocks.HYGIENE_FURNITURE_CATEGORY).add(ModRecipeProvider.HYGIENE_FURNITURE_STONECUT_OUTPUT.toArray(new Block[0]));
+        this.tag(ModTags.Blocks.INDUSTRIAL_FURNITURE_CATEGORY).add(ModRecipeProvider.INDUSTRIAL_FURNITURE_STONECUT_OUTPUT.toArray(new Block[0]));
+        this.tag(ModTags.Blocks.TECHNOLOGY_FURNITURE_CATEGORY).add(ModRecipeProvider.TECHNOLOGY_FURNITURE_STONECUT_OUTPUT.toArray(new Block[0]));
+        this.tag(ModTags.Blocks.AMENITY_FURNITURE_CATEGORY).add(ModRecipeProvider.AMENITY_FURNITURE_STONECUT_OUTPUT.toArray(new Block[0]));
+
+        //----- END OF FURNITURE BLOCKS -----
+
+        //----- BODY PILLOWS -----
+        this.tag(ModTags.Blocks.BODY_PILLOW_BLOCK)
                 .add(
-                        ModBlocks.SAFETY_FURNISHINGS.get(),
-                        ModBlocks.RED_WALL_MEDKIT.get(),
-                        ModBlocks.WHITE_WALL_MEDKIT.get(),
-                        ModBlocks.FIRE_EXTINGUISHER.get(),
-                        ModBlocks.SMOKE_ALARM.get(),
-                        ModBlocks.OPERATING_TABLE.get(),
-                        ModBlocks.MEDICAL_BED.get(),
-                        ModBlocks.IV_DRIPSTAND.get(),
-                        ModBlocks.VITALS_MONITOR.get()
+                        ModBlocks.BODY_PILLOW_OZY.get(),
+                        ModBlocks.BODY_PILLOW_FANG.get(),
+                        ModBlocks.BODY_PILLOW_PROV.get()
                 );
-        this.tag(ModTags.Blocks.HYGIENE_FURNITURE_CATEGORY)
-                .add(
-                        ModBlocks.HYGIENE_FURNISHINGS.get(),
-                        ModBlocks.TOILET.get(),
-                        ModBlocks.SINK.get(),
-                        ModBlocks.URINAL.get()
-                );
+        //----- END OF BODY PILLOWS -----
 
-        this.tag(ModTags.Blocks.INDUSTRIAL_FURNITURE_CATEGORY)
-                .add(
-                        ModBlocks.INDUSTRIAL_FURNISHINGS.get(),
-                        ModBlocks.LOCKER_BOX.get(),
-                        ModBlocks.LARGE_LOCKER.get(),
-                        ModBlocks.WORK_LIGHT_STAND.get(),
-                        ModBlocks.FLOOR_WORK_LIGHT.get(),
-                        ModBlocks.FUEL_DRUM.get(),
-                        ModBlocks.CCTV_CAMERA.get(),
-                        ModBlocks.INDUSTRIAL_LEVER.get(),
-                        ModBlocks.OBLONG_CAGE_LAMP.get(),
-                        ModBlocks.ROAD_BARRIER.get()
-                );
-
-        this.tag(ModTags.Blocks.TECHNOLOGY_FURNITURE_CATEGORY)
-                .add(
-                        ModBlocks.TECHNOLOGY_FURNISHINGS.get(),
-                        ModBlocks.RETRO_COMPUTER.get(),
-                        ModBlocks.RETRO_COMPUTER_2.get(),
-                        ModBlocks.MONITOR_AND_KEYBOARD.get(),
-                        ModBlocks.DESKTOP_TOWER.get(),
-                        ModBlocks.CASSETTE_PLAYER.get()
-                );
-        this.tag(ModTags.Blocks.AMENITY_FURNITURE_CATEGORY)
-                .add(
-                        ModBlocks.AMENITY_FURNISHINGS.get(),
-
-                        ModBlocks.DESK.get(),
-                        ModBlocks.DESK_DRAWER.get(),
-
-                        ModBlocks.METAL_DESK.get(),
-                        ModBlocks.METAL_DESK_DRAWER.get(),
-                        ModBlocks.METAL_DESK_DRAWER_2.get(),
-
-                        ModBlocks.OFFICE_DESK.get(),
-                        ModBlocks.OFFICE_DESK_DRAWER.get(),
-
-                        ModBlocks.OFFICE_CHAIR.get(),
-                        ModBlocks.BLACK_OFFICE_CHAIR.get(),
-                        ModBlocks.FOLDING_CHAIR.get()
-                );
-        //BLOCKSET FAMILIES
+        //----- BLOCK SET FAMILIES -----
         this.tag(ModTags.Blocks.CLASSIC_DESK)
                 .add(
                         ModBlocks.DESK.get(),
@@ -321,7 +110,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 );
         this.tag(ModTags.Blocks.COPPER_PIPE_CONDUIT)
                 .add(
-                        ModBlocks.PIPEWORKS.get(),
                         ModBlocks.COPPER_PIPE_CONDUIT.get(),
                         ModBlocks.COPPER_PIPE_CONDUIT_PLANAR_CORNER.get(),
                         ModBlocks.COPPER_PIPE_CONDUIT_INNER_CORNER.get(),
@@ -329,7 +117,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 );
         this.tag(ModTags.Blocks.BRASS_PIPE_CONDUIT)
                 .add(
-                        ModBlocks.PIPEWORKS.get(),
                         ModBlocks.BRASS_PIPE_CONDUIT.get(),
                         ModBlocks.BRASS_PIPE_CONDUIT_PLANAR_CORNER.get(),
                         ModBlocks.BRASS_PIPE_CONDUIT_INNER_CORNER.get(),
@@ -337,20 +124,14 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 );
         this.tag(ModTags.Blocks.GRAY_PIPE_CONDUIT)
                 .add(
-                        ModBlocks.PIPEWORKS.get(),
                         ModBlocks.GRAY_PIPE_CONDUIT.get(),
                         ModBlocks.GRAY_PIPE_CONDUIT_PLANAR_CORNER.get(),
                         ModBlocks.GRAY_PIPE_CONDUIT_INNER_CORNER.get(),
                         ModBlocks.GRAY_PIPE_CONDUIT_OUTER_CORNER.get()
                 );
-        this.tag(ModTags.Blocks.PIPEWORKS_BLOCKS) //FOR CORRECT MINING TOOLS AND TOOL TIER
-                .add(ModBlocks.PIPEWORKS.get())
-                .addTags(
-                        ModTags.Blocks.COPPER_PIPE_CONDUIT,
-                        ModTags.Blocks.BRASS_PIPE_CONDUIT,
-                        ModTags.Blocks.GRAY_PIPE_CONDUIT
-                );
+        //----- END OF BLOCK SET FAMILIES -----
 
+        //----- TRACKING BLOCKS WITH STORAGE BLOCK ENTITIES -----
         this.tag(ModTags.Blocks.STORAGE_INVENTORY_BLOCKS)
                 .add(
                         ModBlocks.OFFICE_DESK_DRAWER.get(),
@@ -359,17 +140,19 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.METAL_DESK_DRAWER_2.get(),
                         ModBlocks.LOCKER_BOX.get(),
                         ModBlocks.LARGE_LOCKER.get(),
-                        ModBlocks.FUEL_DRUM.get()
-
+                        ModBlocks.FUEL_DRUM.get(),
+                        ModBlocks.DEBUG_BLOCK.get()
                 );
+        //----- END OF BLOCKS WITH STORAGE BLOCK ENTITIES -----
 
+        //----- VANILLA TAGS------
         this.tag(BlockTags.WALLS)
                 .add(
                         /*
                         Wall and Fence-type blocks require this vanilla tag
                         in order to connect properly
 
-                        Walls and Fences are DIFFERENT TAGS
+                        Walls and Fences use DIFFERENT TAGS
                         */
                         ModBlocks.GRAY_ROCKRETE_WALL.get(),
                         ModBlocks.RED_ROCKRETE_WALL.get(),
@@ -385,7 +168,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         Wall and Fence-type blocks require this vanilla tag
                         in order to connect properly
 
-                        Walls and Fences are DIFFERENT TAGS
+                        Walls and Fences use DIFFERENT TAGS
                         */
                         ModBlocks.BARBED_WIRE_FENCE.get(),
                         ModBlocks.CHAIN_LINK_FENCE.get(),
@@ -441,8 +224,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .addTags(
                         ModTags.Blocks.ALL_FURNITURE_BLOCKS //All furniture can be mined with axe.
                 );
+        //----- END OF VANILLA TAGS -------
 
-        //INTER-MOD COMPAT
+        //----- MOD COMPAT -----
         this.tag(ModTags.Blocks.MOD_CREATE_FAN_TRANSPARENT)
                 .addTags(
                         ModTags.Blocks.TRUSS_BLOCKS
@@ -471,7 +255,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModTags.Blocks.HVAC_BLOCKS,
                         ModTags.Blocks.TRUSS_BLOCKS,
 
-                        //door-type blocks now lower-mass 25/9/26
                         ModTags.Blocks.DOOR_BLOCKS,
                         ModTags.Blocks.TRAPDOOR_BLOCKS,
 
@@ -500,4 +283,5 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModTags.Blocks.TRUSS_BLOCKS
                 );
     }
+    //----- END OF MOD COMPAT -----
 }

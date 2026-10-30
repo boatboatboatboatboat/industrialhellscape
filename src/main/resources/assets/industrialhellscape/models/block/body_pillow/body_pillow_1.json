@@ -6,8 +6,7 @@
 	"texture_size": [32, 32],
 	"textures": {
 		"0": "industrialhellscape:block/body_pillow/body_pillow",
-		"1": "industrialhellscape:block/body_pillow/body_pillow_front_graphic",
-		"particle": "industrialhellscape:block/body_pillow/body_pillow"
+		"particle": "#0"
 	},
 	"elements": [
 		{
@@ -45,10 +44,6 @@
 			"to": [13, 5.1, 30],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
 			"faces": {
-				"north": {"uv": [0, 0, 2.5, 0], "texture": "#missing"},
-				"east": {"uv": [0, 0, 7, 0], "texture": "#missing"},
-				"south": {"uv": [0, 0, 2.5, 0], "texture": "#missing"},
-				"west": {"uv": [0, 0, 7, 0], "texture": "#missing"},
 				"up": {"uv": [8, 15.4375, 1.25, 1.1875], "rotation": 180, "texture": "#1"}
 			}
 		},
@@ -57,10 +52,6 @@
 			"to": [13, -0.1, 30],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, -3, 8]},
 			"faces": {
-				"north": {"uv": [0, 0, 2.5, 0], "texture": "#missing"},
-				"east": {"uv": [0, 0, 7, 0], "texture": "#missing"},
-				"south": {"uv": [0, 0, 2.5, 0], "texture": "#missing"},
-				"west": {"uv": [0, 0, 7, 0], "texture": "#missing"},
 				"down": {"uv": [14.5625, 1.1875, 7.8125, 15.4375], "rotation": 180, "texture": "#1"}
 			}
 		}

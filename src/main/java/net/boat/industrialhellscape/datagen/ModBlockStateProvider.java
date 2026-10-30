@@ -17,18 +17,15 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.*;
-import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
-import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
-import net.neoforged.neoforge.client.model.generators.ModelFile;
-import net.neoforged.neoforge.client.model.generators.MultiPartBlockStateBuilder;
+import net.neoforged.neoforge.client.model.generators.*;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.Arrays;
 
 /*
     Notes:
-    - Within this class, modLoc() specifies that a filepath string ( "block/example_folder/example_block_model" ) is from inside this mod, not vanilla minecraft
-
+    - modLoc() assumes that a filepath string ( "block/example_folder/example_block_model" ) has root "industrialhellscape:" , this mod
+    - mcLoc() assumes the path has root "minecraft:", vanilla minecraft
  */
 
 public class ModBlockStateProvider extends BlockStateProvider {
@@ -49,9 +46,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //Hidden Joke Blocks
         genPeanutS((PeanutStatueBlock) ModBlocks.PEANUT_STATUE.get(), "peanut_statue");
 
-        genMultiBlockHorizontalS(ModBlocks.BODY_PILLOW_OZY.get(), "body_pillow");
-        genVariantMultiBlock(ModBlocks.BODY_PILLOW_FANG.get(), ModBlocks.BODY_PILLOW_OZY.get(), Integer2Block.PART,"body_pillow","body_pillow", "body_pillow_front_graphic_fang", "1", new Integer[]{1} );
-        genVariantMultiBlock(ModBlocks.BODY_PILLOW_PROV.get(), ModBlocks.BODY_PILLOW_OZY.get(), Integer2Block.PART,"body_pillow","body_pillow", "body_pillow_front_graphic_prov", "1", new Integer[]{1} );
+        genVariantMultiBlock(ModBlocks.BODY_PILLOW_OZY.get(), Integer2Block.PART, "body_pillow", "body_pillow", "body_pillow", "body_pillow_front_graphic_ozy","1",new Integer[]{1},"cutout");
+        genVariantMultiBlock(ModBlocks.BODY_PILLOW_FANG.get(), Integer2Block.PART, "body_pillow", "body_pillow", "body_pillow", "body_pillow_front_graphic_fang","1",new Integer[]{1},"cutout");
+        genVariantMultiBlock(ModBlocks.BODY_PILLOW_PROV.get(), Integer2Block.PART, "body_pillow", "body_pillow", "body_pillow", "body_pillow_front_graphic_prov","1",new Integer[]{1},"cutout");
 
         //Base Building Blocks
         gen6FacedCubeHorizontalSBI(ModBlocks.IHEA_FURNITURE_KIT.get(), "furniture_category_block", "ihea_furniture_kit", "front", "back", "left", "right", "top", "bottom");
@@ -66,10 +63,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
         gen3FacedCubeHorizontalSBI(ModBlocks.AMENITY_FURNISHINGS.get(), "furniture_category_block", "amenity_furnishings");
 
         //Railing Blocks (generated block state json files. generated block models from parent, generated item models)
-        genRailingBlockSI((RailingBlock) ModBlocks.YELLOW_RAILING.get(),"railing","yellow_railing","railing","yellow_railing");
-        genRailingBlockSI((RailingBlock) ModBlocks.BLACK_RAILING.get(),"railing","yellow_railing","railing","black_railing");
-        genRailingBlockSI((RailingBlock) ModBlocks.GRAY_RAILING.get(),"railing","yellow_railing","railing","gray_railing");
-        genRailingBlockSI((RailingBlock) ModBlocks.RUSTY_RAILING.get(),"railing","yellow_railing","railing","rusty_railing");
+        genRailingBlockSBI((RailingBlock) ModBlocks.YELLOW_RAILING.get(),"railing","yellow_railing","railing","yellow_railing");
+        genRailingBlockSBI((RailingBlock) ModBlocks.BLACK_RAILING.get(),"railing","yellow_railing","railing","black_railing");
+        genRailingBlockSBI((RailingBlock) ModBlocks.GRAY_RAILING.get(),"railing","yellow_railing","railing","gray_railing");
+        genRailingBlockSBI((RailingBlock) ModBlocks.RUSTY_RAILING.get(),"railing","yellow_railing","railing","rusty_railing");
 
         //Stair Railing Blocks (Make item model only.) TODO: Datagen this
         genCustomI(ModBlocks.YELLOW_STAIR_RAILING.get(),"railing","yellow_stair_rail_left");
@@ -266,11 +263,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genSimpleSlabsSBI(ModBlocks.ROUGH_RED_ROCKRETE_SLAB.get(), ModBlocks.ROUGH_RED_ROCKRETE.get(),"rough_rockrete");
 
         //Rockrete Walls ( They use the "rough" texture" but not that prefix word )
-        genSimpleWallsSB(ModBlocks.GRAY_ROCKRETE_WALL.get(), ModBlocks.ROUGH_GRAY_ROCKRETE.get(), "rough_rockrete");
-        genSimpleWallsSB(ModBlocks.RED_ROCKRETE_WALL.get(), ModBlocks.ROUGH_RED_ROCKRETE.get(), "rough_rockrete");
-        genSimpleWallsSB(ModBlocks.YELLOW_ROCKRETE_WALL.get(), ModBlocks.ROUGH_YELLOW_ROCKRETE.get(), "rough_rockrete");
-        genSimpleWallsSB(ModBlocks.BLUE_ROCKRETE_WALL.get(), ModBlocks.ROUGH_BLUE_ROCKRETE.get(), "rough_rockrete");
-        genSimpleWallsSB(ModBlocks.GREEN_ROCKRETE_WALL.get(), ModBlocks.ROUGH_GREEN_ROCKRETE.get(), "rough_rockrete");
+        genSimpleWallsSBI(ModBlocks.GRAY_ROCKRETE_WALL.get(), ModBlocks.ROUGH_GRAY_ROCKRETE.get(), "rough_rockrete");
+        genSimpleWallsSBI(ModBlocks.RED_ROCKRETE_WALL.get(), ModBlocks.ROUGH_RED_ROCKRETE.get(), "rough_rockrete");
+        genSimpleWallsSBI(ModBlocks.YELLOW_ROCKRETE_WALL.get(), ModBlocks.ROUGH_YELLOW_ROCKRETE.get(), "rough_rockrete");
+        genSimpleWallsSBI(ModBlocks.BLUE_ROCKRETE_WALL.get(), ModBlocks.ROUGH_BLUE_ROCKRETE.get(), "rough_rockrete");
+        genSimpleWallsSBI(ModBlocks.GREEN_ROCKRETE_WALL.get(), ModBlocks.ROUGH_GREEN_ROCKRETE.get(), "rough_rockrete");
 
         //Bolted Brackets
         genCornerShapedBlocksSI(ModBlocks.RUSTY_BOLTED_BRACKET.get(),"bolted_bracket","bolted_bracket","bolted_bracket","rusty_bolted_bracket");
@@ -339,7 +336,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genMultiBlockHorizontalTextureTogglingSI(ModBlocks.VITALS_MONITOR.get(), BlockStateProperties.LIT, Integer2Block.PART, "vitals_monitor", "lit_unlit_textures","1","vitals_monitor_screen_on", new Integer[]{1});
     }
 
-    //String Helper Method for optional folders. Will add an extra backslash if a folder is defined.
+    //---------- DATAGEN HELPER METHODS ----------
+
+    //String Helper Method for optional folders in a filepath. Will add an extra backslash if a folder is defined, else empty.
     private String optionalFolder(String optionalFolderName) {
         return (optionalFolderName+(optionalFolderName.isEmpty() ? "":"/"));
     }
@@ -353,6 +352,18 @@ public class ModBlockStateProvider extends BlockStateProvider {
             default -> 0; //NORTH
         };
     }
+
+    //ModelFile Helper Method for converting (locating) a filepath String to a Model
+    private ModelFile locateModelInMod(String path) {
+        return models().getExistingFile(modLoc(path));
+    }
+
+    //ModelFile Helper Method for building a variant of an existing modded block model 
+    private ModelBuilder<BlockModelBuilder> buildChildFromModParentModel(String childDestinationPath, String parentModelPath) {
+        return models().withExistingParent(childDestinationPath, modLoc(parentModelPath));
+    }
+
+    //---------- END OF DATAGEN HELPER METHODS ----------
 
     //---------- CUSTOM BLOCK MODEL GENERATORS ----------
 
@@ -379,10 +390,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     //Takes existing model from this mod, generate new child model with different texture used for key "#0"
-    private ModelFile buildSingleTextureKeyBlockModel(String newBlockID, String modelName, String blockModelSubFolder, String textureSubFolder, String blockTexture, String renderType) {
+    private ModelFile buildSingleTextureKeyBlockModel(String newBlockID, String blockModelSubFolder, String modelName, String textureSubFolder, String blockTexture, String renderType,  String textureKey) {
         return models()
                 .withExistingParent(newBlockID, modLoc("block/" + optionalFolder(blockModelSubFolder) + modelName))
-                .texture("0", modLoc("block/" + textureSubFolder + "/" + blockTexture))
+                .texture(textureKey, modLoc("block/" + textureSubFolder + "/" + blockTexture))
                 .renderType(renderType);
     }
 
@@ -397,7 +408,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     //Only generate the item model for the block using already-written block model. Block states and block models are already written.
     private void genCustomI(Block block, String modelFolderName, String stringName) {
         String modelPath = "block/"+optionalFolder(modelFolderName)+stringName;
-        simpleBlockItem(block, models().getExistingFile(modLoc(modelPath)));
+        simpleBlockItem(block, locateModelInMod(modelPath));
     }
 
     //Generate Block Model from vanilla cube model with defined textures for 6 faces. Generate Block States for horizontal-placement block. Generate item model from block.
@@ -431,7 +442,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         );
 
         //Generate Item Model
-        simpleBlockItem(block, models().getExistingFile(modLoc(generatedModeLPath)));
+        simpleBlockItem(block, locateModelInMod(generatedModeLPath));
     }
 
     //Generate Block Model from vanilla cube model with 3 defined textures for the 6 faces. Generate Block States for horizontal-placement block. Generate item model from block.
@@ -444,7 +455,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 
         simpleBlockWithItem(block,
-                models().withExistingParent(stringName, mcLoc("block/cube_all"))
+                models().withExistingParent(stringName,"block/cube_all")
                         .texture("all", modLoc("block/" + optionalFolder(textureSubFolder) + stringName)));
     }
 
@@ -456,12 +467,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
         String texturePath =  pathToTexture + stringName;
 
        //GENERATE BASE MODEL
-        ModelFile generatedModel = models().withExistingParent(stringName, mcLoc("block/cube_all"))
+        ModelFile generatedModel =  models().withExistingParent(stringName,"block/cube_all")
                 .texture("all", modLoc(texturePath)).renderType(renderType);
 
         getVariantBuilder(block).forAllStatesExcept(state -> {
                 return ConfiguredModel.builder()
-                            .modelFile(generatedModel)
+                            .modelFile(models().getExistingFile(generatedModel.getLocation()))
                             .build();
                 }, BlockStateProperties.WATERLOGGED);
 
@@ -476,15 +487,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
         String generatedModelPath = "block/"+stringName;
         String baseStringName = BuiltInRegistries.BLOCK.getKey(baseBlock).getPath();
         String blockPath = "block/" + optionalFolder(textureSubFolder);
-        ResourceLocation slabTexturePath = ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID,blockPath+baseStringName);
-        ResourceLocation generatedBaseBlock = ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID,"block/" +baseStringName);
+        ResourceLocation slabTexturePath = modLoc(blockPath+baseStringName);
+        ResourceLocation generatedBaseBlock = modLoc("block/" +baseStringName);
 
         //Generate slab bottom, top, double models and block state file
         //Void method, can't access models directly. Need to rely on strings for blockItem model ResourceLocation.
         slabBlock(((SlabBlock) block), generatedBaseBlock, slabTexturePath);
 
         //Generate Item Model
-        simpleBlockItem(block, models().getExistingFile(modLoc(generatedModelPath)));
+        simpleBlockItem(block, locateModelInMod(generatedModelPath));
 
     }
 
@@ -494,15 +505,21 @@ public class ModBlockStateProvider extends BlockStateProvider {
         - Wall Item model is a 3D model distinct from other wall block models and is unused in-world. Only used in the inventory.
         - Item model generation needs to occur in ModItemModelProvider so that the model only generates in the generated item/ folder
      */
-    private void genSimpleWallsSB(Block block, Block baseBlock, String textureSubFolder) {
+    private void genSimpleWallsSBI(Block block, Block baseBlock, String textureSubFolder) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String textureName = BuiltInRegistries.BLOCK.getKey(baseBlock).getPath();
         String precedingTexturePath = "block/" + optionalFolder(textureSubFolder);
         String texturePath = precedingTexturePath+textureName;
 
-        ResourceLocation wallTexturePath = ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID,texturePath);
+        ResourceLocation wallTexturePath = modLoc(texturePath);
 
         //Generate Block Model and Block States
         wallBlock(((WallBlock) block), wallTexturePath);
+
+        //Generate Wall Block Item Models
+        itemModels().getBuilder(stringName)
+                .parent(models().getExistingFile(mcLoc("block/wall_inventory")))
+                .texture("wall",modLoc(texturePath));
     }
 
     /*
@@ -519,36 +536,35 @@ public class ModBlockStateProvider extends BlockStateProvider {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String parentStringName = BuiltInRegistries.BLOCK.getKey(parentBlock).getPath();
         String blockPath = "block/" + folderName+(folderName.isEmpty() ? "":"/");
-        String generatedBlockPath = "block/";
 
         //build custom double-slab model
-        buildDoubleSlabModel(doubleSlabName, folderName, sideTexture, endTexture);
+        ModelFile doubleSlabModel = buildDoubleSlabModel(doubleSlabName, folderName, sideTexture, endTexture);
 
-        ResourceLocation doubleSlabLoc = ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID,generatedBlockPath + doubleSlabName );
-        ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID,blockPath + parentStringName.replace(nameStringToReplace,nameStringReplacement) );
+        ResourceLocation textureLoc = modLoc(blockPath + parentStringName.replace(nameStringToReplace,nameStringReplacement) );
 
         //Generate slab bottom, top, double models and block state file
         //Void method, can't access models directly. Need to rely on strings for blockItem model ResourceLocation.
-        slabBlock(((SlabBlock) block), doubleSlabLoc, textureLoc);
+        slabBlock(((SlabBlock) block), doubleSlabModel.getLocation(), textureLoc);
 
         String existingModelPath = "block/"+stringName;
-        simpleBlockItem(block, models().getExistingFile(modLoc(existingModelPath)));
+        simpleBlockItem(block, locateModelInMod(existingModelPath));
     }
 
     //Generate Block Models with defined textures for bottom, top, and sides of stairs, Block States and Item
-    private void genStairsWithRenderTypeSBI(Block block, String folderName, String sideTexture, String bottomTexture, String topTexture, String renderType) {
+    private void genStairsWithRenderTypeSBI(Block block, String textureSubFolder, String sideTexture, String bottomTexture, String topTexture, String renderType) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        String blockPath = "block/" + folderName+(folderName.isEmpty() ? "":"/");
+        String textureFolderPath = "block/" + textureSubFolder+(textureSubFolder.isEmpty() ? "":"/");
+        String generatedModelPath = "block/"+stringName;
 
-        ResourceLocation bottomTextureLoc = ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID,blockPath+bottomTexture );
-        ResourceLocation sideTextureLoc = ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID,blockPath+sideTexture );
-        ResourceLocation topTextureLoc = ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID,blockPath+topTexture );
+        ResourceLocation bottomTextureLoc = modLoc(textureFolderPath+bottomTexture );
+        ResourceLocation sideTextureLoc = modLoc(textureFolderPath+sideTexture );
+        ResourceLocation topTextureLoc = modLoc(textureFolderPath+topTexture );
 
+        //Generate Stairs models/states
         //Void method, can't access models directly. Need to rely on strings for blockItem model ResourceLocation.
         stairsBlockWithRenderType((StairBlock) block, sideTextureLoc,bottomTextureLoc,topTextureLoc,renderType);
 
-        String existingModelPath = "block/"+stringName;
-        simpleBlockItem(block, models().getExistingFile(modLoc(existingModelPath)));
+        simpleBlockItem(block, locateModelInMod(generatedModelPath));
     }
 
     /*
@@ -558,10 +574,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         Block States and Item Models generated.
      */
     private void genTextureToggleAntiCullSBI(Block block, String textureSubFolder, String side, String top, String renderType) {
-        //For truss blocks. A side and top texture are required to accomodate Catwalk truss
+        //For full block truss blocks. A side and top texture are required to accomodate Catwalk truss
 
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        String existingModelPath = "block/"+stringName;
 
         ModelFile generatedModel = models()
                 .withExistingParent(stringName, modLoc("block/truss/anticull_template"))
@@ -572,10 +587,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         getVariantBuilder(block)
                 .forAllStates(state -> {
-                    ResourceLocation model = modLoc(existingModelPath);
-
                     return ConfiguredModel.builder()
-                            .modelFile(models().getBuilder(model.toString()))
+                            .modelFile(generatedModel)
                             .build();
                 });
 
@@ -613,7 +626,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .texture("bottom", bottom) //bottom
                 .renderType(renderType);
 
-        ModelFile slabDouble = models().getExistingFile(modLoc("block/"+stringName.replace("_slab","")));
+        ModelFile slabDouble = locateModelInMod("block/"+stringName.replace("_slab",""));
 
         getVariantBuilder(block).forAllStates(state -> {
             SlabType type = state.getValue(SlabBlock.TYPE);
@@ -636,10 +649,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
     //Generate Block Model. Generate Block States. Generate Item Model.
     private void genTrapdoorSBI(Block block, String renderType) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        String existingModelPath = "block/"+stringName;
+        String generatedModelPath = "block/"+stringName;
         trapdoorBlockWithRenderType(((TrapDoorBlock) block), modLoc("block/door/" + stringName), true, renderType);
 
-        simpleBlockItem(block, models().getExistingFile(modLoc(existingModelPath+"_bottom")));
+        simpleBlockItem(block, locateModelInMod(generatedModelPath+"_bottom"));
     }
 
     //Generate Block Model. Generate Block States. NO ITEM MODEL GENERATION. Performed in ModItemModelProvider with manually drawn texture file
@@ -655,7 +668,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         String generatedModelDestination = blockFolder+stringName;
         String existingParentModelLocation = blockFolder+optionalFolder(modelSubFolder)+parentModelName;
 
-        ModelFile cornerBlockModel = models().withExistingParent(generatedModelDestination, modLoc(existingParentModelLocation))
+        ModelFile cornerBlockModel = buildChildFromModParentModel(generatedModelDestination, existingParentModelLocation)
                 .texture("0", texturePath)
                 .texture("particle", texturePath);
 
@@ -663,15 +676,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
             Direction facing = state.getValue(FaceAttachedHorizontalDirectionalBlock.FACING);
             AttachFace face = state.getValue(FaceAttachedHorizontalDirectionalBlock.FACE);
 
+            // UNIQUE TO CORNER BLOCKS. DON'T TOUCH
             int yRotCorner = switch (facing) {
                 case SOUTH -> 270;
                 case WEST  -> 0;
                 case EAST  -> 180;
-                default -> 90; //NORTH. UNIQUE TO CORNER BLOCKS. DON'T TOUCH
+                default -> 90; //NORTH.
             };
 
             return ConfiguredModel.builder()
-                    .modelFile(models().getExistingFile(modLoc(generatedModelDestination)))
+                    .modelFile(models().getExistingFile(cornerBlockModel.getLocation()))
                     .rotationX(face == AttachFace.FLOOR ? 0 : (face == AttachFace.WALL ? 90 : 180) )
                     //If the current blockstate is "FLOOR", don't rotate in X direction.
                     //If not,
@@ -683,6 +697,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         }, BlockStateProperties.WATERLOGGED);
 
+        //GENERATE ITEM MODEL
         simpleBlockItem(block, models().getExistingFile(cornerBlockModel.getLocation()));
     }
 
@@ -706,14 +721,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     String modelToUse = lit? poweredModelPath : unpoweredModelPath;
 
                     return ConfiguredModel.builder()
-                            .modelFile(models().getExistingFile(modLoc(modelToUse)))
+                            .modelFile(locateModelInMod(modelToUse))
                             .rotationX(face == AttachFace.FLOOR ? 0 : (face == AttachFace.WALL ? 90 : 180) )
                             .rotationY(facingDirToDegrees(facing))
                             .build();
                 }, BlockStateProperties.WATERLOGGED);
 
         //GENERATE ITEM MODEL
-        simpleBlockItem(block, models().getExistingFile(modLoc(unpoweredModelPath)));
+        simpleBlockItem(block, locateModelInMod(unpoweredModelPath));
     }
 
     private void genFaceAttachedModelTogglingSI(Block block, String modelSubFolder, String suffixForModelTogglePath, BooleanProperty toggleProperty) {
@@ -729,14 +744,108 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     String modelToUse = lit? poweredModelPath : unpoweredModelPath;
 
                     return ConfiguredModel.builder()
-                            .modelFile(models().getExistingFile(modLoc(modelToUse)))
+                            .modelFile(locateModelInMod(modelToUse))
                             .rotationX(face == AttachFace.FLOOR ? 0 : (face == AttachFace.WALL ? 90 : 180) )
                             .rotationY(facingDirToDegrees(facing))
                             .build();
                 }, BlockStateProperties.WATERLOGGED);
 
         //GENERATE ITEM MODEL
-        simpleBlockItem(block, models().getExistingFile(modLoc(unpoweredModelPath)));
+        simpleBlockItem(block, locateModelInMod(unpoweredModelPath));
+    }
+
+    private void genFaceAttachedModelledSI(Block block, String modelSubFolder) {
+        //For Blocks like Smoke Alarm (custom model), NOT a full block
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        String existingModelPath = "block/"+optionalFolder(modelSubFolder)+stringName;
+
+        getVariantBuilder(block).forAllStatesExcept(state -> {
+            Direction facing = state.getValue(FaceAttachedHorizontalDirectionalBlock.FACING);
+            AttachFace face = state.getValue(FaceAttachedHorizontalDirectionalBlock.FACE);
+
+            return ConfiguredModel.builder()
+                    .modelFile(locateModelInMod(existingModelPath))
+                    .rotationX(face == AttachFace.FLOOR ? 0 : (face == AttachFace.WALL ? 90 : 180) )
+                    //If the current blockstate is "FLOOR", don't rotate in X direction.
+                    //If not,
+                    //If the current blockstate is "WALL", rotate in the X direction 90 degrees so the model is on its side.
+                    //If not,
+                    //Then rotate in the X direction 180 degrees so model is upside down for the last block state, "ceiling"
+                    .rotationY((int) (face == AttachFace.CEILING ? facing : facing.getOpposite()).toYRot())
+                    .build();
+
+        }, BlockStateProperties.WATERLOGGED);
+
+        //GENERATE ITEM MODEL
+        simpleBlockItem(block, locateModelInMod(existingModelPath));
+    }
+
+    private void genFaceAttachedSI(Block block, String textureSubFolder, String textureName, String frontTextureSuffix, String backTextureSuffix, String leftTextureSuffix, String rightTextureSuffix, String topTextureSuffix, String bottomTextureSuffix) {
+        //For Full Blocks
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        String generatedModelPath = "block/"+stringName;
+
+        String texturePrecedingName = textureName+"_";
+        String frontTexturePath = texturePrecedingName + frontTextureSuffix;
+        String backTexturePath = texturePrecedingName + backTextureSuffix;
+        String leftTexturePath = texturePrecedingName + leftTextureSuffix;
+        String rightTexturePath = texturePrecedingName + rightTextureSuffix;
+        String topTexturePath = texturePrecedingName + topTextureSuffix;
+        String bottomTexturePath = texturePrecedingName + bottomTextureSuffix;
+
+        //Generate Model
+        ModelFile generatedModel = build6FaceCubeModel(
+                stringName,
+                textureSubFolder,
+                frontTexturePath,
+                backTexturePath,
+                leftTexturePath,
+                rightTexturePath,
+                topTexturePath,
+                bottomTexturePath);
+
+        getVariantBuilder(block).forAllStatesExcept(state -> {
+            Direction facing = state.getValue(FaceAttachedHorizontalDirectionalBlock.FACING);
+            AttachFace face = state.getValue(FaceAttachedHorizontalDirectionalBlock.FACE);
+
+
+            return ConfiguredModel.builder()
+                    .modelFile(generatedModel)
+                    .rotationX(face == AttachFace.FLOOR ? 0 : (face == AttachFace.WALL ? 90 : 180))
+                    .rotationY((int) (face == AttachFace.CEILING ? facing : facing.getOpposite()).toYRot()) //due to different model for ceiling/floor
+                    .build();
+
+        }, BlockStateProperties.WATERLOGGED);
+
+        simpleBlockItem(block, locateModelInMod(generatedModelPath));
+    }
+
+    private void genFaceAttachedModelledFloorCeilingVariantSI(Block block, String modelSubFolder, String floorModelKey, String ceilingModelKey, String wallModelKey) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        String blockName = "block/"+optionalFolder(modelSubFolder)+stringName;
+        String ceilingModel = blockName+"_"+ceilingModelKey;
+        String floorModel = blockName+"_"+floorModelKey;
+        String wallModel = blockName+"_"+wallModelKey;
+
+        getVariantBuilder(block)
+                .forAllStatesExcept(state -> {
+                    Direction horizontalFacing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+                    AttachFace surfaceAttached = state.getValue(FaceAttachedHorizontalDirectionalBlock.FACE);
+
+                    String modelToUse = switch(surfaceAttached) {
+                        case FLOOR -> floorModel;
+                        case WALL -> wallModel;
+                        case CEILING -> ceilingModel;
+                    };
+
+                    return ConfiguredModel.builder()
+                            .modelFile(locateModelInMod(modelToUse))
+                            .rotationY(facingDirToDegrees(horizontalFacing))
+                            .build();
+                }, BlockStateProperties.WATERLOGGED);
+
+        //GENERATE ITEM MODEL
+        simpleBlockItem(block, locateModelInMod(wallModel));
     }
 
     private void genHorizontalModelledSI(Block block, String modelSubFolder) {
@@ -748,15 +857,169 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     Direction horizontalFacing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
 
                     return ConfiguredModel.builder()
-                            .modelFile(models().getExistingFile(modLoc(modelPath)))
+                            .modelFile(locateModelInMod(modelPath))
                             .rotationY(facingDirToDegrees(horizontalFacing))
                             .build();
                 }, BlockStateProperties.WATERLOGGED);
 
         //GENERATE ITEM MODEL
-        simpleBlockItem(block, models().getExistingFile(modLoc(modelPath)));
+        simpleBlockItem(block, locateModelInMod(modelPath));
     }
 
+    //These are powered whereas work light stand is "lit" ??? TODO: Make consistent blockstate properties
+    private void genHorizontalTextureTogglingSI(Block block, BooleanProperty toggleProperty, String modelSubFolder, String litUnlitTextureName) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        String onModelStringName = stringName + "_on";
+        String unpoweredModelPath = "block/"+optionalFolder(modelSubFolder)+stringName;
+        String poweredModelPath = "block/"+stringName+"_on"; //generated/resources
+        String poweredTexturePath = "block/lit_unlit_textures/"+litUnlitTextureName+"_on";
+
+        //On Model
+        ModelFile generatedOnModel = models()
+                .withExistingParent(onModelStringName, modLoc(unpoweredModelPath))
+                .texture("1", poweredTexturePath);
+
+        getVariantBuilder(block)
+                .forAllStatesExcept(state -> {
+                    Direction horizontalFacing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+                    Boolean powered = state.getValue(toggleProperty);
+                    String modelToUse = powered? poweredModelPath : unpoweredModelPath;
+
+                    return ConfiguredModel.builder()
+                            .modelFile(locateModelInMod(modelToUse))
+                            .rotationY(facingDirToDegrees(horizontalFacing))
+                            .build();
+                }, BlockStateProperties.WATERLOGGED);
+
+        //GENERATE ITEM MODEL
+        simpleBlockItem(block, locateModelInMod(unpoweredModelPath));
+    }
+
+    private void genHorizontalModelTogglingSI(Block block, String modelSubFolder, String suffixForModelTogglePath, BooleanProperty toggleProperty, boolean useToggledTrueStateForItemModel) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        String unpoweredModelPath = "block/"+optionalFolder(modelSubFolder)+stringName;
+        String poweredModelPath = unpoweredModelPath+"_"+suffixForModelTogglePath;
+        String itemModelPath = useToggledTrueStateForItemModel ? poweredModelPath : unpoweredModelPath;
+
+        getVariantBuilder(block)
+                .forAllStatesExcept(state -> {
+                    Direction horizontalFacing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+                    Boolean powered = state.getValue(toggleProperty);
+                    String modelToUse = powered? poweredModelPath : unpoweredModelPath;
+
+                    return ConfiguredModel.builder()
+                            .modelFile(locateModelInMod(modelToUse))
+                            .rotationY(facingDirToDegrees(horizontalFacing))
+                            .build();
+                }, BlockStateProperties.WATERLOGGED);
+
+        //GENERATE ITEM MODEL
+        simpleBlockItem(block, locateModelInMod(itemModelPath));
+    }
+
+    private void genTrussSupportSBI(Block block, String textureSubFolder, EnumProperty<Direction.Axis> axisProperty, BooleanProperty booleanProperty) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+
+        //make all models first. Define a vertical, alt_state = 0 model variant for use as Item Model
+        ModelFile blockModelVariantUsedForItemModel =
+        buildSingleTextureKeyBlockModel(stringName+"_vertical_0", "truss", "truss_beam_vertical_0", textureSubFolder,stringName,"cutout","0");
+        buildSingleTextureKeyBlockModel(stringName+"_vertical_1", "truss","truss_beam_vertical_1",  textureSubFolder,stringName,"cutout","0");
+        buildSingleTextureKeyBlockModel(stringName+"_horizontal_0", "truss","truss_beam_horizontal_0", textureSubFolder,stringName,"cutout","0");
+        buildSingleTextureKeyBlockModel(stringName+"_horizontal_1", "truss","truss_beam_horizontal_1", textureSubFolder,stringName,"cutout","0");
+
+        getVariantBuilder(block)
+                .forAllStatesExcept(state -> {
+                    Direction.Axis axis = state.getValue(axisProperty);
+                    boolean altState = state.getValue(booleanProperty);
+
+                    int yRotTruss = switch (axis) {
+                        case X -> 90;
+                        case Y, Z -> 0;
+                    };
+
+                    String modelVariantName = switch (axis) {
+                        case X, Z -> stringName+"_horizontal_" + (altState ? "1" : "0");
+                        case Y  -> stringName+"_vertical_" + (altState ? "1" : "0");
+                    };
+
+                    return ConfiguredModel.builder()
+                            .modelFile(locateModelInMod("block/"+modelVariantName))
+                            .rotationY(yRotTruss)
+                            .build();
+
+                }, BlockStateProperties.WATERLOGGED);
+
+        //GENERATE ITEM MODEL
+        simpleBlockItem(block, models().getExistingFile(blockModelVariantUsedForItemModel.getLocation()));
+    }
+
+    private void genConnectedPillarBlockSBI(Block block, String parentModelSubFolder, String parentModelBaseName, String textureSubFolder, String textureBaseName) {
+
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        String existingParentModelPath = "block/"+optionalFolder(parentModelSubFolder)+parentModelBaseName;
+        
+                getVariantBuilder(block)
+                .forAllStates(state -> {
+
+                    Direction.Axis axis = state.getValue(BlockStateProperties.AXIS);
+                    DynamicConnectionState type = state.getValue(ModEnumsInterface.TYPE);
+
+                    ResourceLocation parentModelPath = switch(axis) {
+                        case X -> modLoc(existingParentModelPath+"_x");
+                        case Y -> mcLoc("block/cube_column"); //vanilla mc
+                        case Z -> modLoc(existingParentModelPath+"_z");
+                    };
+
+                    String modelAppendAxis = switch(axis) {
+                        case X -> "_x";
+                        case Y -> "_y";
+                        case Z -> "_z";
+                    };
+
+                    //For texture shading direction consistency, horizontal pillars use opposite side textures
+                    String textureAppendType;
+                    switch(axis) {
+                        case Y -> {
+                            textureAppendType = switch (type) {
+                                case SOLO -> "_solo";
+                                case POSITIVE -> "_positive";
+                                case MIDDLE -> "_middle";
+                                case NEGATIVE -> "_negative";
+                            };
+                        }
+                        default -> {
+                            textureAppendType = switch (type) {
+                                case SOLO -> "_solo";
+                                case POSITIVE -> "_negative";
+                                case MIDDLE -> "_middle";
+                                case NEGATIVE -> "_positive";
+                            };
+                        }
+                    }
+
+                    String textureAppendOppositeType = switch(type) {
+                        case POSITIVE -> "_positive";
+                        case NEGATIVE -> "_negative";
+                        default -> textureAppendType;
+                    };
+                    
+                    String generatedModelPath = "block/"+stringName+textureAppendType+modelAppendAxis;
+
+                    ModelFile modelToUse = models().withExistingParent(generatedModelPath, parentModelPath)
+                            .texture("end", modLoc("block/" + optionalFolder(textureSubFolder) + textureBaseName+"_end")) //always the end texture
+                            .texture("side", modLoc("block/" + optionalFolder(textureSubFolder) + textureBaseName+textureAppendType)) //side texture
+                            .texture("opposite_side", modLoc("block/" + optionalFolder(textureSubFolder) + textureBaseName+textureAppendOppositeType));
+
+                    return ConfiguredModel.builder()
+                            .modelFile(models().getExistingFile(modelToUse.getLocation()))
+                            .build();
+                });
+
+        //GENERATE ITEM MODEL (SOLO, vertical Y-axis model)
+        simpleBlockItem(block, locateModelInMod("block/"+stringName+"_solo_y"));
+    }
+
+    // --- MULTIBLOCK GENERATION METHODS ---
     private void genFullBlockIntegerMultiBlockSI(Block block, IntegerProperty integerProperty, String textureSubFolder) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 
@@ -782,62 +1045,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 }, BlockStateProperties.WATERLOGGED);
 
         //GENERATE ITEM MODEL
-        simpleBlockItem(block, models().getExistingFile(modLoc("block/"+stringName + "_"+0)));
-    }
-
-    private void genFullBlockIntegerPropFromVanillaAssetsSBI(Block block, String vanillaModelName, IntegerProperty integerProperty) {
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        String existingVanillaModelPath = "block/" + vanillaModelName+"_";
-
-        getVariantBuilder(block)
-                .forAllStates(state -> {
-                    int intBlockState = state.getValue(integerProperty);
-
-                    return ConfiguredModel.builder()
-                            .modelFile(models().getExistingFile(mcLoc(existingVanillaModelPath)))
-                            .build();
-                }
-        );
-
-        //GENERATE ITEM MODEL
-        simpleBlockItem(block, models().getExistingFile(mcLoc(existingVanillaModelPath)));
-    }
-
-    private void genTrussSupportSBI(Block block, String textureSubFolder, EnumProperty<Direction.Axis> axisProperty, BooleanProperty booleanProperty) {
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-
-        //make all models first. Define a vertical, alt_state = 0 model variant for use as Item Model
-        ModelFile blockModelVariantUsedForItemModel =
-        buildSingleTextureKeyBlockModel(stringName+"_vertical_0", "truss_beam_vertical_0", "truss", textureSubFolder, stringName, "cutout");
-
-        buildSingleTextureKeyBlockModel(stringName+"_vertical_1", "truss_beam_vertical_1", "truss", textureSubFolder, stringName, "cutout");
-        buildSingleTextureKeyBlockModel(stringName+"_horizontal_0", "truss_beam_horizontal_0", "truss", textureSubFolder, stringName, "cutout");
-        buildSingleTextureKeyBlockModel(stringName+"_horizontal_1", "truss_beam_horizontal_1", "truss", textureSubFolder, stringName, "cutout");
-
-        getVariantBuilder(block)
-                .forAllStatesExcept(state -> {
-                    Direction.Axis axis = state.getValue(axisProperty);
-                    boolean altState = state.getValue(booleanProperty);
-
-                    int yRotTruss = switch (axis) {
-                        case X -> 90;
-                        case Y, Z -> 0;
-                    };
-
-                    String modelVariantName = switch (axis) {
-                        case X, Z -> stringName+"_horizontal_" + (altState ? "1" : "0");
-                        case Y  -> stringName+"_vertical_" + (altState ? "1" : "0");
-                    };
-
-                    return ConfiguredModel.builder()
-                            .modelFile(models().getExistingFile(modLoc("block/"+modelVariantName)))
-                            .rotationY(yRotTruss)
-                            .build();
-
-                }, BlockStateProperties.WATERLOGGED);
-
-        //GENERATE ITEM MODEL
-        simpleBlockItem(block, models().getExistingFile(blockModelVariantUsedForItemModel.getLocation()));
+        simpleBlockItem(block, locateModelInMod("block/"+stringName + "_"+0));
     }
 
     private void genPeanutS(PeanutStatueBlock block, String modelSubFolder) {
@@ -853,7 +1061,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     int intBlockState = state.getValue(Integer2Block.PART);
 
                     return ConfiguredModel.builder()
-                            .modelFile(models().getExistingFile(modLoc("block/"+ optionalFolder(modelSubFolder) +stringName  + "_"+intBlockState+appendDiagonal)))
+                            .modelFile(locateModelInMod("block/"+ optionalFolder(modelSubFolder) +stringName  + "_"+intBlockState+appendDiagonal))
                             .rotationY(facingDirToDegrees(horizontalFacing))
                             .build();
                 }, BlockStateProperties.WATERLOGGED);
@@ -869,7 +1077,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     int intBlockState = state.getValue(Integer2Block.PART);
 
                     return ConfiguredModel.builder()
-                            .modelFile(models().getExistingFile(modLoc("block/"+ optionalFolder(modelSubFolder) +stringName  + "_"+intBlockState)))
+                            .modelFile(locateModelInMod("block/"+ optionalFolder(modelSubFolder) +stringName  + "_"+intBlockState))
                             .rotationY(facingDirToDegrees(horizontalFacing))
                             .build();
                 }, BlockStateProperties.WATERLOGGED);
@@ -882,17 +1090,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
             where that block model is expected to differ.
 
      */
-    private void genVariantMultiBlock(Block block, Block parentBlock, IntegerProperty integerProperty, String originalModelSubFolder, String variantTextureSubFolder, String variantTextureName, String textureKey, Integer[] arrayOfStatesWithModelChange) {
+    private void genVariantMultiBlock(Block block, IntegerProperty integerProperty, String parentModelSubFolder, String parentModelBaseName, String variantTextureSubFolder, String variantTextureName, String textureKey, Integer[] arrayOfStatesWithModelChange, String renderType) {
         //Integer Object used for arrayOfStatesWithModelChange instead of Primitive
         //The .contains() comparison only works with Integer Objects
 
-        String variantBlockName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-
-        String parentBlockName = BuiltInRegistries.BLOCK.getKey(parentBlock).getPath();
-        String parentModelPath = "block/"+optionalFolder(originalModelSubFolder)+parentBlockName;
-        String variantGeneratedModelPath = "block/"+variantBlockName; //generated/resources
-        String variantTexturePath = "block/"+optionalFolder(variantTextureSubFolder)+variantTextureName;
-
+        String generatedModelPath = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        String parentModelPath = "block/"+optionalFolder(parentModelSubFolder)+parentModelBaseName;
+        
         /*
             - For all MultiBlock parts designated for retexturing in arrayOfStatesWithModelChange
             - Take the parent part model associated with each part # designated
@@ -905,15 +1109,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
                     boolean partIntDesignatedForModelChange = (Arrays.asList(arrayOfStatesWithModelChange).contains(intBlockState) );
                     if(partIntDesignatedForModelChange) {
-                        models()
-                                .withExistingParent(variantBlockName + "_" + intBlockState, modLoc(parentModelPath + "_" + intBlockState))
-                                .texture(textureKey, variantTexturePath);
+                        buildSingleTextureKeyBlockModel(
+                                generatedModelPath+"_"+intBlockState, 
+                                parentModelSubFolder, parentModelBaseName+"_"+intBlockState, 
+                                variantTextureSubFolder, variantTextureName, 
+                                renderType, textureKey);
                     }
 
-                    String modelToUse = partIntDesignatedForModelChange? variantGeneratedModelPath : parentModelPath;
+                    String modelToUse = partIntDesignatedForModelChange? generatedModelPath : parentModelPath;
 
                     return ConfiguredModel.builder()
-                            .modelFile(models().getExistingFile(modLoc(modelToUse+"_"+intBlockState)))
+                            .modelFile(locateModelInMod(modelToUse+"_"+intBlockState))
                             .rotationY(facingDirToDegrees(horizontalFacing))
                             .build();
                 }, BlockStateProperties.WATERLOGGED);
@@ -943,7 +1149,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     String modelToUse = modelNeedsChange? existingOnModelPath : existingOffModelPath;
 
                     return ConfiguredModel.builder()
-                            .modelFile(models().getExistingFile(modLoc(modelToUse+"_"+intBlockState)))
+                            .modelFile(locateModelInMod(modelToUse+"_"+intBlockState))
                             .rotationY(facingDirToDegrees(horizontalFacing))
                             .build();
                 }, BlockStateProperties.WATERLOGGED);
@@ -983,158 +1189,20 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     String modelToUse = modelNeedsChange? poweredModelPath : unpoweredParentModelPath;
 
                     return ConfiguredModel.builder()
-                            .modelFile(models().getExistingFile(modLoc(modelToUse+"_"+intBlockState)))
+                            .modelFile(locateModelInMod(modelToUse+"_"+intBlockState))
                             .rotationY(facingDirToDegrees(horizontalFacing))
                             .build();
                 }, BlockStateProperties.WATERLOGGED);
     }
-
-    //These are powered whereas work light stand is "lit" ??? TODO: Make consistent blockstate properties
-    private void genHorizontalTextureTogglingSI(Block block, BooleanProperty toggleProperty, String modelSubFolder, String litUnlitTextureName) {
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        String onModelStringName = stringName + "_on";
-        String unpoweredModelPath = "block/"+optionalFolder(modelSubFolder)+stringName;
-        String poweredModelPath = "block/"+stringName+"_on"; //generated/resources
-        String poweredTexturePath = "block/lit_unlit_textures/"+litUnlitTextureName+"_on";
-
-        //On Model
-        ModelFile generatedOnModel = models()
-                .withExistingParent(onModelStringName, modLoc(unpoweredModelPath))
-                .texture("1", poweredTexturePath);
-
-        getVariantBuilder(block)
-                .forAllStatesExcept(state -> {
-                    Direction horizontalFacing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
-                    Boolean powered = state.getValue(toggleProperty);
-                    String modelToUse = powered? poweredModelPath : unpoweredModelPath;
-
-                    return ConfiguredModel.builder()
-                            .modelFile(models().getExistingFile(modLoc(modelToUse)))
-                            .rotationY(facingDirToDegrees(horizontalFacing))
-                            .build();
-                }, BlockStateProperties.WATERLOGGED);
-
-        //GENERATE ITEM MODEL
-        simpleBlockItem(block, models().getExistingFile(generatedOnModel.getLocation()));
-    }
-
-    private void genHorizontalModelTogglingSI(Block block, String modelSubFolder, String suffixForModelTogglePath, BooleanProperty toggleProperty, boolean useToggledTrueStateForItemModel) {
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        String unpoweredModelPath = "block/"+optionalFolder(modelSubFolder)+stringName;
-        String poweredModelPath = unpoweredModelPath+"_"+suffixForModelTogglePath;
-        String itemModelPath = useToggledTrueStateForItemModel ? poweredModelPath : unpoweredModelPath;
-
-        getVariantBuilder(block)
-                .forAllStatesExcept(state -> {
-                    Direction horizontalFacing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
-                    Boolean powered = state.getValue(toggleProperty);
-                    String modelToUse = powered? poweredModelPath : unpoweredModelPath;
-
-                    return ConfiguredModel.builder()
-                            .modelFile(models().getExistingFile(modLoc(modelToUse)))
-                            .rotationY(facingDirToDegrees(horizontalFacing))
-                            .build();
-                }, BlockStateProperties.WATERLOGGED);
-
-        //GENERATE ITEM MODEL
-        simpleBlockItem(block, models().getExistingFile(modLoc(itemModelPath)));
-    }
-
-    private void genFaceAttachedModelledSI(Block block, String modelSubFolder) {
-        //For Blocks like Smoke Alarm (custom model)
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        String existingModelPath = "block/"+optionalFolder(modelSubFolder)+stringName;
-
-        getVariantBuilder(block).forAllStatesExcept(state -> {
-            Direction facing = state.getValue(FaceAttachedHorizontalDirectionalBlock.FACING);
-            AttachFace face = state.getValue(FaceAttachedHorizontalDirectionalBlock.FACE);
-
-            return ConfiguredModel.builder()
-                    .modelFile(models().getExistingFile(modLoc("block/"+optionalFolder(modelSubFolder)+stringName)))
-                    .rotationX(face == AttachFace.FLOOR ? 0 : (face == AttachFace.WALL ? 90 : 180) )
-                    //If the current blockstate is "FLOOR", don't rotate in X direction.
-                    //If not,
-                    //If the current blockstate is "WALL", rotate in the X direction 90 degrees so the model is on its side.
-                    //If not,
-                    //Then rotate in the X direction 180 degrees so model is upside down for the last block state, "ceiling"
-                    .rotationY((int) (face == AttachFace.CEILING ? facing : facing.getOpposite()).toYRot())
-                    .build();
-
-        }, BlockStateProperties.WATERLOGGED);
-
-        //GENERATE ITEM MODEL
-        simpleBlockItem(block, models().getExistingFile(modLoc(existingModelPath)));
-    }
-
-    private void genFaceAttachedSI(Block block, String textureSubFolder, String textureName, String frontTextureSuffix, String backTextureSuffix, String leftTextureSuffix, String rightTextureSuffix, String topTextureSuffix, String bottomTextureSuffix) {
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        String generatedModelPath = "block/"+stringName;
-
-        String texturePrecedingName = textureName+"_";
-        String frontTexturePath = texturePrecedingName + frontTextureSuffix;
-        String backTexturePath = texturePrecedingName + backTextureSuffix;
-        String leftTexturePath = texturePrecedingName + leftTextureSuffix;
-        String rightTexturePath = texturePrecedingName + rightTextureSuffix;
-        String topTexturePath = texturePrecedingName + topTextureSuffix;
-        String bottomTexturePath = texturePrecedingName + bottomTextureSuffix;
-
-        //Generate Model
-        ModelFile generatedModel = build6FaceCubeModel(
-                stringName,
-                textureSubFolder,
-                frontTexturePath,
-                backTexturePath,
-                leftTexturePath,
-                rightTexturePath,
-                topTexturePath,
-                bottomTexturePath);
-
-        getVariantBuilder(block).forAllStatesExcept(state -> {
-            Direction facing = state.getValue(FaceAttachedHorizontalDirectionalBlock.FACING);
-            AttachFace face = state.getValue(FaceAttachedHorizontalDirectionalBlock.FACE);
-            simpleBlockItem(block, models().getExistingFile(modLoc(generatedModelPath)));
-
-            return ConfiguredModel.builder()
-                    .modelFile(generatedModel)
-                    .rotationX(face == AttachFace.FLOOR ? 0 : (face == AttachFace.WALL ? 90 : 180))
-                    .rotationY((int) (face == AttachFace.CEILING ? facing : facing.getOpposite()).toYRot()) //due to different model for ceiling/floor
-                    .build();
-
-        }, BlockStateProperties.WATERLOGGED);
-    }
+    // --- END OF MULTIBLOCK DATAGEN METHODS ---
+    
+    // --- MULTIPART BLOCKSTATE DATAGEN METHODS ---
 
     /*
         Generates Block States and Block Item Model for a face-attached block
         - Model changes variant depending on whether block is connected to wall, floor, or ceiling
-        - TODO: Make floor variant of CCTV camera... Whatever that would look like
+        - TODO: Make floor variant of CCTV camera - Flock camera post?
     */
-    private void genFaceAttachedModelledFloorCeilingVariantSI(Block block, String modelSubFolder, String floorModelKey, String ceilingModelKey, String wallModelKey) {
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        String blockName = "block/"+optionalFolder(modelSubFolder)+stringName;
-        String ceilingModel = blockName+"_"+ceilingModelKey;
-        String floorModel = blockName+"_"+floorModelKey;
-        String wallModel = blockName+"_"+wallModelKey;
-
-        getVariantBuilder(block)
-                .forAllStatesExcept(state -> {
-                    Direction horizontalFacing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
-                    AttachFace surfaceAttached = state.getValue(FaceAttachedHorizontalDirectionalBlock.FACE);
-
-                    String modelToUse = switch(surfaceAttached) {
-                        case FLOOR -> floorModel;
-                        case WALL -> wallModel;
-                        case CEILING -> ceilingModel;
-                    };
-
-                    return ConfiguredModel.builder()
-                            .modelFile(models().getExistingFile(modLoc(modelToUse)))
-                            .rotationY(facingDirToDegrees(horizontalFacing))
-                            .build();
-                }, BlockStateProperties.WATERLOGGED);
-
-        //GENERATE ITEM MODEL
-        simpleBlockItem(block, models().getExistingFile(modLoc(wallModel)));
-    }
 
     // Generates Panel Block Models, States, Item Models (multi-blocks that can be re-placed for all 6 sides)
     private void genMultiStatePanelSBI(PanelBlock block, String modelSubFolder, String parentModelName, String faceTextureSubFolder, String edgeTextureSubFolder, String faceTextureFileName, String edgeTextureFileName) {
@@ -1145,8 +1213,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         String faceTexturePath = blockFolder+optionalFolder(faceTextureSubFolder)+faceTextureFileName;
         String edgeTexturePath = blockFolder+optionalFolder(edgeTextureSubFolder)+edgeTextureFileName;
 
-        //ModelFile floorPanelModelFile = models().getExistingFile(modLoc(parentModelPath));
-        ModelFile floorPanelModelFile = models().withExistingParent(generatedModelDestination, modLoc(existingParentModelLocation))
+        //ModelFile floorPanelModelFile = locateModelInMod(parentModelPath));
+        ModelFile floorPanelModelFile = buildChildFromModParentModel(generatedModelDestination, existingParentModelLocation)
                 .texture("0", faceTexturePath)
                 .texture("1", edgeTexturePath);
 
@@ -1201,7 +1269,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
             panelModelBuilder.end();
         }
 
-        simpleBlockItem(block, models().getExistingFile(modLoc(generatedModelDestination)));
+        simpleBlockItem(block, locateModelInMod(generatedModelDestination));
     }
 
     private void genFenceBlockSB(FenceBlock block, String modelSubFolder, String parentPostName, String parentFenceName, String textureSubFolder, String postTextureFileName, String fenceTextureFileName) {
@@ -1222,9 +1290,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         String fenceTexturePath = blockFolder+optionalFolder(textureSubFolder)+fenceTextureFileName;
 
         //Post Model
-        ModelFile postModelFile = models().withExistingParent(generatedPostModelLocation, modLoc(parentPostModelLocation)).texture("0", postTexturePath);
+        ModelFile postModelFile = buildChildFromModParentModel(generatedPostModelLocation, parentPostModelLocation).texture("0", postTexturePath);
         //Fence Model
-        ModelFile fenceModelFile = models().withExistingParent(generatedFenceModelLocation, modLoc(parentFenceModelLocation)).texture("0", fenceTexturePath);
+        ModelFile fenceModelFile = buildChildFromModParentModel(generatedFenceModelLocation, parentFenceModelLocation).texture("0", fenceTexturePath);
 
         //Main
         MultiPartBlockStateBuilder multipartBuilder = getMultipartBuilder(block);
@@ -1259,9 +1327,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         String existingFenceModelLocation = blockFolder+optionalFolder(modelSubFolder)+fenceFileName;
 
         //Post Model
-        ModelFile postModelFile = models().getExistingFile(modLoc(existingPostModelLocation));
+        ModelFile postModelFile = locateModelInMod(existingPostModelLocation);
         //Fence Model
-        ModelFile fenceModelFile = models().getExistingFile(modLoc(existingFenceModelLocation));
+        ModelFile fenceModelFile = locateModelInMod(existingFenceModelLocation);
 
         //Main
         MultiPartBlockStateBuilder multipartBuilder = getMultipartBuilder(block);
@@ -1346,7 +1414,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         fencePostSuperGroupSoloConnection_yRot90.end(); //closes the exterior group (super-group)
     }
 
-    private void genRailingBlockSI(RailingBlock block, String modelSubFolder, String parentModelName, String textureSubFolder, String textureName) {
+    private void genRailingBlockSBI(RailingBlock block, String modelSubFolder, String parentModelName, String textureSubFolder, String textureName) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String blockFolder = "block/"; //generated/resources/assets/models/blocks but also used for mod's non-generated resource folder
         String generatedModelDestination = blockFolder+stringName;
@@ -1354,7 +1422,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         String faceTexturePath = blockFolder+optionalFolder(textureSubFolder)+textureName;
 
         //railing model
-        ModelFile railingModelFile = models().withExistingParent(generatedModelDestination, modLoc(existingParentModelLocation))
+        ModelFile railingModelFile = buildChildFromModParentModel(generatedModelDestination, existingParentModelLocation)
                 .texture("0", faceTexturePath)
                 .texture("particle", faceTexturePath);
 
@@ -1379,10 +1447,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
         }
 
         //GENERATE ITEM MODEL
-        simpleBlockItem(block, models().getExistingFile(modLoc(generatedModelDestination)));
+        simpleBlockItem(block, locateModelInMod(generatedModelDestination));
 
     }
-
+    
     private void genParapetBlockS(ParapetBlock block, String modelSubFolder, String parentModelName, String textureSubFolder, String textureName) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String blockFolder = "block/"; //generated/resources/assets/models/blocks but also used for mod's non-generated resource folder
@@ -1401,22 +1469,22 @@ public class ModBlockStateProvider extends BlockStateProvider {
         String existingParentModelLocation_Wall = blockFolder+optionalFolder(modelSubFolder)+parentModelName+mainWallSuffix;
 
         //Inner Corner Model
-        ModelFile parapetModelFile_IC = models().withExistingParent(generatedModelDestination_IC, modLoc(existingParentModelLocation_IC))
+        ModelFile parapetModelFile_IC = buildChildFromModParentModel(generatedModelDestination_IC, existingParentModelLocation_IC)
                 .texture("0", texturePath)
                 .texture("particle", texturePath);
 
         //Outer Corner Model
-        ModelFile parapetModelFile_OC = models().withExistingParent(generatedModelDestination_OC, modLoc(existingParentModelLocation_OC))
+        ModelFile parapetModelFile_OC = buildChildFromModParentModel(generatedModelDestination_OC, existingParentModelLocation_OC)
                 .texture("0", texturePath)
                 .texture("particle", texturePath);
 
         //Main Wall Model
-        ModelFile parapetModelFile_Wall = models().withExistingParent(generatedModelDestination_Wall, modLoc(existingParentModelLocation_Wall))
+        ModelFile parapetModelFile_Wall = buildChildFromModParentModel(generatedModelDestination_Wall, existingParentModelLocation_Wall)
                 .texture("0", texturePath)
                 .texture("particle", texturePath);
 
         MultiPartBlockStateBuilder multipartBuilder = getMultipartBuilder(block);
-
+        
         //preallocate for-loop variables;
         int yDegrees = 0;
 
@@ -1465,73 +1533,5 @@ public class ModBlockStateProvider extends BlockStateProvider {
         }
     }
 
-    private String axisPillarModelPathBuilder(Block block, String textureAppendType, String modelAppendAxis) {
-        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        return "block/"+stringName+textureAppendType+modelAppendAxis;
-    }
-
-    private ModelFile axisPillarModelBuilder(Block block, String textureSubFolder, String textureBaseName, String textureAppendType, String textureAppendOppositeType, String modelAppendAxis, ResourceLocation parentModelPath) {
-        return models().withExistingParent(axisPillarModelPathBuilder(block,textureAppendType,modelAppendAxis), parentModelPath)
-                .texture("end", modLoc("block/" + optionalFolder(textureSubFolder) + textureBaseName+"_end")) //always the end texture
-                .texture("side", modLoc("block/" + optionalFolder(textureSubFolder) + textureBaseName+textureAppendType)) //side texture
-                .texture("opposite_side", modLoc("block/" + optionalFolder(textureSubFolder) + textureBaseName+textureAppendOppositeType));
-    }
-
-    private void genConnectedPillarBlockSBI(Block block, String parentModelSubFolder, String parentModelBaseName, String textureSubFolder, String textureBaseName) {
-
-        getVariantBuilder(block)
-                .forAllStates(state -> {
-
-                    Direction.Axis axis = state.getValue(BlockStateProperties.AXIS);
-                    DynamicConnectionState type = state.getValue(ModEnumsInterface.TYPE);
-
-                    ResourceLocation parentModelPath = switch(axis) {
-                        case X -> modLoc("block/"+optionalFolder(parentModelSubFolder)+parentModelBaseName+"_x");
-                        case Y -> mcLoc("block/cube_column"); //vanilla mc
-                        case Z -> modLoc("block/"+optionalFolder(parentModelSubFolder)+parentModelBaseName+"_z");
-                    };
-
-                    String modelAppendAxis = switch(axis) {
-                        case X -> "_x";
-                        case Y -> "_y";
-                        case Z -> "_z";
-                    };
-
-                    //For texture shading direction consistency, horizontal pillars use opposite side textures
-                    String textureAppendType;
-                    switch(axis) {
-                        case Y -> {
-                            textureAppendType = switch (type) {
-                                case SOLO -> "_solo";
-                                case POSITIVE -> "_positive";
-                                case MIDDLE -> "_middle";
-                                case NEGATIVE -> "_negative";
-                            };
-                        }
-                        default -> {
-                            textureAppendType = switch (type) {
-                                case SOLO -> "_solo";
-                                case POSITIVE -> "_negative";
-                                case MIDDLE -> "_middle";
-                                case NEGATIVE -> "_positive";
-                            };
-                        }
-                    }
-
-                    String textureAppendOppositeType = switch(type) {
-                        case POSITIVE -> "_positive";
-                        case NEGATIVE -> "_negative";
-                        default -> textureAppendType;
-                    };
-
-                            ModelFile modelToUse = axisPillarModelBuilder(block,textureSubFolder,textureBaseName,textureAppendType, textureAppendOppositeType,modelAppendAxis, parentModelPath);
-
-                    return ConfiguredModel.builder()
-                            .modelFile(models().getExistingFile(modelToUse.getLocation()))
-                            .build();
-                });
-
-        //GENERATE ITEM MODEL (SOLO, vertical Y-axis model)
-        simpleBlockItem(block, models().getExistingFile(modLoc(axisPillarModelPathBuilder(block,"_solo","_y"))));
-    }
+    // --- END OF MULTIPART BLOCKSTATE DATAGEN METHODS ---
 }

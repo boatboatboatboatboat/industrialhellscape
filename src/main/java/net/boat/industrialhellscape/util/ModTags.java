@@ -29,6 +29,7 @@ public class ModTags {
         public static final TagKey<Block> BODY_PILLOW_BLOCK = tag("body_pillow_block");
 
         //FURNITURE CATEGORIES
+        public static final TagKey<Block> FURNITURE_CATEGORY_BLOCKS = tag("furniture_category_blocks");
         public static final TagKey<Block> SAFETY_FURNITURE_CATEGORY = tag("safety_furniture_category");
         public static final TagKey<Block> HYGIENE_FURNITURE_CATEGORY= tag("hygiene_furniture_category");
         public static final TagKey<Block> INDUSTRIAL_FURNITURE_CATEGORY = tag("industrial_furniture_category");

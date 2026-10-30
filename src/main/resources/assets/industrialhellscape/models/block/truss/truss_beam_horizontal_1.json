@@ -4,7 +4,7 @@
 	"texture_size": [24, 24],
 	"textures": {
 		"0": "industrialhellscape:block/truss/truss_beam",
-		"particle": "industrialhellscape:block/truss/truss_beam"
+		"particle": "#0"
 	},
 	"elements": [
 		{

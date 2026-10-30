@@ -1,0 +1,23 @@
+{
+  "variants": {
+    "facing=north,hanging=true,waterlogged=true": {"model": "industrialhellscape:block/obj_models/charlie_dirt_hanging","y": 0},
+    "facing=south,hanging=true,waterlogged=true": {"model": "industrialhellscape:block/obj_models/charlie_dirt_hanging","y":180},
+    "facing=east,hanging=true,waterlogged=true": {"model": "industrialhellscape:block/obj_models/charlie_dirt_hanging","y": 90},
+    "facing=west,hanging=true,waterlogged=true": {"model": "industrialhellscape:block/obj_models/charlie_dirt_hanging","y": 270},
+
+    "facing=north,hanging=false,waterlogged=true": {"model": "industrialhellscape:block/obj_models/charlie_dirt","y": 0},
+    "facing=south,hanging=false,waterlogged=true": {"model": "industrialhellscape:block/obj_models/charlie_dirt","y":180},
+    "facing=east,hanging=false,waterlogged=true": {"model": "industrialhellscape:block/obj_models/charlie_dirt","y": 90},
+    "facing=west,hanging=false,waterlogged=true": {"model": "industrialhellscape:block/obj_models/charlie_dirt","y": 270},
+
+    "facing=north,hanging=true,waterlogged=false": {"model": "industrialhellscape:block/obj_models/charlie_dirt_hanging","y": 0},
+    "facing=south,hanging=true,waterlogged=false": {"model": "industrialhellscape:block/obj_models/charlie_dirt_hanging","y":180},
+    "facing=east,hanging=true,waterlogged=false": {"model": "industrialhellscape:block/obj_models/charlie_dirt_hanging","y": 90},
+    "facing=west,hanging=true,waterlogged=false": {"model": "industrialhellscape:block/obj_models/charlie_dirt_hanging","y": 270},
+
+    "facing=north,hanging=false,waterlogged=false": {"model": "industrialhellscape:block/obj_models/charlie_dirt","y": 0},
+    "facing=south,hanging=false,waterlogged=false": {"model": "industrialhellscape:block/obj_models/charlie_dirt","y":180},
+    "facing=east,hanging=false,waterlogged=false": {"model": "industrialhellscape:block/obj_models/charlie_dirt","y": 90},
+    "facing=west,hanging=false,waterlogged=false": {"model": "industrialhellscape:block/obj_models/charlie_dirt","y": 270}
+  }
+}

@@ -210,23 +210,26 @@ public interface ConnectedModelInterface {
                 boolean farNeighborIsThis = farNeighborBlockState.is(thisBlock);
 
                 //Preallocate variables
-                boolean neighborAlignedSame = false;
-                boolean farNeighborAlignedSame = false;
-                boolean twoNeighborsAlignedSame = false;
+                boolean neighborAlignedSameAxis = false;
+                boolean farNeighborAlignedSameAxis = false;
+                boolean twoNeighborsAlignedSameAxis = false;
+                boolean farNeighborTypeNotSameAsThis = false;
 
+                //Safely evaluate BlockState conditions
                 if(neighborIsThis) {
-                    neighborAlignedSame = neighborBlockState.getValue(axisProperty) == state.getValue(axisProperty);
+                    neighborAlignedSameAxis = neighborBlockState.getValue(axisProperty) == state.getValue(axisProperty);
                 }
                 if(farNeighborIsThis) {
-                    farNeighborAlignedSame = farNeighborBlockState.getValue(axisProperty) == state.getValue(axisProperty);
+                    farNeighborAlignedSameAxis = farNeighborBlockState.getValue(axisProperty) == state.getValue(axisProperty);
+                    farNeighborTypeNotSameAsThis = !(farNeighborBlockState.getValue(typeProperty).equals(placedStateType));
                 }
-                if(neighborAlignedSame && farNeighborAlignedSame) {
-                    twoNeighborsAlignedSame = true;
+                if(neighborAlignedSameAxis && farNeighborAlignedSameAxis) {
+                    twoNeighborsAlignedSameAxis = true;
                 }
 
-                if(twoNeighborsAlignedSame) {
+                if(twoNeighborsAlignedSameAxis && farNeighborTypeNotSameAsThis) {
                     level.setBlock(neighborPos,neighborBlockState.setValue(typeProperty, DynamicConnectionState.MIDDLE),3);
-                } else if (neighborAlignedSame) {
+                } else if (neighborAlignedSameAxis) {
                     level.setBlock(neighborPos,neighborBlockState.setValue(typeProperty, toggleType),3);
                 }
             }

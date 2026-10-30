@@ -122,6 +122,12 @@ public class ModBlocks {
                     , ModSounds.METAL_BOX_CLOSE.get()
             )
     );
+//    public static final DeferredBlock<Block> CHARLIE_DIRT_BLOCK = registerBlockAndBlockItem("charlie_dirt",
+//            () -> new HangeableCorpseBlock(BlockBehaviour
+//                    .Properties.ofFullCopy(Blocks.STONE).noLootTable().noOcclusion(),
+//                    HitboxGeometryCollection.VERTICAL_ROD_4X4_SHAPE()
+//            )
+//    );
 
     public static final DeferredBlock<Block> ROAD_BARRIER = registerBlockAndBlockItem("road_barrier",
             () -> new ModelledHorizontalBlock(BlockBehaviour
