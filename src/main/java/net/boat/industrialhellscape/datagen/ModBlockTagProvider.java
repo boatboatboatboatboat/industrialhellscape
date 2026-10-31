@@ -158,7 +158,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.YELLOW_ROCKRETE_WALL.get(),
                         ModBlocks.BLUE_ROCKRETE_WALL.get(),
                         ModBlocks.GRAY_ROCKRETE_WALL.get(),
-                        ModBlocks.GREEN_ROCKRETE_WALL.get()
+                        ModBlocks.GREEN_ROCKRETE_WALL.get(),
+
+                        ModBlocks.ROCKRETE_BARRIER.get()
                 );
 
         this.tag(BlockTags.FENCES)
@@ -240,6 +242,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(ModTags.Blocks.MOD_CREATE_SIMPLE_MOUNTED_STORAGE)
                 .addTags(
                         ModTags.Blocks.STORAGE_INVENTORY_BLOCKS
+                );
+        this.tag(ModTags.Blocks.MOD_CREATE_SEATS)
+                .add(
+                        ModBlocks.OFFICE_CHAIR.get(),
+                        ModBlocks.BLACK_OFFICE_CHAIR.get(),
+                        ModBlocks.FOLDING_CHAIR.get()
                 );
 
         this.tag(ModTags.Blocks.MOD_SABLE_MASS_SUPER_LIGHT)

@@ -34,28 +34,36 @@ public interface ConnectedModelInterface {
     //All connectable blocks use custom EnumProperty "TYPE"
     EnumProperty<DynamicConnectionState> TYPE = ModEnumsInterface.TYPE; //"TYPE" is used to store enum value of "solo, left, right, middle" for block connected variants
 
-    //EnumProperty<DynamicConnectionState> TYPE = EnumProperty.create("type", DynamicConnectionState.class); //"TYPE" is used to store enum value of "solo, left, right, middle" for block connected variants
+    //All connectable furniture blocks have an optional, nullable argument for block tags they can connect to; Else they check if neighbor state is same block as itself.
+    static boolean neighborStateCanConnectTo(Block thisBlock, @Nullable TagKey<Block> blockSetTag, BlockState neighborState) {
+        return (blockSetTag == null) ? neighborState.is(thisBlock) : neighborState.is(blockSetTag);
+    }
 
     //To be used in block class's getStateForPlacement() override
-    static BlockState ConnectedFurnitureStateForPlacement(BlockPlaceContext context, Block thisBlock, DirectionProperty directionProperty, Property<DynamicConnectionState> typeProperty, ConnectingBlockPlacementOrientation placementDirectionToCheck, TagKey<Block> blockSetFamily) {
+    static BlockState HorizontalConnectionStateForPlacement(BlockPlaceContext context, Block thisBlock, DirectionProperty directionProperty, Property<DynamicConnectionState> typeProperty, ConnectingBlockPlacementOrientation placementDirectionToCheck, TagKey<Block> blockSetFamily) {
+        //Initialize Default State
+        BlockState thisState = thisBlock.defaultBlockState();
+
+        //Assign Facing Property
+        Direction blockFacing = context.getHorizontalDirection().getOpposite();
+        thisState = thisState.setValue(directionProperty, blockFacing);
+
+        //Useful information
         Level level = context.getLevel();
         BlockPos clickedPos = context.getClickedPos(); //is Always air.
         Direction directionToCheck = getClosestLookDirectionFromEntity(context.getPlayer(), placementDirectionToCheck);
-
-        BlockPos neighborPos = clickedPos.relative(directionToCheck);
-        BlockState neighborBlockState = level.getBlockState(neighborPos);
-
-        //Assign Facing Property
         Direction playerFacing = context.getHorizontalDirection();
-        Direction blockFacing = context.getHorizontalDirection().getOpposite();
-        BlockState thisState = thisBlock.defaultBlockState().setValue(directionProperty, blockFacing);
 
         //Assign Waterlogged Property
         FluidState fluidstate = level.getFluidState(context.getClickedPos());
         thisState =  thisState.setValue(BlockStateProperties.WATERLOGGED, fluidstate.getType() == Fluids.WATER);
 
+        //Find neighbor position and state
+        BlockPos neighborPos = clickedPos.relative(directionToCheck);
+        BlockState neighborBlockState = level.getBlockState(neighborPos);
+
         //Assign Type Property based on clicked Block (thisState is reassigned if conditions are met. Else, has the default type property of type:solo)
-        if(neighborBlockState.is(blockSetFamily)) {
+        if(neighborStateCanConnectTo(thisBlock,blockSetFamily,neighborBlockState)) {
             if(neighborBlockState.getValue(directionProperty) == blockFacing) { //<possible failure point if tagged block does not have matching properties as its members.
                 if(placingBlockInNegativeRelativeDirection(directionToCheck, playerFacing, placementDirectionToCheck)) {
                     thisState = thisState.setValue(typeProperty, DynamicConnectionState.NEGATIVE);
@@ -68,7 +76,7 @@ public interface ConnectedModelInterface {
     }
 
     //To be used in block class's setPlacedBy() override
-    static void connectedFurnitureUpdateNeighbors(Level level, LivingEntity placer, BlockPos pos, BlockState state, DirectionProperty directionProperty, Property<DynamicConnectionState> typeProperty, ConnectingBlockPlacementOrientation placementDirectionToCheck, TagKey<Block> blockSetFamily) {
+    static void connectedFurnitureUpdateNeighbors(Block thisBlock, Level level, LivingEntity placer, BlockPos pos, BlockState state, DirectionProperty directionProperty, Property<DynamicConnectionState> typeProperty, ConnectingBlockPlacementOrientation placementDirectionToCheck, TagKey<Block> blockSetFamily) {
         Direction directionToCheck = getClosestLookDirectionFromEntity(placer, placementDirectionToCheck);
         BlockPos neighborPos = pos.relative(directionToCheck);
         BlockState neighborBlockState = level.getBlockState(neighborPos);
@@ -83,7 +91,7 @@ public interface ConnectedModelInterface {
          */
 
         //If neighbor block is from the same blockset as this block
-        if(neighborBlockState.is(blockSetFamily)) {
+        if(neighborStateCanConnectTo(thisBlock,blockSetFamily,neighborBlockState)) {
             //And if neighbor is facing the same direction as this block
             if(neighborBlockState.getValue(directionProperty) == state.getValue(directionProperty)) {
 
@@ -137,27 +145,27 @@ public interface ConnectedModelInterface {
                 }
             }
 
-            BlockState positiveNeighborState = level.getBlockState(positiveNeighborBlockPos);
-            BlockState negativeNeighborState = level.getBlockState(negativeNeighborBlockPos);
+            optionalUpdateNeighbor(thisBlock,level, blockSetFamily,state,positiveNeighborBlockPos,facingProperty,typeProperty, true);
+            optionalUpdateNeighbor(thisBlock,level, blockSetFamily,state,negativeNeighborBlockPos,facingProperty,typeProperty, false);
+        }
+    }
 
-            if(positiveNeighborState.is(blockSetFamily) && positiveNeighborState.getBlock() instanceof ConnectedFurnitureBlock) { //If positive neighbor is both a part of this blockset, and to be sure, an instance of the class
-                if(positiveNeighborState.getValue(facingProperty) == state.getValue(facingProperty)) { //If positive neighbor faces same direction as this block that was removed
-                    switch(positiveNeighborState.getValue(typeProperty)) { //get typeProperty of the positive neighbor
-                        case POSITIVE -> level.setBlock(positiveNeighborBlockPos, positiveNeighborState.setValue(typeProperty, DynamicConnectionState.SOLO), 3);
-                        case MIDDLE -> level.setBlock(positiveNeighborBlockPos, positiveNeighborState.setValue(typeProperty, DynamicConnectionState.NEGATIVE), 3);
-                        case NEGATIVE, SOLO -> {
-                        }
+    static void optionalUpdateNeighbor(Block thisBlock, Level level, TagKey<Block> blockSetFamily, BlockState state, BlockPos neighborPos, Property<?> facingProperty, EnumProperty<DynamicConnectionState> typeProperty, boolean isPositivePos) {
+        DynamicConnectionState updateMiddleSegmentState = isPositivePos ? DynamicConnectionState.NEGATIVE : DynamicConnectionState.POSITIVE;
+        BlockState neighborState = level.getBlockState(neighborPos);
+        if(neighborStateCanConnectTo(thisBlock,blockSetFamily,neighborState)) {
+            if(neighborState.getValue(facingProperty) == state.getValue(facingProperty)) {
+                switch(neighborState.getValue(typeProperty)) {
+                    case POSITIVE -> {
+                        if(updateMiddleSegmentState == DynamicConnectionState.NEGATIVE)
+                        {level.setBlock(neighborPos, neighborState.setValue(typeProperty, DynamicConnectionState.SOLO), 3);}
                     }
-                }
-            }
-
-            if(negativeNeighborState.is(blockSetFamily) && negativeNeighborState.getBlock() instanceof ConnectedFurnitureBlock) {
-                if(negativeNeighborState.getValue(facingProperty) == state.getValue(facingProperty)) {
-                    switch(negativeNeighborState.getValue(typeProperty)) {
-                        case NEGATIVE -> level.setBlock(negativeNeighborBlockPos, negativeNeighborState.setValue(typeProperty, DynamicConnectionState.SOLO), 3);
-                        case MIDDLE -> level.setBlock(negativeNeighborBlockPos, negativeNeighborState.setValue(typeProperty, DynamicConnectionState.POSITIVE), 3);
-                        case POSITIVE, SOLO -> {
-                        }
+                    case NEGATIVE -> {
+                        if(updateMiddleSegmentState == DynamicConnectionState.POSITIVE)
+                        {level.setBlock(neighborPos, neighborState.setValue(typeProperty, DynamicConnectionState.SOLO), 3);}
+                    }
+                    case MIDDLE -> level.setBlock(neighborPos, neighborState.setValue(typeProperty, updateMiddleSegmentState), 3);
+                    default -> {
                     }
                 }
             }
@@ -244,32 +252,10 @@ public interface ConnectedModelInterface {
 
     static void fixPillarNeighborUponRemove(ConnectedPillarBlock thisBlock, BlockState state, Level level, BlockPos pos, BlockState newState, EnumProperty<Direction.Axis> axisProperty, EnumProperty<DynamicConnectionState> typeProperty) {
         if(newState.getBlock() != thisBlock) {
-            BlockPos positiveNeighborBlockPos = pos.relative(state.getValue(axisProperty),1);
-            BlockPos negativeNeighborBlockPos = pos.relative(state.getValue(axisProperty),-1);
-            BlockState positiveNeighborState = level.getBlockState(positiveNeighborBlockPos);
-            BlockState negativeNeighborState = level.getBlockState(negativeNeighborBlockPos);
-
-            if(positiveNeighborState.getBlock() instanceof ConnectedPillarBlock) { //If positive neighbor is both a part of this blockset, and to be sure, an instance of the class
-                if(positiveNeighborState.getValue(axisProperty).equals(state.getValue(axisProperty))) { //If positive neighbor faces same direction as this block that was removed
-                    switch(positiveNeighborState.getValue(typeProperty)) { //get typeProperty of the positive neighbor
-                        case POSITIVE -> level.setBlock(positiveNeighborBlockPos, positiveNeighborState.setValue(typeProperty, DynamicConnectionState.SOLO), 3);
-                        case MIDDLE -> level.setBlock(positiveNeighborBlockPos, positiveNeighborState.setValue(typeProperty, DynamicConnectionState.NEGATIVE), 3);
-                        case NEGATIVE, SOLO -> {
-                        }
-                    }
-                }
-            }
-
-            if(negativeNeighborState.getBlock() instanceof ConnectedPillarBlock) {
-                if(negativeNeighborState.getValue(axisProperty).equals(state.getValue(axisProperty))) {
-                    switch(negativeNeighborState.getValue(typeProperty)) {
-                        case NEGATIVE -> level.setBlock(negativeNeighborBlockPos, negativeNeighborState.setValue(typeProperty, DynamicConnectionState.SOLO), 3);
-                        case MIDDLE -> level.setBlock(negativeNeighborBlockPos, negativeNeighborState.setValue(typeProperty, DynamicConnectionState.POSITIVE), 3);
-                        case POSITIVE, SOLO -> {
-                        }
-                    }
-                }
-            }
+            BlockPos positiveNeighborBlockPos = pos.relative(state.getValue(axisProperty), 1);
+            BlockPos negativeNeighborBlockPos = pos.relative(state.getValue(axisProperty), -1);
+            optionalUpdateNeighbor(thisBlock, level, null, state, positiveNeighborBlockPos, axisProperty, typeProperty, true);
+            optionalUpdateNeighbor(thisBlock, level, null, state, negativeNeighborBlockPos, axisProperty, typeProperty, false);
         }
     }
 
@@ -455,7 +441,29 @@ public interface ConnectedModelInterface {
         };
     }
 
-    private static Direction getClosestLookDirectionFromEntity(@Nullable Entity entity, ConnectingBlockPlacementOrientation placementDirectionToCheck) {
+    default VoxelShape makeHorizontalAxisHitBoxes(BlockState pState,
+                                                  VoxelShape soloX, VoxelShape positiveX, VoxelShape middleX, VoxelShape negativeX,
+                                                  VoxelShape soloZ, VoxelShape positiveZ, VoxelShape middleZ, VoxelShape negativeZ,
+                                                  EnumProperty<Direction.Axis> horizontalAxisProperty, EnumProperty<DynamicConnectionState> typeProperty
+    ) {
+
+        return switch (pState.getValue(horizontalAxisProperty)) {
+            case Z -> switch (pState.getValue(typeProperty)) {
+                case SOLO -> soloZ;
+                case POSITIVE -> positiveZ;
+                case MIDDLE -> middleZ;
+                case NEGATIVE -> negativeZ;
+            };
+            default -> switch (pState.getValue(typeProperty)) {
+                case SOLO -> soloX;
+                case POSITIVE -> positiveX;
+                case MIDDLE -> middleX;
+                case NEGATIVE -> negativeX;
+            };
+        };
+    }
+
+    public static Direction getClosestLookDirectionFromEntity(@Nullable Entity entity, ConnectingBlockPlacementOrientation placementDirectionToCheck) {
         /*
             If block is meant to connect vertically;
             - Check if Entity's nearest direction. It is expected to be UP or DOWN
@@ -475,7 +483,7 @@ public interface ConnectedModelInterface {
         if(entity != null) {
             Direction[] allNearestLookingDirections = Direction.orderedByNearest(entity);
             return switch (placementDirectionToCheck) {
-                case VERTICAL -> allNearestLookingDirections[0];
+                case VERTICAL -> (entity.getXRot() <= 0 ? Direction.UP : Direction.DOWN);
                 case FORWARD -> allNearestLookingDirections[1];
                 case HORIZONTAL -> allNearestLookingDirections[2];
             };
@@ -484,7 +492,7 @@ public interface ConnectedModelInterface {
         }
     }
 
-    private static boolean placingBlockInNegativeRelativeDirection(Direction directionToCheck, Direction playerFacingDirection, ConnectingBlockPlacementOrientation placementOrientation) {
+    public static boolean placingBlockInNegativeRelativeDirection(Direction directionToCheck, Direction playerFacingDirection, ConnectingBlockPlacementOrientation placementOrientation) {
         /*
             If block is meant to connect vertically;
                 - Check if player is placing block from below.

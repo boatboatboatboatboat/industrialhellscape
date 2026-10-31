@@ -77,7 +77,7 @@ public class ConnectedFurnitureBlock extends Block implements SimpleWaterloggedB
     public final VoxelShape RIGHT_SHAPE_EAST;
     public final VoxelShape RIGHT_SHAPE_WEST;
 
-    public ConnectedFurnitureBlock(Properties pProperties, TagKey<Block> inputCompatibleBlockSet, VoxelShape soloShape, VoxelShape leftShape, VoxelShape middleShape, VoxelShape rightShape, ConnectingBlockPlacementOrientation placementDirection) {
+    public ConnectedFurnitureBlock(Properties pProperties, @Nullable TagKey<Block> inputCompatibleBlockSet, VoxelShape soloShape, VoxelShape leftShape, VoxelShape middleShape, VoxelShape rightShape, ConnectingBlockPlacementOrientation placementDirection) {
         //When registering this block, pass in:
         // Properties,
         // Block Tag for related blocks that this block can physically connect to
@@ -85,7 +85,7 @@ public class ConnectedFurnitureBlock extends Block implements SimpleWaterloggedB
         // Left connection state hitbox VoxelShape
         // Middle connection state hitbox VoxelShape
         // Right connection state hitbox VoxelShape
-        // Whether or not blocks should be placed horizontally, vertically, or longitudinally to check for connections
+        // Whether blocks should be placed horizontally, vertically, or longitudinally to check for connections
 
         super(pProperties);
 
@@ -146,12 +146,12 @@ public class ConnectedFurnitureBlock extends Block implements SimpleWaterloggedB
          update blocks in the world without user input. This is to be avoided by moving setBlock() actions into
          a separate helper method used elsewhere, such as in useItemOn or setPlacedBy
          */
-        return ConnectedModelInterface.ConnectedFurnitureStateForPlacement(context,this,FACING,TYPE,placementDirection,blockSetFamily);
+        return ConnectedModelInterface.HorizontalConnectionStateForPlacement(context,this,FACING,TYPE,placementDirection,blockSetFamily);
     }
 
     @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-        ConnectedModelInterface.connectedFurnitureUpdateNeighbors(level,placer,pos, state, FACING, TYPE, placementDirection, blockSetFamily);
+        ConnectedModelInterface.connectedFurnitureUpdateNeighbors(this, level,placer,pos, state, FACING, TYPE, placementDirection, blockSetFamily);
         super.setPlacedBy(level, pos, state, placer, stack);
     }
 

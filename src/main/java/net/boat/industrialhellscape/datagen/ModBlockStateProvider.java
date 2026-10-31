@@ -9,6 +9,7 @@ import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Bloc
 import net.boat.industrialhellscape.block.block_classes.RailingBlocks.ParapetBlock;
 import net.boat.industrialhellscape.block.block_classes.RailingBlocks.RailingBlock;
 import net.boat.industrialhellscape.block.block_experiments.PanelBlocks.PanelBlock;
+import net.boat.industrialhellscape.block.block_interfaces.ConnectedModelInterface;
 import net.boat.industrialhellscape.block.block_interfaces.ModEnumsInterface;
 import net.boat.industrialhellscape.block.block_state_enums.DynamicConnectionState;
 import net.minecraft.core.Direction;
@@ -39,9 +40,20 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genFullBlockIntegerMultiBlockSI(ModBlocks.DEBUG_BLOCK.get(), Integer11Block.PART, "debug_textures");
 
         //In-Development Block
-        genHorizontalModelledSI(ModBlocks.ROAD_BARRIER.get(),"barrier");
-//        genBrushableBlockSI(ModBlocks.VERY_SUSPICIOUS_SAND.get(), "suspicious_sand");
-//        genHorizontalModelTogglingSI(ModBlocks.LAND_MINE.get(), "mine", "disarmed", BlockStateProperties.DISARMED, true);
+        //genBrushableBlockSI(ModBlocks.VERY_SUSPICIOUS_SAND.get(), "suspicious_sand");
+        //genHorizontalModelTogglingSI(ModBlocks.LAND_MINE.get(), "mine", "disarmed", BlockStateProperties.DISARMED, true);
+
+        genHorizontalAxisConnectedSI(ModBlocks.ROCKRETE_BARRIER.get(),"barrier", "solo","positive","middle","negative");
+
+        genHorizontalConnectedSI(ModBlocks.DESK.get(),"desk", "solo","left","middle","right");
+        genHorizontalConnectedSI(ModBlocks.DESK_DRAWER.get(),"desk_drawer", "solo","left","middle","right");
+
+        genHorizontalConnectedSI(ModBlocks.METAL_DESK.get(),"metal_desk", "solo","left","middle","right");
+        genHorizontalConnectedSI(ModBlocks.METAL_DESK_DRAWER.get(),"metal_desk_drawer", "solo","left","middle","right");
+        genHorizontalConnectedSI(ModBlocks.METAL_DESK_DRAWER_2.get(),"metal_desk_drawer_2", "solo","left","middle","right");
+
+        genHorizontalConnectedSI(ModBlocks.OFFICE_DESK.get(),"office_desk", "solo","left","middle","right");
+        genHorizontalConnectedSI(ModBlocks.OFFICE_DESK_DRAWER.get(),"office_desk_drawer", "solo","left","middle","right");
 
         //Hidden Joke Blocks
         genPeanutS((PeanutStatueBlock) ModBlocks.PEANUT_STATUE.get(), "peanut_statue");
@@ -350,6 +362,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
             case WEST  -> 270;
             case EAST  -> 90;
             default -> 0; //NORTH
+        };
+    }
+
+    //Helper Method for converting passed "Type" property into appropriate string appendation for model path locating
+    private String typeToStringAppend(DynamicConnectionState type, String soloStringAppend, String positiveStringAppend, String middleStringAppend, String negativeStringAppend) {
+        return switch(type) {
+            case SOLO -> soloStringAppend;
+            case POSITIVE -> positiveStringAppend;
+            case MIDDLE -> middleStringAppend;
+            case NEGATIVE -> negativeStringAppend;
         };
     }
 
@@ -848,7 +870,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, locateModelInMod(wallModel));
     }
 
-    private void genHorizontalModelledSI(Block block, String modelSubFolder) {
+    private void  genHorizontalModelledSI(Block block, String modelSubFolder) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String modelPath = "block/"+optionalFolder(modelSubFolder)+stringName;
 
@@ -865,6 +887,46 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //GENERATE ITEM MODEL
         simpleBlockItem(block, locateModelInMod(modelPath));
     }
+    private void genHorizontalAxisConnectedSI(Block block, String modelSubFolder, String soloModelNameAppend, String positiveModelNameAppend, String middleModelNameAppend, String negativeModelNameAppend) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        String baseModelPath = "block/"+optionalFolder(modelSubFolder)+stringName;
+
+        getVariantBuilder(block)
+                .forAllStatesExcept(state -> {
+                    Direction.Axis horizontalFacing = state.getValue(BlockStateProperties.HORIZONTAL_AXIS);
+                    DynamicConnectionState type = state.getValue(ConnectedModelInterface.TYPE);
+                    String pathAppend = typeToStringAppend(type,soloModelNameAppend,positiveModelNameAppend,middleModelNameAppend,negativeModelNameAppend);
+
+                    return ConfiguredModel.builder()
+                            .modelFile(locateModelInMod(baseModelPath+"_"+pathAppend))
+                            .rotationY(horizontalFacing == Direction.Axis.X? 0:90)
+                            .build();
+                }, BlockStateProperties.WATERLOGGED);
+
+        //GENERATE ITEM MODEL
+        simpleBlockItem(block, locateModelInMod(baseModelPath+"_"+soloModelNameAppend));
+    }
+
+    private void genHorizontalConnectedSI(Block block, String modelSubFolder, String soloModelNameAppend, String positiveModelNameAppend, String middleModelNameAppend, String negativeModelNameAppend) {
+        String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        String baseModelPath = "block/"+optionalFolder(modelSubFolder)+stringName;
+
+        getVariantBuilder(block)
+                .forAllStatesExcept(state -> {
+                    Direction horizontalFacing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+                    DynamicConnectionState type = state.getValue(ConnectedModelInterface.TYPE);
+                    String pathAppend = typeToStringAppend(type,soloModelNameAppend,positiveModelNameAppend,middleModelNameAppend,negativeModelNameAppend);
+
+                    return ConfiguredModel.builder()
+                            .modelFile(locateModelInMod(baseModelPath+"_"+pathAppend))
+                            .rotationY(facingDirToDegrees(horizontalFacing))
+                            .build();
+                }, BlockStateProperties.WATERLOGGED);
+
+        //GENERATE ITEM MODEL
+        simpleBlockItem(block, locateModelInMod(baseModelPath+"_"+soloModelNameAppend));
+    }
+
 
     //These are powered whereas work light stand is "lit" ??? TODO: Make consistent blockstate properties
     private void genHorizontalTextureTogglingSI(Block block, BooleanProperty toggleProperty, String modelSubFolder, String litUnlitTextureName) {

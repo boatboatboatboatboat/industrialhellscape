@@ -122,4 +122,21 @@ public class ModTags {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(modNameSpace, name));
         }
     }
+//    public static class Entities {
+//        public static final TagKey<EntityType<?>> MOB_TRAPPING_BLACKLIST = tag("mob_trapping_blacklist");
+//
+//        //---------- METHODS ----------
+//        private static TagKey<EntityType<?>> tag(String name) {
+//            return moddedTag(IndustrialHellscape.MOD_ID, name);
+//        }
+//        private static TagKey<EntityType<?>> moddedTag(String modNameSpace, String name) {
+//            // The registry key. The type of the registry must match the generic type of the tag.
+//            // The location of the tag. This example will put our tag at data/examplemod/tags/blocks/example_tag.json.
+//            return TagKey.create(
+//                    // The registry key. The type of the registry must match the generic type of the tag.
+//                    Registries.ENTITY_TYPE,
+//                    // The location of the tag. This example will put our tag at data/examplemod/tags/blocks/example_tag.json.
+//                    ResourceLocation.fromNamespaceAndPath(modNameSpace, name));
+//        }
+//    }
 }

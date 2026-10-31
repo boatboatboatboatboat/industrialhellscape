@@ -49,7 +49,7 @@ public class ModCreativeModeTabs {
                 ModBlocks.BODY_PILLOW_PROV.asItem(),
                 ModBlocks.DEBUG_BLOCK.asItem(),
                 ModBlocks.PEANUT_STATUE.asItem(),
-                ModBlocks.ROAD_BARRIER.asItem(),
+                ModBlocks.ROCKRETE_BARRIER.asItem(),
 
                 //Vesselplate Vertical Variants (Hidden to prevent JEI clutter)
                 ModBlocks.VERTICAL_VESSELPLATE.asItem(),

@@ -36,7 +36,7 @@
 
   "block.industrialhellscape.very_suspicious_sand": "Very Suspicious Sand",
   "block.industrialhellscape.land_mine": "Land Mine",
-  "block.industrialhellscape.road_barrier": "Road Barrier",
+  "block.industrialhellscape.rockrete_barrier": "Rockrete Barrier",
 
   "block.industrialhellscape.vesselplate_sheeting": "Vesselplate Sheeting",
   "block.industrialhellscape.vesselplate_sheeting_slab": "Vesselplate Sheeting Slab",
@@ -374,7 +374,7 @@
   "tooltip.industrialhellscape.job_application": "Sneak Interact to convert Nitwit villagers into employable villagers. Nametagged villagers unaffected.",
   "tooltip.industrialhellscape.termination_letter": "Sneak Interact to convert Employed villagers into unemployed villagers. Nametagged villagers unaffected.",
   "tooltip.industrialhellscape.horsepill": "§6 Enhances your body with \"equine characteristics!\"",
-  "tooltip.industrialhellscape.advise_connecting_furniture": "Look diagonally before placing to connect to existing furniture",
+  "tooltip.industrialhellscape.advise_connecting_furniture": "Horizontal Connections: Look diagonally before placing \nVertical Connections: Place above or below a block like this.",
 
   "death.attack.horsepilldeathmessage": "%1$s has been horsed.",
   "death.attack.landminedeathmessage": "%1$s stepped on a landmine",

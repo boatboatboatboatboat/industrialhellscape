@@ -3,6 +3,7 @@ package net.boat.industrialhellscape.block;
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.block_classes.AxisPillarBlocks.ConnectedPillarBlock;
 import net.boat.industrialhellscape.block.block_classes.AxisPillarBlocks.TrussBeamBlock;
+import net.boat.industrialhellscape.block.block_classes.ConnectedBlocks.ConnectedBarrierBlock;
 import net.boat.industrialhellscape.block.block_classes.ConnectedBlocks.ConnectedFurnitureBlock;
 import net.boat.industrialhellscape.block.block_classes.ConnectedBlocks.ConnectedStorageBlock;
 import net.boat.industrialhellscape.block.block_classes.FaceAttachedHorizontalDirectionBlocks.*;
@@ -129,10 +130,15 @@ public class ModBlocks {
 //            )
 //    );
 
-    public static final DeferredBlock<Block> ROAD_BARRIER = registerBlockAndBlockItem("road_barrier",
-            () -> new ModelledHorizontalBlock(BlockBehaviour
+    public static final DeferredBlock<Block> ROCKRETE_BARRIER = registerBlockAndBlockItem("rockrete_barrier",
+            () -> new ConnectedBarrierBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE),
-                    HitboxGeometryCollection.ROAD_BARRIER()
+                    null,
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    ConnectingBlockPlacementOrientation.VERTICAL
             )
     );
 
