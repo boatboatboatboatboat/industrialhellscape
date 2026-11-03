@@ -2,6 +2,7 @@ package net.boat.industrialhellscape.block.block_classes.ConnectedBlocks;
 
 import net.boat.industrialhellscape.block.block_interfaces.ConnectedModelInterface;
 import net.boat.industrialhellscape.block.block_interfaces.HitboxRotationInterface;
+import net.boat.industrialhellscape.block.block_interfaces.ModdedNonFullBlock;
 import net.boat.industrialhellscape.block.block_state_enums.DynamicConnectionState;
 import net.boat.industrialhellscape.block.logic_enums.ConnectingBlockPlacementOrientation;
 import net.minecraft.client.gui.screens.Screen;
@@ -35,7 +36,12 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class ConnectedBarrierBlock extends Block implements ConnectedModelInterface {
+public class ConnectedBarrierBlock extends Block implements ConnectedModelInterface, ModdedNonFullBlock {
+    @Override
+    public int outputAmountFromStonecuttingFullBlock() {
+        return 4;
+    }
+
     public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public final TagKey<Block> blockSetFamily; //To determine other blocks aside from its own can this block connect to

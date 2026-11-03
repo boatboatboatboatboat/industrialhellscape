@@ -1,6 +1,7 @@
 package net.boat.industrialhellscape.block.block_classes.RailingBlocks;
 
 import net.boat.industrialhellscape.block.block_interfaces.HitboxRotationInterface;
+import net.boat.industrialhellscape.block.block_interfaces.ModdedNonFullBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.LivingEntity;
@@ -34,7 +35,11 @@ import javax.annotation.Nonnull;
 // The block-state .json file is in a multipart format, like sea pickles.
 // Multiple placements inside that block to occupy vacant directions is supported. datagen/ModBlockLootTableProvider has a method to datagen the appropriate loot table.
 
-public class ParapetBlock extends RailingBlock implements SimpleWaterloggedBlock{
+public class ParapetBlock extends RailingBlock implements SimpleWaterloggedBlock, ModdedNonFullBlock {
+    @Override
+    public int outputAmountFromStonecuttingFullBlock() {
+        return 4;
+    }
 
     private double RAILING_THICKNESS;
     private double RAILING_COLLISION_SHAPE_BASE; //For normal Railing classes, this is 15 to allow projectiles to be shot through their hollow structure.

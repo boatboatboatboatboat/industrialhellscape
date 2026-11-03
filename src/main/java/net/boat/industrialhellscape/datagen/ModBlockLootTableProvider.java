@@ -35,7 +35,23 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         //this.dropSelf(ModBlocks.REMOVE_THIS_ITEM.get());
         this.add(ModBlocks.DEBUG_BLOCK.get(),
                 createIntegerMultiBlockDrops(ModBlocks.DEBUG_BLOCK.get(),Integer11Block.PART));
-        this.dropSelf(ModBlocks.ROCKRETE_BARRIER.get());
+
+        this.dropSelf(ModBlocks.GRAY_ROCKRETE_BARRIER.get());
+        this.dropSelf(ModBlocks.GREEN_ROCKRETE_BARRIER.get());
+        this.dropSelf(ModBlocks.BLUE_ROCKRETE_BARRIER.get());
+        this.dropSelf(ModBlocks.RED_ROCKRETE_BARRIER.get());
+        this.dropSelf(ModBlocks.YELLOW_ROCKRETE_BARRIER.get());
+
+        this.dropSelf(ModBlocks.GRAY_ROCKRETE_BARRIER_YELLOW_STRIPE.get());
+        this.dropSelf(ModBlocks.GRAY_ROCKRETE_BARRIER_RED_STRIPE.get());
+        this.dropSelf(ModBlocks.GREEN_ROCKRETE_BARRIER_YELLOW_STRIPE.get());
+        this.dropSelf(ModBlocks.GREEN_ROCKRETE_BARRIER_RED_STRIPE.get());
+        this.dropSelf(ModBlocks.RED_ROCKRETE_BARRIER_YELLOW_STRIPE.get());
+        this.dropSelf(ModBlocks.RED_ROCKRETE_BARRIER_RED_STRIPE.get());
+        this.dropSelf(ModBlocks.BLUE_ROCKRETE_BARRIER_YELLOW_STRIPE.get());
+        this.dropSelf(ModBlocks.BLUE_ROCKRETE_BARRIER_RED_STRIPE.get());
+        this.dropSelf(ModBlocks.YELLOW_ROCKRETE_BARRIER_YELLOW_STRIPE.get());
+        this.dropSelf(ModBlocks.YELLOW_ROCKRETE_BARRIER_RED_STRIPE.get());
 
         //IN-DEVELOPMENT BLOCK
 //        this.dropWhenSilkTouch(ModBlocks.VERY_SUSPICIOUS_SAND.get());

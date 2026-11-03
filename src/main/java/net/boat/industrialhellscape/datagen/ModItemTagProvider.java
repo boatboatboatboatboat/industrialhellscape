@@ -1,7 +1,7 @@
 package net.boat.industrialhellscape.datagen;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
-import net.boat.industrialhellscape.block.block_classes.RailingBlocks.ParapetBlock;
+import net.boat.industrialhellscape.block.block_interfaces.ModdedNonFullBlock;
 import net.boat.industrialhellscape.item.ModItems;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.HolderLookup;
@@ -30,7 +30,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
     private void includeListInItemTagButRemoveNonFullBlocks(List<Block> stoneCutRecipeOutputList, TagKey<Block> blockTag, TagKey<Item> itemTag) {
         List<Item> filterRemoveList = stoneCutRecipeOutputList
                 .stream()
-                .filter(a-> (a instanceof SlabBlock) || (a instanceof StairBlock) || (a instanceof ParapetBlock))
+                .filter(a-> (a instanceof SlabBlock) || (a instanceof StairBlock) || (a instanceof ModdedNonFullBlock))
                 .map(Block::asItem)
                 .toList();
 

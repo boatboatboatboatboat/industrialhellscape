@@ -4,8 +4,7 @@
 	"render_type": "minecraft:cutout",
 	"texture_size": [32, 32],
 	"textures": {
-		"1": "industrialhellscape:block/barrier/road_barrier",
-		"particle": "industrialhellscape:block/barrier/road_barrier"
+		"particle": "#solo"
 	},
 	"elements": [
 		{
@@ -13,11 +12,11 @@
 			"to": [16, 16, 10],
 			"rotation": {"angle": 0, "axis": "x", "origin": [7, 3, 7]},
 			"faces": {
-				"north": {"uv": [0, 2, 8, 8.5], "texture": "#1", "cullface": "north"},
-				"east": {"uv": [8, 5, 14.5, 7], "rotation": 90, "texture": "#1", "cullface": "east"},
-				"south": {"uv": [0, 2, 8, 8.5], "texture": "#1", "cullface": "south"},
-				"west": {"uv": [8, 5, 14.5, 7], "rotation": 90, "texture": "#1", "cullface": "west"},
-				"up": {"uv": [0, 0, 8, 2], "texture": "#1", "cullface": "up"}
+				"north": {"uv": [0, 2, 8, 8.5], "texture": "#solo", "cullface": "north"},
+				"east": {"uv": [8, 5, 14.5, 7], "rotation": 90, "texture": "#solo", "cullface": "east"},
+				"south": {"uv": [0, 2, 8, 8.5], "texture": "#solo", "cullface": "south"},
+				"west": {"uv": [8, 5, 14.5, 7], "rotation": 90, "texture": "#solo", "cullface": "west"},
+				"up": {"uv": [0, 0, 8, 2], "texture": "#solo", "cullface": "up"}
 			}
 		},
 		{
@@ -25,11 +24,11 @@
 			"to": [16, 6, 13],
 			"rotation": {"angle": 0, "axis": "y", "origin": [7, 0, 7]},
 			"faces": {
-				"north": {"uv": [0, 14, 8, 11], "texture": "#1", "cullface": "north"},
-				"east": {"uv": [8, 7, 13, 10], "texture": "#1", "cullface": "east"},
-				"south": {"uv": [0, 14, 8, 11], "texture": "#1", "cullface": "south"},
-				"west": {"uv": [8, 7, 13, 10], "texture": "#1", "cullface": "west"},
-				"down": {"uv": [8, 0, 16, 5], "texture": "#1"}
+				"north": {"uv": [0, 14, 8, 11], "texture": "#solo", "cullface": "north"},
+				"east": {"uv": [8, 7, 13, 10], "texture": "#solo", "cullface": "east"},
+				"south": {"uv": [0, 14, 8, 11], "texture": "#solo", "cullface": "south"},
+				"west": {"uv": [8, 7, 13, 10], "texture": "#solo", "cullface": "west"},
+				"down": {"uv": [8, 0, 16, 5], "texture": "#solo"}
 			}
 		},
 		{
@@ -37,7 +36,7 @@
 			"to": [16, 7.25, 7.75],
 			"rotation": {"angle": 45, "axis": "x", "origin": [0.1, 4.75, 4.75]},
 			"faces": {
-				"north": {"uv": [0, 8.5, 8, 11], "texture": "#1", "cullface": "north"}
+				"north": {"uv": [0, 8.5, 8, 11], "texture": "#solo", "cullface": "north"}
 			}
 		},
 		{
@@ -45,7 +44,7 @@
 			"to": [16, 7.25, 11.25],
 			"rotation": {"angle": -45, "axis": "x", "origin": [0.1, 4.75, 11.25]},
 			"faces": {
-				"south": {"uv": [0, 8.5, 8, 11], "texture": "#1", "cullface": "south"}
+				"south": {"uv": [0, 8.5, 8, 11], "texture": "#solo", "cullface": "south"}
 			}
 		},
 		{
@@ -53,7 +52,7 @@
 			"to": [10, 18, 7.9],
 			"rotation": {"angle": 0, "axis": "y", "origin": [7, 16, 6.9]},
 			"faces": {
-				"north": {"uv": [14.5, 5, 15.5, 7], "rotation": 90, "texture": "#1", "cullface": "up"}
+				"north": {"uv": [14.5, 5, 15.5, 7], "rotation": 90, "texture": "#solo", "cullface": "up"}
 			}
 		},
 		{
@@ -61,10 +60,11 @@
 			"to": [10, 18, 8.1],
 			"rotation": {"angle": 0, "axis": "y", "origin": [7, 16, 7.1]},
 			"faces": {
-				"south": {"uv": [14.5, 5, 15.5, 7], "rotation": 90, "texture": "#1", "cullface": "up"}
+				"south": {"uv": [14.5, 5, 15.5, 7], "rotation": 90, "texture": "#solo", "cullface": "up"}
 			}
 		}
 	],
+	"gui_light": "front",
 	"display": {
 		"thirdperson_righthand": {
 			"rotation": [75, 45, 0],

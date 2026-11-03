@@ -27,8 +27,11 @@ import java.util.Arrays;
     Notes:
     - modLoc() assumes that a filepath string ( "block/example_folder/example_block_model" ) has root "industrialhellscape:" , this mod
     - mcLoc() assumes the path has root "minecraft:", vanilla minecraft
+    - build.gradle requires the following line under data for proper location of default texture pack assets:
+        '--existing', file('src/main/resources/resourcepacks/inhell_ctm_textures').getAbsolutePath()
+        ( https://github.com/MinecraftForge/Documentation/blob/1.21.x/docs/datagen/index.md )
  */
-
+@SuppressWarnings("SameParameterValue") //https://stackoverflow.com/questions/48734714/suppress-warning-actual-value-of-parameter-x-is-always-y
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, IndustrialHellscape.MOD_ID, exFileHelper);
@@ -36,24 +39,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+
         //Debug Blocks
         genFullBlockIntegerMultiBlockSI(ModBlocks.DEBUG_BLOCK.get(), Integer11Block.PART, "debug_textures");
 
         //In-Development Block
         //genBrushableBlockSI(ModBlocks.VERY_SUSPICIOUS_SAND.get(), "suspicious_sand");
         //genHorizontalModelTogglingSI(ModBlocks.LAND_MINE.get(), "mine", "disarmed", BlockStateProperties.DISARMED, true);
-
-        genHorizontalAxisConnectedSI(ModBlocks.ROCKRETE_BARRIER.get(),"barrier", "solo","positive","middle","negative");
-
-        genHorizontalConnectedSI(ModBlocks.DESK.get(),"desk", "solo","left","middle","right");
-        genHorizontalConnectedSI(ModBlocks.DESK_DRAWER.get(),"desk_drawer", "solo","left","middle","right");
-
-        genHorizontalConnectedSI(ModBlocks.METAL_DESK.get(),"metal_desk", "solo","left","middle","right");
-        genHorizontalConnectedSI(ModBlocks.METAL_DESK_DRAWER.get(),"metal_desk_drawer", "solo","left","middle","right");
-        genHorizontalConnectedSI(ModBlocks.METAL_DESK_DRAWER_2.get(),"metal_desk_drawer_2", "solo","left","middle","right");
-
-        genHorizontalConnectedSI(ModBlocks.OFFICE_DESK.get(),"office_desk", "solo","left","middle","right");
-        genHorizontalConnectedSI(ModBlocks.OFFICE_DESK_DRAWER.get(),"office_desk_drawer", "solo","left","middle","right");
 
         //Hidden Joke Blocks
         genPeanutS((PeanutStatueBlock) ModBlocks.PEANUT_STATUE.get(), "peanut_statue");
@@ -247,7 +239,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genConnectedPillarBlockSBI(ModBlocks.YELLOW_ROCKRETE_PILLAR.get(), "pillar","pillar_horizontal", "yellow_rockrete_pillar", "yellow_rockrete_pillar");
 
         //Misc Rockrete Category Blocks
-        genFolderedSBI(ModBlocks.GRIMY_RESTROOM_TILE.get(), "");
+        genFolderedSBI(ModBlocks.GRIMY_RESTROOM_TILE.get(), "misc_rock");
 
         genFolderedSBI(ModBlocks.RED_HAZARD_STRIPE.get(), "hazard_stripe");
         genStairsWithRenderTypeSBI(ModBlocks.RED_HAZARD_STRIPE_STAIRS.get(),"hazard_stripe","red_hazard_stripe","red_hazard_stripe","red_hazard_stripe","solid");
@@ -313,7 +305,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //Standard Furniture Blocks (Non-generated models)
         genHorizontalModelledSI(ModBlocks.SINK.get(),"");
         genHorizontalModelledSI(ModBlocks.OFFICE_CHAIR.get(),"office_chair");
-        genHorizontalModelledSI(ModBlocks.BLACK_OFFICE_CHAIR.get(), "office_chair");
+        genHorizontalModelledSI(ModBlocks.BLACK_OFFICE_CHAIR.get(), "office_chair"); //TODO: implement existing/generated model option for texture variants
         genHorizontalModelledSI(ModBlocks.FOLDING_CHAIR.get(), "");
         genHorizontalModelledSI(ModBlocks.WHITE_WALL_MEDKIT.get(),"medkit_containers");
         genHorizontalModelledSI(ModBlocks.RED_WALL_MEDKIT.get(),"medkit_containers");
@@ -346,6 +338,35 @@ public class ModBlockStateProvider extends BlockStateProvider {
         genMultiBlockHorizontalS(ModBlocks.LARGE_LOCKER.get(), "locker");
         genMultiBlockHorizontalTextureTogglingSI(ModBlocks.WORK_LIGHT_STAND.get(), BlockStateProperties.LIT, Integer2Block.PART, "work_light", "lit_unlit_textures","1","work_light_lamp_on", new Integer[]{1});
         genMultiBlockHorizontalTextureTogglingSI(ModBlocks.VITALS_MONITOR.get(), BlockStateProperties.LIT, Integer2Block.PART, "vitals_monitor", "lit_unlit_textures","1","vitals_monitor_screen_on", new Integer[]{1});
+
+        //Connecting Model/State Blocks
+        genHorizontalAxisConnectedSBI(ModBlocks.GRAY_ROCKRETE_BARRIER.get(),"barrier", "rockrete_barrier","barrier", "gray_rockrete_barrier", "solo","positive","middle","negative", true);
+        genHorizontalAxisConnectedSBI(ModBlocks.GREEN_ROCKRETE_BARRIER.get(),"barrier", "rockrete_barrier","barrier", "green_rockrete_barrier", "solo","positive","middle","negative", true);
+        genHorizontalAxisConnectedSBI(ModBlocks.BLUE_ROCKRETE_BARRIER.get(),"barrier", "rockrete_barrier","barrier", "blue_rockrete_barrier", "solo","positive","middle","negative", true);
+        genHorizontalAxisConnectedSBI(ModBlocks.RED_ROCKRETE_BARRIER.get(),"barrier", "rockrete_barrier","barrier", "red_rockrete_barrier", "solo","positive","middle","negative", true);
+        genHorizontalAxisConnectedSBI(ModBlocks.YELLOW_ROCKRETE_BARRIER.get(),"barrier", "rockrete_barrier","barrier", "yellow_rockrete_barrier", "solo","positive","middle","negative", true);
+
+        genHorizontalAxisConnectedSBI(ModBlocks.GRAY_ROCKRETE_BARRIER_YELLOW_STRIPE.get(),"barrier","rockrete_barrier","barrier","gray_rockrete_barrier_yellow_stripe", "solo","positive","middle","negative", true);
+        genHorizontalAxisConnectedSBI(ModBlocks.GRAY_ROCKRETE_BARRIER_RED_STRIPE.get(),"barrier","rockrete_barrier","barrier","gray_rockrete_barrier_red_stripe", "solo","positive","middle","negative", true);
+        genHorizontalAxisConnectedSBI(ModBlocks.GREEN_ROCKRETE_BARRIER_YELLOW_STRIPE.get(),"barrier","rockrete_barrier","barrier","green_rockrete_barrier_yellow_stripe", "solo","positive","middle","negative", true);
+        genHorizontalAxisConnectedSBI(ModBlocks.GREEN_ROCKRETE_BARRIER_RED_STRIPE.get(),"barrier","rockrete_barrier","barrier","green_rockrete_barrier_red_stripe", "solo","positive","middle","negative", true);
+        genHorizontalAxisConnectedSBI(ModBlocks.BLUE_ROCKRETE_BARRIER_YELLOW_STRIPE.get(),"barrier","rockrete_barrier","barrier","blue_rockrete_barrier_yellow_stripe", "solo","positive","middle","negative", true);
+        genHorizontalAxisConnectedSBI(ModBlocks.BLUE_ROCKRETE_BARRIER_RED_STRIPE.get(),"barrier","rockrete_barrier","barrier","blue_rockrete_barrier_red_stripe", "solo","positive","middle","negative", true);
+        genHorizontalAxisConnectedSBI(ModBlocks.RED_ROCKRETE_BARRIER_YELLOW_STRIPE.get(),"barrier","rockrete_barrier","barrier","red_rockrete_barrier_yellow_stripe", "solo","positive","middle","negative", true);
+        genHorizontalAxisConnectedSBI(ModBlocks.RED_ROCKRETE_BARRIER_RED_STRIPE.get(),"barrier","rockrete_barrier","barrier","red_rockrete_barrier_red_stripe", "solo","positive","middle","negative", true);
+        genHorizontalAxisConnectedSBI(ModBlocks.YELLOW_ROCKRETE_BARRIER_YELLOW_STRIPE.get(),"barrier","rockrete_barrier","barrier","yellow_rockrete_barrier_yellow_stripe", "solo","positive","middle","negative", true);
+        genHorizontalAxisConnectedSBI(ModBlocks.YELLOW_ROCKRETE_BARRIER_RED_STRIPE.get(),"barrier","rockrete_barrier","barrier","yellow_rockrete_barrier_red_stripe", "solo","positive","middle","negative", true);
+
+
+        genHorizontalConnectedSI(ModBlocks.DESK.get(),"desk", "solo","left","middle","right");
+        genHorizontalConnectedSI(ModBlocks.DESK_DRAWER.get(),"desk_drawer", "solo","left","middle","right");
+
+        genHorizontalConnectedSI(ModBlocks.METAL_DESK.get(),"metal_desk", "solo","left","middle","right");
+        genHorizontalConnectedSI(ModBlocks.METAL_DESK_DRAWER.get(),"metal_desk_drawer", "solo","left","middle","right");
+        genHorizontalConnectedSI(ModBlocks.METAL_DESK_DRAWER_2.get(),"metal_desk_drawer_2", "solo","left","middle","right");
+
+        genHorizontalConnectedSI(ModBlocks.OFFICE_DESK.get(),"office_desk", "solo","left","middle","right");
+        genHorizontalConnectedSI(ModBlocks.OFFICE_DESK_DRAWER.get(),"office_desk_drawer", "solo","left","middle","right");
     }
 
     //---------- DATAGEN HELPER METHODS ----------
@@ -731,7 +752,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         String poweredTexturePath = "block/lit_unlit_textures/"+stringName+"_on";
 
         //On Model
-        ModelFile generatedOnModel = models()
+        models()
                 .withExistingParent(onModelStringName, modLoc(unpoweredModelPath))
                 .texture("1", poweredTexturePath);
 
@@ -887,24 +908,35 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //GENERATE ITEM MODEL
         simpleBlockItem(block, locateModelInMod(modelPath));
     }
-    private void genHorizontalAxisConnectedSI(Block block, String modelSubFolder, String soloModelNameAppend, String positiveModelNameAppend, String middleModelNameAppend, String negativeModelNameAppend) {
+    private void genHorizontalAxisConnectedSBI(Block block, String modelSubFolder, String originalModelName, String textureSubFolder, String textureName, String soloModelNameAppend, String positiveModelNameAppend, String middleModelNameAppend, String negativeModelNameAppend, boolean generateNewModels) {
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        String baseModelPath = "block/"+optionalFolder(modelSubFolder)+stringName;
+        String originalModelPath = "block/"+optionalFolder(modelSubFolder)+originalModelName;
+        String texturePath = "block/"+optionalFolder(textureSubFolder)+textureName;
 
         getVariantBuilder(block)
                 .forAllStatesExcept(state -> {
                     Direction.Axis horizontalFacing = state.getValue(BlockStateProperties.HORIZONTAL_AXIS);
                     DynamicConnectionState type = state.getValue(ConnectedModelInterface.TYPE);
                     String pathAppend = typeToStringAppend(type,soloModelNameAppend,positiveModelNameAppend,middleModelNameAppend,negativeModelNameAppend);
+                    String originalModelPathAppended = originalModelPath+"_"+pathAppend;
+
+                    ModelFile model = generateNewModels ?
+                            models().withExistingParent(stringName+"_"+pathAppend, modLoc(originalModelPathAppended))
+                                    .texture("solo", modLoc(texturePath))
+                                    .texture("tall", modLoc(texturePath+"_tall"))
+                            :
+                            locateModelInMod(originalModelPathAppended);
 
                     return ConfiguredModel.builder()
-                            .modelFile(locateModelInMod(baseModelPath+"_"+pathAppend))
+                            .modelFile(model)
                             .rotationY(horizontalFacing == Direction.Axis.X? 0:90)
                             .build();
                 }, BlockStateProperties.WATERLOGGED);
 
+        String itemModelFIle = generateNewModels ? stringName+"_"+soloModelNameAppend : originalModelPath+"_"+soloModelNameAppend ;
+
         //GENERATE ITEM MODEL
-        simpleBlockItem(block, locateModelInMod(baseModelPath+"_"+soloModelNameAppend));
+        simpleBlockItem(block, locateModelInMod(itemModelFIle));
     }
 
     private void genHorizontalConnectedSI(Block block, String modelSubFolder, String soloModelNameAppend, String positiveModelNameAppend, String middleModelNameAppend, String negativeModelNameAppend) {
@@ -937,7 +969,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         String poweredTexturePath = "block/lit_unlit_textures/"+litUnlitTextureName+"_on";
 
         //On Model
-        ModelFile generatedOnModel = models()
+        models()
                 .withExistingParent(onModelStringName, modLoc(unpoweredModelPath))
                 .texture("1", poweredTexturePath);
 
@@ -1041,22 +1073,18 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     //For texture shading direction consistency, horizontal pillars use opposite side textures
                     String textureAppendType;
                     switch(axis) {
-                        case Y -> {
-                            textureAppendType = switch (type) {
-                                case SOLO -> "_solo";
-                                case POSITIVE -> "_positive";
-                                case MIDDLE -> "_middle";
-                                case NEGATIVE -> "_negative";
-                            };
-                        }
-                        default -> {
-                            textureAppendType = switch (type) {
-                                case SOLO -> "_solo";
-                                case POSITIVE -> "_negative";
-                                case MIDDLE -> "_middle";
-                                case NEGATIVE -> "_positive";
-                            };
-                        }
+                        case Y -> textureAppendType = switch (type) {
+                            case SOLO -> "_solo";
+                            case POSITIVE -> "_positive";
+                            case MIDDLE -> "_middle";
+                            case NEGATIVE -> "_negative";
+                        };
+                        default -> textureAppendType = switch (type) {
+                            case SOLO -> "_solo";
+                            case POSITIVE -> "_negative";
+                            case MIDDLE -> "_middle";
+                            case NEGATIVE -> "_positive";
+                        };
                     }
 
                     String textureAppendOppositeType = switch(type) {
@@ -1547,8 +1575,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         MultiPartBlockStateBuilder multipartBuilder = getMultipartBuilder(block);
         
-        //preallocate for-loop variables;
-        int yDegrees = 0;
+        //initialize for-loop variables;
+        int yDegrees;
 
         //Generate Fence model states
         for(Direction dir : BlockStateProperties.HORIZONTAL_FACING.getPossibleValues()) {

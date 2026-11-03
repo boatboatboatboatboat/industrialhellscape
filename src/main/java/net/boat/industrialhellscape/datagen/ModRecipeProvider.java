@@ -2,7 +2,7 @@ package net.boat.industrialhellscape.datagen;
 
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.ModBlocks;
-import net.boat.industrialhellscape.block.block_classes.RailingBlocks.ParapetBlock;
+import net.boat.industrialhellscape.block.block_interfaces.ModdedNonFullBlock;
 import net.boat.industrialhellscape.item.ModItems;
 import net.boat.industrialhellscape.util.ModTags;
 import net.minecraft.core.HolderLookup;
@@ -204,14 +204,30 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModBlocks.RED_ROCKRETE_PILLAR.get(),
             ModBlocks.RED_ROCKRETE_PARAPET.get(),
 
-            ModBlocks.GRIMY_RESTROOM_TILE.get(),
+            ModBlocks.GRAY_ROCKRETE_BARRIER.get(),
+            ModBlocks.BLUE_ROCKRETE_BARRIER.get(),
+            ModBlocks.GREEN_ROCKRETE_BARRIER.get(),
+            ModBlocks.RED_ROCKRETE_BARRIER.get(),
+            ModBlocks.YELLOW_ROCKRETE_BARRIER.get(),
+
+            ModBlocks.GRAY_ROCKRETE_BARRIER_YELLOW_STRIPE.get(),
+            ModBlocks.GRAY_ROCKRETE_BARRIER_RED_STRIPE.get(),
+            ModBlocks.GREEN_ROCKRETE_BARRIER_YELLOW_STRIPE.get(),
+            ModBlocks.GREEN_ROCKRETE_BARRIER_RED_STRIPE.get(),
+            ModBlocks.BLUE_ROCKRETE_BARRIER_YELLOW_STRIPE.get(),
+            ModBlocks.BLUE_ROCKRETE_BARRIER_RED_STRIPE.get(),
+            ModBlocks.YELLOW_ROCKRETE_BARRIER_YELLOW_STRIPE.get(),
+            ModBlocks.YELLOW_ROCKRETE_BARRIER_RED_STRIPE.get(),
+
             ModBlocks.RED_HAZARD_STRIPE.get(),
             ModBlocks.RED_HAZARD_STRIPE_STAIRS.get(),
             ModBlocks.RED_HAZARD_STRIPE_SLAB.get(),
 
             ModBlocks.YELLOW_HAZARD_STRIPE.get(),
             ModBlocks.YELLOW_HAZARD_STRIPE_STAIRS.get(),
-            ModBlocks.YELLOW_HAZARD_STRIPE_SLAB.get()
+            ModBlocks.YELLOW_HAZARD_STRIPE_SLAB.get(),
+
+            ModBlocks.GRIMY_RESTROOM_TILE.get()
     );
     public static final List<Block> VESSELGLASS_STONECUT_OUTPUT = List.of(
             ModBlocks.VESSELGLASS.get(),
@@ -601,8 +617,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                         .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                         .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, inputTagName + "_stonecut_to_" + id));
 
-            } else if ( (item instanceof BlockItem blockItem) && (blockItem.getBlock() instanceof ParapetBlock) ) {
-                stonecutToAmount(ingredient, RecipeCategory.MISC, item, 4) //Any block from the inputTag can produce four slabs parapets the stonecutOutputList
+            } else if ( (item instanceof BlockItem blockItem) && (blockItem.getBlock() instanceof ModdedNonFullBlock nonFullBlock) ) {
+                stonecutToAmount(ingredient, RecipeCategory.MISC, item, nonFullBlock.outputAmountFromStonecuttingFullBlock()) //Any block from the inputTag can produce four slabs parapets the stonecutOutputList
                         .unlockedBy(getHasName(ModItems.INHELL_HAVEN_DEVICE.get()), has(ModItems.INHELL_HAVEN_DEVICE.get()))
                         .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID, inputTagName + "_stonecut_to_" + id));
             } else {

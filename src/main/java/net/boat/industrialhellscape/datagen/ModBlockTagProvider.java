@@ -52,7 +52,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         //--- Doors
         this.tag(ModTags.Blocks.DOOR_BLOCKS).add(ModRecipeProvider.DOORS_STONECUT_OUTPUT.toArray(new Block[0]));
-        this.tag(ModTags.Blocks.TRAPDOOR_BLOCKS).add(ModRecipeProvider.TRUSS_STONECUT_OUTPUT.toArray(new Block[0]));
+        this.tag(ModTags.Blocks.TRAPDOOR_BLOCKS).add(ModRecipeProvider.TRAPDOORS_STONECUT_OUTPUT.toArray(new Block[0]));
 
         //--- Works
         this.tag(ModTags.Blocks.METALWORKS_BLOCKS).add(ModRecipeProvider.METALWORKS_STONECUT_OUTPUT.toArray(new Block[0]));
@@ -160,7 +160,20 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.GRAY_ROCKRETE_WALL.get(),
                         ModBlocks.GREEN_ROCKRETE_WALL.get(),
 
-                        ModBlocks.ROCKRETE_BARRIER.get()
+                        ModBlocks.GRAY_ROCKRETE_BARRIER.get(),
+                        ModBlocks.BLUE_ROCKRETE_BARRIER.get(),
+                        ModBlocks.GREEN_ROCKRETE_BARRIER.get(),
+                        ModBlocks.RED_ROCKRETE_BARRIER.get(),
+                        ModBlocks.YELLOW_ROCKRETE_BARRIER.get(),
+
+                        ModBlocks.GRAY_ROCKRETE_BARRIER_YELLOW_STRIPE.get(),
+                        ModBlocks.GRAY_ROCKRETE_BARRIER_RED_STRIPE.get(),
+                        ModBlocks.GREEN_ROCKRETE_BARRIER_YELLOW_STRIPE.get(),
+                        ModBlocks.GREEN_ROCKRETE_BARRIER_RED_STRIPE.get(),
+                        ModBlocks.BLUE_ROCKRETE_BARRIER_YELLOW_STRIPE.get(),
+                        ModBlocks.BLUE_ROCKRETE_BARRIER_RED_STRIPE.get(),
+                        ModBlocks.YELLOW_ROCKRETE_BARRIER_YELLOW_STRIPE.get(),
+                        ModBlocks.YELLOW_ROCKRETE_BARRIER_RED_STRIPE.get()
                 );
 
         this.tag(BlockTags.FENCES)

@@ -69,7 +69,7 @@ public class LightBulbBlock extends ModelledFAHDBlock implements SoundPlayInterf
         if (level.isClientSide) {
             return InteractionResult.SUCCESS;
         } else {
-            SoundPlayInterface.onOffSoundWithUpdateCheck(state,next,level,pos,BlockStateProperties.LIT,ON_SOUND,OFF_SOUND,1f,1f,0.5f);
+            SoundPlayInterface.onOffSoundWithUpdateCheck(state,next,level,pos,BlockStateProperties.LIT,ON_SOUND,OFF_SOUND,0.75f,1f,0.5f);
             return InteractionResult.CONSUME;
         }
     }

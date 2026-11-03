@@ -5,6 +5,13 @@ import net.boat.industrialhellscape.entity.ModEntities;
 import net.boat.industrialhellscape.entity.SittableEntity.SittableEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BrushableBlockRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.repository.Pack;
+import net.minecraft.server.packs.repository.PackSource;
+import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -15,6 +22,8 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import net.neoforged.neoforge.event.AddPackFindersEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
 // This class will not load on dedicated servers. Accessing client side code from here is safe.
 @Mod(value = IndustrialHellscape.MOD_ID, dist = Dist.CLIENT)
@@ -54,43 +63,65 @@ public class IndustrialHellscapeClient {
                     BrushableBlockRenderer::new
             );
         }
+        //https://mcreator.net/forum/115113/how-add-built-resource-packs-neoforge-1214
+        @SubscribeEvent
+        public static void findBuiltInPacks(AddPackFindersEvent event) {
+            event.addPackFinders(
+                    ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID,"resourcepacks/inhell_ctm_textures"),
+                    PackType.CLIENT_RESOURCES,
+                    Component.translatable("industrialhellscape.resourcepack.inhell_ctm"),
+                    PackSource.DEFAULT,
+                    false, //keep false
+                    Pack.Position.BOTTOM
+            );
 
-//        @SubscribeEvent
-//        public static void onPlayerJoinWorld(PlayerEvent.PlayerLoggedInEvent event) {
-//            if(ModClientConfig.enableWorldJoinMessage()) { //not implemented yet
-//                Player player = event.getEntity();
-//
-//                int paleGoldenRod = 0xEEE8AA;
-//
-//                MutableComponent message = Component.literal("");
-//
-//                message.append(Component.translatable("industrialhellscape.client_chat_message.title")
-//                        .withStyle(style -> style.withColor(paleGoldenRod).withBold(true)));
-//
-//                //Instruct on soft mod dependencies (CTM or Fusion) & Resource Pack use
-//                message.append(Component.translatable("industrialhellscape.client_chat_message.body1")
-//                        .withStyle(style -> style.withColor(paleGoldenRod)));
-//                message.append(Component.translatable("industrialhellscape.client_chat_message.body2")
-//                        .withStyle(style -> style.withColor(paleGoldenRod)));
-//                message.append(Component.translatable("industrialhellscape.client_chat_message.body3")
-//                        .withStyle(style -> style.withColor(paleGoldenRod)));
-//
-//                //Instruct on Client Configs (to disable this message)
-//                message.append(Component.translatable("industrialhellscape.client_chat_message.body4")
-//                        .withStyle(style -> style.withColor(paleGoldenRod)));
-//                message.append(Component.translatable("industrialhellscape.client_chat_message.body5")
-//                        .withStyle(style -> style.withColor(paleGoldenRod)));
-//
-//                //Instruct on Common Configs (client-side block placement preferences)
-//                message.append(Component.translatable("industrialhellscape.client_chat_message.body6")
-//                        .withStyle(style -> style.withColor(paleGoldenRod)));
-//
-//
-//                message.append(Component.translatable("industrialhellscape.client_chat_message.eom")
-//                        .withStyle(style -> style.withColor(paleGoldenRod).withBold(true)));
-//
-//                player.sendSystemMessage(message);
-//            }
-//        }
+            event.addPackFinders(
+                    ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID,"resourcepacks/inhell_fusion_textures"),
+                    PackType.CLIENT_RESOURCES,
+                    Component.translatable("industrialhellscape.resourcepack.inhell_fusion"),
+                    PackSource.BUILT_IN,
+                    false, //keep false
+                    Pack.Position.BOTTOM
+            );
+        }
+
+        //DONT DELETE THIS
+        @SubscribeEvent
+        public static void onPlayerJoinWorld(PlayerEvent.PlayerLoggedInEvent event) {
+            if(ModClientConfig.enableWorldJoinMessage()) { //not implemented yet
+                Player player = event.getEntity();
+
+                int paleGoldenRod = 0xEEE8AA;
+
+                MutableComponent message = Component.literal("");
+
+                message.append(Component.translatable("industrialhellscape.client_chat_message.title")
+                        .withStyle(style -> style.withColor(paleGoldenRod).withBold(true)));
+
+                //Instruct on soft mod dependencies (CTM or Fusion) & Resource Pack use
+                message.append(Component.translatable("industrialhellscape.client_chat_message.body1")
+                        .withStyle(style -> style.withColor(paleGoldenRod)));
+                message.append(Component.translatable("industrialhellscape.client_chat_message.body2")
+                        .withStyle(style -> style.withColor(paleGoldenRod)));
+                message.append(Component.translatable("industrialhellscape.client_chat_message.body3")
+                        .withStyle(style -> style.withColor(paleGoldenRod)));
+
+                //Instruct on Client Configs (to disable this message)
+                message.append(Component.translatable("industrialhellscape.client_chat_message.body4")
+                        .withStyle(style -> style.withColor(paleGoldenRod)));
+                message.append(Component.translatable("industrialhellscape.client_chat_message.body5")
+                        .withStyle(style -> style.withColor(paleGoldenRod)));
+
+                //Instruct on Common Configs (client-side block placement preferences)
+                message.append(Component.translatable("industrialhellscape.client_chat_message.body6")
+                        .withStyle(style -> style.withColor(paleGoldenRod)));
+
+
+                message.append(Component.translatable("industrialhellscape.client_chat_message.eom")
+                        .withStyle(style -> style.withColor(paleGoldenRod).withBold(true)));
+
+                player.sendSystemMessage(message);
+            }
+        }
     }
 }

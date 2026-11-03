@@ -1,4 +1,7 @@
 {
+  "industrialhellscape.resourcepack.inhell_fusion": "InHell Fusion Textures",
+  "industrialhellscape.resourcepack.inhell_ctm": "InHell CTM Textures",
+
   "industrialhellscape.configuration.tagged_pickaxe_compat": "Pickaxe Item-Tag Compatible",
   "industrialhellscape.configuration.tagged_wrench_compat": "Wrench Item-Tag Compatible",
   "industrialhellscape.configuration.crouch_to_change_texture": "Crouching Toggles Texture",
@@ -36,7 +39,14 @@
 
   "block.industrialhellscape.very_suspicious_sand": "Very Suspicious Sand",
   "block.industrialhellscape.land_mine": "Land Mine",
-  "block.industrialhellscape.rockrete_barrier": "Rockrete Barrier",
+  "block.industrialhellscape.gray_rockrete_barrier": "Gray Rockrete Barrier",
+  "block.industrialhellscape.green_rockrete_barrier": "Green Rockrete Barrier",
+  "block.industrialhellscape.blue_rockrete_barrier": "Blue Rockrete Barrier",
+  "block.industrialhellscape.red_rockrete_barrier": "Red Rockrete Barrier",
+  "block.industrialhellscape.yellow_rockrete_barrier": "Yellow Rockrete Barrier",
+
+  "block.industrialhellscape.gray_rockrete_barrier_red_stripe": "Gray Rockrete Barrier - Yellow Stripe",
+  "block.industrialhellscape.gray_rockrete_barrier_yellow_stripe": "Gray Rockrete Barrier - Red Stripe",
 
   "block.industrialhellscape.vesselplate_sheeting": "Vesselplate Sheeting",
   "block.industrialhellscape.vesselplate_sheeting_slab": "Vesselplate Sheeting Slab",
