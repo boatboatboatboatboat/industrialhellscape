@@ -147,7 +147,7 @@ configurations {
 }
 
 dependencies {
-    //implementation("curse.maven:ctm-267602:5587515")
+    implementation("curse.maven:ctm-267602:5587515")
     implementation("maven.modrinth:fusion-connected-textures:1.3.16-neoforge-mc1.21.1")
 
     implementation("curse.maven:jei-238222:7420587")
