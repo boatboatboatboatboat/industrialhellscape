@@ -41,7 +41,7 @@ public class ModItems {
     }
 
     public static final DeferredItem<Item> INHELL_HAVEN_DEVICE = ITEMS.register("inhell_haven_device",
-            () -> new InHellToolItem(new Item.Properties())
+            () -> new InHellToolItem(new Item.Properties().stacksTo(1))
             {
                 //Item has tooltip text capability.
                 @Override

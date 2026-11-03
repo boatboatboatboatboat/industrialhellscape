@@ -66,26 +66,26 @@ public class IndustrialHellscapeClient {
         //https://mcreator.net/forum/115113/how-add-built-resource-packs-neoforge-1214
         @SubscribeEvent
         public static void findBuiltInPacks(AddPackFindersEvent event) {
+            //CTM Pack (PackSource.DEFAULT)
             event.addPackFinders(
                     ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID,"resourcepacks/inhell_ctm_textures"),
                     PackType.CLIENT_RESOURCES,
                     Component.translatable("industrialhellscape.resourcepack.inhell_ctm"),
-                    PackSource.DEFAULT,
-                    false, //keep false
+                    PackSource.DEFAULT, //Enabled by default
+                    false, //keep false or else it will be locked from disabling
                     Pack.Position.BOTTOM
             );
-
+            //Fusion Pack (PackSource.BUILT_IN)
             event.addPackFinders(
                     ResourceLocation.fromNamespaceAndPath(IndustrialHellscape.MOD_ID,"resourcepacks/inhell_fusion_textures"),
                     PackType.CLIENT_RESOURCES,
                     Component.translatable("industrialhellscape.resourcepack.inhell_fusion"),
-                    PackSource.BUILT_IN,
-                    false, //keep false
+                    PackSource.BUILT_IN, //Can optionally be enabled
+                    false,  //keep false or else it will be locked from disabling
                     Pack.Position.BOTTOM
             );
         }
 
-        //DONT DELETE THIS
         @SubscribeEvent
         public static void onPlayerJoinWorld(PlayerEvent.PlayerLoggedInEvent event) {
             if(ModClientConfig.enableWorldJoinMessage()) { //not implemented yet
@@ -95,6 +95,7 @@ public class IndustrialHellscapeClient {
 
                 MutableComponent message = Component.literal("");
 
+                //Message Title
                 message.append(Component.translatable("industrialhellscape.client_chat_message.title")
                         .withStyle(style -> style.withColor(paleGoldenRod).withBold(true)));
 
@@ -116,7 +117,7 @@ public class IndustrialHellscapeClient {
                 message.append(Component.translatable("industrialhellscape.client_chat_message.body6")
                         .withStyle(style -> style.withColor(paleGoldenRod)));
 
-
+                //Message End
                 message.append(Component.translatable("industrialhellscape.client_chat_message.eom")
                         .withStyle(style -> style.withColor(paleGoldenRod).withBold(true)));
 
