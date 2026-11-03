@@ -36,7 +36,7 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class ConnectedBarrierBlock extends Block implements ConnectedModelInterface, ModdedNonFullBlock {
+public class BarrierWallBlock extends Block implements ConnectedModelInterface, ModdedNonFullBlock {
     @Override
     public int outputAmountFromStonecuttingFullBlock() {
         return 4;
@@ -58,7 +58,7 @@ public class ConnectedBarrierBlock extends Block implements ConnectedModelInterf
     public final VoxelShape RIGHT_X;
     public final VoxelShape RIGHT_Z;
     
-    public ConnectedBarrierBlock(Properties properties, @Nullable TagKey<Block> inputCompatibleBlockSet, VoxelShape soloShape, VoxelShape leftShape, VoxelShape middleShape, VoxelShape rightShape, ConnectingBlockPlacementOrientation placementDirection) {
+    public BarrierWallBlock(Properties properties, @Nullable TagKey<Block> inputCompatibleBlockSet, VoxelShape soloShape, VoxelShape leftShape, VoxelShape middleShape, VoxelShape rightShape, ConnectingBlockPlacementOrientation placementDirection) {
         super(properties);
 
         //Define the Voxelshape hitboxes for each state
@@ -217,7 +217,7 @@ public class ConnectedBarrierBlock extends Block implements ConnectedModelInterf
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         if (Screen.hasShiftDown()) {
-            tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_connecting_furniture"));
+            tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_barrier_wall_block"));
         } else {
             tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.shift_down"));
         }

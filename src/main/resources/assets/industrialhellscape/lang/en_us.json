@@ -47,6 +47,14 @@
 
   "block.industrialhellscape.gray_rockrete_barrier_red_stripe": "Gray Rockrete Barrier - Yellow Stripe",
   "block.industrialhellscape.gray_rockrete_barrier_yellow_stripe": "Gray Rockrete Barrier - Red Stripe",
+  "block.industrialhellscape.green_rockrete_barrier_red_stripe": "Green Rockrete Barrier - Yellow Stripe",
+  "block.industrialhellscape.green_rockrete_barrier_yellow_stripe": "Green Rockrete Barrier - Red Stripe",
+  "block.industrialhellscape.blue_rockrete_barrier_red_stripe": "Blue Rockrete Barrier - Yellow Stripe",
+  "block.industrialhellscape.blue_rockrete_barrier_yellow_stripe": "Blue Rockrete Barrier - Red Stripe",
+  "block.industrialhellscape.red_rockrete_barrier_red_stripe": "Red Rockrete Barrier - Yellow Stripe",
+  "block.industrialhellscape.red_rockrete_barrier_yellow_stripe": "Red Rockrete Barrier - Red Stripe",
+  "block.industrialhellscape.yellow_rockrete_barrier_red_stripe": "Yellow Rockrete Barrier - Yellow Stripe",
+  "block.industrialhellscape.yellow_rockrete_barrier_yellow_stripe": "Yellow Rockrete Barrier - Red Stripe",
 
   "block.industrialhellscape.vesselplate_sheeting": "Vesselplate Sheeting",
   "block.industrialhellscape.vesselplate_sheeting_slab": "Vesselplate Sheeting Slab",
@@ -173,7 +181,7 @@
   "block.industrialhellscape.weathered_red_rockrete_slab": "Weathered Red Rockrete Slab",
 
   "block.industrialhellscape.gray_rockrete_wall": "Gray Rockrete Wall",
-  "block.industrialhellscape.red_rockrete_wall": "Gray Rockrete Wall",
+  "block.industrialhellscape.red_rockrete_wall": "Red Rockrete Wall",
   "block.industrialhellscape.yellow_rockrete_wall": "Yellow Rockrete Wall",
   "block.industrialhellscape.blue_rockrete_wall": "Blue Rockrete Wall",
   "block.industrialhellscape.green_rockrete_wall": "Green Rockrete Wall",
@@ -384,7 +392,8 @@
   "tooltip.industrialhellscape.job_application": "Sneak Interact to convert Nitwit villagers into employable villagers. Nametagged villagers unaffected.",
   "tooltip.industrialhellscape.termination_letter": "Sneak Interact to convert Employed villagers into unemployed villagers. Nametagged villagers unaffected.",
   "tooltip.industrialhellscape.horsepill": "§6 Enhances your body with \"equine characteristics!\"",
-  "tooltip.industrialhellscape.advise_connecting_furniture": "Horizontal Connections: Look diagonally before placing \nVertical Connections: Place above or below a block like this.",
+  "tooltip.industrialhellscape.advise_connecting_furniture": "If Applicable:\nHorizontal Connections: Look diagonally before placing \nVertical Connections: Place above or below a block like this.",
+  "tooltip.industrialhellscape.advise_barrier_wall_block": "Vertical Connections: Place above or below a block like this.\nWall Blocks will connect to this.",
 
   "death.attack.horsepilldeathmessage": "%1$s has been horsed.",
   "death.attack.landminedeathmessage": "%1$s stepped on a landmine",

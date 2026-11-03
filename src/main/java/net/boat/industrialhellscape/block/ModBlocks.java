@@ -3,7 +3,7 @@ package net.boat.industrialhellscape.block;
 import net.boat.industrialhellscape.IndustrialHellscape;
 import net.boat.industrialhellscape.block.block_classes.AxisPillarBlocks.ConnectedPillarBlock;
 import net.boat.industrialhellscape.block.block_classes.AxisPillarBlocks.TrussBeamBlock;
-import net.boat.industrialhellscape.block.block_classes.ConnectedBlocks.ConnectedBarrierBlock;
+import net.boat.industrialhellscape.block.block_classes.ConnectedBlocks.BarrierWallBlock;
 import net.boat.industrialhellscape.block.block_classes.ConnectedBlocks.ConnectedFurnitureBlock;
 import net.boat.industrialhellscape.block.block_classes.ConnectedBlocks.ConnectedStorageBlock;
 import net.boat.industrialhellscape.block.block_classes.FaceAttachedHorizontalDirectionBlocks.*;
@@ -133,175 +133,6 @@ public class ModBlocks {
 //                    HitboxGeometryCollection.VERTICAL_ROD_4X4_SHAPE()
 //            )
 //    );
-
-    public static final DeferredBlock<Block> GRAY_ROCKRETE_BARRIER = registerBlockAndBlockItem("gray_rockrete_barrier",
-            () -> new ConnectedBarrierBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE),
-                    null,
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    ConnectingBlockPlacementOrientation.VERTICAL
-            )
-    );
-
-    public static final DeferredBlock<Block> GREEN_ROCKRETE_BARRIER = registerBlockAndBlockItem("green_rockrete_barrier",
-            () -> new ConnectedBarrierBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE),
-                    null,
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    ConnectingBlockPlacementOrientation.VERTICAL
-            )
-    );
-
-    public static final DeferredBlock<Block> BLUE_ROCKRETE_BARRIER = registerBlockAndBlockItem("blue_rockrete_barrier",
-            () -> new ConnectedBarrierBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE),
-                    null,
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    ConnectingBlockPlacementOrientation.VERTICAL
-            )
-    );
-    public static final DeferredBlock<Block> RED_ROCKRETE_BARRIER = registerBlockAndBlockItem("red_rockrete_barrier",
-            () -> new ConnectedBarrierBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE),
-                    null,
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    ConnectingBlockPlacementOrientation.VERTICAL
-            )
-    );
-    public static final DeferredBlock<Block> YELLOW_ROCKRETE_BARRIER = registerBlockAndBlockItem("yellow_rockrete_barrier",
-            () -> new ConnectedBarrierBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE),
-                    null,
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    ConnectingBlockPlacementOrientation.VERTICAL
-            )
-    );
-    public static final DeferredBlock<Block> GRAY_ROCKRETE_BARRIER_YELLOW_STRIPE = registerBlockAndBlockItem("gray_rockrete_barrier_yellow_stripe",
-            () -> new ConnectedBarrierBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE),
-                    null,
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    ConnectingBlockPlacementOrientation.VERTICAL
-            )
-    );
-    public static final DeferredBlock<Block> GRAY_ROCKRETE_BARRIER_RED_STRIPE = registerBlockAndBlockItem("gray_rockrete_barrier_red_stripe",
-            () -> new ConnectedBarrierBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE),
-                    null,
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    ConnectingBlockPlacementOrientation.VERTICAL
-            )
-    );
-    public static final DeferredBlock<Block> GREEN_ROCKRETE_BARRIER_YELLOW_STRIPE = registerBlockAndBlockItem("green_rockrete_barrier_yellow_stripe",
-            () -> new ConnectedBarrierBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE),
-                    null,
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    ConnectingBlockPlacementOrientation.VERTICAL
-            )
-    );
-    public static final DeferredBlock<Block> GREEN_ROCKRETE_BARRIER_RED_STRIPE = registerBlockAndBlockItem("green_rockrete_barrier_red_stripe",
-            () -> new ConnectedBarrierBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE),
-                    null,
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    ConnectingBlockPlacementOrientation.VERTICAL
-            )
-    );
-    public static final DeferredBlock<Block> BLUE_ROCKRETE_BARRIER_YELLOW_STRIPE = registerBlockAndBlockItem("blue_rockrete_barrier_yellow_stripe",
-            () -> new ConnectedBarrierBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE),
-                    null,
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    ConnectingBlockPlacementOrientation.VERTICAL
-            )
-    );
-    public static final DeferredBlock<Block> BLUE_ROCKRETE_BARRIER_RED_STRIPE = registerBlockAndBlockItem("blue_rockrete_barrier_red_stripe",
-            () -> new ConnectedBarrierBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE),
-                    null,
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    ConnectingBlockPlacementOrientation.VERTICAL
-            )
-    );
-    public static final DeferredBlock<Block> RED_ROCKRETE_BARRIER_YELLOW_STRIPE = registerBlockAndBlockItem("red_rockrete_barrier_yellow_stripe",
-            () -> new ConnectedBarrierBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE),
-                    null,
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    ConnectingBlockPlacementOrientation.VERTICAL
-            )
-    );
-    public static final DeferredBlock<Block> RED_ROCKRETE_BARRIER_RED_STRIPE = registerBlockAndBlockItem("red_rockrete_barrier_red_stripe",
-            () -> new ConnectedBarrierBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE),
-                    null,
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    ConnectingBlockPlacementOrientation.VERTICAL
-            )
-    );
-    public static final DeferredBlock<Block> YELLOW_ROCKRETE_BARRIER_YELLOW_STRIPE = registerBlockAndBlockItem("yellow_rockrete_barrier_yellow_stripe",
-            () -> new ConnectedBarrierBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE),
-                    null,
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    ConnectingBlockPlacementOrientation.VERTICAL
-            )
-    );
-    public static final DeferredBlock<Block> YELLOW_ROCKRETE_BARRIER_RED_STRIPE = registerBlockAndBlockItem("yellow_rockrete_barrier_red_stripe",
-            () -> new ConnectedBarrierBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.STONE),
-                    null,
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
-                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
-                    ConnectingBlockPlacementOrientation.VERTICAL
-            )
-    );
-
 
 //    public static final DeferredBlock<Block> VERY_SUSPICIOUS_SAND = registerBlockAndBlockItem("very_suspicious_sand",
 //            () -> new BuriedMineBlock(
@@ -1249,6 +1080,41 @@ public class ModBlocks {
     );
     public static final DeferredBlock<WallBlock> GRAY_ROCKRETE_WALL = registerBlockAndBlockItem("gray_rockrete_wall",
             () -> new WallBlock(BlockBehaviour.Properties.of().strength(2f).requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<Block> GRAY_ROCKRETE_BARRIER = registerBlockAndBlockItem("gray_rockrete_barrier",
+            () -> new BarrierWallBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE),
+                    null,
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    ConnectingBlockPlacementOrientation.VERTICAL
+            )
+    );
+    public static final DeferredBlock<Block> GRAY_ROCKRETE_BARRIER_YELLOW_STRIPE = registerBlockAndBlockItem("gray_rockrete_barrier_yellow_stripe",
+            () -> new BarrierWallBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE),
+                    null,
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    ConnectingBlockPlacementOrientation.VERTICAL
+            )
+    );
+    public static final DeferredBlock<Block> GRAY_ROCKRETE_BARRIER_RED_STRIPE = registerBlockAndBlockItem("gray_rockrete_barrier_red_stripe",
+            () -> new BarrierWallBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE),
+                    null,
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    ConnectingBlockPlacementOrientation.VERTICAL
+            )
+    );
+
     //GREEN ROCKRETE
     public static final DeferredBlock<Block> GREEN_ROCKRETE = registerBlockAndBlockItem("green_rockrete",
             () -> new Block(BlockBehaviour
@@ -1293,6 +1159,41 @@ public class ModBlocks {
     );
     public static final DeferredBlock<WallBlock> GREEN_ROCKRETE_WALL = registerBlockAndBlockItem("green_rockrete_wall",
             () -> new WallBlock(BlockBehaviour.Properties.of().strength(2f).requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<Block> GREEN_ROCKRETE_BARRIER = registerBlockAndBlockItem("green_rockrete_barrier",
+            () -> new BarrierWallBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE),
+                    null,
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    ConnectingBlockPlacementOrientation.VERTICAL
+            )
+    );
+    public static final DeferredBlock<Block> GREEN_ROCKRETE_BARRIER_YELLOW_STRIPE = registerBlockAndBlockItem("green_rockrete_barrier_yellow_stripe",
+            () -> new BarrierWallBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE),
+                    null,
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    ConnectingBlockPlacementOrientation.VERTICAL
+            )
+    );
+    public static final DeferredBlock<Block> GREEN_ROCKRETE_BARRIER_RED_STRIPE = registerBlockAndBlockItem("green_rockrete_barrier_red_stripe",
+            () -> new BarrierWallBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE),
+                    null,
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    ConnectingBlockPlacementOrientation.VERTICAL
+            )
+    );
+
     //YELLOW ROCKRETE
     public static final DeferredBlock<Block> YELLOW_ROCKRETE = registerBlockAndBlockItem("yellow_rockrete",
             () -> new Block(BlockBehaviour
@@ -1337,6 +1238,40 @@ public class ModBlocks {
     );
     public static final DeferredBlock<WallBlock> YELLOW_ROCKRETE_WALL = registerBlockAndBlockItem("yellow_rockrete_wall",
             () -> new WallBlock(BlockBehaviour.Properties.of().strength(2f).requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<Block> YELLOW_ROCKRETE_BARRIER = registerBlockAndBlockItem("yellow_rockrete_barrier",
+            () -> new BarrierWallBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE),
+                    null,
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    ConnectingBlockPlacementOrientation.VERTICAL
+            )
+    );
+    public static final DeferredBlock<Block> YELLOW_ROCKRETE_BARRIER_YELLOW_STRIPE = registerBlockAndBlockItem("yellow_rockrete_barrier_yellow_stripe",
+            () -> new BarrierWallBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE),
+                    null,
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    ConnectingBlockPlacementOrientation.VERTICAL
+            )
+    );
+    public static final DeferredBlock<Block> YELLOW_ROCKRETE_BARRIER_RED_STRIPE = registerBlockAndBlockItem("yellow_rockrete_barrier_red_stripe",
+            () -> new BarrierWallBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE),
+                    null,
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    ConnectingBlockPlacementOrientation.VERTICAL
+            )
+    );
     //BLUE ROCKRETE
     public static final DeferredBlock<Block> BLUE_ROCKRETE = registerBlockAndBlockItem("blue_rockrete",
             () -> new Block(BlockBehaviour
@@ -1381,6 +1316,40 @@ public class ModBlocks {
     );
     public static final DeferredBlock<WallBlock> BLUE_ROCKRETE_WALL = registerBlockAndBlockItem("blue_rockrete_wall",
             () -> new WallBlock(BlockBehaviour.Properties.of().strength(2f).requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<Block> BLUE_ROCKRETE_BARRIER = registerBlockAndBlockItem("blue_rockrete_barrier",
+            () -> new BarrierWallBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE),
+                    null,
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    ConnectingBlockPlacementOrientation.VERTICAL
+            )
+    );
+    public static final DeferredBlock<Block> BLUE_ROCKRETE_BARRIER_YELLOW_STRIPE = registerBlockAndBlockItem("blue_rockrete_barrier_yellow_stripe",
+            () -> new BarrierWallBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE),
+                    null,
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    ConnectingBlockPlacementOrientation.VERTICAL
+            )
+    );
+    public static final DeferredBlock<Block> BLUE_ROCKRETE_BARRIER_RED_STRIPE = registerBlockAndBlockItem("blue_rockrete_barrier_red_stripe",
+            () -> new BarrierWallBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE),
+                    null,
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    ConnectingBlockPlacementOrientation.VERTICAL
+            )
+    );
     //RED ROCKRETE
     public static final DeferredBlock<Block> RED_ROCKRETE = registerBlockAndBlockItem("red_rockrete",
             () -> new Block(BlockBehaviour
@@ -1429,6 +1398,40 @@ public class ModBlocks {
     public static final DeferredBlock<Block> GRIMY_RESTROOM_TILE = registerBlockAndBlockItem("grimy_restroom_tile",
             () -> new Block(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.STONE)
+            )
+    );
+
+    public static final DeferredBlock<Block> RED_ROCKRETE_BARRIER = registerBlockAndBlockItem("red_rockrete_barrier",
+            () -> new BarrierWallBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE),
+                    null,
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    ConnectingBlockPlacementOrientation.VERTICAL
+            )
+    );
+    public static final DeferredBlock<Block> RED_ROCKRETE_BARRIER_YELLOW_STRIPE = registerBlockAndBlockItem("red_rockrete_barrier_yellow_stripe",
+            () -> new BarrierWallBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE),
+                    null,
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    ConnectingBlockPlacementOrientation.VERTICAL
+            )
+    );
+    public static final DeferredBlock<Block> RED_ROCKRETE_BARRIER_RED_STRIPE = registerBlockAndBlockItem("red_rockrete_barrier_red_stripe",
+            () -> new BarrierWallBlock(BlockBehaviour
+                    .Properties.ofFullCopy(Blocks.STONE),
+                    null,
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_WALL(),
+                    HitboxGeometryCollection.ROAD_BARRIER_BASE(),
+                    ConnectingBlockPlacementOrientation.VERTICAL
             )
     );
 
