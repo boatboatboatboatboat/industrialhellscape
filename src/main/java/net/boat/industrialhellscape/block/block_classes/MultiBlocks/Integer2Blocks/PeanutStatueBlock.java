@@ -34,6 +34,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.BiConsumer;
 
@@ -196,16 +197,17 @@ public class PeanutStatueBlock extends Modelled2Block implements Fallable {
         if(stack.is(ModItems.INHELL_HAVEN_DEVICE.get()) && ModServerConfig.havenToolDestroysPeanutStatue()) {
             BlockPos abovePos = pos.above();
             BlockPos belowPos = pos.below();
+            boolean canDropItem = ModServerConfig.peanutStatueTeleportAttemptsInt()==0; //Only drops item if teleporting is disabled.
             switch(state.getValue(PART)) {
                 case 0 -> {
-                    level.destroyBlock(pos,true); //bottom
+                    level.destroyBlock(pos,canDropItem); //bottom
                     if(level.getBlockState(abovePos).is(this)) {
-                        level.destroyBlock(abovePos,true);} //top
+                        level.destroyBlock(abovePos,canDropItem);} //top
                 }
                 case 1 -> {
-                    level.destroyBlock(pos,true); //top
+                    level.destroyBlock(pos,canDropItem); //top
                     if (level.getBlockState(belowPos).is(this)) {
-                        level.destroyBlock(belowPos, true); //bottom
+                        level.destroyBlock(belowPos, canDropItem); //bottom
                     }
                 }
             }
@@ -226,7 +228,7 @@ public class PeanutStatueBlock extends Modelled2Block implements Fallable {
         super.onExplosionHit(state, level, pos, explosion, dropConsumer);
     }
 
-    private void teleport(BlockState state, Level level, BlockPos currentPos, BlockPos destinationPos, Player player, int AABBx, int AABBy, int AABBz) {
+    private void teleport(BlockState state, Level level, BlockPos currentPos, BlockPos destinationPos, @Nullable Player player, int AABBx, int AABBy, int AABBz) {
         WorldBorder worldborder = level.getWorldBorder();
         int posCheckingAttempts = (AABBx*AABBy*AABBz);
         BlockPos testPos = destinationPos; //initialize variables
@@ -241,7 +243,7 @@ public class PeanutStatueBlock extends Modelled2Block implements Fallable {
                 boolean blockSpaceIsAir = candidatePosIsAir && candidatePosAboveIsAir;
 
                 if (blockSpaceIsAir && candidatePosFloorIsSpawnable && worldborder.isWithinBounds(testPos)) { //common sided logic: exit for loop and return
-                    playPeanutNoises(level, testPos, 1);
+                    playPeanutNoises(level, testPos, 1.5f);
                     if(player != null) { //nullable, but if there is a player, make peanut state face player
                         state = stateToLookAtEntityAttacker(player,testPos,state);
                     }

@@ -2,17 +2,36 @@
   "industrialhellscape.resourcepack.inhell_fusion": "InHell Fusion Textures",
   "industrialhellscape.resourcepack.inhell_ctm": "InHell CTM Textures",
 
+  "industrialhellscape.configuration.title": "InHell Config Options",
+
+  "industrialhellscape.configuration.enable_server_join_message.tooltip": "Each player receives a client-side message from this mod unless they disable it here.",
+  "industrialhellscape.configuration.section.industrialhellscape.client.toml.title": "InHell Client-side Configs",
+  "industrialhellscape.configuration.section.industrialhellscape.server.toml.title": "InHell Server-side Configs",
+  "industrialhellscape.configuration.section.industrialhellscape.common.toml.title": "InHell Common Configs",
+
+  "industrialhellscape.configuration.section.industrialhellscape.server.toml": "Server Options",
+  "industrialhellscape.configuration.section.industrialhellscape.client.toml": "Client Options",
+  "industrialhellscape.configuration.section.industrialhellscape.common.toml": "Common Options",
+
   "industrialhellscape.configuration.tagged_pickaxe_compat": "Pickaxe Item-Tag Compatible",
   "industrialhellscape.configuration.tagged_wrench_compat": "Wrench Item-Tag Compatible",
   "industrialhellscape.configuration.crouch_to_change_texture": "Crouching Toggles Texture",
-
   "industrialhellscape.configuration.peanut_statue_teleport_attempts": "Peanut Statue Teleport Attempts",
   "industrialhellscape.configuration.enable_peanut_statue_random_tick_disappear": "Peanut Statue disappears on random ticks",
   "industrialhellscape.configuration.enable_haven_tool_peanut_statue_removal": "Peanut Statue removed by HAVEN Tool",
   "industrialhellscape.configuration.pill_damage": "Gas Station Pill instant damage",
   "industrialhellscape.configuration.enable_smoke_alarm_sound": "Smoke Alarm makes sound",
-
   "industrialhellscape.configuration.enable_server_join_message": "Enable Server Join Message",
+
+  "industrialhellscape.configuration.pill_damage.tooltip": "n=0: Damage disabled for players and villagers.",
+  "industrialhellscape.configuration.enable_haven_tool_peanut_statue_removal.tooltip": "Haven Tool removes (Creative-Obtained) Peanut Statue, without triggering side-effects.",
+  "industrialhellscape.configuration.enable_peanut_statue_random_tick_disappear.tooltip": "(Creative-Obtained) Peanut Statue disappears on randomTick",
+  "industrialhellscape.configuration.tagged_wrench_compat.tooltip": "Tools tagged #c:/tools/wrench can interact with this mod's blocks",
+  "industrialhellscape.configuration.tagged_pickaxe_compat.tooltip": "Tools tagged #minecraft:pickaxes can interact with this mod's blocks",
+  "industrialhellscape.configuration.peanut_statue_teleport_attempts.tooltip": "n=0: Teleport disabled\nn>1:Mitosis",
+  "industrialhellscape.configuration.crouch_to_change_texture.tooltip": "Crouching will toggle block state property governing texture tiling for certain blocks.",
+  "industrialhellscape.configuration.enable_smoke_alarm_sound.tooltip": "When powered, smoke alarm produces low-battery sound on randomTicks.",
+
 
   "industrialhellscape.client_chat_message.title": "----- Industrial Hellscape Instructions ----- \n",
 

@@ -13,7 +13,7 @@ public class ModServerConfig {
     static {
         PEANUT_STATUE_TELEPORT_ATTEMPTS = BUILDER
                 .comment("n=0: Teleport Disabled. n>1: Mitosis")
-                .defineInRange("peanut_statue_teleport_attempts", 1, 0, 127);
+                .defineInRange("peanut_statue_teleport_attempts", 1, 0, 16);
     }
 
     static {

@@ -36,23 +36,6 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.add(ModBlocks.DEBUG_BLOCK.get(),
                 createIntegerMultiBlockDrops(ModBlocks.DEBUG_BLOCK.get(),Integer11Block.PART));
 
-        this.dropSelf(ModBlocks.GRAY_ROCKRETE_BARRIER.get());
-        this.dropSelf(ModBlocks.GREEN_ROCKRETE_BARRIER.get());
-        this.dropSelf(ModBlocks.BLUE_ROCKRETE_BARRIER.get());
-        this.dropSelf(ModBlocks.RED_ROCKRETE_BARRIER.get());
-        this.dropSelf(ModBlocks.YELLOW_ROCKRETE_BARRIER.get());
-
-        this.dropSelf(ModBlocks.GRAY_ROCKRETE_BARRIER_YELLOW_STRIPE.get());
-        this.dropSelf(ModBlocks.GRAY_ROCKRETE_BARRIER_RED_STRIPE.get());
-        this.dropSelf(ModBlocks.GREEN_ROCKRETE_BARRIER_YELLOW_STRIPE.get());
-        this.dropSelf(ModBlocks.GREEN_ROCKRETE_BARRIER_RED_STRIPE.get());
-        this.dropSelf(ModBlocks.RED_ROCKRETE_BARRIER_YELLOW_STRIPE.get());
-        this.dropSelf(ModBlocks.RED_ROCKRETE_BARRIER_RED_STRIPE.get());
-        this.dropSelf(ModBlocks.BLUE_ROCKRETE_BARRIER_YELLOW_STRIPE.get());
-        this.dropSelf(ModBlocks.BLUE_ROCKRETE_BARRIER_RED_STRIPE.get());
-        this.dropSelf(ModBlocks.YELLOW_ROCKRETE_BARRIER_YELLOW_STRIPE.get());
-        this.dropSelf(ModBlocks.YELLOW_ROCKRETE_BARRIER_RED_STRIPE.get());
-
         //IN-DEVELOPMENT BLOCK
 //        this.dropWhenSilkTouch(ModBlocks.VERY_SUSPICIOUS_SAND.get());
 //        this.dropSelf(ModBlocks.LAND_MINE.get());
@@ -269,7 +252,6 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.add(ModBlocks.YELLOW_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.YELLOW_ROCKRETE_SLAB.get()));
         this.dropSelf(ModBlocks.YELLOW_ROCKRETE_STAIRS.get());
 
-
         this.dropSelf(ModBlocks.BLUE_ROCKRETE.get());
         this.dropSelf(ModBlocks.BLUE_ROCKRETE_PILLAR.get());
         this.add(ModBlocks.BLUE_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.BLUE_ROCKRETE_SLAB.get()));
@@ -280,8 +262,10 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.add(ModBlocks.RED_ROCKRETE_SLAB.get(), createSlabItemTable(ModBlocks.RED_ROCKRETE_SLAB.get()));
         this.dropSelf(ModBlocks.RED_ROCKRETE_STAIRS.get());
 
+        //MISC ROCK/STONE
         this.dropSelf(ModBlocks.GRIMY_RESTROOM_TILE.get());
 
+        //Hazard Stripes
         this.dropSelf(ModBlocks.RED_HAZARD_STRIPE.get());
         this.add(ModBlocks.RED_HAZARD_STRIPE_SLAB.get(), createSlabItemTable(ModBlocks.RED_HAZARD_STRIPE_SLAB.get()));
         this.dropSelf(ModBlocks.RED_HAZARD_STRIPE_STAIRS.get());
@@ -289,6 +273,25 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.YELLOW_HAZARD_STRIPE.get());
         this.add(ModBlocks.YELLOW_HAZARD_STRIPE_SLAB.get(), createSlabItemTable(ModBlocks.YELLOW_HAZARD_STRIPE_SLAB.get()));
         this.dropSelf(ModBlocks.YELLOW_HAZARD_STRIPE_STAIRS.get());
+
+        //Rockrete Barriers
+        this.dropSelf(ModBlocks.GRAY_ROCKRETE_BARRIER.get());
+        this.dropSelf(ModBlocks.GREEN_ROCKRETE_BARRIER.get());
+        this.dropSelf(ModBlocks.BLUE_ROCKRETE_BARRIER.get());
+        this.dropSelf(ModBlocks.RED_ROCKRETE_BARRIER.get());
+        this.dropSelf(ModBlocks.YELLOW_ROCKRETE_BARRIER.get());
+
+        this.dropSelf(ModBlocks.GRAY_ROCKRETE_BARRIER_RED_STRIPE.get());
+        this.dropSelf(ModBlocks.GREEN_ROCKRETE_BARRIER_RED_STRIPE.get());
+        this.dropSelf(ModBlocks.RED_ROCKRETE_BARRIER_RED_STRIPE.get());
+        this.dropSelf(ModBlocks.BLUE_ROCKRETE_BARRIER_RED_STRIPE.get());
+        this.dropSelf(ModBlocks.YELLOW_ROCKRETE_BARRIER_YELLOW_STRIPE.get());
+
+        this.dropSelf(ModBlocks.GRAY_ROCKRETE_BARRIER_YELLOW_STRIPE.get());
+        this.dropSelf(ModBlocks.GREEN_ROCKRETE_BARRIER_YELLOW_STRIPE.get());
+        this.dropSelf(ModBlocks.RED_ROCKRETE_BARRIER_YELLOW_STRIPE.get());
+        this.dropSelf(ModBlocks.BLUE_ROCKRETE_BARRIER_YELLOW_STRIPE.get());
+        this.dropSelf(ModBlocks.YELLOW_ROCKRETE_BARRIER_RED_STRIPE.get());
 
         //DOORS, TRAPDOORS
         this.add(ModBlocks.ARMORED_DOOR.get(),

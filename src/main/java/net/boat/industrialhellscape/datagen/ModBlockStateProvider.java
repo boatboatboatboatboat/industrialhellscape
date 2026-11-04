@@ -434,8 +434,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     //Takes existing model from this mod, generate new child model with different texture used for key "#0"
     private ModelFile buildSingleTextureKeyBlockModel(String newBlockID, String blockModelSubFolder, String modelName, String textureSubFolder, String blockTexture, String renderType,  String textureKey) {
-        return models()
-                .withExistingParent(newBlockID, modLoc("block/" + optionalFolder(blockModelSubFolder) + modelName))
+        return buildChildFromModParentModel(newBlockID, "block/" + optionalFolder(blockModelSubFolder) + modelName)
                 .texture(textureKey, modLoc("block/" + textureSubFolder + "/" + blockTexture))
                 .renderType(renderType);
     }
@@ -621,8 +620,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 
-        ModelFile generatedModel = models()
-                .withExistingParent(stringName, modLoc("block/truss/anticull_template"))
+        ModelFile generatedModel = buildChildFromModParentModel(stringName, "block/truss/anticull_template")
                 .texture("side", modLoc("block/" + textureSubFolder + "/" + side)) //side
                 .texture("top", modLoc("block/" + textureSubFolder + "/" + top)) //top
                 .texture("bottom", modLoc("block/" + textureSubFolder + "/" + side)) //bottom
@@ -655,15 +653,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
         ResourceLocation top = modLoc("block/" + textureSubFolder + "/" + topTextureName);
         ResourceLocation bottom =  modLoc("block/" + textureSubFolder + "/" + bottomTextureName);
 
-        ModelFile slabBottom = models()
-                .withExistingParent(stringName, modLoc("block/truss/anticull_slab"))
+        ModelFile slabBottom = buildChildFromModParentModel(stringName,"block/truss/anticull_slab")
                 .texture("side", side) //side
                 .texture("top", top) //top
                 .texture("bottom", bottom) //bottom
                 .renderType(renderType);
 
-        ModelFile slabTop = models()
-                .withExistingParent(stringName+"_top", modLoc("block/truss/anticull_slab_top"))
+        ModelFile slabTop = buildChildFromModParentModel(stringName+"_top","block/truss/anticull_slab_top")
                 .texture("side", side) //side
                 .texture("top", top) //top
                 .texture("bottom", bottom) //bottom
@@ -745,15 +741,19 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     private void genFaceAttachedTextureTogglingSI(Block block, String modelSubFolder) {
+        /*
+            Generate block states for a block with a toggleable LIT property.
+            - The LIT property toggles the model texture. Model is otherwise unchanged.
+            - Generate a "lit"/"on"/"powered" model variant using the default unpowered model.
+        */
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String onModelStringName = stringName + "_on";
         String unpoweredModelPath = "block/"+optionalFolder(modelSubFolder)+stringName;
         String poweredModelPath = "block/"+stringName+"_on"; //generated/resources
         String poweredTexturePath = "block/lit_unlit_textures/"+stringName+"_on";
 
-        //On Model
-        models()
-                .withExistingParent(onModelStringName, modLoc(unpoweredModelPath))
+        //On (Powered) Model
+        buildChildFromModParentModel(onModelStringName,unpoweredModelPath)
                 .texture("1", poweredTexturePath);
 
         getVariantBuilder(block)
@@ -775,8 +775,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     private void genFaceAttachedModelTogglingSI(Block block, String modelSubFolder, String suffixForModelTogglePath, BooleanProperty toggleProperty) {
+        /*
+            Generate block states for a block with a toggleable boolean property.
+            - The boolean property toggles the model used. There are two existing, non-generated models.
+            - Generate a "lit"/"on"/"powered" model variant using the unpowered model.
+        */
         String stringName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        String unpoweredModelPath = "block/"+optionalFolder(modelSubFolder)+stringName;
+        String unpoweredModelPath = "block/"+optionalFolder(modelSubFolder)+stringName; //NOT GENERATED, EXISTING MODEL
         String poweredModelPath = unpoweredModelPath+"_"+suffixForModelTogglePath; //NOT GENERATED, EXISTING MODEL
 
         getVariantBuilder(block)
@@ -921,7 +926,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     String originalModelPathAppended = originalModelPath+"_"+pathAppend;
 
                     ModelFile model = generateNewModels ?
-                            models().withExistingParent(stringName+"_"+pathAppend, modLoc(originalModelPathAppended))
+                            buildChildFromModParentModel(stringName+"_"+pathAppend,originalModelPathAppended)
                                     .texture("solo", modLoc(texturePath))
                                     .texture("tall", modLoc(texturePath+"_tall"))
                             :
@@ -958,7 +963,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //GENERATE ITEM MODEL
         simpleBlockItem(block, locateModelInMod(baseModelPath+"_"+soloModelNameAppend));
     }
-
 
     //These are powered whereas work light stand is "lit" ??? TODO: Make consistent blockstate properties
     private void genHorizontalTextureTogglingSI(Block block, BooleanProperty toggleProperty, String modelSubFolder, String litUnlitTextureName) {
@@ -1178,7 +1182,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         - New models only generated when texture differs from parent models.
             This is controlled by passing in array of integers corresponding to BlockState part# (IntegerProperty)
             where that block model is expected to differ.
-
      */
     private void genVariantMultiBlock(Block block, IntegerProperty integerProperty, String parentModelSubFolder, String parentModelBaseName, String variantTextureSubFolder, String variantTextureName, String textureKey, Integer[] arrayOfStatesWithModelChange, String renderType) {
         //Integer Object used for arrayOfStatesWithModelChange instead of Primitive
@@ -1371,11 +1374,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
         String parentPostModelLocation = blockFolder+optionalFolder(modelSubFolder)+parentPostName;
         String parentFenceModelLocation = blockFolder+optionalFolder(modelSubFolder)+parentFenceName;
 
-        //Generated model files
+        //Generated model file path
         String generatedPostModelLocation = blockFolder+postModelName;
         String generatedFenceModelLocation = blockFolder+fenceModelName;
 
-        //Texture path
+        //Texture file path
         String postTexturePath = blockFolder+optionalFolder(textureSubFolder)+postTextureFileName;
         String fenceTexturePath = blockFolder+optionalFolder(textureSubFolder)+fenceTextureFileName;
 
@@ -1390,7 +1393,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //preallocate for-loop variables;
         int yDegrees;
 
-        //Generate Fence model states
+        //----- Fence BlockState Generation -----
         for(Direction dir : BlockStateProperties.HORIZONTAL_FACING.getPossibleValues()) {
             yDegrees = facingDirToDegrees(dir);
 
@@ -1404,12 +1407,18 @@ public class ModBlockStateProvider extends BlockStateProvider {
                                 }, true);
             fenceModelBuilder.end();
         }
-        //----- Generate Fence Post model state -----
+        //----- End of Fence BlockState Generation -----
+
+        //----- Fence-Post BlockState Generation -----
         multipartBuilder.part().modelFile(postModelFile).addModel()
                 .conditions.put(BlockStateProperties.UP, true);
+        //----- End of Fence-Post State Generation -----
     }
 
     private void genOrthoRotFencePostS(FenceBlock block, String modelSubFolder, String postFileName, String fenceFileName) {
+        /*
+            Difference from genFenceBlockSB is that the FencePost must rotate orthogonally based on boolean direction values (NS/EW)
+         */
         String blockFolder = "block/";
 
         //Already existing model files
@@ -1427,7 +1436,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //preallocate for-loop variables;
         int yDegrees;
 
-        //Generate Fence model states
+        //----- Fence BlockState Generation -----
         for(Direction dir : BlockStateProperties.HORIZONTAL_FACING.getPossibleValues()) {
             yDegrees = facingDirToDegrees(dir);
 
@@ -1441,7 +1450,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     }, true);
             fenceModelBuilder.end();
         }
-        //----- Generate Fence Post model state -----
+        //----- End of Fence BlockState Generation -----
+
+        //----- Fence-Post BlockState Generation -----
 
         //Barbed Wire FenceTop    //Condition: UP AND (EAST OR WEST)
         MultiPartBlockStateBuilder.PartBuilder fencePostSuperGroup_UandEorW = multipartBuilder.part().modelFile(postModelFile).rotationY(90).addModel();
@@ -1502,6 +1513,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .condition(BlockStateProperties.WEST, false);
         //.endNestedGroup(); //appears to be optional here
         fencePostSuperGroupSoloConnection_yRot90.end(); //closes the exterior group (super-group)
+        //----- End of Fence-Post State Generation -----
     }
 
     private void genRailingBlockSBI(RailingBlock block, String modelSubFolder, String parentModelName, String textureSubFolder, String textureName) {
