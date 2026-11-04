@@ -146,9 +146,7 @@ public class PeanutStatueBlock extends Modelled2Block implements Fallable {
     @Override
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player pPlayer, boolean willHarvest, FluidState fluid) {
         if(!level.isClientSide) {
-
-
-            MultiBlockPlacementInterface.destroyRemainingMultiBlock(level, pPlayer, this, pos, partProperty, state, multiBlockPlacementMatrix);
+            //MultiBlockPlacementInterface.destroyRemainingMultiBlock(level, pPlayer, this, pos, partProperty, state, multiBlockPlacementMatrix);
 
             //duplication
             for(int i=0; i<ModServerConfig.peanutStatueTeleportAttemptsInt(); i++) {
