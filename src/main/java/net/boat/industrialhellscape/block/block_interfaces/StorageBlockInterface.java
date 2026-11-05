@@ -41,6 +41,7 @@ public interface StorageBlockInterface {
             Containers.dropContents(level, pos, container);
             level.updateNeighbourForOutputSignal(pos, state.getBlock());
         }
+        level.invalidateCapabilities(pos);
     }
 
     static InteractionResult OpenContainerInventory(Level level, @NotNull BlockPos pos, @NotNull Player player) {

@@ -149,8 +149,12 @@ public class PeanutStatueBlock extends Modelled2Block implements Fallable {
             //MultiBlockPlacementInterface.destroyRemainingMultiBlock(level, pPlayer, this, pos, partProperty, state, multiBlockPlacementMatrix);
 
             //duplication
-            for(int i=0; i<ModServerConfig.peanutStatueTeleportAttemptsInt(); i++) {
-                teleport(state,level,pos,pos, pPlayer,10,10,10);
+            if(ModServerConfig.peanutStatueTeleportAttemptsInt() >0) {
+                for(int i=0; i<ModServerConfig.peanutStatueTeleportAttemptsInt(); i++) {
+                    teleport(state,level,pos,pos, pPlayer,10,10,10);
+                }
+            } else {
+                removePeanutWithOptionalDrop(level,state,pos);
             }
         }
 
@@ -158,6 +162,26 @@ public class PeanutStatueBlock extends Modelled2Block implements Fallable {
             particleCircle(level, pos);
         }
         return level.isClientSide() ? level.setBlock(pos, fluid.createLegacyBlock(), 11) : level.removeBlock(pos, false);
+    }
+
+    private void removePeanutWithOptionalDrop(Level level, BlockState state, BlockPos pos) {
+        BlockPos abovePos = pos.above();
+        BlockPos belowPos = pos.below();
+        boolean canDropItem = ModServerConfig.peanutStatueTeleportAttemptsInt()<=1; //Only drops item if duplication is not enabled (2+ teleport attempts)
+
+        switch(state.getValue(PART)) {
+            case 0 -> {
+                level.destroyBlock(pos,canDropItem); //bottom
+                if(level.getBlockState(abovePos).is(this)) {
+                    level.destroyBlock(abovePos,canDropItem);} //top
+            }
+            case 1 -> {
+                level.destroyBlock(pos,canDropItem); //top
+                if (level.getBlockState(belowPos).is(this)) {
+                    level.destroyBlock(belowPos, canDropItem); //bottom
+                }
+            }
+        }
     }
     /*
     onRemove() is called whenever removeMultiBlock() is called for each surviving section, forcing them to teleport away from their fate.
@@ -193,27 +217,9 @@ public class PeanutStatueBlock extends Modelled2Block implements Fallable {
     @Override
     protected @NotNull ItemInteractionResult useItemOn(ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
         if(stack.is(ModItems.INHELL_HAVEN_DEVICE.get()) && ModServerConfig.havenToolDestroysPeanutStatue()) {
-            BlockPos abovePos = pos.above();
-            BlockPos belowPos = pos.below();
-            boolean canDropItem = ModServerConfig.peanutStatueTeleportAttemptsInt()==0; //Only drops item if teleporting is disabled.
-            switch(state.getValue(PART)) {
-                case 0 -> {
-                    level.destroyBlock(pos,canDropItem); //bottom
-                    if(level.getBlockState(abovePos).is(this)) {
-                        level.destroyBlock(abovePos,canDropItem);} //top
-                }
-                case 1 -> {
-                    level.destroyBlock(pos,canDropItem); //top
-                    if (level.getBlockState(belowPos).is(this)) {
-                        level.destroyBlock(belowPos, canDropItem); //bottom
-                    }
-                }
-            }
-
-
-            return ItemInteractionResult.SUCCESS;
+            removePeanutWithOptionalDrop(level,state,pos);
         }
-        return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+        return ItemInteractionResult.SUCCESS;
     }
 
     @Override

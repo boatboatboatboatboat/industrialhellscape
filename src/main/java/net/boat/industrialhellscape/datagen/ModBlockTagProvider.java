@@ -250,6 +250,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.RUSTY_HORIZONTAL_CUTOUT_VENT.get(),
                         ModBlocks.VERTICAL_CUTOUT_VENT.get(),
                         ModBlocks.RUSTY_VERTICAL_CUTOUT_VENT.get()
+                        //TODO: Add non-full blocks like brackets, railings to it?
                 );
 
         this.tag(ModTags.Blocks.MOD_CREATE_SIMPLE_MOUNTED_STORAGE)
