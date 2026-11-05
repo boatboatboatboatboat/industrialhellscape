@@ -16,7 +16,7 @@ Boat's Decor Mod
 - **Only one mod (CTM or Fusion) is necessary** as an optional dependency.
 - **Only one resource pack (CTM or Fusion)** is required to be enabled.
 
-# Tags
+# Tags (As of v1.03.3)
 
 ## Block Tags
 Most Block Tags are data-generated from hard-coded lists of Blocks used in stone-cutting (output) recipe data-generation in ModRecipeProvider.
