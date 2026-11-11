@@ -33,31 +33,6 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
     }
 
-    protected void generateLootTableFromListOfBlocks(List<Block> listOfBlocks) {
-        for(Block blockInIndice: listOfBlocks) {
-            switch (blockInIndice) {
-                case SlabBlock ignored -> {
-                    this.add(blockInIndice, createSlabItemTable(blockInIndice));
-                }
-                case RailingBlock ignored -> {
-                    this.add(blockInIndice, createRailingDrops(blockInIndice));
-                }
-                case StairRailingBlock ignored -> {
-                    this.add(blockInIndice, createStairRailingDrops(blockInIndice));
-                }
-                case BaseIntegerMultiBlock registeredMultiBlockInstance -> {
-                    this.add(blockInIndice, createIntegerMultiBlockDrops(blockInIndice, registeredMultiBlockInstance.partProperty));
-                }
-                case DoorBlock ignored -> {
-                    this.add(blockInIndice, createDoorTable(blockInIndice));
-                }
-                 default -> {
-                    this.dropSelf(blockInIndice);
-                }
-            }
-        }
-    }
-
     @Override
     protected void generate() {
 
@@ -159,6 +134,31 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         return builder;
     };
+
+    protected void generateLootTableFromListOfBlocks(List<Block> listOfBlocks) {
+        for(Block blockInIndice: listOfBlocks) {
+            switch (blockInIndice) {
+                case SlabBlock ignored -> {
+                    this.add(blockInIndice, createSlabItemTable(blockInIndice));
+                }
+                case RailingBlock ignored -> {
+                    this.add(blockInIndice, createRailingDrops(blockInIndice));
+                }
+                case StairRailingBlock ignored -> {
+                    this.add(blockInIndice, createStairRailingDrops(blockInIndice));
+                }
+                case BaseIntegerMultiBlock registeredMultiBlockInstance -> {
+                    this.add(blockInIndice, createIntegerMultiBlockDrops(blockInIndice, registeredMultiBlockInstance.partProperty));
+                }
+                case DoorBlock ignored -> {
+                    this.add(blockInIndice, createDoorTable(blockInIndice));
+                }
+                default -> {
+                    this.dropSelf(blockInIndice);
+                }
+            }
+        }
+    }
 
     @Override
     protected @NotNull Iterable<Block> getKnownBlocks() {
