@@ -60,19 +60,43 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
+
+        //DEBUG BLOCK
+        this.add(ModBlocks.DEBUG_BLOCK.get(),
+                createIntegerMultiBlockDrops(ModBlocks.DEBUG_BLOCK.get(), Integer11Block.PART));
+
+        //IN-DEVELOPMENT BLOCK
+//        this.dropWhenSilkTouch(ModBlocks.VERY_SUSPICIOUS_SAND.get());
+//        this.dropSelf(ModBlocks.LAND_MINE.get());
+
+        //JOKE BLOCK
+        this.add(ModBlocks.BODY_PILLOW_OZY.get(),
+                createIntegerMultiBlockDrops(ModBlocks.BODY_PILLOW_OZY.get(), Integer2Block.PART));
+        this.add(ModBlocks.BODY_PILLOW_FANG.get(),
+                createIntegerMultiBlockDrops(ModBlocks.BODY_PILLOW_FANG.get(),Integer2Block.PART));
+        this.add(ModBlocks.BODY_PILLOW_PROV.get(),
+                createIntegerMultiBlockDrops(ModBlocks.BODY_PILLOW_PROV.get(),Integer2Block.PART));
+        this.add(ModBlocks.PEANUT_STATUE.get(),
+                createIntegerMultiBlockDrops(ModBlocks.PEANUT_STATUE.get(), Integer2Block.PART));
+
+        // Main Blockset
         generateLootTableFromListOfBlocks(ModRecipeProvider.VESSELPLATE_STONECUT_OUTPUT);
         generateLootTableFromListOfBlocks(ModRecipeProvider.ROCKRETE_STONECUT_OUTPUT);
         generateLootTableFromListOfBlocks(ModRecipeProvider.VESSELGLASS_STONECUT_OUTPUT);
 
+        // Structural
         generateLootTableFromListOfBlocks(ModRecipeProvider.TRUSS_STONECUT_OUTPUT);
         generateLootTableFromListOfBlocks(ModRecipeProvider.HVAC_STONECUT_OUTPUT);
 
+        // The Works
         generateLootTableFromListOfBlocks(ModRecipeProvider.METALWORKS_STONECUT_OUTPUT);
         generateLootTableFromListOfBlocks(ModRecipeProvider.PIPEWORKS_STONECUT_OUTPUT);
 
+        // Doors
         generateLootTableFromListOfBlocks(ModRecipeProvider.DOORS_STONECUT_OUTPUT);
         generateLootTableFromListOfBlocks(ModRecipeProvider.TRAPDOORS_STONECUT_OUTPUT);
 
+        // Furniture
         this.dropSelf(ModBlocks.IHEA_FURNITURE_KIT.get());
         generateLootTableFromListOfBlocks(ModRecipeProvider.FURNITURE_CATEGORY_STONECUT_OUTPUT);
         generateLootTableFromListOfBlocks(ModRecipeProvider.SAFETY_FURNITURE_STONECUT_OUTPUT);
@@ -94,24 +118,6 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.VERTICAL_CUTOUT_VENT.get());
         this.dropSelf(ModBlocks.RUSTY_VERTICAL_VENT.get());
         this.dropSelf(ModBlocks.RUSTY_VERTICAL_CUTOUT_VENT.get());
-
-        //DEBUG BLOCK
-        this.add(ModBlocks.DEBUG_BLOCK.get(),
-                createIntegerMultiBlockDrops(ModBlocks.DEBUG_BLOCK.get(),Integer11Block.PART));
-
-        //IN-DEVELOPMENT BLOCK
-//        this.dropWhenSilkTouch(ModBlocks.VERY_SUSPICIOUS_SAND.get());
-//        this.dropSelf(ModBlocks.LAND_MINE.get());
-
-        //JOKE BLOCK
-        this.add(ModBlocks.BODY_PILLOW_OZY.get(),
-                createIntegerMultiBlockDrops(ModBlocks.BODY_PILLOW_OZY.get(),Integer2Block.PART));
-        this.add(ModBlocks.BODY_PILLOW_FANG.get(),
-                createIntegerMultiBlockDrops(ModBlocks.BODY_PILLOW_FANG.get(),Integer2Block.PART));
-        this.add(ModBlocks.BODY_PILLOW_PROV.get(),
-                createIntegerMultiBlockDrops(ModBlocks.BODY_PILLOW_PROV.get(),Integer2Block.PART));
-        this.add(ModBlocks.PEANUT_STATUE.get(),
-                createIntegerMultiBlockDrops(ModBlocks.PEANUT_STATUE.get(), Integer2Block.PART));
     }
 
     protected LootTable.Builder createRailingDrops(Block block) {
