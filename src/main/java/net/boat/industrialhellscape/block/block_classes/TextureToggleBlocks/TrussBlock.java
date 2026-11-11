@@ -30,8 +30,11 @@ Keywords: truss, vent
 
 public class TrussBlock extends SimpleTextureToggleBlock implements SimpleWaterloggedBlock {
 
+    // Additional BlockState Properties
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    public final boolean seeInteriorSides;
+
+    // Additional Per-Instance Constructor Fields
+    protected final boolean seeInteriorSides;
 
     public TrussBlock(Properties pProperties, boolean seeInteriorSides) {
         super(pProperties);

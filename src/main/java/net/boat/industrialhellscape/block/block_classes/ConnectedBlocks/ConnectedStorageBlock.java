@@ -46,10 +46,14 @@ Keywords: desk, drawer
 */
 
 public class ConnectedStorageBlock extends ConnectedFurnitureBlock implements EntityBlock, ConnectedModelInterface, ToolUseInterface, StorageBlockInterface, SimpleWaterloggedBlock {
+
+    // Additional BlockState Properties
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
-    public final int SLOTS;
-    public final SoundEvent OPEN_SOUND;
-    public final SoundEvent CLOSE_SOUND;
+
+    // Additional Per-Instance Constructor Fields
+    protected final int SLOTS;
+    protected final SoundEvent OPEN_SOUND;
+    protected final SoundEvent CLOSE_SOUND;
 
     public ConnectedStorageBlock(Properties properties, int slotAmount, TagKey<Block> inputCompatibleBlockSet, VoxelShape soloShape, VoxelShape leftShape, VoxelShape middleShape, VoxelShape rightShape, ConnectingBlockPlacementOrientation placementDirection, SoundEvent openSound, SoundEvent closeSound) {
         // When registering this block, pass in

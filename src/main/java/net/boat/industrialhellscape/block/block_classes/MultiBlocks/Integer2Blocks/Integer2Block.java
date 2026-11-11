@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
 public class Integer2Block extends BaseIntegerMultiBlock implements MultiBlockPlacementInterface {
-    //Specific to this class and subclasses
+    // Additional BlockState Properties
     public static final IntegerProperty PART = IntegerProperty.create("part",0, 1);
 
     public Integer2Block(BlockBehaviour.Properties pProperties, int[][] multiBlockPlacementMatrix) {

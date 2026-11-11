@@ -10,7 +10,7 @@ import net.boat.industrialhellscape.block.block_classes.RailingBlocks.ParapetBlo
 import net.boat.industrialhellscape.block.block_classes.RailingBlocks.RailingBlock;
 import net.boat.industrialhellscape.block.block_experiments.PanelBlocks.PanelBlock;
 import net.boat.industrialhellscape.block.block_interfaces.ConnectedModelInterface;
-import net.boat.industrialhellscape.block.block_interfaces.ModEnumsInterface;
+import net.boat.industrialhellscape.block.block_interfaces.ModCustomProperties;
 import net.boat.industrialhellscape.block.block_state_enums.DynamicConnectionState;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -1060,7 +1060,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .forAllStates(state -> {
 
                     Direction.Axis axis = state.getValue(BlockStateProperties.AXIS);
-                    DynamicConnectionState type = state.getValue(ModEnumsInterface.TYPE);
+                    DynamicConnectionState type = state.getValue(ModCustomProperties.TYPE);
 
                     ResourceLocation parentModelPath = switch(axis) {
                         case X -> modLoc(existingParentModelPath+"_x");

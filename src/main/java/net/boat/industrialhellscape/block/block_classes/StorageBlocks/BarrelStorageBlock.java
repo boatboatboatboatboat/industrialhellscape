@@ -21,35 +21,21 @@ getOpenSound() and getClosedSound() used by StorageBlockInterface to detect desi
 */
 
 public class BarrelStorageBlock extends FacingStorageBlock implements EntityBlock {
-    private static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+
+    // Additional BlockState Properties
     public static final EnumProperty<AttachFace> FACE = BlockStateProperties.ATTACH_FACE;
 
     public BarrelStorageBlock(Properties properties, int slotsAmount, SoundEvent openSound, SoundEvent closeSound) {
         super(properties, slotsAmount, openSound, closeSound);
-        this.SLOTS = slotsAmount;
-        this.OPEN_SOUND = openSound;
-        this.CLOSE_SOUND = closeSound;
+//        this.SLOTS = slotsAmount;
+//        this.OPEN_SOUND = openSound;
+//        this.CLOSE_SOUND = closeSound;
 
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(FACE, AttachFace.FLOOR)
                 .setValue(OPEN, false)
         );
-    }
-
-    @Override
-    public int getSlotCount() {
-        return SLOTS;
-    }
-
-    @Override
-    public SoundEvent getOpenSound() {
-        return OPEN_SOUND;
-    }
-
-    @Override
-    public SoundEvent getCloseSound() {
-        return CLOSE_SOUND;
     }
 
     @Override

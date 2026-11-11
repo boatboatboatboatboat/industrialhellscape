@@ -27,6 +27,7 @@ import javax.annotation.Nonnull;
 
 public class Modelled2Block extends Integer2Block implements SimpleWaterloggedBlock {
 
+    // Additional Per-Instance Constructor Fields
     public final VoxelShape[] hitboxShapeArray;
 
     public Modelled2Block(BlockBehaviour.Properties pProperties, int[][] multiBlockPlacementMatrix, VoxelShape[] hitboxShapeArray) {

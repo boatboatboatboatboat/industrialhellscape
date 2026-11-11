@@ -32,7 +32,7 @@ import org.jetbrains.annotations.Nullable;
 
 public interface ConnectedModelInterface {
     //All connectable blocks use custom EnumProperty "TYPE"
-    EnumProperty<DynamicConnectionState> TYPE = ModEnumsInterface.TYPE; //"TYPE" is used to store enum value of "solo, left, right, middle" for block connected variants
+    EnumProperty<DynamicConnectionState> TYPE = ModCustomProperties.TYPE; //"TYPE" is used to store enum value of "solo, left, right, middle" for block connected variants
 
     //All connectable furniture blocks have an optional, nullable argument for block tags they can connect to; Else they check if neighbor state is same block as itself.
     static boolean neighborStateCanConnectTo(Block thisBlock, @Nullable TagKey<Block> blockSetTag, BlockState neighborState) {

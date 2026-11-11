@@ -1,6 +1,6 @@
 package net.boat.industrialhellscape.block.block_classes.AxisPillarBlocks;
 
-import net.boat.industrialhellscape.block.block_interfaces.ModEnumsInterface;
+import net.boat.industrialhellscape.block.block_interfaces.ModCustomProperties;
 import net.boat.industrialhellscape.block.block_interfaces.HitboxRotationInterface;
 import net.boat.industrialhellscape.block.block_interfaces.ToolUseInterface;
 import net.minecraft.core.BlockPos;
@@ -38,12 +38,15 @@ INFO:
  */
 
 public class TrussBeamBlock extends RotatedPillarBlock {
-    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    public static final BooleanProperty ALT_STATE = ModEnumsInterface.ALT_STATE;
 
-    private final VoxelShape X_HITBOX;
-    private final VoxelShape Y_HITBOX;
-    private final VoxelShape Z_HITBOX;
+    // Additional BlockState Properties
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    public static final BooleanProperty ALT_STATE = ModCustomProperties.ALT_STATE;
+
+    // Additional Per-Instance Constructor Fields
+    protected final VoxelShape X_HITBOX; // Rotationally translated from Y_HITBOX
+    protected final VoxelShape Y_HITBOX;
+    protected final VoxelShape Z_HITBOX; // Rotationally translated from Y_HITBOX
 
     public TrussBeamBlock(Properties properties, VoxelShape verticalHitbox) {
         super(properties);

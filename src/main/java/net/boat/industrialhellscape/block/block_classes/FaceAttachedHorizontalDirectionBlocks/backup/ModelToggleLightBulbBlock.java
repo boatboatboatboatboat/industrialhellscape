@@ -2,7 +2,7 @@ package net.boat.industrialhellscape.block.block_classes.FaceAttachedHorizontalD
 
 import net.boat.industrialhellscape.block.block_classes.FaceAttachedHorizontalDirectionBlocks.LightBulbBlock;
 import net.boat.industrialhellscape.block.block_interfaces.HitboxRotationInterface;
-import net.boat.industrialhellscape.block.block_interfaces.ModEnumsInterface;
+import net.boat.industrialhellscape.block.block_interfaces.ModCustomProperties;
 import net.boat.industrialhellscape.block.block_interfaces.ToolUseInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -27,8 +27,8 @@ import javax.annotation.Nonnull;
 
 // Code obtained from Create Deco mod (CC0 1.0 license)
 
-public class ModelToggleLightBulbBlock extends LightBulbBlock implements ToolUseInterface, ModEnumsInterface {
-    public static final BooleanProperty ALT_STATE = ModEnumsInterface.ALT_STATE;
+public class ModelToggleLightBulbBlock extends LightBulbBlock implements ToolUseInterface, ModCustomProperties {
+    public static final BooleanProperty ALT_STATE = ModCustomProperties.ALT_STATE;
 
     private final VoxelShape ALT_SHAPE_NORTH;
     private final VoxelShape ALT_SHAPE_SOUTH;

@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
 public interface SoundPlayInterface {
+
     static void onOffSoundWithUpdateCheck(BlockState state, BlockState updatedState, Level level, BlockPos pos, BooleanProperty booleanProperty, SoundEvent onSound, SoundEvent offSound, float volume, float onPitch, float offPitch) {
         if(updatedState.getValue(booleanProperty) != state.getValue(booleanProperty)) {
             onOffSound(state,level,pos,booleanProperty,onSound,offSound,volume,onPitch,offPitch);

@@ -21,13 +21,13 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public abstract class BaseIntegerMultiBlock extends SimpleHorizontalBlock implements MultiBlockPlacementInterface, IBlockExtension {
-    public int[][] multiBlockPlacementMatrix; //not static, the placement matrix is unique to many kinds of blocks
-    public final IntegerProperty partProperty; //not static, extended classes define a max ceiling on IntegerProperty
+    public int[][] multiBlockPlacementMatrix; //not static, the placement matrix is unique to many kinds of blocks. Final once initialized
+    public final IntegerProperty partProperty; //not static, extended classes define a max ceiling on IntegerProperty. Final once initialized
 
     public BaseIntegerMultiBlock(Properties pProperties, int[][] multiBlockPlacementMatrix, IntegerProperty partProperty) {
         super(pProperties);
         this.multiBlockPlacementMatrix = multiBlockPlacementMatrix;
-        this.partProperty = partProperty; //Will eventually be initialized by passing in a defined IntegerProperty as the last argument
+        this.partProperty = partProperty; // Will eventually be initialized by passing in a defined IntegerProperty as the last argument
 
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)

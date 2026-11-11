@@ -2,7 +2,7 @@ package net.boat.industrialhellscape.block.block_classes.FaceAttachedHorizontalD
 
 import net.boat.industrialhellscape.block.block_interfaces.ConnectedModelInterface;
 import net.boat.industrialhellscape.block.block_interfaces.HitboxRotationInterface;
-import net.boat.industrialhellscape.block.block_interfaces.ModEnumsInterface;
+import net.boat.industrialhellscape.block.block_interfaces.ModCustomProperties;
 import net.boat.industrialhellscape.block.block_interfaces.ToolUseInterface;
 import net.boat.industrialhellscape.block.block_state_enums.DynamicConnectionState;
 import net.boat.industrialhellscape.block.block_state_enums.SurfacePipeMountState;
@@ -42,17 +42,22 @@ import java.util.List;
 //Can be placed on any surface (FACING). Additionally, can be rotated orthogonally on that surface (ORIENTATION).
 
 public class WallPipeBlock extends Block implements SimpleWaterloggedBlock, ToolUseInterface, ConnectedModelInterface {
+
+    // Additional BlockState Properties
     public static final EnumProperty<Direction> FACING = BlockStateProperties.FACING;
-    public static final EnumProperty<SurfacePipeMountState> ORIENTATION = ModEnumsInterface.ORIENTATION;
+    public static final EnumProperty<SurfacePipeMountState> ORIENTATION = ModCustomProperties.ORIENTATION;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
+    // --- Additional Per-Instance Constructor Fields ---
     public static final VoxelShape SHAPE_FLOOR = Block.box(0, 0, 0, 16, 6, 16);
     public static final VoxelShape SHAPE_CEILING = Block.box(0, 10, 0, 16, 16, 16);
-    public static final VoxelShape SHAPE_NORTH = Block.box(0, 0, 0, 16, 16, 6);
 
+    // Wall Shapes
+    public static final VoxelShape SHAPE_NORTH = Block.box(0, 0, 0, 16, 16, 6);
     public static final VoxelShape SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH);
     public static final VoxelShape SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH);
     public static final VoxelShape SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH);
+    // --- End of Additional Per-Instance Constructor Fields ---
 
     public WallPipeBlock(Properties pProperties) {
         super(pProperties);

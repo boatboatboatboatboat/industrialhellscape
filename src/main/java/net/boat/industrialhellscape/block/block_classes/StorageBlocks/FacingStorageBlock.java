@@ -17,14 +17,16 @@ import org.jetbrains.annotations.Nullable;
 INFO:
 -----
 This block supports cardinal directional placement, and an inventory with GUI. The inventory size is determined upon block registration.
-Block has a block entity within.
+Block has a block entity within. Full Block.
 
 getSlotCount() used by StorageBlockInterface to detect desired Block Entity item slot amount to create.
 getOpenSound() and getClosedSound() used by StorageBlockInterface to detect desired sounds for opening and closing Block Entity menu.
 */
 
 public class FacingStorageBlock extends BaseStorageBlock implements EntityBlock {
-    private static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+
+    // Additional BlockState Properties
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     public FacingStorageBlock(Properties properties, int slotsAmount, SoundEvent openSound, SoundEvent closeSound) {
         // When registering this block, pass in
@@ -34,29 +36,14 @@ public class FacingStorageBlock extends BaseStorageBlock implements EntityBlock 
         // Sound to play when player closes block
 
         super(properties, slotsAmount, openSound, closeSound);
-        this.SLOTS = slotsAmount;
-        this.OPEN_SOUND = openSound;
-        this.CLOSE_SOUND = closeSound;
+//        this.SLOTS = slotsAmount;
+//        this.OPEN_SOUND = openSound;
+//        this.CLOSE_SOUND = closeSound;
 
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(OPEN, false)
         );
-    }
-
-    @Override
-    public int getSlotCount() {
-        return SLOTS;
-    }
-
-    @Override
-    public SoundEvent getOpenSound() {
-        return OPEN_SOUND;
-    }
-
-    @Override
-    public SoundEvent getCloseSound() {
-        return CLOSE_SOUND;
     }
 
     @Override

@@ -11,22 +11,21 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.function.Supplier;
-
 //urinal plays sound on interact
 
 public class PlaySoundMHBlock extends ModelledHorizontalBlock {
 
-    public final Supplier<SoundEvent> INTERACT_SOUND;
+    // Additional Per-Instance Constructor Fields
+    protected final SoundEvent INTERACT_SOUND;
 
-    public PlaySoundMHBlock(Properties pProperties, VoxelShape soloShape, Supplier<SoundEvent> interactSound) {
+    public PlaySoundMHBlock(Properties pProperties, VoxelShape soloShape, SoundEvent interactSound) {
         super(pProperties, soloShape);
         this.INTERACT_SOUND = interactSound;
     }
 
     @Override
     public @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
-        level.playSound(player, pos, INTERACT_SOUND.get(), SoundSource.BLOCKS, 1f, 1f);
+        level.playSound(player, pos, INTERACT_SOUND, SoundSource.BLOCKS, 1f, 1f);
         return InteractionResult.sidedSuccess(level.isClientSide);
 
     }

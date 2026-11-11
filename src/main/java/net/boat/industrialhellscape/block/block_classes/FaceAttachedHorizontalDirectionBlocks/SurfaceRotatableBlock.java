@@ -37,19 +37,23 @@ import javax.annotation.Nonnull;
 
 public class SurfaceRotatableBlock extends Block implements SimpleWaterloggedBlock, ToolUseInterface {
 
+    // Additional BlockState Properties
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
 
     //TODO - figure out what to do about legacy enum that i dont like
     public static final EnumProperty<RelativePlanarDirectionState> PLANE_DIRECTION = EnumProperty.create("plane_direction", RelativePlanarDirectionState.class);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    public static final VoxelShape SHAPE_FLOOR = Block.box(0, 0, 0, 16, 6, 16);
-    public static final VoxelShape SHAPE_CEILING = Block.box(0, 10, 0, 16, 16, 16);
+    // --- Additional Per-Instance Constructor Fields ---
+    protected static final VoxelShape SHAPE_FLOOR = Block.box(0, 0, 0, 16, 6, 16);
+    protected static final VoxelShape SHAPE_CEILING = Block.box(0, 10, 0, 16, 16, 16);
 
-    public static final VoxelShape SHAPE_NORTH = Block.box(0, 0, 0, 16, 16, 6);
-    public static final VoxelShape SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH);
-    public static final VoxelShape SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH);
-    public static final VoxelShape SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH);
+    // Wall Shapes
+    protected static final VoxelShape SHAPE_NORTH = Block.box(0, 0, 0, 16, 16, 6);
+    protected static final VoxelShape SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH);
+    protected static final VoxelShape SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH);
+    protected static final VoxelShape SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH);
+    // --- End of Additional Per-Instance Constructor Fields ---
 
     public SurfaceRotatableBlock(Properties pProperties) {
         super(pProperties);

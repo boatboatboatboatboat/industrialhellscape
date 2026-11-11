@@ -26,10 +26,12 @@ import org.jetbrains.annotations.NotNull;
 //-----
 
 public class InteractableMHBlock extends ModelledHorizontalBlock implements SimpleWaterloggedBlock {
+    // Additional BlockState Properties
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED; //For binary states (on, off, or lit, unlit)
 
-    public final SoundEvent ON_SOUND;
-    public final SoundEvent OFF_SOUND;
+    // Additional Per-Instance Constructor Fields
+    private final SoundEvent ON_SOUND;
+    private final SoundEvent OFF_SOUND;
 
     public InteractableMHBlock(Properties pProperties, VoxelShape soloShape, SoundEvent onSound, SoundEvent offSound) {
         super(pProperties, soloShape);

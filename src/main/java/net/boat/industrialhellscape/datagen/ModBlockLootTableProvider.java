@@ -3,7 +3,6 @@ package net.boat.industrialhellscape.datagen;
 import net.boat.industrialhellscape.block.ModBlocks;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer11Blocks.Integer11Block;
 import net.boat.industrialhellscape.block.block_classes.MultiBlocks.Integer2Blocks.Integer2Block;
-import net.boat.industrialhellscape.block.block_experiments.PanelBlocks.PanelBlock;
 import net.boat.industrialhellscape.block.block_classes.RailingBlocks.RailingBlock;
 import net.boat.industrialhellscape.block.block_classes.RailingBlocks.StairRailingBlock;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
@@ -12,6 +11,8 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -19,6 +20,7 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Set;
@@ -27,6 +29,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     protected ModBlockLootTableProvider(HolderLookup.Provider registries) {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
     }
+
+    //https://stackoverflow.com/questions/19940319/can-you-split-a-stream-into-two-streams
+    //TODO STREAM FILTER TO AUTOMATE LOOT TABLES
 
     @Override
     protected void generate() {
@@ -377,140 +382,48 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.FOLDING_CHAIR.get());
     }
 
-protected LootTable.Builder createRailingDrops(Block pBlock) {
-    //It turns out, .withPool()s can be stacked together to form separate loot pools.
-    //For example, the vanilla function createPotFlowerItemTable() in BlockLootSubProvider
-
-    return LootTable.lootTable()
-
-            //Separate Loot pool for NORTH_FENCE blockstate (0-1 item output)
-            .withPool(LootPool.lootPool()
-                    .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
-                            .setProperties(StatePropertiesPredicate.Builder.properties()
-                                    .hasProperty(RailingBlock.NORTH_FENCE, true))) //when true
-                    .add(this.applyExplosionDecay(pBlock, LootItem.lootTableItem(pBlock)
-                                    .apply(List.of(1), (p_249985_) -> SetItemCountFunction.setCount(ConstantValue.exactly((float) p_249985_))))
-                            .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))))
-
-            //Separate Loot pool for SOUTH_FENCE blockstate (0-1 item output)
-            .withPool(LootPool.lootPool()
-                    .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
-                            .setProperties(StatePropertiesPredicate.Builder.properties()
-                                    .hasProperty(RailingBlock.SOUTH_FENCE, true))) //when true
-                    .add(this.applyExplosionDecay(pBlock, LootItem.lootTableItem(pBlock)
-                                    .apply(List.of(1), (p_249985_) -> SetItemCountFunction.setCount(ConstantValue.exactly((float) p_249985_))))
-                            .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))))
-
-            //Separate Loot pool for EAST_FENCE blockstate (0-1 item output)
-            .withPool(LootPool.lootPool()
-                    .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
-                            .setProperties(StatePropertiesPredicate.Builder.properties()
-                                    .hasProperty(RailingBlock.EAST_FENCE, true))) //when true
-                    .add(this.applyExplosionDecay(pBlock, LootItem.lootTableItem(pBlock)
-                                    .apply(List.of(1), (p_249985_) -> SetItemCountFunction.setCount(ConstantValue.exactly((float) p_249985_))))
-                            .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))))
-
-            //Separate Loot pool for WEST_FENCE blockstate (0-1 item output)
-            .withPool(LootPool.lootPool()
-                    .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
-                            .setProperties(StatePropertiesPredicate.Builder.properties()
-                                    .hasProperty(RailingBlock.WEST_FENCE, true))) //when true
-                    .add(this.applyExplosionDecay(pBlock, LootItem.lootTableItem(pBlock)
-                                    .apply(List.of(1), (p_249985_) -> SetItemCountFunction.setCount(ConstantValue.exactly((float) p_249985_))))
-                            .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))))
-
-            ;
-}
-
-    protected LootTable.Builder createPanelBlockDrops(Block pBlock) {
-        //It turns out, .withPool()s can be stacked together to form separate loot pools.
-        //For example, the vanilla function createPotFlowerItemTable() in BlockLootSubProvider
-
-        return LootTable.lootTable()
-
-                //Separate Loot pool for NORTH_SHAPE blockstate (0-1 item output)
-                .withPool(LootPool.lootPool()
-                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
-                                .setProperties(StatePropertiesPredicate.Builder.properties()
-                                        .hasProperty(PanelBlock.NORTH_PANEL, true))) //when true
-                        .add(this.applyExplosionDecay(pBlock, LootItem.lootTableItem(pBlock)
-                                        .apply(List.of(1), (p_249985_) -> SetItemCountFunction.setCount(ConstantValue.exactly((float) p_249985_))))
-                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))))
-                .withPool(LootPool.lootPool()
-                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
-                                .setProperties(StatePropertiesPredicate.Builder.properties()
-                                        .hasProperty(PanelBlock.SOUTH_PANEL, true))) //when true
-                        .add(this.applyExplosionDecay(pBlock, LootItem.lootTableItem(pBlock)
-                                        .apply(List.of(1), (p_249985_) -> SetItemCountFunction.setCount(ConstantValue.exactly((float) p_249985_))))
-                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))))
-                .withPool(LootPool.lootPool()
-                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
-                                .setProperties(StatePropertiesPredicate.Builder.properties()
-                                        .hasProperty(PanelBlock.EAST_PANEL, true))) //when true
-                        .add(this.applyExplosionDecay(pBlock, LootItem.lootTableItem(pBlock)
-                                        .apply(List.of(1), (p_249985_) -> SetItemCountFunction.setCount(ConstantValue.exactly((float) p_249985_))))
-                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))))
-                .withPool(LootPool.lootPool()
-                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
-                                .setProperties(StatePropertiesPredicate.Builder.properties()
-                                        .hasProperty(PanelBlock.WEST_PANEL, true))) //when true
-                        .add(this.applyExplosionDecay(pBlock, LootItem.lootTableItem(pBlock)
-                                        .apply(List.of(1), (p_249985_) -> SetItemCountFunction.setCount(ConstantValue.exactly((float) p_249985_))))
-                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))))
-                .withPool(LootPool.lootPool()
-                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
-                                .setProperties(StatePropertiesPredicate.Builder.properties()
-                                        .hasProperty(PanelBlock.UP_PANEL, true))) //when true
-                        .add(this.applyExplosionDecay(pBlock, LootItem.lootTableItem(pBlock)
-                                        .apply(List.of(1), (p_249985_) -> SetItemCountFunction.setCount(ConstantValue.exactly((float) p_249985_))))
-                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))))
-                .withPool(LootPool.lootPool()
-                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
-                                .setProperties(StatePropertiesPredicate.Builder.properties()
-                                        .hasProperty(PanelBlock.DOWN_PANEL, true))) //when true
-                        .add(this.applyExplosionDecay(pBlock, LootItem.lootTableItem(pBlock)
-                                        .apply(List.of(1), (p_249985_) -> SetItemCountFunction.setCount(ConstantValue.exactly((float) p_249985_))))
-                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))))
-                ;
+    protected LootTable.Builder createRailingDrops(Block block) {
+        return dropOnBooleanPropertyTrue(block, RailingBlock.NORTH_FENCE, RailingBlock.SOUTH_FENCE, RailingBlock.EAST_FENCE, RailingBlock.WEST_FENCE);
     }
 
-protected LootTable.Builder createStairRailingDrops(Block pBlock) {
-    return LootTable.lootTable()
+    protected LootTable.Builder createPanelBlockDrops(Block block) {
+        return dropOnBooleanPropertyTrue(block, BlockStateProperties.NORTH, BlockStateProperties.SOUTH, BlockStateProperties.EAST, BlockStateProperties.WEST);
+    }
 
-            //Separate Loot pool for RIGHT_FENCE blockstate (0-1 item output)
-            .withPool(LootPool.lootPool()
-                    .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
-                            .setProperties(StatePropertiesPredicate.Builder.properties()
-                                    .hasProperty(StairRailingBlock.LEFT_FENCE, true))) //when true
-                    .add(this.applyExplosionDecay(pBlock, LootItem.lootTableItem(pBlock)
-                                    .apply(List.of(1), (p_249985_) -> SetItemCountFunction.setCount(ConstantValue.exactly((float) p_249985_))))
-                            .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))))
+    protected LootTable.Builder createStairRailingDrops(Block block) {
+        return dropOnBooleanPropertyTrue(block, StairRailingBlock.LEFT_FENCE, StairRailingBlock.RIGHT_FENCE);
+    }
 
-            //Separate Loot pool for LEFT_FENCE blockstate (0-1 item output)
-            .withPool(LootPool.lootPool()
-                    .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
-                            .setProperties(StatePropertiesPredicate.Builder.properties()
-                                    .hasProperty(StairRailingBlock.RIGHT_FENCE, true))) //when true
-                    .add(this.applyExplosionDecay(pBlock, LootItem.lootTableItem(pBlock)
-                                    .apply(List.of(1), (p_249985_) -> SetItemCountFunction.setCount(ConstantValue.exactly((float) p_249985_))))
-                            .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))))
-            ;
-}
-
-    protected LootTable.Builder createIntegerMultiBlockDrops(Block pBlock, IntegerProperty integerProperty) {
+    protected LootTable.Builder createIntegerMultiBlockDrops(Block block, IntegerProperty integerProperty) {
         //Only the first block of the multiblock (PART #0) has a loot table to drop the block itself
         return LootTable.lootTable().withPool(LootPool.lootPool()
-                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(pBlock)
+                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
                                 .setProperties(StatePropertiesPredicate.Builder.properties()
                                         .hasProperty(integerProperty, 0))) //PART #0
-                        .add(this.applyExplosionDecay(pBlock, LootItem.lootTableItem(pBlock)
+                        .add(this.applyExplosionDecay(block, LootItem.lootTableItem(block)
                                         .apply(List.of(1), (p_249985_) -> SetItemCountFunction.setCount(ConstantValue.exactly((float) p_249985_))))
                                 .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))))
                 ;
     }
 
+    protected LootTable.Builder dropOnBooleanPropertyTrue(Block block, BooleanProperty... booleanProperty) {
+        LootTable.Builder builder = LootTable.lootTable();
+
+        for(BooleanProperty currentProperty:booleanProperty) {
+            builder = builder.withPool(LootPool.lootPool()
+                    .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                            .setProperties(StatePropertiesPredicate.Builder.properties()
+                                    .hasProperty(currentProperty, true))) //when true
+                    .add(this.applyExplosionDecay(block, LootItem.lootTableItem(block)
+                                    .apply(List.of(1), (p_249985_) -> SetItemCountFunction.setCount(ConstantValue.exactly((float) p_249985_))))
+                            .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))));
+        }
+
+        return builder;
+    };
+
     @Override
-    protected Iterable<Block> getKnownBlocks() {
+    protected @NotNull Iterable<Block> getKnownBlocks() {
         return ModBlocks.BLOCKS.getEntries().stream().map(Holder::value)::iterator;
     }
 }

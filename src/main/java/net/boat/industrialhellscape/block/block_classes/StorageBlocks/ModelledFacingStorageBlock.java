@@ -15,7 +15,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -36,18 +35,15 @@ getOpenSound() and getClosedSound() used by StorageBlockInterface to detect desi
 */
 
 public class ModelledFacingStorageBlock extends FacingStorageBlock implements EntityBlock, StorageBlockInterface, SimpleWaterloggedBlock {
-    public final int SLOTS;
-    public final SoundEvent OPEN_SOUND;
-    public final SoundEvent CLOSE_SOUND;
-    public final VoxelShape SHAPE;
 
-    private static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    // Additional Per-Instance Constructor fields
+    protected final VoxelShape SOLO_SHAPE_NORTH;
+    protected final VoxelShape SOLO_SHAPE_SOUTH; //Rotational Translation from SOLO_SHAPE_NORTH
+    protected final VoxelShape SOLO_SHAPE_EAST; //Rotational Translation from SOLO_SHAPE_NORTH
+    protected final VoxelShape SOLO_SHAPE_WEST; //Rotational Translation from SOLO_SHAPE_NORTH
+
+    // Additional BlockState Properties
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-
-    private final VoxelShape SOLO_SHAPE_NORTH;
-    private final VoxelShape SOLO_SHAPE_SOUTH;
-    private final VoxelShape SOLO_SHAPE_EAST;
-    private final VoxelShape SOLO_SHAPE_WEST;
 
     public ModelledFacingStorageBlock(Properties properties, int slotsAmount, SoundEvent openSound, SoundEvent closeSound, VoxelShape hitbox) {
         // When registering this block, pass in
@@ -57,10 +53,6 @@ public class ModelledFacingStorageBlock extends FacingStorageBlock implements En
         // Sound to play when player closes block
 
         super(properties, slotsAmount, openSound, closeSound);
-        this.SLOTS = slotsAmount;
-        this.OPEN_SOUND = openSound;
-        this.CLOSE_SOUND = closeSound;
-        this.SHAPE = hitbox;
         this.SOLO_SHAPE_NORTH = hitbox;
         this.SOLO_SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, hitbox);
         this.SOLO_SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, hitbox);

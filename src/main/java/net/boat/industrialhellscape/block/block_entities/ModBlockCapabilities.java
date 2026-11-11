@@ -45,6 +45,12 @@ public class ModBlockCapabilities {
                 Capabilities.ItemHandler.BLOCK, // capability to register for
                 (level, pos, state, be, side) -> {
                     //IndustrialHellscape.LOGGER.info("InHell: Tick. ItemHandler internal logic triggered");
+
+                    /*
+                        For all applicable registered blocks below,
+                        point back to the origin block's BlockPos where the BE should be
+                    */
+
                     if(state.getBlock() instanceof BaseIntegerMultiBlock multiBlock) {
                         //Only one BE exists per MultiBlock. Find it.
                         BlockEntity targetBlockEntity = level.getBlockEntity(MultiBlockPlacementInterface.vectorToOriginBlockPos(pos, multiBlock.multiBlockPlacementMatrix, state, multiBlock.partProperty));

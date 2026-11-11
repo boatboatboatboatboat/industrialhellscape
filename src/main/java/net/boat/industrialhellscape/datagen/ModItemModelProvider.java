@@ -28,14 +28,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.GAS_STATION_PILL.get());
 
         basicFolderedItem(ModItems.MARQUEE_DISC.asItem(), "disc");
-
-        //  Wall Blocks (have a dedicated vanilla 3D item model)
-//        wallItem(ModBlocks.GRAY_ROCKRETE_WALL, ModBlocks.ROUGH_GRAY_ROCKRETE.get(), "rough_rockrete");
-//        wallItem(ModBlocks.RED_ROCKRETE_WALL, ModBlocks.ROUGH_RED_ROCKRETE.get(), "rough_rockrete");
-//        wallItem(ModBlocks.YELLOW_ROCKRETE_WALL, ModBlocks.ROUGH_YELLOW_ROCKRETE.get(), "rough_rockrete");
-//        wallItem(ModBlocks.BLUE_ROCKRETE_WALL, ModBlocks.ROUGH_BLUE_ROCKRETE.get(), "rough_rockrete");
-//        wallItem(ModBlocks.GREEN_ROCKRETE_WALL, ModBlocks.ROUGH_GREEN_ROCKRETE.get(), "rough_rockrete");
-
         //--- Blocks with 2D Item Sprites ---
 
         // Misc/Easter Eggs

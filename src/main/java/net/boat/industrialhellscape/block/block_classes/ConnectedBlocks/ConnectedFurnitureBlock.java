@@ -52,30 +52,30 @@ INFO:
 */
 
 public class ConnectedFurnitureBlock extends Block implements SimpleWaterloggedBlock, ConnectedModelInterface, ToolUseInterface {
+
+    // Additional BlockState Properties
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING; //"FACING" is used to store DirectionProperty value of "north, south, east, west"
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    public final TagKey<Block> blockSetFamily; //To determine other blocks aside from its own can this block connect to
+
+    // Additional Per-Instance Constructor Fields
     public final ConnectingBlockPlacementOrientation placementDirection;
-
-    public final VoxelShape SOLO_SHAPE_NORTH;
-    public final VoxelShape SOLO_SHAPE_SOUTH;
-    public final VoxelShape SOLO_SHAPE_EAST;
-    public final VoxelShape SOLO_SHAPE_WEST;
-
-    public final VoxelShape LEFT_SHAPE_NORTH;
-    public final VoxelShape LEFT_SHAPE_SOUTH;
-    public final VoxelShape LEFT_SHAPE_EAST;
-    public final VoxelShape LEFT_SHAPE_WEST;
-
-    public final VoxelShape MIDDLE_SHAPE_NORTH;
-    public final VoxelShape MIDDLE_SHAPE_SOUTH;
-    public final VoxelShape MIDDLE_SHAPE_EAST;
-    public final VoxelShape MIDDLE_SHAPE_WEST;
-
-    public final VoxelShape RIGHT_SHAPE_NORTH;
-    public final VoxelShape RIGHT_SHAPE_SOUTH;
-    public final VoxelShape RIGHT_SHAPE_EAST;
-    public final VoxelShape RIGHT_SHAPE_WEST;
+    protected final TagKey<Block> blockSetFamily; //To determine other blocks aside from its own can this block connect to
+    protected final VoxelShape SOLO_SHAPE_NORTH; //
+    protected final VoxelShape SOLO_SHAPE_SOUTH;
+    protected final VoxelShape SOLO_SHAPE_EAST;
+    protected final VoxelShape SOLO_SHAPE_WEST;
+    protected final VoxelShape LEFT_SHAPE_NORTH;
+    protected final VoxelShape LEFT_SHAPE_SOUTH;
+    protected final VoxelShape LEFT_SHAPE_EAST;
+    protected final VoxelShape LEFT_SHAPE_WEST;
+    protected final VoxelShape MIDDLE_SHAPE_NORTH;
+    protected final VoxelShape MIDDLE_SHAPE_SOUTH;
+    protected final VoxelShape MIDDLE_SHAPE_EAST;
+    protected final VoxelShape MIDDLE_SHAPE_WEST;
+    protected final VoxelShape RIGHT_SHAPE_NORTH;
+    protected final VoxelShape RIGHT_SHAPE_SOUTH;
+    protected final VoxelShape RIGHT_SHAPE_EAST;
+    protected final VoxelShape RIGHT_SHAPE_WEST;
 
     public ConnectedFurnitureBlock(Properties pProperties, @Nullable TagKey<Block> inputCompatibleBlockSet, VoxelShape soloShape, VoxelShape leftShape, VoxelShape middleShape, VoxelShape rightShape, ConnectingBlockPlacementOrientation placementDirection) {
         //When registering this block, pass in:

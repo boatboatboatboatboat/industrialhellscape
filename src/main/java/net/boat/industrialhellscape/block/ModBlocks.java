@@ -152,29 +152,6 @@ public class ModBlocks {
 //            )
 //    );
 
-    //EXPERIMENTAL BLOCKS - PANEL BLOCKS - TENTATIVE INCLUSION
-//    public static final DeferredBlock<Block> BLACK_SHEETING_PANEL = registerBlockAndBlockItem("black_sheeting_panel",
-//            () -> new PanelBlock(BlockBehaviour
-//                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-//                    .noOcclusion(),
-//                    HitboxGeometryCollection.PANEL_2PIXEL_THICK_FLOOR()
-//            )
-//    );
-//    public static final DeferredBlock<Block> GRAY_SHEETING_PANEL = registerBlockAndBlockItem("gray_sheeting_panel",
-//            () -> new PanelBlock(BlockBehaviour
-//                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-//                    .noOcclusion(),
-//                    HitboxGeometryCollection.PANEL_2PIXEL_THICK_FLOOR()
-//            )
-//    );
-//    public static final DeferredBlock<Block> RUSTY_SHEETING_PANEL = registerBlockAndBlockItem("rusty_sheeting_panel",
-//            () -> new PanelBlock(BlockBehaviour
-//                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
-//                    .noOcclusion(),
-//                    HitboxGeometryCollection.PANEL_2PIXEL_THICK_FLOOR()
-//            )
-//    );
-
     //JOKE BLOCKS
     public static final DeferredBlock<Block> BODY_PILLOW_OZY = registerBlockAndBlockItem("body_pillow",
             () -> new Bed2Block(BlockBehaviour
@@ -1703,7 +1680,7 @@ public class ModBlocks {
                     .Properties.ofFullCopy(Blocks.STONE)
                     .noOcclusion(),
                     HitboxGeometryCollection.URINAL(),
-                    ModSounds.TOILET_FLUSH
+                    ModSounds.TOILET_FLUSH.get()
             )
     );
 //
@@ -1735,7 +1712,9 @@ public class ModBlocks {
     public static final DeferredBlock<Block> INDUSTRIAL_LEVER = registerBlockAndBlockItem("industrial_lever",
             () -> new WaterloggableLeverBlock(BlockBehaviour
                     .Properties.ofFullCopy(Blocks.OAK_PLANKS),
-                    HitboxGeometryCollection.INDUSTRIAL_LEVER())
+                    HitboxGeometryCollection.INDUSTRIAL_LEVER(),
+                    ModSounds.SWITCH_ON.get(),
+                    ModSounds.SWITCH_OFF.get())
     );
     public static final DeferredBlock<Block> CCTV_CAMERA = registerBlockAndBlockItem("cctv_camera",
             () -> new ModelledFAHDBlock(BlockBehaviour

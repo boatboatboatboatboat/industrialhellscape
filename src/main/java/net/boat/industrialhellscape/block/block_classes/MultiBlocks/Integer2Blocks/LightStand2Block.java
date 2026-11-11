@@ -29,8 +29,9 @@ import org.jetbrains.annotations.NotNull;
 
 public class LightStand2Block extends Modelled2Block implements SoundPlayInterface {
 
-    public SoundEvent ON_SOUND;
-    public SoundEvent OFF_SOUND;
+    // Additional Per-Instance Constructor Fields
+    protected SoundEvent ON_SOUND;
+    protected SoundEvent OFF_SOUND;
 
     public LightStand2Block(Properties pProperties, int[][] multiBlockPlacementMatrix, VoxelShape[] hitboxShapeArray, SoundEvent onSound, SoundEvent offSound) {
         super(pProperties, multiBlockPlacementMatrix, hitboxShapeArray);

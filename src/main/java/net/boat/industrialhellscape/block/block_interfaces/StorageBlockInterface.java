@@ -14,8 +14,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Optional;
-
 public interface StorageBlockInterface {
     //All storage Blocks are able to use the OPEN property
     BooleanProperty OPEN = BlockStateProperties.OPEN;
@@ -27,10 +25,6 @@ public interface StorageBlockInterface {
     int getSlotCount();
     SoundEvent getOpenSound();
     SoundEvent getCloseSound();
-    default Optional<BlockPos> originBlockPos() { //NBTUtils output
-        return Optional.of(BlockPos.containing(0,0,0)); //non null default value
-    };
-
 
     //---------- END OF NECESSARY FIELDS FOR BLOCK ENTITY ----------
 
@@ -41,7 +35,9 @@ public interface StorageBlockInterface {
             Containers.dropContents(level, pos, container);
             level.updateNeighbourForOutputSignal(pos, state.getBlock());
         }
-        level.invalidateCapabilities(pos);
+        //"NeoForge already handles common cases such as chunk load/unloads and block entity creation/removal"
+        //https://docs.neoforged.net/docs/1.21.1/inventories/capabilities
+        //level.invalidateCapabilities(pos);
     }
 
     static InteractionResult OpenContainerInventory(Level level, @NotNull BlockPos pos, @NotNull Player player) {

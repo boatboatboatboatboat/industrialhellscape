@@ -42,6 +42,8 @@ import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 
 public class PeanutStatueBlock extends Modelled2Block implements Fallable {
+
+    // Additional BlockState Properties
     public static final BooleanProperty DIAGONAL = BooleanProperty.create("diagonal");
 
     public PeanutStatueBlock(Properties pProperties, int[][] multiBlockPlacementMatrix, VoxelShape[] hitboxShapeArray) {

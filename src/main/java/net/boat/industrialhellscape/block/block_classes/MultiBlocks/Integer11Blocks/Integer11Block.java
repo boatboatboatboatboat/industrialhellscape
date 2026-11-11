@@ -10,12 +10,15 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.neoforged.neoforge.common.extensions.IBlockExtension;
 
 public class Integer11Block extends BaseIntegerMultiBlock implements MultiBlockPlacementInterface, IBlockExtension {
-    //Specific to this class and subclasses
+
+//    // Additional Per-Instance Constructor Fields
+//    public final int[][] multiBlockPlacementMatrix; //not static, the placement matrix is unique to many kinds of blocks. Final once initialized
+
+    // Additional BlockState Properties
     public static final IntegerProperty PART = IntegerProperty.create("part",0, 10);
 
     public Integer11Block(Properties pProperties, int[][] multiBlockPlacementMatrix) {
         super(pProperties, multiBlockPlacementMatrix, PART);
-        //maximumBlockStates = registerMaxBlockStates-1;
         this.multiBlockPlacementMatrix = multiBlockPlacementMatrix;
 
         this.registerDefaultState(this.stateDefinition.any()

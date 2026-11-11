@@ -1,6 +1,7 @@
 package net.boat.industrialhellscape.block.block_classes.RailingBlocks;
 
 import net.boat.industrialhellscape.block.block_interfaces.HitboxRotationInterface;
+import net.boat.industrialhellscape.block.block_interfaces.ModCustomProperties;
 import net.boat.industrialhellscape.block.block_interfaces.ToolUseInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -37,7 +38,7 @@ import javax.annotation.Nonnull;
 //-----
 // Modified from the mod Create Deco. Based on Catwalk Railing block class code (CC0 license)
 // 2 boolean block state properties corresponding to relative left or right direction based on direction (FACING) player is facing when placing down the first block.
-// The second-nearest cardinal direction to where the player is facing determines whether or not the left or right stair-rail will be placed.
+// The second-nearest cardinal direction to where the player is facing determines whether the left or right stair-rail will be placed.
 // For example, if player is facing NORTH, if they are facing slightly to the WEST (left), a left stair-rail will be placed.
 // If player is facing NORTH, and are facing slightly to the EAST (right), a right stair-rail will be placed.
 
@@ -46,23 +47,20 @@ import javax.annotation.Nonnull;
 
 public class StairRailingBlock extends Block implements SimpleWaterloggedBlock {
 
-    //Properties the block possesses
+    // Additional BlockState Properties
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final BooleanProperty LEFT_FENCE = BooleanProperty.create("left");
-    public static final BooleanProperty RIGHT_FENCE = BooleanProperty.create("right");
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    public static final BooleanProperty LEFT_FENCE = ModCustomProperties.LEFT_FENCE;
+    public static final BooleanProperty RIGHT_FENCE = ModCustomProperties.RIGHT_FENCE;
 
+    // Hard-coded Fields
     // Hitbox shapes (8 total, 2x4) for left and right variants of the stair rail per cardinal direction (used both for collision and interaction)
-    // Modded interface HitboxRotationInterface helps rotate voxels along cardinal directions. See interface for more details
     private static final VoxelShape SHAPE_NORTH_LEFT = Block.box(0d, 0d, 0d, 1d, 14, 16d);
     private static final VoxelShape SHAPE_NORTH_RIGHT = Block.box(15d, 0d, 0d, 16d, 14, 16d);
-
     private static final VoxelShape SHAPE_SOUTH_LEFT = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH_LEFT);
     private static final VoxelShape SHAPE_SOUTH_RIGHT = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH_RIGHT);
-
     private static final VoxelShape SHAPE_EAST_LEFT = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH_LEFT);
     private static final VoxelShape SHAPE_EAST_RIGHT = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH_RIGHT);
-
     private static final VoxelShape SHAPE_WEST_LEFT = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH_LEFT);
     private static final VoxelShape SHAPE_WEST_RIGHT = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH_RIGHT);
 
@@ -70,10 +68,11 @@ public class StairRailingBlock extends Block implements SimpleWaterloggedBlock {
         super(pProperties);
         this.registerDefaultState(this.defaultBlockState()
                 .setValue(FACING, Direction.NORTH)
+                .setValue(BlockStateProperties.WATERLOGGED, false)
                 .setValue(LEFT_FENCE, false)
                 .setValue(RIGHT_FENCE, false)
-                .setValue(BlockStateProperties.WATERLOGGED, false)
         );
+
     }
 
     @Override
@@ -83,28 +82,41 @@ public class StairRailingBlock extends Block implements SimpleWaterloggedBlock {
 
     @Override
     public @Nonnull VoxelShape getInteractionShape(BlockState pState, @Nonnull BlockGetter pLevel, @Nonnull BlockPos pPos) {
+        // Initialize Array of zeroes;
         VoxelShape shape = Shapes.empty();
-        Direction facingState = pState.getValue(FACING);
 
-        //Assign one of the eight hitboxes for each placement block state
+        // Get current block state's facing Direction
+        Direction facingDirection = pState.getValue(FACING);
 
-        if(pState.getValue(LEFT_FENCE) && facingState == Direction.NORTH) shape = Shapes.join(shape, SHAPE_NORTH_LEFT, BooleanOp.OR);
-        if(pState.getValue(RIGHT_FENCE) && facingState == Direction.NORTH) shape = Shapes.join(shape, SHAPE_NORTH_RIGHT, BooleanOp.OR);
-
-        if(pState.getValue(LEFT_FENCE) && facingState == Direction.SOUTH) shape = Shapes.join(shape, SHAPE_SOUTH_LEFT, BooleanOp.OR);
-        if(pState.getValue(RIGHT_FENCE) && facingState == Direction.SOUTH) shape = Shapes.join(shape, SHAPE_SOUTH_RIGHT, BooleanOp.OR);
-
-        if(pState.getValue(LEFT_FENCE) && facingState == Direction.EAST) shape = Shapes.join(shape, SHAPE_EAST_LEFT, BooleanOp.OR);
-        if(pState.getValue(RIGHT_FENCE) && facingState == Direction.EAST) shape = Shapes.join(shape, SHAPE_EAST_RIGHT, BooleanOp.OR);
-
-        if(pState.getValue(LEFT_FENCE) && facingState == Direction.WEST) shape = Shapes.join(shape, SHAPE_WEST_LEFT, BooleanOp.OR);
-        if(pState.getValue(RIGHT_FENCE) && facingState == Direction.WEST) shape = Shapes.join(shape, SHAPE_WEST_RIGHT, BooleanOp.OR);
+        // If left/right rail exists, join hitbox to current hitbox array based on direction (which is mapped to appropriate hitbox for that orientation)
+        if(pState.getValue(LEFT_FENCE)) shape = Shapes.join(shape, directionToLeftHitBoxShape(facingDirection), BooleanOp.OR);
+        if(pState.getValue(RIGHT_FENCE)) shape = Shapes.join(shape, directionToRightHitBoxShape(facingDirection), BooleanOp.OR);
 
         return shape;
     }
 
+    //Corresponds a Direction input to the block-state boolean property for railing blocks.
+    protected static VoxelShape directionToLeftHitBoxShape(Direction face) {
+        return switch (face) {
+            case SOUTH -> SHAPE_SOUTH_LEFT;
+            case EAST  -> SHAPE_EAST_LEFT;
+            case WEST  -> SHAPE_WEST_LEFT;
+            default -> SHAPE_NORTH_LEFT;
+        };
+    }
+
+    //Corresponds a Direction input to the block-state boolean property for railing blocks.
+    protected static VoxelShape directionToRightHitBoxShape(Direction face) {
+        return switch (face) {
+            case SOUTH -> SHAPE_SOUTH_RIGHT;
+            case EAST  -> SHAPE_EAST_RIGHT;
+            case WEST  -> SHAPE_WEST_RIGHT;
+            default -> SHAPE_NORTH_RIGHT;
+        };
+    }
+
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    protected @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
         //Rotates the current railings counterclockwise.
         if(ToolUseInterface.checkForEnabledTool(stack)) {
             state = state.cycle(FACING);

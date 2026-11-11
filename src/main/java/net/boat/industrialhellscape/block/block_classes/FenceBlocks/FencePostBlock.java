@@ -55,15 +55,16 @@ Caveats observed from CDeco's fence implementation:
  */
 
 public class FencePostBlock extends FenceBlock implements ToolUseInterface {
-    //fence-post block state
+
+    // Additional BlockState Properties
     public static final BooleanProperty UP = BlockStateProperties.UP;
 
-    //hitboxes
-    public final VoxelShape POST_SHAPE;
-    public final VoxelShape NORTH_SHAPE;
-    public final VoxelShape SOUTH_SHAPE;
-    public final VoxelShape EAST_SHAPE;
-    public final VoxelShape WEST_SHAPE;
+    // Additional Per-Instance Constructor Fields
+    protected final VoxelShape POST_SHAPE;
+    protected final VoxelShape NORTH_SHAPE;
+    protected final VoxelShape SOUTH_SHAPE; //Rotationally translated from North Shape
+    protected final VoxelShape EAST_SHAPE; //Rotationally translated from North Shape
+    protected final VoxelShape WEST_SHAPE; //Rotationally translated from North Shape
 
     public FencePostBlock(Properties pProperties, VoxelShape postShape, VoxelShape fenceShape) {
         super(pProperties);
@@ -98,7 +99,7 @@ public class FencePostBlock extends FenceBlock implements ToolUseInterface {
         (isCovered() method in WallBlocks reads collisionShape values)
     */
     @Override
-    protected VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    protected @NotNull VoxelShape getCollisionShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         VoxelShape shape = Shapes.empty();
         if(state.getValue(UP)) shape = Shapes.join(shape,POST_SHAPE, BooleanOp.OR);
         if (state.getValue(NORTH)) shape = Shapes.join(shape, NORTH_SHAPE, BooleanOp.OR);
@@ -109,7 +110,7 @@ public class FencePostBlock extends FenceBlock implements ToolUseInterface {
     }
 
     @Override
-    protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
+    protected void onPlace(BlockState state, @NotNull Level level, @NotNull BlockPos pos, BlockState oldState, boolean movedByPiston) {
         /*
             Check all four directions around the placed block.
             If a neighboring block is of this block class,
@@ -188,7 +189,7 @@ public class FencePostBlock extends FenceBlock implements ToolUseInterface {
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
+    protected @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction facing, @NotNull BlockState facingState, @NotNull LevelAccessor level, @NotNull BlockPos currentPos, @NotNull BlockPos facingPos) {
         /*
         fence connection logic from FenceBlock class must happen FIRST before
         fence-post eligibility can be accurately determined
@@ -219,7 +220,7 @@ public class FencePostBlock extends FenceBlock implements ToolUseInterface {
     }
 
     @Override
-    protected @NotNull ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    protected @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
         if(fenceConnectionsExist(state)) { //prevent removal of single post if fence is unconnected, to prevent invisible ghost blocks
             if(ToolUseInterface.checkForEnabledTool(stack)) {
                 state = state.cycle(UP);
@@ -245,7 +246,7 @@ public class FencePostBlock extends FenceBlock implements ToolUseInterface {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+    public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
         if (Screen.hasShiftDown()) {
             tooltipComponents.add(Component.translatable("tooltip.industrialhellscape.advise_fence"));
         } else {

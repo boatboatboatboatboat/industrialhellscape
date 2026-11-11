@@ -20,8 +20,10 @@ import org.jetbrains.annotations.NotNull;
 // Code obtained from Create Deco mod (CC0 1.0 license)
 
 public class LightBulbBlock extends ModelledFAHDBlock implements SoundPlayInterface {
-    public final SoundEvent ON_SOUND;
-    public final SoundEvent OFF_SOUND;
+
+    // Additional Per-Instance Constructor Fields
+    protected final SoundEvent ON_SOUND;
+    protected final SoundEvent OFF_SOUND;
 
     public LightBulbBlock(Properties pProperties, VoxelShape floorHitBox, SoundEvent onSound, SoundEvent offSound) {
         super(pProperties, floorHitBox);
@@ -75,6 +77,9 @@ public class LightBulbBlock extends ModelledFAHDBlock implements SoundPlayInterf
     }
 
     private BlockState toggle (BlockState state, Level level, BlockPos pos) {
+        /*
+            No sound on non-player toggle in case player wants to simulate flickering light?
+         */
         BlockState next = state.setValue(BlockStateProperties.LIT, shouldBeLit(state, level, pos));
         level.setBlock(pos, next, 3);
 

@@ -1,6 +1,7 @@
 package net.boat.industrialhellscape.block.block_classes.RailingBlocks;
 
 import net.boat.industrialhellscape.block.block_interfaces.HitboxRotationInterface;
+import net.boat.industrialhellscape.block.block_interfaces.ModCustomProperties;
 import net.boat.industrialhellscape.block.block_interfaces.ModdedNonFullBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -41,43 +42,17 @@ public class ParapetBlock extends RailingBlock implements SimpleWaterloggedBlock
         return 4;
     }
 
-    private double RAILING_THICKNESS;
-    private double RAILING_COLLISION_SHAPE_BASE; //For normal Railing classes, this is 15 to allow projectiles to be shot through their hollow structure.
+    // Hard-coded Fields
+    private final VoxelShape SHAPE_NW = Block.box(0,0,0, RAILING_THICKNESS, 16, RAILING_THICKNESS);
+    private final VoxelShape SHAPE_NE = HitboxRotationInterface.rotateVoxelYAxisIntTimes(1, SHAPE_NW);
+    private final VoxelShape SHAPE_SW = HitboxRotationInterface.rotateVoxelYAxisIntTimes(2, SHAPE_NW);
+    private final VoxelShape SHAPE_SE = HitboxRotationInterface.rotateVoxelYAxisIntTimes(3, SHAPE_NW);
 
-    // INTERACTION SHAPE, black outline in-game is based on this shape.
-    private final VoxelShape SHAPE_NORTH;//
-    private final VoxelShape SHAPE_SOUTH;// = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH);
-    private final VoxelShape SHAPE_EAST;// = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH);
-    private final VoxelShape SHAPE_WEST;// = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH);
-
-    private final VoxelShape SHAPE_NW;//
-    private final VoxelShape SHAPE_NE;// = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH);
-    private final VoxelShape SHAPE_SW;// = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH);
-    private final VoxelShape SHAPE_SE;// = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH);
-
-    // COLLISION SHAPE (FOR PLAYER)
-    private final VoxelShape COLLISON_SHAPE_NORTH;
-    private final VoxelShape COLLISION_SHAPE_SOUTH;
-    private final VoxelShape COLLISION_SHAPE_EAST;
-    private final VoxelShape COLLISION_SHAPE_WEST;
-
-    private final VoxelShape COLLISION_SHAPE_NW;
-    private final VoxelShape COLLISION_SHAPE_NE;
-    private final VoxelShape COLLISION_SHAPE_SW;
-    private final VoxelShape COLLISION_SHAPE_SE;
-
-    // Boolean properties to check whether there is an additional fence at that direction (multiple can be placed down in each of the four cardinal directions in one block space)
-    // These "superposition" block properties are handled via a block-state .json file handling "multi-block" states.
-//    public static final BooleanProperty NORTH_FENCE = BlockStateProperties.NORTH;
-//    public static final BooleanProperty SOUTH_FENCE = BlockStateProperties.SOUTH;
-//    public static final BooleanProperty EAST_FENCE  = BlockStateProperties.EAST;
-//    public static final BooleanProperty WEST_FENCE  = BlockStateProperties.WEST;
-//    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-
-    public static final BooleanProperty NORTH_WEST_FENCE = BooleanProperty.create("north_west");
-    public static final BooleanProperty NORTH_EAST_FENCE = BooleanProperty.create("north_east");
-    public static final BooleanProperty SOUTH_WEST_FENCE = BooleanProperty.create("south_west");
-    public static final BooleanProperty SOUTH_EAST_FENCE = BooleanProperty.create("south_east");
+    // Additional BlockState Properties
+    public static final BooleanProperty NORTH_WEST_FENCE = ModCustomProperties.NORTH_WEST_FENCE;
+    public static final BooleanProperty NORTH_EAST_FENCE = ModCustomProperties.NORTH_EAST_FENCE;
+    public static final BooleanProperty SOUTH_WEST_FENCE = ModCustomProperties.SOUTH_WEST_FENCE;
+    public static final BooleanProperty SOUTH_EAST_FENCE = ModCustomProperties.SOUTH_EAST_FENCE;
 
     public ParapetBlock(Properties pProperties, double railingThickness, double railingCollisionShapeBase) {
         super(pProperties, railingThickness, railingCollisionShapeBase);
@@ -94,26 +69,6 @@ public class ParapetBlock extends RailingBlock implements SimpleWaterloggedBlock
         );
         this.RAILING_THICKNESS = railingThickness;
         this.RAILING_COLLISION_SHAPE_BASE = railingCollisionShapeBase;
-
-        this.SHAPE_NORTH = Block.box(0d, 0d, 0, 16d, RAILING_HEIGHT, RAILING_THICKNESS);
-        this.SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH);
-        this.SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH);
-        this.SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH);
-
-        this.SHAPE_NW = Block.box(0,0,0, RAILING_THICKNESS, 16, RAILING_THICKNESS);
-        this.SHAPE_SW = HitboxRotationInterface.rotateVoxelYAxisIntTimes(1, SHAPE_NW);
-        this.SHAPE_SE = HitboxRotationInterface.rotateVoxelYAxisIntTimes(2, SHAPE_NW);
-        this.SHAPE_NE = HitboxRotationInterface.rotateVoxelYAxisIntTimes(3, SHAPE_NW);
-
-        this.COLLISON_SHAPE_NORTH = Block.box(0d, RAILING_COLLISION_SHAPE_BASE, 0, 16d, RAILING_COLLISION_HEIGHT, RAILING_THICKNESS);
-        this.COLLISION_SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, COLLISON_SHAPE_NORTH);
-        this.COLLISION_SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, COLLISON_SHAPE_NORTH);
-        this.COLLISION_SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, COLLISON_SHAPE_NORTH);
-
-        this.COLLISION_SHAPE_NW = Block.box(0,0,0, RAILING_THICKNESS, RAILING_COLLISION_HEIGHT, RAILING_THICKNESS);
-        this.COLLISION_SHAPE_SW = HitboxRotationInterface.rotateVoxelYAxisIntTimes(1, COLLISION_SHAPE_NW);
-        this.COLLISION_SHAPE_SE = HitboxRotationInterface.rotateVoxelYAxisIntTimes(2, COLLISION_SHAPE_NW);
-        this.COLLISION_SHAPE_NE = HitboxRotationInterface.rotateVoxelYAxisIntTimes(3, COLLISION_SHAPE_NW);
     }
 
     @Nullable
@@ -301,12 +256,13 @@ public class ParapetBlock extends RailingBlock implements SimpleWaterloggedBlock
         return blockState.is(this) && blockState.getValue(fenceToCheck);
     }
 
-    public static BooleanProperty fromDiagonalDirection (Direction face) {
+    protected static boolean directionToDiagonalFenceBooleanEval(Direction face, BlockState state) {
         return switch (face) {
-            case SOUTH -> SOUTH_WEST_FENCE;
-            case EAST  -> SOUTH_EAST_FENCE;
-            case WEST  -> NORTH_WEST_FENCE;
-            default -> NORTH_EAST_FENCE;
+            case SOUTH -> state.getValue(SOUTH_WEST_FENCE);
+            case EAST  -> state.getValue(SOUTH_EAST_FENCE);
+            case WEST  -> state.getValue(NORTH_WEST_FENCE);
+            case NORTH -> state.getValue(NORTH_EAST_FENCE);
+            default -> false;
         };
     }
 
@@ -318,10 +274,10 @@ public class ParapetBlock extends RailingBlock implements SimpleWaterloggedBlock
         // "occupied" becomes true ONLY IF any of the block state boolean properties are TRUE
         // Meaning that a RailingBlock is present here.
         for (Direction dir : BlockStateProperties.HORIZONTAL_FACING.getPossibleValues()) {
-            occupied |= pState.getValue(fromDirection(dir)); //returns true for any true value, even if the rest are false
+            occupied |= directionToFenceBooleanEval(dir,pState); //returns true for any true value, even if the rest are false
         }
         for (Direction dir : BlockStateProperties.HORIZONTAL_FACING.getPossibleValues()) {
-            occupied |= pState.getValue(fromDiagonalDirection(dir)); //returns true for any true value, even if the rest are false
+            occupied |= directionToDiagonalFenceBooleanEval(dir, pState); //returns true for any true value, even if the rest are false
         }
         return occupied;
     }

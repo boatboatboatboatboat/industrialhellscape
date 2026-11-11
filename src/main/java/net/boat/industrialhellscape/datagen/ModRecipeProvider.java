@@ -571,11 +571,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         tagInputToListOutputWithNonFullBlocks(PIPEWORKS_STONECUT_OUTPUT, "pipeworks", ModTags.Items.PIPEWORKS_ITEMS, recipeOutput);
         tagInputToListOutputWithNonFullBlocks(METALWORKS_STONECUT_OUTPUT, "metalworks", ModTags.Items.METALWORKS_ITEMS, recipeOutput);
 
-        //Doors/Trapdoors - Parameters: (Tag of stonecut outputs, String for generated recipe name, Tag of possible input items, recipeOutput)
+        //Doors/Trapdoors - Parameters: (List<Block> of stonecut outputs, String for generated recipe name, Tag of possible input items, recipeOutput)
         tagInputToListOutput(DOORS_STONECUT_OUTPUT, "doors", ModTags.Items.DOOR_ITEMS, recipeOutput);
         tagInputToListOutput(TRAPDOORS_STONECUT_OUTPUT, "trapdoors", ModTags.Items.TRAPDOOR_ITEMS, recipeOutput);
 
-        //Furniture - Parameters: (Tag of stonecut outputs, String for generated recipe name, Block as the single ingredient, recipeOutput)
+        //Furniture - Parameters: (List<Block> of stonecut outputs, String for generated recipe name, Block as the single ingredient, recipeOutput)
         itemInputToListOutput(FURNITURE_CATEGORY_STONECUT_OUTPUT, "furniture_categories", ModBlocks.IHEA_FURNITURE_KIT.get(), recipeOutput);
         itemInputToListOutput(SAFETY_FURNITURE_STONECUT_OUTPUT, "safety_furniture", ModBlocks.SAFETY_FURNISHINGS.get(), recipeOutput);
         itemInputToListOutput(HYGIENE_FURNITURE_STONECUT_OUTPUT, "hygiene_furniture", ModBlocks.HYGIENE_FURNISHINGS.get(), recipeOutput);
@@ -699,6 +699,5 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                     .save(recipeOutput, IndustrialHellscape.MOD_ID + ":" + getItemName(pResult) + pRecipeName);
         }
     }
-
 }
 

@@ -12,10 +12,17 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
         appropriate field from this interface
  */
 
-public interface ModEnumsInterface {
+public interface ModCustomProperties {
     BooleanProperty ALT_STATE = BooleanProperty.create("alt_state");
     EnumProperty<DynamicConnectionState> TYPE = EnumProperty.create("type", DynamicConnectionState .class);
     EnumProperty<SurfacePipeMountState> ORIENTATION = EnumProperty.create("axis", SurfacePipeMountState.class);
+
+    BooleanProperty LEFT_FENCE = BooleanProperty.create("left");
+    BooleanProperty RIGHT_FENCE = BooleanProperty.create("right");
+    BooleanProperty NORTH_WEST_FENCE = BooleanProperty.create("north_west");
+    BooleanProperty NORTH_EAST_FENCE = BooleanProperty.create("north_east");
+    BooleanProperty SOUTH_WEST_FENCE = BooleanProperty.create("south_west");
+    BooleanProperty SOUTH_EAST_FENCE = BooleanProperty.create("south_east");
 
     //TODO - figure out what to do about legacy enum that i don't like
     EnumProperty<RelativePlanarDirectionState> PLANE_DIRECTION = EnumProperty.create("plane_direction", RelativePlanarDirectionState.class);

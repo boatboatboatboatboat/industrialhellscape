@@ -42,21 +42,20 @@ public class BarrierWallBlock extends Block implements ConnectedModelInterface, 
         return 4;
     }
 
+    // Additional BlockState Properties
     public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    public final TagKey<Block> blockSetFamily; //To determine other blocks aside from its own can this block connect to
 
-    public final VoxelShape SOLO_X;
-    public final VoxelShape SOLO_Z;
-
-    public final VoxelShape POSITIVE_X;
-    public final VoxelShape POSITIVE_Z;
-
-    public final VoxelShape MIDDLE_X;
-    public final VoxelShape MIDDLE_Z;
-
-    public final VoxelShape RIGHT_X;
-    public final VoxelShape RIGHT_Z;
+    // Additional Per-Instance Constructor Fields
+    protected final TagKey<Block> blockSetFamily; //To determine other blocks aside from its own can this block connect to
+    protected final VoxelShape SOLO_X;
+    protected final VoxelShape POSITIVE_X;
+    protected final VoxelShape MIDDLE_X;
+    protected final VoxelShape RIGHT_X;
+    protected final VoxelShape SOLO_Z; // Rotationally translated from X counterpart
+    protected final VoxelShape POSITIVE_Z; // Rotationally translated from X counterpart
+    protected final VoxelShape MIDDLE_Z; // Rotationally translated from X counterpart
+    protected final VoxelShape RIGHT_Z; // Rotationally translated from X counterpart
     
     public BarrierWallBlock(Properties properties, @Nullable TagKey<Block> inputCompatibleBlockSet, VoxelShape soloShape, VoxelShape leftShape, VoxelShape middleShape, VoxelShape rightShape, ConnectingBlockPlacementOrientation placementDirection) {
         super(properties);

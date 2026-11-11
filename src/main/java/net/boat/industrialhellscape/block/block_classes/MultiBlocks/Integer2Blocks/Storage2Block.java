@@ -17,9 +17,11 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 
 public class Storage2Block extends Integer2Block implements EntityBlock, StorageBlockInterface {
-    public final int SLOTS; //Amount of inventory slots. Should be a multiple of 9.
-    public final SoundEvent OPEN_SOUND;
-    public final SoundEvent CLOSE_SOUND;
+
+    // Additional Per-Instance Constructor Fields
+    protected final int SLOTS; //Amount of inventory slots. Should be a multiple of 9.
+    protected final SoundEvent OPEN_SOUND;
+    protected final SoundEvent CLOSE_SOUND;
 
     public Storage2Block(Properties pProperties, int[][] multiBlockPlacementMatrix, int slotsAmount, SoundEvent openSound, SoundEvent closeSound) {
         super(pProperties, multiBlockPlacementMatrix);

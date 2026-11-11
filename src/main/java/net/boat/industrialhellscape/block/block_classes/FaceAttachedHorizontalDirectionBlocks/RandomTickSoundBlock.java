@@ -33,9 +33,11 @@ import org.jetbrains.annotations.NotNull;
 
 public class RandomTickSoundBlock extends ModelledFAHDBlock {
 
+    // Additional BlockState Properties
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
-    public final SoundEvent OUTPUT_SOUND;
+    // Additional Per-Instance Constructor Fields
+    protected final SoundEvent OUTPUT_SOUND;
 
     public RandomTickSoundBlock(Properties pProperties, VoxelShape floorHitBox, SoundEvent outputSound) {
         super(pProperties, floorHitBox);

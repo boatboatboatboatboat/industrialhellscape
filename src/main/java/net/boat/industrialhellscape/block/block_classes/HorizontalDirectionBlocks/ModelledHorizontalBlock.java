@@ -31,12 +31,14 @@ import javax.annotation.Nonnull;
 
 public class ModelledHorizontalBlock extends SimpleHorizontalBlock implements SimpleWaterloggedBlock {
 
+    // Additional BlockState Properties
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    private final VoxelShape SOLO_SHAPE_NORTH;
-    private final VoxelShape SOLO_SHAPE_SOUTH;
-    private final VoxelShape SOLO_SHAPE_EAST;
-    private final VoxelShape SOLO_SHAPE_WEST;
+    // Additional Per-Instance Constructor Fields
+    protected final VoxelShape SOLO_SHAPE_NORTH;
+    protected final VoxelShape SOLO_SHAPE_SOUTH;
+    protected final VoxelShape SOLO_SHAPE_EAST;
+    protected final VoxelShape SOLO_SHAPE_WEST;
 
     public ModelledHorizontalBlock(Properties pProperties, VoxelShape soloShape) {
         super(pProperties);

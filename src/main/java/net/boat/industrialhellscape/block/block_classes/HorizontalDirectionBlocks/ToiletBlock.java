@@ -25,10 +25,12 @@ import java.util.List;
 
 public class ToiletBlock extends InteractableMHBlock implements SoundPlayInterface {
 
-    public static final BooleanProperty POWERED = BlockStateProperties.POWERED; //For binary states (on, off, or lit, unlit)
+    // Additional BlockState Properties
+    public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
-    public final SoundEvent ON_SOUND;
-    public final SoundEvent OFF_SOUND;
+    // Additional Per-Instance Constructor Fields
+    private final SoundEvent ON_SOUND;
+    private final SoundEvent OFF_SOUND;
 
     public ToiletBlock(Properties pProperties, VoxelShape soloShape, SoundEvent onSound, SoundEvent offSound) {
         super(pProperties, soloShape, onSound, offSound);

@@ -3,7 +3,7 @@ package net.boat.industrialhellscape.block.block_classes.FaceAttachedHorizontalD
 import net.boat.industrialhellscape.block.block_interfaces.SoundPlayInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -26,9 +26,14 @@ import java.util.function.BiConsumer;
 
 public class WaterloggableLeverBlock extends ModelledFAHDBlock implements SoundPlayInterface {
 
+    // Additional BlockState Properties
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
-    public WaterloggableLeverBlock(Properties pProperties, VoxelShape floorHitBox) {
+    // Additional Per-Instance Constructor Fields
+    protected final SoundEvent OPEN_SOUND;
+    protected final SoundEvent CLOSE_SOUND;
+
+    public WaterloggableLeverBlock(Properties pProperties, VoxelShape floorHitBox, SoundEvent openSound, SoundEvent closedSound) {
         super(pProperties, floorHitBox);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
@@ -36,14 +41,15 @@ public class WaterloggableLeverBlock extends ModelledFAHDBlock implements SoundP
                 .setValue(WATERLOGGED, false)
                 .setValue(POWERED, false)
         );
+        this.OPEN_SOUND = openSound;
+        this.CLOSE_SOUND = closedSound;
     }
 
-    protected @NotNull InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+    protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
         if (level.isClientSide) {
             return InteractionResult.SUCCESS;
         } else {
             this.pull(state, level, pos, null);
-            SoundPlayInterface.onOffSound(state,level,pos,POWERED, SoundEvents.LEVER_CLICK, SoundEvents.LEVER_CLICK, 0.3f, 0.3f,0.6f);
             return InteractionResult.CONSUME;
         }
     }
@@ -52,20 +58,21 @@ public class WaterloggableLeverBlock extends ModelledFAHDBlock implements SoundP
         state = state.cycle(POWERED);
         level.setBlock(pos, state, 3);
         this.updateNeighbours(state, level, pos);
+        SoundPlayInterface.onOffSound(state,level,pos,POWERED, OPEN_SOUND, CLOSE_SOUND, 0.3f, 0.2f,0.6f);
         level.gameEvent(player, state.getValue(POWERED) ? GameEvent.BLOCK_ACTIVATE : GameEvent.BLOCK_DEACTIVATE, pos);
     }
 
     @Override
-    protected int getSignal(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+    protected int getSignal(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
         return state.getValue(POWERED) ? 15 : 0;
     }
 
     @Override
-    protected int getDirectSignal(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-        return (Boolean)state.getValue(POWERED) && getConnectedDirection(state) == direction ? 15 : 0;
+    protected int getDirectSignal(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+        return state.getValue(POWERED) && getConnectedDirection(state) == direction ? 15 : 0;
     }
 
-    protected boolean isSignalSource(BlockState state) {
+    protected boolean isSignalSource(@NotNull BlockState state) {
         return true;
     }
 
@@ -74,17 +81,17 @@ public class WaterloggableLeverBlock extends ModelledFAHDBlock implements SoundP
         level.updateNeighborsAt(pos.relative(getConnectedDirection(state).getOpposite()), this);
     }
 
-    protected void onExplosionHit(BlockState state, Level level, BlockPos pos, Explosion explosion, BiConsumer<ItemStack, BlockPos> dropConsumer) {
+    protected void onExplosionHit(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, Explosion explosion, @NotNull BiConsumer<ItemStack, BlockPos> dropConsumer) {
         if (explosion.canTriggerBlocks()) {
-            this.pull(state, level, pos, (Player)null);
+            this.pull(state, level, pos, null);
         }
 
         super.onExplosionHit(state, level, pos, explosion, dropConsumer);
     }
 
-    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
+    protected void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) {
         if (!isMoving && !state.is(newState.getBlock())) {
-            if ((Boolean)state.getValue(POWERED)) {
+            if (state.getValue(POWERED)) {
                 this.updateNeighbours(state, level, pos);
             }
 

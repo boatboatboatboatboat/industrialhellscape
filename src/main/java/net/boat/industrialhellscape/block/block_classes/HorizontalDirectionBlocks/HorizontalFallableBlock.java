@@ -27,7 +27,9 @@ INFO:
 */
 
 public class HorizontalFallableBlock extends FallingBlock {
-    public SoundEvent onDropSound;
+
+    // Additional Per-Instance Constructor Fields
+    protected SoundEvent onDropSound;
 
     public HorizontalFallableBlock(Properties pProperties, SoundEvent onDropSound) {
         super(pProperties);

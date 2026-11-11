@@ -30,6 +30,7 @@ import java.util.Optional;
 
 public class Bed2Block extends Modelled2Block {
 
+    // Additional Per-Instance Constructor Fields
     protected boolean multiplePeopleCanSleepOn;
 
     public Bed2Block(BlockBehaviour.Properties pProperties, int[][] multiBlockPlacementMatrix, VoxelShape[] hitboxShapeArray, boolean multiplePeopleCanSleepOn) {

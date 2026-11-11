@@ -49,6 +49,8 @@ Keywords: bracket, Pipe Conduit Inner Corner, Pipe Conduit Outer Corner, pipe_co
 */
 
 public class CornerBlock extends ModelledFAHDBlock implements SimpleWaterloggedBlock, ToolUseInterface {
+
+    // Additional BlockState Properties
     public static DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING; //"FACING" is used to store DirectionProperty value of "north, south, east, west" //KJ
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 

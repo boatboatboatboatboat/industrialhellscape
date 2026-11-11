@@ -29,9 +29,11 @@ getOpenSound() & getCloseSound() used by StorageBE to acquire desired sound effe
 */
 
 public class BaseStorageBlock extends BaseEntityBlock implements StorageBlockInterface {
-    public int SLOTS;
-    public SoundEvent OPEN_SOUND;
-    public SoundEvent CLOSE_SOUND;
+
+    // Additional Per-Instance Constructor Fields
+    protected final int SLOTS;
+    protected final SoundEvent OPEN_SOUND;
+    protected final SoundEvent CLOSE_SOUND;
 
     public @NotNull MapCodec<BaseStorageBlock> codec() {
         return null;

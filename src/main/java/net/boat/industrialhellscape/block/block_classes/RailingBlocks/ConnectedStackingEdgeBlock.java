@@ -1,5 +1,6 @@
 package net.boat.industrialhellscape.block.block_classes.RailingBlocks;
 
+import net.boat.industrialhellscape.block.block_interfaces.ModCustomProperties;
 import net.boat.industrialhellscape.block.block_state_enums.DynamicConnectionState;
 import net.boat.industrialhellscape.block.block_interfaces.ConnectedModelInterface;
 import net.boat.industrialhellscape.block.block_interfaces.ToolUseInterface;
@@ -27,11 +28,9 @@ import org.jetbrains.annotations.Nullable;
 //This subclass adds a blockstate property that allows this block to stack on top of itself, changing the model if its the bottom, middle, or top segment
 
 public class ConnectedStackingEdgeBlock extends RailingBlock implements SimpleWaterloggedBlock, ToolUseInterface, ConnectedModelInterface {
-    private double RAILING_THICKNESS;
-    private double RAILING_COLLISION_SHAPE_BASE;
 
-    public static final EnumProperty<DynamicConnectionState> TYPE = EnumProperty.create("type", DynamicConnectionState.class); //Custom enum. "TYPE" is used to store enum value of "solo, pos, neg, middle"
-    //N,S,E,W boolean blockstates already defined in superclass
+    // Additional BlockState Properties
+    public static final EnumProperty<DynamicConnectionState> TYPE = ModCustomProperties.TYPE; //Custom enum. "TYPE" is used to store enum value of "solo, pos, neg, middle"
 
     public ConnectedStackingEdgeBlock(Properties pProperties, double railingThickness, double railingCollisionShapeBase) {
         super(pProperties, railingThickness, railingCollisionShapeBase);
