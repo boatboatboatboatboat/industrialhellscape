@@ -36,20 +36,20 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     protected void generateLootTableFromListOfBlocks(List<Block> listOfBlocks) {
         for(Block blockInIndice: listOfBlocks) {
             switch (blockInIndice) {
-                case SlabBlock slabBlock -> {
-                    this.add(slabBlock, createSlabItemTable(slabBlock));
+                case SlabBlock ignored -> {
+                    this.add(blockInIndice, createSlabItemTable(blockInIndice));
                 }
-                case RailingBlock railingBlock -> {
-                    this.add(railingBlock, createRailingDrops(railingBlock));
+                case RailingBlock ignored -> {
+                    this.add(blockInIndice, createRailingDrops(blockInIndice));
                 }
-                case StairRailingBlock stairRailingBlock -> {
-                    this.add(stairRailingBlock, createStairRailingDrops(stairRailingBlock));
+                case StairRailingBlock ignored -> {
+                    this.add(blockInIndice, createStairRailingDrops(blockInIndice));
                 }
                 case BaseIntegerMultiBlock registeredMultiBlockInstance -> {
                     this.add(blockInIndice, createIntegerMultiBlockDrops(blockInIndice, registeredMultiBlockInstance.partProperty));
                 }
-                case DoorBlock doorBlock -> {
-                    this.add(doorBlock, createDoorTable(doorBlock));
+                case DoorBlock ignored -> {
+                    this.add(blockInIndice, createDoorTable(blockInIndice));
                 }
                  default -> {
                     this.dropSelf(blockInIndice);
