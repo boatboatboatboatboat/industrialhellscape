@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
@@ -44,9 +45,9 @@ public class ParapetBlock extends RailingBlock implements SimpleWaterloggedBlock
 
     // Hard-coded Fields
     private final VoxelShape SHAPE_NW = Block.box(0,0,0, RAILING_THICKNESS, 16, RAILING_THICKNESS);
-    private final VoxelShape SHAPE_NE = HitboxRotationInterface.rotateVoxelYAxisIntTimes(1, SHAPE_NW);
-    private final VoxelShape SHAPE_SW = HitboxRotationInterface.rotateVoxelYAxisIntTimes(2, SHAPE_NW);
-    private final VoxelShape SHAPE_SE = HitboxRotationInterface.rotateVoxelYAxisIntTimes(3, SHAPE_NW);
+    private final VoxelShape SHAPE_SW = HitboxRotationInterface.rotateVoxelYAxisIntTimes(1, SHAPE_NW);
+    private final VoxelShape SHAPE_SE = HitboxRotationInterface.rotateVoxelYAxisIntTimes(2, SHAPE_NW);
+    private final VoxelShape SHAPE_NE = HitboxRotationInterface.rotateVoxelYAxisIntTimes(3, SHAPE_NW);
 
     // Additional BlockState Properties
     public static final BooleanProperty NORTH_WEST_FENCE = ModCustomProperties.NORTH_WEST_FENCE;
@@ -223,6 +224,11 @@ public class ParapetBlock extends RailingBlock implements SimpleWaterloggedBlock
         if (pState.getValue(SOUTH_EAST_FENCE))  shape = Shapes.join(shape, SHAPE_SE,  BooleanOp.OR);
 
         return shape;
+    }
+
+    @Override
+    protected @NotNull VoxelShape getCollisionShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+        return getInteractionShape(state,level,pos);
     }
 
     @Override

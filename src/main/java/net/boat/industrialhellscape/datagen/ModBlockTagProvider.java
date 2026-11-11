@@ -43,11 +43,26 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         //--- Main
         this.tag(ModTags.Blocks.VESSELPLATE_BLOCKS).add(ModRecipeProvider.VESSELPLATE_STONECUT_OUTPUT.toArray(new Block[0]));
+        this.tag(ModTags.Blocks.VESSELPLATE_BLOCKS).add(
+                ModBlocks.VERTICAL_VESSELPLATE.get(),
+                ModBlocks.VERTICAL_REINFORCED_VESSELPLATE.get(),
+                ModBlocks.GRAY_VERTICAL_VESSELPLATE.get(),
+                ModBlocks.GRAY_VERTICAL_REINFORCED_VESSELPLATE.get(),
+                ModBlocks.RUSTY_VERTICAL_VESSELPLATE.get(),
+                ModBlocks.RUSTY_VERTICAL_REINFORCED_VESSELPLATE.get()
+        );
+
         this.tag(ModTags.Blocks.ROCKRETE_BLOCKS).add(ModRecipeProvider.ROCKRETE_STONECUT_OUTPUT.toArray(new Block[0]));
         this.tag(ModTags.Blocks.VESSELGLASS_BLOCKS).add(ModRecipeProvider.VESSELGLASS_STONECUT_OUTPUT.toArray(new Block[0]));
 
         //--- Structural
         this.tag(ModTags.Blocks.HVAC_BLOCKS).add(ModRecipeProvider.HVAC_STONECUT_OUTPUT.toArray(new Block[0]));
+        this.tag(ModTags.Blocks.HVAC_BLOCKS).add(
+                ModBlocks.VERTICAL_VENT.get(),
+                ModBlocks.VERTICAL_CUTOUT_VENT.get(),
+                ModBlocks.RUSTY_VERTICAL_VENT.get(),
+                ModBlocks.RUSTY_VERTICAL_CUTOUT_VENT.get()
+        );
         this.tag(ModTags.Blocks.TRUSS_BLOCKS).add(ModRecipeProvider.TRUSS_STONECUT_OUTPUT.toArray(new Block[0]));
 
         //--- Doors

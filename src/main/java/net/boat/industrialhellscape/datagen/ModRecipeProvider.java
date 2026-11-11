@@ -212,6 +212,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
             ModBlocks.GRAY_ROCKRETE_BARRIER_YELLOW_STRIPE.get(),
             ModBlocks.GRAY_ROCKRETE_BARRIER_RED_STRIPE.get(),
+            ModBlocks.RED_ROCKRETE_BARRIER_YELLOW_STRIPE.get(),
+            ModBlocks.RED_ROCKRETE_BARRIER_RED_STRIPE.get(),
             ModBlocks.GREEN_ROCKRETE_BARRIER_YELLOW_STRIPE.get(),
             ModBlocks.GREEN_ROCKRETE_BARRIER_RED_STRIPE.get(),
             ModBlocks.BLUE_ROCKRETE_BARRIER_YELLOW_STRIPE.get(),

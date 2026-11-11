@@ -47,21 +47,21 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock, ToolU
 
     //Additional Hard-coded Fields
     protected static final double RAILING_HEIGHT = 16; //16 units is a full block height
-    //protected static final double RAILING_COLLISION_HEIGHT = 16; //Vanilla wall value is 24. This is 16 to prevent mob pathfinding issues.
-    protected final VoxelShape SHAPE_NORTH = Block.box(0d, 0d, 0, 16d, RAILING_HEIGHT, RAILING_THICKNESS);
-    protected final VoxelShape SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH);
-    protected final VoxelShape SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH);
-    protected final VoxelShape SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH);
+    protected static final double RAILING_COLLISION_HEIGHT = 16; //Vanilla wall value is 24. This is 16 to prevent mob pathfinding issues.
+    protected final VoxelShape SHAPE_NORTH;
+    protected final VoxelShape SHAPE_SOUTH;
+    protected final VoxelShape SHAPE_EAST;
+    protected final VoxelShape SHAPE_WEST;
 
     // COLLISION SHAPE (FOR PLAYER), arrows will collide with hitbox portion that's within the 16x16x16 block boundary only.
     // Meaning despite the RAILING_COLLISION_HEIGHT being greater than 16 units, arrows can still fly through above the edge of the block.
     // However, player will still be obstructed from jumping over it, just like fences. For now this is intended behavior.
     // The modded interface HitboxRotationInterface is used to rotate the voxelshapes along appropriate cardinal directions.
     //There is a gap from y=0 to y=15. This allows you to shoot arrows through the railing blocks since they are pretty thin.
-//    protected final VoxelShape COLLISION_SHAPE_NORTH;// = Block.box(0d, 15d, 16d-RAILING_THICKNESS, 16d, RAILING_COLLISION_HEIGHT, 16d);
-//    protected final VoxelShape COLLISION_SHAPE_SOUTH;// = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, COLLISON_SHAPE_NORTH);
-//    protected final VoxelShape COLLISION_SHAPE_EAST;// = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, COLLISON_SHAPE_NORTH);
-//    protected final VoxelShape COLLISION_SHAPE_WEST;// = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, COLLISON_SHAPE_NORTH);
+    protected final VoxelShape COLLISION_SHAPE_NORTH;// = Block.box(0d, 15d, 16d-RAILING_THICKNESS, 16d, RAILING_COLLISION_HEIGHT, 16d);
+    protected final VoxelShape COLLISION_SHAPE_SOUTH;// = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, COLLISON_SHAPE_NORTH);
+    protected final VoxelShape COLLISION_SHAPE_EAST;// = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, COLLISON_SHAPE_NORTH);
+    protected final VoxelShape COLLISION_SHAPE_WEST;// = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, COLLISON_SHAPE_NORTH);
 
     // Boolean properties to check whether there is an additional fence at that direction (multiple can be placed down in each of the four cardinal directions in one block space)
     // These "superposition" block properties are handled via a block-state .json file handling "multi-block" states.
@@ -82,10 +82,15 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock, ToolU
         );
         this.RAILING_THICKNESS = railingThickness;
         this.RAILING_COLLISION_SHAPE_BASE = railingCollisionShapeBase;
-//        this.COLLISION_SHAPE_NORTH = Block.box(0d, RAILING_COLLISION_SHAPE_BASE, 0, 16d, RAILING_COLLISION_HEIGHT, RAILING_THICKNESS);
-//        this.COLLISION_SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, COLLISION_SHAPE_NORTH);
-//        this.COLLISION_SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, COLLISION_SHAPE_NORTH);
-//        this.COLLISION_SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, COLLISION_SHAPE_NORTH);
+        this.SHAPE_NORTH = Block.box(0d, 0d, 0, 16d, RAILING_HEIGHT, RAILING_THICKNESS);
+        this.SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, SHAPE_NORTH);
+        this.SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, SHAPE_NORTH);
+        this.SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, SHAPE_NORTH);
+
+        this.COLLISION_SHAPE_NORTH = Block.box(0d, RAILING_COLLISION_SHAPE_BASE, 0, 16d, RAILING_COLLISION_HEIGHT, RAILING_THICKNESS);
+        this.COLLISION_SHAPE_SOUTH = HitboxRotationInterface.rotateVoxelCardinal(Direction.SOUTH, COLLISION_SHAPE_NORTH);
+        this.COLLISION_SHAPE_EAST = HitboxRotationInterface.rotateVoxelCardinal(Direction.EAST, COLLISION_SHAPE_NORTH);
+        this.COLLISION_SHAPE_WEST = HitboxRotationInterface.rotateVoxelCardinal(Direction.WEST, COLLISION_SHAPE_NORTH);
     }
 
     @Override
@@ -162,6 +167,16 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock, ToolU
         if (pState.getValue(SOUTH_FENCE)) shape = Shapes.join(shape, SHAPE_SOUTH, BooleanOp.OR);
         if (pState.getValue(EAST_FENCE))  shape = Shapes.join(shape, SHAPE_EAST,  BooleanOp.OR);
         if (pState.getValue(WEST_FENCE))  shape = Shapes.join(shape, SHAPE_WEST,  BooleanOp.OR);
+        return shape;
+    }
+
+    @Override
+    protected @NotNull VoxelShape getCollisionShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+        VoxelShape shape = Shapes.empty();
+        if (state.getValue(NORTH_FENCE)) shape = Shapes.join(shape, COLLISION_SHAPE_NORTH, BooleanOp.OR);
+        if (state.getValue(SOUTH_FENCE)) shape = Shapes.join(shape, COLLISION_SHAPE_SOUTH, BooleanOp.OR);
+        if (state.getValue(EAST_FENCE))  shape = Shapes.join(shape, COLLISION_SHAPE_EAST,  BooleanOp.OR);
+        if (state.getValue(WEST_FENCE))  shape = Shapes.join(shape, COLLISION_SHAPE_WEST,  BooleanOp.OR);
         return shape;
     }
 

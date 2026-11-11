@@ -329,7 +329,7 @@ public class ModBlocks {
     );
     public static final DeferredBlock<Block> HORIZONTAL_CUTOUT_VENT = registerBlockAndBlockItem("horizontal_cutout_vent",
             () -> new TrussBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.GLASS)
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
                     false
             )
@@ -343,7 +343,7 @@ public class ModBlocks {
     );
     public static final DeferredBlock<Block> VERTICAL_CUTOUT_VENT = registerBlockAndBlockItem("vertical_cutout_vent",
             () -> new TrussBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.GLASS)
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
                     false
             )
@@ -358,7 +358,7 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> RUSTY_HORIZONTAL_VENT = registerBlockAndBlockItem("rusty_horizontal_vent",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
             )
             {
@@ -371,7 +371,7 @@ public class ModBlocks {
     );
     public static final DeferredBlock<Block> RUSTY_VERTICAL_VENT = registerBlockAndBlockItem("rusty_vertical_vent",
             () -> new SimpleTextureToggleBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS)
             )
             {
@@ -384,7 +384,7 @@ public class ModBlocks {
     );
     public static final DeferredBlock<Block> RUSTY_HORIZONTAL_CUTOUT_VENT = registerBlockAndBlockItem("rusty_horizontal_cutout_vent",
             () -> new TrussBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.GLASS)
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
                     false
             )
@@ -398,7 +398,7 @@ public class ModBlocks {
     );
     public static final DeferredBlock<Block> RUSTY_VERTICAL_CUTOUT_VENT = registerBlockAndBlockItem("rusty_vertical_cutout_vent",
             () -> new TrussBlock(BlockBehaviour
-                    .Properties.ofFullCopy(Blocks.GLASS)
+                    .Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()
                     .sound(ModSounds.HOLLOW_METAL_BLOCK_SOUNDS),
                     false
             )
